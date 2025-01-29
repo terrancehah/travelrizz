@@ -4,12 +4,12 @@ import Head from 'next/head';
 import Script from 'next/script';
 import flatpickr from 'flatpickr';
 import Link from 'next/link';
-import { useBackgroundVideo } from '../hooks/useBackgroundVideo';
-import LoadingSpinner from '../components/LoadingSpinner';
-import PopupWindow from '../components/modals/PopupWindow';
-import styles from '../styles/TravelForm.module.css';
-import { TravelPreference, TravelSession } from '../managers/types';
-import { initializeSession, SESSION_CONFIG, generateSessionId, safeStorageOp, getStoredSession } from '../utils/session-manager';
+import { useBackgroundVideo } from '../../hooks/useBackgroundVideo';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import PopupWindow from '../../components/modals/PopupWindow';
+import styles from '../../styles/TravelForm.module.css';
+import { TravelPreference, TravelSession } from '../../managers/types';
+import { initializeSession, SESSION_CONFIG, generateSessionId, safeStorageOp, getStoredSession } from '../../utils/session-manager';
 
 // Add Google Maps types
 declare global {

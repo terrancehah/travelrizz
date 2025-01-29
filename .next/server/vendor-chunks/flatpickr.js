@@ -18,6 +18,16 @@ exports.modules = {
 
 
 
+/***/ }),
+
+/***/ "./node_modules/flatpickr/dist/flatpickr.min.css":
+/*!*******************************************************!*\
+  !*** ./node_modules/flatpickr/dist/flatpickr.min.css ***!
+  \*******************************************************/
+/***/ (() => {
+
+
+
 /***/ })
 
 };
