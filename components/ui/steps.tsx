@@ -15,7 +15,7 @@ interface StepsProps {
 
 export function Steps({ currentStep, steps }: StepsProps) {
   return (
-    <div className="space-y-20 pl-2">
+    <div className="flex md:flex-col md:space-y-20 md:pl-2 space-x-4 md:space-x-0">
       {steps.map((step) => {
         const Icon = step.icon
         const isCompleted = currentStep > step.number
@@ -26,7 +26,7 @@ export function Steps({ currentStep, steps }: StepsProps) {
             {step.number !== steps.length && (
               <div
                 className={cn(
-                  "absolute left-4 top-8 h-[calc(100%+3rem)] w-px -translate-x-[0.5px]",
+                  "hidden md:block absolute left-4 top-8 h-[calc(100%+3rem)] w-px -translate-x-[0.5px]",
                   isCompleted ? "bg-sky-blue" : "bg-gray-200"
                 )}
               />
@@ -48,7 +48,7 @@ export function Steps({ currentStep, steps }: StepsProps) {
                   <Icon className={cn("h-4 w-4", isCurrent ? "text-sky-blue" : "text-gray-400")} />
                 )}
               </div>
-              <div className="flex h-full my-auto">
+              <div className="hidden md:flex h-full my-auto">
                 <div
                   className={cn(
                     "font-medium",

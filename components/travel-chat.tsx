@@ -472,7 +472,7 @@ export function TravelChat({
                                 <div key={`content-${message.id || index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                                     <div className={`${
                                         message.role === 'user' 
-                                            ? 'bg-blue-500 text-white rounded-br-none w-min min-w-[35%]' 
+                                            ? 'bg-blue-500 text-white rounded-br-none w-min min-w-[40%]' 
                                             : 'bg-gray-200 text-gray-700 rounded-bl-none w-[75%]'
                                     } rounded-2xl px-4 py-2 max-w-[75%]`}>
                                         <ReactMarkdown 
@@ -763,7 +763,7 @@ export function TravelChat({
                     <button
                         type="submit"
                         disabled={isLoading || !isWithinStageLimit}
-                        className="inline-flex items-center rounded-md bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+                        className="inline-flex items-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
                     >
                         Send
                     </button>

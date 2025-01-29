@@ -21,6 +21,9 @@ module.exports = {
         'sky-blue': '#4a88c6',
         'light-blue': '#e8f4ff',
       },
+      boxShadow: {
+        'all': '0px 0px 5px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.1)',
+      },
       animation: {
         'bounce': 'bounce 2s infinite',
         'gradient-x': 'gradient-x 2s ease-in-out infinite',

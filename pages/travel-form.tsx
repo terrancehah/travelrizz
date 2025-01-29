@@ -458,8 +458,9 @@ export default function TravelFormPage() {
   return (
     <>
       <main className="flex min-h-screen">
-        <div className="w-64 bg-light-blue shadow-md space-y-14 p-6 border-r">
-          <Link href="/" className="flex gap-x-1">
+        <div className="fixed flex top-0 left-0 right-0 md:relative md:w-64 bg-light-blue shadow-md md:space-y-14 space-y-2 p-3 md:p-6 border-r flex-col items-center md:items-start">
+          
+          <Link href="/" className="flex gap-x-1 pr-4">
             <Image
               src="/images/travel-rizz.png"
               alt="Travel-Rizz Logo"
@@ -469,6 +470,7 @@ export default function TravelFormPage() {
             />
             <span className="font-caveat text-3xl h-min my-auto text-primary">Travel-Rizz</span>
           </Link>
+
           <Steps currentStep={currentStep} steps={steps} />
         </div>
         <div className="flex flex-1 p-6">

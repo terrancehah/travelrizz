@@ -5,8 +5,8 @@ import { Twitter, Instagram, Facebook,  } from "lucide-react"
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-light-blue/95 backdrop-blur supports-[backdrop-filter]:bg-light-blue/60 shadow-sm">
-      <div className="flex p-3 px-4 w-full justify-between">
+    <header className="sticky flex top-0 z-50 w-full bg-light-blue/95 backdrop-blur supports-[backdrop-filter]:bg-light-blue/60 shadow-sm">
+      <div className="flex p-3 px-4 w-full md:justify-between items-center">
         <Link href="/" className="flex gap-x-1">
           <Image
             src="/images/travel-rizz.png"

@@ -8,6 +8,8 @@ import { getStoredSession, initializeSession, SESSION_CONFIG, checkSessionValidi
 import PaymentSuccessPopup from '../../components/modals/payment-success-popup';
 import PremiumUpgradeModal from '../../components/modals/premium-upgrade-modal';
 import { validateStageProgression } from '../../managers/stage-manager';
+import { Map } from "lucide-react"
+
 
 const TravelChatComponent = dynamic(() => import('../../components/travel-chat'), {
     ssr: false,
@@ -271,9 +273,9 @@ export default function ChatPage() {
                 {isMobile && (
                     <button
                         onClick={() => setShowMap(!showMap)}
-                        className="fixed top-16 right-4 z-50 bg-white p-2 rounded-full shadow-lg"
+                        className="fixed top-28 right-4 z-50 bg-white p-3 rounded-lg shadow-all"
                     >
-                        {showMap ? 'Hide Map' : 'Show Map'}
+                        <Map className={`h-6 w-6 ${showMap ? 'text-blue-500' : 'text-gray-500'}`} />
                     </button>
                 )}
 

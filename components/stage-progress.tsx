@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { cn } from '../lib/utils';
 import { CheckIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 import { Info } from 'lucide-react';
+import Image from 'next/image';
 import PaymentSuccessPopup from './modals/payment-success-popup';
 
 interface StageProgressProps {
@@ -31,7 +32,7 @@ export const StepsRoot = React.forwardRef<HTMLDivElement, StepsRootProps>(
         <div
             ref={ref}
             className={cn(
-                'w-full bg-white border-b border-gray-200',
+                'w-full bg-white border-b border-gray-200 sticky top-0 z-40',
                 orientation === 'vertical' ? 'flex-col' : 'flex',
                 className
             )}
@@ -48,13 +49,24 @@ export const StepsList = React.forwardRef<HTMLDivElement, StepsListProps>(
         <div
             ref={ref}
             className={cn(
-                'max-w-screen-2xl mx-auto px-4 py-3',
+                'max-w-screen-2xl mx-auto w-full px-4 py-3 overflow-x-auto',
                 className
             )}
             {...props}
         >
-            <div className="flex items-center justify-between w-full">
-                {props.children}
+            <div className="flex">
+                <div className="absolute md:left-4 md:top-4 left-3 top-3">
+                    <Image
+                        src="/images/travel-rizz.png"
+                        alt="Travel-Rizz Logo"
+                        width={48}
+                        height={48}
+                        className="h-9 w-9 md:h-12 md:w-12 my-auto object-contain"
+                    />
+                </div>
+                <div className="flex items-center gap-4 mx-auto">
+                    {props.children}
+                </div>
             </div>
         </div>
     )
@@ -73,7 +85,7 @@ export interface StepsItemProps extends React.HTMLAttributes<HTMLDivElement> {
 export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
     ({ className, step, currentStep, title, description, isLocked, isLast, ...props }, ref) => (
         <>
-            <div className="flex flex-col items-center relative" ref={ref} {...props}>
+            <div className="flex flex-col items-center gap-2 relative" ref={ref} {...props}>
                 <div 
                     className={cn(
                         'w-8 h-8 rounded-full flex items-center justify-center transition-colors',
@@ -95,21 +107,24 @@ export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
                         </span>
                     )}
                 </div>
-                <div className="flex flex-col items-center mt-1">
+                <div className="hidden md:flex flex-col items-start mt-1">
                     <span className="text-sm font-medium">{title}</span>
                     {description && (
                         <span className="text-xs text-gray-500">{description}</span>
                     )}
                 </div>
                 {isLocked && (
-                    <span className="absolute right-1">
-                        <LockClosedIcon className="w-4 h-4 text-gray-500" />
-                    </span>
+                    <LockClosedIcon className="w-4 h-4 text-gray-400 absolute -top-1 -right-1" />
                 )}
             </div>
             {!isLast && (
-                <div className="flex-1 flex h-[2px] my-auto bg-gray-400 mx-6">
-                    <div className="w-[100%] h-[2px] bg-gray-400"/>
+                <div className="hidden md:block flex-1 h-[2px] bg-gray-200">
+                    <div
+                        className={cn(
+                            'h-full bg-green-500 transition-all',
+                            currentStep > step ? 'w-full' : 'w-0'
+                        )}
+                    />
                 </div>
             )}
         </>
