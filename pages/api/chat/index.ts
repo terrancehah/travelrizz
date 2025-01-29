@@ -253,6 +253,9 @@ export default async function handler(req: NextRequest) {
 
     // Get AI response
     const result = streamText({
+    // const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+      // model: openai('gpt-4o'),
       model: openai('gpt-4o-mini'),
       messages: [
         { role: 'system', content: staticSystemPrompt },
@@ -265,19 +268,14 @@ export default async function handler(req: NextRequest) {
       frequencyPenalty: 0.3,
       maxSteps: 10,
       experimental_transform: smoothStream<typeof tools>({
-        delayInMs: 70,
-        onError: (error) => {
-          console.error('[chat] Stream transform error:', {
-            error,
-            message: error instanceof Error ? error.message : 'Unknown stream error'
-          });
-          return { type: 'error', error };
-        }
+        delayInMs: 100,
       }),
       tools,
     });
 
-    return result.toDataStreamResponse();
+    const response = result.toDataStreamResponse();
+    response.headers.set('Cache-Control', 'no-cache');
+    return response;
   } catch (error) {
     console.error('[chat] Error:', error);
     return new Response(
