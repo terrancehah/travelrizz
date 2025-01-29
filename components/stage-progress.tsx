@@ -55,7 +55,7 @@ export const StepsList = React.forwardRef<HTMLDivElement, StepsListProps>(
             {...props}
         >
             <div className="flex">
-                <div className="absolute md:left-4 md:top-4 left-3 top-3">
+                <div className="absolute md:left-4 md:top-4 left-3 top-[10px]">
                     <Image
                         src="/images/travel-rizz.png"
                         alt="Travel-Rizz Logo"
