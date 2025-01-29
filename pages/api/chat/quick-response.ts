@@ -1,7 +1,6 @@
 import { openai } from '@ai-sdk/openai';
 import { streamText, smoothStream } from 'ai';
 import { NextRequest } from 'next/server';
-import { SessionMetrics } from '../../../managers/types';
 import { tools } from '../../../ai/tools';
 
 interface QuickResponseBody {
@@ -9,7 +8,6 @@ interface QuickResponseBody {
   destination: string;
   messageCount: number;
   currentStage: number;
-  metrics: SessionMetrics;
 }
 
 export const config = {
