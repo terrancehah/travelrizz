@@ -267,13 +267,15 @@ export default async function handler(req: NextRequest) {
         ...messages
       ],
       maxTokens: 2000,
+      
       temperature: 0.5,
       presencePenalty: 0.7,
       frequencyPenalty: 0.3,
       maxSteps: 10,
-      experimental_transform: smoothStream<typeof tools>({
-        delayInMs: 70,
-      }),
+      // experimental_transform: smoothStream<typeof tools>({
+      //   delayInMs: 70,
+        
+      // }),
       tools,
     });
 
