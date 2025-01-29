@@ -105,11 +105,11 @@ export function useTravelChat({
         ?.filter(place => place && place.id && place.displayName)
         ?.map(place => ({
           id: place.id,
-          displayName: place.displayName,
+          displayName: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
           formattedAddress: place.formattedAddress,
           location: place.location,
           primaryType: place.primaryType,
-          primaryTypeDisplayName: place.primaryTypeDisplayName,
+          primaryTypeDisplayName: place.primaryTypeDisplayName?.text,
           photos: place.photos || []
         })) || [],
       currentStage,

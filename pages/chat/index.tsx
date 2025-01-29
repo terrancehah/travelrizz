@@ -234,7 +234,7 @@ export default function ChatPage() {
     };
 
     return (
-        <div className="fixed inset-0 flex flex-col bg-white">
+        <div className="flex flex-col min-h-screen h-[100dvh] w-full bg-white">
             {/* Progress tracker - fixed height */}
             <div className="flex-none">
                 <StageProgress 
@@ -242,11 +242,10 @@ export default function ChatPage() {
                     isPaid={isPaid}
                 />
             </div>
-            
-            {/* Main content area */}
-            <div className="flex-1 relative overflow-hidden">
-                {/* Chat section */}
-                <div className={`${isMobile && showMap ? 'hidden' : 'absolute inset-0 overflow-auto'}`}>
+            {/* Main content - takes remaining height */}
+            <main className="flex-1 flex relative bg-white min-h-0">
+                {/* Chat Interface */}
+                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-full border-r border-gray-200 overflow-y-auto`}>
                     {isDetailsReady ? (
                         <>
                             {currentStage < 4 && (
@@ -282,14 +281,14 @@ export default function ChatPage() {
 
                 {/* Map Container */}
                 {(showMap || !isMobile) && (
-                    <div className={`${isMobile ? 'fixed inset-0 z-40' : 'absolute right-0 w-[50%] h-full'} 
+                    <div className={`${isMobile ? 'fixed inset-0 z-40 h-[100dvh]' : 'w-[50%]'} 
                         ${isMobile && !showMap ? 'hidden' : ''}`}>
                         {apiKey ? (
-                            <MapComponent
-                                city={travelDetails.destination || ''}
-                                apiKey={apiKey}
-                                key={`map-${savedPlacesUpdate}`}
-                            />
+                                <MapComponent
+                                    city={travelDetails.destination || ''}
+                                    apiKey={apiKey}
+                                    key={`map-${savedPlacesUpdate}`}
+                                />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center">
                                 <p className="text-red-500">{apiError || 'Loading map...'}</p>
@@ -297,7 +296,7 @@ export default function ChatPage() {
                         )}
                     </div>
                 )}
-            </div>
+            </main>
             <PaymentSuccessPopup
                 isOpen={showPaymentSuccess}
                 onClose={() => setShowPaymentSuccess(false)}
