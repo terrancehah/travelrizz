@@ -1,0 +1,20 @@
+{
+    "cleanUrls": true,
+    "functions": {
+        "api/travel-rizz-server.js": {
+            "maxDuration": 60
+        },
+        "api/travel-rizz-basic-info.js": {
+            "maxDuration": 60
+        },
+        "api/travel-rizz-details.js": {
+            "maxDuration": 60
+        },
+        "api/travel-rizz-daily-itinerary.js": {
+            "maxDuration": 60
+        },
+        "api/travel-rizz-conclusion.js": {
+            "maxDuration": 60
+        }
+    }
+}
