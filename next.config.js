@@ -13,19 +13,11 @@ const nextConfig = {
       },
       {
         source: '/api/stripe/webhook',
-        destination: '/api/stripe/webhook/',
-      },
-      {
-        source: '/api/stripe/webhook/',
         destination: '/api/stripe/webhook',
       },
       {
-        source: '/:path*.html',
-        destination: '/:path*.html',
-      },
-      {
         source: '/api/chat',
-        destination: '/api/chat/',
+        destination: '/api/chat',
       },
       {
         source: '/api/weather/:path*',
@@ -40,6 +32,12 @@ const nextConfig = {
         destination: '/travel-form',
         permanent: true,
       },
+      // Ensure consistent trailing slash handling
+      {
+        source: '/:path+/',
+        destination: '/:path+',
+        permanent: true,
+      }
     ]
   },
   webpack: (config) => {
@@ -50,8 +48,7 @@ const nextConfig = {
     };
     return config;
   },
-  // Ensure static files are served correctly
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/' : '',
+  // Remove assetPrefix if not needed for production
   trailingSlash: false,
 }
 

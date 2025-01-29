@@ -457,8 +457,9 @@ export default function TravelFormPage() {
 
   return (
     <>
-      <main className="flex min-h-screen">
-        <div className="fixed flex top-0 left-0 right-0 md:relative md:w-64 bg-light-blue shadow-md md:space-y-14 space-y-2 p-3 md:p-6 border-r flex-col items-center md:items-start">
+      <main className="flex min-h-[100dvh]">
+        <div className="fixed flex top-0 left-0 right-0 z-10 md:relative md:w-64 bg-light-blue shadow-md 
+          md:space-y-14 space-y-2 p-3 md:p-6 border-r flex-col items-center md:items-start">
           
           <Link href="/" className="flex gap-x-1 pr-4">
             <Image
@@ -473,7 +474,7 @@ export default function TravelFormPage() {
 
           <Steps currentStep={currentStep} steps={steps} />
         </div>
-        <div className="flex flex-1 p-6">
+        <div className="flex flex-1 p-6 mt-32 md:mt-0">
           <div className="max-w-md w-full m-auto space-y-8">
               {renderStepContent()}
           </div>

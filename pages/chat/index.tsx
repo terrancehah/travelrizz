@@ -234,7 +234,7 @@ export default function ChatPage() {
     };
 
     return (
-        <div className="flex flex-col h-[100vh] w-full bg-white">
+        <div className="flex flex-col min-h-screen h-[100dvh] w-full bg-white">
             {/* Progress tracker - fixed height */}
             <div className="flex-none">
                 <StageProgress 
@@ -281,7 +281,8 @@ export default function ChatPage() {
 
                 {/* Map Container */}
                 {(showMap || !isMobile) && (
-                    <div className={`${isMobile ? 'absolute inset-0 z-40' : 'w-[50%]'}`}>
+                    <div className={`${isMobile ? 'fixed inset-0 z-40 h-[100dvh]' : 'w-[50%]'} 
+                        ${isMobile && !showMap ? 'hidden' : ''}`}>
                         {apiKey ? (
                                 <MapComponent
                                     city={travelDetails.destination || ''}
