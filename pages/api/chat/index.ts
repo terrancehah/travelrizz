@@ -1,10 +1,10 @@
 import { openai } from '@ai-sdk/openai';
-import { groq } from '@ai-sdk/groq';
-import { createGroq } from '@ai-sdk/groq';
+// import { groq } from '@ai-sdk/groq';
+// import { createGroq } from '@ai-sdk/groq';
 import { smoothStream, streamText, Message } from 'ai';
 import { tools } from '../../../ai/tools';
 import { NextRequest } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+// import { GoogleGenerativeAI } from '@google/generative-ai';
 import { TravelSession } from '../../../managers/types';
 import { validateStageProgression, STAGE_LIMITS } from '../../../managers/stage-manager';
 import { Place } from '../../../utils/places-utils';
@@ -257,6 +257,10 @@ export default async function handler(req: NextRequest) {
 
       // model: openai('gpt-4o'),
       model: openai('gpt-4o-mini'),
+      // model: groq('llama-3.1-8b-instant'),
+      // model: groq('llama-3.3-70b-versatile'),
+      // model: genAI.getGenerativeModel({ model: "gemini-1.5-flash" }),
+
       messages: [
         { role: 'system', content: staticSystemPrompt },
         { role: 'system', content: dynamicContext },
@@ -268,14 +272,12 @@ export default async function handler(req: NextRequest) {
       frequencyPenalty: 0.3,
       maxSteps: 10,
       experimental_transform: smoothStream<typeof tools>({
-        delayInMs: 100,
+        delayInMs: 70,
       }),
       tools,
     });
 
-    const response = result.toDataStreamResponse();
-    response.headers.set('Cache-Control', 'no-cache');
-    return response;
+    return result.toDataStreamResponse();
   } catch (error) {
     console.error('[chat] Error:', error);
     return new Response(
