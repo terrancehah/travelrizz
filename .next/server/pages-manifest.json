@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/chat": "pages/chat.js",
+  "/api/maps-key": "pages/api/maps-key.js",
   "/travel-form": "pages/travel-form.js",
-  "/": "pages/index.js"
+  "/chat": "pages/chat.js"
 }

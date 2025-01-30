@@ -279,7 +279,13 @@ export default async function handler(req: NextRequest) {
       tools,
     });
 
-    return result.toDataStreamResponse();
+    // Ensure proper headers for Edge Runtime streaming
+    const response = result.toDataStreamResponse();
+    response.headers.set('Content-Type', 'text/event-stream');
+    response.headers.set('Cache-Control', 'no-cache');
+    response.headers.set('Connection', 'keep-alive');
+    
+    return response;
   } catch (error) {
     console.error('[chat] Error:', error);
     return new Response(
