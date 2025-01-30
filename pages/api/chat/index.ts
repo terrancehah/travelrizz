@@ -272,10 +272,10 @@ export default async function handler(req: NextRequest) {
       presencePenalty: 0.7,
       frequencyPenalty: 0.3,
       maxSteps: 10,
-      experimental_transform: smoothStream({
-        delayInMs: 70,
+      // experimental_transform: smoothStream({
+      //   delayInMs: 70,
         
-      }),
+      // }),
       tools,
     });
 
