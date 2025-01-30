@@ -95,70 +95,7 @@ export function useTravelChat({
     return () => window.removeEventListener('savedPlacesChanged', handlePlacesChanged);
   }, []);
 
-  const mainChat = useChat({
-    api: '/api/chat',
-    id: SESSION_CONFIG.STORAGE_KEY,
-    body: {
-      currentDetails,
-      destination: currentDetails.destination, // Explicitly include destination
-      savedPlaces: currentSavedPlaces
-        ?.filter(place => place && place.id && place.displayName)
-        ?.map(place => ({
-          id: place.id,
-          displayName: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
-          formattedAddress: place.formattedAddress,
-          location: place.location,
-          primaryType: place.primaryType,
-          primaryTypeDisplayName: place.primaryTypeDisplayName?.text,
-          photos: place.photos || []
-        })) || [],
-      currentStage,
-      metrics: {
-        ...metrics,
-        destination: currentDetails.destination // Ensure destination is in metrics
-      }
-    },
-    onError: useCallback((error: Error) => {
-      console.error('[MainChat] Error:', error);
-      console.error('[MainChat] Current state:', {
-        currentDetails,
-        savedPlaces: currentSavedPlaces?.map(p => ({
-          id: p?.id,
-          displayName: p?.displayName,
-          photos: p?.photos?.length
-        })),
-        currentStage,
-        metrics
-      });
-      quickResponseInProgress.current = false;
-    }, [currentDetails, currentSavedPlaces, currentStage, metrics]),
-    onFinish: useCallback(async (message: AiMessage) => {
-      // Only trigger quick response for complete assistant messages
-      if (message.role !== 'assistant' || !message.content?.trim()) return;
-      
-      // Prevent multiple quick response triggers
-      if (quickResponseInProgress.current) return;
-      
-      // If it's a limit message, don't trigger quick response
-      if (message.content.includes("You've reached the maximum number of places")) {
-        quickResponseInProgress.current = false;
-        return;
-      }
-      
-      quickResponseInProgress.current = true;
-
-      try {
-        // Reset previous messages to ensure clean state
-        await quickResponseChat.reload();
-        // Add the new message
-        await quickResponseChat.append(message);
-      } catch (error) {
-        // console.error('[QuickResponse] Error triggering quick response:', error);
-        quickResponseInProgress.current = false;
-      }
-    }, [])
-  });
-
+  // Define quickResponseChat first with original implementation
   const quickResponseChat = useChat({
     api: '/api/chat/quick-response',
     id: SESSION_CONFIG.STORAGE_KEY,
@@ -185,6 +122,74 @@ export function useTravelChat({
       // console.error('[QuickResponse] Error:', error);
       quickResponseInProgress.current = false;
     }, [])
+  });
+
+  const mainChat = useChat({
+    api: '/api/chat',
+    id: SESSION_CONFIG.STORAGE_KEY,
+    body: {
+      currentDetails,
+      destination: currentDetails.destination,
+      savedPlaces: currentSavedPlaces
+        ?.filter(place => place && place.id && place.displayName)
+        ?.map(place => ({
+          id: place.id,
+          displayName: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
+          formattedAddress: place.formattedAddress,
+          location: place.location,
+          primaryType: place.primaryType,
+          primaryTypeDisplayName: place.primaryTypeDisplayName?.text,
+          photos: place.photos || []
+        })) || [],
+      currentStage,
+      metrics: {
+        ...metrics,
+        destination: currentDetails.destination
+      }
+    },
+    onError: useCallback((error: Error) => {
+      console.error('[MainChat] Error:', error);
+      if (error instanceof Error) {
+        console.error('[MainChat] Error details:', {
+          name: error.name,
+          message: error.message,
+          stack: error.stack
+        });
+      }
+      quickResponseInProgress.current = false;
+    }, []),
+    onFinish: useCallback(async (message: AiMessage) => {
+      if (message.role !== 'assistant' || !message.content?.trim()) {
+        quickResponseInProgress.current = false;
+        return;
+      }
+      
+      if (quickResponseInProgress.current) return;
+      
+      if (message.content.includes("You've reached the maximum number of places")) {
+        quickResponseInProgress.current = false;
+        return;
+      }
+      
+      quickResponseInProgress.current = true;
+      try {
+        await quickResponseChat.reload();
+        await quickResponseChat.append({
+          id: message.id,
+          content: message.content,
+          role: message.role
+        });
+      } catch (error) {
+        console.error('[QuickResponse] Error:', error);
+        quickResponseInProgress.current = false;
+      }
+    }, [quickResponseChat]),
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive'
+    },
+    streamProtocol: 'data'
   });
 
   useEffect(() => {

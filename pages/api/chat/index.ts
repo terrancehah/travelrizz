@@ -252,15 +252,8 @@ export default async function handler(req: NextRequest) {
     });
 
     // Get AI response
-    const result = streamText({
-    // const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-      // model: openai('gpt-4o'),
-      model: openai('gpt-4o-mini'),
-      // model: groq('llama-3.1-8b-instant'),
-      // model: groq('llama-3.3-70b-versatile'),
-      // model: genAI.getGenerativeModel({ model: "gemini-1.5-flash" }),
-
+    const result = await streamText({
+      model: openai('gpt-4o'),
       messages: [
         { role: 'system', content: staticSystemPrompt },
         { role: 'system', content: dynamicContext },
@@ -279,21 +272,50 @@ export default async function handler(req: NextRequest) {
       tools,
     });
 
-    // Ensure proper headers for Edge Runtime streaming
-    const response = result.toDataStreamResponse();
-    response.headers.set('Content-Type', 'text/event-stream');
-    response.headers.set('Cache-Control', 'no-cache');
-    response.headers.set('Connection', 'keep-alive');
-    
-    return response;
+    return result.toDataStreamResponse({
+      getErrorMessage: (error) => {
+        if (!error) return 'An unknown error occurred';
+        
+        if (error instanceof Error) {
+          // Log the full error for debugging but return a safe message
+          console.error('[Chat API] Error:', {
+            name: error.name,
+            message: error.message,
+            stack: error.stack
+          });
+          
+          // Return a user-friendly message based on error type
+          if (error.name === 'AbortError') {
+            return 'The request was cancelled';
+          }
+          if (error.name === 'TimeoutError') {
+            return 'The request timed out';
+          }
+          return 'An error occurred while processing your request';
+        }
+        
+        return typeof error === 'string' ? error : 'An error occurred';
+      },
+      sendUsage: true,
+      headers: {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive'
+      }
+    });
   } catch (error) {
-    console.error('[chat] Error:', error);
+    console.error('[Chat API] Unexpected error:', error);
     return new Response(
       JSON.stringify({ 
-        error: 'Internal server error', 
-        details: error instanceof Error ? error.message : 'Unknown error'
+        error: 'An unexpected error occurred',
+        details: error instanceof Error ? error.message : String(error)
       }),
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
     );
   }
 }
