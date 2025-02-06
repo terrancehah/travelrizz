@@ -12,7 +12,7 @@ import type { Instance } from "flatpickr/dist/types/instance"
 import "flatpickr/dist/flatpickr.min.css"
 import Image from "next/image"
 import Head from "next/head"
-import { TravelPreference, TravelSession } from '../managers/types'
+import { TravelPreference, TravelSession, SupportedLanguage } from '../managers/types'
 import { initializeSession, generateSessionId, safeStorageOp, getStoredSession, SESSION_CONFIG } from '../utils/session-manager'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Link from "next/link"
@@ -239,7 +239,7 @@ export default function TravelFormPage() {
         endDate: formattedEndDate,
         preferences: preferences,
         budget: budget || '',
-        language: 'en', // Default to English
+        language: SupportedLanguage.English, // Direct enum usage
         transport: [],
 
         // Places

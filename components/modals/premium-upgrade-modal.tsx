@@ -74,7 +74,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
 
     console.log('[Payment] Setting up button with reference ID:', refId);
 
-    // Create the button HTML directly
+    // test but-button
     const buttonHtml = `
       <stripe-buy-button
         buy-button-id="buy_btn_1QfJT2I41yHwVfoxrEmjHuCU"
@@ -83,6 +83,15 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
       >
       </stripe-buy-button>
     `;
+
+    // production buy-button
+    // const buttonHtml = `
+    // <stripe-buy-button
+    //   buy-button-id="buy_btn_1QbgllI41yHwVfoxHUfAJEEx"
+    //   publishable-key="pk_live_51MtLXgI41yHwVfoxoenCC4Y3iWAv4dwTMPFtBsuAWnJItf6KjcLgtClHE281ixQp5j7tQdmHt9JCtyVSvGaVOI4N00AXx9Bg3a"
+    // >
+    // </stripe-buy-button>
+    // `;
 
     stripeContainerRef.current.innerHTML = buttonHtml;
 

@@ -5,6 +5,7 @@ import { buffer } from 'micro';
 // Initialize Stripe with the latest API version
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-01-27.acacia',
+    // apiVersion: '2023-08-16', //test api
 });
 
 // Test Stripe connection

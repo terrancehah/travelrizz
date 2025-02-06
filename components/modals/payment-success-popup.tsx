@@ -1,9 +1,10 @@
 'use client';
 
 import { X } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import confetti from 'canvas-confetti';
 
 interface PaymentSuccessPopupProps {
   isOpen: boolean;
@@ -60,6 +61,7 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
     [Autoplay(autoplayOptions)]
   );
   const [currentSlide, setCurrentSlide] = useState(0);
+  const animationFrameRef = useRef<number>();
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -73,10 +75,62 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
     };
   }, [emblaApi]);
 
+  useEffect(() => {
+    if (!isOpen) return; // Only run when popup is open
+
+    const duration = 3000;
+    const end = Date.now() + duration;
+    const colors = ['#10b981', '#5cabfa', '#8b5cf6', '#d74776', '#fda010'];
+
+    const frame = () => {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: colors,
+        zIndex: 10000
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: colors,
+        zIndex: 10000
+      });
+
+      if (Date.now() < end) {
+        animationFrameRef.current = requestAnimationFrame(frame);
+      }
+    };
+
+
+    // Initial burst
+    confetti({
+      particleCount: 100,
+      spread: 100,
+      origin: { y: 0.6 },
+      colors: colors,
+      zIndex: 10000
+    });
+
+    // Start continuous animation
+    frame();
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      confetti.reset();
+    };
+  }, [isOpen]); // Only re-run when isOpen changes
+
   if (!isOpen) return null;
 
+
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[10000]">
       <div className="bg-white rounded-lg shadow-lg p-6 max-w-3xl w-full mx-4 relative">
         <button
           onClick={onClose}

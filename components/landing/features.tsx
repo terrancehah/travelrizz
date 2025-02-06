@@ -17,7 +17,7 @@ export default function Features() {
       image: "/images/generative-ui.png",
     },
     {
-      title: "Visual Route Planning",
+      title: "Visualised Route Planning",
       description:
         "See your daily adventures come to life with interactive maps. Optimize your routes and make the most of every day of your journey.",
       image: "/images/visualised-routes.png",
@@ -42,27 +42,27 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="flex flex-col gap-y-4 p-8 rounded-xl border border-gray-200 shadow-md transition-shadow"
+              className="flex flex-col gap-y-4 p-8 bg-light-blue/80 rounded-xl"
             >
               <Image
                 src={feature.image}
                 alt={feature.title}
                 width={600}
                 height={400}
-                className="rounded-lg shadow-sm border border-gray-100 object-cover w-full"
+                className="rounded-lg border border-gray-100 object-cover w-full"
               />
               <div className="space-y-2">
-                <h3 className="text-xl md:text-2xl font-raleway text-primary">{feature.title}</h3>
+                <h3 className="text-xl md:text-2xl font-medium font-raleway text-primary">{feature.title}</h3>
                 <p className="text-gray-600 text-lg font-raleway leading-relaxed">{feature.description}</p>
               </div>
             </div>
           ))}
         </div>
-        <div className="space-x-4 w-full pt-12 items-center flex justify-center">
+        {/* <div className="space-x-4 w-full pt-12 items-center flex justify-center">
           <Button asChild size="lg" className="bg-sky-blue/90 text-white hover:bg-sky-blue hover:shadow-md border border-slate-500">
             <Link href="/travel-form">Let's Plan Together</Link>
           </Button>
-        </div>
+        </div> */}
       </div>
       
     </section>

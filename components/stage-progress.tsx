@@ -85,12 +85,12 @@ export interface StepsItemProps extends React.HTMLAttributes<HTMLDivElement> {
 export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
     ({ className, step, currentStep, title, description, isLocked, isLast, ...props }, ref) => (
         <>
-            <div className="flex flex-col items-center gap-2 relative" ref={ref} {...props}>
+            <div className="flex flex-col items-center gap-1 relative" ref={ref} {...props}>
                 <div 
                     className={cn(
                         'w-8 h-8 rounded-full flex items-center justify-center transition-colors',
                         currentStep > step ? 'bg-green-500' : 
-                        currentStep === step ? 'bg-blue-500' : 
+                        currentStep === step ? 'bg-blue-600/80' : 
                         'bg-gray-200',
                         isLocked ? 'cursor-not-allowed' : '',
                         className

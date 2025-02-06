@@ -167,13 +167,17 @@ export default function ItineraryPlanner({ onPlaceRemoved }: ItineraryPlannerPro
       ...(sourceDayIndex !== destDayIndex ? destDay.places : [])  // Destination day places if different
     ];
 
-    // Clear travel info cache for all affected places at once
+    // Clear visual routes before updating places
+    window.dispatchEvent(new CustomEvent('clear-active-routes'));
+
+    // Update places order
+    savedPlacesManager.updatePlaces(allAffectedPlaces);
     travelInfoManager.clearRoutesForPlaces(allAffectedPlaces);
 
-    // Update all places at once
-    savedPlacesManager.updatePlaces(allAffectedPlaces);
-    
-    // No need to dispatch event manually as updatePlaces will trigger _notifyChange
+    // Trigger route recalculation
+    window.dispatchEvent(new CustomEvent('places-changed', {
+      detail: { trigger: 'drag-end' }
+    }));
   };
 
   const handleDeletePlace = (dayId: string, placeId: string) => {

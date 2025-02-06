@@ -22,11 +22,11 @@ const features = [
     title: "Local Custom Tips",
     description: "Discover local tips and advice to make your trip even more enjoyable.",
   },
-  {
-    icon: <Headphones className="w-6 h-6 md:w-8 md:h-8" />,
-    title: "Priority Support",
-    description: "Get fast, personalized assistance whenever you need it.",
-  },
+  // {
+  //   icon: <Headphones className="w-6 h-6 md:w-8 md:h-8" />,
+  //   title: "Priority Support",
+  //   description: "Get fast, personalized assistance whenever you need it.",
+  // },
   {
     icon: <Zap className="w-6 h-6 md:w-8 md:h-8" />,
     title: "Ad-Free Experience",

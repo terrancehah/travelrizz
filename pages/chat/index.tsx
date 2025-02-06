@@ -297,12 +297,14 @@ export default function ChatPage() {
                     </div>
                 )}
             </main>
-            <PaymentSuccessPopup
-                isOpen={showPaymentSuccess}
-                onClose={() => setShowPaymentSuccess(false)}
-                title="Hurray!"
-                description="You have successfully completed your payment. Let's continue planning your perfect trip!"
-            />
+            {showPaymentSuccess && (
+                <PaymentSuccessPopup
+                    isOpen={showPaymentSuccess}
+                    onClose={() => setShowPaymentSuccess(false)}
+                    title="Payment Successful!"
+                    description="You have successfully completed your payment. Let's continue planning your perfect trip!"
+                />
+            )}
             {showPremiumModal && (
                 <PremiumUpgradeModal 
                     isOpen={showPremiumModal} 

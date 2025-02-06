@@ -5,10 +5,10 @@ import Image from "next/image"
 export default function Footer() {
   return (
     <footer className="w-full py-6 bg-light-blue flex items-center">
-      <div className="container w-[80%] md:w-full mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-auto">
+      <div className="container w-[80%] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mx-auto">
 
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col w-[80%] mx-auto space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <Image
               src="/images/travel-rizz.png"
@@ -22,7 +22,7 @@ export default function Footer() {
             <p className="text-sm text-secondary">Plan Your Dream Trip Effortlessly.</p>
           </div>
 
-          <div className="mt-2">
+          <div className="mt-2 flex flex-col w-[80%] md:w-[60%] mx-auto">
             <h3 className="font-semibold mb-4 text-primary">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -43,7 +43,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="mt-2">
+          <div className="mt-2 flex flex-col w-[80%] md:w-[60%] mx-auto">
             <h3 className="font-semibold mb-4 text-primary">Legal</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -59,7 +59,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="mt-2">
+          <div className="mt-2 flex flex-col w-[80%] md:w-[60%] mx-auto">
             <h3 className="font-semibold mb-4 text-primary">Follow Us</h3>
             <div className="flex space-x-4">
               <Link href="https://x.com/travelrizz" target="_blank" aria-label="Twitter" className="text-secondary hover:text-primary">

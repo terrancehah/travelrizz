@@ -26,6 +26,7 @@ import { getStoredSession, checkInputLimits, handleSessionExpiry, checkSessionWi
 import PremiumUpgradeModal from './modals/premium-upgrade-modal';
 import SessionWarningModal from './modals/session-warning-modal';
 import { useRouter } from 'next/router';
+import { ChatHeader } from './chat/chat-header';
 
 interface TravelChatProps {
     initialDetails: TravelDetails;
@@ -366,7 +367,7 @@ export function TravelChat({
     }, [mainChat, currentDetails, currentStage, onStageUpdate]);
 
     return (
-        <div className="relative flex flex-col h-full">
+        <div className="relative flex flex-col h-full shadow-lg rounded-xl">
             <PremiumUpgradeModal 
                 isOpen={showPremiumModal} 
                 onClose={() => setShowPremiumModal(false)} 
@@ -376,88 +377,11 @@ export function TravelChat({
                 onClose={() => setShowSessionWarning(false)}
             />
             {/* Header */}
-            <div className="bg-background border-b border-border shadow-sm transition-all duration-300 ease-in-out">
-                <div className=" mx-auto p-2 px-6 relative">
-                    <div 
-                        className={`transition-all duration-300 ease-in-out ${
-                            isCollapsed ? 'max-h-12' : 'max-h-[500px]'
-                        }`}
-                    >
-                        <h1 className={`font-semibold text-foreground ${isCollapsed ? 'text-lg mb-0' : 'text-lg mb-2'}`}>
-                            Trip to {currentDetails.destination}
-                        </h1>
-                        
-                        {isCollapsed ? (
-
-                            // Collapsed mode
-                            <div className="flex flex-col gap-y-1.5 text-muted-foreground">
-                                {/* Keeping this empty as requested */}
-                            </div>
-                        ) : (
-
-                            // Expanded mode
-                            <div className="grid grid-cols-2 gap-x-16 gap-y-4">
-
-                                {/* Date */}
-                                <div>
-                                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
-                                        </svg>
-                                        Date
-                                    </div>
-                                    <div className="text-foreground text-sm">{currentDetails.startDate} to {currentDetails.endDate}</div>
-                                </div>
-
-                                <div>
-                                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                                        </svg>
-                                        Language
-                                    </div>
-                                    <div className="text-foreground text-sm">{currentDetails.language}</div>
-                                </div>
-                                
-                                <div>
-                                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                                        </svg>
-                                        Preferences
-                                    </div>
-                                    <div className="text-foreground text-sm">
-                                        {currentDetails.preferences?.join(', ') || '-'}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        Budget
-                                    </div>
-                                    <div className="text-foreground text-sm">
-                                        {currentDetails.budget || '-'}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                    <button
-                        onClick={() => setIsCollapsed(!isCollapsed)}
-                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 px-2 py-0.5 mb-2 text-gray-500 hover:text-black hover:bg-slate-200 transition-colors bg-slate-50 rounded-full duration-200 focus:outline-none"
-                        aria-label={isCollapsed ? "Expand header" : "Collapse header"}
-                    >
-                        {isCollapsed ? (
-                            <ChevronDownIcon className="h-6 w-6" />
-                        ) : (
-                            <ChevronUpIcon className="h-6 w-6" />
-                        )}
-                    </button>
-                </div>
-            </div>
-
+            <ChatHeader
+                currentDetails={currentDetails}
+                isCollapsed={isCollapsed}
+                setIsCollapsed={setIsCollapsed}
+            />
             {/* Chat Messages Container */}
             <div 
                 ref={chatContainerRef}
@@ -472,7 +396,7 @@ export function TravelChat({
                                 <div key={`content-${message.id || index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                                     <div className={`${
                                         message.role === 'user' 
-                                            ? 'bg-blue-500 text-white rounded-br-none w-min min-w-[40%]' 
+                                            ? 'bg-blue-600/75 text-white rounded-br-none w-min min-w-[40%]' 
                                             : 'bg-gray-200 text-gray-700 rounded-bl-none w-[75%]'
                                     } rounded-2xl px-4 py-2 max-w-[75%]`}>
                                         <ReactMarkdown 
@@ -749,7 +673,7 @@ export function TravelChat({
                         value={input}
                         onChange={handleInputChange}
                         placeholder="Type your message..."
-                        className="flex-1 rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="flex-1 rounded-xl border-2 border-gray-200 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                         disabled={isLoading || !isWithinStageLimit}
                     />
                     {/* {isLoading && (
@@ -763,7 +687,7 @@ export function TravelChat({
                     <button
                         type="submit"
                         disabled={isLoading || !isWithinStageLimit}
-                        className="inline-flex items-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+                        className="inline-flex items-center rounded-xl bg-sky-blue/90 hover:bg-sky-blue border border-slate-500 px-4 py-2 text-sm font-semibold text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
                     >
                         Send
                     </button>
