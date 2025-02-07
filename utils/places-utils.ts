@@ -344,6 +344,36 @@ declare global {
     }
 }
 
+// Helper function to balance results by type
+function balanceResultsByType(results: Place[], limit: number = 5): Place[] {
+    // Group places by their primary type
+    const byType = results.reduce((acc, place) => {
+        const type = place.primaryType;
+        if (!acc[type]) acc[type] = [];
+        acc[type].push(place);
+        return acc;
+    }, {} as Record<string, Place[]>);
+
+    // Get unique types
+    const types = Object.keys(byType);
+    
+    // Select places ensuring type diversity
+    const balanced: Place[] = [];
+    let typeIndex = 0;
+    
+    while (balanced.length < limit && typeIndex < Math.max(...types.map(t => byType[t].length))) {
+        for (const type of types) {
+            if (balanced.length >= limit) break;
+            if (byType[type][typeIndex]) {
+                balanced.push(byType[type][typeIndex]);
+            }
+        }
+        typeIndex++;
+    }
+
+    return balanced.slice(0, limit);
+}
+
 // Helper function to handle different search strategies
 async function searchWithStrategy(
     searchText: string,
@@ -737,7 +767,7 @@ export const fetchPlaces = async (
             if (response.ok) {
                 const data = await response.json();
                 if (data.places && Array.isArray(data.places) && data.places.length > 0) {
-                    return data.places.map((place: any) => ({
+                    return balanceResultsByType(data.places.map((place: any) => ({
                         id: place.id,
                         displayName: place.displayName?.text ? {
                             text: place.displayName.text,
@@ -755,7 +785,7 @@ export const fetchPlaces = async (
                             text: place.primaryTypeDisplayName.text,
                             languageCode: place.primaryTypeDisplayName.languageCode || 'en'
                         } : undefined
-                    }));
+                    })), maxResults);
                 }
             }
 
