@@ -131,7 +131,7 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[10000]">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-3xl w-full mx-4 relative">
+      <div className="bg-white rounded-lg shadow-lg p-6 max-w-3xl w-[80%] md:w-full mx-4 relative">
         <button
           onClick={onClose}
           className="absolute -top-2 -right-2 p-2 rounded-full bg-white hover:bg-gray-100 hover:shadow-slate-400 shadow-md shadow-slate-500 transition-colors"

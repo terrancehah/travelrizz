@@ -82,7 +82,6 @@ export function formatCurrencyAmount(amount: number, currency: string): string {
 }
 
 export function getCurrencyFromCountry(country: string): string {
-    // Map countries to their currencies
     const countryToCurrency: { [key: string]: string } = {
         'Singapore': 'SGD',
         'Malaysia': 'MYR',
@@ -94,12 +93,32 @@ export function getCurrencyFromCountry(country: string): string {
         'Australia': 'AUD',
         'Canada': 'CAD',
         'South Korea': 'KRW',
-        // Add more as needed
+        'India': 'INR',
+        'Thailand': 'THB',
+        'Indonesia': 'IDR',
+        'United Arab Emirates': 'AED',
+        'Saudi Arabia': 'SAR',
+        'Brazil': 'BRL',
+        'Russia': 'RUB',
+        'Switzerland': 'CHF',
+        'New Zealand': 'NZD',
+        'Vietnam': 'VND',
+        'Turkey': 'TRY',
+        'South Africa': 'ZAR'
     };
 
-    // Extract country from destination string (e.g., "Tokyo, Japan" -> "Japan")
-    const parts = country.split(',');
-    const countryName = parts[parts.length - 1]?.trim() || country.trim();
-    
-    return countryToCurrency[countryName] || 'USD'; // Default to USD if country not found
+    function findCountryInString(input: string): string | null {
+        const searchTerms = input.split(/[,\s]+/);
+        for (const term of searchTerms) {
+            const normalizedTerm = term.trim().toLowerCase();
+            const match = Object.keys(countryToCurrency).find(country => 
+                country.toLowerCase() === normalizedTerm
+            );
+            if (match) return match;
+        }
+        return null;
+    }
+
+    const detectedCountry = findCountryInString(country) || 'United States';
+    return countryToCurrency[detectedCountry] || 'USD';
 }

@@ -68,24 +68,23 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
       const stagePromptCount = stagePrompts?.[3] || 0;
       const upgradeRequired = !session.isPaid && stagePromptCount >= STAGE_LIMITS[3].maxPrompts;
 
-      // Check if we have enough places saved
-      const minPlacesRequired = 3;
-      const hasEnoughPlaces = savedPlaces.length >= minPlacesRequired;
+      // Check basic requirements
+      const MIN_PLACES = 3;
+      const MIN_TYPES = 2;
 
-      // Check if we have diverse place types based on preferences
-      const placeTypes = new Set(savedPlaces.map(p => p.primaryType));
-      const hasGoodCoverage = placeTypes.size >= Math.min(2, details.preferences.length);
+      const hasEnoughPlaces = savedPlaces.length >= MIN_PLACES;
+      const hasVariety = new Set(savedPlaces.map(p => p.primaryType)).size >= MIN_TYPES;
 
       const missingRequirements: string[] = [];
       if (!hasEnoughPlaces) {
-        missingRequirements.push(`at least ${minPlacesRequired} places`);
+        missingRequirements.push(`Save at least ${MIN_PLACES} places`);
       }
-      if (!hasGoodCoverage) {
-        missingRequirements.push('more diverse place types');
+      if (!hasVariety) {
+        missingRequirements.push(`Choose ${MIN_TYPES} different types of places`);
       }
 
       return {
-        isValid: !upgradeRequired && hasEnoughPlaces && hasGoodCoverage,
+        isValid: !upgradeRequired && hasEnoughPlaces && hasVariety,
         missingRequirements,
         upgradeRequired
       };
@@ -104,16 +103,17 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
       }
 
       // Check minimum places for a good itinerary
-      const minPlacesForItinerary = 5;
-      if (savedPlaces.length < minPlacesForItinerary) {
-        missingRequirements.push(`at least ${minPlacesForItinerary} places`);
+      const MIN_PLACES_ITINERARY = 3;
+      const MIN_TYPES_ITINERARY = 2;
+
+      if (savedPlaces.length < MIN_PLACES_ITINERARY) {
+        missingRequirements.push(`Save at least ${MIN_PLACES_ITINERARY} places`);
       }
 
-      // Check place type distribution
-      const placeTypes = new Set(savedPlaces.map(p => p.primaryType));
-      const minPlaceTypes = Math.min(3, details.preferences.length);
-      if (placeTypes.size < minPlaceTypes) {
-        missingRequirements.push('more diverse place types');
+      // Check place type diversity
+      const itineraryTypes = new Set(savedPlaces.map(p => p.primaryType));
+      if (itineraryTypes.size < MIN_TYPES_ITINERARY) {
+        missingRequirements.push(`Need ${MIN_TYPES_ITINERARY} different place types`);
       }
 
       return {

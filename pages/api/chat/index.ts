@@ -147,7 +147,7 @@ export default async function handler(req: NextRequest) {
     Otherwise, you should guide users to complete any missing information.
 
     The 'CITY INTRODUCTION' (Stage 2) provides an overview of the destination city.
-    At this stage, you should prompt users if they want to see more information about the city, like the weather information, currency conversion rate, local customs, etc.
+    At this stage, you should prompt users if they want to see more information about the city, like the weather information, currency conversion rate and etc.
     Multiple tools can be used to provide these information, such as 'weatherChart' tool, 'currencyConverterTool' tool, etc.
     After user enquires for these information, guide them to the next stage.
     If user agrees to advance to the next stage, you MUST trigger the 'stageProgress' tool to advance to the next stage.

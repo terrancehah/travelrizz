@@ -165,22 +165,20 @@ export const carouselTool = createTool({
         try {
             let places: Place[] = [];
             
-            if (preferences && preferences.length > 0) {
-                // Use our existing function to get places by preference
+            if (placeType) {
+                // Use text search for specific place types
+                places = await searchMultiplePlacesByText(
+                    placeType,
+                    location,
+                    maxResults
+                );
+            } else if (preferences && preferences.length > 0) {
+                // Use preferences only when no specific type is requested
                 places = await fetchPlaces(
                     location.latitude,
                     location.longitude,
                     preferences,
                     maxResults
-                );
-            } else if (placeType) {
-                // Search by specific place type
-                places = await fetchPlaces(
-                    location.latitude,
-                    location.longitude,
-                    undefined,
-                    maxResults,
-                    [placeType]
                 );
             }
 

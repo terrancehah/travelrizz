@@ -77,7 +77,7 @@ export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChan
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         className={cn(
-                          'rounded-lg bg-white shadow-sm max-h-[100px] overflow-hidden',
+                          'rounded-lg bg-white shadow-sm overflow-hidden',
                           snapshot.isDragging && 'ring-2 ring-primary ring-offset-2 z-30'
                         )}
                       >
