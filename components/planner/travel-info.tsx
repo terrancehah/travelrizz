@@ -97,7 +97,7 @@ export function TravelInfo({ place, nextPlace, className }: TravelInfoProps) {
 
   return (
     <div className={cn(
-      "relative my-2 flex items-center gap-3 py-4",
+      "relative my-2 flex items-center gap-3 py-3 md:py-4",
       "transition-opacity duration-200",
       className
     )}>
