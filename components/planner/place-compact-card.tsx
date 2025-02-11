@@ -57,16 +57,17 @@ export function PlaceCompactCard({ place, onDelete, dragHandleProps, className }
             <h3 className="font-medium text-base leading-none">{displayName}</h3>
             <p className="text-sm text-muted-foreground mt-1">{typeDisplay}</p>
           </div>
-          <button
+         
+        </div>
+        <p className="text-xs text-muted-foreground">{place.formattedAddress}</p>
+      </div>
+      <button
             onClick={() => onDelete(place.id)}
             className="invisible group-hover:visible shrink-0"
             aria-label="Delete place"
           >
             <X className="h-5 w-5 text-muted-foreground hover:text-destructive hover:text-red-600 hover:bg-red-100 rounded-sm" />
           </button>
-        </div>
-        <p className="text-xs text-muted-foreground">{place.formattedAddress}</p>
-      </div>
     </div>
   )
 }

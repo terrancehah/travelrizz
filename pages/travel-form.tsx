@@ -420,10 +420,10 @@ export default function TravelFormPage() {
               <Label>What's your budget range?</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "$", label: "Budget  $" },
-                  { value: "$$", label: "Moderate  $$" },
-                  { value: "$$$", label: "Luxury  $$$" },
-                  { value: "$$$$", label: "Ultra Luxury  $$$$" }
+                  { value: "Budget", label: "Budget  $" },
+                  { value: "Moderate", label: "Moderate  $$" },
+                  { value: "Luxury", label: "Luxury  $$$" },
+                  { value: "Ultra Luxury", label: "Ultra Luxury  $$$$" }
                 ].map(({ value, label }) => (
                   <Button
                     key={value}

@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { Place, formatPrimaryType, savedPlacesManager, searchPlaceByText } from '@/utils/places-utils';
+import { Place, savedPlacesManager, searchPlaceByText } from '@/utils/places-utils';
 
 interface PlaceCardProps {
   place: Place;
@@ -20,10 +20,10 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
 }) => {
   // Get the display name with proper fallback
   const getTypeDisplay = () => {
-    if (place.primaryTypeDisplayName?.text) {
-      return place.primaryTypeDisplayName.text;
+    if (!place.primaryTypeDisplayName?.text) {
+      return ''; // Return empty string if no type display name
     }
-    return formatPrimaryType(place.primaryType);
+    return place.primaryTypeDisplayName.text;
   };
 
   const handleSelect = useCallback(() => {

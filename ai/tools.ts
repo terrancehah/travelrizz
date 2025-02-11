@@ -11,7 +11,8 @@ import {
     fetchPlaces,
     searchPlaceByText,
     searchMultiplePlacesByText,
-    Place
+    Place,
+    getPlaceTypesFromPreferences
 } from '../utils/places-utils';
 import { validateStageProgression } from '../managers/stage-manager';
 import { getCurrencyFromCountry } from '../utils/currency-utils';
@@ -33,7 +34,7 @@ export interface BaseToolProps {
 export const budgetSelectorTool = createTool({
     description: 'Display budget level options for the trip. Use this when discussing trip costs or when the user wants to set their budget preference.',
     parameters: z.object({
-        currentBudget: z.enum(['$', '$$', '$$$', '$$$$'] as const).optional()
+        currentBudget: z.enum(['Budget', 'Moderate', 'Luxury', 'Ultra Luxury'] as const).optional()
     }),
     execute: async function ({ currentBudget }) {
         return {
@@ -173,13 +174,17 @@ export const carouselTool = createTool({
                     maxResults
                 );
             } else if (preferences && preferences.length > 0) {
-                // Use preferences only when no specific type is requested
-                places = await fetchPlaces(
-                    location.latitude,
-                    location.longitude,
-                    preferences,
-                    maxResults
-                );
+                // Get place types from preferences
+                const placeTypes = getPlaceTypesFromPreferences(preferences);
+                
+                // Use fetchPlaces with the new signature
+                places = await fetchPlaces({
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                    includedTypes: placeTypes,
+                    maxResults,
+                    fromPreferences: true
+                });
             }
 
             return {

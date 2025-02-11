@@ -67,6 +67,13 @@ export function TravelInfo({ place, nextPlace, className }: TravelInfoProps) {
       }
     }
 
+    // Handler for places-reordered event
+    const handlePlacesReordered = () => {
+      if (place?.location && nextPlace?.location) {
+        fetchTravelInfo();
+      }
+    };
+
     if (place?.location && nextPlace?.location) {
       console.log('[TravelInfo] Starting fetch for:', {
         hasLocation: {
@@ -84,9 +91,12 @@ export function TravelInfo({ place, nextPlace, className }: TravelInfoProps) {
       });
     }
 
+    window.addEventListener('places-reordered', handlePlacesReordered);
+
     // Cleanup when component unmounts or places change
     return () => {
       isMounted.current = false;
+      window.removeEventListener('places-reordered', handlePlacesReordered);
       if (place?.id && nextPlace?.id) {
         window.dispatchEvent(new CustomEvent('travelinfo-hidden', {
           detail: { fromId: place.id, toId: nextPlace.id }
