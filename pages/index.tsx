@@ -9,13 +9,15 @@ import Footer from "@/components/landing/footer"
 
 export default function LandingPage() {
   return (
-    <main className="flex min-h-screen flex-col bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
-      <Hero />
-      <About />
-      <Features />
-      <Pricing />
-      <Footer />
-    </main>
+      <main className="flex flex-col">
+        <Hero />
+        <About />
+        <Features />
+        <Pricing />
+        <Footer />
+      </main>
+    </div>
   )
 }

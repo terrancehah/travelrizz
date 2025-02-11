@@ -31,10 +31,10 @@ export default function Features() {
   ]
 
   return (
-    <section id="features" className="w-full py-16 flex items-center">
+    <section id="features" className="w-full py-16 flex items-center bg-white dark:bg-gray-900 transition-colors duration-400">
       <div className="container w-[80%] mx-auto">
 
-        <h2 className="text-4xl md:text-5xl font-caveat text-primary text-center mb-12 text-shadow">
+        <h2 className="text-4xl md:text-5xl font-caveat text-primary dark:text-sky-400 text-center mb-12">
           How We Make Travel Planning Effortless
         </h2>
 
@@ -42,18 +42,18 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="flex flex-col gap-y-4 p-8 bg-light-blue/80 rounded-xl"
+              className="flex flex-col gap-y-4 p-8 bg-gray-100/80 dark:bg-gray-800/80 rounded-xl backdrop-blur-sm"
             >
               <Image
                 src={feature.image}
                 alt={feature.title}
                 width={600}
                 height={400}
-                className="rounded-lg border border-gray-100 object-cover w-full"
+                className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover w-full"
               />
               <div className="space-y-2">
-                <h3 className="text-xl md:text-2xl font-medium font-raleway text-primary">{feature.title}</h3>
-                <p className="text-gray-600 text-lg font-raleway leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl md:text-2xl font-medium font-raleway text-primary dark:text-sky-300">{feature.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-lg font-raleway leading-relaxed">{feature.description}</p>
               </div>
             </div>
           ))}
