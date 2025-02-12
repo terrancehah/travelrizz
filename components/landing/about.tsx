@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-800/50 transition-colors duration-400">
-      <div className="container px-6 md:px-8">
+      <div className="container px-6 md:px-8 mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="text-3xl font-caveat tracking-tighter text-primary dark:text-sky-400 sm:text-4xl md:text-5xl transition-colors duration-400">

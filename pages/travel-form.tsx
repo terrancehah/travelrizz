@@ -327,13 +327,16 @@ export default function TravelFormPage() {
       case 1:
         return (
           <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="destination">Where are you planning to travel?</Label>
+            <div className="space-y-3">
+              <Label htmlFor="destination" className="font-raleway text-lg lg:text-xl">Where are you planning to travel?</Label>
               <Input
                 ref={destinationRef}
                 id="destination"
                 placeholder="Enter a city"
                 onChange={(e) => setFormData((prev) => ({ ...prev, destination: e.target.value }))}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
+                bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
               />
             </div>
             <div className="flex space-x-4">
@@ -350,21 +353,24 @@ export default function TravelFormPage() {
       case 2:
         return (
           <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="date-range">When are you planning to travel?</Label>
+            <div className="space-y-3">
+              <Label htmlFor="date-range" className="font-raleway text-lg lg:text-xl">When are you planning to travel?</Label>
               <Input
                 ref={dateRangeRef}
                 id="date-range"
                 placeholder="Select date range"
                 readOnly
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
+                bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
               />
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" className="w-full" onClick={goToPrevStep}>
+              <Button variant="default" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
                 Back
               </Button>
               <Button
-                className="w-full"
+                className="w-full transition-colors duration-300"
                 onClick={goToNextStep}
                 disabled={!formData.startDate || !formData.endDate}
               >
@@ -376,8 +382,8 @@ export default function TravelFormPage() {
       case 3:
         return (
           <div className="space-y-4">
-            <div className="space-y-2">
-              <Label>What are your travel preferences?</Label>
+            <div className="space-y-3">
+              <Label className="font-raleway text-lg lg:text-xl">What are your travel preferences?</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { value: "Culture and Heritage", label: "Culture", icon: Languages },
@@ -390,7 +396,7 @@ export default function TravelFormPage() {
                   <Button
                     key={value}
                     variant={formData.preferences.includes(value as TravelPreference) ? "default" : "outline"}
-                    className="flex items-center justify-start space-x-2"
+                    className="flex items-center justify-start space-x-2 transition-colors duration-300"
                     onClick={() => handlePreferenceToggle(value as TravelPreference)}
                   >
                     <span>{label}</span>
@@ -400,11 +406,11 @@ export default function TravelFormPage() {
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" className="w-full" onClick={goToPrevStep}>
+              <Button variant="outline" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
                 Back
               </Button>
               <Button
-                className="w-full"
+                className="w-full transition-colors duration-300"
                 onClick={goToNextStep}
                 disabled={formData.preferences.length === 0}
               >
@@ -416,8 +422,8 @@ export default function TravelFormPage() {
       case 4:
         return (
           <div className="space-y-4">
-            <div className="space-y-2">
-              <Label>What's your budget range?</Label>
+            <div className="space-y-3">
+              <Label className="font-raleway text-lg lg:text-xl">What's your budget range?</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { value: "Budget", label: "Budget  $" },
@@ -428,7 +434,7 @@ export default function TravelFormPage() {
                   <Button
                     key={value}
                     variant={formData.budget === value ? "default" : "outline"}
-                    className="flex items-center justify-start space-x-2"
+                    className="flex items-center justify-start space-x-2 transition-colors duration-300"
                     onClick={() => setFormData((prev) => ({ ...prev, budget: value }))}
                   >
                     <span>{label}</span>
@@ -437,11 +443,11 @@ export default function TravelFormPage() {
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" className="w-full" onClick={goToPrevStep}>
+              <Button variant="outline" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
                 Back
               </Button>
               <Button
-                className="w-full"
+                className="w-full transition-colors duration-300"
                 onClick={handleSubmit}
                 disabled={loading || !formData.budget}
               >
@@ -456,10 +462,10 @@ export default function TravelFormPage() {
   }
 
   return (
-    <>
-      <main className="flex min-h-[100dvh]">
-        <div className="fixed flex top-0 left-0 right-0 z-10 md:relative md:w-64 bg-light-blue shadow-md 
-          md:space-y-14 space-y-2 p-3 md:p-6 border-r flex-col items-center md:items-start">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-400">
+      <main className="flex min-h-[100dvh] w-full">
+        <div className="fixed flex top-0 left-0 right-0 z-10 md:relative md:w-64 bg-light-blue dark:bg-primary shadow-md 
+          md:space-y-14 space-y-2 p-3 md:p-6 border-r dark:border-gray-800 flex-col items-center md:items-start">
           
           <Link href="/" className="flex gap-x-1 pr-4">
             <Image
@@ -467,9 +473,9 @@ export default function TravelFormPage() {
               alt="Travel-Rizz Logo"
               width={40}
               height={40}
-              className="h-12 w-12 object-contain"
+              className="h-12 w-12 object-contain dark:invert dark:brightness-0 dark:contrast-200"
             />
-            <span className="font-caveat text-3xl h-min my-auto text-primary">Travel-Rizz</span>
+            <span className="font-caveat text-3xl h-min my-auto text-primary dark:text-white">Travel-Rizz</span>
           </Link>
 
           <Steps currentStep={currentStep} steps={steps} />
@@ -480,6 +486,6 @@ export default function TravelFormPage() {
           </div>
         </div>
       </main>
-    </>
+    </div>
   )
 }

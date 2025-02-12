@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import {cn} from "@/utils/cn"
 
 export default function Features() {
   const features = [
@@ -38,11 +39,12 @@ export default function Features() {
           How We Make Travel Planning Effortless
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mx-auto">
+        {/* Mobile Layout (default) */}
+        <div className="grid grid-cols-1 gap-6 md:hidden">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="flex flex-col gap-y-4 p-8 bg-gray-100/80 dark:bg-gray-800/80 rounded-xl backdrop-blur-sm"
+              className="flex flex-col gap-y-4 p-6 bg-gray-100/80 dark:bg-gray-700/70 rounded-xl backdrop-blur-sm transition-all duration-300"
             >
               <Image
                 src={feature.image}
@@ -52,8 +54,68 @@ export default function Features() {
                 className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover w-full"
               />
               <div className="space-y-2">
-                <h3 className="text-xl md:text-2xl font-medium font-raleway text-primary dark:text-sky-300">{feature.title}</h3>
+                <h3 className="text-xl md:text-2xl font-medium font-raleway text-primary dark:text-sky-100">{feature.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-lg font-raleway leading-relaxed">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Tablet Layout (2x2 grid) */}
+        <div className="hidden md:grid lg:hidden grid-cols-2 gap-6">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-y-4 p-6 bg-gray-100/80 dark:bg-gray-700/70 rounded-xl backdrop-blur-sm transition-all duration-300"
+            >
+              <div className="relative w-full h-[300px]">
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover"
+                />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl md:text-2xl font-medium font-raleway text-primary dark:text-sky-100">{feature.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-lg font-raleway leading-relaxed">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid grid-cols-12 gap-6 mx-auto">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className={cn(
+                "group overflow-hidden rounded-xl bg-gray-100/80 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-300",
+                index === 0 || index === 3 ? "col-span-12 h-[400px]" : "col-span-6 h-[500px]"
+              )}
+            >
+              <div className={cn(
+                "h-full w-full p-6 flex",
+                index === 0 || index === 3 ? "flex-row items-center" : "flex-col"
+              )}>
+                <div className={cn(
+                  "relative",
+                  index === 0 || index === 3 ? "w-1/2 h-full" : "w-full h-2/3"
+                )}>
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover"
+                  />
+                </div>
+                <div className={cn(
+                  "flex flex-col justify-center",
+                  index === 0 || index === 3 ? "w-1/2 pl-6" : "w-full h-1/2 pt-6"
+                )}>
+                  <h3 className="text-2xl font-medium font-raleway text-primary dark:text-sky-100 mb-4">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-lg font-raleway leading-relaxed">{feature.description}</p>
+                </div>
               </div>
             </div>
           ))}

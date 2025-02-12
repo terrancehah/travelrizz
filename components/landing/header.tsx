@@ -30,27 +30,27 @@ export default function Header() {
         <div className="flex items-center gap-x-3">
 
           <div className="hidden md:flex items-center gap-x-4">
-            <Link href="https://x.com/travelrizz" target="_blank" className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
+            <Link href="https://x.com/travelrizz" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
               <Twitter className="h-6 w-6" />
             </Link>
-            <Link href="https://instagram.com/travelrizz" target="_blank" className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
+            <Link href="https://instagram.com/travelrizz" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
               <Instagram className="h-6 w-6" />
             </Link>
-            <Link href="https://facebook.com/travelrizz" target="_blank" className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
+            <Link href="https://facebook.com/travelrizz" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
               <Facebook className="h-6 w-6" />
             </Link>
           </div>
           
           {mounted && (
-            <div className="flex items-center justify-center bg-sky-200/80 dark:bg-blue-900 rounded-md p-2">
+            <div className="flex items-center justify-center  bg-sky-200/80 dark:bg-blue-900 rounded-md p-2">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
                 className="w-6 h-6 relative"
               >
-                <Sun className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all duration-300 dark:rotate-90 dark:scale-0 text-gray-900 dark:text-white" />
-                <Moon className="absolute h-[1.5rem] w-[1.5rem] rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100 text-gray-900 dark:text-white" />
+                <Sun className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all duration-300 dark:rotate-90 dark:scale-0 text-secondary hover:text-primary dark:text-white" />
+                <Moon className="absolute h-[1.5rem] w-[1.5rem] rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100 text-gray-300 hover:text-white" />
                 <span className="sr-only">Toggle theme</span>
               </Button>
             </div>

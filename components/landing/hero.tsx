@@ -15,7 +15,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 flex flex-col w-[80%] mx-auto items-center space-y-6 text-center">
         <div className="space-y-6">
-          <h1 className="text-3xl font-semi-bold font-caveat tracking-tighter text-primary dark:text-sky-400 sm:text-4xl md:text-5xl lg:text-6xl/none">
+          <h1 className="text-3xl font-semi-bold font-caveat tracking-tighter text-primary dark:text-sky-100 sm:text-4xl md:text-5xl lg:text-6xl/none">
             Plan Your Dream Trip Effortlessly
           </h1>
           <p className="mx-auto max-w-[700px] font-raleway text-gray-700 dark:text-sky-100 md:text-xl">

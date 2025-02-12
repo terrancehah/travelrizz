@@ -26,33 +26,40 @@ export function Steps({ currentStep, steps }: StepsProps) {
             {step.number !== steps.length && (
               <div
                 className={cn(
-                  "hidden md:block absolute left-4 top-8 h-[calc(100%+3rem)] w-px -translate-x-[0.5px]",
-                  isCompleted ? "bg-sky-blue" : "bg-gray-200"
+                  "hidden md:block absolute left-5 top-8 h-[calc(100%+3rem)] w-[2px] -translate-x-[0.5px] transition-colors duration-300",
+                  isCompleted ? "bg-sky-blue dark:bg-sky-400" : "bg-gray-200 dark:bg-gray-500"
                 )}
               />
             )}
             <div className="group relative flex items-start gap-4">
               <div
                 className={cn(
-                  "relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
+                  "relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
                   isCompleted
-                    ? "bg-sky-blue text-white"
+                    ? "bg-sky-blue dark:bg-sky-400 text-white"
                     : isCurrent
-                    ? "border-2 border-sky-blue bg-white"
-                    : "border-2 border-gray-200 bg-white"
+                    ? "border-2 border-sky-blue dark:border-sky-400 bg-white dark:bg-gray-900"
+                    : "border-2 border-gray-200 dark:border-gray-500 bg-white dark:bg-gray-900"
                 )}
               >
                 {isCompleted ? (
                   <Check className="h-4 w-4" />
                 ) : (
-                  <Icon className={cn("h-4 w-4", isCurrent ? "text-sky-blue" : "text-gray-400")} />
+                  <Icon className={cn(
+                    "h-4 w-4 transition-colors duration-300", 
+                    isCurrent 
+                      ? "text-sky-blue dark:text-sky-400" 
+                      : "text-gray-400 dark:text-gray-500"
+                  )} />
                 )}
               </div>
               <div className="hidden md:flex h-full my-auto">
                 <div
                   className={cn(
-                    "font-medium",
-                    isCompleted || isCurrent ? "text-primary" : "text-gray-500",
+                    "font-medium transition-colors duration-300",
+                    isCompleted || isCurrent 
+                      ? "text-primary dark:text-white" 
+                      : "text-gray-500 dark:text-gray-400"
                   )}
                 >
                   {step.title}
