@@ -26,7 +26,8 @@
       "@/pages/*": ["./pages/*"],
       "@/styles/*": ["./styles/*"],
       "@/utils/*": ["./utils/*"],
-      "@/managers/*": ["./managers/*"]
+      "@/managers/*": ["./managers/*"],
+      "@/hooks/*": ["./hooks/*"]
     },
     "baseUrl": "."
   },

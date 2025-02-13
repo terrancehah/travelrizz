@@ -9,7 +9,7 @@
   --sky-blue: #4a88c6;
 }
 
-@layer base {
+/* @layer base {
   html {
     font-family: 'Raleway', sans-serif;
   }
@@ -25,7 +25,7 @@
   h3, p {
     font-family: 'Raleway', sans-serif;
   }
-}
+} */
 
 /* Custom components */
 @layer components {

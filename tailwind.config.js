@@ -11,10 +11,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        raleway: ['Raleway', 'sans-serif'],
-        lato: ['Lato', 'sans-serif'],
-        caveat: ['Caveat', 'cursive'],
-        merriweather: ['Merriweather', 'serif']
+        'zcool-kuaile': ['var(--font-zcool-kuai-le)', 'ZCOOL KuaiLe', 'cursive'],
+        raleway: ['var(--font-raleway)', 'Raleway', 'sans-serif'],
+        lato: ['var(--font-lato)', 'Lato', 'sans-serif'],
+        caveat: ['var(--font-caveat)', 'Caveat', 'cursive'],
+        'noto-sc': ['var(--font-noto-sans-sc)', 'Noto Sans SC', 'system-ui', 'sans-serif'],
       },
       colors: {
         'primary': '#123456',
@@ -50,7 +51,7 @@ module.exports = {
           '100%': { transform: 'translateY(0)' }
         }
       }
-    },
+    }
   },
   plugins: [],
 }

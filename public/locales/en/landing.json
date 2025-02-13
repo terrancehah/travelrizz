@@ -1,0 +1,83 @@
+{
+    "about": {
+        "title": "About Travel-Rizz",
+        "intro": "I created Travel-Rizz because I believe everyone deserves to experience the joy of perfectly planned travel, regardless of their planning expertise.",
+        "experience": "Having spent years helping friends and family organize their trips, I noticed how overwhelming the process can be. Travel shouldn't be stressful - it should be an exciting journey right from the planning stage.",
+        "mission": "That's why I combined the power of AI with my passion for travel to create Travel-Rizz, a tool that makes trip planning as enjoyable as the trip itself."
+      },
+      "features": {
+        "title": "How We Make Travel Planning Effortless",
+        "items": {
+          "aiChat": {
+            "title": "AI Chat Interface",
+            "description": "Have a conversation with Travel-Rizz about your dream trip. Share your ideas, and we'll help shape them into reality."
+          },
+          "insights": {
+            "title": "Dynamic Travel Insights",
+            "description": "Travel with confidence knowing you have all the essential details - from weather patterns to local customs - right when you need them."
+          },
+          "routes": {
+            "title": "Visualised Route Planning",
+            "description": "See your daily adventures come to life with interactive maps. Optimize your routes and make the most of every day of your journey."
+          },
+          "itinerary": {
+            "title": "Flexible Itinerary Builder",
+            "description": "Easily organize and reorganize your plans with our intuitive drag-and-drop interface. Your perfect itinerary is just a few clicks away."
+          }
+        }
+      },
+      "hero": {
+        "title": "Plan Your Dream Trip Effortlessly",
+        "subtitle": "Let's plan your perfect journey together, combining human expertise with AI assistance to create a personalized trip that's uniquely yours. No more overwhelming planning - just the joy of looking forward to your next adventure.",
+        "cta": "Let's Plan Together"
+      },
+      "pricing": {
+        "title": "Simple Pricing",
+        "subtitle": "Get access for a single payment. We're exploring subscription options for frequent travelers, but will always keep one-time pricing available.",
+        "oneTime": {
+          "title": "One-Time Access",
+          "price": "US$1.99",
+          "originalPrice": "US$2.99",
+          "tag": "Early Adopter Special",
+          "features": {
+            "0": "Unlimited AI suggestions",
+            "1": "Visualised route optimization",
+            "2": "Local etiquette guidance",
+            "3": "Ad-Free experience"
+          }
+        },
+        "subscription": {
+          "title": "Monthly Access",
+          "price": "US$9.99 /month",
+          "tag": "For Frequent Travelers",
+          "badge": "Coming Soon",
+          "features": {
+            "0": "Team Collaboration",
+            "1": "Multi-trip management",
+            "2": "Premium templates",
+            "3": "Advanced attractions information"
+          }
+        }
+      },
+      "footer": {
+        "tagline": "Plan Your Dream Trip Effortlessly",
+        "quickLinks": {
+          "title": "Quick Links",
+          "features": "Features",
+          "about": "About Us",
+          "start": "Start Planning"
+        },
+        "legal": {
+          "title": "Legal",
+          "terms": "Terms of Service",
+          "privacy": "Privacy Policy",
+          "cookies": "Cookie Policy"
+        },
+        "connect": {
+          "title": "Connect",
+          "twitter": "Twitter",
+          "instagram": "Instagram",
+          "facebook": "Facebook"
+        }
+      }
+}

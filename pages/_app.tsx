@@ -1,21 +1,60 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
 import { ThemeProvider } from 'next-themes'
+import { appWithTranslation } from 'next-i18next';
+import { Noto_Sans_SC, Raleway, Caveat, Lato, ZCOOL_KuaiLe } from '@next/font/google'
+import { useRouter } from 'next/router'
 import '../styles/globals.css'
 import 'flatpickr/dist/flatpickr.css'
+import Head from 'next/head'
 
-export default function App({ Component, pageProps }: AppProps) {
+const notoSansSC = Noto_Sans_SC({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-noto-sans-sc',
+})
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  variable: '--font-raleway',
+})
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  variable: '--font-caveat',
+})
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['300', '400', '700'],
+  variable: '--font-lato',
+})
+
+const zcoolKuaiLe = ZCOOL_KuaiLe({
+  subsets: ['latin'],
+  variable: '--font-zcool-kuai-le',
+  weight: ['400'],
+})
+
+function App({ Component, pageProps }: AppProps) {
+  const { locale } = useRouter()
+  const mainFont = locale === 'zh' ? notoSansSC.className : raleway.className
+
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <Head>
+        <title>Travel-Rizz - Plan Your Dream Trip Effortlessly</title>
+        <meta name="description" content="Plan your perfect journey with Travel-Rizz, combining human expertise with AI assistance to create personalized trips." />
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossOrigin="anonymous" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
       </Head>
-      <Component {...pageProps} />
+      <div className={`${mainFont} ${notoSansSC.variable} ${raleway.variable} ${caveat.variable} ${lato.variable} ${zcoolKuaiLe.variable}`}>
+        <Component {...pageProps} />
+      </div>
     </ThemeProvider>
   )
 }
+
+export default appWithTranslation(App)
