@@ -8,13 +8,13 @@ export default function Features() {
     {
       title: "AI Chat Interface",
       description:
-        "Have a conversation about your dream trip. Share your ideas, and we'll help shape them into reality with personalized suggestions that evolve as we learn more about what matters to you.",
+        "Have a conversation with Travel-Rizz about your dream trip. Share your ideas, and we'll help shape them into reality.",
       image: "/images/ai-chat-interface.png",
     },
     {
       title: "Dynamic Travel Insights",
       description:
-        "Travel with confidence knowing you have all the essential details - from weather patterns to local customs - right when you need them. Real insights that help you plan smarter and travel better.",
+        "Travel with confidence knowing you have all the essential details - from weather patterns to local customs - right when you need them.",
       image: "/images/generative-ui.png",
     },
     {
@@ -33,9 +33,9 @@ export default function Features() {
 
   return (
     <section id="features" className="w-full py-16 flex items-center bg-white dark:bg-gray-900 transition-colors duration-400">
-      <div className="container w-[80%] mx-auto">
+      <div className="container w-[80%] md:w-[90%] mx-auto">
 
-        <h2 className="text-4xl md:text-5xl font-caveat text-primary dark:text-sky-400 text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-caveat text-primary dark:text-sky-100 text-center mb-12">
           How We Make Travel Planning Effortless
         </h2>
 
@@ -85,13 +85,13 @@ export default function Features() {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid grid-cols-12 gap-6 mx-auto">
+        <div className="hidden lg:grid grid-cols-12 gap-8 mx-auto">
           {features.map((feature, index) => (
             <div
               key={index}
               className={cn(
-                "group overflow-hidden rounded-xl bg-gray-100/80 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-300",
-                index === 0 || index === 3 ? "col-span-12 h-[400px]" : "col-span-6 h-[500px]"
+                "group overflow-hidden rounded-xl bg-sky-100/50 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-300",
+                index === 0 || index === 3 ? "col-span-8 h-[350px]" : "col-span-4 h-[350px]"
               )}
             >
               <div className={cn(
@@ -100,7 +100,7 @@ export default function Features() {
               )}>
                 <div className={cn(
                   "relative",
-                  index === 0 || index === 3 ? "w-1/2 h-full" : "w-full h-2/3"
+                  index === 0 || index === 3 ? "w-[62.5%] h-[100%]" : "w-full h-2/3"
                 )}>
                   <Image
                     src={feature.image}
@@ -111,10 +111,10 @@ export default function Features() {
                 </div>
                 <div className={cn(
                   "flex flex-col justify-center",
-                  index === 0 || index === 3 ? "w-1/2 pl-6" : "w-full h-1/2 pt-6"
+                  index === 0 || index === 3 ? "w-[37.5%] pl-6" : "w-full h-1/2 pt-2"
                 )}>
-                  <h3 className="text-2xl font-medium font-raleway text-primary dark:text-sky-100 mb-4">{feature.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-lg font-raleway leading-relaxed">{feature.description}</p>
+                  <h3 className="text-xl font-medium font-raleway text-primary dark:text-sky-100 mb-2">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-md font-raleway leading-relaxed">{feature.description}</p>
                 </div>
               </div>
             </div>

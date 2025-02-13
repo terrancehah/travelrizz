@@ -24,7 +24,7 @@ export default function Hero() {
           </p>
         </div>
         <div className="space-x-4">
-          <Button asChild size="lg" className="bg-sky-blue hover:bg-sky-600 text-white dark:bg-sky-600 dark:hover:bg-sky-500">
+          <Button asChild size="lg" className="bg-sky-blue hover:bg-sky-600 text-white dark:bg-sky-500 dark:hover:bg-sky-400">
             <Link href="/travel-form">Let's Plan Together</Link>
           </Button>
         </div>
