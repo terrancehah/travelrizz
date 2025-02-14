@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import { appWithTranslation } from 'next-i18next';
-import { Noto_Sans_SC, Raleway, Caveat, Lato, ZCOOL_KuaiLe } from '@next/font/google'
+import { Noto_Sans_SC, Raleway, Caveat, Lato } from '@next/font/google'
 import { useRouter } from 'next/router'
 import '../styles/globals.css'
 import 'flatpickr/dist/flatpickr.css'
@@ -11,28 +11,29 @@ const notoSansSC = Noto_Sans_SC({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
   variable: '--font-noto-sans-sc',
+  display: 'swap',
 })
 
 const raleway = Raleway({
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
   variable: '--font-raleway',
+  display: 'swap',
 })
 
 const caveat = Caveat({
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
   variable: '--font-caveat',
+  display: 'swap',
+  preload: true,
 })
 
 const lato = Lato({
   subsets: ['latin'],
   weight: ['300', '400', '700'],
   variable: '--font-lato',
-})
-
-const zcoolKuaiLe = ZCOOL_KuaiLe({
-  subsets: ['latin'],
-  variable: '--font-zcool-kuai-le',
-  weight: ['400'],
+  display: 'swap',
 })
 
 function App({ Component, pageProps }: AppProps) {
@@ -50,7 +51,7 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
       </Head>
-      <div className={`${mainFont} ${notoSansSC.variable} ${raleway.variable} ${caveat.variable} ${lato.variable} ${zcoolKuaiLe.variable}`}>
+      <div className={`${mainFont} ${notoSansSC.variable} ${raleway.variable} ${caveat.variable} ${lato.variable}`}>
         <Component {...pageProps} />
       </div>
     </ThemeProvider>
