@@ -1,0 +1,84 @@
+{
+  "about": {
+    "title": "Conoce Travel-Rizz",
+    "intro": "¿Por qué creamos Travel-Rizz? Porque creemos que todos merecen disfrutar de un viaje perfecto, ya sean viajeros experimentados o primerizos.",
+    "experience": "Durante años, ayudando a amigos a planear sus viajes, me di cuenta de que la planificación era a menudo estresante. ¡Pero viajar debería ser emocionante desde el principio!",
+    "mission": "Así que combiné la IA con mi pasión por los viajes para crear Travel-Rizz. Espero que haga que planear viajes sea tan divertido como el viaje mismo."
+  },
+  "features": {
+    "title": "¿Cómo hacemos que planear sea más fácil?",
+    "items": {
+      "aiChat": {
+        "title": "Charla con IA",
+        "description": "¡Cuéntale a Travel-Rizz tus sueños de viaje como lo harías con un amigo, y hagámoslos realidad juntos!"
+      },
+      "insights": {
+        "title": "Consejos de viaje actualizados",
+        "description": "Desde el clima hasta las costumbres locales, toda la información útil está lista para ti."
+      },
+      "routes": {
+        "title": "Planificación de ruta visual",
+        "description": "Visualiza tus destinos diarios en el mapa y encuentra las mejores rutas sin perder un momento."
+      },
+      "itinerary": {
+        "title": "Itinerario flexible",
+        "description": "¡Ajusta tu itinerario con facilidad! Arrastra y suelta para hacer cambios, así de simple."
+      }
+    }
+  },
+  "hero": {
+    "title": "¡Planea fácil, viaja feliz!",
+    "subtitle": "¿No sabes cómo organizar tu viaje? ¡No hay problema! Planifiquemos tu viaje personalizado juntos. Con IA y consejos útiles, crear el itinerario perfecto es pan comido. ¡Deja atrás la planificación tediosa y empieza a anticipar tu increíble viaje!",
+    "cta": "¡Empecemos a planear!"
+  },
+  "pricing": {
+    "title": "Precios simples y claros",
+    "subtitle": "¡Paga una vez y empieza a planear! Por cierto, estamos desarrollando una suscripción mensual, pero no te preocupes, ¡tu compra única siempre estará disponible!",
+    "oneTime": {
+      "title": "Experiencia única",
+      "price": "US$1.99",
+      "originalPrice": "US$2.99",
+      "tag": "Oferta anticipada",
+      "features": {
+        "0": "Preguntas ilimitadas a la IA",
+        "1": "Encuentra las mejores rutas",
+        "2": "Consejos locales",
+        "3": "Sin publicidad"
+      }
+    },
+    "subscription": {
+      "title": "Plan mensual",
+      "price": "US$9.99 /mes",
+      "tag": "Para viajeros frecuentes",
+      "badge": "Próximamente",
+      "features": {
+        "0": "Planea con amigos",
+        "1": "Gestiona múltiples viajes",
+        "2": "Plantillas avanzadas",
+        "3": "Guías detalladas"
+      }
+    },
+    "cta": "¡Empecemos a planear!"
+  },
+  "footer": {
+    "tagline": "¡Planea fácil, viaja feliz!",
+    "quickLinks": {
+      "title": "Enlaces rápidos",
+      "features": "Características",
+      "about": "Sobre nosotros",
+      "start": "Empezar a planear"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Términos de uso",
+      "privacy": "Política de privacidad",
+      "cookies": "Política de cookies"
+    },
+    "connect": {
+      "title": "Conéctate con nosotros",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    }
+  }
+}

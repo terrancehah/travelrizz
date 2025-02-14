@@ -10,8 +10,15 @@ import { useRouter } from "next/router"
 
 const languages = {
   en: "English",
-  zh: "中文",
-  ms: "Bahasa Melayu"
+  ms: "Bahasa Melayu",
+  es: "Español",
+  fr: "Français",
+  de: "Deutsch",
+  it: "Italiano",
+  cs: "Čeština",
+  zh: "简体中文",
+  ja: "日本語",
+  ko: "한국어"
 }
 
 export function LanguageSwitcher() {
@@ -40,7 +47,7 @@ export function LanguageSwitcher() {
           <DropdownMenuItem
             key={code}
             className={`font-raleway cursor-pointer text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white ${
-              locale === code ? 'bg-sky-100 dark:bg-sky-900' : ''
+              locale === code ? 'bg-light-blue/90 dark:bg-sky-900' : ''
             }`}
             onClick={() => changeLanguage(code)}
           >

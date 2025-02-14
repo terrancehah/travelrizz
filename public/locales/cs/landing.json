@@ -1,0 +1,84 @@
+{
+  "about": {
+    "title": "Poznejte Travel-Rizz",
+    "intro": "Proč jsme vytvořili Travel-Rizz? Protože věříme, že si každý zaslouží užít si dokonalou cestu, ať už je zkušený cestovatel nebo začátečník.",
+    "experience": "Během let, kdy jsem pomáhal přátelům plánovat jejich cesty, jsem si uvědomil, že plánování bylo často stresující. Ale cestování by mělo být vzrušující od samého začátku!",
+    "mission": "Tak jsem spojil umělou inteligenci s mou vášní pro cestování a vytvořil Travel-Rizz. Doufám, že udělá plánování cest stejně zábavné jako samotné cestování."
+  },
+  "features": {
+    "title": "Jak zjednodušujeme plánování?",
+    "items": {
+      "aiChat": {
+        "title": "Chat s AI",
+        "description": "Řekněte Travel-Rizz o svých cestovatelských snech jako příteli a společně je uskutečněme!"
+      },
+      "insights": {
+        "title": "Aktuální cestovní tipy",
+        "description": "Od počasí po místní zvyky, všechny užitečné informace jsou pro vás připraveny."
+      },
+      "routes": {
+        "title": "Vizuální plánování tras",
+        "description": "Vizualizujte své denní destinace na mapě a najděte nejlepší trasy bez ztráty času."
+      },
+      "itinerary": {
+        "title": "Flexibilní itinerář",
+        "description": "Upravte si svůj itinerář snadno! Přetahujte pro změny, je to tak jednoduché."
+      }
+    }
+  },
+  "hero": {
+    "title": "Plánujte snadno, cestujte šťastně!",
+    "subtitle": "Nevíte, jak zorganizovat svou cestu? Žádný problém! Naplánujme společně vaši personalizovanou cestu. S AI a užitečnými tipy je vytvoření perfektního itineráře hračka. Rozlučte se s únavným plánováním a začněte se těšit na svou úžasnou cestu!",
+    "cta": "Začněme plánovat!"
+  },
+  "pricing": {
+    "title": "Jednoduché a jasné ceny",
+    "subtitle": "Zaplaťte jednou a začněte plánovat! Mimochodem, vyvíjíme měsíční předplatné, ale nebojte se, váš jednorázový nákup bude vždy k dispozici!",
+    "oneTime": {
+      "title": "Jednorázová zkušenost",
+      "price": "49 Kč",
+      "originalPrice": "75 Kč",
+      "tag": "Early bird nabídka",
+      "features": {
+        "0": "Neomezené dotazy na AI",
+        "1": "Najděte nejlepší trasy",
+        "2": "Místní tipy",
+        "3": "Bez reklam"
+      }
+    },
+    "subscription": {
+      "title": "Měsíční plán",
+      "price": "249 Kč /měsíc",
+      "tag": "Pro časté cestovatele",
+      "badge": "Již brzy",
+      "features": {
+        "0": "Plánujte s přáteli",
+        "1": "Spravujte více cest",
+        "2": "Pokročilé šablony",
+        "3": "Detailní průvodci"
+      }
+    },
+    "cta": "Začněme plánovat!"
+  },
+  "footer": {
+    "tagline": "Plánujte snadno, cestujte šťastně!",
+    "quickLinks": {
+      "title": "Rychlé odkazy",
+      "features": "Funkce",
+      "about": "O nás",
+      "start": "Začít plánovat"
+    },
+    "legal": {
+      "title": "Právní",
+      "terms": "Podmínky použití",
+      "privacy": "Ochrana soukromí",
+      "cookies": "Zásady cookies"
+    },
+    "connect": {
+      "title": "Sledujte nás",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    }
+  }
+}

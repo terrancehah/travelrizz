@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <header className="sticky flex top-0 z-50 w-full bg-light-blue/95 backdrop-blur supports-[backdrop-filter]:bg-light-blue/60 dark:bg-gray-900 shadow-sm transition-colors duration-400">
       <div className="flex p-3 px-4 w-full justify-between items-center">
-        <Link href="/" className={`flex gap-x-1 ${fonts.text}`}>
+        <Link href="/" className={`flex gap-x-1 ${fonts.heading}`}>
           <Image
             src="/images/travel-rizz.png"
             alt="Travel-Rizz Logo"
@@ -28,7 +28,7 @@ export default function Header() {
             height={40}
             className="h-12 w-12 object-contain dark:invert dark:brightness-0 dark:contrast-200"
           />
-          <span className={`font-caveat text-3xl h-min my-auto text-primary dark:text-white ${fonts.text}`}>Travel-Rizz</span>
+          <span className={`font-caveat text-3xl h-min my-auto text-primary dark:text-white ${fonts.heading}`}>Travel-Rizz</span>
         </Link>
         <div className="flex items-center gap-x-3">
           <div className="hidden md:flex items-center gap-x-4">

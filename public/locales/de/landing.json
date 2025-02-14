@@ -1,0 +1,84 @@
+{
+  "about": {
+    "title": "Entdecken Sie Travel-Rizz",
+    "intro": "Warum haben wir Travel-Rizz entwickelt? Weil wir glauben, dass jeder eine perfekte Reise genießen sollte, egal ob erfahrener Reisender oder Anfänger.",
+    "experience": "Über die Jahre hinweg, während ich Freunden bei der Reiseplanung half, wurde mir klar, dass die Planung oft stressig war. Aber Reisen sollte von Anfang an aufregend sein!",
+    "mission": "Also habe ich KI mit meiner Leidenschaft fürs Reisen kombiniert, um Travel-Rizz zu erschaffen. Ich hoffe, dass es die Reiseplanung genauso unterhaltsam macht wie die Reise selbst."
+  },
+  "features": {
+    "title": "Wie machen wir die Planung einfacher?",
+    "items": {
+      "aiChat": {
+        "title": "KI-Chat",
+        "description": "Erzählen Sie Travel-Rizz von Ihren Reiseträumen wie einem Freund, und lassen Sie uns sie gemeinsam verwirklichen!"
+      },
+      "insights": {
+        "title": "Aktuelle Reisetipps",
+        "description": "Vom Wetter bis zu lokalen Bräuchen - alle nützlichen Informationen sind für Sie bereit."
+      },
+      "routes": {
+        "title": "Visuelle Routenplanung",
+        "description": "Visualisieren Sie Ihre täglichen Ziele auf der Karte und finden Sie die besten Routen, ohne einen Moment zu verlieren."
+      },
+      "itinerary": {
+        "title": "Flexibler Reiseplan",
+        "description": "Passen Sie Ihren Reiseplan einfach an! Ziehen und ablegen für Änderungen, so einfach ist das."
+      }
+    }
+  },
+  "hero": {
+    "title": "Einfach planen, glücklich reisen!",
+    "subtitle": "Wissen Sie nicht, wie Sie Ihre Reise organisieren sollen? Kein Problem! Lassen Sie uns gemeinsam Ihre persönliche Reise planen. Mit KI und hilfreichen Tipps ist der perfekte Reiseplan ein Kinderspiel. Verabschieden Sie sich von mühsamer Planung und freuen Sie sich auf Ihre tolle Reise!",
+    "cta": "Lassen Sie uns planen!"
+  },
+  "pricing": {
+    "title": "Einfache und klare Preise",
+    "subtitle": "Einmal zahlen und mit der Planung beginnen! Übrigens entwickeln wir ein monatliches Abonnement, aber keine Sorge, Ihr einmaliger Kauf bleibt immer verfügbar!",
+    "oneTime": {
+      "title": "Einmalige Erfahrung",
+      "price": "1,99 €",
+      "originalPrice": "2,99 €",
+      "tag": "Frühbucherrabatt",
+      "features": {
+        "0": "Unbegrenzte KI-Fragen",
+        "1": "Beste Routen finden",
+        "2": "Lokale Tipps",
+        "3": "Keine Werbung"
+      }
+    },
+    "subscription": {
+      "title": "Monatsplan",
+      "price": "9,99 € /Monat",
+      "tag": "Für häufige Reisende",
+      "badge": "Demnächst verfügbar",
+      "features": {
+        "0": "Mit Freunden planen",
+        "1": "Mehrere Reisen verwalten",
+        "2": "Erweiterte Vorlagen",
+        "3": "Detaillierte Reiseführer"
+      }
+    },
+    "cta": "Lassen Sie uns planen!"
+  },
+  "footer": {
+    "tagline": "Einfach planen, glücklich reisen!",
+    "quickLinks": {
+      "title": "Schnelllinks",
+      "features": "Funktionen",
+      "about": "Über uns",
+      "start": "Planung starten"
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutz",
+      "cookies": "Cookie-Richtlinie"
+    },
+    "connect": {
+      "title": "Folgen Sie uns",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    }
+  }
+}

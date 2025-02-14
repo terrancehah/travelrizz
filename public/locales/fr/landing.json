@@ -1,0 +1,84 @@
+{
+  "about": {
+    "title": "Découvrez Travel-Rizz",
+    "intro": "Pourquoi avons-nous créé Travel-Rizz ? Parce que nous croyons que tout le monde mérite de profiter d'un voyage parfait, qu'il soit voyageur chevronné ou débutant.",
+    "experience": "Au fil des années, en aidant mes amis à planifier leurs voyages, j'ai réalisé que la planification était souvent stressante. Mais voyager devrait être excitant dès le début !",
+    "mission": "J'ai donc combiné l'IA avec ma passion pour les voyages pour créer Travel-Rizz. J'espère que cela rendra la planification des voyages aussi amusante que le voyage lui-même."
+  },
+  "features": {
+    "title": "Comment simplifions-nous la planification ?",
+    "items": {
+      "aiChat": {
+        "title": "Discutez avec l'IA",
+        "description": "Parlez de vos rêves de voyage à Travel-Rizz comme vous le feriez avec un ami, et réalisons-les ensemble !"
+      },
+      "insights": {
+        "title": "Conseils de voyage à jour",
+        "description": "De la météo aux coutumes locales, toutes les informations utiles sont prêtes pour vous."
+      },
+      "routes": {
+        "title": "Planification visuelle",
+        "description": "Visualisez vos destinations quotidiennes sur la carte et trouvez les meilleurs itinéraires sans perdre un instant."
+      },
+      "itinerary": {
+        "title": "Itinéraire flexible",
+        "description": "Ajustez votre itinéraire facilement ! Glissez-déposez pour faire des changements, c'est aussi simple que ça."
+      }
+    }
+  },
+  "hero": {
+    "title": "Planifiez facilement, voyagez heureux !",
+    "subtitle": "Vous ne savez pas comment organiser votre voyage ? Pas de problème ! Planifions ensemble votre voyage personnalisé. Avec l'IA et des conseils utiles, créer l'itinéraire parfait est un jeu d'enfant. Dites adieu à la planification fastidieuse et commencez à anticiper votre incroyable voyage !",
+    "cta": "Commençons à planifier !"
+  },
+  "pricing": {
+    "title": "Prix simples et clairs",
+    "subtitle": "Payez une fois et commencez à planifier ! Au fait, nous développons un abonnement mensuel, mais ne vous inquiétez pas, votre achat unique sera toujours disponible !",
+    "oneTime": {
+      "title": "Expérience unique",
+      "price": "1,99 €",
+      "originalPrice": "2,99 €",
+      "tag": "Offre de lancement",
+      "features": {
+        "0": "Questions illimitées à l'IA",
+        "1": "Trouvez les meilleurs itinéraires",
+        "2": "Conseils locaux",
+        "3": "Sans publicité"
+      }
+    },
+    "subscription": {
+      "title": "Plan mensuel",
+      "price": "9,99 € /mois",
+      "tag": "Pour les voyageurs fréquents",
+      "badge": "Bientôt disponible",
+      "features": {
+        "0": "Planifiez avec des amis",
+        "1": "Gérez plusieurs voyages",
+        "2": "Modèles avancés",
+        "3": "Guides détaillés"
+      }
+    },
+    "cta": "Commençons à planifier !"
+  },
+  "footer": {
+    "tagline": "Planifiez facilement, voyagez heureux !",
+    "quickLinks": {
+      "title": "Liens rapides",
+      "features": "Fonctionnalités",
+      "about": "À propos",
+      "start": "Commencer à planifier"
+    },
+    "legal": {
+      "title": "Mentions légales",
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Politique des cookies"
+    },
+    "connect": {
+      "title": "Suivez-nous",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    }
+  }
+}

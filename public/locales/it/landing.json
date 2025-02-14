@@ -1,0 +1,84 @@
+{
+  "about": {
+    "title": "Scopri Travel-Rizz",
+    "intro": "Perché abbiamo creato Travel-Rizz? Perché crediamo che tutti meritino di godersi un viaggio perfetto, che siano viaggiatori esperti o alle prime armi.",
+    "experience": "Nel corso degli anni, aiutando gli amici a pianificare i loro viaggi, mi sono reso conto che la pianificazione era spesso stressante. Ma viaggiare dovrebbe essere emozionante fin dall'inizio!",
+    "mission": "Così ho combinato l'IA con la mia passione per i viaggi per creare Travel-Rizz. Spero che renda la pianificazione dei viaggi divertente quanto il viaggio stesso."
+  },
+  "features": {
+    "title": "Come rendiamo la pianificazione più facile?",
+    "items": {
+      "aiChat": {
+        "title": "Chatta con l'IA",
+        "description": "Racconta a Travel-Rizz i tuoi sogni di viaggio come faresti con un amico, e realizziamoli insieme!"
+      },
+      "insights": {
+        "title": "Consigli di viaggio aggiornati",
+        "description": "Dal meteo alle usanze locali, tutte le informazioni utili sono pronte per te."
+      },
+      "routes": {
+        "title": "Pianificazione visiva",
+        "description": "Visualizza le tue destinazioni giornaliere sulla mappa e trova i migliori percorsi senza perdere un attimo."
+      },
+      "itinerary": {
+        "title": "Itinerario flessibile",
+        "description": "Modifica il tuo itinerario facilmente! Trascina e rilascia per fare cambiamenti, è così semplice."
+      }
+    }
+  },
+  "hero": {
+    "title": "Pianifica facilmente, viaggia felice!",
+    "subtitle": "Non sai come organizzare il tuo viaggio? Nessun problema! Pianifichiamo insieme il tuo viaggio personalizzato. Con l'IA e consigli utili, creare l'itinerario perfetto è un gioco da ragazzi. Dì addio alla pianificazione noiosa e inizia ad anticipare il tuo incredibile viaggio!",
+    "cta": "Iniziamo a pianificare!"
+  },
+  "pricing": {
+    "title": "Prezzi semplici e chiari",
+    "subtitle": "Paga una volta e inizia a pianificare! A proposito, stiamo sviluppando un abbonamento mensile, ma non preoccuparti, il tuo acquisto singolo sarà sempre disponibile!",
+    "oneTime": {
+      "title": "Esperienza singola",
+      "price": "1,99 €",
+      "originalPrice": "2,99 €",
+      "tag": "Offerta early bird",
+      "features": {
+        "0": "Domande illimitate all'IA",
+        "1": "Trova i migliori percorsi",
+        "2": "Consigli locali",
+        "3": "Senza pubblicità"
+      }
+    },
+    "subscription": {
+      "title": "Piano mensile",
+      "price": "9,99 € /mese",
+      "tag": "Per viaggiatori frequenti",
+      "badge": "Prossimamente",
+      "features": {
+        "0": "Pianifica con gli amici",
+        "1": "Gestisci più viaggi",
+        "2": "Modelli avanzati",
+        "3": "Guide dettagliate"
+      }
+    },
+    "cta": "Iniziamo a pianificare!"
+  },
+  "footer": {
+    "tagline": "Pianifica facilmente, viaggia felice!",
+    "quickLinks": {
+      "title": "Link rapidi",
+      "features": "Funzionalità",
+      "about": "Chi siamo",
+      "start": "Inizia a pianificare"
+    },
+    "legal": {
+      "title": "Legale",
+      "terms": "Termini di utilizzo",
+      "privacy": "Privacy",
+      "cookies": "Cookie"
+    },
+    "connect": {
+      "title": "Seguici",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    }
+  }
+}
