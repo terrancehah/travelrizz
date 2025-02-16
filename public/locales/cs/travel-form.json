@@ -1,0 +1,48 @@
+{
+  "formTitle": "Naplánujte si cestu",
+  "nameLabel": "Vaše jméno",
+  "destinationLabel": "Destinace",
+  "datesLabel": "Termín cesty",
+  "interestsLabel": "Cestovní zájmy",
+  "budgetLabel": "Odhadovaný rozpočet",
+  "submitButton": "Vytvořit plán cesty",
+  "validationMessages": {
+    "required": "Toto pole je povinné",
+    "invalidDate": "Prosím vyberte platné datum"
+  },
+  "prompts": {
+    "destination": "Kam plánujete cestovat?",
+    "dates": "Kdy plánujete cestovat?",
+    "preferences": "Jaké jsou vaše cestovní preference?",
+    "budget": "Jaký je váš rozpočtový rozsah?"
+  },
+  "placeholders": {
+    "city": "Zadejte město",
+    "dateRange": "Vyberte rozmezí dat"
+  },
+  "navigation": {
+    "next": "Další",
+    "back": "Zpět",
+    "startPlanning": "Začít plánovat"
+  },
+  "interests": {
+    "culture": "Kultura",
+    "nature": "Příroda",
+    "foodie": "Gastronomie",
+    "leisure": "Relaxace",
+    "adventure": "Dobrodružství",
+    "arts": "Umění"
+  },
+  "budgetOptions": {
+    "budget": "Ekonomické  $",
+    "moderate": "Střední  $$",
+    "luxury": "Luxusní  $$$",
+    "ultraLuxury": "Ultra luxusní  $$$$"
+  },
+  "steps": {
+    "destination": "Destinace",
+    "dates": "Termín cesty",
+    "preferences": "Preference",
+    "budget": "Rozpočet"
+  }
+}

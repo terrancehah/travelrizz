@@ -6,7 +6,7 @@ import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { Steps } from "../components/ui/steps"
 import { useRouter } from "next/navigation"
-import { MapPin, Calendar, Heart, Wallet, Languages, Trees, Soup, ShoppingBag, Ship, Palette } from "lucide-react"
+import { MapPin, Calendar, Heart, Wallet, Languages, Trees, Soup, ShoppingBag, Ship, Palette, Sun, Moon } from "lucide-react"
 import flatpickr from "flatpickr"
 import type { Instance } from "flatpickr/dist/types/instance"
 import "flatpickr/dist/flatpickr.min.css"
@@ -16,6 +16,10 @@ import { TravelPreference, TravelSession, SupportedLanguage } from '../managers/
 import { initializeSession, generateSessionId, safeStorageOp, getStoredSession, SESSION_CONFIG } from '../utils/session-manager'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Link from "next/link"
+import { useLocalizedFont } from "@/hooks/useLocalizedFont"
+import { useTranslations } from 'next-intl';
+import { LanguageSwitcher } from '@/components/ui/language-switcher';
+import { useTheme } from 'next-themes';
 
 // Add Google Maps types
 declare global {
@@ -34,6 +38,9 @@ type FormData = {
 }
 
 export default function TravelFormPage() {
+  const t = useTranslations('travelForm')
+  const fonts = useLocalizedFont();
+  const { theme, setTheme } = useTheme()
   const [loading, setLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState<FormData>({
@@ -52,22 +59,22 @@ export default function TravelFormPage() {
   const steps = [
     {
       number: 1,
-      title: "Destination",
+      title: t('steps.destination'),
       icon: MapPin
     },
     {
       number: 2,
-      title: "Travel Dates",
+      title: t('steps.dates'),
       icon: Calendar
     },
     {
       number: 3,
-      title: "Preferences",
+      title: t('steps.preferences'),
       icon: Heart
     },
     {
       number: 4,
-      title: "Budget",
+      title: t('steps.budget'),
       icon: Wallet
     }
   ]
@@ -328,15 +335,15 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <Label htmlFor="destination" className="font-raleway text-lg lg:text-xl">Where are you planning to travel?</Label>
+              <Label className={`text-lg lg:text-xl ${fonts.text}`}>{t('prompts.destination')}</Label>
               <Input
                 ref={destinationRef}
                 id="destination"
-                placeholder="Enter a city"
+                placeholder={t('placeholders.city')}
                 onChange={(e) => setFormData((prev) => ({ ...prev, destination: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
-                bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
+                bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300 ${fonts.text}`}
               />
             </div>
             <div className="flex space-x-4">
@@ -345,7 +352,7 @@ export default function TravelFormPage() {
                 onClick={goToNextStep}
                 disabled={!formData.destination}
               >
-                Next
+                {t('navigation.next')}
               </Button>
             </div>
           </div>
@@ -354,27 +361,27 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <Label htmlFor="date-range" className="font-raleway text-lg lg:text-xl">When are you planning to travel?</Label>
+              <Label className={`text-lg lg:text-xl ${fonts.text}`}>{t('prompts.dates')}</Label>
               <Input
                 ref={dateRangeRef}
                 id="date-range"
-                placeholder="Select date range"
+                placeholder={t('placeholders.dateRange')}
                 readOnly
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
-                bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 ${fonts.text}`}
               />
             </div>
             <div className="flex space-x-4">
               <Button variant="default" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
-                Back
+                {t('navigation.back')}
               </Button>
               <Button
                 className="w-full transition-colors duration-300"
                 onClick={goToNextStep}
                 disabled={!formData.startDate || !formData.endDate}
               >
-                Next
+                {t('navigation.next')}
               </Button>
             </div>
           </div>
@@ -383,20 +390,20 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <Label className="font-raleway text-lg lg:text-xl">What are your travel preferences?</Label>
+              <Label className={`text-lg lg:text-xl ${fonts.text}`}>{t('prompts.preferences')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "Culture and Heritage", label: "Culture", icon: Languages },
-                  { value: "Nature", label: "Nature", icon: Trees },
-                  { value: "Foodie", label: "Foodie", icon: Soup },
-                  { value: "Leisure", label: "Leisure", icon: ShoppingBag },
-                  { value: "Adventure", label: "Adventure", icon: Ship },
-                  { value: "Arts & Museum", label: "Arts", icon: Palette }
+                  { value: "Culture and Heritage", label: t('interests.culture'), icon: Languages },
+                  { value: "Nature", label: t('interests.nature'), icon: Trees },
+                  { value: "Foodie", label: t('interests.foodie'), icon: Soup },
+                  { value: "Leisure", label: t('interests.leisure'), icon: ShoppingBag },
+                  { value: "Adventure", label: t('interests.adventure'), icon: Ship },
+                  { value: "Arts & Museum", label: t('interests.arts'), icon: Palette }
                 ].map(({ value, label, icon: Icon }) => (
                   <Button
                     key={value}
                     variant={formData.preferences.includes(value as TravelPreference) ? "default" : "outline"}
-                    className="flex items-center justify-start space-x-2 transition-colors duration-300"
+                    className={`flex items-center justify-start space-x-2 transition-colors duration-300 ${fonts.text}`}
                     onClick={() => handlePreferenceToggle(value as TravelPreference)}
                   >
                     <span>{label}</span>
@@ -407,14 +414,14 @@ export default function TravelFormPage() {
             </div>
             <div className="flex space-x-4">
               <Button variant="outline" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
-                Back
+                {t('navigation.back')}
               </Button>
               <Button
                 className="w-full transition-colors duration-300"
                 onClick={goToNextStep}
                 disabled={formData.preferences.length === 0}
               >
-                Next
+                {t('navigation.next')}
               </Button>
             </div>
           </div>
@@ -423,18 +430,18 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <Label className="font-raleway text-lg lg:text-xl">What's your budget range?</Label>
+              <Label className={`text-lg lg:text-xl ${fonts.text}`}>{t('prompts.budget')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "Budget", label: "Budget  $" },
-                  { value: "Moderate", label: "Moderate  $$" },
-                  { value: "Luxury", label: "Luxury  $$$" },
-                  { value: "Ultra Luxury", label: "Ultra Luxury  $$$$" }
+                  { value: "Budget", label: t('budgetOptions.budget') },
+                  { value: "Moderate", label: t('budgetOptions.moderate') },
+                  { value: "Luxury", label: t('budgetOptions.luxury') },
+                  { value: "Ultra Luxury", label: t('budgetOptions.ultraLuxury') }
                 ].map(({ value, label }) => (
                   <Button
                     key={value}
                     variant={formData.budget === value ? "default" : "outline"}
-                    className="flex items-center justify-start space-x-2 transition-colors duration-300"
+                    className={`p-4 ${fonts.text}`}
                     onClick={() => setFormData((prev) => ({ ...prev, budget: value }))}
                   >
                     <span>{label}</span>
@@ -444,14 +451,14 @@ export default function TravelFormPage() {
             </div>
             <div className="flex space-x-4">
               <Button variant="outline" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
-                Back
+                {t('navigation.back')}
               </Button>
               <Button
                 className="w-full transition-colors duration-300"
                 onClick={handleSubmit}
                 disabled={loading || !formData.budget}
               >
-                {loading ? <LoadingSpinner /> : "Start Planning"}
+                {loading ? <LoadingSpinner /> : t('navigation.startPlanning')}
               </Button>
             </div>
           </div>
@@ -465,8 +472,9 @@ export default function TravelFormPage() {
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-400">
       <main className="flex min-h-[100dvh] w-full">
         <div className="fixed flex top-0 left-0 right-0 z-10 md:relative md:w-64 bg-light-blue dark:bg-primary shadow-md 
-          md:space-y-14 space-y-2 p-3 md:p-6 border-r dark:border-gray-800 flex-col items-center md:items-start">
+          md:space-y-14 space-y-2 p-3 md:p-6 border-r dark:border-gray-800 flex-col items-center md:items-start min-h-screen justify-between">
           
+          {/* Logo and Brand Name */}
           <Link href="/" className="flex gap-x-1 pr-4">
             <Image
               src="/images/travel-rizz.png"
@@ -475,11 +483,33 @@ export default function TravelFormPage() {
               height={40}
               className="h-12 w-12 object-contain dark:invert dark:brightness-0 dark:contrast-200"
             />
-            <span className="font-caveat text-3xl h-min my-auto text-primary dark:text-white">Travel-Rizz</span>
+            <span className={`font-caveat text-3xl h-min my-auto text-primary dark:text-white ${fonts.heading}`}>Travel-Rizz</span>
           </Link>
 
+          {/* Steps */}
           <Steps currentStep={currentStep} steps={steps} />
+
+          {/* Theme and Language Switchers */}
+          <div className="mt-auto flex items-center gap-x-2">
+            <div className="flex items-center justify-center bg-sky-200/80 dark:bg-blue-900 rounded-md p-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                className="w-6 h-6 relative"
+              >
+                <Sun className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all duration-300 dark:rotate-90 dark:scale-0 text-secondary hover:text-primary dark:text-white" />
+                <Moon className="absolute h-[1.5rem] w-[1.5rem] rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100 text-gray-300 hover:text-white" />
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            </div>
+            <div className="flex items-center justify-center rounded-md p-2">
+              <LanguageSwitcher />
+            </div>
+          </div>
         </div>
+
+        {/* Main Content */}
         <div className="flex flex-1 p-6 mt-32 md:mt-0">
           <div className="max-w-md w-full m-auto space-y-8">
               {renderStepContent()}
@@ -488,4 +518,16 @@ export default function TravelFormPage() {
       </main>
     </div>
   )
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      messages: {
+        travelForm: (await import(`../public/locales/${locale}/travel-form.json`)).default
+      },
+      locale,
+      timeZone: 'Asia/Singapore'
+    }
+  }
 }

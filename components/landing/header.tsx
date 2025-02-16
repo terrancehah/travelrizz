@@ -20,6 +20,7 @@ export default function Header() {
   return (
     <header className="sticky flex top-0 z-50 w-full bg-light-blue/95 backdrop-blur supports-[backdrop-filter]:bg-light-blue/60 dark:bg-gray-900 shadow-sm transition-colors duration-400">
       <div className="flex p-3 px-4 w-full justify-between items-center">
+        {/* Logo and Brand Name */}
         <Link href="/" className={`flex gap-x-1 ${fonts.heading}`}>
           <Image
             src="/images/travel-rizz.png"
@@ -30,7 +31,9 @@ export default function Header() {
           />
           <span className={`font-caveat text-3xl h-min my-auto text-primary dark:text-white ${fonts.heading}`}>Travel-Rizz</span>
         </Link>
-        <div className="flex items-center gap-x-3">
+
+        {/* Navigation Links */}
+        <div className="flex items-center gap-x-1">
           <div className="hidden md:flex items-center gap-x-4">
             <Link href="https://x.com/travelrizz" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
               <Twitter className="h-6 w-6" />
@@ -44,7 +47,11 @@ export default function Header() {
           </div>
           
           {mounted && (
-            <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-1">
+              <div className="flex items-right justify-end rounded-md p-2">
+                <LanguageSwitcher />
+              </div>
+
               <div className="flex items-center justify-center bg-sky-200/80 dark:bg-blue-900 rounded-md p-2">
                 <Button
                   variant="ghost"
@@ -57,9 +64,7 @@ export default function Header() {
                   <span className="sr-only">Toggle theme</span>
                 </Button>
               </div>
-              <div className="flex items-center justify-center bg-sky-200/80 dark:bg-blue-900 rounded-md p-2">
-                <LanguageSwitcher />
-              </div>
+              
             </div>
           )}
         </div>

@@ -1,0 +1,48 @@
+{
+  "formTitle": "规划您的旅行",
+  "nameLabel": "您的姓名",
+  "destinationLabel": "目的地",
+  "datesLabel": "旅行日期",
+  "interestsLabel": "旅行兴趣",
+  "budgetLabel": "预计预算",
+  "submitButton": "生成旅行计划",
+  "validationMessages": {
+    "required": "此项为必填",
+    "invalidDate": "请选择有效日期"
+  },
+  "prompts": {
+    "destination": "您计划去哪里旅行？",
+    "dates": "您计划什么时候旅行？",
+    "preferences": "您有什么旅行偏好？",
+    "budget": "您的预算范围是多少？"
+  },
+  "placeholders": {
+    "city": "输入城市名称",
+    "dateRange": "选择日期范围"
+  },
+  "navigation": {
+    "next": "下一步",
+    "back": "返回",
+    "startPlanning": "开始规划"
+  },
+  "interests": {
+    "culture": "文化",
+    "nature": "自然",
+    "foodie": "美食",
+    "leisure": "休闲",
+    "adventure": "探险",
+    "arts": "艺术"
+  },
+  "budgetOptions": {
+    "budget": "经济  $",
+    "moderate": "中等  $$",
+    "luxury": "豪华  $$$",
+    "ultraLuxury": "超级豪华  $$$$"
+  },
+  "steps": {
+    "destination": "目的地",
+    "dates": "旅行日期",
+    "preferences": "偏好",
+    "budget": "预算"
+  }
+}

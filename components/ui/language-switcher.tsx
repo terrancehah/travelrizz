@@ -4,9 +4,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
-import { Languages } from "lucide-react"
 import { useRouter } from "next/router"
+import { cn } from "@/utils/cn"
+import React from "react"
 
 const languages = {
   en: "English",
@@ -35,25 +37,37 @@ export function LanguageSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          size="icon"
-          className="w-6 h-6"
+          size="sm"
+          className="h-6 w-6 px-0"
         >
-          <Languages className="h-[1.5rem] w-[1.5rem] text-secondary hover:text-primary dark:text-gray-300 dark:hover:text-white" />
-          <span className="sr-only">Switch language</span>
+          <span className="font-semibold text-base text-secondary hover:text-primary dark:hover:text-white dark:text-gray-300">
+            {locale?.toUpperCase()}
+          </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-        {Object.entries(languages).map(([code, name]) => (
-          <DropdownMenuItem
-            key={code}
-            className={`font-raleway cursor-pointer text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white ${
-              locale === code ? 'bg-light-blue/90 dark:bg-sky-900' : ''
-            }`}
-            onClick={() => changeLanguage(code)}
-          >
-            {name}
-          </DropdownMenuItem>
-        ))}
+      <DropdownMenuContent 
+        className="w-[180px] bg-white dark:bg-gray-800"
+        align="end"
+        sideOffset={8}
+        alignOffset={-8}
+      >
+        {Object.entries(languages).map(([code, name], index) => {
+          const isLast = index === Object.entries(languages).length - 1;
+          return (
+            <React.Fragment key={code}>
+              <DropdownMenuItem
+                className={cn(
+                  "cursor-pointer text-base text-secondary dark:text-gray-300 hover:text-primary hover:bg-sky-100 dark:hover:bg-sky-800 dark:hover:text-white",
+                  locale === code && "bg-sky-200 dark:bg-sky-900"
+                )}
+                onClick={() => changeLanguage(code)}
+              >
+                {name}
+              </DropdownMenuItem>
+              {!isLast && <DropdownMenuSeparator />}
+            </React.Fragment>
+          );
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   )

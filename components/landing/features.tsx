@@ -2,11 +2,11 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { cn } from "@/utils/cn"
-import { useTranslation } from 'next-i18next';
+import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '../../hooks/useLocalizedFont';
 
 export default function Features() {
-  const { t } = useTranslation('landing');
+  const t = useTranslations('landing');
   const fonts = useLocalizedFont();
 
   const features = [

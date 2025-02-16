@@ -1,8 +1,8 @@
-import { useTranslation } from 'next-i18next';
+import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '../../hooks/useLocalizedFont';
 
 export default function About() {
-  const { t } = useTranslation('landing');
+  const t = useTranslations('landing');
   const fonts = useLocalizedFont();
 
   return (
@@ -11,7 +11,7 @@ export default function About() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-8">
             <h2 className={`text-3xl tracking-tighter text-primary dark:text-sky-100 sm:text-4xl md:text-5xl ${fonts.heading} transition-colors duration-400`}>
-              {t('about.title')}
+              {t('about.title')} <span className="font-caveat ">Travel-Rizz</span>
             </h2>
             <p className={`text-gray-600 dark:text-gray-300 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-400`}>
               {t('about.intro')}

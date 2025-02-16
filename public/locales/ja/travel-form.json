@@ -1,0 +1,48 @@
+{
+  "formTitle": "旅行プランを立てる",
+  "nameLabel": "お名前",
+  "destinationLabel": "目的地",
+  "datesLabel": "旅行日程",
+  "interestsLabel": "旅行の興味",
+  "budgetLabel": "予算見積もり",
+  "submitButton": "旅行プランを作成",
+  "validationMessages": {
+    "required": "この項目は必須です",
+    "invalidDate": "有効な日付を選択してください"
+  },
+  "prompts": {
+    "destination": "どちらへ旅行予定ですか？",
+    "dates": "いつ旅行予定ですか？",
+    "preferences": "どのような旅行がお好みですか？",
+    "budget": "予算の範囲はどのくらいですか？"
+  },
+  "placeholders": {
+    "city": "都市名を入力",
+    "dateRange": "日程を選択"
+  },
+  "navigation": {
+    "next": "次へ",
+    "back": "戻る",
+    "startPlanning": "プランニング開始"
+  },
+  "interests": {
+    "culture": "文化",
+    "nature": "自然",
+    "foodie": "グルメ",
+    "leisure": "レジャー",
+    "adventure": "アドベンチャー",
+    "arts": "芸術"
+  },
+  "budgetOptions": {
+    "budget": "エコノミー  $",
+    "moderate": "スタンダード  $$",
+    "luxury": "ラグジュアリー  $$$",
+    "ultraLuxury": "ウルトララグジュアリー  $$$$"
+  },
+  "steps": {
+    "destination": "目的地",
+    "dates": "旅行日程",
+    "preferences": "好み",
+    "budget": "予算"
+  }
+}

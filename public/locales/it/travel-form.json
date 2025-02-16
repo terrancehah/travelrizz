@@ -1,0 +1,48 @@
+{
+  "formTitle": "Pianifica il Tuo Viaggio",
+  "nameLabel": "Il Tuo Nome",
+  "destinationLabel": "Destinazione",
+  "datesLabel": "Date del Viaggio",
+  "interestsLabel": "Interessi di Viaggio",
+  "budgetLabel": "Budget Stimato",
+  "submitButton": "Genera Piano di Viaggio",
+  "validationMessages": {
+    "required": "Questo campo è obbligatorio",
+    "invalidDate": "Seleziona date valide"
+  },
+  "prompts": {
+    "destination": "Dove prevedi di viaggiare?",
+    "dates": "Quando prevedi di viaggiare?",
+    "preferences": "Quali sono le tue preferenze di viaggio?",
+    "budget": "Qual è il tuo range di budget?"
+  },
+  "placeholders": {
+    "city": "Inserisci una città",
+    "dateRange": "Seleziona intervallo date"
+  },
+  "navigation": {
+    "next": "Avanti",
+    "back": "Indietro",
+    "startPlanning": "Inizia a Pianificare"
+  },
+  "interests": {
+    "culture": "Cultura",
+    "nature": "Natura",
+    "foodie": "Gastronomia",
+    "leisure": "Relax",
+    "adventure": "Avventura",
+    "arts": "Arte"
+  },
+  "budgetOptions": {
+    "budget": "Economico  $",
+    "moderate": "Medio  $$",
+    "luxury": "Lusso  $$$",
+    "ultraLuxury": "Ultra Lusso  $$$$"
+  },
+  "steps": {
+    "destination": "Destinazione",
+    "dates": "Date del Viaggio",
+    "preferences": "Preferenze",
+    "budget": "Budget"
+  }
+}

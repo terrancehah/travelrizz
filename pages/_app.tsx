@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
-import { appWithTranslation } from 'next-i18next';
+import { IntlProvider } from 'next-intl'
 import { Noto_Sans_SC, Raleway, Caveat, Lato } from '@next/font/google'
 import { useRouter } from 'next/router'
 import '../styles/globals.css'
@@ -36,26 +36,40 @@ const lato = Lato({
   display: 'swap',
 })
 
-function App({ Component, pageProps }: AppProps) {
-  const { locale } = useRouter()
-  const mainFont = locale === 'zh' ? notoSansSC.className : raleway.className
-
+export default function App({ Component, pageProps: { messages, locale, timeZone, ...pageProps } }: AppProps) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-      <Head>
-        <title>Travel-Rizz - Plan Your Dream Trip Effortlessly</title>
-        <meta name="description" content="Plan your perfect journey with Travel-Rizz, combining human expertise with AI assistance to create personalized trips." />
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
-      </Head>
-      <div className={`${mainFont} ${notoSansSC.variable} ${raleway.variable} ${caveat.variable} ${lato.variable}`}>
-        <Component {...pageProps} />
-      </div>
-    </ThemeProvider>
+    <IntlProvider 
+      messages={messages} 
+      locale={locale ?? 'en'} 
+      timeZone={timeZone ?? 'Asia/Singapore'}
+    >
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <Head>
+          <title>Travel-Rizz - Plan Your Dream Trip Effortlessly</title>
+          <meta name="description" content="Plan your perfect journey with Travel-Rizz, combining human expertise with AI assistance to create personalized trips." />
+          <meta charSet="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
+        </Head>
+        <div className={`${notoSansSC.variable} ${raleway.variable} ${caveat.variable} ${lato.variable}`}>
+          <Component {...pageProps} />
+        </div>
+      </ThemeProvider>
+    </IntlProvider>
   )
 }
 
-export default appWithTranslation(App)
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      messages: {
+        landing: (await import(`../public/locales/${locale}/landing.json`)).default,
+        travelForm: (await import(`../public/locales/${locale}/travel-form.json`)).default
+      },
+      locale,
+      timeZone: 'Asia/Singapore'
+    }
+  }
+}

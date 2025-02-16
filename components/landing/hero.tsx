@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useTranslation } from 'next-i18next';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
 import { useLocalizedFont } from "../../hooks/useLocalizedFont";
 
 export default function Hero() {
-  const { t } = useTranslation('landing');
+  const t = useTranslations('landing');
   const { locale } = useRouter();  
   const fonts = useLocalizedFont();
 
   console.log('Current locale:', locale); 
 
-  return (
+  return (  
     <section className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 flex items-center bg-white dark:bg-gray-900 transition-colors duration-400">
       {/* Background image with overlay */}
       <div 

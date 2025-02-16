@@ -1,0 +1,48 @@
+{
+  "formTitle": "Rancang Perjalanan Anda",
+  "nameLabel": "Nama Anda",
+  "destinationLabel": "Destinasi",
+  "datesLabel": "Tarikh Perjalanan",
+  "interestsLabel": "Minat Perjalanan",
+  "budgetLabel": "Anggaran Bajet",
+  "submitButton": "Jana Rancangan Perjalanan",
+  "validationMessages": {
+    "required": "Ruangan ini wajib diisi",
+    "invalidDate": "Sila pilih tarikh yang sah"
+  },
+  "prompts": {
+    "destination": "Ke mana anda merancang untuk melancong?",
+    "dates": "Bila anda merancang untuk melancong?",
+    "preferences": "Apakah keutamaan perjalanan anda?",
+    "budget": "Berapakah julat bajet anda?"
+  },
+  "placeholders": {
+    "city": "Masukkan nama bandar",
+    "dateRange": "Pilih julat tarikh"
+  },
+  "navigation": {
+    "next": "Seterusnya",
+    "back": "Kembali",
+    "startPlanning": "Mula Merancang"
+  },
+  "interests": {
+    "culture": "Budaya",
+    "nature": "Alam Semulajadi",
+    "foodie": "Makanan",
+    "leisure": "Santai",
+    "adventure": "Pengembaraan",
+    "arts": "Seni"
+  },
+  "budgetOptions": {
+    "budget": "Bajet  $",
+    "moderate": "Sederhana  $$",
+    "luxury": "Mewah  $$$",
+    "ultraLuxury": "Ultra Mewah  $$$$"
+  },
+  "steps": {
+    "destination": "Destinasi",
+    "dates": "Tarikh Perjalanan",
+    "preferences": "Keutamaan",
+    "budget": "Bajet"
+  }
+}

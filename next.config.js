@@ -1,8 +1,12 @@
-const { i18n } = require('./next-i18next.config');
+const withNextIntl = require('next-intl/plugin')();
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withNextIntl({
   reactStrictMode: true,
+  i18n: {
+    locales: ['en', 'zh', 'ms', 'es', 'fr', 'de', 'it', 'cs', 'ja', 'ko'],
+    defaultLocale: 'en'
+  },
   images: {
     domains: ['places.googleapis.com'],
   },
@@ -52,7 +56,9 @@ const nextConfig = {
   },
   // Remove assetPrefix if not needed for production
   trailingSlash: false,
-  i18n,
-}
+  experimental: {
+    appDir: true
+  }
+})
 
-module.exports = nextConfig
+module.exports = nextConfig;

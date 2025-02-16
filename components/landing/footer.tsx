@@ -1,11 +1,11 @@
 import Link from "next/link"
 import { Twitter, Facebook, Instagram } from "lucide-react"
 import Image from "next/image"
-import { useTranslation } from 'next-i18next';
+import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '../../hooks/useLocalizedFont';
 
 export default function Footer() {
-  const { t } = useTranslation('landing');
+  const t = useTranslations('landing')
   const fonts = useLocalizedFont();
 
   return (

@@ -2,11 +2,11 @@ import { cn } from '@/utils/cn'
 import { Badge } from '@/components/ui/badge'
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useTranslation } from 'next-i18next';
+import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '../../hooks/useLocalizedFont';
 
 export default function Pricing() {
-  const { t } = useTranslation('landing');
+  const t = useTranslations('landing');
   const fonts = useLocalizedFont();
 
   return (

@@ -1,0 +1,48 @@
+{
+  "formTitle": "Reise planen",
+  "nameLabel": "Ihr Name",
+  "destinationLabel": "Reiseziel",
+  "datesLabel": "Reisedaten",
+  "interestsLabel": "Reiseinteressen",
+  "budgetLabel": "Geschätztes Budget",
+  "submitButton": "Reiseplan erstellen",
+  "validationMessages": {
+    "required": "Dieses Feld ist erforderlich",
+    "invalidDate": "Bitte wählen Sie gültige Daten"
+  },
+  "prompts": {
+    "destination": "Wohin möchten Sie reisen?",
+    "dates": "Wann möchten Sie reisen?",
+    "preferences": "Was sind Ihre Reisepräferenzen?",
+    "budget": "Wie ist Ihre Budgetspanne?"
+  },
+  "placeholders": {
+    "city": "Stadt eingeben",
+    "dateRange": "Datumsbereich auswählen"
+  },
+  "navigation": {
+    "next": "Weiter",
+    "back": "Zurück",
+    "startPlanning": "Planung beginnen"
+  },
+  "interests": {
+    "culture": "Kultur",
+    "nature": "Natur",
+    "foodie": "Kulinarik",
+    "leisure": "Freizeit",
+    "adventure": "Abenteuer",
+    "arts": "Kunst"
+  },
+  "budgetOptions": {
+    "budget": "Günstig  $",
+    "moderate": "Mittel  $$",
+    "luxury": "Luxus  $$$",
+    "ultraLuxury": "Ultra Luxus  $$$$"
+  },
+  "steps": {
+    "destination": "Reiseziel",
+    "dates": "Reisedaten",
+    "preferences": "Präferenzen",
+    "budget": "Budget"
+  }
+}

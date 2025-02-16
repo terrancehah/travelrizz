@@ -1,0 +1,48 @@
+{
+  "formTitle": "Plan Your Trip",
+  "nameLabel": "Your Name",
+  "destinationLabel": "Destination",
+  "datesLabel": "Travel Dates",
+  "interestsLabel": "Travel Interests",
+  "budgetLabel": "Estimated Budget",
+  "submitButton": "Generate Travel Plan",
+  "validationMessages": {
+    "required": "This field is required",
+    "invalidDate": "Please select valid dates"
+  },
+  "prompts": {
+    "destination": "Where are you planning to travel?",
+    "dates": "When are you planning to travel?",
+    "preferences": "What are your travel preferences?",
+    "budget": "What's your budget range?"
+  },
+  "placeholders": {
+    "city": "Enter a city",
+    "dateRange": "Select date range"
+  },
+  "navigation": {
+    "next": "Next",
+    "back": "Back",
+    "startPlanning": "Start Planning"
+  },
+  "interests": {
+    "culture": "Culture",
+    "nature": "Nature",
+    "foodie": "Foodie",
+    "leisure": "Leisure",
+    "adventure": "Adventure",
+    "arts": "Arts"
+  },
+  "budgetOptions": {
+    "budget": "Budget  $",
+    "moderate": "Moderate  $$",
+    "luxury": "Luxury  $$$",
+    "ultraLuxury": "Ultra Luxury  $$$$"
+  },
+  "steps": {
+    "destination": "Destination",
+    "dates": "Travel Dates",
+    "preferences": "Preferences",
+    "budget": "Budget"
+  }
+}

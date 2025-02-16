@@ -6,16 +6,18 @@ import About from "@/components/landing/about"
 import Features from "@/components/landing/features"
 import Pricing from '@/components/landing/pricing'
 import Footer from "@/components/landing/footer"
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import type { GetStaticProps } from 'next';
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', ['landing'])),
+      messages: {
+        landing: (await import(`../public/locales/${locale}/landing.json`)).default,
+      },
+      locale,
+      timeZone: 'Asia/Singapore'
     },
-  };
-};
+  }
+}
 
 export default function LandingPage() {
   return (

@@ -1,0 +1,48 @@
+{
+  "formTitle": "여행 계획하기",
+  "nameLabel": "이름",
+  "destinationLabel": "목적지",
+  "datesLabel": "여행 날짜",
+  "interestsLabel": "여행 관심사",
+  "budgetLabel": "예상 예산",
+  "submitButton": "여행 계획 생성",
+  "validationMessages": {
+    "required": "이 항목은 필수입니다",
+    "invalidDate": "유효한 날짜를 선택해주세요"
+  },
+  "prompts": {
+    "destination": "어디로 여행하실 계획이신가요?",
+    "dates": "언제 여행하실 계획이신가요?",
+    "preferences": "어떤 여행을 선호하시나요?",
+    "budget": "예산 범위는 어떻게 되시나요?"
+  },
+  "placeholders": {
+    "city": "도시명 입력",
+    "dateRange": "날짜 범위 선택"
+  },
+  "navigation": {
+    "next": "다음",
+    "back": "이전",
+    "startPlanning": "계획 시작하기"
+  },
+  "interests": {
+    "culture": "문화",
+    "nature": "자연",
+    "foodie": "맛집",
+    "leisure": "휴양",
+    "adventure": "모험",
+    "arts": "예술"
+  },
+  "budgetOptions": {
+    "budget": "일반  $",
+    "moderate": "중급  $$",
+    "luxury": "럭셔리  $$$",
+    "ultraLuxury": "울트라 럭셔리  $$$$"
+  },
+  "steps": {
+    "destination": "목적지",
+    "dates": "여행 날짜",
+    "preferences": "선호사항",
+    "budget": "예산"
+  }
+}
