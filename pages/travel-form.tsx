@@ -5,7 +5,7 @@ import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { Steps } from "../components/ui/steps"
-import { useRouter } from "next/navigation"
+// import { useRouter } from "next/navigation"
 import { MapPin, Calendar, Heart, Wallet, Languages, Trees, Soup, ShoppingBag, Ship, Palette, Sun, Moon } from "lucide-react"
 import flatpickr from "flatpickr"
 import type { Instance } from "flatpickr/dist/types/instance"
@@ -20,6 +20,7 @@ import { useLocalizedFont } from "@/hooks/useLocalizedFont"
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useTheme } from 'next-themes';
+import { useRouter } from "next/router"
 
 // Add Google Maps types
 declare global {
@@ -41,6 +42,7 @@ export default function TravelFormPage() {
   const t = useTranslations('travelForm')
   const fonts = useLocalizedFont();
   const { theme, setTheme } = useTheme()
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState<FormData>({
@@ -246,7 +248,18 @@ export default function TravelFormPage() {
         endDate: formattedEndDate,
         preferences: preferences,
         budget: budget || '',
-        language: SupportedLanguage.English, // Direct enum usage
+        language: router.locale === 'en' ? SupportedLanguage.English :
+                 router.locale === 'ms' ? SupportedLanguage.Malay :
+                 router.locale === 'es' ? SupportedLanguage.Spanish :
+                 router.locale === 'fr' ? SupportedLanguage.French :
+                 router.locale === 'de' ? SupportedLanguage.German :
+                 router.locale === 'it' ? SupportedLanguage.Italian :
+                 router.locale === 'cs' ? SupportedLanguage.Czech :
+                 router.locale === 'zh-CN' ? SupportedLanguage.SimplifiedChinese :
+                 router.locale === 'zh-TW' ? SupportedLanguage.TraditionalChinese :
+                 router.locale === 'ja' ? SupportedLanguage.Japanese :
+                 router.locale === 'ko' ? SupportedLanguage.Korean :
+                 SupportedLanguage.English, // Fallback to English if locale not supported
         transport: [],
 
         // Places
@@ -348,7 +361,7 @@ export default function TravelFormPage() {
             </div>
             <div className="flex space-x-4">
               <Button
-                className="w-full text-base"
+                className={`w-full text-base ${fonts.text}`}
                 onClick={goToNextStep}
                 disabled={!formData.destination}
               >
@@ -373,11 +386,11 @@ export default function TravelFormPage() {
               />
             </div>
             <div className="flex space-x-4">
-              <Button variant="default" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
+              <Button variant="default" className={`w-full transition-colors duration-300 ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
-                className="w-full transition-colors duration-300 text-base"
+                className={`w-full transition-colors duration-300 text-base ${fonts.text}`}
                 onClick={goToNextStep}
                 disabled={!formData.startDate || !formData.endDate}
               >
@@ -413,11 +426,11 @@ export default function TravelFormPage() {
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" className="w-full transition-colors duration-300 text-base" onClick={goToPrevStep}>
+              <Button variant="outline" className={`w-full transition-colors duration-300 text-base ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
-                className="w-full transition-colors duration-300 text-base"
+                className={`w-full transition-colors duration-300 text-base ${fonts.text}`}
                 onClick={goToNextStep}
                 disabled={formData.preferences.length === 0}
               >
@@ -441,7 +454,7 @@ export default function TravelFormPage() {
                   <Button
                     key={value}
                     variant={formData.budget === value ? "default" : "outline"}
-                    className={`p-4 ${fonts.text}`}
+                    className={`p-4 text-base ${fonts.text}`}
                     onClick={() => setFormData((prev) => ({ ...prev, budget: value }))}
                   >
                     <span>{label}</span>
@@ -450,11 +463,11 @@ export default function TravelFormPage() {
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" className="w-full transition-colors duration-300 text-base" onClick={goToPrevStep}>
+              <Button variant="outline" className={`w-full transition-colors duration-300 text-base ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
-                className="w-full transition-colors duration-300 text-base"
+                className={`w-full transition-colors duration-300 text-base ${fonts.text}`}
                 onClick={handleSubmit}
                 disabled={loading || !formData.budget}
               >

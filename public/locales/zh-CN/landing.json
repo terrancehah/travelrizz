@@ -36,8 +36,8 @@
     "subtitle": "专注于最重要的事 - 规划你的完美旅程 - 清晰的定价尊重你的选择。",
     "oneTime": {
       "title": "一次性使用",
-      "price": "¥13.99",
-      "originalPrice": "¥19.99",
+      "price": "¥14.99",
+      "originalPrice": "¥21.99",
       "tag": "早期用户专享",
       "features": {
         "0": "个性化旅行规划",
@@ -48,7 +48,7 @@
     },
     "subscription": {
       "title": "月度订阅",
-      "price": "¥69.99 /月",
+      "price": "¥65.99 /月",
       "tag": "适合频繁旅行者",
       "badge": "即将推出",
       "features": {

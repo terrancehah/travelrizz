@@ -36,8 +36,8 @@
     "subtitle": "당신의 여행을 존중하는 명확한 가격으로, 중요한 것에 집중하세요 - 완벽한 여행 계획에.",
     "oneTime": {
       "title": "일회성 이용",
-      "price": "₩2,499",
-      "originalPrice": "₩3,499",
+      "price": "₩2,899",
+      "originalPrice": "₩4,399",
       "tag": "얼리 어답터 환영",
       "features": {
         "0": "개인화된 여행 계획",
@@ -48,7 +48,7 @@
     },
     "subscription": {
       "title": "월간 이용",
-      "price": "₩11,900 /월",
+      "price": "₩12,999 /월",
       "tag": "자주 여행하시는 분들을 위해",
       "badge": "출시 예정",
       "features": {

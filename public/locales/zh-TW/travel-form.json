@@ -1,0 +1,48 @@
+{
+  "formTitle": "規劃您的旅行",
+  "nameLabel": "您的姓名",
+  "destinationLabel": "目的地",
+  "datesLabel": "旅行日期",
+  "interestsLabel": "旅行興趣",
+  "budgetLabel": "預計預算",
+  "submitButton": "產生旅行計劃",
+  "validationMessages": {
+    "required": "此項為必填",
+    "invalidDate": "請選擇有效日期"
+  },
+  "prompts": {
+    "destination": "您計劃去哪裡旅行？",
+    "dates": "您計劃什麼時候旅行？",
+    "preferences": "您有什麼旅行偏好？",
+    "budget": "您的預算範圍是多少？"
+  },
+  "placeholders": {
+    "city": "輸入城市名稱",
+    "dateRange": "選擇日期範圍"
+  },
+  "navigation": {
+    "next": "下一步",
+    "back": "返回",
+    "startPlanning": "開始規劃"
+  },
+  "interests": {
+    "culture": "文化",
+    "nature": "自然",
+    "foodie": "美食",
+    "leisure": "休閒",
+    "adventure": "探險",
+    "arts": "藝術"
+  },
+  "budgetOptions": {
+    "budget": "經濟  $",
+    "moderate": "中等  $$",
+    "luxury": "豪華  $$$",
+    "ultraLuxury": "超級豪華  $$$$"
+  },
+  "steps": {
+    "destination": "目的地",
+    "dates": "旅行日期",
+    "preferences": "偏好",
+    "budget": "預算"
+  }
+}

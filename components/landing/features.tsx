@@ -88,7 +88,7 @@ export default function Features() {
               key={feature.key}
               className={cn(
                 "group overflow-hidden rounded-xl bg-sky-100/50 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-300",
-                index === 0 || index === 3 ? "col-span-8 h-[450px]" : "col-span-4 h-[450px]"
+                index === 0 || index === 3 ? "col-span-8 h-[400px]" : "col-span-4 h-[400px]"
               )}
             >
               <div className={cn(
@@ -97,7 +97,7 @@ export default function Features() {
               )}>
                 <div className={cn(
                   "relative",
-                  index === 0 || index === 3 ? "w-[62.5%] h-[100%]" : "w-full h-2/3"
+                  index === 0 || index === 3 ? "w-[70%] h-[100%]" : "w-full h-3/5"
                 )}>
                   <Image
                     src={feature.image}
@@ -108,7 +108,7 @@ export default function Features() {
                 </div>
                 <div className={cn(
                   "flex flex-col justify-center",
-                  index === 0 || index === 3 ? "w-[37.5%] pl-6" : "w-full h-1/2 pt-2"
+                  index === 0 || index === 3 ? "w-[30%] pl-6" : "w-full h-2/5 pt-2"
                 )}>
                   <h3 className={`text-xl font-medium font-raleway text-primary dark:text-sky-100 mb-2 ${fonts.heading}`}>{t(`features.items.${feature.key}.title`)}</h3>
                   <p className={`text-gray-600 dark:text-gray-300 text-md font-raleway leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>

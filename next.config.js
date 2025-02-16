@@ -4,7 +4,7 @@ const withNextIntl = require('next-intl/plugin')();
 const nextConfig = withNextIntl({
   reactStrictMode: true,
   i18n: {
-    locales: ['en', 'zh', 'ms', 'es', 'fr', 'de', 'it', 'cs', 'ja', 'ko'],
+    locales: ['en', 'zh-CN', 'zh-TW', 'ms', 'es', 'fr', 'de', 'it', 'cs', 'ja', 'ko'],
     defaultLocale: 'en'
   },
   images: {

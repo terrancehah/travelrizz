@@ -37,7 +37,7 @@
     "oneTime": {
       "title": "Jednorázový přístup",
       "price": "49 Kč",
-      "originalPrice": "75 Kč",
+      "originalPrice": "71.99 Kč",
       "tag": "Uvítací nabídka pro první uživatele",
       "features": {
         "0": "Personalizované plánování cesty",
@@ -48,7 +48,7 @@
     },
     "subscription": {
       "title": "Měsíční přístup",
-      "price": "249 Kč /měsíc",
+      "price": "219.99 Kč /měsíc",
       "tag": "Pro časté cestovatele",
       "badge": "Již brzy",
       "features": {

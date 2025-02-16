@@ -8,10 +8,10 @@ type FontClass = {
 export function useLocalizedFont(): FontClass {
   const { locale } = useRouter()
 
-  if (locale === 'zh') {
+  if (locale === 'zh-CN' || locale === 'zh-TW') {
     return {
-      text: 'font-noto-sc font-normal',
-      heading: 'font-noto-sc font-semi-bold tracking-tight', 
+      text: 'font-noto-sc font-normal tracking-normal',
+      heading: 'font-noto-sc font-semi-bold tracking-normal', 
     }
   }
 

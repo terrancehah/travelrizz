@@ -18,9 +18,24 @@ const languages = {
   de: "Deutsch",
   it: "Italiano",
   cs: "Čeština",
-  zh: "简体中文",
+  "zh-CN": "简体中文",
+  "zh-TW": "繁體中文",
   ja: "日本語",
   ko: "한국어"
+}
+
+const buttonLabels = {
+  en: "EN",
+  ms: "MY",
+  es: "ES",
+  fr: "FR",
+  de: "DE",
+  it: "IT",
+  cs: "CS",
+  "zh-CN": "简中",
+  "zh-TW": "繁中",
+  ja: "JP",
+  ko: "KR"
 }
 
 export function LanguageSwitcher() {
@@ -32,6 +47,12 @@ export function LanguageSwitcher() {
     router.push(router.asPath, router.asPath, { locale: newLocale })
   }
 
+  // Get short display name for the button
+  const getButtonLabel = (locale: string | undefined) => {
+    if (!locale) return 'EN'
+    return buttonLabels[locale as keyof typeof buttonLabels] || locale.toUpperCase()
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -41,7 +62,7 @@ export function LanguageSwitcher() {
           className="h-6 w-6 px-0 focus-visible:ring-0 focus-visible:ring-offset-0"
         >
           <span className="font-semibold text-base text-secondary hover:text-primary dark:hover:text-white dark:text-gray-300">
-            {locale?.toUpperCase()}
+            {getButtonLabel(locale)}
           </span>
         </Button>
       </DropdownMenuTrigger>

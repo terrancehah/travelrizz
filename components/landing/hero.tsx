@@ -24,7 +24,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 flex flex-col w-[80%] mx-auto items-center text-center">
         <div className="space-y-6">
-          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-semi-bold tracking-tighter text-primary dark:text-sky-100 ${fonts.heading}`}>
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-semi-bold tracking-normal text-primary dark:text-sky-100 ${fonts.heading}`}>
             {t('hero.title')}
           </h1>
           <p className={`mx-auto max-w-[700px] text-gray-600 dark:text-gray-200 text-lg md:text-xl/relaxed ${fonts.text}`}>
