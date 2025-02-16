@@ -38,7 +38,7 @@ export function LanguageSwitcher() {
         <Button
           variant="ghost"
           size="sm"
-          className="h-6 w-6 px-0"
+          className="h-6 w-6 px-0 focus-visible:ring-0 focus-visible:ring-offset-0"
         >
           <span className="font-semibold text-base text-secondary hover:text-primary dark:hover:text-white dark:text-gray-300">
             {locale?.toUpperCase()}

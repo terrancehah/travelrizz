@@ -28,7 +28,7 @@
   },
   "hero": {
     "title": "Pianifica il tuo viaggio perfetto, a modo tuo",
-    "subtitle": "Basta con le ricerche estenuanti su più siti. Fai una conversazione naturale sui tuoi sogni di viaggio, e ti aiuteremo a trasformarli in realtà - un dettaglio alla volta.",
+    "subtitle": "Basta con le ricerche infinite su più siti. Fai una conversazione naturale con Travel-Rizz, il nostro compagno di viaggio basato sull'IA, sui tuoi sogni di viaggio. Ti aiuteremo a trasformarli in realtà, un dettaglio alla volta.",
     "cta": "Pianifichiamo insieme"
   },
   "pricing": {
@@ -58,7 +58,7 @@
         "3": "Raccomandazioni avanzate"
       }
     },
-    "cta": "Inizia il tuo viaggio"
+    "cta": "Pianifichiamo insieme"
   },
   "footer": {
     "tagline": "Pianifica il tuo viaggio perfetto, a modo tuo",

@@ -27,8 +27,8 @@
     }
   },
   "hero": {
-    "title": "Naplánujte si perfektní cestu po svém",
-    "subtitle": "Konec zdlouhavému vyhledávání na různých stránkách. Veďte přirozenou konverzaci o svých cestovatelských snech a my vám pomůžeme proměnit je v realitu - jeden promyšlený detail po druhém.",
+    "title": "Naplánujte si svou perfektní cestu, po svém",
+    "subtitle": "Už žádné nekonečné hledání na různých webech. Veďte přirozenou konverzaci s Travel-Rizz, naším AI cestovním společníkem, o vašich cestovatelských snech. Pomůžeme vám je proměnit ve skutečnost, jeden promyšlený detail po druhém.",
     "cta": "Plánujme společně"
   },
   "pricing": {
@@ -58,7 +58,7 @@
         "3": "Pokročilá doporučení"
       }
     },
-    "cta": "Začněte svou cestu"
+    "cta": "Plánujme společně"
   },
   "footer": {
     "tagline": "Naplánujte si perfektní cestu po svém",

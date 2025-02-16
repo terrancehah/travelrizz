@@ -1,4 +1,9 @@
 {
+  "hero": {
+    "title": "Plan Your Perfect Journey, Your Way",
+    "subtitle": "No more overwhelming research across multiple sites. Have a natural conversation with Travel-Rizz, our AI-powered travel companion, about your travel dreams. We'll help you turn them into reality - one thoughtful detail at a time.",
+    "cta": "Let's Plan Together"
+  },
   "about": {
     "title": "About Travel-Rizz",
     "intro": "Travel-Rizz began with a simple truth: everyone deserves to experience the joy of a well-planned journey, regardless of their planning expertise. Through years of helping friends and family plan their trips, I saw how overwhelming the process could be.",
@@ -26,11 +31,6 @@
       }
     }
   },
-  "hero": {
-    "title": "Plan Your Perfect Journey, Your Way",
-    "subtitle": "No more overwhelming research across multiple sites. Have a natural conversation about your travel dreams, and we'll help you turn them into reality - one thoughtful detail at a time.",
-    "cta": "Let's Plan Together"
-  },
   "pricing": {
     "title": "Simple, Clear Pricing",
     "subtitle": "Focus on what matters - planning your perfect trip - with straightforward pricing that respects your journey.",
@@ -38,7 +38,7 @@
       "title": "One-Time Access",
       "price": "US$1.99",
       "originalPrice": "US$2.99",
-      "tag": "Early Adopter Welcome",
+      "tag": "Early Adopter Special",
       "features": {
         "0": "Personalized travel planning",
         "1": "Interactive route visualization",
@@ -58,7 +58,7 @@
         "3": "Advanced recommendations"
       }
     },
-    "cta": "Start Your Journey"
+    "cta": "Let's Plan Together"
   },
   "footer": {
     "tagline": "Plan Your Perfect Journey, Your Way",

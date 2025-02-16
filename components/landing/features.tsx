@@ -88,7 +88,7 @@ export default function Features() {
               key={feature.key}
               className={cn(
                 "group overflow-hidden rounded-xl bg-sky-100/50 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-300",
-                index === 0 || index === 3 ? "col-span-8 h-[350px]" : "col-span-4 h-[350px]"
+                index === 0 || index === 3 ? "col-span-8 h-[450px]" : "col-span-4 h-[450px]"
               )}
             >
               <div className={cn(
