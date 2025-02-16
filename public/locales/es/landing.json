@@ -1,81 +1,81 @@
 {
   "about": {
-    "title": "Conoce Travel-Rizz",
-    "intro": "¿Por qué creamos Travel-Rizz? Porque creemos que todos merecen disfrutar de un viaje perfecto, ya sean viajeros experimentados o primerizos.",
-    "experience": "Durante años, ayudando a amigos a planear sus viajes, me di cuenta de que la planificación era a menudo estresante. ¡Pero viajar debería ser emocionante desde el principio!",
-    "mission": "Así que combiné la IA con mi pasión por los viajes para crear Travel-Rizz. Espero que haga que planear viajes sea tan divertido como el viaje mismo."
+    "title": "Sobre Travel-Rizz",
+    "intro": "Travel-Rizz comenzó con una simple verdad: todos merecen experimentar la alegría de un viaje bien planificado, sin importar su experiencia en planificación. Tras años ayudando a amigos y familiares a planificar sus viajes, vi lo abrumador que podía ser este proceso.",
+    "experience": "Por eso creé Travel-Rizz - para empoderar a los viajeros con las herramientas y el conocimiento adecuados. Ya sea que estés explorando ciudades bulliciosas o buscando aventuras tranquilas, tener un compañero útil en tu viaje de planificación marca toda la diferencia.",
+    "mission": "Al combinar experiencias personales de viaje con tecnología inteligente, buscamos que la planificación del viaje se sienta como una conversación con un amigo conocedor que está genuinamente emocionado por ayudar a dar forma a tu viaje perfecto."
   },
   "features": {
-    "title": "¿Cómo hacemos que planear sea más fácil?",
+    "title": "Cómo te ayudamos a planificar mejor",
     "items": {
       "aiChat": {
-        "title": "Charla con IA",
-        "description": "¡Cuéntale a Travel-Rizz tus sueños de viaje como lo harías con un amigo, y hagámoslos realidad juntos!"
+        "title": "Conversaciones naturales sobre viajes",
+        "description": "Comparte tus ideas de viaje como lo harías con un amigo. Juntos, exploraremos posibilidades y crearemos planes que reflejen tu estilo personal."
       },
       "insights": {
-        "title": "Consejos de viaje actualizados",
-        "description": "Desde el clima hasta las costumbres locales, toda la información útil está lista para ti."
+        "title": "Conocimiento oportuno de viajes",
+        "description": "Accede a información útil sobre tu destino - desde patrones climáticos hasta costumbres locales - exactamente cuando lo necesites."
       },
       "routes": {
-        "title": "Planificación de ruta visual",
-        "description": "Visualiza tus destinos diarios en el mapa y encuentra las mejores rutas sin perder un momento."
+        "title": "Planificación visual del viaje",
+        "description": "Visualiza tus aventuras diarias en mapas interactivos. Comprende tus rutas y realiza ajustes hasta que se sientan perfectas."
       },
       "itinerary": {
-        "title": "Itinerario flexible",
-        "description": "¡Ajusta tu itinerario con facilidad! Arrastra y suelta para hacer cambios, así de simple."
+        "title": "Planificación flexible del día",
+        "description": "Organiza tus días con herramientas intuitivas que te permiten organizar actividades a tu manera. Ajusta fácilmente según evolucionen tus planes."
       }
     }
   },
   "hero": {
-    "title": "¡Planea fácil, viaja feliz!",
-    "subtitle": "¿No sabes cómo organizar tu viaje? ¡No hay problema! Planifiquemos tu viaje personalizado juntos. Con IA y consejos útiles, crear el itinerario perfecto es pan comido. ¡Deja atrás la planificación tediosa y empieza a anticipar tu increíble viaje!",
-    "cta": "¡Empecemos a planear!"
+    "title": "Planifica tu viaje perfecto, a tu manera",
+    "subtitle": "No más investigación abrumadora en múltiples sitios. Ten una conversación natural sobre tus sueños de viaje, y te ayudaremos a convertirlos en realidad - un detalle pensado a la vez.",
+    "cta": "Planifiquemos juntos"
   },
   "pricing": {
     "title": "Precios simples y claros",
-    "subtitle": "¡Paga una vez y empieza a planear! Por cierto, estamos desarrollando una suscripción mensual, pero no te preocupes, ¡tu compra única siempre estará disponible!",
+    "subtitle": "Concéntrate en lo que importa - planificar tu viaje perfecto - con precios transparentes que respetan tu viaje.",
     "oneTime": {
-      "title": "Experiencia única",
-      "price": "US$1.99",
-      "originalPrice": "US$2.99",
-      "tag": "Oferta anticipada",
+      "title": "Acceso único",
+      "price": "1,99 €",
+      "originalPrice": "2,99 €",
+      "tag": "Bienvenida a primeros usuarios",
       "features": {
-        "0": "Preguntas ilimitadas a la IA",
-        "1": "Encuentra las mejores rutas",
-        "2": "Consejos locales",
-        "3": "Sin publicidad"
+        "0": "Planificación personalizada",
+        "1": "Visualización interactiva de rutas",
+        "2": "Información y consejos de destino",
+        "3": "Experiencia sin publicidad"
       }
     },
     "subscription": {
-      "title": "Plan mensual",
-      "price": "US$9.99 /mes",
+      "title": "Acceso mensual",
+      "price": "9,99 € /mes",
       "tag": "Para viajeros frecuentes",
       "badge": "Próximamente",
       "features": {
-        "0": "Planea con amigos",
-        "1": "Gestiona múltiples viajes",
-        "2": "Plantillas avanzadas",
-        "3": "Guías detalladas"
+        "0": "Planifica con amigos",
+        "1": "Gestión de múltiples viajes",
+        "2": "Plantillas premium",
+        "3": "Recomendaciones avanzadas"
       }
     },
-    "cta": "¡Empecemos a planear!"
+    "cta": "Comienza tu viaje"
   },
   "footer": {
-    "tagline": "¡Planea fácil, viaja feliz!",
+    "tagline": "Planifica tu viaje perfecto, a tu manera",
     "quickLinks": {
       "title": "Enlaces rápidos",
       "features": "Características",
       "about": "Sobre nosotros",
-      "start": "Empezar a planear"
+      "start": "Comenzar a planificar"
     },
     "legal": {
       "title": "Legal",
-      "terms": "Términos de uso",
+      "terms": "Términos de servicio",
       "privacy": "Política de privacidad",
       "cookies": "Política de cookies"
     },
     "connect": {
-      "title": "Conéctate con nosotros",
+      "title": "Conecta",
       "twitter": "Twitter",
       "instagram": "Instagram",
       "facebook": "Facebook"

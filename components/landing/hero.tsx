@@ -22,16 +22,17 @@ export default function Hero() {
         }}
       />
       {/* Content */}
-      <div className="relative z-10 flex flex-col w-[80%] mx-auto items-center space-y-6 text-center">
+      <div className="relative z-10 flex flex-col w-[80%] mx-auto items-center text-center">
         <div className="space-y-6">
-          <h1 className={`text-3xl font-semi-bold tracking-tighter text-primary dark:text-sky-100 sm:text-4xl md:text-5xl lg:text-6xl/none ${fonts.heading}`}>
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-semi-bold tracking-tighter text-primary dark:text-sky-100 ${fonts.heading}`}>
             {t('hero.title')}
           </h1>
-          <p className={`mx-auto max-w-[700px] text-gray-600 dark:text-gray-400 md:text-xl ${fonts.text}`}>
+          <p className={`mx-auto max-w-[700px] text-gray-600 dark:text-gray-200 text-lg md:text-xl/relaxed ${fonts.text}`}>
             {t('hero.subtitle')}
           </p>
         </div>
-        <div className="space-x-4">
+
+        <div className="space-x-4 mt-8">
           <Button asChild size="lg" className={`bg-sky-blue hover:bg-sky-600 text-white text-base dark:bg-sky-500 dark:hover:bg-sky-400 ${fonts.text}`}>
             <Link href="/travel-form">{t('hero.cta')}</Link>
           </Button>

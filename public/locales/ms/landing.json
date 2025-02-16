@@ -1,84 +1,84 @@
 {
-    "about": {
-      "title": "Kenali Travel-Rizz",
-      "intro": "Kenapa saya buat Travel-Rizz ni? Sebab saya percaya semua orang patut rasa seronoknya bercuti yang dirancang dengan sempurna, tak kira la kalau dah biasa plan trip ke atau baru nak cuba!",
-      "experience": "Dah bertahun-tahun saya tolong kawan-kawan dan keluarga plan trip, dan saya perasan ramai yang rasa tertekan bila nak rancang. Padahal kan, bercuti tu sepatutnya best dari mula-mula lagi, sejak dari peringkat merancang lagi dah kena excited!",
-      "mission": "Tu lah sebabnya saya gabungkan teknologi AI dengan minat mendalam saya dalam bidang pelancongan untuk cipta Travel-Rizz. Harap-harap dengan adanya Travel-Rizz ni, proses merancang percutian pun jadi sama best macam bercuti tu sendiri."
-    },
-    "features": {
-      "title": "Macam Mana Kami Mudahkan Perancangan Percutian Anda?",
-      "items": {
-        "aiChat": {
-          "title": "Berbual dengan AI",
-          "description": "Macam sembang dengan kawan je! Cerita pada Travel-Rizz tentang percutian impian anda, nanti kita sama-sama jadikan realiti!"
-        },
-        "insights": {
-          "title": "Tips Perjalanan Terkini",
-          "description": "Dari cuaca sampai la pada adat resam tempatan, semua info penting dah kami sediakan. Senang hati nak travel!"
-        },
-        "routes": {
-          "title": "Perancangan Laluan Bergambar",
-          "description": "Tengok terus dalam peta interaktif semua tempat yang nak dikunjungi. Best kan? Boleh optimize route supaya setiap hari adventure anda jadi lebih sempurna~"
-        },
-        "itinerary": {
-          "title": "Jadual Yang Senang Diubah",
-          "description": "Nak tukar plan? Senang je! Drag and drop je nak susun semula jadual. Jadual perfect anda just a few clicks away je!"
-        }
-      }
-    },
-    "hero": {
-      "title": "Rancang Trip Impian Dengan Mudah!",
-      "subtitle": "Tak tau macam mana nak mula? Jom kita rancang sama-sama! Dengan bantuan AI dan tips yang terbaik, kita buat jadual yang memang khas untuk anda. Tak payah stress pasal planning - just enjoy je process tu sambil tunggu hari nak travel!",
-      "cta": "Jom Plan Sama-sama!"
-    },
-    "pricing": {
-      "title": "Harga Yang Simple Je",
-      "subtitle": "Bayar sekali, boleh guna terus! Oh ya, kami tengah buat plan langganan bulanan untuk yang selalu travel, tapi plan bayar sekali ni akan tetap ada tau!",
-      "oneTime": {
-        "title": "Bayar Sekali Je",
-        "price": "RM8.99",
-        "originalPrice": "RM14.99",
-        "tag": "Promosi Early Bird",
-        "features": {
-          "0": "Tanya AI sepuas hati",
-          "1": "Optimize route dengan peta",
-          "2": "Tips budaya tempatan",
-          "3": "Takde iklan langsung"
-        }
+  "about": {
+    "title": "Mengenai Travel-Rizz",
+    "intro": "Travel-Rizz bermula dari kepercayaan mudah bahawa setiap orang berhak menikmati perjalanan yang dirancang dengan sempurna, tanpa mengira pengalaman mereka dalam perancangan. Setelah bertahun membantu rakan merancang perjalanan mereka, saya sedar betapa rumitnya proses ini boleh jadi.",
+    "experience": "Itulah sebabnya saya mencipta Travel-Rizz - untuk memberi kuasa kepada pengembara dengan alat dan pengetahuan yang sesuai. Sama ada anda meneroka bandar yang sibuk atau mencari pengembaraan yang tenang, mempunyai teman dalam perjalanan perancangan anda membuat perbezaan yang besar.",
+    "mission": "Dengan menggabungkan pengalaman perjalanan peribadi dan teknologi yang bijak, kami berharap dapat menjadikan perancangan perjalanan seperti berbual dengan rakan yang berpengetahuan yang benar-benar teruja untuk membantu membentuk perjalanan sempurna anda."
+  },
+  "features": {
+    "title": "Bagaimana Kami Bantu Anda Merancang",
+    "items": {
+      "aiChat": {
+        "title": "Perbualan Perjalanan Semulajadi",
+        "description": "Kongsi idea perjalanan anda seperti berbual dengan kawan. Bersama-sama, kita akan meneroka kemungkinan dan membuat rancangan yang mencerminkan gaya peribadi anda."
       },
-      "subscription": {
-        "title": "Langganan Bulanan",
-        "price": "RM39.99 /bulan",
-        "tag": "Untuk Yang Rajin Travel",
-        "badge": "Akan datang",
-        "features": {
-          "0": "Plan dengan kawan-kawan sekali",
-          "1": "Urus banyak trip serentak",
-          "2": "Template premium",
-          "3": "Info tempat menarik detail"
-        }
+      "insights": {
+        "title": "Pengetahuan Perjalanan Tepat Masa",
+        "description": "Dapatkan pandangan berguna tentang destinasi anda - dari corak cuaca hingga adat tempatan - tepat pada masa anda memerlukannya."
       },
-      "cta": "Jom Plan Sama-sama!"
-    },
-    "footer": {
-      "tagline": "Rancang Trip Impian Dengan Mudah!",
-      "quickLinks": {
-        "title": "Link Pantas",
-        "features": "Ciri-ciri Best",
-        "about": "Tentang Kami",
-        "start": "Mula Merancang"
+      "routes": {
+        "title": "Perancangan Visual",
+        "description": "Lihat pengembaraan harian anda tersusun di peta interaktif. Fahami laluan anda dan buat penyesuaian sehingga ia betul-betul sesuai."
       },
-      "legal": {
-        "title": "Perundangan",
-        "terms": "Terma Penggunaan",
-        "privacy": "Dasar Privasi",
-        "cookies": "Dasar Cookie"
-      },
-      "connect": {
-        "title": "Jom Follow Kami",
-        "twitter": "Twitter",
-        "instagram": "Instagram",
-        "facebook": "Facebook"
+      "itinerary": {
+        "title": "Perancangan Hari Fleksibel",
+        "description": "Susun hari anda dengan alat intuitif yang membolehkan anda mengatur aktiviti mengikut cara anda. Mudah disesuaikan apabila rancangan anda berkembang."
       }
     }
+  },
+  "hero": {
+    "title": "Rancang Perjalanan Sempurna Anda",
+    "subtitle": "Tiada lagi pencarian yang membosankan. Kongsi impian perjalanan anda dengan kami, dan kami akan bantu menjadikannya rancangan yang teliti - satu perincian yang menarik pada satu masa.",
+    "cta": "Mari Rancang Bersama"
+  },
+  "pricing": {
+    "title": "Harga Mudah dan Jelas",
+    "subtitle": "Fokus pada apa yang penting - merancang perjalanan sempurna anda - dengan harga yang menghormati perjalanan anda.",
+    "oneTime": {
+      "title": "Akses Sekali",
+      "price": "RM8.99",
+      "originalPrice": "RM12.99",
+      "tag": "Selamat Datang Pengguna Awal",
+      "features": {
+        "0": "Perancangan perjalanan peribadi",
+        "1": "Visualisasi laluan interaktif",
+        "2": "Panduan destinasi",
+        "3": "Pengalaman tanpa iklan"
+      }
+    },
+    "subscription": {
+      "title": "Akses Bulanan",
+      "price": "RM39.99 /bulan",
+      "tag": "Untuk Pengembara Kerap",
+      "badge": "Akan Datang",
+      "features": {
+        "0": "Rancang dengan rakan",
+        "1": "Urus pelbagai perjalanan",
+        "2": "Templat premium",
+        "3": "Cadangan lanjutan"
+      }
+    },
+    "cta": "Mulakan Perjalanan Anda"
+  },
+  "footer": {
+    "tagline": "Rancang Perjalanan Sempurna Anda",
+    "quickLinks": {
+      "title": "Pautan Pantas",
+      "features": "Ciri-ciri",
+      "about": "Tentang Kami",
+      "start": "Mula Merancang"
+    },
+    "legal": {
+      "title": "Perundangan",
+      "terms": "Terma Perkhidmatan",
+      "privacy": "Dasar Privasi",
+      "cookies": "Dasar Cookie"
+    },
+    "connect": {
+      "title": "Hubungi",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "facebook": "Facebook"
+    }
   }
+}

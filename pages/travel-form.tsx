@@ -335,20 +335,20 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <Label className={`text-lg lg:text-xl ${fonts.text}`}>{t('prompts.destination')}</Label>
+              <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.destination')}</Label>
               <Input
                 ref={destinationRef}
                 id="destination"
                 placeholder={t('placeholders.city')}
                 onChange={(e) => setFormData((prev) => ({ ...prev, destination: e.target.value }))}
-                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 text-base
                 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
                 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300 ${fonts.text}`}
               />
             </div>
             <div className="flex space-x-4">
               <Button
-                className="w-full"
+                className="w-full text-base"
                 onClick={goToNextStep}
                 disabled={!formData.destination}
               >
@@ -361,13 +361,13 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <Label className={`text-lg lg:text-xl ${fonts.text}`}>{t('prompts.dates')}</Label>
+              <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.dates')}</Label>
               <Input
                 ref={dateRangeRef}
                 id="date-range"
                 placeholder={t('placeholders.dateRange')}
                 readOnly
-                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 text-base
                 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
                 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 ${fonts.text}`}
               />
@@ -377,7 +377,7 @@ export default function TravelFormPage() {
                 {t('navigation.back')}
               </Button>
               <Button
-                className="w-full transition-colors duration-300"
+                className="w-full transition-colors duration-300 text-base"
                 onClick={goToNextStep}
                 disabled={!formData.startDate || !formData.endDate}
               >
@@ -390,7 +390,7 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <Label className={`text-lg lg:text-xl ${fonts.text}`}>{t('prompts.preferences')}</Label>
+              <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.preferences')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { value: "Culture and Heritage", label: t('interests.culture'), icon: Languages },
@@ -403,7 +403,7 @@ export default function TravelFormPage() {
                   <Button
                     key={value}
                     variant={formData.preferences.includes(value as TravelPreference) ? "default" : "outline"}
-                    className={`flex items-center justify-start space-x-2 transition-colors duration-300 ${fonts.text}`}
+                    className={`flex items-center justify-start space-x-2 transition-colors duration-300 text-base ${fonts.text}`}
                     onClick={() => handlePreferenceToggle(value as TravelPreference)}
                   >
                     <span>{label}</span>
@@ -413,11 +413,11 @@ export default function TravelFormPage() {
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
+              <Button variant="outline" className="w-full transition-colors duration-300 text-base" onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
-                className="w-full transition-colors duration-300"
+                className="w-full transition-colors duration-300 text-base"
                 onClick={goToNextStep}
                 disabled={formData.preferences.length === 0}
               >
@@ -430,7 +430,7 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-3">
-              <Label className={`text-lg lg:text-xl ${fonts.text}`}>{t('prompts.budget')}</Label>
+              <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.budget')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { value: "Budget", label: t('budgetOptions.budget') },
@@ -450,11 +450,11 @@ export default function TravelFormPage() {
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" className="w-full transition-colors duration-300" onClick={goToPrevStep}>
+              <Button variant="outline" className="w-full transition-colors duration-300 text-base" onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
-                className="w-full transition-colors duration-300"
+                className="w-full transition-colors duration-300 text-base"
                 onClick={handleSubmit}
                 disabled={loading || !formData.budget}
               >
@@ -469,13 +469,13 @@ export default function TravelFormPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-400">
+    <div className="md:min-h-screen bg-white dark:bg-gray-900 transition-colors duration-400">
       <main className="flex min-h-[100dvh] w-full">
-        <div className="fixed flex top-0 left-0 right-0 z-10 md:relative md:w-64 bg-light-blue dark:bg-primary shadow-md 
-          md:space-y-14 space-y-2 p-3 md:p-6 border-r dark:border-gray-800 flex-col items-center md:items-start min-h-screen justify-between">
+        <div className="fixed flex flex-wrap flex-row top-0 left-0 right-0 z-10 md:relative md:w-64 bg-light-blue dark:bg-primary shadow-md 
+          md:space-y-14 gap-y-2 p-3 md:p-6 border-r dark:border-gray-800 md:flex-col items-center md:items-start justify-between">
           
           {/* Logo and Brand Name */}
-          <Link href="/" className="flex gap-x-1 pr-4">
+          <Link href="/" className="flex gap-x-1 pr-4 w-auto order-1">
             <Image
               src="/images/travel-rizz.png"
               alt="Travel-Rizz Logo"
@@ -487,11 +487,13 @@ export default function TravelFormPage() {
           </Link>
 
           {/* Steps */}
-          <Steps currentStep={currentStep} steps={steps} />
+          <div className="order-2 mx-auto md:mx-0">
+            <Steps currentStep={currentStep} steps={steps} />
+          </div>
 
           {/* Theme and Language Switchers */}
-          <div className="mt-auto flex items-center gap-x-2">
-            <div className="flex items-center justify-center bg-sky-200/80 dark:bg-blue-900 rounded-md p-2">
+          <div className="my-0 flex items-center md:gap-x-2 gap-x-1 w-auto order-1 md:order-3 flex-wrap flex-row">
+            <div className="flex items-center justify-center bg-sky-300/80 dark:bg-blue-700 rounded-md p-2 order-2 md:order-1">
               <Button
                 variant="ghost"
                 size="icon"
@@ -503,7 +505,7 @@ export default function TravelFormPage() {
                 <span className="sr-only">Toggle theme</span>
               </Button>
             </div>
-            <div className="flex items-center justify-center rounded-md p-2">
+            <div className="flex items-center justify-center rounded-md p-2 order-1 md:order-2">
               <LanguageSwitcher />
             </div>
           </div>

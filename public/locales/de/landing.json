@@ -1,67 +1,67 @@
 {
   "about": {
-    "title": "Entdecken Sie Travel-Rizz",
-    "intro": "Warum haben wir Travel-Rizz entwickelt? Weil wir glauben, dass jeder eine perfekte Reise genießen sollte, egal ob erfahrener Reisender oder Anfänger.",
-    "experience": "Über die Jahre hinweg, während ich Freunden bei der Reiseplanung half, wurde mir klar, dass die Planung oft stressig war. Aber Reisen sollte von Anfang an aufregend sein!",
-    "mission": "Also habe ich KI mit meiner Leidenschaft fürs Reisen kombiniert, um Travel-Rizz zu erschaffen. Ich hoffe, dass es die Reiseplanung genauso unterhaltsam macht wie die Reise selbst."
+    "title": "Über Travel-Rizz",
+    "intro": "Travel-Rizz begann mit einer einfachen Wahrheit: Jeder verdient es, die Freude einer gut geplanten Reise zu erleben, unabhängig von seinen Planungskenntnissen. Nach jahrelanger Unterstützung von Freunden und Familie bei der Reiseplanung sah ich, wie überwältigend dieser Prozess sein konnte.",
+    "experience": "Deshalb habe ich Travel-Rizz geschaffen - um Reisende mit den richtigen Werkzeugen und dem nötigen Wissen auszustatten. Ob Sie pulsierende Städte erkunden oder ruhige Abenteuer suchen, ein hilfreicher Begleiter bei der Reiseplanung macht den entscheidenden Unterschied.",
+    "mission": "Durch die Verbindung von persönlichen Reiseerfahrungen mit durchdachter Technologie möchten wir die Reiseplanung wie ein Gespräch mit einem sachkundigen Freund gestalten, der sich aufrichtig darauf freut, Ihre perfekte Reise mitzugestalten."
   },
   "features": {
-    "title": "Wie machen wir die Planung einfacher?",
+    "title": "Wie wir Ihnen bei der Planung helfen",
     "items": {
       "aiChat": {
-        "title": "KI-Chat",
-        "description": "Erzählen Sie Travel-Rizz von Ihren Reiseträumen wie einem Freund, und lassen Sie uns sie gemeinsam verwirklichen!"
+        "title": "Natürliche Reisegespräche",
+        "description": "Teilen Sie Ihre Reiseideen, wie Sie es mit einem Freund tun würden. Gemeinsam erkunden wir Möglichkeiten und erstellen Pläne, die Ihren persönlichen Stil widerspiegeln."
       },
       "insights": {
-        "title": "Aktuelle Reisetipps",
-        "description": "Vom Wetter bis zu lokalen Bräuchen - alle nützlichen Informationen sind für Sie bereit."
+        "title": "Aktuelle Reiseinformationen",
+        "description": "Erhalten Sie hilfreiche Einblicke zu Ihrem Reiseziel - von Wettermustern bis zu lokalen Bräuchen - genau dann, wenn Sie sie brauchen."
       },
       "routes": {
-        "title": "Visuelle Routenplanung",
-        "description": "Visualisieren Sie Ihre täglichen Ziele auf der Karte und finden Sie die besten Routen, ohne einen Moment zu verlieren."
+        "title": "Visuelle Reiseplanung",
+        "description": "Sehen Sie Ihre täglichen Abenteuer auf interaktiven Karten. Verstehen Sie Ihre Routen und passen Sie sie an, bis sie genau richtig sind."
       },
       "itinerary": {
-        "title": "Flexibler Reiseplan",
-        "description": "Passen Sie Ihren Reiseplan einfach an! Ziehen und ablegen für Änderungen, so einfach ist das."
+        "title": "Flexible Tagesplanung",
+        "description": "Gestalten Sie Ihre Tage mit intuitiven Werkzeugen, die Ihnen die Organisation von Aktivitäten nach Ihren Vorstellungen ermöglichen. Passen Sie den Plan einfach an, wenn sich Ihre Ideen ändern."
       }
     }
   },
   "hero": {
-    "title": "Einfach planen, glücklich reisen!",
-    "subtitle": "Wissen Sie nicht, wie Sie Ihre Reise organisieren sollen? Kein Problem! Lassen Sie uns gemeinsam Ihre persönliche Reise planen. Mit KI und hilfreichen Tipps ist der perfekte Reiseplan ein Kinderspiel. Verabschieden Sie sich von mühsamer Planung und freuen Sie sich auf Ihre tolle Reise!",
-    "cta": "Lassen Sie uns planen!"
+    "title": "Planen Sie Ihre perfekte Reise, auf Ihre Art",
+    "subtitle": "Schluss mit überwältigender Recherche auf verschiedenen Websites. Führen Sie ein natürliches Gespräch über Ihre Reiseträume, und wir helfen Ihnen, sie Schritt für Schritt zu verwirklichen.",
+    "cta": "Gemeinsam planen"
   },
   "pricing": {
-    "title": "Einfache und klare Preise",
-    "subtitle": "Einmal zahlen und mit der Planung beginnen! Übrigens entwickeln wir ein monatliches Abonnement, aber keine Sorge, Ihr einmaliger Kauf bleibt immer verfügbar!",
+    "title": "Einfache, klare Preise",
+    "subtitle": "Konzentrieren Sie sich auf das Wesentliche - die Planung Ihrer perfekten Reise - mit transparenten Preisen, die Ihre Reise respektieren.",
     "oneTime": {
-      "title": "Einmalige Erfahrung",
+      "title": "Einmaliger Zugang",
       "price": "1,99 €",
       "originalPrice": "2,99 €",
-      "tag": "Frühbucherrabatt",
+      "tag": "Willkommensangebot für Erstnutzer",
       "features": {
-        "0": "Unbegrenzte KI-Fragen",
-        "1": "Beste Routen finden",
-        "2": "Lokale Tipps",
-        "3": "Keine Werbung"
+        "0": "Personalisierte Reiseplanung",
+        "1": "Interaktive Routenvisualisierung",
+        "2": "Zielortinformationen und Tipps",
+        "3": "Werbefreie Nutzung"
       }
     },
     "subscription": {
-      "title": "Monatsplan",
+      "title": "Monatlicher Zugang",
       "price": "9,99 € /Monat",
       "tag": "Für häufige Reisende",
       "badge": "Demnächst verfügbar",
       "features": {
         "0": "Mit Freunden planen",
         "1": "Mehrere Reisen verwalten",
-        "2": "Erweiterte Vorlagen",
-        "3": "Detaillierte Reiseführer"
+        "2": "Premium-Vorlagen",
+        "3": "Erweiterte Empfehlungen"
       }
     },
-    "cta": "Lassen Sie uns planen!"
+    "cta": "Starten Sie Ihre Reise"
   },
   "footer": {
-    "tagline": "Einfach planen, glücklich reisen!",
+    "tagline": "Planen Sie Ihre perfekte Reise, auf Ihre Art",
     "quickLinks": {
       "title": "Schnelllinks",
       "features": "Funktionen",
@@ -75,7 +75,7 @@
       "cookies": "Cookie-Richtlinie"
     },
     "connect": {
-      "title": "Folgen Sie uns",
+      "title": "Verbinden",
       "twitter": "Twitter",
       "instagram": "Instagram",
       "facebook": "Facebook"

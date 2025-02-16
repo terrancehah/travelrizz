@@ -51,8 +51,8 @@ export default function Features() {
                 className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover w-full"
               />
               <div className="space-y-2">
-                <h3 className={`text-xl md:text-2xl font-medium text-primary dark:text-sky-100 ${fonts.heading}`}>{t(`features.items.${feature.key}.title`)}</h3>
-                <p className={`text-gray-600 dark:text-gray-300 text-lg leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>
+                <h3 className={`text-xl md:text-2xl font-medium text-primary dark:text-sky-100 ${fonts.text}`}>{t(`features.items.${feature.key}.title`)}</h3>
+                <p className={`text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>
               </div>
             </div>
           ))}

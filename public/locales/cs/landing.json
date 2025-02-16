@@ -1,67 +1,67 @@
 {
   "about": {
-    "title": "Poznejte Travel-Rizz",
-    "intro": "Proč jsme vytvořili Travel-Rizz? Protože věříme, že si každý zaslouží užít si dokonalou cestu, ať už je zkušený cestovatel nebo začátečník.",
-    "experience": "Během let, kdy jsem pomáhal přátelům plánovat jejich cesty, jsem si uvědomil, že plánování bylo často stresující. Ale cestování by mělo být vzrušující od samého začátku!",
-    "mission": "Tak jsem spojil umělou inteligenci s mou vášní pro cestování a vytvořil Travel-Rizz. Doufám, že udělá plánování cest stejně zábavné jako samotné cestování."
+    "title": "O Travel-Rizz",
+    "intro": "Travel-Rizz začal jednoduchou pravdou: každý si zaslouží zažít radost z dobře naplánované cesty, bez ohledu na své zkušenosti s plánováním. Po letech pomoci přátelům a rodině s plánováním jejich cest jsem viděl, jak náročný tento proces může být.",
+    "experience": "Proto jsem vytvořil Travel-Rizz - abych dal cestovatelům správné nástroje a znalosti. Ať už prozkoumáváte rušná města nebo hledáte klidná dobrodružství, mít užitečného společníka při plánování cesty dělá velký rozdíl.",
+    "mission": "Kombinací osobních cestovatelských zkušeností s promyšlenou technologií chceme, aby plánování cesty bylo jako rozhovor se znalým přítelem, který je upřímně nadšený z pomoci s vytvořením vaší dokonalé cesty."
   },
   "features": {
-    "title": "Jak zjednodušujeme plánování?",
+    "title": "Jak vám pomáháme lépe plánovat",
     "items": {
       "aiChat": {
-        "title": "Chat s AI",
-        "description": "Řekněte Travel-Rizz o svých cestovatelských snech jako příteli a společně je uskutečněme!"
+        "title": "Přirozené konverzace o cestování",
+        "description": "Sdílejte své cestovatelské nápady, jako byste mluvili s přítelem. Společně prozkoumáme možnosti a vytvoříme plány, které odrážejí váš osobní styl."
       },
       "insights": {
-        "title": "Aktuální cestovní tipy",
-        "description": "Od počasí po místní zvyky, všechny užitečné informace jsou pro vás připraveny."
+        "title": "Včasné cestovatelské znalosti",
+        "description": "Získejte užitečné informace o vaší destinaci - od předpovědi počasí po místní zvyky - přesně když je potřebujete."
       },
       "routes": {
-        "title": "Vizuální plánování tras",
-        "description": "Vizualizujte své denní destinace na mapě a najděte nejlepší trasy bez ztráty času."
+        "title": "Vizuální plánování cesty",
+        "description": "Prohlédněte si svá denní dobrodružství na interaktivních mapách. Pochopte své trasy a upravujte je, dokud nebudou přesně podle vašich představ."
       },
       "itinerary": {
-        "title": "Flexibilní itinerář",
-        "description": "Upravte si svůj itinerář snadno! Přetahujte pro změny, je to tak jednoduché."
+        "title": "Flexibilní denní plánování",
+        "description": "Sestavte své dny s intuitivními nástroji, které vám umožní organizovat aktivity podle vašeho způsobu. Snadno upravujte, jak se vaše plány vyvíjejí."
       }
     }
   },
   "hero": {
-    "title": "Plánujte snadno, cestujte šťastně!",
-    "subtitle": "Nevíte, jak zorganizovat svou cestu? Žádný problém! Naplánujme společně vaši personalizovanou cestu. S AI a užitečnými tipy je vytvoření perfektního itineráře hračka. Rozlučte se s únavným plánováním a začněte se těšit na svou úžasnou cestu!",
-    "cta": "Začněme plánovat!"
+    "title": "Naplánujte si perfektní cestu po svém",
+    "subtitle": "Konec zdlouhavému vyhledávání na různých stránkách. Veďte přirozenou konverzaci o svých cestovatelských snech a my vám pomůžeme proměnit je v realitu - jeden promyšlený detail po druhém.",
+    "cta": "Plánujme společně"
   },
   "pricing": {
-    "title": "Jednoduché a jasné ceny",
-    "subtitle": "Zaplaťte jednou a začněte plánovat! Mimochodem, vyvíjíme měsíční předplatné, ale nebojte se, váš jednorázový nákup bude vždy k dispozici!",
+    "title": "Jednoduché, jasné ceny",
+    "subtitle": "Soustřeďte se na to, co je důležité - plánování vaší dokonalé cesty - s přímočarými cenami, které respektují vaši cestu.",
     "oneTime": {
-      "title": "Jednorázová zkušenost",
+      "title": "Jednorázový přístup",
       "price": "49 Kč",
       "originalPrice": "75 Kč",
-      "tag": "Early bird nabídka",
+      "tag": "Uvítací nabídka pro první uživatele",
       "features": {
-        "0": "Neomezené dotazy na AI",
-        "1": "Najděte nejlepší trasy",
-        "2": "Místní tipy",
-        "3": "Bez reklam"
+        "0": "Personalizované plánování cesty",
+        "1": "Interaktivní vizualizace tras",
+        "2": "Informace a tipy o destinaci",
+        "3": "Prostředí bez reklam"
       }
     },
     "subscription": {
-      "title": "Měsíční plán",
+      "title": "Měsíční přístup",
       "price": "249 Kč /měsíc",
       "tag": "Pro časté cestovatele",
       "badge": "Již brzy",
       "features": {
-        "0": "Plánujte s přáteli",
-        "1": "Spravujte více cest",
-        "2": "Pokročilé šablony",
-        "3": "Detailní průvodci"
+        "0": "Plánování s přáteli",
+        "1": "Správa více cest",
+        "2": "Premium šablony",
+        "3": "Pokročilá doporučení"
       }
     },
-    "cta": "Začněme plánovat!"
+    "cta": "Začněte svou cestu"
   },
   "footer": {
-    "tagline": "Plánujte snadno, cestujte šťastně!",
+    "tagline": "Naplánujte si perfektní cestu po svém",
     "quickLinks": {
       "title": "Rychlé odkazy",
       "features": "Funkce",
@@ -70,12 +70,12 @@
     },
     "legal": {
       "title": "Právní",
-      "terms": "Podmínky použití",
+      "terms": "Podmínky služby",
       "privacy": "Ochrana soukromí",
       "cookies": "Zásady cookies"
     },
     "connect": {
-      "title": "Sledujte nás",
+      "title": "Spojte se s námi",
       "twitter": "Twitter",
       "instagram": "Instagram",
       "facebook": "Facebook"

@@ -1,67 +1,67 @@
 {
   "about": {
-    "title": "Scopri Travel-Rizz",
-    "intro": "Perché abbiamo creato Travel-Rizz? Perché crediamo che tutti meritino di godersi un viaggio perfetto, che siano viaggiatori esperti o alle prime armi.",
-    "experience": "Nel corso degli anni, aiutando gli amici a pianificare i loro viaggi, mi sono reso conto che la pianificazione era spesso stressante. Ma viaggiare dovrebbe essere emozionante fin dall'inizio!",
-    "mission": "Così ho combinato l'IA con la mia passione per i viaggi per creare Travel-Rizz. Spero che renda la pianificazione dei viaggi divertente quanto il viaggio stesso."
+    "title": "Su Travel-Rizz",
+    "intro": "Travel-Rizz è nato da una semplice verità: tutti meritano di vivere la gioia di un viaggio ben pianificato, indipendentemente dalla loro esperienza nella pianificazione. Dopo anni di aiuto ad amici e familiari nella pianificazione dei loro viaggi, ho visto quanto questo processo potesse essere travolgente.",
+    "experience": "Ecco perché ho creato Travel-Rizz - per dare ai viaggiatori gli strumenti e le conoscenze giuste. Che tu stia esplorando città vivaci o cercando avventure tranquille, avere un compagno utile nel tuo percorso di pianificazione fa tutta la differenza.",
+    "mission": "Combinando esperienze personali di viaggio con tecnologia intelligente, puntiamo a rendere la pianificazione del viaggio come una conversazione con un amico esperto che è sinceramente entusiasta di aiutare a dare forma al tuo viaggio perfetto."
   },
   "features": {
-    "title": "Come rendiamo la pianificazione più facile?",
+    "title": "Come ti aiutiamo a pianificare meglio",
     "items": {
       "aiChat": {
-        "title": "Chatta con l'IA",
-        "description": "Racconta a Travel-Rizz i tuoi sogni di viaggio come faresti con un amico, e realizziamoli insieme!"
+        "title": "Conversazioni naturali sui viaggi",
+        "description": "Condividi le tue idee di viaggio come faresti con un amico. Insieme, esploreremo possibilità e creeremo piani che riflettono il tuo stile personale."
       },
       "insights": {
-        "title": "Consigli di viaggio aggiornati",
-        "description": "Dal meteo alle usanze locali, tutte le informazioni utili sono pronte per te."
+        "title": "Conoscenze di viaggio tempestive",
+        "description": "Accedi a informazioni utili sulla tua destinazione - dai modelli meteorologici alle usanze locali - esattamente quando ne hai bisogno."
       },
       "routes": {
-        "title": "Pianificazione visiva",
-        "description": "Visualizza le tue destinazioni giornaliere sulla mappa e trova i migliori percorsi senza perdere un attimo."
+        "title": "Pianificazione visuale del viaggio",
+        "description": "Visualizza le tue avventure quotidiane su mappe interattive. Comprendi i tuoi percorsi e fai aggiustamenti fino a quando non sono perfetti."
       },
       "itinerary": {
-        "title": "Itinerario flessibile",
-        "description": "Modifica il tuo itinerario facilmente! Trascina e rilascia per fare cambiamenti, è così semplice."
+        "title": "Pianificazione flessibile della giornata",
+        "description": "Organizza le tue giornate con strumenti intuitivi che ti permettono di organizzare le attività a modo tuo. Modifica facilmente mentre i tuoi piani si evolvono."
       }
     }
   },
   "hero": {
-    "title": "Pianifica facilmente, viaggia felice!",
-    "subtitle": "Non sai come organizzare il tuo viaggio? Nessun problema! Pianifichiamo insieme il tuo viaggio personalizzato. Con l'IA e consigli utili, creare l'itinerario perfetto è un gioco da ragazzi. Dì addio alla pianificazione noiosa e inizia ad anticipare il tuo incredibile viaggio!",
-    "cta": "Iniziamo a pianificare!"
+    "title": "Pianifica il tuo viaggio perfetto, a modo tuo",
+    "subtitle": "Basta con le ricerche estenuanti su più siti. Fai una conversazione naturale sui tuoi sogni di viaggio, e ti aiuteremo a trasformarli in realtà - un dettaglio alla volta.",
+    "cta": "Pianifichiamo insieme"
   },
   "pricing": {
     "title": "Prezzi semplici e chiari",
-    "subtitle": "Paga una volta e inizia a pianificare! A proposito, stiamo sviluppando un abbonamento mensile, ma non preoccuparti, il tuo acquisto singolo sarà sempre disponibile!",
+    "subtitle": "Concentrati su ciò che conta - pianificare il tuo viaggio perfetto - con prezzi trasparenti che rispettano il tuo viaggio.",
     "oneTime": {
-      "title": "Esperienza singola",
+      "title": "Accesso singolo",
       "price": "1,99 €",
       "originalPrice": "2,99 €",
-      "tag": "Offerta early bird",
+      "tag": "Benvenuto primi utenti",
       "features": {
-        "0": "Domande illimitate all'IA",
-        "1": "Trova i migliori percorsi",
-        "2": "Consigli locali",
-        "3": "Senza pubblicità"
+        "0": "Pianificazione viaggio personalizzata",
+        "1": "Visualizzazione interattiva percorsi",
+        "2": "Informazioni e consigli destinazione",
+        "3": "Esperienza senza pubblicità"
       }
     },
     "subscription": {
-      "title": "Piano mensile",
+      "title": "Accesso mensile",
       "price": "9,99 € /mese",
       "tag": "Per viaggiatori frequenti",
       "badge": "Prossimamente",
       "features": {
         "0": "Pianifica con gli amici",
-        "1": "Gestisci più viaggi",
-        "2": "Modelli avanzati",
-        "3": "Guide dettagliate"
+        "1": "Gestione più viaggi",
+        "2": "Modelli premium",
+        "3": "Raccomandazioni avanzate"
       }
     },
-    "cta": "Iniziamo a pianificare!"
+    "cta": "Inizia il tuo viaggio"
   },
   "footer": {
-    "tagline": "Pianifica facilmente, viaggia felice!",
+    "tagline": "Pianifica il tuo viaggio perfetto, a modo tuo",
     "quickLinks": {
       "title": "Link rapidi",
       "features": "Funzionalità",
@@ -70,12 +70,12 @@
     },
     "legal": {
       "title": "Legale",
-      "terms": "Termini di utilizzo",
+      "terms": "Termini di servizio",
       "privacy": "Privacy",
       "cookies": "Cookie"
     },
     "connect": {
-      "title": "Seguici",
+      "title": "Connettiti",
       "twitter": "Twitter",
       "instagram": "Instagram",
       "facebook": "Facebook"
