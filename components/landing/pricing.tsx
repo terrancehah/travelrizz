@@ -16,7 +16,7 @@ export default function Pricing() {
           {t('pricing.title')}
         </h2>
         
-        <p className={`text-lg text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto ${fonts.text}`}>
+        <p className={`text-lg font-medium text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto ${fonts.text}`}>
           {t('pricing.subtitle')}
         </p>
 

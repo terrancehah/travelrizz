@@ -11,7 +11,7 @@ export default function About() {
       <div className="container w-[80%] mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-8">
-            <h2 className={`text-4xl md:text-5xl lg:text-6xl tracking-tighter text-primary dark:text-sky-100 ${fonts.heading} transition-colors duration-400`}>
+            <h2 className={`text-4xl md:text-5xl text-primary dark:text-sky-100 ${fonts.heading} transition-colors duration-400`}>
               {t('about.title').split('Travel-Rizz').map((part, index, array) => (
                 <React.Fragment key={index}>
                   {part}
@@ -19,13 +19,13 @@ export default function About() {
                 </React.Fragment>
               ))}
             </h2>
-            <p className={`text-gray-600 dark:text-gray-300 text-lg md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-400`}>
+            <p className={`text-gray-600 dark:text-gray-300 font-medium text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-400`}>
               {t('about.intro')}
             </p>
-            <p className={`text-gray-600 dark:text-gray-300 text-lg md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-200`}>
+            <p className={`text-gray-600 dark:text-gray-300 font-medium text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-200`}>
               {t('about.experience')}
             </p>
-            <p className={`text-gray-600 dark:text-gray-300 text-lg md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-200`}>
+            <p className={`text-gray-600 dark:text-gray-300 font-medium text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-200`}>
               {t('about.mission')}
             </p>
           </div>

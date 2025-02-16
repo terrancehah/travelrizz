@@ -346,8 +346,9 @@ export default function TravelFormPage() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-4">
-            <div className="space-y-3">
+          <div className="space-y-8">
+            {/* Prompt and Input */}
+            <div className="space-y-8 min-w-max">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.destination')}</Label>
               <Input
                 ref={destinationRef}
@@ -359,7 +360,8 @@ export default function TravelFormPage() {
                 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300 ${fonts.text}`}
               />
             </div>
-            <div className="flex space-x-4">
+            {/* Navigation */}
+            <div className="flex space-x-4 justify-around">
               <Button
                 className={`w-full text-base ${fonts.text}`}
                 onClick={goToNextStep}
@@ -372,21 +374,23 @@ export default function TravelFormPage() {
         )
       case 2:
         return (
-          <div className="space-y-4">
-            <div className="space-y-3">
+          <div className="space-y-8">
+            {/* Prompt and Input */}
+            <div className="space-y-8 min-w-max">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.dates')}</Label>
               <Input
                 ref={dateRangeRef}
                 id="date-range"
                 placeholder={t('placeholders.dateRange')}
                 readOnly
-                className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 text-base
+                className={`w-[100%] px-3 py-2 border border-gray-300 dark:border-gray-600 text-base
                 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
                 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 ${fonts.text}`}
               />
             </div>
-            <div className="flex space-x-4">
-              <Button variant="default" className={`w-full transition-colors duration-300 ${fonts.text}`} onClick={goToPrevStep}>
+            {/* Navigation */}
+            <div className="flex space-x-4 justify-around">
+              <Button variant="outline" className={`w-full transition-colors duration-300 text-base border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
@@ -401,8 +405,9 @@ export default function TravelFormPage() {
         )
       case 3:
         return (
-          <div className="space-y-4">
-            <div className="space-y-3">
+          <div className="space-y-8">
+            {/* Prompts and Input */}
+            <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.preferences')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -416,7 +421,11 @@ export default function TravelFormPage() {
                   <Button
                     key={value}
                     variant={formData.preferences.includes(value as TravelPreference) ? "default" : "outline"}
-                    className={`flex items-center justify-start space-x-2 transition-colors duration-300 text-base ${fonts.text}`}
+                    className={`flex items-center justify-start space-x-2 transition-all duration-300 text-base hover:scale-[1.02] active:scale-[0.98] ${fonts.text} ${
+                      formData.preferences.includes(value as TravelPreference) 
+                        ? 'shadow-md hover:shadow-lg' 
+                        : 'hover:border-sky-400 dark:hover:border-sky-400'
+                    }`}
                     onClick={() => handlePreferenceToggle(value as TravelPreference)}
                   >
                     <span>{label}</span>
@@ -425,8 +434,9 @@ export default function TravelFormPage() {
                 ))}
               </div>
             </div>
+            {/* Navigation */}
             <div className="flex space-x-4">
-              <Button variant="outline" className={`w-full transition-colors duration-300 text-base ${fonts.text}`} onClick={goToPrevStep}>
+              <Button variant="outline" className={`w-full transition-colors duration-300 text-base border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
@@ -441,8 +451,9 @@ export default function TravelFormPage() {
         )
       case 4:
         return (
-          <div className="space-y-4">
-            <div className="space-y-3">
+          <div className="space-y-8">
+            {/* Prompts and Inputs */}
+            <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.budget')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -454,7 +465,11 @@ export default function TravelFormPage() {
                   <Button
                     key={value}
                     variant={formData.budget === value ? "default" : "outline"}
-                    className={`p-4 text-base ${fonts.text}`}
+                    className={`p-4 text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${fonts.text} ${
+                      formData.budget === value 
+                        ? 'shadow-md hover:shadow-lg' 
+                        : 'hover:border-sky-400 dark:hover:border-sky-400'
+                    }`}
                     onClick={() => setFormData((prev) => ({ ...prev, budget: value }))}
                   >
                     <span>{label}</span>
@@ -462,8 +477,9 @@ export default function TravelFormPage() {
                 ))}
               </div>
             </div>
+            {/* Navigation */}
             <div className="flex space-x-4">
-              <Button variant="outline" className={`w-full transition-colors duration-300 text-base ${fonts.text}`} onClick={goToPrevStep}>
+              <Button variant="outline" className={`w-full transition-colors duration-300 text-base border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
@@ -500,7 +516,7 @@ export default function TravelFormPage() {
           </Link>
 
           {/* Steps */}
-          <div className="order-2 mx-auto md:mx-0">
+          <div className="order-2 mx-auto md:mx-0 font-raleway">
             <Steps currentStep={currentStep} steps={steps} />
           </div>
 

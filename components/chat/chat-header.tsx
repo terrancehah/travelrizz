@@ -1,4 +1,7 @@
 import { ChevronDownIcon, ChevronUpIcon, CalendarDays, Languages, WandSparkles, CircleDollarSign } from 'lucide-react';
+import { useTheme } from "next-themes"
+import { useLocalizedFont } from "@/hooks/useLocalizedFont"
+
 
 interface ChatHeaderProps {
   currentDetails: {
@@ -14,10 +17,11 @@ interface ChatHeaderProps {
 }
 
 export const ChatHeader = ({ currentDetails, isCollapsed, setIsCollapsed }: ChatHeaderProps) => (
-  <div className="bg-background border-b border-border shadow-sm transition-all duration-300 ease-in-out">
+  
+  <div className="bg-light-blue/60 dark:bg-gray-900 border-b border-border shadow-sm transition-all duration-300 ease-in-out">
     <div className="mx-auto p-2 px-6 relative">
       <div className={`transition-all duration-300 ease-in-out ${isCollapsed ? 'max-h-12' : 'max-h-[500px]'}`}>
-        <h1 className={`font-semibold text-foreground ${isCollapsed ? 'text-2xl font-caveat text-primary mb-0' : 'text-2xl font-caveat text-primary mb-2'}`}>
+        <h1 className={`font-semibold text-foreground ${isCollapsed ? 'text-2xl font-caveat text-primary dark:text-white transition-colors duration-400 mb-0' : 'text-2xl font-caveat text-primary dark:text-white transition-colors duration-400 mb-2'}`}>
           Trip to {currentDetails.destination}
         </h1>
 

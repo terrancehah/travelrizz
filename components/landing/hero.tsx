@@ -18,7 +18,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat "
         style={{
           backgroundImage: 'url("/images/kalbarri-beach.jpeg")',
-          opacity: 0.4
+          opacity: 0.3
         }}
       />
       {/* Content */}
@@ -27,7 +27,7 @@ export default function Hero() {
           <h1 className={`text-4xl md:text-5xl lg:text-6xl font-semi-bold tracking-normal text-primary dark:text-sky-100 ${fonts.heading}`}>
             {t('hero.title')}
           </h1>
-          <p className={`mx-auto max-w-[700px] text-gray-600 dark:text-gray-200 text-lg md:text-xl/relaxed ${fonts.text}`}>
+          <p className={`mx-auto max-w-3xl text-gray-600 dark:text-gray-200 text-lg md:text-xl/relaxed font-normal ${fonts.text}`}>
             {t('hero.subtitle')}
           </p>
         </div>

@@ -16,8 +16,8 @@ const stages = [
     { id: 1, title: "Initial Parameters" },
     { id: 2, title: "City Introduction" },
     { id: 3, title: "Places Introduction" },
-    { id: 4, title: "Itinerary Review" },
-    { id: 5, title: "Confirmation" }
+    { id: 4, title: "Route Planning" },
+    { id: 5, title: "Itinerary Confirmation" }
 ];
 
 export interface StepsRootProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -32,7 +32,7 @@ export const StepsRoot = React.forwardRef<HTMLDivElement, StepsRootProps>(
         <div
             ref={ref}
             className={cn(
-                'w-full bg-white border-b border-gray-200 sticky top-0 z-40',
+                'w-full sticky top-0 z-40',
                 orientation === 'vertical' ? 'flex-col' : 'flex',
                 className
             )}
@@ -49,22 +49,13 @@ export const StepsList = React.forwardRef<HTMLDivElement, StepsListProps>(
         <div
             ref={ref}
             className={cn(
-                'max-w-screen-2xl mx-auto w-full px-4 py-3 overflow-x-auto',
+                'mx-auto w-full px-4 py-3 overflow-x-auto',
                 className
             )}
             {...props}
         >
-            <div className="flex">
-                <div className="absolute md:left-4 md:top-4 left-3 top-[10px]">
-                    <Image
-                        src="/images/travel-rizz.png"
-                        alt="Travel-Rizz Logo"
-                        width={48}
-                        height={48}
-                        className="h-9 w-9 md:h-12 md:w-12 my-auto object-contain"
-                    />
-                </div>
-                <div className="flex items-center gap-4 mx-auto">
+            <div className="flex justify-around">
+                <div className="flex items-center gap-4">
                     {props.children}
                 </div>
             </div>
@@ -85,13 +76,14 @@ export interface StepsItemProps extends React.HTMLAttributes<HTMLDivElement> {
 export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
     ({ className, step, currentStep, title, description, isLocked, isLast, ...props }, ref) => (
         <>
-            <div className="flex flex-col items-center gap-1 relative" ref={ref} {...props}>
+            <div className="flex flex-col items-center gap-1 relative md:w-40" ref={ref} {...props}>
+                {/* Steps Numbers */}
                 <div 
                     className={cn(
                         'w-8 h-8 rounded-full flex items-center justify-center transition-colors',
                         currentStep > step ? 'bg-green-500' : 
-                        currentStep === step ? 'bg-blue-600/80' : 
-                        'bg-gray-200',
+                        currentStep === step ? 'bg-blue-600/80 dark:bg-blue-500' : 
+                        'bg-gray-200 dark:bg-gray-600',
                         isLocked ? 'cursor-not-allowed' : '',
                         className
                     )}
@@ -101,20 +93,21 @@ export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
                     ) : (
                         <span className={cn(
                             'text-sm',
-                            currentStep === step ? 'text-white' : 'text-gray-600'
+                            currentStep === step ? 'text-white' : 'text-gray-600 dark:text-gray-200'
                         )}>
                             {step}
                         </span>
                     )}
                 </div>
+                {/* Steps Descriptions */}
                 <div className="hidden md:flex flex-col items-start mt-1">
-                    <span className="text-sm font-medium">{title}</span>
+                    <span className="text-sm font-raleway font-medium text-center text-primary dark:text-gray-200 transition-colors duration-400">{title}</span>
                     {description && (
                         <span className="text-xs text-gray-500">{description}</span>
                     )}
                 </div>
                 {isLocked && (
-                    <LockClosedIcon className="w-4 h-4 text-gray-400 absolute -top-1 -right-1" />
+                    <LockClosedIcon className="w-4 h-4 text-gray-700 dark:text-gray-300 absolute -top-1 right-12" />
                 )}
             </div>
             {!isLast && (

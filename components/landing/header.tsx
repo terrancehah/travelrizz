@@ -27,9 +27,9 @@ export default function Header() {
             alt="Travel-Rizz Logo"
             width={40}
             height={40}
-            className="h-12 w-12 object-contain dark:invert dark:brightness-0 dark:contrast-200"
+            className="h-12 w-12 object-contain dark:invert dark:brightness-0 dark:contrast-200 transition-colors duration-400"
           />
-          <span className={`font-caveat text-3xl h-min my-auto text-primary dark:text-white ${fonts.heading}`}>Travel-Rizz</span>
+          <span className={`font-caveat text-3xl h-min my-auto text-primary dark:text-white ${fonts.heading} transition-colors duration-400`}>Travel-Rizz</span>
         </Link>
 
         {/* Navigation Links */}

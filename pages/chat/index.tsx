@@ -9,6 +9,11 @@ import PaymentSuccessPopup from '../../components/modals/payment-success-popup';
 import PremiumUpgradeModal from '../../components/modals/premium-upgrade-modal';
 import { validateStageProgression } from '../../managers/stage-manager';
 import { Map } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import { Sun, Moon } from "lucide-react"
+import Image from 'next/image';
+
 
 
 const TravelChatComponent = dynamic(() => import('../../components/travel-chat'), {
@@ -36,6 +41,7 @@ export default function ChatPage() {
     const [apiError, setApiError] = useState('');
     const [isLoadingKey, setIsLoadingKey] = useState(true);
     const [showMap, setShowMap] = useState(true);
+    const { theme, setTheme } = useTheme()
     const [isMobile, setIsMobile] = useState(false);
     const [isDetailsReady, setIsDetailsReady] = useState(false);
     const [travelDetails, setTravelDetails] = useState<TravelDetails>({
@@ -234,13 +240,33 @@ export default function ChatPage() {
     };
 
     return (
+        // Main
         <div className="flex flex-col min-h-screen h-[100dvh] w-full bg-white">
-            {/* Progress tracker - fixed height */}
-            <div className="flex-none">
+            {/* Window header - fixed height */}
+            <div className="flex border-b border-gray-200 dark:border-gray-700 px-3 md:px-6 bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400">
+                <Image
+                    src="/images/travel-rizz.png"
+                    alt="Travel-Rizz Logo"
+                    width={48}
+                    height={48}
+                    className="h-9 w-9 md:h-12 md:w-12 my-auto object-contain dark:invert dark:brightness-0 dark:contrast-200 transition-colors duration-400"
+                />
                 <StageProgress 
                     currentStage={currentStage} 
                     isPaid={isPaid}
                 />
+                <div className="flex items-center justify-center bg-sky-200/80 dark:bg-blue-900 rounded-md h-min my-auto p-2 transition-colors duration-400">
+                    <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                    className="w-6 h-6 relative"
+                    >
+                    <Sun className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all duration-300 dark:rotate-90 dark:scale-0 text-secondary hover:text-primary dark:text-white" />
+                    <Moon className="absolute h-[1.5rem] w-[1.5rem] rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100 text-gray-300 hover:text-white" />
+                    <span className="sr-only">Toggle theme</span>
+                    </Button>
+                </div>
             </div>
             {/* Main content - takes remaining height */}
             <main className="flex-1 flex relative bg-white min-h-0">

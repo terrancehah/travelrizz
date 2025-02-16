@@ -16,7 +16,7 @@ export function useLocalizedFont(): FontClass {
   }
 
   return {
-    text: 'font-raleway',
-    heading: 'font-caveat tracking-tight',
+    text: 'font-raleway tracking-relaxed',
+    heading: 'font-caveat font-semibold tracking-tight',
   }
 }

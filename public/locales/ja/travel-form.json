@@ -37,7 +37,7 @@
     "budget": "エコノミー  $",
     "moderate": "スタンダード  $$",
     "luxury": "ラグジュアリー  $$$",
-    "ultraLuxury": "ウルトララグジュアリー  $$$$"
+    "ultraLuxury": "プレミアム  $$$$"
   },
   "steps": {
     "destination": "目的地",
