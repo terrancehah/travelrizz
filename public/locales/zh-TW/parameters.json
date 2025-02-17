@@ -1,0 +1,38 @@
+{
+  "budget": {
+    "selector": {
+      "prompt": "您的預算範圍是什麼?"
+    },
+    "levels": {
+      "budget": {
+        "label": "經濟",
+        "description": "提供基本設施的經濟實惠選項"
+      },
+      "moderate": {
+        "label": "中等",
+        "description": "性價比較高的中檔選項"
+      },
+      "luxury": {
+        "label": "豪華",
+        "description": "提供高端服務的豪華選項"
+      },
+      "ultraLuxury": {
+        "label": "超級豪華",
+        "description": "獨家奢華體驗"
+      }
+    }
+  },
+  "preferences": {
+    "selector": {
+      "prompt": "您的旅遊偏好是什麼?"
+    },
+    "options": {
+      "culture": "文化與遺產",
+      "nature": "自然",
+      "food": "美食",
+      "leisure": "休閒",
+      "adventure": "探險",
+      "arts": "藝術與博物館"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { openai } from '@ai-sdk/openai';
+// import { deepseek } from '@ai-sdk/deepseek';
 import { streamText, smoothStream } from 'ai';
 import { NextRequest } from 'next/server';
 import { tools } from '../../../ai/tools';
@@ -84,6 +85,7 @@ export default async function handler(req: NextRequest) {
     CRITICAL INSTRUCTIONS:
     1. You are a SECONDARY AI that supports Travel-Rizz (the main AI travel planner assistant). 
     Your job is to study the messages from Travel-Rizz and the past messages to provide quick response options which help users interact with Travel-Rizz more effectively.
+    Instructions and examples below are provided in English, but you have to respond in the language specified in the currentDetails parameter.
 
     2. There are 5 stages in the conversation:
       - INITIAL PARAMETER CHECK (Stage 1)
@@ -171,6 +173,7 @@ export default async function handler(req: NextRequest) {
     - Destination: ${currentDetails?.destination || 'Not set'}
     - Current Stage: ${currentStage || 1}
     - Dates: ${currentDetails?.startDate || 'Not set'} to ${currentDetails?.endDate || 'Not set'}
+    - Response Language: ${currentDetails?.language || 'Not set'}
     - Budget: ${currentDetails?.budget || 'Not set'}
     - Preferences: ${currentDetails?.preferences?.join(', ') || 'Not set'}
     - Saved Places Count: ${savedPlaces?.length || 0}
@@ -187,25 +190,11 @@ export default async function handler(req: NextRequest) {
 
     Last Travel-Rizz Message Analysis:
     ${messages[messages.length - 1]?.content || ''}
-    
-    Key Indicators to Check:
-    1. Does it ask about proceeding? ${messages[messages.length - 1]?.content?.toLowerCase().includes('proceed') ? 'YES' : 'NO'}
-    2. Does it suggest moving to the next stage? ${messages[messages.length - 1]?.content?.toLowerCase().includes('move on') ? 'YES' : 'NO'}
-    3. Is message about place exploration? ${messages[messages.length - 1]?.content?.toLowerCase().includes('place') || messages[messages.length - 1]?.content?.toLowerCase().includes('attraction') ? 'YES' : 'NO'}
-
-    IMPORTANT: Due to current stage (${currentStage || 1}), ${
-      currentStage === 1 ? 'only parameter updates and stage advancement are allowed' :
-      currentStage === 2 ? 'place exploration options are NOT allowed' :
-      currentStage === 3 ? 'only place discovery and stage advancement are allowed' :
-      currentStage === 4 ? 'only itinerary refinement and stage advancement are allowed' :
-      'only final preparation options are allowed'
-    }
-
-    If ANY of these indicators are YES, consider providing stage advancement options.`;
+    `;
 
     const result = await streamText({
-      // model: openai('gpt-4o'),
       model: openai('gpt-4o-mini'),
+      // model: deepseek('deepseek-chat'),
       messages: [
         { role: 'system' as const, content: systemPrompt },
         { role: 'system' as const, content: dynamicContext },

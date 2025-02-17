@@ -1,7 +1,9 @@
 import { ChevronDownIcon, ChevronUpIcon, CalendarDays, Languages, WandSparkles, CircleDollarSign } from 'lucide-react';
 import { useTheme } from "next-themes"
 import { useLocalizedFont } from "@/hooks/useLocalizedFont"
-
+import { useTranslations } from 'next-intl';
+import { TravelPreference } from '../../managers/types';
+import React from 'react';
 
 interface ChatHeaderProps {
   currentDetails: {
@@ -16,67 +18,90 @@ interface ChatHeaderProps {
   setIsCollapsed: (value: boolean) => void;
 }
 
-export const ChatHeader = ({ currentDetails, isCollapsed, setIsCollapsed }: ChatHeaderProps) => (
+export const ChatHeader = ({ currentDetails, isCollapsed, setIsCollapsed }: ChatHeaderProps) => {
+  const t = useTranslations('travelChat');
+  const tParams = useTranslations('parameters');
+  const fonts = useLocalizedFont()
   
-  <div className="bg-light-blue/60 dark:bg-gray-900 border-b border-border shadow-sm transition-all duration-300 ease-in-out">
-    <div className="mx-auto p-2 px-6 relative">
-      <div className={`transition-all duration-300 ease-in-out ${isCollapsed ? 'max-h-12' : 'max-h-[500px]'}`}>
-        <h1 className={`font-semibold text-foreground ${isCollapsed ? 'text-2xl font-caveat text-primary dark:text-white transition-colors duration-400 mb-0' : 'text-2xl font-caveat text-primary dark:text-white transition-colors duration-400 mb-2'}`}>
-          Trip to {currentDetails.destination}
-        </h1>
+  return (
+    <div className="w-full bg-light-blue/60 dark:bg-gray-900 backdrop-blur supports-[backdrop-filter]:bg-light-blue/80 dark:supports-[backdrop-filter]:bg-gray-900/80
+    border-b border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-400">
+      <div className=" mx-auto p-2 px-6 relative">
+        <div className={`transition-all duration-400 ease-in-out ${isCollapsed ? 'max-h-12' : 'max-h-[500px]'}`}>
+          <h1 className={`${fonts.heading} font-semibold text-foreground text-2xl text-primary dark:text-white transition-colors duration-400 ${isCollapsed ? 'mb-0' : 'mb-2'}`}>
+            {t('chatHeader.tripTo')} <span className="font-caveat">{currentDetails.destination}</span>
+          </h1>
 
-        {!isCollapsed && (
-          <div className="grid grid-cols-2 gap-x-16 gap-y-4">
-            {/* Date */}
-            <div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                <CalendarDays className="h-5 w-5" />
-                Date
+          {!isCollapsed && (
+            <div className="grid grid-cols-2 gap-x-16 gap-y-4">
+              
+              {/* Date */}
+              <div>
+                <div className={`${fonts.text} flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-1 text-primary dark:text-white transition-colors duration-400`}>
+                  <CalendarDays className="h-5 w-5" />
+                  {t('chatHeader.date')}
+                  </div>
+                <div className={`${fonts.text} text-foreground text-sm text-primary dark:text-white transition-colors duration-400`}>{currentDetails.startDate} - {currentDetails.endDate}</div>
               </div>
-              <div className="text-foreground text-sm">{currentDetails.startDate} to {currentDetails.endDate}</div>
-            </div>
 
-            {/* Language */}
-            <div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                <Languages className="h-5 w-5" />
-                Language
+              {/* Language */}
+              <div>
+                <div className={`${fonts.text} flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-1 text-primary dark:text-white transition-colors duration-400`}>
+                  <Languages className="h-5 w-5" />
+                  {t('chatHeader.language')}
+                  </div>
+                <div className={`${fonts.text} text-foreground text-sm text-primary dark:text-white transition-colors duration-400`}>{currentDetails.language}</div>
               </div>
-              <div className="text-foreground text-sm">{currentDetails.language}</div>
-            </div>
 
-            {/* Preferences */}
-            <div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                <WandSparkles className="h-5 w-5" />
-                Preferences
+              {/* Preferences */}
+              <div>
+                <div className={`${fonts.text} flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-1 text-primary dark:text-white transition-colors duration-400`}>
+                  <WandSparkles className="h-5 w-5" />
+                  {t('chatHeader.preferences')}
+                </div>
+                <div className={`${fonts.text} text-foreground text-sm text-primary dark:text-white transition-colors duration-400`}>
+                  {currentDetails.preferences 
+                    ? currentDetails.preferences
+                        .map(pref => {
+                          // Get the enum key by finding the entry where the value matches
+                          const key = Object.entries(TravelPreference)
+                            .find(([_, val]) => val === pref)?.[0]
+                            ?.toLowerCase();
+                          return key ? tParams(`preferences.options.${key}`) : pref;
+                        })
+                        .join(', ')
+                    : '-'
+                  }
+                </div>
               </div>
-              <div className="text-foreground text-sm">
-                {currentDetails.preferences?.join(', ') || '-'}
-              </div>
-            </div>
 
-            {/* Budget */}
-            <div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
-                <CircleDollarSign className="h-5 w-5" />
-                Budget
+              {/* Budget */}
+              <div>
+                <div className={`${fonts.text} flex items-center gap-2 text-sm font-semibold text-muted-foreground mb-1 text-primary dark:text-white transition-colors duration-400`}>
+                  <CircleDollarSign className="h-5 w-5" />
+                  {t('chatHeader.budget')}
+                </div>
+                <div className={`${fonts.text} text-foreground text-sm text-primary dark:text-white transition-colors duration-400`}>
+                  {currentDetails.budget 
+                    ? `${tParams(`budget.levels.${currentDetails.budget.toLowerCase()}.label`)}`
+                    : '-'
+                  }
+                </div>
               </div>
-              <div className="text-foreground text-sm">
-                {currentDetails.budget || '-'}
-              </div>
+
             </div>
-          </div>
-        )}
+          )}
+        </div>
+
+        {/* Collapse button */}
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 px-2 py-0.5 mb-2 text-secondary hover:text-primary bg-sky-200/80 hover:bg-sky-200 dark:bg-blue-800/80 dark:hover:bg-blue-800  dark:text-sky-100  transition-colors rounded-full duration-200 focus:outline-none"
+          aria-label={isCollapsed ? 'Expand header' : 'Collapse header'}
+        >
+          {isCollapsed ? <ChevronDownIcon className="h-6 w-6" /> : <ChevronUpIcon className="h-6 w-6" />}
+        </button>
       </div>
-
-      <button
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 px-2 py-0.5 mb-2 text-gray-500 hover:text-black hover:bg-slate-200 transition-colors bg-slate-50 rounded-full duration-200 focus:outline-none"
-        aria-label={isCollapsed ? 'Expand header' : 'Collapse header'}
-      >
-        {isCollapsed ? <ChevronDownIcon className="h-6 w-6" /> : <ChevronUpIcon className="h-6 w-6" />}
-      </button>
     </div>
-  </div>
-);
+  );
+};

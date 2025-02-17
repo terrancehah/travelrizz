@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react"
 import Image from 'next/image';
-
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 
 const TravelChatComponent = dynamic(() => import('../../components/travel-chat'), {
@@ -36,13 +36,14 @@ type SessionData = {
     isPaid: boolean;
 };
 
-export default function ChatPage() {
+export default function ChatPage({ messages, locale }: { messages: any, locale: string }) {
     const [apiKey, setApiKey] = useState('');
     const [apiError, setApiError] = useState('');
     const [isLoadingKey, setIsLoadingKey] = useState(true);
     const [showMap, setShowMap] = useState(true);
     const { theme, setTheme } = useTheme()
     const [isMobile, setIsMobile] = useState(false);
+    const fonts = useLocalizedFont();
     const [isDetailsReady, setIsDetailsReady] = useState(false);
     const [travelDetails, setTravelDetails] = useState<TravelDetails>({
         destination: '',
@@ -242,15 +243,21 @@ export default function ChatPage() {
     return (
         // Main
         <div className="flex flex-col min-h-screen h-[100dvh] w-full bg-white">
+
             {/* Window header - fixed height */}
-            <div className="flex border-b border-gray-200 dark:border-gray-700 px-3 md:px-6 bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400">
-                <Image
-                    src="/images/travel-rizz.png"
-                    alt="Travel-Rizz Logo"
-                    width={48}
-                    height={48}
-                    className="h-9 w-9 md:h-12 md:w-12 my-auto object-contain dark:invert dark:brightness-0 dark:contrast-200 transition-colors duration-400"
-                />
+            <div className="flex border-b border-gray-200 dark:border-gray-700 px-3 md:px-6 py-2 bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400">
+                {/* Logo and Brand Name */}
+                <div className="flex items-center h-min my-auto gap-x-1">
+                    <Image
+                        src="/images/travel-rizz.png"
+                        alt="Travel-Rizz Logo"
+                        width={48}
+                        height={48}
+                        className="h-12 md:w-12 my-auto object-contain dark:invert dark:brightness-0 dark:contrast-200 transition-colors duration-400"
+                    />
+                    <span className={`text-3xl h-min my-auto hidden md:flex text-primary text-nowrap dark:text-white font-caveat transition-colors duration-400`}>Travel-Rizz</span>
+                </div>
+                
                 <StageProgress 
                     currentStage={currentStage} 
                     isPaid={isPaid}
@@ -268,9 +275,11 @@ export default function ChatPage() {
                     </Button>
                 </div>
             </div>
-            {/* Main content - takes remaining height */}
+
+            {/* Main content - Chat and Map - takes remaining height */}
             <main className="flex-1 flex relative bg-white min-h-0">
-                {/* Chat Interface */}
+
+                {/* Left Half - Chat Interface, and Chat Input Container */}
                 <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-full border-r border-gray-200 overflow-y-auto`}>
                     {isDetailsReady ? (
                         <>
@@ -339,4 +348,16 @@ export default function ChatPage() {
             )}
         </div>
     );
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            messages: {
+                travelChat: (await import(`../../public/locales/${locale}/travel-chat.json`)).default,
+                parameters: (await import(`../../public/locales/${locale}/parameters.json`)).default
+            },
+            locale
+        }
+    }
 }

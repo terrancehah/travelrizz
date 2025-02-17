@@ -101,7 +101,7 @@ export const preferenceToPlaceTypes: Record<TravelPreference, string[]> = {
         'dessert_shop',
         'bar_and_grill'
     ],
-    [TravelPreference.Relaxation]: [
+    [TravelPreference.Leisure]: [
         'spa',
         'wellness_center',
         'shopping_mall',
@@ -119,7 +119,7 @@ export const preferenceToPlaceTypes: Record<TravelPreference, string[]> = {
         'off_roading_area',
         'sports_activity_location'
     ],
-    [TravelPreference.Shopping]: [ // Arts & Museum
+    [TravelPreference.Arts]: [ // Arts and Museum
         'art_gallery',
         'art_studio',
         'performing_arts_theater',

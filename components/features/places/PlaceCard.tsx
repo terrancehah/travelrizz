@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { Place, savedPlacesManager, searchPlaceByText } from '@/utils/places-utils';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface PlaceCardProps {
   place: Place;
@@ -25,6 +26,8 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
     }
     return place.primaryTypeDisplayName.text;
   };
+
+  const fonts = useLocalizedFont();
 
   const handleSelect = useCallback(() => {
     if (onSelect) {
@@ -119,13 +122,13 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
       </div>
 
       <div className="p-4 bg-white">
-        <h3 className="text-lg font-bold text-gray-900">
+        <h3 className={`${fonts.heading} text-lg font-bold text-gray-900`}>
           {typeof place.displayName === 'string' 
             ? place.displayName 
             : place.displayName.text}
         </h3>
-        <p className="text-sm text-gray-500 mb-3 font-medium">{getTypeDisplay()}</p>
-        <p className="text-sm text-gray-600">{place.formattedAddress}</p>
+        <p className={`${fonts.text} text-sm text-gray-500 mb-3 font-medium`}>{getTypeDisplay()}</p>
+        <p className={`${fonts.text} text-sm text-gray-600`}>{place.formattedAddress}</p>
       
         {showActions && (
           <div className="mt-4 flex justify-end gap-2">

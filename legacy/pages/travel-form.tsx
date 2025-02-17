@@ -194,7 +194,7 @@ export default function TravelForm() {
     { value: 'Foodie', label: "Foodie 🍱" },
     { value: 'Leisure', label: "Leisure 🌇" },
     { value: 'Adventure', label: "Adventure 🪂" },
-    { value: 'Arts & Museum', label: "Arts & Museum 🎨" }
+    { value: 'Arts and Museum', label: "Arts and Museum 🎨" }
   ];
 
   return (
@@ -296,7 +296,7 @@ export default function TravelForm() {
             <div className="flex flex-wrap w-[90%] lg:min-w-[930px] 2xl:w-[60%] relative bg-white mx-2 my-2 justify-center p-0 rounded-3xl items-center h-min shadow-all group/mainContainer">
               
               {/* Destination div */}
-              <div className="destination-input-form flex flex-col px-10 py-5 w-full lg:basis-1/2 rounded-t-3xl md:rounded-tr-none z-10 focus-within:z-20 order-1 group-active/mainContainer:[&:not(:active)]:bg-slate-200 group-focus-within/mainContainer:[&:not(:focus-within)]:bg-slate-200 focus-within:bg-white focus-within:hover:bg-white focus-within:shadow-all has-[:focus]:shadow-all has-[:active]:shadow-all focus-within:shadow-all hover:bg-slate-200">
+              <div className="destination-input-form flex flex-col px-10 py-5 w-full lg:basis-1/2 rounded-t-3xl md:rounded-tr-none z-10 focus-within:z-20 order-1 group-active/mainContainer:[&:not(:active)]:bg-slate-200 group-focus-within/mainContainer:[&:not(:focus-within)]:bg-slate-200 focus-within:bg-white focus-within:hover:bg-white focus-within:shadow-all has-[:focus]:shadow-all has-[:active]:shadow-all hover:bg-slate-200">
                 <label className="text-lg font-raleway font-semibold text-gray-700 text-left w-80 sm:w-80 md:w-[60%] lg:w-[50%] xl:w-96 px-0 py-0">
                   Destination
                 </label>
@@ -350,7 +350,7 @@ export default function TravelForm() {
               </div>
 
               {/* Travel Preferences */}
-              <div className="flex flex-col w-full my-0 mx-0 px-10 py-4 pb-6 focus-within:z-20 order-5 focus-within:shadow-all active:shadow-all has-[:focus]:shadow-all has-[:active]:shadow-all focus-within:bg-white hover:focus-within:bg-white focus-within:shadow-all has-[:focus]:shadow-all has-[:active]:shadow-all focus-within:shadow-all hover:bg-slate-200 md:rounded-bl-3xl">
+              <div className="flex flex-col w-full my-0 mx-0 px-10 py-4 pb-6 focus-within:z-20 order-5 focus-within:shadow-all active:shadow-all focus-within:bg-white hover:focus-within:bg-white has-[:focus]:shadow-all has-[:active]:shadow-all  hover:bg-slate-200 md:rounded-bl-3xl">
                 <label className="text-lg font-raleway font-semibold text-gray-700 text-left w-full">
                   Travel Preferences
                 </label>

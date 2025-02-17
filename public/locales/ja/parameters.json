@@ -1,0 +1,38 @@
+{
+  "budget": {
+    "selector": {
+      "prompt": "予算帯は何であるか?"
+    },
+    "levels": {
+      "budget": {
+        "label": "エコノミー",
+        "description": "基本的な設備を備えた予算重視のオプション"
+      },
+      "moderate": {
+        "label": "スタンダード",
+        "description": "コストパフォーマンスの良い中級オプション"
+      },
+      "luxury": {
+        "label": "ラグジュアリー",
+        "description": "プレミアムサービスを提供する高級オプション"
+      },
+      "ultraLuxury": {
+        "label": "ウルトララグジュアリー",
+        "description": "究極の贅沢な体験"
+      }
+    }
+  },
+  "preferences": {
+    "selector": {
+      "prompt": "旅行の好みは何であるか?"
+    },
+    "options": {
+      "culture": "文化と遺産",
+      "nature": "自然",
+      "food": "グルメ",
+      "leisure": "レジャー",
+      "adventure": "アドベンチャー",
+      "arts": "アート＆ミュージアム"
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { DollarSign, Euro, PoundSterling, CircleDollarSign } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { useLocalizedFont } from '@/hooks/useLocalizedFont'
 
 const currencyIcons: Record<string, LucideIcon> = {
     USD: DollarSign,
@@ -18,6 +19,7 @@ interface CurrencyListProps {
 }
 
 export function CurrencyList({ baseCurrency, amount, currencyData }: CurrencyListProps) {
+    const fonts = useLocalizedFont()
     const convertedAmounts = useMemo(() => {
         return Object.entries(currencyData).reduce((acc, [currency, data]) => {
             acc[currency] = amount * data.rate
@@ -42,21 +44,21 @@ export function CurrencyList({ baseCurrency, amount, currencyData }: CurrencyLis
                                 <Icon className="w-5 h-5 text-gray-600" />
                             </div>
                             <div>
-                                <p className="font-semibold text-sm">{currency}</p>
-                                <p className="text-xs text-gray-500">{data.name}</p>
+                                <p className={`${fonts.text} font-semibold text-sm`}>{currency}</p>
+                                <p className={`${fonts.text} text-xs text-gray-500`}>{data.name}</p>
                             </div>
                         </div>
                         <div className="text-right">
                             <motion.p
                                 key={convertedAmounts[currency]}
-                                className="font-semibold text-sm"
+                                className={`${fonts.text} font-semibold text-sm`}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.2 }}
                             >
                                 {convertedAmounts[currency].toFixed(2)}
                             </motion.p>
-                            <p className="text-xs text-gray-500">
+                            <p className={`${fonts.text} text-xs text-gray-500`}>
                                 1 {baseCurrency} = {data.rate.toFixed(4)} {currency}
                             </p>
                         </div>

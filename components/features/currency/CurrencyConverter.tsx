@@ -3,6 +3,7 @@ import { AlertCircle } from 'lucide-react'
 import { CurrencyConverterProps, CURRENCY_INFO } from '@/managers/types'
 import { fetchExchangeRates, formatCurrencyAmount } from '@/utils/currency-utils'
 import { CurrencyList } from './CurrencyList'
+import { useLocalizedFont } from '@/hooks/useLocalizedFont'
 
 export function CurrencyConverter({ 
     baseCurrency, 
@@ -15,6 +16,7 @@ export function CurrencyConverter({
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
     const [lastUpdated, setLastUpdated] = useState<Date>(new Date())
+    const fonts = useLocalizedFont()
 
     // Fetch exchange rates when component mounts or base currency changes
     useEffect(() => {
@@ -65,10 +67,10 @@ export function CurrencyConverter({
             <div className="p-4">
                 <div className="space-y-4">
                     <div className="flex flex-col items-center text-left w-full">
-                        <label htmlFor="baseAmount" className="block text-lg font-semibold text-gray-700 self-start w-[95%] ml-5 mx-auto">
+                        <label htmlFor="baseAmount" className={`${fonts.text} block text-lg font-semibold text-gray-700 self-start w-[95%] ml-5 mx-auto`}>
                             Currency Rates of {baseCurrency || 'USD'} - {CURRENCY_INFO[baseCurrency || 'USD']?.name || baseCurrency || 'USD'}
                         </label>
-                        <p className="text-sm text-gray-500 text-left w-full px-5">
+                        <p className={`${fonts.text} text-sm text-gray-500 text-left w-full px-5`}>
                             as of {lastUpdated.toLocaleDateString()}
                         </p>
                         <input

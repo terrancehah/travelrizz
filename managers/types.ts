@@ -32,19 +32,19 @@ export enum ComponentType {
 }
 
 export enum BudgetLevel {
-    Budget = '$',
-    Moderate = '$$',
-    Luxury = '$$$',
-    UltraLuxury = '$$$$'
+    Budget = 'budget',
+    Moderate = 'moderate',
+    Luxury = 'luxury',
+    UltraLuxury = 'ultraLuxury'
 }
 
 export enum TravelPreference {
     Culture = 'Culture and Heritage',
     Nature = 'Nature',
     Food = 'Foodie',
-    Relaxation = 'Leisure',
+    Leisure = 'Leisure',
     Adventure = 'Adventure',
-    Shopping = 'Arts & Museum'
+    Arts = 'Arts & Museum'
 }
 
 export enum SupportedLanguage {
@@ -61,20 +61,13 @@ export enum SupportedLanguage {
     Korean = 'Korean (한국어)'
 }
 
-export const BUDGET_DESCRIPTIONS: Record<BudgetLevel, string> = {
-    [BudgetLevel.Budget]: 'Budget-friendly options ($)',
-    [BudgetLevel.Moderate]: 'Mid-range options ($$)',
-    [BudgetLevel.Luxury]: 'High-end options ($$$)',
-    [BudgetLevel.UltraLuxury]: 'Ultra luxury options ($$$$)'
-};
-
 export const PREFERENCE_ICONS: Record<TravelPreference, string> = {
     [TravelPreference.Culture]: '🎏',
     [TravelPreference.Nature]: '🍀',
     [TravelPreference.Food]: '🍱',
-    [TravelPreference.Relaxation]: '🌇',
+    [TravelPreference.Leisure]: '🌇',
     [TravelPreference.Adventure]: '🪂',
-    [TravelPreference.Shopping]: '🎨'
+    [TravelPreference.Arts]: '🎨'
 };
 
 export const LANGUAGE_LABELS: Record<SupportedLanguage, string> = {
@@ -91,13 +84,6 @@ export const LANGUAGE_LABELS: Record<SupportedLanguage, string> = {
     [SupportedLanguage.Korean]: 'Korean (한국어)'
 };
 
-export const BUDGET_OPTIONS = [
-    { value: BudgetLevel.Budget, label: 'Budget', description: 'Budget-friendly options with basic amenities' },
-    { value: BudgetLevel.Moderate, label: 'Moderate', description: 'Mid-range options with good value' },
-    { value: BudgetLevel.Luxury, label: 'Luxury', description: 'High-end options with premium services' },
-    { value: BudgetLevel.UltraLuxury, label: 'Ultra Luxury', description: 'Exclusive luxury experiences' }
-];
-
 export const LANGUAGE_OPTIONS = Object.entries(SupportedLanguage).map(([key, value]) => ({
     value,
     label: LANGUAGE_LABELS[value as SupportedLanguage]
@@ -107,9 +93,9 @@ export const PREFERENCE_OPTIONS = [
     { value: TravelPreference.Culture, label: 'Culture and Heritage', icon: PREFERENCE_ICONS[TravelPreference.Culture] },
     { value: TravelPreference.Nature, label: 'Nature', icon: PREFERENCE_ICONS[TravelPreference.Nature] },
     { value: TravelPreference.Food, label: 'Foodie', icon: PREFERENCE_ICONS[TravelPreference.Food] },
-    { value: TravelPreference.Relaxation, label: 'Leisure', icon: PREFERENCE_ICONS[TravelPreference.Relaxation] },
+    { value: TravelPreference.Leisure, label: 'Leisure', icon: PREFERENCE_ICONS[TravelPreference.Leisure] },
     { value: TravelPreference.Adventure, label: 'Adventure', icon: PREFERENCE_ICONS[TravelPreference.Adventure] },
-    { value: TravelPreference.Shopping, label: 'Arts & Museum', icon: PREFERENCE_ICONS[TravelPreference.Shopping] }
+    { value: TravelPreference.Arts, label: 'Arts and Museum', icon: PREFERENCE_ICONS[TravelPreference.Arts] }
 ];
 
 export interface ComponentProps {

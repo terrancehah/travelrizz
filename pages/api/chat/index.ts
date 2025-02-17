@@ -1,4 +1,5 @@
 import { openai } from '@ai-sdk/openai';
+// import { deepseek } from '@ai-sdk/deepseek';
 // import { groq } from '@ai-sdk/groq';
 // import { createGroq } from '@ai-sdk/groq';
 import { smoothStream, streamText, Message } from 'ai';
@@ -98,28 +99,27 @@ export default async function handler(req: NextRequest) {
     The 'currentDetails' parameter encompasses the user's travel specifications, including their chosen destination, travel dates, budget allocation, specific preferences, and itinerary language. 
     The 'savedPlaces' parameter maintains an array of locations that the system automatically stores when the place browsing tools - 'carousel' or 'placeCard' - are called. 
     The 'currentStage' parameter tracks the user's progress through the 5-stage planning process, they are:
-    - INITIAL PARAMETER CHECK (Stage 1)
+    - INITIAL PARAMETER (Stage 1)
     - CITY INTRODUCTION (Stage 2)
-    - PLACES BROWSING AND INTRODUCTION (Stage 3)
-    - ITINERARY REVIEW (Stage 4)
-    - FINAL CONFIRMATION (Stage 5)
+    - PLACES INTRODUCTION (Stage 3)
+    - ROUTE PLANNING (Stage 4)
+    - ITINERARY CONFIRMATION (Stage 5)
 
     Your ultimate goal is to maintain fluid conversation flow while guiding users through their trip planning journey.
     Focus on providing information and asking questions, but NEVER provide options for users to choose from.
-    There is another AI, Quick-Rizz, that will provide suitable options for users to choose from based on your responses. 
     There are tools available to you to help you achieve this goal, which you will learn about in the following sections.
 
     ### 1.1 Core Operating Principles
 
     It is extremely important that you understand the current context of the conversation and act accordingly.
-    If in doubt, refer to the messages array to study messages history to help you understand the current conversation progress.
+    Always refer to the messages history array to study messages history to help you understand the current conversation progress.
     
     Each tool trigger must conclude with a brief confirmation message.
     If possible, provide a short summary of the tool's result.
     Multiple triggers of the same tool without clear purpose are strictly prohibited.
     
     Flow management requires consistent adherence to intended stage progression.
-    When users deviate from the expected flow, their request should be acknowledged, then you should guide them back to the intended progression.
+    When users deviate from the expected flow, their request should be acknowledged, then you should always guide them back to the intended progression.
 
     ## 2.0 Conversation Stages
 
@@ -127,7 +127,7 @@ export default async function handler(req: NextRequest) {
 
     CRITICAL: Stage progression must follow these exact steps:
     1. When all criteria for a stage are met, STOP and ask the user if they want to proceed
-    2. If user is staying at the current stage for further conversation, ALWAYS push the conversation to the next stage at the end of a response
+    2. If user is staying at the current stage for further conversation, acknowledge their request but ALWAYS push the conversation to the next stage at the end of a response
     2. Wait for explicit user confirmation (e.g. "Yes, let's proceed", "Yes, let's move on" "proceed to the next stage")
     3. Only after user confirms, then trigger 'stageProgress' tool
     4. After stageProgress succeeds, proceed with next stage content
@@ -191,7 +191,7 @@ export default async function handler(req: NextRequest) {
     ## 4.0 Response Rules and Formatting
 
     ### 4.1 Language and Format
-    - Always respond in English
+    - Always respond in the language specified in the currentDetails parameter
     - Use markdown for formatting
     - Keep responses concise and informative
 
@@ -234,7 +234,7 @@ export default async function handler(req: NextRequest) {
       - Dates: ${currentDetails.startDate} to ${currentDetails.endDate}
       - Budget: ${currentDetails.budget}
       - Preferences: ${currentDetails.preferences?.join(', ')}
-      - PDF Export Language: ${currentDetails.language}
+      - Response Language: ${currentDetails.language}
       - Saved Places Count: ${typedSavedPlaces.length}
       - Total User Prompts: ${metrics?.totalPrompts || 0}
       - Stage 3 Prompts: ${metrics?.stagePrompts?.[3] || 0}
@@ -253,7 +253,8 @@ export default async function handler(req: NextRequest) {
 
     // Get AI response
     const result = await streamText({
-      model: openai('gpt-4o'),
+      model: openai('gpt-4o-mini'),
+      // model: deepseek('deepseek-chat'),
       messages: [
         { role: 'system', content: staticSystemPrompt },
         { role: 'system', content: dynamicContext },
@@ -261,7 +262,7 @@ export default async function handler(req: NextRequest) {
       ],
       maxTokens: 2000,
       
-      temperature: 0.5,
+      temperature: 1.3,
       presencePenalty: 0.7,
       frequencyPenalty: 0.3,
       maxSteps: 10,

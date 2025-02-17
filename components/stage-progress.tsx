@@ -4,23 +4,16 @@ import React, { useState } from 'react';
 import { cn } from '../lib/utils';
 import { CheckIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 import { Info } from 'lucide-react';
-import Image from 'next/image';
 import PaymentSuccessPopup from './modals/payment-success-popup';
+import { useTranslations } from 'next-intl';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface StageProgressProps {
     currentStage: number;
     isPaid: boolean;
 }
 
-const stages = [
-    { id: 1, title: "Initial Parameters" },
-    { id: 2, title: "City Introduction" },
-    { id: 3, title: "Places Introduction" },
-    { id: 4, title: "Route Planning" },
-    { id: 5, title: "Itinerary Confirmation" }
-];
-
-export interface StepsRootProps extends React.HTMLAttributes<HTMLDivElement> {
+interface StepsRootProps extends React.HTMLAttributes<HTMLDivElement> {
     orientation?: 'horizontal' | 'vertical';
     colorPalette?: 'gray' | 'blue';
     variant?: 'subtle' | 'solid';
@@ -49,7 +42,7 @@ export const StepsList = React.forwardRef<HTMLDivElement, StepsListProps>(
         <div
             ref={ref}
             className={cn(
-                'mx-auto w-full px-4 py-3 overflow-x-auto',
+                'mx-auto w-full px-2 py-2 overflow-x-auto',
                 className
             )}
             {...props}
@@ -74,58 +67,74 @@ export interface StepsItemProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
-    ({ className, step, currentStep, title, description, isLocked, isLast, ...props }, ref) => (
-        <>
-            <div className="flex flex-col items-center gap-1 relative md:w-40" ref={ref} {...props}>
-                {/* Steps Numbers */}
-                <div 
-                    className={cn(
-                        'w-8 h-8 rounded-full flex items-center justify-center transition-colors',
-                        currentStep > step ? 'bg-green-500' : 
-                        currentStep === step ? 'bg-blue-600/80 dark:bg-blue-500' : 
-                        'bg-gray-200 dark:bg-gray-600',
-                        isLocked ? 'cursor-not-allowed' : '',
-                        className
-                    )}
-                >
-                    {currentStep > step ? (
-                        <CheckIcon className="w-5 h-5 text-white" />
-                    ) : (
-                        <span className={cn(
-                            'text-sm',
-                            currentStep === step ? 'text-white' : 'text-gray-600 dark:text-gray-200'
-                        )}>
-                            {step}
-                        </span>
-                    )}
-                </div>
-                {/* Steps Descriptions */}
-                <div className="hidden md:flex flex-col items-start mt-1">
-                    <span className="text-sm font-raleway font-medium text-center text-primary dark:text-gray-200 transition-colors duration-400">{title}</span>
-                    {description && (
-                        <span className="text-xs text-gray-500">{description}</span>
-                    )}
-                </div>
-                {isLocked && (
-                    <LockClosedIcon className="w-4 h-4 text-gray-700 dark:text-gray-300 absolute -top-1 right-12" />
-                )}
-            </div>
-            {!isLast && (
-                <div className="hidden md:block flex-1 h-[2px] bg-gray-200">
-                    <div
+    ({ className, step, currentStep, title, description, isLocked, isLast, ...props }, ref) => {
+        const fonts = useLocalizedFont();
+        
+        return (
+            <>
+                <div className="flex flex-col items-center gap-1 relative md:w-40" ref={ref} {...props}>
+                    
+                    {/* Steps Numbers */}
+                    <div 
                         className={cn(
-                            'h-full bg-green-500 transition-all',
-                            currentStep > step ? 'w-full' : 'w-0'
+                            'w-8 h-8 rounded-full flex items-center justify-center transition-colors',
+                            currentStep > step ? 'bg-green-500' : 
+                            currentStep === step ? 'bg-blue-600/80 dark:bg-blue-500' : 
+                            'bg-gray-200 dark:bg-gray-600',
+                            isLocked ? 'cursor-not-allowed' : '',
+                            className
                         )}
-                    />
+                    >
+                        {currentStep > step ? (
+                            <CheckIcon className="w-5 h-5 text-white" />
+                        ) : (
+                            <span className={cn(
+                                'text-sm',
+                                currentStep === step ? 'text-white' : 'text-gray-600 dark:text-gray-200'
+                            )}>
+                                {step}
+                            </span>
+                        )}
+                    </div>
+
+                    {/* Steps Descriptions */}
+                    <div className="hidden md:flex flex-col items-start mt-1">
+                        <span className={`text-sm ${fonts.text} font-medium text-center text-primary dark:text-gray-200 transition-colors duration-400`}>{title}</span>
+                        {/* {description && (
+                            <span className="text-xs text-gray-500">{description}</span>
+                        )} */}
+                    </div>
+                    {isLocked && (
+                        <LockClosedIcon className="w-4 h-4 text-gray-700 dark:text-gray-300 absolute -top-1 -right-2 md:right-12" />
+                    )}
                 </div>
-            )}
-        </>
-    )
+                {!isLast && (
+                    <div className="hidden md:block flex-1 h-[2px] bg-gray-200">
+                        <div
+                            className={cn(
+                                'h-full bg-green-500 transition-all',
+                                currentStep > step ? 'w-full' : 'w-0'
+                            )}
+                        />
+                    </div>
+                )}
+            </>
+        );
+    }
 );
 StepsItem.displayName = 'StepsItem';
 
 const StageProgress: React.FC<StageProgressProps> = ({ currentStage, isPaid }) => {
+    const t = useTranslations('travelChat');
+
+    const stages = [
+        { id: 1, title: t('stages.stage1') },
+        { id: 2, title: t('stages.stage2') },
+        { id: 3, title: t('stages.stage3') },
+        { id: 4, title: t('stages.stage4') },
+        { id: 5, title: t('stages.stage5') }
+    ];
+
     const [showPopup, setShowPopup] = useState(false);
 
     return (
@@ -141,6 +150,8 @@ const StageProgress: React.FC<StageProgressProps> = ({ currentStage, isPaid }) =
                         isLast={index === stages.length - 1}
                     />
                 ))}
+
+                {/* Stages 4 and 5 Info Button */}
                 {currentStage > 3 && (
                     <button 
                         onClick={() => setShowPopup(true)}

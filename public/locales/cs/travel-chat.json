@@ -1,0 +1,21 @@
+{
+  "stages": {
+    "stage1": "Počáteční Parametry",
+    "stage2": "Představení Města",
+    "stage3": "Představení Míst",
+    "stage4": "Plánování Trasy",
+    "stage5": "Potvrzení Itineráře"
+  },
+  "chatHeader": {
+    "tripTo": "Cesta do",
+    "date": "Datum",
+    "language": "Jazyk",
+    "preferences": "Preference",
+    "budget": "Rozpočet"
+  },
+  "chatUI": {
+    "thinking": "Travel-Rizz přemýšlí",
+    "inputPlaceholder": "Napište zprávu...",
+    "send": "Odeslat"
+  }
+}

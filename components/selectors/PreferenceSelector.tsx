@@ -35,7 +35,7 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
   };
 
   return (
-    <div className="w-full max-w-[600px] bg-white rounded-3xl shadow-md">
+    <div className="w-full mx-auto max-w-[600px] bg-white rounded-3xl shadow-md">
       <div className="px-6 py-4">
         <h3 className="text-lg font-raleway font-semibold text-gray-700 mb-3">Travel Preferences</h3>
         <div className="grid grid-cols-2 gap-3 mb-4">

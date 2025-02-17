@@ -27,6 +27,8 @@ import PremiumUpgradeModal from './modals/premium-upgrade-modal';
 import SessionWarningModal from './modals/session-warning-modal';
 import { useRouter } from 'next/router';
 import { ChatHeader } from './chat/chat-header';
+import { useLocalizedFont } from '../hooks/useLocalizedFont';
+import { useTranslations } from 'next-intl';
 
 interface TravelChatProps {
     initialDetails: TravelDetails;
@@ -44,10 +46,12 @@ export function TravelChat({
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const [currentDetails, setCurrentDetails] = useState<TravelDetails>(initialDetails);
+    const fonts = useLocalizedFont();
     const router = useRouter();
     const [sessionMetadata] = useState<TravelSession | null>(() => {
         return getStoredSession();
     });
+    const t = useTranslations('travelChat');
 
     // Handle missing session
     useEffect(() => {
@@ -376,304 +380,308 @@ export function TravelChat({
                 isOpen={showSessionWarning}
                 onClose={() => setShowSessionWarning(false)}
             />
-            {/* Header */}
-            <ChatHeader
-                currentDetails={currentDetails}
-                isCollapsed={isCollapsed}
-                setIsCollapsed={setIsCollapsed}
-            />
+
             {/* Chat Messages Container */}
             <div 
                 ref={chatContainerRef}
-                className={`flex-grow overflow-y-auto py-4 transition-all duration-300 ease-in-out 
-                }`}
+                className={`flex-grow overflow-y-auto space-y-4 bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out h-full`}
             >
-                <div className="space-y-4 px-4">
-                    {messages.map((message, index) => (
-                        <div key={index} className="w-full flex flex-col gap-3">
-                            {/* Message content */}
-                            {message.content && (
-                                <div key={`content-${message.id || index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`${
-                                        message.role === 'user' 
-                                            ? 'bg-blue-600/75 text-white rounded-br-none w-min min-w-[40%]' 
-                                            : 'bg-gray-200 text-gray-700 rounded-bl-none w-[75%]'
-                                    } rounded-2xl px-4 py-2 max-w-[75%]`}>
-                                        <ReactMarkdown 
-                                            className="prose max-w-none"
-                                            components={{
-                                                h1: ({node, ...props}) => <h1 className="text-lg font-bold" {...props} />,
-                                                h2: ({node, ...props}) => <h2 className="text-base font-semibold" {...props} />,
-                                                h3: ({node, ...props}) => <h3 className="text-sm font-medium" {...props} />,
-                                                p: ({node, ...props}) => <p className="text-sm" {...props} />,
-                                                ul: ({node, ...props}) => <ul className="list-disc ml-4 mb-1" {...props} />,
-                                                li: ({node, ...props}) => <li className="text-sm mb-0.5" {...props} />,
-                                            }}
-                                        >
-                                            {message.content}
-                                        </ReactMarkdown>
-                                    </div>
-                                </div>
-                            )}
-                            {message.toolInvocations?.map((toolInvocation, index) => {
-                                const { toolName, toolCallId, state } = toolInvocation;
-
-                                // Only render if the tool is visible in toolVisibility state
-                                if (!toolVisibility[toolCallId]) return null;
-
-                                if (state === 'result') {
-                                    switch (toolName) {
-                                        case 'budgetSelector':
-                                            if(!toolInvocation.result?.props) return null;
-                                            const budgetProps = toolInvocation.result.props as { currentBudget: BudgetLevel };
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        <BudgetSelector 
-                                                            currentBudget={budgetProps.currentBudget}
-                                                            onUpdate={(budget) => {
-                                                                const result = {
-                                                                    type: 'budgetSelector',
-                                                                    props: { currentBudget: budget }
-                                                                };
-                                                                handleToolUpdate({ 
-                                                                    toolInvocations: [{
-                                                                        toolCallId,
-                                                                        toolName,
-                                                                        result
-                                                                    }]
-                                                                });
-                                                            }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            );
-
-                                        case 'preferenceSelector':
-                                            if(!toolInvocation.result?.props) return null;
-                                            const prefProps = toolInvocation.result.props as { currentPreferences: TravelPreference[] };
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        {toolVisibility[toolCallId] && (
-                                                            <PreferenceSelector 
-                                                                currentPreferences={prefProps.currentPreferences}
-                                                                onUpdate={(preferences) => {
-                                                                    const result = {
-                                                                        type: 'preferenceSelector',
-                                                                        props: { currentPreferences: preferences }
-                                                                    };
-                                                                    handleToolUpdate({ 
-                                                                        toolInvocations: [{
-                                                                            toolCallId,
-                                                                            toolName,
-                                                                            result
-                                                                        }]
-                                                                    });
-                                                                }}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            );
-
-                                        case 'datePicker':
-                                            if(!toolInvocation.result?.props) return null;
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        <DatePicker 
-                                                            dates={{
-                                                                startDate: currentDetails.startDate || '',
-                                                                endDate: currentDetails.endDate || ''
-                                                            }}
-                                                            onUpdate={(dates) => {
-                                                                const result = {
-                                                                    type: 'datePicker',
-                                                                    props: dates
-                                                                };
-                                                                handleToolUpdate({ 
-                                                                    toolInvocations: [{
-                                                                        toolCallId,
-                                                                        toolName,
-                                                                        result
-                                                                    }]
-                                                                });
-                                                            }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            );
-
-                                        case 'languageSelector':
-                                            if(!toolInvocation.result?.props) return null;
-                                            const langProps = toolInvocation.result.props as { currentLanguage: SupportedLanguage };
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        <LanguageSelector 
-                                                            currentLanguage={langProps.currentLanguage}
-                                                            onUpdate={(language) => {
-                                                                const result = {
-                                                                    type: 'languageSelector',
-                                                                    props: { currentLanguage: language }
-                                                                };
-                                                                handleToolUpdate({ 
-                                                                    toolInvocations: [{
-                                                                        toolCallId,
-                                                                        toolName,
-                                                                        result
-                                                                    }]
-                                                                });
-                                                            }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            );
-
-                                        case 'placeCard':
-                                            if(!toolInvocation.result?.props?.place) return null;
-                                            const placeProps = toolInvocation.result.props as { place: Place };
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        {placeProps.place && (
-                                                            <PlaceCard
-                                                                place={placeProps.place}
-                                                                showActions={false}
-                                                                onSelect={() => {}}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            );
-
-                                        case 'carousel':
-                                            if(!toolInvocation.result?.props?.places) return null;
-                                            const carouselProps = toolInvocation.result.props as { places: Place[] };
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        {carouselProps.places.length > 0 && (
-                                                            <Carousel 
-                                                                places={carouselProps.places}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            );
-
-                                        case 'weatherChart':
-                                            if(!toolInvocation.result?.props) return null;
-                                            const weatherProps = toolInvocation.result.props as unknown as WeatherChartProps;
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        <HistoricalWeatherChart 
-                                                            {...weatherProps}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            );
-
-                                        case 'currencyConverter':
-                                            if (!toolInvocation.result?.props) return null;
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        <CurrencyConverter 
-                                                            {...toolInvocation.result.props}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            );
-
-                                            case 'savedPlacesList':
-                                                return (
-                                                    <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                        <div className="w-full">
-                                                            <SavedPlacesList
-                                                                onRemove={onPlaceRemoved}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                );
-
-                                        default:
-                                            return null;
-                                    }
-                                } else {
-                                    return (
-
-                                        // AI Response Component Loading Placeholder
-                                        <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                            <div className="relative overflow-hidden min-w-[200px] 
-                                            before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
-                                            before:from-blue-200 before:via-purple-300 before:to-pink-200 
-                                            before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
-                                            after:bg-white after:opacity-70 after:z-[1] shadow-sm
-                                            text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">
-                                                <div className="relative z-[2]">
-                                                    <span className="inline-flex items-center gap-1 text-sky-blue">
-                                                        <span className="text-sm">Travel-Rizz is thinking</span>
-                                                        <span className="animate-[pulse_1.2s_ease-in-out_infinite]">.</span>
-                                                        <span className="animate-[pulse_1.2s_ease-in-out_infinite_400ms]">.</span>
-                                                        <span className="animate-[pulse_1.2s_ease-in-out_infinite_800ms]">.</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    );
-                                }
-                            })}
-                            
-                            {isLoading && message.id === messages[messages.length - 1].id && (
-                                // AI Response Message Loading Placeholder
-                                <div key={`loading-${message.id}`} className="flex justify-start">
-                                    <div className="relative overflow-hidden min-w-[200px] 
-                                            before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
-                                            before:from-blue-300 before:via-purple-400 before:to-pink-300 before: to-orange-400
-                                            before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
-                                            after:bg-white after:opacity-70 after:z-[1] shadow-sm
-                                            text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">
-                                        <div className="relative z-[2]">
-                                            <span className="inline-flex items-center gap-1 text-sky-blue">
-                                                <span className="text-sm">Travel-Rizz is thinking</span>
-                                                <span className="animate-[pulse_1.2s_ease-in-out_infinite]">.</span>
-                                                <span className="animate-[pulse_1.2s_ease-in-out_infinite_400ms]">.</span>
-                                                <span className="animate-[pulse_1.2s_ease-in-out_infinite_800ms]">.</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                    <div ref={messagesEndRef} />
-                </div>
-            </div>
-
-            {/* Quick responses section - Now outside the chat container */}
-            {shouldShowQuickResponses() && (
-                <div className="px-4 py-2 border-gray-100">
-                    <QuickResponse 
-                        responses={getQuickResponseOptions()}
-                        onResponseSelect={handleQuickResponseSelect}
-                        isLoading={isQuickResponseLoading}
+                {/* Chat Header */}
+                <div className="sticky top-0 z-50 w-full">
+                    <ChatHeader
+                        currentDetails={currentDetails}
+                        isCollapsed={isCollapsed}
+                        setIsCollapsed={setIsCollapsed}
                     />
                 </div>
-            )}
+
+                {/* Message content */}
+                {messages.map((message, index) => (
+                    <div key={index} className="w-full flex flex-col gap-3">
+                        {message.content && (
+                            <div key={`content-${message.id || index}`} className={`flex ${message.role === 'user' ? 'justify-end mr-4' : 'justify-start ml-4'}`}>
+                                <div className={`${
+                                    message.role === 'user' 
+                                        ? 'bg-blue-600/75 dark:bg-blue-600 text-white rounded-br-none w-min min-w-[40%]' 
+                                        : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-bl-none w-[75%]'
+                                } rounded-2xl px-4 py-2 max-w-[75%]`}>
+                                    <ReactMarkdown 
+                                        className={`prose max-w-none ${fonts?.text}`}
+                                        components={{
+                                            h1: ({node, ...props}) => <h1 className="text-lg font-bold" {...props} />,
+                                            h2: ({node, ...props}) => <h2 className="text-base font-semibold" {...props} />,
+                                            h3: ({node, ...props}) => <h3 className="text-sm font-medium" {...props} />,
+                                            p: ({node, ...props}) => <p className="text-sm" {...props} />,
+                                            ul: ({node, ...props}) => <ul className="list-disc ml-4 mb-1" {...props} />,
+                                            li: ({node, ...props}) => <li className="text-sm mb-0.5" {...props} />,
+                                        }}
+                                    >
+                                        {message.content}
+                                    </ReactMarkdown>
+                                </div>
+                            </div>
+                        )}
+                        {message.toolInvocations?.map((toolInvocation, index) => {
+                            const { toolName, toolCallId, state } = toolInvocation;
+
+                            // Only render if the tool is visible in toolVisibility state
+                            if (!toolVisibility[toolCallId]) return null;
+
+                            if (state === 'result') {
+                                switch (toolName) {
+                                    case 'budgetSelector':
+                                        if(!toolInvocation.result?.props) return null;
+                                        const budgetProps = toolInvocation.result.props as { currentBudget: BudgetLevel };
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <BudgetSelector 
+                                                        currentBudget={budgetProps.currentBudget}
+                                                        onUpdate={(budget) => {
+                                                            const result = {
+                                                                type: 'budgetSelector',
+                                                                props: { currentBudget: budget }
+                                                            };
+                                                            handleToolUpdate({ 
+                                                                toolInvocations: [{
+                                                                    toolCallId,
+                                                                    toolName,
+                                                                    result
+                                                                }]
+                                                            });
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+
+                                    case 'preferenceSelector':
+                                        if(!toolInvocation.result?.props) return null;
+                                        const prefProps = toolInvocation.result.props as { currentPreferences: TravelPreference[] };
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    {toolVisibility[toolCallId] && (
+                                                        <PreferenceSelector 
+                                                            currentPreferences={prefProps.currentPreferences}
+                                                            onUpdate={(preferences) => {
+                                                                const result = {
+                                                                    type: 'preferenceSelector',
+                                                                    props: { currentPreferences: preferences }
+                                                                };
+                                                                handleToolUpdate({ 
+                                                                    toolInvocations: [{
+                                                                        toolCallId,
+                                                                        toolName,
+                                                                        result
+                                                                    }]
+                                                                });
+                                                            }}
+                                                        />
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+
+                                    case 'datePicker':
+                                        if(!toolInvocation.result?.props) return null;
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <DatePicker 
+                                                        dates={{
+                                                            startDate: currentDetails.startDate || '',
+                                                            endDate: currentDetails.endDate || ''
+                                                        }}
+                                                        onUpdate={(dates) => {
+                                                            const result = {
+                                                                type: 'datePicker',
+                                                                props: dates
+                                                            };
+                                                            handleToolUpdate({ 
+                                                                toolInvocations: [{
+                                                                    toolCallId,
+                                                                    toolName,
+                                                                    result
+                                                                }]
+                                                            });
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+
+                                    case 'languageSelector':
+                                        if(!toolInvocation.result?.props) return null;
+                                        const langProps = toolInvocation.result.props as { currentLanguage: SupportedLanguage };
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <LanguageSelector 
+                                                        currentLanguage={langProps.currentLanguage}
+                                                        onUpdate={(language) => {
+                                                            const result = {
+                                                                type: 'languageSelector',
+                                                                props: { currentLanguage: language }
+                                                            };
+                                                            handleToolUpdate({ 
+                                                                toolInvocations: [{
+                                                                    toolCallId,
+                                                                    toolName,
+                                                                    result
+                                                                }]
+                                                            });
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+
+                                    case 'placeCard':
+                                        if(!toolInvocation.result?.props?.place) return null;
+                                        const placeProps = toolInvocation.result.props as { place: Place };
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    {placeProps.place && (
+                                                        <PlaceCard
+                                                            place={placeProps.place}
+                                                            showActions={false}
+                                                            onSelect={() => {}}
+                                                        />
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+
+                                    case 'carousel':
+                                        if(!toolInvocation.result?.props?.places) return null;
+                                        const carouselProps = toolInvocation.result.props as { places: Place[] };
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    {carouselProps.places.length > 0 && (
+                                                        <Carousel 
+                                                            places={carouselProps.places}
+                                                        />
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+
+                                    case 'weatherChart':
+                                        if(!toolInvocation.result?.props) return null;
+                                        const weatherProps = toolInvocation.result.props as unknown as WeatherChartProps;
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <HistoricalWeatherChart 
+                                                        {...weatherProps}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+
+                                    case 'currencyConverter':
+                                        if (!toolInvocation.result?.props) return null;
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <CurrencyConverter 
+                                                        {...toolInvocation.result.props}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+
+                                        case 'savedPlacesList':
+                                            return (
+                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                    <div className="w-full">
+                                                        <SavedPlacesList
+                                                            onRemove={onPlaceRemoved}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            );
+
+                                    default:
+                                        return null;
+                                }
+                            } else {
+                                return (
+
+                                    // AI Response Component Loading Placeholder
+                                    <div key={`${toolCallId}-${index}`} className="flex justify-star ml-4">
+                                        <div className="relative overflow-hidden min-w-[200px] 
+                                        before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
+                                        before:from-blue-200 before:via-purple-300 before:to-pink-200 
+                                        before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
+                                        after:bg-white after:opacity-70 after:z-[1] shadow-sm
+                                        text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">
+                                            <div className="relative z-[2]">
+                                                <span className="inline-flex items-center gap-1 text-sky-blue">
+                                                    <span className="text-sm">{t('chatUI.thinking')}</span>
+                                                    <span className="animate-[pulse_1.2s_ease-in-out_infinite]">.</span>
+                                                    <span className="animate-[pulse_1.2s_ease-in-out_infinite_400ms]">.</span>
+                                                    <span className="animate-[pulse_1.2s_ease-in-out_infinite_800ms]">.</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                );
+                            }
+                        })}
+                        
+                        {isLoading && message.id === messages[messages.length - 1].id && (
+                            // AI Response Message Loading Placeholder
+                            <div key={`loading-${message.id}`} className="flex justify-start ml-4">
+                                <div className="relative overflow-hidden min-w-[200px] 
+                                        before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
+                                        before:from-blue-300 before:via-purple-400 before:to-pink-300 before: to-orange-400
+                                        before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
+                                        after:bg-white after:opacity-70 after:z-[1] shadow-sm
+                                        text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">
+                                    <div className="relative z-[2]">
+                                        <span className="inline-flex items-center gap-1 text-sky-blue">
+                                            <span className="text-sm">{t('chatUI.thinking')}</span>
+                                            <span className="animate-[pulse_1.2s_ease-in-out_infinite]">.</span>
+                                            <span className="animate-[pulse_1.2s_ease-in-out_infinite_400ms]">.</span>
+                                            <span className="animate-[pulse_1.2s_ease-in-out_infinite_800ms]">.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ))}
+
+                {/* Quick responses section - below the chat container */}
+                <div className="sticky bottom-0 z-50 px-4 py-2 border-gray-100">
+                    {shouldShowQuickResponses() && (
+                        <QuickResponse 
+                            responses={getQuickResponseOptions()}
+                            onResponseSelect={handleQuickResponseSelect}
+                            isLoading={isQuickResponseLoading}
+                        />
+                    )}
+                </div>
+
+                <div ref={messagesEndRef} />
+
+            </div>
 
             {/* Chat Input Container */}
-            <div className="border-t border-gray-200 px-4 py-4 sm:mb-0 bg-white">
+            <div className="border-t border-gray-200 dark:border-gray-700 px-4 py-4 sm:mb-0  bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400">
                 <form onSubmit={handleMessageSubmit} className="flex space-x-4">
                     <input
                         type="text"
                         value={input}
                         onChange={handleInputChange}
-                        placeholder="Type your message..."
-                        className="flex-1 rounded-xl border-2 border-gray-200 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        placeholder={t('chatUI.inputPlaceholder')}
+                        className={`${fonts.text} flex-1 rounded-xl px-4 py-2 bg-white dark:bg-gray-800
+                            border-2 border-gray-200 dark:border-gray-600  focus:border-blue-500 dark:focus:border-blue-800 focus:outline-none focus:ring-1 focus:ring-blue-500`}
                         disabled={isLoading || !isWithinStageLimit}
                     />
                     {/* {isLoading && (
@@ -687,9 +695,10 @@ export function TravelChat({
                     <button
                         type="submit"
                         disabled={isLoading || !isWithinStageLimit}
-                        className="inline-flex items-center rounded-xl bg-blue-600/75 hover:bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+                        className={`${fonts.text} inline-flex items-center rounded-xl bg-blue-600/75 dark:bg-blue-800 hover:bg-blue-600 px-4 py-2 
+                            text-sm font-semibold text-white dark:text-gray-200 dark:hover:text-white shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50`}
                     >
-                        Send
+                        {t('chatUI.send')}
                     </button>
                     
                 </form>
@@ -700,3 +709,15 @@ export function TravelChat({
 };
 
 export default TravelChat;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+    return {
+        props: {
+            messages: {
+                travelChat: (await import(`/public/locales/${locale}/travel-chat.json`)).default,
+                parameters: (await import(`/public/locales/${locale}/parameters.json`)).default
+            },
+            locale
+        }
+    }
+}

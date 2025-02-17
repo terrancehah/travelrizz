@@ -1,0 +1,38 @@
+{
+  "budget": {
+    "selector": {
+      "prompt": "Qual è il tuo livello di budget?"
+    },
+    "levels": {
+      "budget": {
+        "label": "Economico",
+        "description": "Opzioni economiche con servizi di base"
+      },
+      "moderate": {
+        "label": "Moderato",
+        "description": "Opzioni di fascia media con buon rapporto qualità-prezzo"
+      },
+      "luxury": {
+        "label": "Lusso",
+        "description": "Opzioni di alta gamma con servizi premium"
+      },
+      "ultraLuxury": {
+        "label": "Ultra Lusso",
+        "description": "Esperienze di lusso esclusive"
+      }
+    }
+  },
+  "preferences": {
+    "selector": {
+      "prompt": "Qual è il tuo livello di preferenze?"
+    },
+    "options": {
+      "culture": "Cultura e Patrimonio",
+      "nature": "Natura",
+      "food": "Gastronomia",
+      "leisure": "Relax",
+      "adventure": "Avventura",
+      "arts": "Arte e Musei"
+    }
+  }
+}

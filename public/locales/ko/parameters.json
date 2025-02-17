@@ -1,0 +1,38 @@
+{
+  "budget": {
+    "selector": {
+      "prompt": "무식으로 무식하게 구분해주세요"
+    },
+    "levels": {
+      "budget": {
+        "label": "이코노미",
+        "description": "기본 시설을 갖춘 저렴한 옵션"
+      },
+      "moderate": {
+        "label": "중급",
+        "description": "가성비가 좋은 중급 옵션"
+      },
+      "luxury": {
+        "label": "럭셔리",
+        "description": "프리미엄 서비스를 제공하는 고급 옵션"
+      },
+      "ultraLuxury": {
+        "label": "울트라 럭셔리",
+        "description": "독점적인 럭셔리 경험"
+      }
+    }
+  },
+  "preferences": {
+    "selector": {
+      "prompt": "행사권을 다른 유머을 통해 구분해주세요"
+    },
+    "options": {
+      "culture": "문화와 유산",
+      "nature": "자연",
+      "food": "미식",
+      "leisure": "레저",
+      "adventure": "모험",
+      "arts": "예술과 박물권"
+    }
+  }
+}

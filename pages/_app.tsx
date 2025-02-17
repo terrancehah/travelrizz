@@ -66,7 +66,9 @@ export async function getStaticProps({ locale }: { locale: string }) {
     props: {
       messages: {
         landing: (await import(`../public/locales/${locale}/landing.json`)).default,
-        travelForm: (await import(`../public/locales/${locale}/travel-form.json`)).default
+        travelForm: (await import(`../public/locales/${locale}/travel-form.json`)).default,
+        travelChat: (await import(`../public/locales/${locale}/travel-chat.json`)).default,
+        parameters: (await import(`../public/locales/${locale}/parameters.json`)).default
       },
       locale,
       timeZone: 'Asia/Singapore'

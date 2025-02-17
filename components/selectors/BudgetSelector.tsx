@@ -1,5 +1,6 @@
 import React from 'react';
-import { BudgetLevel, BUDGET_OPTIONS } from '../../managers/types';
+import { BudgetLevel } from '../../managers/types';
+import { useTranslations } from 'next-intl';
 
 export interface BudgetSelectorProps {
   currentBudget?: BudgetLevel;
@@ -7,12 +8,21 @@ export interface BudgetSelectorProps {
 }
 
 export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, onUpdate }) => {
+  const t = useTranslations('parameters');
+  
+  const budgetOptions = [
+    BudgetLevel.Budget,
+    BudgetLevel.Moderate,
+    BudgetLevel.Luxury,
+    BudgetLevel.UltraLuxury
+  ];
+
   return (
-    <div className="w-[80%] flex mx-auto max-w-[600px] bg-white rounded-3xl border border-gray-100 shadow-md">
+    <div className="w-fit flex mx-auto max-w-[600px] bg-white rounded-3xl border border-gray-100 shadow-md">
       <div className="px-8 py-5">
-        <h3 className="text-lg font-raleway font-semibold text-gray-700 mb-3">Budget Level</h3>
+        <h3 className="text-lg font-raleway font-semibold text-gray-700 mb-3">{t('budget.selector.prompt')}</h3>
         <div className="grid grid-cols-2 gap-3">
-          {BUDGET_OPTIONS.map(({ value, label, description }) => (
+          {budgetOptions.map((value) => (
             <button
               key={value}
               onClick={() => onUpdate?.(value)}
@@ -26,9 +36,8 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
               `}
             >
               <div className="flex flex-col items-center gap-1">
-                <span className="font-medium">{label}</span>
-                <span className="text-lg font-medium">{value}</span>
-                <span className="text-xs opacity-75 text-center">{description}</span>
+                <span className="font-medium">{t(`budget.levels.${value}.label`)}</span>
+                <span className="text-xs opacity-75 text-center">{t(`budget.levels.${value}.description`)}</span>
               </div>
             </button>
           ))}

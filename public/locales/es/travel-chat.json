@@ -1,0 +1,21 @@
+{
+  "stages": {
+    "stage1": "Parámetros Iniciales",
+    "stage2": "Introducción a la Ciudad",
+    "stage3": "Introducción a los Lugares",
+    "stage4": "Planificación de Ruta",
+    "stage5": "Confirmación del Itinerario"
+  },
+  "chatHeader": {
+    "tripTo": "Viaje a",
+    "date": "Fecha",
+    "language": "Idioma",
+    "preferences": "Preferencias",
+    "budget": "Presupuesto"
+  },
+  "chatUI": {
+    "thinking": "Travel-Rizz está pensando",
+    "inputPlaceholder": "Escribe tu mensaje...",
+    "send": "Enviar"
+  }
+}

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Place } from '@/utils/places-utils';
 import { PlaceCard } from './PlaceCard';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 export const Carousel = ({ places }: { places: Place[] }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const fonts = useLocalizedFont();
 
     const prevSlide = () => {
         setCurrentIndex((currentIndex + places.length - 1) % places.length);

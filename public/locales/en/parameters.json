@@ -1,0 +1,38 @@
+{
+  "budget": {
+    "selector": {
+      "prompt": "What is your budget range?"
+    },
+    "levels": {
+      "budget": {
+        "label": "Budget",
+        "description": "Budget-friendly options with basic amenities"
+      },
+      "moderate": {
+        "label": "Moderate",
+        "description": "Mid-range options with good value"
+      },
+      "luxury": {
+        "label": "Luxury",
+        "description": "High-end options with premium services"
+      },
+      "ultraLuxury": {
+        "label": "Ultra Luxury",
+        "description": "Exclusive luxury experiences"
+      }
+    }
+  },
+  "preferences": {
+    "selector": {
+      "prompt": "What are your preferences?"
+    },
+    "options": {
+      "culture": "Culture and Heritage",
+      "nature": "Nature",
+      "food": "Foodie",
+      "leisure": "Leisure",
+      "adventure": "Adventure",
+      "arts": "Arts and Museum"
+    }
+  }
+}

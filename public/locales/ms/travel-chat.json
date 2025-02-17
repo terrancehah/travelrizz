@@ -1,0 +1,21 @@
+{
+  "stages": {
+    "stage1": "Parameter Awal",
+    "stage2": "Pengenalan Bandar",
+    "stage3": "Pengenalan Tempat",
+    "stage4": "Perancangan Laluan",
+    "stage5": "Pengesahan Jadual"
+  },
+  "chatHeader": {
+    "tripTo": "Perjalanan ke",
+    "date": "Tarikh",
+    "language": "Bahasa",
+    "preferences": "Keutamaan",
+    "budget": "Bajet"
+  },
+  "chatUI": {
+    "thinking": "Travel-Rizz sedang berfikir",
+    "inputPlaceholder": "Taip mesej anda...",
+    "send": "Hantar"
+  }
+}

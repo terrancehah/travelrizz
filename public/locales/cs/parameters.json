@@ -1,0 +1,38 @@
+{
+  "budget": {
+    "selector": {
+      "prompt": "Jaký je tvoí budžet?"
+    },
+    "levels": {
+      "budget": {
+        "label": "Nízký rozpočet",
+        "description": "Cenově dostupné možnosti se základním vybavením"
+      },
+      "moderate": {
+        "label": "Střední",
+        "description": "Střední cenová kategorie s dobrou hodnotou"
+      },
+      "luxury": {
+        "label": "Luxusní",
+        "description": "Luxusní možnosti s prémiovými službami"
+      },
+      "ultraLuxury": {
+        "label": "Ultra luxusní",
+        "description": "Exkluzivní luxusní zážitky"
+      }
+    }
+  },
+  "preferences": {
+    "selector": {
+      "prompt": "Jaký je tvoí stíl?"
+    },
+    "options": {
+      "culture": "Kultura a dědictví",
+      "nature": "Příroda",
+      "food": "Gastronomie",
+      "leisure": "Erholung",
+      "adventure": "Dobrodružství",
+      "arts": "Kunst & Museum"
+    }
+  }
+}

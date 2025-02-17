@@ -1,0 +1,38 @@
+{
+  "budget": {
+    "selector": {
+      "prompt": "Berapa julat bajet anda?"
+    },
+    "levels": {
+      "budget": {
+        "label": "Bajet",
+        "description": "Pilihan mesra bajet dengan kemudahan asas"
+      },
+      "moderate": {
+        "label": "Sederhana",
+        "description": "Pilihan pertengahan dengan nilai yang baik"
+      },
+      "luxury": {
+        "label": "Mewah",
+        "description": "Pilihan mewah dengan perkhidmatan premium"
+      },
+      "ultraLuxury": {
+        "label": "Ultra Mewah",
+        "description": "Pengalaman mewah eksklusif"
+      }
+    }
+  },
+  "preferences": {
+    "selector": {
+      "prompt": "Apa minat perjalanan anda?"
+    },
+    "options": {
+      "culture": "Budaya",
+      "nature": "Alam Semulajadi",
+      "food": "Makanan",
+      "leisure": "Santai",
+      "adventure": "Pengembaraan",
+      "arts": "Seni & Muzium"
+    }
+  }
+}

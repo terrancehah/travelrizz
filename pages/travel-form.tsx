@@ -249,17 +249,17 @@ export default function TravelFormPage() {
         preferences: preferences,
         budget: budget || '',
         language: router.locale === 'en' ? SupportedLanguage.English :
-                 router.locale === 'ms' ? SupportedLanguage.Malay :
-                 router.locale === 'es' ? SupportedLanguage.Spanish :
-                 router.locale === 'fr' ? SupportedLanguage.French :
-                 router.locale === 'de' ? SupportedLanguage.German :
-                 router.locale === 'it' ? SupportedLanguage.Italian :
-                 router.locale === 'cs' ? SupportedLanguage.Czech :
-                 router.locale === 'zh-CN' ? SupportedLanguage.SimplifiedChinese :
-                 router.locale === 'zh-TW' ? SupportedLanguage.TraditionalChinese :
-                 router.locale === 'ja' ? SupportedLanguage.Japanese :
-                 router.locale === 'ko' ? SupportedLanguage.Korean :
-                 SupportedLanguage.English, // Fallback to English if locale not supported
+                router.locale === 'ms' ? SupportedLanguage.Malay :
+                router.locale === 'es' ? SupportedLanguage.Spanish :
+                router.locale === 'fr' ? SupportedLanguage.French :
+                router.locale === 'de' ? SupportedLanguage.German :
+                router.locale === 'it' ? SupportedLanguage.Italian :
+                router.locale === 'cs' ? SupportedLanguage.Czech :
+                router.locale === 'zh-CN' ? SupportedLanguage.SimplifiedChinese :
+                router.locale === 'zh-TW' ? SupportedLanguage.TraditionalChinese :
+                router.locale === 'ja' ? SupportedLanguage.Japanese :
+                router.locale === 'ko' ? SupportedLanguage.Korean :
+                SupportedLanguage.English, // Fallback to English if locale not supported
         transport: [],
 
         // Places
@@ -312,8 +312,13 @@ export default function TravelFormPage() {
         throw new Error('Session data incomplete')
       }
 
-      // Use direct navigation with reload to ensure clean state
-      window.location.href = `/chat?session=${session.sessionId}`
+      if (savedSession) {
+        // Redirect to chat with locale
+        const locale = router.locale || 'en'
+        router.push(`/${locale}/chat?session=${session.sessionId}`)
+      } else {
+        throw new Error('Session verification failed')
+      }
     } catch (error) {
       console.error('Error:', error)
       alert('An error occurred while processing your request. Please try again.')
@@ -348,7 +353,7 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-8">
             {/* Prompt and Input */}
-            <div className="space-y-8 min-w-max">
+            <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.destination')}</Label>
               <Input
                 ref={destinationRef}
@@ -376,7 +381,7 @@ export default function TravelFormPage() {
         return (
           <div className="space-y-8">
             {/* Prompt and Input */}
-            <div className="space-y-8 min-w-max">
+            <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.dates')}</Label>
               <Input
                 ref={dateRangeRef}

@@ -1,0 +1,21 @@
+{
+  "stages": {
+    "stage1": "初期パラメータ",
+    "stage2": "都市紹介",
+    "stage3": "場所紹介",
+    "stage4": "ルート計画",
+    "stage5": "旅程確認"
+  },
+  "chatHeader": {
+    "tripTo": "旅行先",
+    "date": "日付",
+    "language": "言語",
+    "preferences": "好み",
+    "budget": "予算"
+  },
+  "chatUI": {
+    "thinking": "Travel-Rizz が考え中",
+    "inputPlaceholder": "メッセージを入力...",
+    "send": "送信"
+  }
+}

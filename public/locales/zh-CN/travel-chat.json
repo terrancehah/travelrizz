@@ -1,0 +1,21 @@
+{
+  "stages": {
+    "stage1": "初始参数",
+    "stage2": "城市介绍",
+    "stage3": "景点介绍",
+    "stage4": "路线规划",
+    "stage5": "行程确认"
+  },
+  "chatHeader": {
+    "tripTo": "前往",
+    "date": "日期",
+    "language": "语言",
+    "preferences": "偏好",
+    "budget": "预算"
+  },
+  "chatUI": {
+    "thinking": "Travel-Rizz 正在思考",
+    "inputPlaceholder": "输入您的消息...",
+    "send": "发送"
+  }
+}

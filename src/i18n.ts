@@ -7,8 +7,8 @@ export const defaultLocale = 'en' as const;
 export const defaultTimeZone = 'Asia/Singapore' as const;
 
 export function getLocale(locale: string | undefined) {
-  if (!locale) return defaultLocale;
-  return locales.includes(locale as Locale) ? locale : defaultLocale;
+    if (!locale) return defaultLocale;
+    return locales.includes(locale as Locale) ? locale : defaultLocale;
 }
 
 export const {Link, usePathname, useRouter} = createSharedPathnamesNavigation({locales});

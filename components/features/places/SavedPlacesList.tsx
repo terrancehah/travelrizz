@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Place, savedPlacesManager } from '@/utils/places-utils';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface SavedPlacesListProps {
     onCenterMap?: (location: { latitude: number, longitude: number }) => void;
@@ -13,7 +14,7 @@ interface PhotoState {
 export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps) {
     // Get places directly from savedPlacesManager
     const [places] = useState(() => savedPlacesManager.getPlaces());
-    
+    const fonts = useLocalizedFont();
     const [photoUrls, setPhotoUrls] = useState<PhotoState>({});
 
     // Memoize unique places to prevent infinite updates
@@ -101,15 +102,15 @@ export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps)
 
                         {/* Content Section */}
                         <div className="w-2/3 p-4">
-                            <h3 className="text-lg font-bold text-gray-900 mb-1">
+                            <h3 className={`${fonts.heading} text-lg font-bold text-gray-900 mb-1`}>
                                 {typeof place.displayName === 'string' 
                                     ? place.displayName 
                                     : place.displayName.text}
                             </h3>
-                            <p className="text-sm text-gray-500 mb-2">
+                            <p className={`${fonts.text} text-sm text-gray-500 mb-2`}>
                                 {place.primaryTypeDisplayName?.text || place.primaryType}
                             </p>
-                            <p className="text-sm text-gray-600 mb-2">{place.formattedAddress}</p>
+                            <p className={`${fonts.text} text-sm text-gray-600 mb-2`}>{place.formattedAddress}</p>
                             
                             {/* Actions */}
                             <div className="flex justify-end space-x-2">
