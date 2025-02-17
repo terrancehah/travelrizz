@@ -12,7 +12,7 @@ import type { Instance } from "flatpickr/dist/types/instance"
 import "flatpickr/dist/flatpickr.min.css"
 import Image from "next/image"
 import Head from "next/head"
-import { TravelPreference, TravelSession, SupportedLanguage } from '../managers/types'
+import { TravelPreference, TravelSession, SupportedLanguage, BudgetLevel } from '../managers/types'
 import { initializeSession, generateSessionId, safeStorageOp, getStoredSession, SESSION_CONFIG } from '../utils/session-manager'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Link from "next/link"
@@ -35,7 +35,7 @@ type FormData = {
   startDate: string
   endDate: string
   preferences: TravelPreference[]
-  budget: string
+  budget: BudgetLevel
 }
 
 export default function TravelFormPage() {
@@ -50,7 +50,7 @@ export default function TravelFormPage() {
     startDate: "",
     endDate: "",
     preferences: [],
-    budget: ""
+    budget: "" as BudgetLevel // Empty string will not match any enum value
   })
 
   const destinationRef = useRef<HTMLInputElement>(null)
@@ -224,7 +224,7 @@ export default function TravelFormPage() {
       budget
     })
 
-    if (!city || !formattedStartDate || !formattedEndDate || preferences.length === 0) {
+    if (!city || !formattedStartDate || !formattedEndDate || preferences.length === 0 || !budget) {
       alert('Please fill in all required fields and select at least one travel preference')
       setLoading(false)
       return
@@ -247,7 +247,7 @@ export default function TravelFormPage() {
         startDate: formattedStartDate,
         endDate: formattedEndDate,
         preferences: preferences,
-        budget: budget || '',
+        budget: budget,
         language: router.locale === 'en' ? SupportedLanguage.English :
                 router.locale === 'ms' ? SupportedLanguage.Malay :
                 router.locale === 'es' ? SupportedLanguage.Spanish :
@@ -416,12 +416,12 @@ export default function TravelFormPage() {
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.preferences')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "Culture and Heritage", label: t('interests.culture'), icon: Languages },
-                  { value: "Nature", label: t('interests.nature'), icon: Trees },
-                  { value: "Foodie", label: t('interests.foodie'), icon: Soup },
-                  { value: "Leisure", label: t('interests.leisure'), icon: ShoppingBag },
-                  { value: "Adventure", label: t('interests.adventure'), icon: Ship },
-                  { value: "Arts & Museum", label: t('interests.arts'), icon: Palette }
+                  { value: "culture", label: t('interests.culture'), icon: Languages },
+                  { value: "nature", label: t('interests.nature'), icon: Trees },
+                  { value: "food", label: t('interests.foodie'), icon: Soup },
+                  { value: "leisure", label: t('interests.leisure'), icon: ShoppingBag },
+                  { value: "adventure", label: t('interests.adventure'), icon: Ship },
+                  { value: "arts", label: t('interests.arts'), icon: Palette }
                 ].map(({ value, label, icon: Icon }) => (
                   <Button
                     key={value}
@@ -441,7 +441,8 @@ export default function TravelFormPage() {
             </div>
             {/* Navigation */}
             <div className="flex space-x-4">
-              <Button variant="outline" className={`w-full transition-colors duration-300 text-base border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
+              <Button variant="outline" className={`w-full transition-colors duration-300 text-base 
+                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
@@ -462,17 +463,17 @@ export default function TravelFormPage() {
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.budget')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "Budget", label: t('budgetOptions.budget') },
-                  { value: "Moderate", label: t('budgetOptions.moderate') },
-                  { value: "Luxury", label: t('budgetOptions.luxury') },
-                  { value: "Ultra Luxury", label: t('budgetOptions.ultraLuxury') }
+                  { value: BudgetLevel.Budget, label: t('budgetOptions.budget') },
+                  { value: BudgetLevel.Moderate, label: t('budgetOptions.moderate') },
+                  { value: BudgetLevel.Luxury, label: t('budgetOptions.luxury') },
+                  { value: BudgetLevel.UltraLuxury, label: t('budgetOptions.ultraLuxury') }
                 ].map(({ value, label }) => (
                   <Button
                     key={value}
                     variant={formData.budget === value ? "default" : "outline"}
                     className={`p-4 text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${fonts.text} ${
                       formData.budget === value 
-                        ? 'shadow-md hover:shadow-lg' 
+                        ? 'shadow-md hover:shadow-lg'
                         : 'hover:border-sky-400 dark:hover:border-sky-400'
                     }`}
                     onClick={() => setFormData((prev) => ({ ...prev, budget: value }))}

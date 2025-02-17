@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface QuickResponseProps {
     responses: string[];
@@ -14,6 +15,7 @@ export const QuickResponse: React.FC<QuickResponseProps> = ({
     isLoading = false
 }) => {
     // console.log('[QuickResponse] Render:', { responses, isLoading });
+    const fonts = useLocalizedFont();
 
     if (isLoading) {
         return (
@@ -46,9 +48,9 @@ export const QuickResponse: React.FC<QuickResponseProps> = ({
                 <button
                     key={index}
                     onClick={() => onResponseSelect(text)}
-                    className="min-w-fit max-w-[200px] px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 
+                    className={`min-w-fit max-w-[200px] ${fonts.text} px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 
                             bg-light-blue hover:bg-blue-200 hover:shadow-sm rounded-2xl transition-colors 
-                            whitespace-nowrap overflow-hidden text-ellipsis"
+                            whitespace-nowrap overflow-hidden text-ellipsis`}
                 >
                     {text}
                 </button>

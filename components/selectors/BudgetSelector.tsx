@@ -19,7 +19,7 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
 
   return (
     <div className="w-fit flex mx-auto max-w-[600px] bg-white rounded-3xl border border-gray-100 shadow-md">
-      <div className="px-8 py-5">
+      <div className="p-6">
         <h3 className="text-lg font-raleway font-semibold text-gray-700 mb-3">{t('budget.selector.prompt')}</h3>
         <div className="grid grid-cols-2 gap-3">
           {budgetOptions.map((value) => (
@@ -27,10 +27,10 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
               key={value}
               onClick={() => onUpdate?.(value)}
               className={`
-                px-4 py-3 rounded-lg font-raleway text-sm
-                transition-all duration-200 ease-in-out
+                px-4 py-3 rounded-lg font-raleway text-sm shadow-md hover:shadow-lg border hover:border-sky-400
+                transition-all duration-300 ease-in-out hover:scale-[1.02] active:scale-[0.98]
                 ${currentBudget === value
-                  ? 'bg-[#4798cc] bg-opacity-20 text-[#4798cc] shadow-sm'
+                  ? 'bg-sky-400 bg-opacity-20 text-[#4798cc] shadow-sm'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }
               `}
