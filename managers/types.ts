@@ -39,12 +39,12 @@ export enum BudgetLevel {
 }
 
 export enum TravelPreference {
-    Culture = 'Culture and Heritage',
-    Nature = 'Nature',
-    Food = 'Foodie',
-    Leisure = 'Leisure',
-    Adventure = 'Adventure',
-    Arts = 'Arts & Museum'
+    Culture = 'culture',
+    Nature = 'nature',
+    Food = 'food',
+    Leisure = 'leisure',
+    Adventure = 'adventure',
+    Arts = 'arts'
 }
 
 export enum SupportedLanguage {
@@ -88,15 +88,6 @@ export const LANGUAGE_OPTIONS = Object.entries(SupportedLanguage).map(([key, val
     value,
     label: LANGUAGE_LABELS[value as SupportedLanguage]
 }));
-
-export const PREFERENCE_OPTIONS = [
-    { value: TravelPreference.Culture, label: 'Culture and Heritage', icon: PREFERENCE_ICONS[TravelPreference.Culture] },
-    { value: TravelPreference.Nature, label: 'Nature', icon: PREFERENCE_ICONS[TravelPreference.Nature] },
-    { value: TravelPreference.Food, label: 'Foodie', icon: PREFERENCE_ICONS[TravelPreference.Food] },
-    { value: TravelPreference.Leisure, label: 'Leisure', icon: PREFERENCE_ICONS[TravelPreference.Leisure] },
-    { value: TravelPreference.Adventure, label: 'Adventure', icon: PREFERENCE_ICONS[TravelPreference.Adventure] },
-    { value: TravelPreference.Arts, label: 'Arts and Museum', icon: PREFERENCE_ICONS[TravelPreference.Arts] }
-];
 
 export interface ComponentProps {
     [ComponentType.DatePicker]: {

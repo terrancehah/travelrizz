@@ -1,7 +1,8 @@
 {
   "budget": {
     "selector": {
-      "prompt": "What is your budget range?"
+      "prompt": "What is your budget range?",
+      "confirm": "Confirm Budget"
     },
     "levels": {
       "budget": {
@@ -24,7 +25,8 @@
   },
   "preferences": {
     "selector": {
-      "prompt": "What are your preferences?"
+      "prompt": "What are your preferences?",
+      "confirm": "Confirm Preferences"
     },
     "options": {
       "culture": "Culture and Heritage",

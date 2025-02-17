@@ -24,7 +24,8 @@
   },
   "preferences": {
     "selector": {
-      "prompt": "您的旅遊偏好是什么?"
+      "prompt": "您的旅遊偏好是什么?",
+      "confirm": "确认偏好"
     },
     "options": {
       "culture": "文化与遗产",

@@ -12,6 +12,7 @@ export default function Footer() {
     <footer className="w-full py-6 bg-gray-50 dark:bg-gray-900 flex items-center border-t border-gray-100 dark:border-gray-800 transition-colors duration-400">
       <div className="container w-[80%] mx-auto flex flex-col">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mx-auto">
+          
           <div className="flex flex-col w-[100%] mx-auto space-y-4">
             <Link href="/" className="flex items-center space-x-1">
               <Image
@@ -51,17 +52,17 @@ export default function Footer() {
             <h3 className={`font-semibold mb-4 text-primary dark:text-sky-100 font-raleway ${fonts.heading}`}>{t('footer.legal.title')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/terms" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/terms" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.terms')}
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/privacy" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.privacy')}
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/cookies" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.cookies')}
                 </Link>
               </li>

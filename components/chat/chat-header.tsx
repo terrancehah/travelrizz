@@ -62,13 +62,7 @@ export const ChatHeader = ({ currentDetails, isCollapsed, setIsCollapsed }: Chat
                 <div className={`${fonts.text} text-foreground text-sm text-primary dark:text-white transition-colors duration-400`}>
                   {currentDetails.preferences 
                     ? currentDetails.preferences
-                        .map(pref => {
-                          // Get the enum key by finding the entry where the value matches
-                          const key = Object.entries(TravelPreference)
-                            .find(([_, val]) => val === pref)?.[0]
-                            ?.toLowerCase();
-                          return key ? tParams(`preferences.options.${key}`) : pref;
-                        })
+                        .map(pref => tParams(`preferences.options.${pref}`))
                         .join(', ')
                     : '-'
                   }
