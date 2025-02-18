@@ -25,8 +25,7 @@ export const ChatHeader = ({ currentDetails, isCollapsed, setIsCollapsed }: Chat
   
   return (
     <div className="w-full bg-light-blue/60 dark:bg-gray-900 backdrop-blur supports-[backdrop-filter]:bg-light-blue/80 dark:supports-[backdrop-filter]:bg-gray-900/80
-    border-b border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-400">
-      <div className=" mx-auto p-2 px-6 relative">
+    border-b border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-400 mx-auto py-2 px-6 relative">
         <div className={`transition-all duration-400 ease-in-out ${isCollapsed ? 'max-h-12' : 'max-h-[500px]'}`}>
           <h1 className={`${fonts.heading} font-semibold text-foreground text-2xl text-primary dark:text-white transition-colors duration-400 ${isCollapsed ? 'mb-0' : 'mb-2'}`}>
             {t('chatHeader.tripTo')} <span className="font-caveat">{currentDetails.destination}</span>
@@ -77,7 +76,7 @@ export const ChatHeader = ({ currentDetails, isCollapsed, setIsCollapsed }: Chat
                 </div>
                 <div className={`${fonts.text} text-foreground text-sm text-primary dark:text-white transition-colors duration-400`}>
                   {currentDetails.budget 
-                    ? `${tParams(`budget.levels.${currentDetails.budget.toLowerCase()}.label`)}`
+                    ? `${tParams(`budget.levels.${currentDetails.budget}.label`)}`
                     : '-'
                   }
                 </div>
@@ -95,7 +94,6 @@ export const ChatHeader = ({ currentDetails, isCollapsed, setIsCollapsed }: Chat
         >
           {isCollapsed ? <ChevronDownIcon className="h-6 w-6" /> : <ChevronUpIcon className="h-6 w-6" />}
         </button>
-      </div>
     </div>
   );
 };

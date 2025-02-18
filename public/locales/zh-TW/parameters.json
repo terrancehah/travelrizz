@@ -1,24 +1,30 @@
 {
   "budget": {
     "selector": {
-      "prompt": "您的預算範圍是什麼?"
+      "prompt": "您的預算範圍是什麼?",
+      "confirmbutton": "確認預算"
     },
+    "confirmationmessage": "我已將預算設定為{budget}",
     "levels": {
-      "budget": {
+      "Budget": {
         "label": "經濟",
+        "symbol": "$",
         "description": "提供基本設施的經濟實惠選項"
       },
-      "moderate": {
+      "Moderate": {
         "label": "中等",
-        "description": "性價比較高的中檔選項"
+        "symbol": "$$",
+        "description": "性價比優良的中檔選項"
       },
-      "luxury": {
+      "Luxury": {
         "label": "豪華",
-        "description": "提供高端服務的豪華選項"
+        "symbol": "$$$",
+        "description": "高端服務的豪華選項"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "超級豪華",
-        "description": "獨家奢華體驗"
+        "symbol": "$$$$",
+        "description": "獨特奢華的頂級體驗"
       }
     }
   },
@@ -32,8 +38,19 @@
       "nature": "自然",
       "food": "美食",
       "leisure": "休閒",
-      "adventure": "探險",
+      "adventure": "冒險",
       "arts": "藝術與博物館"
-    }
+    },
+    "confirmationmessage": "我已更新偏好至：{preferences}"
+  },
+  "dates": {
+    "selector": {
+      "prompt": "您計劃何時出行?",
+      "confirmbutton": "確認日期"
+    },
+    "confirmationmessage": "我已將旅行日期更改為{startDate}至{endDate}"
+  },
+  "language": {
+    "confirmationmessage": "我已將語言偏好設定為{language}"
   }
 }

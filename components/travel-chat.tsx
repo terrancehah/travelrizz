@@ -52,6 +52,7 @@ export function TravelChat({
         return getStoredSession();
     });
     const t = useTranslations('travelChat');
+    const tParam = useTranslations('parameters');
 
     // Handle missing session
     useEffect(() => {
@@ -371,7 +372,7 @@ export function TravelChat({
     }, [mainChat, currentDetails, currentStage, onStageUpdate]);
 
     return (
-        <div className="relative flex flex-col h-full shadow-lg rounded-xl">
+        <div className="relative flex flex-col h-full shadow-lg">
             <PremiumUpgradeModal 
                 isOpen={showPremiumModal} 
                 onClose={() => setShowPremiumModal(false)} 
@@ -384,10 +385,10 @@ export function TravelChat({
             {/* Chat Messages Container */}
             <div 
                 ref={chatContainerRef}
-                className={`flex-grow overflow-y-auto space-y-4 bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out h-full`}
+                className={`flex flex-col overflow-y-auto bg-white dark:bg-gray-800 transition-all duration-400 ease-in-out h-full`}
             >
                 {/* Chat Header */}
-                <div className="sticky top-0 z-50 w-full">
+                <div className="sticky top-0 z-10 w-full">
                     <ChatHeader
                         currentDetails={currentDetails}
                         isCollapsed={isCollapsed}
@@ -397,7 +398,7 @@ export function TravelChat({
 
                 {/* Message content */}
                 {messages.map((message, index) => (
-                    <div key={index} className="w-full flex flex-col gap-3">
+                    <div key={index} className="w-full flex flex-col my-2">
                         {message.content && (
                             <div key={`content-${message.id || index}`} className={`flex ${message.role === 'user' ? 'justify-end mr-4' : 'justify-start ml-4'}`}>
                                 <div className={`${
@@ -612,7 +613,7 @@ export function TravelChat({
                                 return (
 
                                     // AI Response Component Loading Placeholder
-                                    <div key={`${toolCallId}-${index}`} className="flex justify-star ml-4">
+                                    <div key={`${toolCallId}-${index}`} className="flex justify-star ml-4 my-2">
                                         <div className="relative overflow-hidden min-w-[200px] 
                                         before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
                                         before:from-blue-200 before:via-purple-300 before:to-pink-200 
@@ -621,7 +622,7 @@ export function TravelChat({
                                         text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">
                                             <div className="relative z-[2]">
                                                 <span className="inline-flex items-center gap-1 text-sky-blue">
-                                                    <span className="text-sm">{t('chatUI.thinking')}</span>
+                                                    <span className={`text-sm ${fonts.text} font-semibold`}>{t('chatUI.thinking')}</span>
                                                     <span className="animate-[pulse_1.2s_ease-in-out_infinite]">.</span>
                                                     <span className="animate-[pulse_1.2s_ease-in-out_infinite_400ms]">.</span>
                                                     <span className="animate-[pulse_1.2s_ease-in-out_infinite_800ms]">.</span>
@@ -636,7 +637,7 @@ export function TravelChat({
                         
                         {isLoading && message.id === messages[messages.length - 1].id && (
                             // AI Response Message Loading Placeholder
-                            <div key={`loading-${message.id}`} className="flex justify-start ml-4">
+                            <div key={`loading-${message.id}`} className="flex justify-start ml-4 my-2">
                                 <div className="relative overflow-hidden min-w-[200px] 
                                         before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
                                         before:from-blue-300 before:via-purple-400 before:to-pink-300 before: to-orange-400
@@ -645,7 +646,7 @@ export function TravelChat({
                                         text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">
                                     <div className="relative z-[2]">
                                         <span className="inline-flex items-center gap-1 text-sky-blue">
-                                            <span className="text-sm">{t('chatUI.thinking')}</span>
+                                            <span className={`text-sm ${fonts.text} font-semibold`}>{t('chatUI.thinking')}</span>
                                             <span className="animate-[pulse_1.2s_ease-in-out_infinite]">.</span>
                                             <span className="animate-[pulse_1.2s_ease-in-out_infinite_400ms]">.</span>
                                             <span className="animate-[pulse_1.2s_ease-in-out_infinite_800ms]">.</span>
@@ -657,8 +658,10 @@ export function TravelChat({
                     </div>
                 ))}
 
-                {/* Quick responses section - below the chat container */}
-                <div className="sticky bottom-0 z-50 px-4 py-2 border-gray-100">
+                <div ref={messagesEndRef} />
+
+                 {/* Quick responses section - below the chat container */}
+                <div className="sticky bottom-0 z-10">
                     {shouldShowQuickResponses() && (
                         <QuickResponse 
                             responses={getQuickResponseOptions()}
@@ -667,8 +670,6 @@ export function TravelChat({
                         />
                     )}
                 </div>
-
-                <div ref={messagesEndRef} />
 
             </div>
 

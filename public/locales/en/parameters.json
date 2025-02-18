@@ -2,23 +2,29 @@
   "budget": {
     "selector": {
       "prompt": "What is your budget range?",
-      "confirm": "Confirm Budget"
+      "confirmbutton": "Confirm Budget"
     },
+    "confirmationmessage": "I've set my budget to {budget}",
+
     "levels": {
-      "budget": {
+      "Budget": {
         "label": "Budget",
+        "symbol": "$",
         "description": "Budget-friendly options with basic amenities"
       },
-      "moderate": {
+      "Moderate": {
         "label": "Moderate",
+        "symbol": "$$",
         "description": "Mid-range options with good value"
       },
-      "luxury": {
+      "Luxury": {
         "label": "Luxury",
+        "symbol": "$$$",
         "description": "High-end options with premium services"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "Ultra Luxury",
+        "symbol": "$$$$",
         "description": "Exclusive luxury experiences"
       }
     }
@@ -35,6 +41,14 @@
       "leisure": "Leisure",
       "adventure": "Adventure",
       "arts": "Arts and Museum"
-    }
+    },
+    "confirmationmessage": "I've updated my preferences to: {preferences}"
+  },
+  "dates": {
+    "selector": {
+      "prompt": "When are you traveling?",
+      "confirmbutton": "Confirm Dates"
+    },
+    "confirmationmessage": "I've changed my travel dates to {startDate} - {endDate}"
   }
 }

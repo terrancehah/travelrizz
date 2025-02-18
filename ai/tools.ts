@@ -483,7 +483,7 @@ export const tools = {
     budgetSelector: budgetSelectorTool,
     preferenceSelector: preferenceSelectorTool,
     datePicker: datePickerTool,
-    languageSelector: languageSelectorTool,
+    // languageSelector: languageSelectorTool,
     transportSelector: transportSelectorTool,
     placeCard: placeCardTool,
     carousel: carouselTool,

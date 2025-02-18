@@ -32,10 +32,10 @@ export enum ComponentType {
 }
 
 export enum BudgetLevel {
-    Budget = 'budget',
-    Moderate = 'moderate',
-    Luxury = 'luxury',
-    UltraLuxury = 'ultraLuxury'
+    Budget = 'Budget',
+    Moderate = 'Moderate',
+    Luxury = 'Luxury',
+    UltraLuxury = 'Ultra Luxury'
 }
 
 export enum TravelPreference {

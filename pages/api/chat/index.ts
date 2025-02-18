@@ -2,10 +2,10 @@ import { openai } from '@ai-sdk/openai';
 // import { deepseek } from '@ai-sdk/deepseek';
 // import { groq } from '@ai-sdk/groq';
 // import { createGroq } from '@ai-sdk/groq';
+// import { google } from '@ai-sdk/google';
 import { smoothStream, streamText, Message } from 'ai';
 import { tools } from '../../../ai/tools';
 import { NextRequest } from 'next/server';
-// import { GoogleGenerativeAI } from '@google/generative-ai';
 import { TravelSession } from '../../../managers/types';
 import { validateStageProgression, STAGE_LIMITS } from '../../../managers/stage-manager';
 import { Place } from '../../../utils/places-utils';
@@ -96,7 +96,7 @@ export default async function handler(req: NextRequest) {
     ## 1.0 Core Setup
 
     You as an itinerary planner processes a few key 'MESSAGE PARAMETERS' from each user message: 'currentDetails', 'savedPlaces', and 'currentStage'. 
-    The 'currentDetails' parameter encompasses the user's travel specifications, including their chosen destination, travel dates, budget allocation, specific preferences, and itinerary language. 
+    The 'currentDetails' parameter encompasses the user's travel specifications, including their chosen destination, travel dates, budget allocation, specific preferences, and chat language. 
     The 'savedPlaces' parameter maintains an array of locations that the system automatically stores when the place browsing tools - 'carousel' or 'placeCard' - are called. 
     The 'currentStage' parameter tracks the user's progress through the 5-stage planning process, they are:
     - INITIAL PARAMETER (Stage 1)
@@ -176,7 +176,6 @@ export default async function handler(req: NextRequest) {
     - 'budgetSelectorTool': Budget options. Call this when users want to change their budget level.
     - 'datePickerTool': Date selection. Call this when users want to change their travel dates.
     - 'preferenceSelectorTool': Travel preferences. Call this when users want to change their travel preferences.
-    - 'languageSelectorTool': PDF language settings. Call this when users want to change the language.
 
     The 'Places Discovery Tools' comprise:
     - 'placeCard': Single place display when user ask for one place (e.g. "add one cafe" or "show me one restaurant"), automatically saves place after display
@@ -229,15 +228,15 @@ export default async function handler(req: NextRequest) {
     - Do not announce these automated actions or ask users to save places.`;
 
     const dynamicContext = `Current Planning Context:
-      - Destination: ${currentDetails.destination}
+      - Travel Destination: ${currentDetails.destination}
       - Current Planning Stage: ${currentStage}
-      - Dates: ${currentDetails.startDate} to ${currentDetails.endDate}
-      - Budget: ${currentDetails.budget}
-      - Preferences: ${currentDetails.preferences?.join(', ')}
-      - Response Language: ${currentDetails.language}
+      - Travel Dates: ${currentDetails.startDate} to ${currentDetails.endDate}
+      - Travel Budget: ${currentDetails.budget}
+      - Travel Preferences: ${currentDetails.preferences?.join(', ')}
+      - Chat Language: ${currentDetails.language}
       - Saved Places Count: ${typedSavedPlaces.length}
-      - Total User Prompts: ${metrics?.totalPrompts || 0}
-      - Stage 3 Prompts: ${metrics?.stagePrompts?.[3] || 0}
+      - Total User Prompts Number: ${metrics?.totalPrompts || 0}
+      - Stage 3 Prompts Number: ${metrics?.stagePrompts?.[3] || 0}
       - Payment Status: ${metrics?.isPaid ? 'Paid' : 'Not Paid'}
 
       IMPORTANT: In stage 3, if the user has made 5 or more prompts and is not paid:
@@ -255,6 +254,7 @@ export default async function handler(req: NextRequest) {
     const result = await streamText({
       model: openai('gpt-4o-mini'),
       // model: deepseek('deepseek-chat'),
+      // model: google('gemini-2.0-flash-001'),
       messages: [
         { role: 'system', content: staticSystemPrompt },
         { role: 'system', content: dynamicContext },

@@ -281,7 +281,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
             <main className="flex-1 flex relative bg-white min-h-0">
 
                 {/* Left Half - Chat Interface, and Chat Input Container */}
-                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-full border-r border-gray-200 overflow-y-auto`}>
+                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-full border-r border-gray-200`}>
                     {isDetailsReady ? (
                         <>
                             {currentStage < 4 && (

@@ -19,16 +19,16 @@ export const QuickResponse: React.FC<QuickResponseProps> = ({
 
     if (isLoading) {
         return (
-            <div className="flex flex-wrap gap-2 my-1 justify-start">
+            <div className="flex flex-wrap gap-2 px-4 py-3 justify-start">
                 {[1, 2, 3].map((key) => (
                     <div 
                         key={key}
-                        className="relative overflow-hidden min-w-[200px] 
+                        className={`relative overflow-hidden min-w-[200px] ${fonts.text} px-3 py-1.5
                             before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
                             before:from-blue-400 before:via-purple-400 before:to-pink-300 before: to-orange-400
                             before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
                             after:bg-white after:opacity-70 after:z-[1] shadow-sm
-                            rounded-2xl px-3 py-1.5"
+                            rounded-2xl`}
                     >
                         &nbsp;
                     </div>
@@ -43,13 +43,16 @@ export const QuickResponse: React.FC<QuickResponseProps> = ({
     }
     
     return (
-        <div className="flex flex-wrap gap-2 my-1 justify-start">
+        <div className="flex flex-wrap gap-2 px-4 py-3 justify-start
+        shadow-sm transition-all duration-400">
             {responses.map((text, index) => (
                 <button
                     key={index}
                     onClick={() => onResponseSelect(text)}
-                    className={`min-w-fit max-w-[200px] ${fonts.text} px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 
-                            bg-light-blue hover:bg-blue-200 hover:shadow-sm rounded-2xl transition-colors 
+                    className={`min-w-fit max-w-[200px] ${fonts.text} px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900  dark:text-gray-100 dark:hover:text-white 
+                            hover:scale-[1.02] active:scale-[0.98] hover:bg-blue-200 dark:hover:bg-blue-500
+                            backdrop-blur supports-[backdrop-filter]:bg-blue-200/60 dark:supports-[backdrop-filter]:bg-blue-600/60
+                            hover:shadow-sm rounded-2xl transition-all 
                             whitespace-nowrap overflow-hidden text-ellipsis`}
                 >
                     {text}

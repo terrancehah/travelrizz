@@ -1,30 +1,37 @@
 {
   "budget": {
     "selector": {
-      "prompt": "予算帯は何であるか?"
+      "prompt": "予算の範囲を教えてください",
+      "confirmbutton": "予算を確認"
     },
+    "confirmationmessage": "予算を{budget}に設定しました",
     "levels": {
-      "budget": {
+      "Budget": {
         "label": "エコノミー",
-        "description": "基本的な設備を備えた予算重視のオプション"
+        "symbol": "$",
+        "description": "基本的な設備が整った手頃な価格のオプション"
       },
-      "moderate": {
+      "Moderate": {
         "label": "スタンダード",
-        "description": "コストパフォーマンスの良い中級オプション"
+        "symbol": "$$",
+        "description": "コスパの良い中級オプション"
       },
-      "luxury": {
+      "Luxury": {
         "label": "ラグジュアリー",
-        "description": "プレミアムサービスを提供する高級オプション"
+        "symbol": "$$$",
+        "description": "高級サービスを提供する贅沢なオプション"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "ウルトララグジュアリー",
+        "symbol": "$$$$",
         "description": "究極の贅沢な体験"
       }
     }
   },
   "preferences": {
     "selector": {
-      "prompt": "旅行の好みは何であるか?"
+      "prompt": "ご希望の旅行スタイルは?",
+      "confirm": "好みを確認"
     },
     "options": {
       "culture": "文化と遺産",
@@ -32,7 +39,18 @@
       "food": "グルメ",
       "leisure": "レジャー",
       "adventure": "アドベンチャー",
-      "arts": "アート＆ミュージアム"
-    }
+      "arts": "芸術と博物館"
+    },
+    "confirmationmessage": "好みを次のように更新しました：{preferences}"
+  },
+  "dates": {
+    "selector": {
+      "prompt": "いつ旅行されますか?",
+      "confirmbutton": "日程を確認"
+    },
+    "confirmationmessage": "旅行日程を{startDate}から{endDate}に変更しました"
+  },
+  "language": {
+    "confirmationmessage": "言語設定を{{language}}に変更しました"
   }
 }

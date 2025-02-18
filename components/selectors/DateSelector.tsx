@@ -1,6 +1,7 @@
 import React from 'react';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 export interface DatePickerProps {
   dates?: { startDate: string; endDate: string };
@@ -10,6 +11,7 @@ export interface DatePickerProps {
 
 export const DatePicker: React.FC<DatePickerProps> = ({ dates, onUpdate, style }) => {
   const dateInputRef = React.useRef<HTMLInputElement>(null);
+  const fonts = useLocalizedFont();
   const [displayDates, setDisplayDates] = React.useState({
     startDate: '',
     endDate: ''
@@ -66,10 +68,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({ dates, onUpdate, style }
   return (
     <div className="w-min mx-auto bg-white rounded-3xl border border-gray-100 shadow-md">
       <div className="w-min px-8 py-5">
-        <h3 className="text-lg font-raleway font-semibold text-gray-700 mb-3">Travel Dates</h3>
+        <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>Travel Dates</h3>
         
         {/* Date display box */}
-        <div className="mb-4 p-3 bg-gray-50 rounded-lg text-center font-raleway text-gray-700">
+        <div className={`mb-4 p-3 bg-gray-50 rounded-lg text-center ${fonts.text} text-gray-700`}>
           {displayDates.startDate && displayDates.endDate ? (
             <>
               <span>{displayDates.startDate}</span>

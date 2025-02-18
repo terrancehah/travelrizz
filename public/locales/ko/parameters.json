@@ -1,38 +1,56 @@
 {
   "budget": {
     "selector": {
-      "prompt": "무식으로 무식하게 구분해주세요"
+      "prompt": "예산 범위를 선택해주세요",
+      "confirmbutton": "예산 확인"
     },
+    "confirmationmessage": "예산을 {budget}(으)로 설정했습니다",
     "levels": {
-      "budget": {
+      "Budget": {
         "label": "이코노미",
-        "description": "기본 시설을 갖춘 저렴한 옵션"
+        "symbol": "$",
+        "description": "기본 시설이 갖춰진 경제적인 옵션"
       },
-      "moderate": {
-        "label": "중급",
+      "Moderate": {
+        "label": "스탠다드",
+        "symbol": "$$",
         "description": "가성비가 좋은 중급 옵션"
       },
-      "luxury": {
+      "Luxury": {
         "label": "럭셔리",
+        "symbol": "$$$",
         "description": "프리미엄 서비스를 제공하는 고급 옵션"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "울트라 럭셔리",
+        "symbol": "$$$$",
         "description": "독점적인 럭셔리 경험"
       }
     }
   },
   "preferences": {
     "selector": {
-      "prompt": "행사권을 다른 유머을 통해 구분해주세요"
+      "prompt": "여행 선호도를 선택해주세요",
+      "confirm": "선호도 확인"
     },
     "options": {
       "culture": "문화와 유산",
       "nature": "자연",
-      "food": "미식",
+      "food": "맛집",
       "leisure": "레저",
       "adventure": "모험",
-      "arts": "예술과 박물권"
-    }
+      "arts": "예술과 박물관"
+    },
+    "confirmationmessage": "선호도를 다음과 같이 업데이트했습니다: {preferences}"
+  },
+  "dates": {
+    "selector": {
+      "prompt": "언제 여행하시나요?",
+      "confirmbutton": "날짜 확인"
+    },
+    "confirmationmessage": "여행 날짜를 {startDate}에서 {endDate}로 변경했습니다"
+  },
+  "language": {
+    "confirmationmessage": "언어 기본 설정을 {{language}}(으)로 설정했습니다"
   }
 }

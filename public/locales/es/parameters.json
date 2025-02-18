@@ -1,22 +1,23 @@
 {
   "budget": {
     "selector": {
-      "prompt": "¿Cuál es tu presupuesto?"
+      "prompt": "¿Cuál es tu presupuesto?",
+      "confirmationmessage": "He establecido mi presupuesto en {{budget}}"
     },
     "levels": {
-      "budget": {
+      "Budget": {
         "label": "Económico",
         "description": "Opciones-economicas con servicios básicos"
       },
-      "moderate": {
+      "Moderate": {
         "label": "Moderado",
         "description": "Opciones de rango medio con buena relación calidad-precio"
       },
-      "luxury": {
+      "Luxury": {
         "label": "Lujo",
         "description": "Opciones de alta gama con servicios premium"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "Ultra Lujo",
         "description": "Experiencias de lujo exclusivas"
       }
@@ -26,6 +27,7 @@
     "selector": {
       "prompt": "¿Cuál es tu estilo de viaje?"
     },
+    "confirmationmessage": "He actualizado mis preferencias a: {{preferences}}",
     "options": {
       "culture": "Cultura y Patrimonio",
       "nature": "Naturaleza",
@@ -34,5 +36,11 @@
       "adventure": "Aventura",
       "arts": "Arte y Museos"
     }
+  },
+  "dates": {
+    "confirmationmessage": "He cambiado mis fechas de viaje a {{startDate}} - {{endDate}}"
+  },
+  "language": {
+    "confirmationmessage": "He establecido mi preferencia de idioma en {{language}}"
   }
 }

@@ -13,7 +13,7 @@ import "flatpickr/dist/flatpickr.min.css"
 import Image from "next/image"
 import Head from "next/head"
 import { TravelPreference, TravelSession, SupportedLanguage, BudgetLevel } from '../managers/types'
-import { initializeSession, generateSessionId, safeStorageOp, getStoredSession, SESSION_CONFIG } from '../utils/session-manager'
+import { initializeSession, generateSessionId, safeStorageOp, getStoredSession, clearSession, SESSION_CONFIG } from '../utils/session-manager'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Link from "next/link"
 import { useLocalizedFont } from "@/hooks/useLocalizedFont"
@@ -229,6 +229,9 @@ export default function TravelFormPage() {
       setLoading(false)
       return
     }
+
+    // Clear any existing session before creating a new one
+    clearSession();
 
     try {
       const now = Date.now()

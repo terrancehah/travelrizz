@@ -1,6 +1,7 @@
 import React from 'react';
 import { TravelPreference, PREFERENCE_ICONS } from '../../managers/types';
 import { useTranslations } from 'next-intl';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 export interface PreferenceSelectorProps {
   currentPreferences?: TravelPreference[];
@@ -12,6 +13,7 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
   onUpdate 
 }) => {
   const t = useTranslations('parameters');
+  const fonts = useLocalizedFont();
   const [tempPreferences, setTempPreferences] = React.useState<TravelPreference[]>(() => {
     return currentPreferences || [];
   });
@@ -39,19 +41,20 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
   const preferences = Object.values(TravelPreference);
 
   return (
-    <div className="w-full mx-auto max-w-[600px] bg-white rounded-3xl shadow-md">
-      <div className="px-6 py-4">
-        <h3 className="text-lg font-raleway font-semibold text-gray-700 mb-3">{t('preferences.selector.prompt')}</h3>
+    <div className="w-full mx-auto max-w-[600px] bg-white rounded-3xl border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300 mt-4">
+      <div className="px-6 py-4 my-2">
+        <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>{t('preferences.selector.prompt')}</h3>
         <div className="grid grid-cols-2 gap-3 mb-4">
           {preferences.map(value => (
             <div 
               key={value}
               onClick={() => togglePreference(value)}
               className={`
-                cursor-pointer flex align-middle text-left p-3 rounded-lg font-raleway text-sm
-                transition-all duration-200 ease-in-out
+                cursor-pointer flex align-middle text-left p-3 rounded-lg ${fonts.text} text-sm
+                shadow-md hover:shadow-lg border hover:border-sky-400
+                transition-all duration-200 ease-in-out hover:scale-[1.02] active:scale-[0.98]
                 ${tempPreferences.includes(value)
-                  ? 'bg-[#4798cc] bg-opacity-20 text-[#4798cc] shadow-sm'
+                  ? 'bg-sky-blue bg-opacity-20 text-[#4798cc] shadow-sm'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }
               `}
@@ -79,7 +82,7 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
         <div className="flex justify-end">
           <button
             onClick={handleConfirm}
-            className="px-4 py-2 bg-[#4798cc] text-white rounded-lg font-raleway text-sm hover:bg-[#3d82b3] transition-colors duration-200"
+            className={`px-4 py-2 bg-[#4798cc] text-gray-100 hover:text-white rounded-lg ${fonts.text} text-sm hover:bg-[#3d82b3] transition-colors duration-200`}
           >
             {t('preferences.selector.confirm')}
           </button>

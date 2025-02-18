@@ -1,38 +1,56 @@
 {
   "budget": {
     "selector": {
-      "prompt": "Quel est votre budget?"
+      "prompt": "Quelle est votre fourchette de budget ?",
+      "confirmbutton": "Confirmer le Budget"
     },
+    "confirmationmessage": "J'ai défini mon budget à {budget}",
     "levels": {
-      "budget": {
+      "Budget": {
         "label": "Économique",
-        "description": "Options economiques avec services de base"
+        "symbol": "$",
+        "description": "Options économiques avec équipements de base"
       },
-      "moderate": {
+      "Moderate": {
         "label": "Modéré",
-        "description": "Options milieu de gamme avec bon rapport qualité-prix"
+        "symbol": "$$",
+        "description": "Options intermédiaires avec bon rapport qualité-prix"
       },
-      "luxury": {
+      "Luxury": {
         "label": "Luxe",
+        "symbol": "$$$",
         "description": "Options haut de gamme avec services premium"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "Ultra Luxe",
+        "symbol": "$$$$",
         "description": "Expériences de luxe exclusives"
       }
     }
   },
   "preferences": {
     "selector": {
-      "prompt": "Quels sont vos preferences?"
+      "prompt": "Quelles sont vos préférences ?",
+      "confirm": "Confirmer les Préférences"
     },
     "options": {
       "culture": "Culture et Patrimoine",
       "nature": "Nature",
       "food": "Gastronomie",
-      "relaxation": "Détente",
+      "leisure": "Détente",
       "adventure": "Aventure",
-      "arts": "Art et Musées"
-    }
+      "arts": "Arts et Musées"
+    },
+    "confirmationmessage": "J'ai mis à jour mes préférences : {preferences}"
+  },
+  "dates": {
+    "selector": {
+      "prompt": "Quand voyagez-vous ?",
+      "confirmbutton": "Confirmer les Dates"
+    },
+    "confirmationmessage": "J'ai modifié mes dates de voyage du {startDate} au {endDate}"
+  },
+  "language": {
+    "confirmationmessage": "J'ai défini ma préférence linguistique sur {language}"
   }
 }

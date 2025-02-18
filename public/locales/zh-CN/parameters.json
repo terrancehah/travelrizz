@@ -1,30 +1,36 @@
 {
   "budget": {
     "selector": {
-      "prompt": "您的预算范围是什么?"
+      "prompt": "您的预算范围是什么?",
+      "confirmbutton": "确认预算"
     },
+    "confirmationmessage": "我已将预算设置为{budget}",
     "levels": {
-      "budget": {
+      "Budget": {
         "label": "经济",
-        "description": "适合预算有限的旅客"
+        "symbol": "$",
+        "description": "提供基本设施的经济实惠选项"
       },
-      "moderate": {
-        "label": "中档",
-        "description": "适合寻求舒适与价值平衡的旅客"
+      "Moderate": {
+        "label": "中等",
+        "symbol": "$$",
+        "description": "性价比优良的中档选项"
       },
-      "luxury": {
+      "Luxury": {
         "label": "豪华",
-        "description": "适合追求高品质体验的旅客"
+        "symbol": "$$$",
+        "description": "高端服务的豪华选项"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "超级豪华",
-        "description": "适合寻求顶级奢华体验的旅客"
+        "symbol": "$$$$",
+        "description": "独特奢华的顶级体验"
       }
     }
   },
   "preferences": {
     "selector": {
-      "prompt": "您的旅遊偏好是什么?",
+      "prompt": "您的旅游偏好是什么?",
       "confirm": "确认偏好"
     },
     "options": {
@@ -32,8 +38,19 @@
       "nature": "自然",
       "food": "美食",
       "leisure": "休闲",
-      "adventure": "探险",
+      "adventure": "冒险",
       "arts": "艺术与博物馆"
-    }
+    },
+    "confirmationmessage": "我已更新偏好至：{preferences}"
+  },
+  "dates": {
+    "selector": {
+      "prompt": "您计划何时出行?",
+      "confirmbutton": "确认日期"
+    },
+    "confirmationmessage": "我已将旅行日期更改为{startDate}至{endDate}"
+  },
+  "language": {
+    "confirmationmessage": "我已将语言偏好设置为{language}"
   }
 }

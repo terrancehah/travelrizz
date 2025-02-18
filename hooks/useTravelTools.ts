@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { TravelDetails, TravelSession } from '../managers/types';
 import { Place } from '../utils/places-utils';
 import { getStoredSession, safeStorageOp, storage, SESSION_CONFIG } from '../utils/session-manager';
+import { useTranslations } from 'next-intl';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface UseTravelToolsProps {
   currentDetails: TravelDetails;
@@ -23,19 +25,22 @@ export function useTravelTools({
   savedPlaces
 }: UseTravelToolsProps) {
   const [toolVisibility, setToolVisibility] = useState<Record<string, boolean>>({});
+  const t = useTranslations('parameters');
+  const fonts = useLocalizedFont();
 
   // Helper function to update session storage
   const updateSessionDetails = (updates: Partial<TravelDetails>) => {
     const session = getStoredSession();
-    if (!session) return;
-
-    safeStorageOp(() => {
-      storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify({
+    if (session) {
+      const updatedSession = {
         ...session,
         ...updates,
         lastActive: Date.now()
-      }));
-    }, undefined);
+      };
+      safeStorageOp(() => {
+        storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(updatedSession));
+      }, undefined);
+    }
   };
 
   const handleToolUpdate = async (message: any) => {
@@ -55,6 +60,7 @@ export function useTravelTools({
 
     // Handle different tool types
     switch (result.type) {
+
       case 'budgetSelector':
         // Only show selector, don't update anything yet
         if (!result.props?.currentBudget) {
@@ -79,7 +85,9 @@ export function useTravelTools({
           }
           await append({
             role: 'user',
-            content: `I've set my budget to ${result.props.currentBudget}`
+            content: t('budget.confirmationmessage', {
+              budget: result.props.currentBudget
+            })
           });
         }
         break;
@@ -108,7 +116,9 @@ export function useTravelTools({
           }
           await append({
             role: 'user',
-            content: `I've updated my preferences to: ${result.props.currentPreferences.join(', ')}.`
+            content: t('preferences.confirmationmessage', {
+              preferences: result.props.currentPreferences.join(', ')
+            })
           });
         }
         break;
@@ -140,7 +150,10 @@ export function useTravelTools({
           }
           await append({
             role: 'user',
-            content: `I've changed my travel dates to ${result.props.startDate} - ${result.props.endDate}.`
+            content: t('dates.confirmationmessage', { 
+              startDate: result.props.startDate, 
+              endDate: result.props.endDate 
+            })
           });
         }
         break;
@@ -169,7 +182,7 @@ export function useTravelTools({
           }
           await append({
             role: 'user',
-            content: `I've set my language preference to ${result.props.currentLanguage}.`
+            content: t('language.confirmationmessage', { language: result.props.currentLanguage })
           });
         }
         break;

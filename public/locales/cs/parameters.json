@@ -1,22 +1,23 @@
 {
   "budget": {
     "selector": {
-      "prompt": "Jaký je tvoí budžet?"
+      "prompt": "Jaký je tvoí budžet?",
+      "confirmationmessage": "Rozpočet jsem nastavil na {{budget}}"
     },
     "levels": {
-      "budget": {
+      "Budget": {
         "label": "Nízký rozpočet",
         "description": "Cenově dostupné možnosti se základním vybavením"
       },
-      "moderate": {
+      "Moderate": {
         "label": "Střední",
         "description": "Střední cenová kategorie s dobrou hodnotou"
       },
-      "luxury": {
+      "Luxury": {
         "label": "Luxusní",
         "description": "Luxusní možnosti s prémiovými službami"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "Ultra luxusní",
         "description": "Exkluzivní luxusní zážitky"
       }
@@ -26,6 +27,7 @@
     "selector": {
       "prompt": "Jaký je tvoí stíl?"
     },
+    "confirmationmessage": "Aktualizoval jsem své preference na: {{preferences}}",
     "options": {
       "culture": "Kultura a dědictví",
       "nature": "Příroda",
@@ -34,5 +36,11 @@
       "adventure": "Dobrodružství",
       "arts": "Kunst & Museum"
     }
+  },
+  "dates": {
+    "confirmationmessage": "Změnil jsem termín cesty na {{startDate}} - {{endDate}}"
+  },
+  "language": {
+    "confirmationmessage": "Nastavil jsem jazykovou preferenci na {{language}}"
   }
 }

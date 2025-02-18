@@ -135,7 +135,7 @@ export default async function handler(req: NextRequest) {
       - Otherwise: Focus on parameter update options
       - When Travel-Rizz asks which parameters to update or modify, provide options related to updating parameter
       - Only provide options related to yes, no, and parameter updates
-      - Available options are examples like "Update my travel dates", "Modify my budget", "Change my preferences", "Update my language", 
+      - Available options are examples like "Update my travel dates", "Modify my budget", "Change my preferences", 
       "No, I need to modify something", "Let me review the details", "Yes, let's proceed", "Yes, let's move on"
 
     Stage 2 (City Introduction):
@@ -170,12 +170,12 @@ export default async function handler(req: NextRequest) {
     `;
 
     const dynamicContext = `Current Context for Quick Response Generation:
-    - Destination: ${currentDetails?.destination || 'Not set'}
+    - Travel Destination: ${currentDetails?.destination || 'Not set'}
     - Current Stage: ${currentStage || 1}
-    - Dates: ${currentDetails?.startDate || 'Not set'} to ${currentDetails?.endDate || 'Not set'}
-    - Response Language: ${currentDetails?.language || 'Not set'}
-    - Budget: ${currentDetails?.budget || 'Not set'}
-    - Preferences: ${currentDetails?.preferences?.join(', ') || 'Not set'}
+    - Travel Dates: ${currentDetails?.startDate || 'Not set'} to ${currentDetails?.endDate || 'Not set'}
+    - Chat Language: ${currentDetails?.language || 'Not set'}
+    - Travel Budget: ${currentDetails?.budget || 'Not set'}
+    - Travel Preferences: ${currentDetails?.preferences?.join(', ') || 'Not set'}
     - Saved Places Count: ${savedPlaces?.length || 0}
     - Payment Status: ${metrics?.isPaid ? 'Paid' : 'Not Paid'}
 

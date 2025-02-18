@@ -1,38 +1,56 @@
 {
   "budget": {
     "selector": {
-      "prompt": "Berapa julat bajet anda?"
+      "prompt": "Apakah julat bajet anda?",
+      "confirmbutton": "Sahkan Bajet"
     },
+    "confirmationmessage": "Saya telah menetapkan bajet kepada {budget}",
     "levels": {
-      "budget": {
-        "label": "Bajet",
-        "description": "Pilihan mesra bajet dengan kemudahan asas"
+      "Budget": {
+        "label": "Ekonomi",
+        "symbol": "$",
+        "description": "Pilihan berjimat dengan kemudahan asas"
       },
-      "moderate": {
+      "Moderate": {
         "label": "Sederhana",
+        "symbol": "$$",
         "description": "Pilihan pertengahan dengan nilai yang baik"
       },
-      "luxury": {
+      "Luxury": {
         "label": "Mewah",
+        "symbol": "$$$",
         "description": "Pilihan mewah dengan perkhidmatan premium"
       },
-      "ultraLuxury": {
+      "Ultra Luxury": {
         "label": "Ultra Mewah",
+        "symbol": "$$$$",
         "description": "Pengalaman mewah eksklusif"
       }
     }
   },
   "preferences": {
     "selector": {
-      "prompt": "Apa minat perjalanan anda?"
+      "prompt": "Apakah keutamaan anda?",
+      "confirm": "Sahkan Keutamaan"
     },
     "options": {
-      "culture": "Budaya",
+      "culture": "Budaya dan Warisan",
       "nature": "Alam Semulajadi",
       "food": "Makanan",
       "leisure": "Santai",
       "adventure": "Pengembaraan",
-      "arts": "Seni & Muzium"
-    }
+      "arts": "Seni dan Muzium"
+    },
+    "confirmationmessage": "Saya telah mengemaskini keutamaan kepada: {preferences}"
+  },
+  "dates": {
+    "selector": {
+      "prompt": "Bilakah anda akan melancong?",
+      "confirmbutton": "Sahkan Tarikh"
+    },
+    "confirmationmessage": "Saya telah menukar tarikh perjalanan kepada {startDate} - {endDate}"
+  },
+  "language": {
+    "confirmationmessage": "Saya telah menetapkan keutamaan bahasa kepada {{language}}"
   }
 }
