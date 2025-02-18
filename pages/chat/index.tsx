@@ -281,7 +281,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
             <main className="flex-1 flex relative bg-white min-h-0">
 
                 {/* Left Half - Chat Interface, and Chat Input Container */}
-                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-full border-r border-gray-200`}>
+                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-full border-r border-gray-200 dark:border-gray-700`}>
                     {isDetailsReady ? (
                         <>
                             {currentStage < 4 && (
@@ -323,6 +323,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                                 <MapComponent
                                     city={travelDetails.destination || ''}
                                     apiKey={apiKey}
+                                    theme={theme as 'light' | 'dark'}
                                     key={`map-${savedPlacesUpdate}`}
                                 />
                         ) : (

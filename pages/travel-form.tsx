@@ -289,7 +289,7 @@ export default function TravelFormPage() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="w-fit md:w-1/2 mx-auto space-y-8">
+          <div className="w-fit md:w-1/2 lg:w-1/3 mx-auto space-y-8">
             {/* Prompt and Input */}
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.destination')}</Label>
               <Input
@@ -330,7 +330,7 @@ export default function TravelFormPage() {
                       '--rdp-today-color': 'rgb(74 136 198)', // sky-blue for light mode
                       '--rdp-range_start-date-background-color': 'rgb(125 211 252)', /* The background color of the date when at the start of the selected range. */
                       '--rdp-disabled-opacity': '0.25'
-                    }}
+                    } as React.CSSProperties}
                     mode="range" 
                     min={1}
                     max={5}
@@ -354,13 +354,23 @@ export default function TravelFormPage() {
                       return false;
                     }}
                     selected={selected}
+                    defaultMonth={new Date()}
+                    fromDate={new Date()}
                     onSelect={(range: DateRange | undefined) => {
                       setSelected(range);
-                      if (range?.from && range.to) {
+                      // TypeScript type guard to ensure dates are defined
+                      if (range && 'from' in range && 'to' in range && range.from && range.to) {
+                        const formatDate = (date: Date) => {
+                          const year = date.getFullYear();
+                          const month = String(date.getMonth() + 1).padStart(2, '0');
+                          const day = String(date.getDate()).padStart(2, '0');
+                          return `${year}-${month}-${day}`;
+                        };
+
                         setFormData(prev => ({
                           ...prev,
-                          startDate: range.from.toLocaleDateString('en-CA'), // format: YYYY-MM-DD
-                          endDate: range.to.toLocaleDateString('en-CA')
+                          startDate: formatDate(range.from as Date),
+                          endDate: formatDate(range.to as Date)
                         }));
                       }
                     }}
@@ -406,7 +416,7 @@ export default function TravelFormPage() {
         )
       case 3:
         return (
-          <div className="w-fit md:w-1/2 mx-auto space-y-8">
+          <div className="w-fit md:w-1/2 lg:w-1/3 mx-auto space-y-8">
             {/* Prompts and Input */}
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.preferences')}</Label>
               <div className="grid grid-cols-2 gap-4">
@@ -451,7 +461,7 @@ export default function TravelFormPage() {
         )
       case 4:
         return (
-          <div className="w-fit md:w-1/2 mx-auto space-y-8">
+          <div className="w-fit md:w-1/2 lg:w-1/3 mx-auto space-y-8">
             {/* Prompts and Inputs */}
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.budget')}</Label>
               <div className="grid grid-cols-2 gap-4">
