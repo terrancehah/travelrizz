@@ -6,10 +6,10 @@ import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { Steps } from "../components/ui/steps"
 // import { useRouter } from "next/navigation"
-import { MapPin, Calendar, Heart, Wallet, Languages, Trees, Soup, ShoppingBag, Ship, Palette, Sun, Moon } from "lucide-react"
-import { Calendar as CalendarComponent } from "../components/ui/calendar"
-import { DateRange } from "react-day-picker"
-import { format } from "date-fns"
+import { MapPin, Calendar, Heart, Wallet, Languages, Trees, Soup, ShoppingBag, Ship, Palette, Sun, Moon, ChevronLeft, ChevronRight } from "lucide-react"
+import { DayPicker as CalendarComponent, DateRange } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+// import { Calendar as CalendarComponent } from "../components/ui/calendar"
 import Image from "next/image"
 import Head from "next/head"
 import { TravelPreference, TravelSession, SupportedLanguage, BudgetLevel } from '../managers/types'
@@ -20,7 +20,8 @@ import { useLocalizedFont } from "@/hooks/useLocalizedFont"
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useTheme } from 'next-themes';
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
+import { cn } from '@/utils/cn';
 
 // Add Google Maps types
 declare global {
@@ -45,6 +46,14 @@ export default function TravelFormPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
+  const [selected, setSelected] = useState<DateRange | undefined>();
+  const [numberOfMonths, setNumberOfMonths] = useState(1);
+
+  // Set initial number of months
+  useEffect(() => {
+    setNumberOfMonths(window.innerWidth >= 768 ? 2 : 1);
+  }, []);
+
   const [formData, setFormData] = useState<FormData>({
     destination: "",
     startDate: "",
@@ -116,6 +125,15 @@ export default function TravelFormPage() {
       }
     }
   }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setNumberOfMonths(window.innerWidth >= 768 ? 2 : 1);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handlePreferenceToggle = (preference: TravelPreference) => {
     setFormData((prev) => {
@@ -271,9 +289,8 @@ export default function TravelFormPage() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-8">
+          <div className="w-fit md:w-1/2 mx-auto space-y-8">
             {/* Prompt and Input */}
-            <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.destination')}</Label>
               <Input
                 ref={destinationRef}
@@ -284,7 +301,6 @@ export default function TravelFormPage() {
                 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
                 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300 ${fonts.text}`}
               />
-            </div>
             {/* Navigation */}
             <div className="flex space-x-4 justify-around">
               <Button
@@ -299,70 +315,80 @@ export default function TravelFormPage() {
         )
       case 2:
         return (
-          <div className="space-y-8">
+          <div className="w-fit mx-auto space-y-8">
             {/* Prompt and Input */}
-            <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.dates')}</Label>
-              {currentStep === 2 && (
-                <div className="space-y-4 p-4">
-                  <div className="flex justify-center">
-                    <CalendarComponent
-                      mode="range"
-                      numberOfMonths={2}
-                      disabled={(date) => {
-                        const today = new Date()
-                        today.setHours(0, 0, 0, 0)
-                        return date < today
-                      }}
-                      onSelect={(range: DateRange | undefined) => {
-                        if (!range?.from) return
+              {/* Calendar */}
+              <div className="flex w-fit space-y-4 p-4 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-600 rounded-md [&_.rdp]:dark:[--rdp-accent-color:rgb(56,189,248)] [&_.rdp]:dark:[--rdp-background-color:rgb(31,41,55)] [&_.rdp]:dark:[--rdp-accent-background-color:rgba(56,189,248,0.2)]">
+                  <CalendarComponent
+                    style={{
+                      '--rdp-accent-color': 'rgb(125 211 252)', // sky-400 for light mode
+                      '--rdp-background-color': 'white',
+                      '--rdp-accent-background-color': 'rgba(125, 211, 252, 0.2)',
+                      '--rdp-day_button-border-radius': '6px',
+                      '--rdp-selected-border': 'none',
+                      '--rdp-today-color': 'rgb(74 136 198)', // sky-blue for light mode
+                      '--rdp-range_start-date-background-color': 'rgb(125 211 252)', /* The background color of the date when at the start of the selected range. */
+                      '--rdp-disabled-opacity': '0.25'
+                    }}
+                    mode="range" 
+                    min={1}
+                    max={5}
+                    numberOfMonths={numberOfMonths}
+                    disabled={(date) => {
+                      const today = new Date(new Date().setHours(0,0,0,0));
+                      // Always disable past dates
+                      if (date < today) return true;
+                      
+                      // If we have a start date selected but no end date yet
+                      if (selected?.from && !selected.to) {
+                        const startDate = new Date(selected.from);
+                        const maxDate = new Date(startDate);
+                        maxDate.setDate(startDate.getDate() + 4);
                         
-                        // If only start date is selected
-                        if (!range.to) return
-                        
-                        // At this point, both from and to are guaranteed to be Date objects
-                        const from: Date = range.from
-                        const to: Date = range.to
-                        
-                        // Calculate the difference in days
-                        const diffDays = Math.ceil(
-                          (to.getTime() - from.getTime()) / 
-                          (1000 * 60 * 60 * 24)
-                        ) + 1;
-                        
-                        // Only update if within 5 days
-                        if (diffDays <= 5) {
-                          // For storage: Use ISO format (YYYY-MM-DD)
-                          const formatStorageDate = (date: Date) => {
-                            return date.toISOString().split('T')[0]
-                          }
-                          
-                          // For display: Use localized format
-                          const formatDisplayDate = (date: Date) => {
-                            return new Intl.DateTimeFormat(undefined, {
-                              year: 'numeric',
-                              month: 'short',
-                              day: 'numeric'
-                            }).format(date)
-                          }
-
-                          console.log('Selected dates (display format):', {
-                            from: formatDisplayDate(from),
-                            to: formatDisplayDate(to)
-                          })
-                          
-                          setFormData(prev => ({
-                            ...prev,
-                            startDate: formatStorageDate(from),
-                            endDate: formatStorageDate(to)
-                          }))
-                        }
-                      }}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
+                        // During end date selection, disable dates out of range
+                        return date < startDate || date > maxDate;
+                      }
+                      
+                      // If both dates are selected or no dates selected, only disable past dates
+                      return false;
+                    }}
+                    selected={selected}
+                    onSelect={(range: DateRange | undefined) => {
+                      setSelected(range);
+                      if (range?.from && range.to) {
+                        setFormData(prev => ({
+                          ...prev,
+                          startDate: range.from.toLocaleDateString('en-CA'), // format: YYYY-MM-DD
+                          endDate: range.to.toLocaleDateString('en-CA')
+                        }));
+                      }
+                    }}
+                    className={`${fonts.text}`}
+                    classNames={{
+                      caption_label: "pl-3 my-auto",
+                      nav_button: cn(
+                        "bg-transparent opacity-50 hover:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md transition-colors duration-300"
+                      ),
+                      head_cell: "text-gray-500 dark:text-gray-400",
+                      cell: "[&:has([aria-selected])]:bg-sky-50 dark:[&:has([aria-selected])]:bg-sky-900/20 [&:has([aria-selected])]:rounded-md",
+                      day: "aria-selected:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-300 rounded-md",
+                      day_selected: "bg-sky-400/10 text-sky-600 hover:bg-sky-500/20 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 dark:bg-sky-500/10 dark:hover:bg-sky-500/20",
+                    }}
+                    components={{
+                      PreviousMonthButton: (props) => (
+                        <button {...props} className={cn(props.className)}>
+                          <ChevronLeft className="rounded-md hover:bg-gray-100 dark:hover:bg-gray-800" />
+                        </button>
+                      ),
+                      NextMonthButton: (props) => (
+                        <button {...props} className={cn(props.className)}>
+                          <ChevronRight className="rounded-md hover:bg-gray-100 dark:hover:bg-gray-800" />
+                        </button>
+                      )
+                    }}
+                  />
+              </div>
             {/* Navigation */}
             <div className="flex space-x-4 justify-around">
               <Button variant="outline" className={`w-full transition-colors duration-300 text-base border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
@@ -380,9 +406,8 @@ export default function TravelFormPage() {
         )
       case 3:
         return (
-          <div className="space-y-8">
+          <div className="w-fit md:w-1/2 mx-auto space-y-8">
             {/* Prompts and Input */}
-            <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.preferences')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -408,7 +433,6 @@ export default function TravelFormPage() {
                   </Button>
                 ))}
               </div>
-            </div>
             {/* Navigation */}
             <div className="flex space-x-4">
               <Button variant="outline" className={`w-full transition-colors duration-300 text-base 
@@ -427,9 +451,8 @@ export default function TravelFormPage() {
         )
       case 4:
         return (
-          <div className="space-y-8">
+          <div className="w-fit md:w-1/2 mx-auto space-y-8">
             {/* Prompts and Inputs */}
-            <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.budget')}</Label>
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -452,7 +475,6 @@ export default function TravelFormPage() {
                   </Button>
                 ))}
               </div>
-            </div>
             {/* Navigation */}
             <div className="flex space-x-4">
               <Button variant="outline" className={`w-full transition-colors duration-300 text-base border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
@@ -517,8 +539,8 @@ export default function TravelFormPage() {
         </div>
 
         {/* Main Content */}
-        <div className="flex flex-1 p-6 mt-32 md:mt-0">
-          <div className="max-w-md w-full m-auto space-y-8">
+        <div className="flex flex-1 p-6 md:mt-0">
+          <div className="w-full m-auto">
               {renderStepContent()}
           </div>
         </div>

@@ -17,5 +17,8 @@
     "thinking": "Travel-Rizz sedang berfikir",
     "inputPlaceholder": "Taip mesej anda...",
     "send": "Hantar"
+  },
+  "chatMessages": {
+    "initialPrompt": "Saya berperjalanan ke {destination} dari {startDate} hingga {endDate}. Bagaimanakah anda dapat membantu saya mengatur perjalanan saya?"
   }
 }

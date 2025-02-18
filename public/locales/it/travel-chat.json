@@ -17,5 +17,8 @@
     "thinking": "Travel-Rizz sta pensando",
     "inputPlaceholder": "Scrivi il tuo messaggio...",
     "send": "Invia"
+  },
+  "chatMessages": {
+    "initialPrompt": "Sto viaggiando a {destination} dal {startDate} al {endDate}. Puoi aiutarmi a pianificare il mio viaggio?"
   }
 }

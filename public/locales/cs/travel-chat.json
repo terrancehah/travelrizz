@@ -17,5 +17,8 @@
     "thinking": "Travel-Rizz přemýšlí",
     "inputPlaceholder": "Napište zprávu...",
     "send": "Odeslat"
+  },
+  "chatMessages": {
+    "initialPrompt": "Cestuji do {destination} od {startDate} do {endDate}. Můžete mi pomoci naplánovat cestu?"
   }
 }

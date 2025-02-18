@@ -17,5 +17,8 @@
     "thinking": "Travel-Rizz 正在思考",
     "inputPlaceholder": "輸入您的訊息...",
     "send": "發送"
+  },
+  "chatMessages": {
+    "initialPrompt": "我將從{startDate}到{endDate}前往{destination}旅行。您能幫我規劃行程嗎？"
   }
 }

@@ -154,12 +154,36 @@ export function TravelChat({
     const shouldShowQuickResponses = useCallback(() => {
         // Don't show quick responses if any parameter component is active
         const hasActiveParameterComponent = messages.some(message => 
-            message.toolInvocations?.some(t => 
-                ['budgetSelector', 'preferenceSelector', 'datePicker', 'languageSelector'].includes(t.toolName)
-                && toolVisibility[t.toolCallId] // Check if the component is visible
-            )
+            message.toolInvocations?.some(t => {
+                const isParameter = ['budgetSelector', 'preferenceSelector', 'datePicker', 'languageSelector'].includes(t.toolName);
+                const isVisible = toolVisibility[t.toolCallId];
+                
+                // console.log('Tool Check:', {
+                //     toolName: t.toolName,
+                //     toolCallId: t.toolCallId,
+                //     isParameter,
+                //     isVisible,
+                //     toolVisibility
+                // });
+                
+                return isParameter && isVisible;
+            })
         );
         
+        // console.log('Quick Response Check:', {
+        //     hasActiveParameterComponent,
+        //     isLoading,
+        //     quickResponsesLength: quickResponses?.length,
+        //     isQuickResponseLoading,
+        //     messages: messages.map(m => ({
+        //         role: m.role,
+        //         toolInvocations: m.toolInvocations?.map(t => ({
+        //             toolName: t.toolName,
+        //             toolCallId: t.toolCallId
+        //         }))
+        //     }))
+        // });
+
         if (hasActiveParameterComponent) {
             // console.log('[QuickResponse] Hidden due to active parameter component');
             return false;
@@ -188,8 +212,11 @@ export function TravelChat({
             
             append({
                 role: 'user',
-                content: `I'm travelling to ${currentDetails.destination} from ${currentDetails.startDate} to ${currentDetails.endDate}. 
-                Can you help me plan my trip?`,
+                content: t('chatMessages.initialPrompt', {
+                    destination: currentDetails.destination,
+                    startDate: currentDetails.startDate,
+                    endDate: currentDetails.endDate
+                }),
             }, { body });
         }
     }, [currentDetails, currentStage]);
