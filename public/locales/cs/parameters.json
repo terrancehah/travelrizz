@@ -38,9 +38,10 @@
     }
   },
   "dates": {
-    "confirmationmessage": "Změnil jsem termín cesty na {{startDate}} - {{endDate}}"
-  },
-  "language": {
-    "confirmationmessage": "Nastavil jsem jazykovou preferenci na {{language}}"
+    "selector": {
+      "prompt": "Kdy chcete se podívat?",
+      "confirmbutton": "Potvrdit Datum"
+    },
+    "confirmationmessage": "Změnil jsem termín cesty z {startDate} do {endDate}"
   }
 }

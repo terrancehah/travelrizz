@@ -49,8 +49,5 @@
       "confirmbutton": "날짜 확인"
     },
     "confirmationmessage": "여행 날짜를 {startDate}에서 {endDate}로 변경했습니다"
-  },
-  "language": {
-    "confirmationmessage": "언어 기본 설정을 {{language}}(으)로 설정했습니다"
   }
 }

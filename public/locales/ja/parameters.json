@@ -49,8 +49,5 @@
       "confirmbutton": "日程を確認"
     },
     "confirmationmessage": "旅行日程を{startDate}から{endDate}に変更しました"
-  },
-  "language": {
-    "confirmationmessage": "言語設定を{{language}}に変更しました"
   }
 }

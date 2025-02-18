@@ -49,8 +49,5 @@
       "confirmbutton": "Confirmer les Dates"
     },
     "confirmationmessage": "J'ai modifié mes dates de voyage du {startDate} au {endDate}"
-  },
-  "language": {
-    "confirmationmessage": "J'ai défini ma préférence linguistique sur {language}"
   }
 }

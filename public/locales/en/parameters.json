@@ -49,6 +49,6 @@
       "prompt": "When are you traveling?",
       "confirmbutton": "Confirm Dates"
     },
-    "confirmationmessage": "I've changed my travel dates to {startDate} - {endDate}"
+    "confirmationmessage": "I've changed my travel dates from {startDate} to {endDate}"
   }
 }

@@ -38,9 +38,10 @@
     }
   },
   "dates": {
-    "confirmationmessage": "Ich habe meine Reisedaten geändert auf {{startDate}} - {{endDate}}"
-  },
-  "language": {
-    "confirmationmessage": "Ich habe meine Sprachpräferenz auf {{language}} festgelegt"
+    "selector": {
+      "prompt": "Was ist dein Stil?",
+      "confirmbutton": "Potvrdit Datum"
+    },
+    "confirmationmessage": "Ich habe meine Reisedaten geändert von {startDate} auf {endDate}"
   }
 }

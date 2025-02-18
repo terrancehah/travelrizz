@@ -38,9 +38,10 @@
     }
   },
   "dates": {
-    "confirmationmessage": "He cambiado mis fechas de viaje a {{startDate}} - {{endDate}}"
-  },
-  "language": {
-    "confirmationmessage": "He establecido mi preferencia de idioma en {{language}}"
+    "selector": {
+      "prompt": "¿Cuál es tu estilo de viaje?",
+      "confirmbutton": "Confirmar Fechas"
+    },
+    "confirmationmessage": "He cambiado mis fechas de viaje de {startDate} a {endDate}"
   }
 }

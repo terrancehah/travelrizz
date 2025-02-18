@@ -48,9 +48,6 @@
       "prompt": "Bilakah anda akan melancong?",
       "confirmbutton": "Sahkan Tarikh"
     },
-    "confirmationmessage": "Saya telah menukar tarikh perjalanan kepada {startDate} - {endDate}"
-  },
-  "language": {
-    "confirmationmessage": "Saya telah menetapkan keutamaan bahasa kepada {{language}}"
+    "confirmationmessage": "Saya telah menukar tarikh perjalanan ke {startDate} hingga {endDate}"
   }
 }

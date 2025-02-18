@@ -49,8 +49,5 @@
       "confirmbutton": "確認日期"
     },
     "confirmationmessage": "我已將旅行日期更改為{startDate}至{endDate}"
-  },
-  "language": {
-    "confirmationmessage": "我已將語言偏好設定為{language}"
   }
 }
