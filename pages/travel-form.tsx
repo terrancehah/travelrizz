@@ -147,6 +147,9 @@ export default function TravelFormPage() {
   const handleSubmit = async () => {
     setLoading(true)
 
+    // Clear any existing session before creating a new one
+    clearSession();
+
     // Get form values
     const city = formData.destination
     const formattedStartDate = formData.startDate
@@ -167,9 +170,6 @@ export default function TravelFormPage() {
       setLoading(false)
       return
     }
-
-    // Clear any existing session before creating a new one
-    clearSession();
 
     try {
       const now = Date.now()
