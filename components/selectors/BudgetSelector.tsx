@@ -19,7 +19,7 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
   ];
 
   return (
-    <div className="w-fit flex mx-auto max-w-[600px] bg-white  rounded-3xl my-2
+    <div className="w-[80%] md:w-fit flex mx-auto max-w-[600px] bg-white  rounded-3xl my-2
     border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300">
       <div className="p-6">
         <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>{t('budget.selector.prompt')}</h3>

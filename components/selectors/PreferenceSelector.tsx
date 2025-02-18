@@ -41,7 +41,7 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
   const preferences = Object.values(TravelPreference);
 
   return (
-    <div className="w-full mx-auto max-w-[600px] bg-white rounded-3xl border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300 mt-4">
+    <div className="w-[80%] md:w-fit mx-auto max-w-[600px] bg-white rounded-3xl border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300 mt-4">
       <div className="px-6 py-4 my-2">
         <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>{t('preferences.selector.prompt')}</h3>
         <div className="grid grid-cols-2 gap-3 mb-4">

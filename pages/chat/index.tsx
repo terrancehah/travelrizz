@@ -309,7 +309,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 {isMobile && (
                     <button
                         onClick={() => setShowMap(!showMap)}
-                        className="fixed top-28 right-4 z-[50] bg-white p-3 rounded-lg shadow-all"
+                        className="fixed top-32 right-4 z-[50] bg-white p-3 rounded-lg shadow-all"
                     >
                         <Map className={`h-6 w-6 ${showMap ? 'text-blue-500' : 'text-gray-500'}`} />
                     </button>

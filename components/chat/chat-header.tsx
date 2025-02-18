@@ -89,7 +89,9 @@ export const ChatHeader = ({ currentDetails, isCollapsed, setIsCollapsed }: Chat
         {/* Collapse button */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 px-2 py-0.5 mb-2 text-secondary hover:text-primary bg-sky-200/80 hover:bg-sky-200 dark:bg-blue-800/80 dark:hover:bg-blue-800  dark:text-sky-100  transition-colors rounded-full duration-200 focus:outline-none"
+          className="absolute -bottom-5 md:bottom-0 left-1/2 transform -translate-x-1/2 px-2 py-0.5 mb-2 
+          text-secondary hover:text-primary bg-sky-200/80 hover:bg-sky-200 dark:bg-blue-800/80 dark:hover:bg-blue-800  dark:text-sky-100 
+          transition-colors rounded-full duration-200 focus:outline-none"
           aria-label={isCollapsed ? 'Expand header' : 'Collapse header'}
         >
           {isCollapsed ? <ChevronDownIcon className="h-6 w-6" /> : <ChevronUpIcon className="h-6 w-6" />}

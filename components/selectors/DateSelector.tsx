@@ -66,7 +66,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ dates, onUpdate, style }
   }, [dates, onUpdate, displayDates]);
 
   return (
-    <div className="w-min mx-auto bg-white rounded-3xl border border-gray-100 shadow-md">
+    <div className="w-[80%] md:w-fit mx-auto bg-white rounded-3xl border border-gray-100 shadow-md">
       <div className="w-min px-8 py-5">
         <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>Travel Dates</h3>
         

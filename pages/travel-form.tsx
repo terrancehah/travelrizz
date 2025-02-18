@@ -7,9 +7,9 @@ import { Label } from "../components/ui/label"
 import { Steps } from "../components/ui/steps"
 // import { useRouter } from "next/navigation"
 import { MapPin, Calendar, Heart, Wallet, Languages, Trees, Soup, ShoppingBag, Ship, Palette, Sun, Moon } from "lucide-react"
-import flatpickr from "flatpickr"
-import type { Instance } from "flatpickr/dist/types/instance"
-import "flatpickr/dist/flatpickr.min.css"
+import { Calendar as CalendarComponent } from "../components/ui/calendar"
+import { DateRange } from "react-day-picker"
+import { format } from "date-fns"
 import Image from "next/image"
 import Head from "next/head"
 import { TravelPreference, TravelSession, SupportedLanguage, BudgetLevel } from '../managers/types'
@@ -54,7 +54,6 @@ export default function TravelFormPage() {
   })
 
   const destinationRef = useRef<HTMLInputElement>(null)
-  const dateRangeRef = useRef<HTMLInputElement>(null)
   const budgetRef = useRef<HTMLSelectElement>(null)
 
   // Define steps configuration
@@ -117,85 +116,6 @@ export default function TravelFormPage() {
       }
     }
   }, [])
-
-  useEffect(() => {
-    if (currentStep === 2 && dateRangeRef.current) {
-      // Cleanup any existing flatpickr instance
-      const existingInstance = (dateRangeRef.current as any)._flatpickr
-      if (existingInstance) {
-        existingInstance.destroy()
-      }
-
-      // Initialize new flatpickr instance
-      const fp = flatpickr(dateRangeRef.current, {
-        mode: "range",
-        dateFormat: "Y-m-d",
-        minDate: "today",
-        onChange: (selectedDates, dateStr, instance) => {
-          try {
-            // When user starts a new selection, reset maxDate
-            if (selectedDates.length === 0) {
-              instance.set("maxDate", null);
-              console.log('Reset date constraints for new selection');
-              return;
-            }
-
-            // When first date is selected, set maxDate to 5 days ahead
-            if (selectedDates.length === 1) {
-              const maxDate = new Date(selectedDates[0].getTime() + (4 * 24 * 60 * 60 * 1000));
-              instance.set("maxDate", maxDate);
-              console.log('Set max date to:', maxDate.toISOString());
-              return;
-            }
-            
-            // When both dates are selected
-            if (selectedDates.length === 2) {
-              const formatDate = (date: Date) => {
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                return `${year}-${month}-${day}`;
-              };
-
-              const startDate = formatDate(selectedDates[0]);
-              const endDate = formatDate(selectedDates[1]);
-              
-              // Validate date range
-              const diffDays = Math.ceil(
-                (selectedDates[1].getTime() - selectedDates[0].getTime()) / 
-                (1000 * 60 * 60 * 24)
-              ) + 1;
-              
-              if (diffDays > 5) {
-                console.warn('Invalid date range selected:', diffDays, 'days');
-                return;
-              }
-              
-              console.log('Selected dates:', { startDate, endDate, diffDays });
-              setFormData(prev => ({
-                ...prev,
-                startDate,
-                endDate
-              }));
-
-              // Reset maxDate after successful selection to allow reselection
-              instance.set("maxDate", null);
-            }
-          } catch (error) {
-            console.error('Error handling date selection:', error);
-            // Reset the date picker on error
-            instance.clear();
-            instance.set("maxDate", null);
-          }
-        }
-      })
-
-      // Cleanup on unmount
-      return () => {
-        fp.destroy()
-      }
-    }
-  }, [currentStep])
 
   const handlePreferenceToggle = (preference: TravelPreference) => {
     setFormData((prev) => {
@@ -343,9 +263,6 @@ export default function TravelFormPage() {
   const goToPrevStep = () => {
     if (currentStep === 2) {
       // Clear date range input when going back
-      if (dateRangeRef.current) {
-        dateRangeRef.current.value = ""
-      }
     }
     setCurrentStep(prev => prev - 1)
   }
@@ -386,15 +303,65 @@ export default function TravelFormPage() {
             {/* Prompt and Input */}
             <div className="space-y-8">
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.dates')}</Label>
-              <Input
-                ref={dateRangeRef}
-                id="date-range"
-                placeholder={t('placeholders.dateRange')}
-                readOnly
-                className={`w-[100%] px-3 py-2 border border-gray-300 dark:border-gray-600 text-base
-                rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
-                bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 ${fonts.text}`}
-              />
+              {currentStep === 2 && (
+                <div className="space-y-4 p-4">
+                  <div className="flex justify-center">
+                    <CalendarComponent
+                      mode="range"
+                      numberOfMonths={2}
+                      disabled={(date) => {
+                        const today = new Date()
+                        today.setHours(0, 0, 0, 0)
+                        return date < today
+                      }}
+                      onSelect={(range: DateRange | undefined) => {
+                        if (!range?.from) return
+                        
+                        // If only start date is selected
+                        if (!range.to) return
+                        
+                        // At this point, both from and to are guaranteed to be Date objects
+                        const from: Date = range.from
+                        const to: Date = range.to
+                        
+                        // Calculate the difference in days
+                        const diffDays = Math.ceil(
+                          (to.getTime() - from.getTime()) / 
+                          (1000 * 60 * 60 * 24)
+                        ) + 1;
+                        
+                        // Only update if within 5 days
+                        if (diffDays <= 5) {
+                          // For storage: Use ISO format (YYYY-MM-DD)
+                          const formatStorageDate = (date: Date) => {
+                            return date.toISOString().split('T')[0]
+                          }
+                          
+                          // For display: Use localized format
+                          const formatDisplayDate = (date: Date) => {
+                            return new Intl.DateTimeFormat(undefined, {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            }).format(date)
+                          }
+
+                          console.log('Selected dates (display format):', {
+                            from: formatDisplayDate(from),
+                            to: formatDisplayDate(to)
+                          })
+                          
+                          setFormData(prev => ({
+                            ...prev,
+                            startDate: formatStorageDate(from),
+                            endDate: formatStorageDate(to)
+                          }))
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
             {/* Navigation */}
             <div className="flex space-x-4 justify-around">
