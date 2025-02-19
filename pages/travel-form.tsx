@@ -289,7 +289,7 @@ export default function TravelFormPage() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="w-fit md:w-1/2 lg:w-1/3 mx-auto space-y-8">
+          <div className="w-fit md:w-1/2 2xl:w-1/3 mx-auto space-y-8">
             {/* Prompt and Input */}
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.destination')}</Label>
               <Input
@@ -416,7 +416,7 @@ export default function TravelFormPage() {
         )
       case 3:
         return (
-          <div className="w-fit md:w-1/2 lg:w-1/3 mx-auto space-y-8">
+          <div className="w-fit md:w-1/2 2xl:w-1/3 mx-auto space-y-8">
             {/* Prompts and Input */}
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.preferences')}</Label>
               <div className="grid grid-cols-2 gap-4">
@@ -461,7 +461,7 @@ export default function TravelFormPage() {
         )
       case 4:
         return (
-          <div className="w-fit md:w-1/2 lg:w-1/3 mx-auto space-y-8">
+          <div className="w-fit md:w-1/2 2xl:w-1/3 mx-auto space-y-8">
             {/* Prompts and Inputs */}
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.budget')}</Label>
               <div className="grid grid-cols-2 gap-4">

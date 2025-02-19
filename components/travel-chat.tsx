@@ -158,31 +158,31 @@ export function TravelChat({
                 const isParameter = ['budgetSelector', 'preferenceSelector', 'datePicker', 'languageSelector'].includes(t.toolName);
                 const isVisible = toolVisibility[t.toolCallId];
                 
-                // console.log('Tool Check:', {
-                //     toolName: t.toolName,
-                //     toolCallId: t.toolCallId,
-                //     isParameter,
-                //     isVisible,
-                //     toolVisibility
-                // });
+                console.log('Tool Check:', {
+                    toolName: t.toolName,
+                    toolCallId: t.toolCallId,
+                    isParameter,
+                    isVisible,
+                    toolVisibility
+                });
                 
                 return isParameter && isVisible;
             })
         );
         
-        // console.log('Quick Response Check:', {
-        //     hasActiveParameterComponent,
-        //     isLoading,
-        //     quickResponsesLength: quickResponses?.length,
-        //     isQuickResponseLoading,
-        //     messages: messages.map(m => ({
-        //         role: m.role,
-        //         toolInvocations: m.toolInvocations?.map(t => ({
-        //             toolName: t.toolName,
-        //             toolCallId: t.toolCallId
-        //         }))
-        //     }))
-        // });
+        console.log('Quick Response Check:', {
+            hasActiveParameterComponent,
+            isLoading,
+            quickResponsesLength: quickResponses?.length,
+            isQuickResponseLoading,
+            messages: messages.map(m => ({
+                role: m.role,
+                toolInvocations: m.toolInvocations?.map(t => ({
+                    toolName: t.toolName,
+                    toolCallId: t.toolCallId
+                }))
+            }))
+        });
 
         if (hasActiveParameterComponent) {
             // console.log('[QuickResponse] Hidden due to active parameter component');

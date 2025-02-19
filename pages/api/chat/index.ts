@@ -48,19 +48,19 @@ export default async function handler(req: NextRequest) {
       primaryTypeDisplayName: p.primaryTypeDisplayName || (p.primaryType ? { text: p.primaryType, languageCode: 'en' } : undefined)
     }));
     
-    console.log('Debug - API received:', { 
-      currentDetails,
-      savedPlaces: typedSavedPlaces.map(p => ({
-        id: p.id,
-        photos: p.photos,
-        primaryTypeDisplayName: p.primaryTypeDisplayName
-      })),
-      currentStage,
-      metrics,
-      message: messages[messages.length - 1] 
-    });
+    // console.log('Debug - API received:', { 
+    //   currentDetails,
+    //   savedPlaces: typedSavedPlaces.map(p => ({
+    //     id: p.id,
+    //     photos: p.photos,
+    //     primaryTypeDisplayName: p.primaryTypeDisplayName
+    //   })),
+    //   currentStage,
+    //   metrics,
+    //   message: messages[messages.length - 1] 
+    // });
 
-    console.log('[chat] Processing request:', { messageCount: messages.length, destination: currentDetails.destination });
+    // console.log('[chat] Processing request:', { messageCount: messages.length, destination: currentDetails.destination });
 
     // Validate request and required fields
     if (!messages?.length || !currentDetails || !metrics) {

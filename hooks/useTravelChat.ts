@@ -173,7 +173,7 @@ export function useTravelChat({
       
       quickResponseInProgress.current = true;
       try {
-        await quickResponseChat.reload();
+        // await quickResponseChat.reload();
         await quickResponseChat.append({
           id: message.id,
           content: message.content,
@@ -232,7 +232,7 @@ export function useTravelChat({
 
     const responses = quickResponseInvocation.result.props.responses;
     if (responses.length > 0) {
-          // console.log('[QuickResponse] Got valid responses:', responses);
+          console.log('[QuickResponse] Got valid responses:', responses);
           return responses;
       }
 

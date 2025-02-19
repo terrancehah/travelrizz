@@ -74,7 +74,7 @@ export default function Features() {
                 />
               </div>
               <div className="space-y-2">
-                <h3 className={`text-xl md:text-2xl font-medium text-primary dark:text-sky-100 ${fonts.heading}`}>{t(`features.items.${feature.key}.title`)}</h3>
+                <h3 className={`text-xl md:text-2xl font-medium text-primary dark:text-sky-100 ${fonts.text}`}>{t(`features.items.${feature.key}.title`)}</h3>
                 <p className={`text-gray-600 dark:text-gray-300 text-lg leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>
               </div>
             </div>
@@ -88,7 +88,7 @@ export default function Features() {
               key={feature.key}
               className={cn(
                 "group overflow-hidden rounded-xl bg-sky-100/50 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-300",
-                index === 0 || index === 3 ? "col-span-8 h-[400px]" : "col-span-4 h-[400px]"
+                index === 0 || index === 3 ? "col-span-8 h-[450px]" : "col-span-4 h-[450px]"
               )}
             >
               <div className={cn(
@@ -110,8 +110,8 @@ export default function Features() {
                   "flex flex-col justify-center",
                   index === 0 || index === 3 ? "w-[30%] pl-6" : "w-full h-2/5 pt-2"
                 )}>
-                  <h3 className={`text-xl font-medium font-raleway text-primary dark:text-sky-100 mb-2 ${fonts.heading}`}>{t(`features.items.${feature.key}.title`)}</h3>
-                  <p className={`text-gray-600 dark:text-gray-300 text-md font-raleway leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>
+                  <h3 className={`text-xl font-medium text-primary dark:text-sky-100 mb-2 ${fonts.text}`}>{t(`features.items.${feature.key}.title`)}</h3>
+                  <p className={`text-gray-600 dark:text-gray-300 text-md leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>
                 </div>
               </div>
             </div>

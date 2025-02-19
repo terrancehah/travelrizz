@@ -203,7 +203,7 @@ export default async function handler(req: NextRequest) {
           role: m.role === 'user' ? ('user' as const) : ('assistant' as const)
         }))
       ],
-      temperature: 0.5,
+      temperature: 0.8,
       maxTokens: 200,
       tools: {
         quickResponse: tools.quickResponse,
