@@ -32,7 +32,6 @@ export function useTravelChat({
   onStageUpdate
 }: UseTravelChatProps) {
   const quickResponseInProgress = useRef(false);
-  const [mainChatMessages, setMainChatMessages] = useState<LocalMessage[]>([]);
   const [showSessionWarning, setShowSessionWarning] = useState(false);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [premiumModalState, setPremiumModalState] = useState(null);
@@ -88,7 +87,6 @@ export function useTravelChat({
   useEffect(() => {
     const handlePlacesChanged = () => {
       // Force re-render when places change
-      setMainChatMessages(prev => [...prev]);
     };
 
     window.addEventListener('savedPlacesChanged', handlePlacesChanged);
@@ -192,15 +190,6 @@ export function useTravelChat({
     streamProtocol: 'data'
   });
 
-  useEffect(() => {
-    const mappedMessages = mainChat.messages.map(msg => ({
-      ...msg,
-      role: msg.role === 'data' ? 'system' : msg.role
-    })) as LocalMessage[];
-    
-    setMainChatMessages(mappedMessages);
-  }, [mainChat.messages]);
-
   const quickResponses = useMemo(() => {
     const messages = quickResponseChat.messages;
     
@@ -301,7 +290,10 @@ export function useTravelChat({
 
   return {
     ...mainChat,
-    messages: mainChatMessages,
+    messages: mainChat.messages.map(msg => ({
+      ...msg,
+      role: msg.role === 'data' ? 'system' : msg.role
+    })) as LocalMessage[],
     quickResponses,
     isQuickResponseLoading: quickResponseInProgress.current,
     handleStageProgression,

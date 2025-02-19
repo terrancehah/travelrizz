@@ -44,7 +44,7 @@ export const QuickResponse: React.FC<QuickResponseProps> = ({
     
     return (
         <div className="flex flex-wrap gap-2 px-4 py-3 justify-start
-        shadow-sm transition-all duration-400">
+        transition-all duration-400">
             {responses.map((text, index) => (
                 <button
                     key={index}
