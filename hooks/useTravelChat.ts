@@ -204,21 +204,9 @@ export function useTravelChat({
   const quickResponses = useMemo(() => {
     const messages = quickResponseChat.messages;
     
-    if (messages.length < 2) {
-        // console.log('[QuickResponse] Waiting for API response...');
-        return [];
-    }
-
-    const apiResponse = messages[messages.length - 1];
-    
-    // console.log('[QuickResponse] Processing API response:', {
-    //     messageId: apiResponse.id,
-    //     hasToolInvocations: !!apiResponse.toolInvocations,
-    //     toolInvocations: apiResponse.toolInvocations?.map(t => ({
-    //         name: t.toolName,
-    //         state: t.state
-    //     }))
-    // });
+   // Get last message regardless of count
+  const lastMessage = messages[messages.length - 1];
+  if (!lastMessage) return [];
 
     function extractQuickResponses(message: AiMessage) {
       const quickResponseInvocation = message.toolInvocations?.find(
@@ -240,7 +228,7 @@ export function useTravelChat({
       return [];
     }
 
-    return extractQuickResponses(apiResponse);
+    return extractQuickResponses(lastMessage);
 }, [quickResponseChat.messages]);
 
   // Stage progression validation and handling
