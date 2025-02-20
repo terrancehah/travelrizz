@@ -319,7 +319,19 @@ export default function TravelFormPage() {
             {/* Prompt and Input */}
               <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.dates')}</Label>
               {/* Calendar */}
-              <div className="flex w-fit space-y-4 p-4 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-600 rounded-md [&_.rdp]:dark:[--rdp-accent-color:rgb(56,189,248)] [&_.rdp]:dark:[--rdp-background-color:rgb(31,41,55)] [&_.rdp]:dark:[--rdp-accent-background-color:rgba(56,189,248,0.2)]">
+              <div className="flex flex-col w-fit space-y-4 p-4 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-600 rounded-md [&_.rdp]:dark:[--rdp-accent-color:rgb(56,189,248)] [&_.rdp]:dark:[--rdp-background-color:rgb(31,41,55)] [&_.rdp]:dark:[--rdp-accent-background-color:rgba(56,189,248,0.2)]">
+                  {/* Date display box */}
+                  <div className={`p-3 bg-gray-100 dark:bg-gray-700 rounded-lg text-center ${fonts.text} text-gray-700 dark:text-gray-200`}>
+                    {formData.startDate && formData.endDate ? (
+                      <>
+                        <span>{formData.startDate}</span>
+                        <span className="mx-2">→</span>
+                        <span>{formData.endDate}</span>
+                      </>
+                    ) : (
+                      <span>{t('prompts.dateselection')}</span>
+                    )}
+                  </div>
                   <CalendarComponent
                     style={{
                       '--rdp-accent-color': 'rgb(125 211 252)', // sky-400 for light mode

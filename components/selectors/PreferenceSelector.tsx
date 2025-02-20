@@ -82,7 +82,7 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
         <div className="flex justify-end">
           <button
             onClick={handleConfirm}
-            className={`px-4 py-2 bg-[#4798cc] text-gray-100 hover:text-white rounded-lg ${fonts.text} text-sm hover:bg-[#3d82b3] transition-colors duration-200`}
+            className={`px-4 py-2 bg-sky-blue/80 hover:bg-sky-blue/90 text-gray-100 hover:text-white rounded-lg ${fonts.text} text-sm transition-colors duration-300`}
           >
             {t('preferences.selector.confirm')}
           </button>

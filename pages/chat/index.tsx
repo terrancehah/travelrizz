@@ -254,9 +254,9 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                         alt="Travel-Rizz Logo"
                         width={48}
                         height={48}
-                        className="h-12 md:w-12 my-auto object-contain dark:invert dark:brightness-0 dark:contrast-200 transition-colors duration-400"
+                        className="h-12 md:w-12 flex my-auto object-contain dark:invert dark:brightness-0 dark:contrast-200 transition-colors duration-400"
                     />
-                    <span className={`text-3xl h-min my-auto hidden md:flex text-primary text-nowrap dark:text-white font-caveat transition-colors duration-400`}>Travel-Rizz</span>
+                    <span className={`text-3xl h-min my-auto hidden lg:flex text-primary text-nowrap dark:text-white font-caveat transition-colors duration-400`}>Travel-Rizz</span>
                 </Link>
                 
                 <StageProgress 
