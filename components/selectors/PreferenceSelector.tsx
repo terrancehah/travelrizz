@@ -43,10 +43,10 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
   const preferences = Object.values(TravelPreference);
 
   return (
-    <div className="w-[80%] md:w-fit mx-auto max-w-[600px] bg-white rounded-3xl 
+    <div className="w-[80%] md:w-fit mx-auto max-w-[600px] bg-white dark:bg-slate-800 rounded-3xl 
     border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300 mt-4 mb-2">
       <div className="px-6 py-4 my-2">
-        <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>{t('preferences.selector.prompt')}</h3>
+        <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 dark:text-gray-200 mb-3`}>{t('preferences.selector.prompt')}</h3>
         <div className="grid grid-cols-2 gap-3 mb-4">
           {preferences.map(value => (
             <div 
@@ -57,8 +57,8 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
                 shadow-sm hover:shadow-md border hover:border-sky-400
                 transition-all duration-300 ease-in-out hover:scale-[1.02] active:scale-[0.98]
                 ${tempPreferences.includes(value)
-                  ? 'bg-light-blue hover:bg-blue-200/70 text-sky-blue hover:text-blue-600'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'bg-light-blue hover:bg-blue-200/70 text-sky-blue hover:text-blue-600 dark:bg-sky-900 dark:hover:bg-sky-800 dark:text-sky-200'
+                  : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                 }
               `}
             >
@@ -85,8 +85,9 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
         <div className="flex justify-end">
           <button
             onClick={handleConfirm}
-            className={`px-4 py-2 bg-sky-blue/80 hover:bg-sky-blue/90 hover:scale-[1.02] active:scale-[0.98]
-            text-gray-100 hover:text-white rounded-lg ${fonts.text} text-sm transition-colors duration-300`}
+            className={`px-4 py-2 bg-sky-blue/80 hover:bg-sky-blue/90 dark:bg-sky-700 dark:hover:bg-sky-500 
+              hover:scale-[1.02] active:scale-[0.98]
+            text-gray-100 hover:text-white  rounded-lg ${fonts.text} text-sm transition-colors duration-300`}
           >
             {t('preferences.selector.confirm')}
           </button>

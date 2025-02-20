@@ -57,20 +57,14 @@ export function CurrencyConverter({
     }
 
     return (
-        <div className="w-[80%] max-w-lg mx-auto bg-white rounded-3xl shadow-md border border-gray-100">
-            {/* <div className="p-2 border-b border-gray-200">
-                <h2 className="text-lg font-bold text-center">Currency Converter</h2>
-                <p className="text-sm text-gray-500 text-center">
-                    as of {lastUpdated.toLocaleDateString()}
-                </p>
-            </div> */}
-            <div className="p-4">
+        <div className="w-[80%] xl:w-fit mx-auto bg-white dark:bg-slate-800 rounded-3xl shadow-md border border-gray-200 dark:border-slate-500 mt-4">
+            <div className="p-6">
                 <div className="space-y-4">
                     <div className="flex flex-col items-center text-left w-full">
-                        <label htmlFor="baseAmount" className={`${fonts.text} block text-lg font-semibold text-gray-700 self-start w-[95%] ml-5 mx-auto`}>
+                        <label htmlFor="baseAmount" className={`${fonts.text} block text-lg font-semibold text-gray-700 dark:text-gray-200 self-start`}>
                             Currency Rates of {baseCurrency || 'USD'} - {CURRENCY_INFO[baseCurrency || 'USD']?.name || baseCurrency || 'USD'}
                         </label>
-                        <p className={`${fonts.text} text-sm text-gray-500 text-left w-full px-5`}>
+                        <p className={`${fonts.text} text-md text-gray-500 dark:text-gray-400 text-left w-full`}>
                             as of {lastUpdated.toLocaleDateString()}
                         </p>
                         <input
@@ -78,12 +72,16 @@ export function CurrencyConverter({
                             type="number"
                             value={amount}
                             onChange={(e) => handleAmountChange(parseFloat(e.target.value) || 0)}
-                            className="w-[95%] mt-1 px-3 py-2 text-lg mx-auto font-bold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full mt-2 px-3 py-2 text-lg mx-auto font-bold 
+                            bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200
+                            border border-gray-300 dark:border-slate-600 
+                            rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 dark:focus:ring-sky-500
+                            hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors duration-200"
                             placeholder="Enter amount"
                         />
                     </div>
                     {error ? (
-                        <div className="flex items-center space-x-2 text-red-500">
+                        <div className="flex items-center space-x-2 text-red-500 dark:text-red-400">
                             <AlertCircle size={20} />
                             <p>{error}</p>
                         </div>
@@ -92,13 +90,13 @@ export function CurrencyConverter({
                             {[1, 2, 3].map((i) => (
                                 <div 
                                     key={i}
-                                    className="h-10 w-full bg-gray-200 animate-pulse rounded-md"
+                                    className="h-10 w-full bg-gray-200 dark:bg-slate-700 animate-pulse rounded-lg"
                                 />
                             ))}
                         </div>
                     ) : (
                         <CurrencyList
-                            baseCurrency={baseCurrency || 'USD'} // Provide default value
+                            baseCurrency={baseCurrency || 'USD'}
                             amount={amount}
                             currencyData={currencyData}
                         />

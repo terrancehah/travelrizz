@@ -54,12 +54,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({ dates, onUpdate, style }
   };
 
   return (
-    <div className="w-[80%] md:w-fit mx-auto bg-white rounded-3xl border border-gray-100 shadow-md mt-2">
-      <div className="w-min px-8 py-5">
-        <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>{t('dates.selector.prompt')}</h3>
+    <div className="w-[80%] md:w-fit mx-auto bg-white dark:bg-slate-800 rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-2">
+      <div className="w-min px-6 py-6">
+        <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 dark:text-gray-200 mb-3`}>{t('dates.selector.prompt')}</h3>
         
-        {/* Date display box */}
-        <div className={`mb-4 p-3 bg-gray-50 rounded-lg text-center ${fonts.text} text-gray-700`}>
+        {/* Date display box
+        <div className={`mb-2 p-2 bg-gray-50 dark:bg-slate-700 rounded-lg text-center ${fonts.text} text-gray-700 dark:text-gray-200`}>
           {(tempDates.startDate && tempDates.endDate) || (displayDates.startDate && displayDates.endDate) ? (
             <>
               <span>{tempDates.startDate || displayDates.startDate}</span>
@@ -69,18 +69,19 @@ export const DatePicker: React.FC<DatePickerProps> = ({ dates, onUpdate, style }
           ) : (
             <span>Select your travel dates</span>
           )}
-        </div>
+        </div> */}
 
         <div className="flex flex-col items-center space-y-4">
           <CalendarComponent
             style={{
-              '--rdp-accent-color': 'rgb(125 211 252)', // sky-400 for light mode
+              '--rdp-accent-color': 'rgb(232 244 255)', // sky-400 for light mode
               '--rdp-background-color': 'white',
               '--rdp-accent-background-color': 'rgba(125, 211, 252, 0.2)',
               '--rdp-day_button-border-radius': '6px',
               '--rdp-selected-border': 'none',
-              '--rdp-today-color': 'rgb(74 136 198)', // sky-blue for light mode
-              '--rdp-range_start-date-background-color': 'rgb(125 211 252)',
+              '--rdp-today-color': 'rgb(3 105 161)', // sky-700 for light mode
+              '--rdp-range_start-date-background-color': 'rgb(74 136 198)', // sky-blue
+              '--rdp-range_end-date-background-color': 'rgb(74 136 198)',
               '--rdp-disabled-opacity': '0.25'
             } as React.CSSProperties}
             mode="range"
@@ -157,9 +158,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({ dates, onUpdate, style }
             onClick={handleConfirm}
             disabled={!tempDates.startDate || !tempDates.endDate}
             className={cn(
-              `w-full py-2 px-4 rounded-md text-white ${fonts.text} font-medium transition-colors duration-200`,
+              `w-full py-2 px-4 rounded-md text-white ${fonts.text} font-medium transition-colors duration-200 
+              hover:scale-[1.02] active:scale-[0.98]`,
               tempDates.startDate && tempDates.endDate
-                ? "bg-sky-blue/80 hover:bg-sky-blue/90"
+                ? "bg-sky-blue/70 hover:bg-sky-blue dark:bg-sky-700 dark:hover:bg-sky-500 text-gray-700 hover:text-gray-900 dark:text-gray-200 hover:dark:text-white"
                 : "bg-gray-300 cursor-not-allowed"
             )}
           >

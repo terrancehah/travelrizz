@@ -7,6 +7,10 @@ import { Bar, Line, ComposedChart, XAxis, YAxis, CartesianGrid, ResponsiveContai
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
 import { OpenWeatherDayResponse, WeatherChartProps, WeatherResponse } from "@/managers/types"
+import { cn } from "@/utils/cn"
+import { useRouter } from 'next/router';
+import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 
 interface ChartDataPoint {
   date: string;
@@ -19,6 +23,8 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
   const [historicalYear, setHistoricalYear] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const tComp = useTranslations('components')
+  const { theme } = useTheme()
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -59,8 +65,34 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
     }
   }, [lat, lon, startDate, endDate, units]);
 
-  if (loading) return <div></div>;
-  if (error) return <div></div>;
+  if (loading) return (
+    <div className="w-[80%] max-w-lg mx-auto rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
+      <CardHeader>
+        <CardTitle className="text-gray-700 dark:text-gray-200">{tComp('weather.title', { city: city })}</CardTitle>
+        <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
+          from {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(startDate))} to {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(endDate))}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3">
+          <div className="h-[200px] bg-gray-100 dark:bg-slate-700 animate-pulse rounded-lg" />
+        </div>
+      </CardContent>
+    </div>
+  );
+  if (error) return (
+    <div className="w-[80%] max-w-lg mx-auto rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
+      <CardHeader>
+        <CardTitle className="text-gray-700 dark:text-gray-200">{tComp('weather.title', { city: city })}</CardTitle>
+        <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
+          from {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(startDate))} to {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(endDate))}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="text-red-500 dark:text-red-400">{error}</div>
+      </CardContent>
+    </div>
+  );
 
   const tempUnit = units === 'us' ? '°F' : '°C';
   const precipUnit = 'mm';
@@ -71,10 +103,10 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
   const formattedEndDate = dateFormatter.format(new Date(endDate));
 
   return (
-    <div className="w-[80%] max-w-lg mx-auto rounded-3xl border border-gray-100 shadow-md">
+    <div className="w-[80%] max-w-lg mx-auto rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
       <CardHeader>
-        <CardTitle>{city} Historical Weather</CardTitle>
-        <CardDescription className="text-sm text-gray-500">
+        <CardTitle className="text-gray-700 dark:text-gray-200">{tComp('weather.title', { city: city })}</CardTitle>
+        <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
           from {formattedStartDate} to {formattedEndDate}, {historicalYear}
         </CardDescription>
       </CardHeader>
@@ -83,11 +115,11 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
           config={{
             temp: {
               label: "Temperature",
-              color: "hsl(var(--primary))",
+              color: theme === 'dark' ? "rgb(56 189 248)" : "rgb(2 132 199)", // sky-400 for dark, sky-700 for light
             },
             precipitation: {
               label: "Precipitation",
-              color: "hsl(var(--blue-100))",
+              color: theme === 'dark' ? "rgb(71 85 105)" : "rgb(226 232 240)", // slate-600 for dark, slate-200 for light
             },
           }}
           className="h-[200px]"
@@ -102,10 +134,15 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
                 left: 10,
               }}
             >
-              <CartesianGrid strokeDasharray="3 3" opacity={0.5} vertical={false} />
+              <CartesianGrid 
+                strokeDasharray="3 3" 
+                opacity={0.5} 
+                vertical={false} 
+                stroke={theme === 'dark' ? 'rgb(51 65 85)' : 'rgb(226 232 240)'} // slate-700 for dark, slate-200 for light
+              />
               <XAxis 
                 dataKey="date"
-                axisLine={{ stroke: 'rgb(226 232 240)' }}
+                axisLine={{ stroke: theme === 'dark' ? 'rgb(51 65 85)' : 'rgb(226 232 240)' }}
                 tick={false}
                 tickLine={false}
               />
@@ -115,24 +152,24 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
                 tickFormatter={(value) => `${value}${tempUnit}`}
                 domain={[0, 40]}
                 ticks={[0, 10, 20, 30, 40]}
-                tick={{ fill: 'rgb(100 116 139)' }}
-                axisLine={{ stroke: 'rgb(226 232 240)' }}
-                tickLine={{ stroke: 'rgb(226 232 240)' }}
+                tick={{ fill: theme === 'dark' ? 'rgb(148 163 184)' : 'rgb(100 116 139)' }} // slate-400 for dark, slate-500 for light
+                axisLine={{ stroke: theme === 'dark' ? 'rgb(51 65 85)' : 'rgb(226 232 240)' }}
+                tickLine={{ stroke: theme === 'dark' ? 'rgb(51 65 85)' : 'rgb(226 232 240)' }}
               />
               <YAxis className="text-xs"
                 yAxisId="precipitation"
                 orientation="right"
                 tickFormatter={(value) => `${value}${precipUnit}`}
                 domain={[0, 'auto']}
-                tick={{ fill: 'rgb(100 116 139)' }}
-                axisLine={{ stroke: 'rgb(226 232 240)' }}
-                tickLine={{ stroke: 'rgb(226 232 240)' }}
+                tick={{ fill: theme === 'dark' ? 'rgb(148 163 184)' : 'rgb(100 116 139)' }}
+                axisLine={{ stroke: theme === 'dark' ? 'rgb(51 65 85)' : 'rgb(226 232 240)' }}
+                tickLine={{ stroke: theme === 'dark' ? 'rgb(51 65 85)' : 'rgb(226 232 240)' }}
               />
               <ChartTooltip />
               <Bar
                 dataKey="precipitation"
                 yAxisId="precipitation"
-                fill="rgb(219 234 254)" // bg-blue-100
+                fill={theme === 'dark' ? "rgb(51 65 85)" : "rgb(219 234 254)"} // slate-700 for dark, blue-100 for light
                 opacity={0.7}
                 barSize={40}
               />
@@ -140,7 +177,7 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
                 type="natural"
                 dataKey="temp"
                 yAxisId="temp"
-                stroke="rgb(74 136 198)" // sky-blue
+                stroke={theme === 'dark' ? "rgb(56 189 248)" : "rgb(2 132 199)"} // sky-400 for dark, sky-700 for light
                 strokeWidth={3}
                 dot={false}
                 activeDot={false}
@@ -153,4 +190,15 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
       </CardContent>
     </div>
   );
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+      props: {
+          messages: {
+              components: (await import(`/public/locales/${locale}/components.json`)).default,
+          },
+          locale
+      }
+  }
 }

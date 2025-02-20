@@ -224,15 +224,26 @@ export function TravelChat({
     // Set new tool invocations to visible
     useEffect(() => {
         const newToolVisibility: Record<string, boolean> = {};
+        const selectorTools = ['budgetSelector', 'preferenceSelector', 'datePicker', 'languageSelector'];
+        
         messages.forEach(message => {
             message.toolInvocations?.forEach(tool => {
-                if (!(tool.toolCallId in toolVisibility) && 
-                    // Check if tool hasn't been used by checking its props
-                    !tool.result?.props?.currentBudget && 
-                    !tool.result?.props?.currentPreferences && 
-                    !(tool.result?.props?.startDate && tool.result?.props?.endDate) && 
-                    !tool.result?.props?.currentLanguage) {
-                    newToolVisibility[tool.toolCallId] = true;
+                if (!(tool.toolCallId in toolVisibility)) {
+                    // For selector tools, check if they've been used
+                    if (selectorTools.includes(tool.toolName)) {
+                        const hasBeenUsed = tool.result?.props && (
+                            'currentBudget' in (tool.result.props || {}) ||
+                            'currentPreferences' in (tool.result.props || {}) ||
+                            ('startDate' in (tool.result.props || {}) && 'endDate' in (tool.result.props || {})) ||
+                            'currentLanguage' in (tool.result.props || {})
+                        );
+                        if (!hasBeenUsed) {
+                            newToolVisibility[tool.toolCallId] = true;
+                        }
+                    } else {
+                        // Non-selector tools should always be visible
+                        newToolVisibility[tool.toolCallId] = true;
+                    }
                 }
             });
         });
@@ -264,15 +275,6 @@ export function TravelChat({
             });
         }
     }, [messages, onStageUpdate, currentStage]);
-
-    // const formatDate = (dateStr: string) => {
-    //     if (!dateStr || dateStr.includes('undefined')) return dateStr;
-    //     // If already in DD/MM/YYYY format, return as is
-    //     if (dateStr.match(/^\d{2}\/\d{2}\/\d{4}$/)) return dateStr;
-    //     // Convert from YYYY-MM-DD to DD/MM/YYYY
-    //     const [year, month, day] = dateStr.split('-');
-    //     return `${day}/${month}/${year}`;
-    // };
 
     // Function to handle quick response selection
     const handleQuickResponseSelect = async (text: string) => {
@@ -367,22 +369,6 @@ export function TravelChat({
 
         return true;
     };
-
-    // // Function to check if any parameter component is active
-    // const isParameterComponentActive = () => {
-    //     return messages.some(message => {
-    //         const toolInvocations = message.toolInvocations || [];
-    //         return toolInvocations.some(tool => {
-    //             const type = tool.toolName;
-    //             // Check if it's a parameter component type AND if it's visible in the toolVisibility state
-    //             return (type === 'budgetSelector' || 
-    //                 type === 'preferenceSelector' || 
-    //                 type === 'datePicker' || 
-    //                 type === 'languageSelector') &&
-    //                 toolVisibility[tool.toolCallId] // Check if the component is visible
-    //         });
-    //     });
-    // };
 
     const mainChat = useTravelChat({
         currentDetails,

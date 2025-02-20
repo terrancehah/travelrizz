@@ -21,10 +21,10 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
   ];
 
   return (
-    <div className="w-[80%] xl:w-fit flex mx-auto max-w-[600px] bg-white  rounded-3xl my-2
+    <div className="w-[80%] xl:w-fit flex mx-auto max-w-[600px] bg-white dark:bg-slate-800 rounded-3xl my-2
     border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300">
       <div className="p-6">
-        <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>{t('budget.selector.prompt')}</h3>
+        <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 dark:text-gray-200 mb-3`}>{t('budget.selector.prompt')}</h3>
         <div className="grid grid-cols-2 gap-3">
           {budgetOptions.map((value) => (
             <button
@@ -34,8 +34,8 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
                 px-4 py-3 rounded-lg ${fonts.text} text-sm shadow-md hover:shadow-lg border hover:border-sky-400
                 transition-all duration-300 ease-in-out hover:scale-[1.02] active:scale-[0.98]
                 ${String(currentBudget) === String(value)
-                  ? 'bg-light-blue hover:bg-blue-200/70 text-sky-blue hover:text-blue-600 shadow-sm'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'bg-light-blue hover:bg-blue-200/70 text-sky-blue hover:text-blue-600 shadow-sm dark:bg-sky-900 dark:hover:bg-sky-800 dark:text-sky-200'
+                  : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                 }
               `}
             >

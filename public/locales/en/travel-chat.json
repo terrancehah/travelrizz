@@ -20,5 +20,6 @@
   },
   "chatMessages": {
     "initialPrompt": "I am travelling to {destination} from {startDate} to {endDate}. Can you help me plan my trip?"
+    
   }
 }
