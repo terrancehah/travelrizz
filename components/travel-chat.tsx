@@ -226,7 +226,12 @@ export function TravelChat({
         const newToolVisibility: Record<string, boolean> = {};
         messages.forEach(message => {
             message.toolInvocations?.forEach(tool => {
-                if (!(tool.toolCallId in toolVisibility)) {
+                if (!(tool.toolCallId in toolVisibility) && 
+                    // Check if tool hasn't been used by checking its props
+                    !tool.result?.props?.currentBudget && 
+                    !tool.result?.props?.currentPreferences && 
+                    !(tool.result?.props?.startDate && tool.result?.props?.endDate) && 
+                    !tool.result?.props?.currentLanguage) {
                     newToolVisibility[tool.toolCallId] = true;
                 }
             });

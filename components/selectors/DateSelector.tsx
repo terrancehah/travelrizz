@@ -6,6 +6,8 @@ import "react-day-picker/dist/style.css";
 import { cn } from '@/utils/cn';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
+
 
 export interface DatePickerProps {
   dates?: { startDate: string; endDate: string };
@@ -16,6 +18,7 @@ export interface DatePickerProps {
 export const DatePicker: React.FC<DatePickerProps> = ({ dates, onUpdate, style }) => {
   const fonts = useLocalizedFont();
   const t = useTranslations('parameters');
+  const { theme, setTheme } = useTheme()
   const [selected, setSelected] = React.useState<DateRange | undefined>();
   const [tempDates, setTempDates] = React.useState({
     startDate: '',

@@ -2,6 +2,7 @@ import React from 'react';
 import { BudgetLevel } from '../../managers/types';
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
+import { useTheme } from 'next-themes';
 
 export interface BudgetSelectorProps {
   currentBudget?: BudgetLevel;
@@ -11,6 +12,7 @@ export interface BudgetSelectorProps {
 export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, onUpdate }) => {
   const t = useTranslations('parameters');
   const fonts = useLocalizedFont();
+  const { theme, setTheme } = useTheme();
   const budgetOptions = [
     BudgetLevel.Budget,
     BudgetLevel.Moderate,
@@ -19,7 +21,7 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
   ];
 
   return (
-    <div className="w-[80%] md:w-fit flex mx-auto max-w-[600px] bg-white  rounded-3xl my-2
+    <div className="w-[80%] xl:w-fit flex mx-auto max-w-[600px] bg-white  rounded-3xl my-2
     border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300">
       <div className="p-6">
         <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>{t('budget.selector.prompt')}</h3>
@@ -32,7 +34,7 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
                 px-4 py-3 rounded-lg ${fonts.text} text-sm shadow-md hover:shadow-lg border hover:border-sky-400
                 transition-all duration-300 ease-in-out hover:scale-[1.02] active:scale-[0.98]
                 ${String(currentBudget) === String(value)
-                  ? 'bg-sky-blue bg-opacity-20 text-[#4798cc] shadow-sm'
+                  ? 'bg-light-blue hover:bg-blue-200/70 text-sky-blue hover:text-blue-600 shadow-sm'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }
               `}

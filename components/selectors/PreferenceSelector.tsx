@@ -2,6 +2,7 @@ import React from 'react';
 import { TravelPreference, PREFERENCE_ICONS } from '../../managers/types';
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
+import { useTheme } from 'next-themes';
 
 export interface PreferenceSelectorProps {
   currentPreferences?: TravelPreference[];
@@ -14,6 +15,7 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
 }) => {
   const t = useTranslations('parameters');
   const fonts = useLocalizedFont();
+  const { theme, setTheme } = useTheme();
   const [tempPreferences, setTempPreferences] = React.useState<TravelPreference[]>(() => {
     return currentPreferences || [];
   });
@@ -41,7 +43,8 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
   const preferences = Object.values(TravelPreference);
 
   return (
-    <div className="w-[80%] md:w-fit mx-auto max-w-[600px] bg-white rounded-3xl border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300 mt-4">
+    <div className="w-[80%] md:w-fit mx-auto max-w-[600px] bg-white rounded-3xl 
+    border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300 mt-4 mb-2">
       <div className="px-6 py-4 my-2">
         <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 mb-3`}>{t('preferences.selector.prompt')}</h3>
         <div className="grid grid-cols-2 gap-3 mb-4">
@@ -51,10 +54,10 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
               onClick={() => togglePreference(value)}
               className={`
                 cursor-pointer flex align-middle text-left p-3 rounded-lg ${fonts.text} text-sm
-                shadow-md hover:shadow-lg border hover:border-sky-400
-                transition-all duration-200 ease-in-out hover:scale-[1.02] active:scale-[0.98]
+                shadow-sm hover:shadow-md border hover:border-sky-400
+                transition-all duration-300 ease-in-out hover:scale-[1.02] active:scale-[0.98]
                 ${tempPreferences.includes(value)
-                  ? 'bg-sky-blue bg-opacity-20 text-[#4798cc] shadow-sm'
+                  ? 'bg-light-blue hover:bg-blue-200/70 text-sky-blue hover:text-blue-600'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }
               `}
@@ -82,7 +85,8 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
         <div className="flex justify-end">
           <button
             onClick={handleConfirm}
-            className={`px-4 py-2 bg-sky-blue/80 hover:bg-sky-blue/90 text-gray-100 hover:text-white rounded-lg ${fonts.text} text-sm transition-colors duration-300`}
+            className={`px-4 py-2 bg-sky-blue/80 hover:bg-sky-blue/90 hover:scale-[1.02] active:scale-[0.98]
+            text-gray-100 hover:text-white rounded-lg ${fonts.text} text-sm transition-colors duration-300`}
           >
             {t('preferences.selector.confirm')}
           </button>
