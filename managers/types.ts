@@ -355,7 +355,8 @@ export const CURRENCY_INFO: { [key: string]: CurrencyInfo } = {
     'MYR': { name: 'Malaysian Ringgit', symbol: 'RM', position: 'before' },
     'KRW': { name: 'South Korean Won', symbol: '₩', position: 'before' },
     'AUD': { name: 'Australian Dollar', symbol: 'A$', position: 'before' },
-    'CAD': { name: 'Canadian Dollar', symbol: 'C$', position: 'before' }
+    'CAD': { name: 'Canadian Dollar', symbol: 'C$', position: 'before' },
+    'THB': { name: 'Thailand Baht', symbol: '฿', position: 'before' }
 };
 
 export interface CurrencyCache {

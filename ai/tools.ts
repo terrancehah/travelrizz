@@ -488,7 +488,7 @@ export const tools = {
     placeCard: placeCardTool,
     carousel: carouselTool,
     detailsCard: detailsCardTool,
-    weatherHistoricalChart: weatherChartTool,
+    weatherChart: weatherChartTool,
     savedPlacesList: savedPlacesListTool,
     stageProgress: stageProgressTool,
     quickResponse: quickResponseTool,

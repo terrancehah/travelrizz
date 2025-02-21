@@ -4,6 +4,7 @@ import { CurrencyConverterProps, CURRENCY_INFO } from '@/managers/types'
 import { fetchExchangeRates, formatCurrencyAmount } from '@/utils/currency-utils'
 import { CurrencyList } from './CurrencyList'
 import { useLocalizedFont } from '@/hooks/useLocalizedFont'
+import { useTranslations } from 'next-intl'
 
 export function CurrencyConverter({ 
     baseCurrency, 
@@ -17,6 +18,7 @@ export function CurrencyConverter({
     const [error, setError] = useState<string | null>(null)
     const [lastUpdated, setLastUpdated] = useState<Date>(new Date())
     const fonts = useLocalizedFont()
+    const tComp = useTranslations('components')
 
     // Fetch exchange rates when component mounts or base currency changes
     useEffect(() => {
@@ -57,15 +59,15 @@ export function CurrencyConverter({
     }
 
     return (
-        <div className="w-[80%] xl:w-fit mx-auto bg-white dark:bg-slate-800 rounded-3xl shadow-md border border-gray-200 dark:border-slate-500 mt-4">
+        <div className="w-[70%] xl:w-fit mx-auto bg-white dark:bg-slate-800 rounded-3xl shadow-md border border-gray-200 dark:border-slate-500 mt-4">
             <div className="p-6">
                 <div className="space-y-4">
                     <div className="flex flex-col items-center text-left w-full">
                         <label htmlFor="baseAmount" className={`${fonts.text} block text-lg font-semibold text-gray-700 dark:text-gray-200 self-start`}>
-                            Currency Rates of {baseCurrency || 'USD'} - {CURRENCY_INFO[baseCurrency || 'USD']?.name || baseCurrency || 'USD'}
+                            {tComp('currency.title', { currencyName: CURRENCY_INFO[baseCurrency || 'USD']?.name || baseCurrency || 'USD', currencySymbol: baseCurrency || 'USD' })}
                         </label>
                         <p className={`${fonts.text} text-md text-gray-500 dark:text-gray-400 text-left w-full`}>
-                            as of {lastUpdated.toLocaleDateString()}
+                            {tComp('currency.subheading', { date: lastUpdated.toLocaleDateString() })}
                         </p>
                         <input
                             id="baseAmount"

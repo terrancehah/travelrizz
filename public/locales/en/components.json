@@ -2,5 +2,9 @@
     "weather":{
         "title": "{city} Historical Weather",
         "subheading": "from {startDate} to {endDate}"
+    },
+    "currency":{
+        "title": "{currencyName} {currencySymbol} Currency Rates",
+        "subheading": "as of {lastUpdated}"
     }
 }

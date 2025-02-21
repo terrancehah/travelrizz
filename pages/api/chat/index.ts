@@ -142,6 +142,7 @@ export default async function handler(req: NextRequest) {
     The 'CITY INTRODUCTION' (Stage 2) provides an overview of the destination city.
     At this stage, you should prompt users if they want to see more information about the city, like the weather information, currency conversion rate and etc.
     Multiple tools can be used to provide these information, for example, 'weatherChart' tool, 'currencyConverterTool' tool, etc.
+    When user enquires for these information, you MUST trigger the corresponding tool to provide the information.
     After user enquires for these information, guide them to the next stage.
     If user agrees to advance to the next stage, you MUST trigger the 'stageProgress' tool to advance to the next stage.
 
@@ -175,7 +176,7 @@ export default async function handler(req: NextRequest) {
     - 'savedPlacesList': View ALL previously saved places. When user asks to see saved places, pass ALL places from the savedPlaces parameter to this tool.
 
     Additional tools include:
-    - 'weatherHistoricalChart' for historical weather data for the same period from last year, can be called in stage 2, NOT WEATHER FORECAST.
+    - 'weatherChart' for historical weather data for the same period from last year, trigger when user ask for weather information.
     - 'currencyConverterTool' for displaying live currency conversion rates. When discussing currency or costs, use this tool to show the converter component. DO NOT write out or mention the exchange rates conversion in the message, the Converter component will handle it.
     - 'stageProgress' for stage advancement after user confirmation
 
@@ -193,6 +194,7 @@ export default async function handler(req: NextRequest) {
 
     ### 4.3 Messaging Structure
     - One acknowledgment per action
+    - Do not summarize the result or content from the informative tools
     - Use markdown for long response formatting
 
     ### 4.4 Response Formatting for Place Descriptions

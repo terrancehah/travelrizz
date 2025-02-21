@@ -23,23 +23,23 @@ export default async function handler(req: NextRequest) {
   try {
     const { messages, currentDetails, savedPlaces, currentStage, metrics } = await req.json();
 
-    console.log('[quick-response] API received:', { 
-      messageCount: messages?.length,
-      lastMessage: {
-        id: messages?.[messages.length - 1]?.id,
-        role: messages?.[messages.length - 1]?.role,
-        content: messages?.[messages.length - 1]?.content?.substring(0, 100) + '...',
-      },
-      currentStage,
-      destination: currentDetails?.destination,
-      hasMetrics: !!metrics
-    });
+    // console.log('[quick-response] API received:', { 
+    //   messageCount: messages?.length,
+    //   lastMessage: {
+    //     id: messages?.[messages.length - 1]?.id,
+    //     role: messages?.[messages.length - 1]?.role,
+    //     content: messages?.[messages.length - 1]?.content?.substring(0, 100) + '...',
+    //   },
+    //   currentStage,
+    //   destination: currentDetails?.destination,
+    //   hasMetrics: !!metrics
+    // });
 
     // // Add artificial delay for loading state to create a sense of AI generated responses
     // await new Promise(resolve => setTimeout(resolve, 2000));
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
-      console.log('[quick-response] No messages received');
+      // console.log('[quick-response] No messages received');
       return new Response(
         JSON.stringify({ error: 'No messages provided' }),
         { status: 400 }
@@ -49,7 +49,7 @@ export default async function handler(req: NextRequest) {
     // Only process complete messages (not streaming)
     const lastMessage = messages[messages.length - 1];
     if (!lastMessage?.content?.trim()) {
-      console.log('[quick-response] Skipping incomplete message');
+      // console.log('[quick-response] Skipping incomplete message');
       return new Response(
         JSON.stringify({ error: 'Message not complete' }),
         { status: 400 }
