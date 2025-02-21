@@ -3,10 +3,10 @@ const withNextIntl = require('next-intl/plugin')();
 /** @type {import('next').NextConfig} */
 const nextConfig = withNextIntl({
   reactStrictMode: true,
-  i18n: {
-    locales: ['en', 'zh-CN', 'zh-TW', 'ms', 'es', 'fr', 'de', 'it', 'cs', 'ja', 'ko'],
-    defaultLocale: 'en'
-  },
+  // i18n: {
+  //   locales: ['en', 'zh-CN', 'zh-TW', 'ms', 'es', 'fr', 'de', 'it', 'cs', 'ja', 'ko'],
+  //   defaultLocale: 'en'
+  // },
   images: {
     domains: ['places.googleapis.com'],
   },
