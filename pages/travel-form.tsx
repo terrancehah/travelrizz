@@ -90,39 +90,16 @@ export default function TravelFormPage() {
   ]
 
   useEffect(() => {
-    // Initialize Google Places Autocomplete
+    // Initialize Google Places script
     const script = document.createElement("script")
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&callback=initAutocomplete`
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`
     script.async = true
     script.defer = true
-
-    window.initAutocomplete = () => {
-      if (destinationRef.current) {
-        const autocomplete = new window.google.maps.places.Autocomplete(destinationRef.current, {
-          types: ["(cities)"]
-        })
-
-        autocomplete.addListener("place_changed", () => {
-          const place = autocomplete.getPlace()
-          const destination = place.formatted_address || ""
-          if (destinationRef.current) {
-            destinationRef.current.value = destination
-            setFormData((prev: FormData) => ({
-              ...prev,
-              destination
-            }))
-          }
-        })
-      }
-    }
 
     document.head.appendChild(script)
 
     return () => {
       document.head.removeChild(script)
-      if (window.initAutocomplete) {
-        delete window.initAutocomplete
-      }
     }
   }, [])
 
@@ -134,6 +111,31 @@ export default function TravelFormPage() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (currentStep === 1 && window.google?.maps?.places) {
+      const autocomplete = new window.google.maps.places.Autocomplete(destinationRef.current!, {
+        types: ["(cities)"]
+      })
+
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace()
+        const destination = place.formatted_address || ""
+        if (destinationRef.current) {
+          destinationRef.current.value = destination
+          setFormData((prev: FormData) => ({
+            ...prev,
+            destination
+          }))
+        }
+      })
+
+      return () => {
+        // Clean up the autocomplete instance when step changes or component unmounts
+        autocomplete.unbindAll()
+      }
+    }
+  }, [currentStep])
 
   const handlePreferenceToggle = (preference: TravelPreference) => {
     setFormData((prev) => {
@@ -309,7 +311,7 @@ export default function TravelFormPage() {
                 ref={destinationRef}
                 id="destination"
                 placeholder={t('placeholders.city')}
-                onChange={(e) => setFormData((prev) => ({ ...prev, destination: e.target.value }))}
+                onChange={(e) => setFormData((prev: FormData) => ({ ...prev, destination: e.target.value }))}
                 className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 text-base
                 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent 
                 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300 ${fonts.text}`}
