@@ -36,6 +36,7 @@ export function useTravelChat({
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [premiumModalState, setPremiumModalState] = useState(null);
   const router = useRouter();
+  const chatId = router.query.session as string || SESSION_CONFIG.STORAGE_KEY;
 
   // Check if within stage limit
   const isWithinStageLimit = useMemo(() => {
@@ -96,7 +97,7 @@ export function useTravelChat({
   // Define quickResponseChat first with original implementation
   const quickResponseChat = useChat({
     api: '/api/chat/quick-response',
-    id: SESSION_CONFIG.STORAGE_KEY,
+    id: chatId,
     body: {
       currentDetails,
       savedPlaces: currentSavedPlaces,
@@ -124,7 +125,7 @@ export function useTravelChat({
 
   const mainChat = useChat({
     api: '/api/chat',
-    id: SESSION_CONFIG.STORAGE_KEY,
+    id: chatId,
     body: {
       currentDetails,
       destination: currentDetails.destination,
