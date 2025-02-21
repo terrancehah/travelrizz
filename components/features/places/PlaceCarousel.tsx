@@ -30,17 +30,19 @@ export const Carousel = ({ places }: { places: Place[] }) => {
     }, [places]);
 
     return (
-        <div className="carousel-wrapper p-0 w-full max-h-min flex justify-center">
+        <div className="carousel-wrapper p-0 w-full max-h-min flex justify-center mt-4">
 
             <div className="relative w-full p-0 max-h-min flex justify-center max-w-2xl mx-auto">
 
-                <button className="absolute left-1 md:left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white text-black border border-opacity-40 border-slate-400 p-2 rounded-full hover:bg-gray-200 focus:outline-none" onClick={prevSlide}>
+                <button className="absolute left-2 md:left-8 top-1/2 transform -translate-y-1/2 z-10 bg-light-blue dark:bg-gray-700 text-black dark:text-white 
+                border border-slate-400/60 p-2 rounded-full hover:bg-gray-200 focus:outline-none" onClick={prevSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
                 </button>
 
-                <button className="absolute right-1 md:right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white text-black border border-opacity-40 border-slate-400 p-2 rounded-full hover:bg-gray-200 focus:outline-none" onClick={nextSlide}>
+                <button className="absolute right-2 md:right-8 top-1/2 transform -translate-y-1/2 z-10 bg-light-blue dark:bg-gray-700 text-black dark:text-white 
+                border border-slate-400/60 p-2 rounded-full hover:bg-gray-200 focus:outline-none" onClick={nextSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>

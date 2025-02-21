@@ -90,18 +90,41 @@ export default function TravelFormPage() {
   ]
 
   useEffect(() => {
-    // Initialize Google Places script
-    const script = document.createElement("script")
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`
-    script.async = true
-    script.defer = true
+    // Only load script and initialize autocomplete when on step 1
+    if (currentStep === 1) {
+      const script = document.createElement("script")
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`
+      script.async = true
+      script.defer = true
 
-    document.head.appendChild(script)
+      // Initialize autocomplete after script loads
+      script.addEventListener('load', () => {
+        if (destinationRef.current) {
+          const autocomplete = new window.google.maps.places.Autocomplete(destinationRef.current, {
+            types: ["(cities)"]
+          })
 
-    return () => {
-      document.head.removeChild(script)
+          autocomplete.addListener("place_changed", () => {
+            const place = autocomplete.getPlace()
+            const destination = place.formatted_address || ""
+            if (destinationRef.current) {
+              destinationRef.current.value = destination
+              setFormData((prev: FormData) => ({
+                ...prev,
+                destination
+              }))
+            }
+          })
+        }
+      })
+
+      document.head.appendChild(script)
+
+      return () => {
+        document.head.removeChild(script)
+      }
     }
-  }, [])
+  }, [currentStep])
 
   useEffect(() => {
     const handleResize = () => {

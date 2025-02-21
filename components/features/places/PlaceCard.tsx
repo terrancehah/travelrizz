@@ -60,7 +60,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
   }, [place]);
 
   return (
-    <div className={`place-card w-[70%] mx-auto h-min shadow-md rounded-2xl overflow-hidden ${className}`}>
+    <div className={`place-card w-[70%] mx-auto h-min shadow-md rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 ${className}`}>
       <div className="bg-gray-200 h-48 flex items-center justify-center">
         {place.photos && place.photos[0] ? (
           <img
@@ -121,14 +121,14 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
         )}
       </div>
 
-      <div className="p-4 bg-white">
-        <h3 className={`${fonts.heading} text-lg font-bold text-gray-900`}>
+      <div className="p-4 bg-white dark:bg-gray-800">
+        <h3 className={`${fonts.text} text-lg font-bold text-gray-900 dark:text-white`}>
           {typeof place.displayName === 'string' 
             ? place.displayName 
             : place.displayName.text}
         </h3>
-        <p className={`${fonts.text} text-sm text-gray-500 mb-3 font-medium`}>{getTypeDisplay()}</p>
-        <p className={`${fonts.text} text-sm text-gray-600`}>{place.formattedAddress}</p>
+        <p className={`${fonts.text} text-sm text-gray-500 dark:text-gray-400 mb-3 font-medium`}>{getTypeDisplay()}</p>
+        <p className={`${fonts.text} text-sm text-gray-600 dark:text-gray-300`}>{place.formattedAddress}</p>
       
         {showActions && (
           <div className="mt-4 flex justify-end gap-2">
