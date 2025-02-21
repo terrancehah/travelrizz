@@ -25,7 +25,7 @@ export const QuickResponse: React.FC<QuickResponseProps> = ({
                         key={key}
                         className={`relative overflow-hidden min-w-[200px] ${fonts.text} px-3 py-1.5
                             before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
-                            before:from-blue-400 before:via-purple-400 before:to-pink-300 before: to-orange-400
+                            before:from-blue-400 before:via-purple-500 before:to-pink-400 before: to-orange-500
                             before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
                             after:bg-white after:opacity-70 after:z-[1] shadow-sm
                             rounded-2xl`}

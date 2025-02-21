@@ -2,5 +2,9 @@
     "weather":{
         "title": "{city} 과거 날씨",
         "subheading": "{startDate}부터 {endDate}까지"
+    },
+    "currency":{
+        "title": "{currencyName} ({currencySymbol}) Taxas de Cambio",
+        "subheading": "como de {lastUpdated}"
     }
 }

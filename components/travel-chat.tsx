@@ -634,7 +634,7 @@ export function TravelChat({
                                     <div key={`${toolCallId}-${index}`} className="flex justify-star ml-4 my-2">
                                         <div className="relative overflow-hidden min-w-[200px] 
                                         before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
-                                        before:from-blue-200 before:via-purple-300 before:to-pink-200 
+                                        before:from-blue-400 before:via-purple-500 before:to-pink-400 before: to-orange-500
                                         before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
                                         after:bg-white after:opacity-70 after:z-[1] shadow-sm
                                         text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">
@@ -658,7 +658,7 @@ export function TravelChat({
                             <div key={`loading-${message.id}`} className="flex justify-start ml-4 my-2">
                                 <div className="relative overflow-hidden min-w-[200px] 
                                         before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
-                                        before:from-blue-300 before:via-purple-400 before:to-pink-300 before: to-orange-400
+                                        before:from-blue-400 before:via-purple-500 before:to-pink-400 before: to-orange-500
                                         before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
                                         after:bg-white after:opacity-70 after:z-[1] shadow-sm
                                         text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">

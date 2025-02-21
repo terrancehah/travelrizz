@@ -2,5 +2,9 @@
     "weather":{
         "title": "Historické počasí v {city}",
         "subheading": "od {startDate} do {endDate}"
+    },
+    "currency":{
+        "title": "{currencyName} ({currencySymbol}) kurz",
+        "subheading": "aktualizovano {lastUpdated}"
     }
 }

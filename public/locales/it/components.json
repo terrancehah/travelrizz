@@ -2,5 +2,9 @@
     "weather":{
         "title": "Meteo Storico di {city}",
         "subheading": "dal {startDate} al {endDate}"
+    },
+    "currency":{
+        "title": "{currencyName} ({currencySymbol}) Taxas de Cambio",
+        "subheading": "como de {lastUpdated}"
     }
 }

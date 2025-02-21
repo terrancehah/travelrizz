@@ -2,5 +2,9 @@
     "weather":{
         "title": "{city}历史天气",
         "subheading": "从{startDate}到{endDate}"
+    },
+    "currency":{
+        "title": "{currencyName} ({currencySymbol}) 汇率",
+        "subheading": "于 {lastUpdated}"
     }
 }

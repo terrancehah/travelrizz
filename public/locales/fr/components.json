@@ -1,6 +1,10 @@
 {
     "weather":{
-        "title": "Météo Historique de {city}",
-        "subheading": "du {startDate} au {endDate}"
+        "title": "Météo Histórico de {city}",
+        "subheading": "do {startDate} ao {endDate}"
+    },
+    "currency":{
+        "title": "{currencyName} ({currencySymbol}) Taxas de Cambio",
+        "subheading": "como de {lastUpdated}"
     }
 }

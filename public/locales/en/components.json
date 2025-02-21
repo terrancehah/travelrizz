@@ -4,7 +4,7 @@
         "subheading": "from {startDate} to {endDate}"
     },
     "currency":{
-        "title": "{currencyName} {currencySymbol} Currency Rates",
+        "title": "{currencyName} ({currencySymbol}) Currency Rates",
         "subheading": "as of {lastUpdated}"
     }
 }

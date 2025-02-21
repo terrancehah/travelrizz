@@ -2,5 +2,9 @@
     "weather":{
         "title": "Cuaca Sejarah {city}",
         "subheading": "dari {startDate} hingga {endDate}"
+    },
+    "currency":{
+        "title": "{currencyName} ({currencySymbol}) Kadar Konversi",
+        "subheading": "pada {lastUpdated}"
     }
 }
