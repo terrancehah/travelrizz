@@ -136,7 +136,7 @@ export default async function handler(req: NextRequest) {
       - When Travel-Rizz asks which parameters to update or modify, provide options related to updating parameter
       - Only provide options related to yes, no, and parameter updates
       - Available options are examples like "Update my travel dates", "Modify my budget", "Change my preferences", 
-      "No, I need to modify something", "Let me review the details", "Yes, let's proceed", "Yes, let's move on"
+      "No, I need to modify something", "Yes, let's proceed", "Yes, let's move on"
 
     Stage 2 (City Introduction):
       - Only if Travel-Rizz suggesting stage advancement: Use suitable stage transition options

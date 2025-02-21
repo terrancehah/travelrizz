@@ -11,6 +11,7 @@ import { cn } from "@/utils/cn"
 import { useRouter } from 'next/router';
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
+import { useLocalizedFont } from '@/hooks/useLocalizedFont'
 
 interface ChartDataPoint {
   date: string;
@@ -25,6 +26,8 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
   const [error, setError] = useState<string | null>(null);
   const tComp = useTranslations('components')
   const { theme } = useTheme()
+  const fonts = useLocalizedFont()
+  
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -70,7 +73,10 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
       <CardHeader>
         <CardTitle className="text-gray-700 dark:text-gray-200">{tComp('weather.title', { city: city })}</CardTitle>
         <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
-          from {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(startDate))} to {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(endDate))}
+          {tComp('weather.subheading', { 
+            startDate: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(startDate)),
+            endDate: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(endDate))
+          })}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -83,9 +89,12 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
   if (error) return (
     <div className="w-[80%] max-w-lg mx-auto rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
       <CardHeader>
-        <CardTitle className="text-gray-700 dark:text-gray-200">{tComp('weather.title', { city: city })}</CardTitle>
+        <CardTitle className={`${fonts.text} text-gray-700 dark:text-gray-200`}>{tComp('weather.title', { city: city })}</CardTitle>
         <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
-          from {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(startDate))} to {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(endDate))}
+          {tComp('weather.subheading', { 
+            startDate: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(startDate)),
+            endDate: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(endDate))
+          })}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -107,7 +116,11 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
       <CardHeader>
         <CardTitle className="text-gray-700 dark:text-gray-200">{tComp('weather.title', { city: city })}</CardTitle>
         <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
-          from {formattedStartDate} to {formattedEndDate}, {historicalYear}
+          {tComp('weather.subheading', { 
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
+            year: historicalYear
+          })}
         </CardDescription>
       </CardHeader>
       <CardContent className="p-0">
@@ -190,15 +203,4 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
       </CardContent>
     </div>
   );
-}
-
-export async function getStaticProps({ locale }: { locale: string }) {
-  return {
-      props: {
-          messages: {
-              components: (await import(`/public/locales/${locale}/components.json`)).default,
-          },
-          locale
-      }
-  }
 }

@@ -340,7 +340,8 @@ export default function TravelFormPage() {
                       '--rdp-day_button-border-radius': '6px',
                       '--rdp-selected-border': 'none',
                       '--rdp-today-color': 'rgb(74 136 198)', // sky-blue for light mode
-                      '--rdp-range_start-date-background-color': 'rgb(125 211 252)', /* The background color of the date when at the start of the selected range. */
+                      '--rdp-range_start-date-background-color': 'rgb(74 136 198)', // sky-blue
+                      '--rdp-range_end-date-background-color': 'rgb(74 136 198)', // sky-blue
                       '--rdp-disabled-opacity': '0.25'
                     } as React.CSSProperties}
                     mode="range" 

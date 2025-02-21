@@ -20,8 +20,9 @@ export default function Header() {
   return (
     <header className="sticky flex top-0 z-50 w-full bg-light-blue/95 backdrop-blur supports-[backdrop-filter]:bg-light-blue/60 dark:bg-gray-900 shadow-sm transition-colors duration-400">
       <div className="flex p-3 px-4 w-full justify-between items-center">
+
         {/* Logo and Brand Name */}
-        <Link href="/" className={`flex gap-x-1 ${fonts.heading}`}>
+        <Link href="/" className={`flex gap-x-1 ${fonts.heading} cursor-pointer`}>
           <Image
             src="/images/travel-rizz.png"
             alt="Travel-Rizz Logo"
