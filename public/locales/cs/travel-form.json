@@ -13,6 +13,7 @@
   "prompts": {
     "destination": "Kam plánujete cestovat?",
     "dates": "Kdy plánujete cestovat?",
+    "dateselection": "Vyberte rozmezí dat maximálně 5 dnů",
     "preferences": "Jaké jsou vaše cestovní preference?",
     "budget": "Jaký je váš rozpočtový rozsah?"
   },

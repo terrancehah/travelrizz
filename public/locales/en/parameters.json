@@ -5,7 +5,6 @@
       "confirmbutton": "Confirm Budget"
     },
     "confirmationmessage": "I've set my budget to {budget}",
-
     "levels": {
       "Budget": {
         "label": "Budget",

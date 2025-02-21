@@ -13,6 +13,7 @@
   "prompts": {
     "destination": "어디로 여행하실 계획이신가요?",
     "dates": "언제 여행하실 계획이신가요?",
+    "dateselection": "최대 5일 범위의 날짜를 선택하세요",
     "preferences": "어떤 여행을 선호하시나요?",
     "budget": "예산 범위는 어떻게 되시나요?"
   },

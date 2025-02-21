@@ -1,0 +1,6 @@
+{
+    "weather":{
+        "title": "{city}の過去の天気",
+        "subheading": "{startDate}から{endDate}まで"
+    }
+}

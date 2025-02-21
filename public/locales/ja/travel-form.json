@@ -13,6 +13,7 @@
   "prompts": {
     "destination": "どちらへ旅行予定ですか？",
     "dates": "いつ旅行予定ですか？",
+    "dateselection": "最大5日間の日付範囲を選択してください",
     "preferences": "どのような旅行がお好みですか？",
     "budget": "予算の範囲はどのくらいですか？"
   },

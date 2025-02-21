@@ -1,0 +1,6 @@
+{
+    "weather":{
+        "title": "Historické počasí v {city}",
+        "subheading": "od {startDate} do {endDate}"
+    }
+}

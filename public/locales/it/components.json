@@ -1,0 +1,6 @@
+{
+    "weather":{
+        "title": "Meteo Storico di {city}",
+        "subheading": "dal {startDate} al {endDate}"
+    }
+}

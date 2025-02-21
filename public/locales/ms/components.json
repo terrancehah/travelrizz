@@ -1,0 +1,6 @@
+{
+    "weather":{
+        "title": "Cuaca Sejarah {city}",
+        "subheading": "dari {startDate} hingga {endDate}"
+    }
+}

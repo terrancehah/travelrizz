@@ -13,6 +13,7 @@
   "prompts": {
     "destination": "Où prévoyez-vous de voyager ?",
     "dates": "Quand prévoyez-vous de voyager ?",
+    "dateselection": "Sélectionnez une période de 5 jours maximum",
     "preferences": "Quelles sont vos préférences de voyage ?",
     "budget": "Quelle est votre fourchette de budget ?"
   },

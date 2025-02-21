@@ -13,6 +13,7 @@
   "prompts": {
     "destination": "Ke mana anda merancang untuk melancong?",
     "dates": "Bila anda merancang untuk melancong?",
+    "dateselection": "Pilih julat tarikh maksimum 5 hari",
     "preferences": "Apakah keutamaan perjalanan anda?",
     "budget": "Berapakah julat bajet anda?"
   },

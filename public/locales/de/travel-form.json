@@ -13,6 +13,7 @@
   "prompts": {
     "destination": "Wohin möchten Sie reisen?",
     "dates": "Wann möchten Sie reisen?",
+    "dateselection": "Wählen Sie einen Datumsbereich von maximal 5 Tagen",
     "preferences": "Was sind Ihre Reisepräferenzen?",
     "budget": "Wie ist Ihre Budgetspanne?"
   },

@@ -13,6 +13,7 @@
   "prompts": {
     "destination": "您計劃去哪裡旅行？",
     "dates": "您計劃什麼時候旅行？",
+    "dateselection": "選擇最多5天的日期範圍",
     "preferences": "您有什麼旅行偏好？",
     "budget": "您的預算範圍是多少？"
   },
