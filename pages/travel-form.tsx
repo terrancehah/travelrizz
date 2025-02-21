@@ -279,10 +279,23 @@ export default function TravelFormPage() {
   }
 
   const goToPrevStep = () => {
-    if (currentStep === 2) {
-      // Clear date range input when going back
+    // Clear state based on current step
+    switch (currentStep) {
+      case 2:
+        // Clear date selection
+        setSelected(undefined);
+        setFormData(prev => ({ ...prev, startDate: "", endDate: "" }));
+        break;
+      case 3:
+        // Clear preferences
+        setFormData(prev => ({ ...prev, preferences: [] }));
+        break;
+      case 4:
+        // Clear budget
+        setFormData(prev => ({ ...prev, budget: "" as BudgetLevel }));
+        break;
     }
-    setCurrentStep(prev => prev - 1)
+    setCurrentStep(prev => prev - 1);
   }
 
   const renderStepContent = () => {
@@ -414,7 +427,9 @@ export default function TravelFormPage() {
               </div>
             {/* Navigation */}
             <div className="flex space-x-4 justify-around">
-              <Button variant="outline" className={`w-full transition-colors duration-300 text-base border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
+              <Button variant="outline" className={`w-full transition-colors duration-300 text-base 
+                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 
+                ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
@@ -444,7 +459,8 @@ export default function TravelFormPage() {
                   <Button
                     key={value}
                     variant={formData.preferences.includes(value as TravelPreference) ? "default" : "outline"}
-                    className={`flex items-center justify-start space-x-2 transition-all duration-300 text-base hover:scale-[1.02] active:scale-[0.98] ${fonts.text} ${
+                    className={`flex items-center justify-start space-x-2 transition-all duration-300 text-base 
+                      hover:scale-[1.02] active:scale-[0.98] ${fonts.text} ${
                       formData.preferences.includes(value as TravelPreference) 
                         ? 'shadow-md hover:shadow-lg' 
                         : 'hover:border-sky-400 dark:hover:border-sky-400'
@@ -459,7 +475,8 @@ export default function TravelFormPage() {
             {/* Navigation */}
             <div className="flex space-x-4">
               <Button variant="outline" className={`w-full transition-colors duration-300 text-base 
-                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
+                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 
+                ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
@@ -500,7 +517,9 @@ export default function TravelFormPage() {
               </div>
             {/* Navigation */}
             <div className="flex space-x-4">
-              <Button variant="outline" className={`w-full transition-colors duration-300 text-base border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 ${fonts.text}`} onClick={goToPrevStep}>
+              <Button variant="outline" className={`w-full transition-colors duration-300 text-base 
+                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 
+                ${fonts.text}`} onClick={goToPrevStep}>
                 {t('navigation.back')}
               </Button>
               <Button
