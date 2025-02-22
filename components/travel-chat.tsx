@@ -75,11 +75,11 @@ export function TravelChat({
             // Safely get count from event detail or fallback to savedPlacesManager
             const count = event.detail?.count ?? savedPlacesManager.places.size;
             
-            console.log('[TravelChat] Places changed:', { 
-                count,
-                fromEvent: event.detail,
-                fromManager: savedPlacesManager.places.size 
-            });
+            // console.log('[TravelChat] Places changed:', { 
+            //     count,
+            //     fromEvent: event.detail,
+            //     fromManager: savedPlacesManager.places.size 
+            // });
             
             setCurrentDetails(prev => ({
                 ...prev,

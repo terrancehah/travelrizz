@@ -232,7 +232,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 setupMapInstance();
             } else if (!scriptLoadedRef.current && !document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
                 const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker,geometry&v=3.47&map_ids=2d604af04a7c7fa8,bb7adeabb62a0de9&callback=setupMapInstance`;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,geometry&v=weekly&map_ids=2d604af04a7c7fa8,bb7adeabb62a0de9&callback=setupMapInstance`;
                 script.async = true;
                 script.defer = true;
                 document.head.appendChild(script);
@@ -346,8 +346,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             place?: Place;
         }) => {
             try {
+                // Import the marker library dynamically
+                const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+                
                 const markerId = data.place?.id || data.title || String(Date.now());
-                const pinElement = new window.google.maps.marker.PinElement({
+                const pinElement = new PinElement({
                     background: "#FF4444",  // Bright red
                     borderColor: "#CC0000", // Darker red border
                     glyphColor: "#FFFFFF",  // White glyph for better contrast
@@ -365,7 +368,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                     }
                 }
 
-                const marker = new google.maps.marker.AdvancedMarkerElement({
+                const marker = new AdvancedMarkerElement({
                     position: {
                         lat: data.latitude,
                         lng: data.longitude
@@ -383,23 +386,27 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 // Ensure the marker is properly added to the map
                 marker.map = mapInstanceRef.current;
 
-                marker.addListener('gmp-click', () => {
+                marker.addListener('click', () => {
                     if (data.place) {
                         // Close any existing InfoWindow
-                        infoWindowRef.current?.close();
-                        
-                        window.currentInfoWindowMarker = {
-                            markerId: markerId,
-                            marker: marker
-                        };
-                        
-                        const content = createPlaceInfoWindowContent(data.place, markerId);
-                        if (content && infoWindowRef.current && mapInstanceRef.current) {
-                            const position = marker.position as google.maps.LatLng;
-                            infoWindowRef.current.setContent(content);
-                            infoWindowRef.current.setPosition(position);
-                            infoWindowRef.current.open(mapInstanceRef.current);
+                        if (window.currentInfoWindow) {
+                            window.currentInfoWindow.close();
                         }
+
+                        // Create and open a new InfoWindow
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: createPlaceInfoWindowContent(data.place, markerId),
+                            maxWidth: 300,
+                            pixelOffset: new google.maps.Size(0, -30)
+                        });
+
+                        infoWindow.open({
+                            map: mapInstanceRef.current,
+                            anchor: marker,
+                        });
+
+                        window.currentInfoWindow = infoWindow;
+                        window.currentInfoWindowMarker = { markerId, marker };
                     }
                 });
 
@@ -724,7 +731,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             glyphColor: "#FFFFFF",  // White glyph for better contrast
         });
 
-        const marker = new google.maps.marker.AdvancedMarkerElement({
+        const marker = new window.google.maps.marker.AdvancedMarkerElement({
             position: {
                 lat: place.location.latitude,
                 lng: place.location.longitude
@@ -734,7 +741,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             gmpDraggable: false,
         });
 
-        marker.addListener('gmp-click', () => {
+        marker.addListener('click', () => {
             // Close any existing InfoWindow
             infoWindowRef.current?.close();
             
