@@ -3,22 +3,22 @@ import { MapPin, Star, Calendar, Coffee, Headphones, Zap } from 'lucide-react'
 
 const features = [
   {
-    icon: <MapPin className="w-6 h-6 md:w-8 md:h-8" />,
+    icon: <MapPin className="w-6 h-6" />,
     title: "Unlimited Places Browsing",
     description: "Explore an endless array of destinations tailored just for you.",
   },
   {
-    icon: <Star className="w-6 h-6 md:w-8 md:h-8" />,
+    icon: <Star className="w-6 h-6" />,
     title: "Personalized Recommendations",
     description: "Get AI-powered suggestions at your fingertips.",
   },
   {
-    icon: <Calendar className="w-6 h-6 md:w-8 md:h-8" />,
+    icon: <Calendar className="w-6 h-6" />,
     title: "Advanced Itinerary Planning",
     description: "Create day-by-day itineraries that match your preferences.",
   },
   {
-    icon: <Coffee className="w-6 h-6 md:w-8 md:h-8" />,
+    icon: <Coffee className="w-6 h-6" />,
     title: "Local Custom Tips",
     description: "Discover local tips and advice to make your trip even more enjoyable.",
   },
@@ -66,14 +66,14 @@ export default function FeatureCarousel() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="w-[300px] flex-shrink-0 pb-1"
+              className="w-[250px] md:w-[300px] flex-shrink-0 pb-1"
             >
-              <div className="bg-white rounded-2xl h-[160px] md:h-[220px] flex align-middle p-5 mx-2 my-1 border border-gray-100 shadow-md transform transition-all hover:shadow-lg z-70">
-                <div className="flex flex-col items-center text-center space-y-3">
+              <div className="bg-white rounded-2xl w-[250px] md:w-[300px] h-[160px] md:h-[200px] flex align-middle p-5 mx-2 my-1 border border-gray-100 shadow-md transform transition-all hover:shadow-lg z-70">
+                <div className="flex flex-col items-center text-center space-y-2 my-auto">
                   <div className="text-sky-blue bg-sky-50 p-3 rounded-full">
                     {feature.icon}
                   </div>
-                  <h3 className="text-base lg:text-xl font-bold text-primary">{feature.title}</h3>
+                  <h3 className="text-base lg:text-lg font-bold leading-tight text-primary">{feature.title}</h3>
                   <p className="text-gray-600 text-xs lg:text-sm">{feature.description}</p>
                 </div>
               </div>
@@ -82,18 +82,18 @@ export default function FeatureCarousel() {
         </div>
 
         {/* Duplicate content for seamless loop */}
-        <div className="scroll-content">
+        <div className="scroll-content z-80">
           {features.map((feature, index) => (
             <div
               key={`duplicate-${index}`}
-              className="w-[320px] md:w-[300px] flex-shrink-0"
+              className="w-[300px] md:w-[300px] flex-shrink-0"
             >
-              <div className="bg-white rounded-2xl h-[160px] md:h-[220px] flex align-middle p-3 md:p-5 mx-2 my-1 border border-gray-100 shadow-md transform transition-all  hover:shadow-lg">
-              <div className="flex flex-col items-center text-center space-y-3">
+              <div className="bg-white rounded-2xl w-[250px] md:w-[300px] h-[160px] md:h-[200px] flex align-middle p-3 md:p-5 mx-2 my-1 border border-gray-100 shadow-md transform transition-all  hover:shadow-lg">
+              <div className="flex flex-col items-center text-center space-y-2 my-auto">
                   <div className="text-sky-blue bg-sky-50 p-3 rounded-full">
                     {feature.icon}
                   </div>
-                  <h3 className="text-base lg:text-xl font-bold text-primary">{feature.title}</h3>
+                  <h3 className="text-base lg:text-lg font-bold leading-tight text-primary">{feature.title}</h3>
                   <p className="text-gray-600 text-xs lg:text-sm">{feature.description}</p>
                 </div>
               </div>

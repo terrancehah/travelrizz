@@ -231,6 +231,8 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
     <>
       {isOpen ? (
         isMobile ? (
+
+          // Mobile view
           <div className="fixed inset-0 bg-white/85 backdrop-blur-sm z-[60]">
             <div className="flex flex-col min-h-screen w-full">
               <button
@@ -241,7 +243,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="flex-1 flex flex-col items-center justify-center w-full px-4 py-4">
+              <div className="flex-1 flex flex-col items-center font-raleway justify-center w-full px-4 py-4">
                 <div className="text-center">
                   <h2 className="w-[70%] mx-auto text-lg lg:text-xl font-bold text-primary mb-2">The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!</h2>
                   <div className="flex flex-wrap items-center justify-center gap-2 text-xl">
@@ -262,6 +264,8 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
             </div>
           </div>
         ) : (
+
+          // Desktop view
           <div className="absolute inset-0 bottom-[64px] bg-white/85 backdrop-blur-sm z-[60]">
             <div className="h-full w-full overflow-hidden">
               <div className="flex h-full m-auto font-raleway py-4 px-2">

@@ -169,7 +169,8 @@ export function getPlaceTypesFromPreferences(preferences: TravelPreference[]): s
             });
         }
 
-        return resultTypes;
+        // Ensure we only return 5 types maximum
+        return resultTypes.slice(0, 5);
     } catch (error) {
         console.error('Error getting place types from preferences:', error);
         return ['tourist_attraction']; // Default fallback

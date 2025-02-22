@@ -153,9 +153,9 @@ export default async function handler(req: NextRequest) {
       - Provide options that prompts AI to introduce places related to preferences
       - NEVER provide options related to saving or adding places (e.g., "Save Louvre Museum", "Add Changi Airport", "Save this place")
       - Never provide options related to wanting to know more of a single specific place
-      - Available options are examples like "Show me museums", "Find me some restaurants", "Popular landmarks", "Add some cafes", "Explore some famous attractions",
-      "No, I want to see more places", "Show me national parks", "Find me some theaters", "Popular eateries", "Explore some famous tourist spots", 
-      "Continue to itinerary review", "Yes, let's proceed", "Yes, let's move on", "View pricing"
+      - Available options are examples like "Show me museums", "Find me some restaurants", "Find some popular landmarks", "Add some cafes", "Explore some famous attractions",
+      "No, I want to see more places", "Show me national parks", "Find me some theaters", "Find some popular eateries", "Explore some famous tourist spots", 
+      "Continue to route planning", "Yes, let's proceed", "Yes, let's move on", "View pricing"
 
     Stage 4 (Itinerary Review):
       - Only if Travel-Rizz suggesting stage advancement: Use suitable stage transition options
