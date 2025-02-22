@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
 import { cn } from '@/utils/cn'
-import FeatureCarousel from '../feature-carousel' 
+import FeatureCarousel from '../feature-carousel'
+import { useTheme } from 'next-themes'
 
 import { 
   setPaymentStatus, 
@@ -34,6 +35,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
   const stripeContainerRef = useRef<HTMLDivElement>(null)
   const clientReferenceId = useRef<string>()
   const pollInterval = useRef<NodeJS.Timeout>()
+  const { theme } = useTheme()
 
   // Generate client reference ID on mount
   useEffect(() => {
@@ -74,10 +76,10 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
 
     console.log('[Payment] Setting up button with reference ID:', refId);
 
-    // test but-button
+    // test bu-button
     const buttonHtml = `
       <stripe-buy-button
-        buy-button-id="buy_btn_1QfJT2I41yHwVfoxrEmjHuCU"
+        buy-button-id="${theme === 'dark' ? 'buy_btn_1QvFHUI41yHwVfoxAdnHirxn' : 'buy_btn_1QvFE0I41yHwVfoxoa2fvTlL'}"
         publishable-key="pk_test_51MtLXgI41yHwVfoxNp7MKLfz0Gh4qo2LwImaCBtCt0Gn48e613BLsbOajpHT1uJOs2l0ACRpUE3RZrh8FcLxdwef00QOtxcHmf"
         client-reference-id="${refId}"
       >
@@ -118,6 +120,36 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
       }
       stripe-buy-button button {
         width: 100% !important;
+      }
+
+      /* Dark mode styles */
+      @media (prefers-color-scheme: dark) {
+        stripe-buy-button > * {
+          border-color: #374151 !important; /* gray-700 */
+          background-color: #1f2937 !important; /* gray-800 */
+          color: #f3f4f6 !important; /* gray-100 */
+        }
+        stripe-buy-button button {
+          background-color: #1f2937 !important; /* gray-800 */
+          color: #f3f4f6 !important; /* gray-100 */
+        }
+        stripe-buy-button button:hover {
+          background-color: #374151 !important; /* gray-700 */
+        }
+      }
+
+      /* For class-based dark mode */
+      .dark stripe-buy-button > * {
+        border-color: #374151 !important; /* gray-700 */
+        background-color: #1f2937 !important; /* gray-800 */
+        color: #f3f4f6 !important; /* gray-100 */
+      }
+      .dark stripe-buy-button button {
+        background-color: #1f2937 !important; /* gray-800 */
+        color: #f3f4f6 !important; /* gray-100 */
+      }
+      .dark stripe-buy-button button:hover {
+        background-color: #374151 !important; /* gray-700 */
       }
     `
     document.head.appendChild(style)
@@ -233,23 +265,23 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
         isMobile ? (
 
           // Mobile view
-          <div className="fixed inset-0 bg-white/85 backdrop-blur-sm z-[60]">
+          <div className="fixed inset-0 bg-white/85 dark:bg-gray-900/85 backdrop-blur-sm z-[60]">
             <div className="flex flex-col min-h-screen w-full">
               <button
                 onClick={onClose}
-                className="absolute top-6 right-6 text-gray-600 hover:text-gray-800 bg-slate-300 hover:bg-slate-400 p-1.5 rounded-2xl transition-colors"
+                className="absolute top-6 right-6 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white bg-slate-300 dark:bg-gray-700 hover:bg-slate-400 dark:hover:bg-gray-600 p-1.5 rounded-2xl transition-colors"
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="flex-1 flex flex-col items-center font-raleway justify-center w-full px-4 py-4">
+              <div className="flex-1 flex flex-col items-center font justify-center w-full px-4 py-4">
                 <div className="text-center">
-                  <h2 className="w-[70%] mx-auto text-lg lg:text-xl font-bold text-primary mb-2">The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!</h2>
+                  <h2 className="w-[70%] mx-auto text-lg font-bold text-primary dark:text-white mb-2">The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!</h2>
                   <div className="flex flex-wrap items-center justify-center gap-2 text-xl">
-                    <span className="font-bold text-xl lg:text-2xl text-center order-1 basis-1/5 xl:basis-[15%] text-primary">US$1.99</span>
-                    <span className="text-gray-400 text-center text-xl lg:text-2xl order-1 basis-1/5 xl:basis-[15%] line-through decoration-2">US$2.99</span>
-                    <span className="bg-blue-200 text-blue-500 text-sm xl:text-base font-medium px-2.5 py-1 order-2 basis-[35%] xl:basis-1/5 rounded">Early Adopter Special</span>
+                    <span className="font-bold text-xl text-center order-1 basis-1/5 xl:basis-[15%] text-primary dark:text-white">US$1.99</span>
+                    <span className="text-gray-400 dark:text-gray-500 text-center text-xl order-1 basis-1/5 xl:basis-[15%] line-through decoration-2">US$2.99</span>
+                    <span className="bg-blue-200 dark:bg-blue-900 text-blue-500 dark:text-blue-200 text-sm font-medium px-2.5 py-1 order-2 basis-[35%] xl:basis-1/5 rounded">Early Adopter Special</span>
                   </div>
                 </div>
                 
@@ -257,7 +289,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
                   <FeatureCarousel />
                 </div>
 
-                <div className="w-min h-min bg-white mx-auto rounded-2xl p-1 shadow-lg border border-gray-100">
+                <div className="w-min h-min bg-white dark:bg-gray-800 mx-auto rounded-2xl p-1 shadow-lg border border-gray-100 dark:border-gray-700">
                   <div ref={stripeContainerRef} className="flex justify-center"></div>
                 </div>
               </div>
@@ -266,24 +298,24 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
         ) : (
 
           // Desktop view
-          <div className="absolute inset-0 bottom-[64px] bg-white/85 backdrop-blur-sm z-[60]">
+          <div className="absolute inset-0 bottom-[64px] bg-white/85 dark:bg-gray-900/85 backdrop-blur-sm z-[60]">
             <div className="h-full w-full overflow-hidden">
               <div className="flex h-full m-auto font-raleway py-4 px-2">
                 <button
                   onClick={onClose}
-                  className="absolute top-6 right-6 text-gray-600 hover:text-gray-800 bg-slate-300 hover:bg-slate-400 p-1.5 rounded-2xl transition-colors"
+                  className="absolute top-6 right-6 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white bg-slate-300 dark:bg-gray-700 hover:bg-slate-400 dark:hover:bg-gray-600 p-1.5 rounded-2xl transition-colors"
                   aria-label="Close modal"
                 >
                   <X className="w-4 h-4" />
                 </button>
 
                 <div className="flex flex-col items-center justify-center space-y-2 my-auto w-full h-full">
-                  <div className="text-center">
-                    <h2 className="w-[70%] mx-auto text-lg lg:text-xl font-bold text-primary mb-2">The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!</h2>
+                  <div className="flex flex-col text-center gap-y-2">
+                    <h2 className="w-[70%] mx-auto text-base lg:text-lg font-bold text-primary dark:text-white mb-2">The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!</h2>
                     <div className="flex flex-wrap items-center justify-center gap-1 text-xl">
-                      <span className="font-bold text-lg md:text-xl lg:text-2xl text-center order-1 basis-1/5 xl:basis-[15%] text-primary">US$1.99</span>
-                      <span className="text-gray-400 text-center text-lg md:text-xl lg:text-2xl order-1 basis-1/5 xl:basis-[15%] line-through decoration-2">US$2.99</span>
-                      <span className="bg-blue-200 text-blue-500 text-sm xl:text-base font-medium px-2.5 py-1 order-2 basis-[30%] xl:basis-1/5 rounded">Early Adopter Special</span>
+                      <span className="font-bold text-lg md:text-xl lg:text-2xl text-center order-1 basis-1/5 xl:basis-[15%] text-primary dark:text-white">US$1.99</span>
+                      <span className="text-gray-400 dark:text-gray-500 text-center text-lg md:text-xl lg:text-2xl order-1 basis-1/5 xl:basis-[15%] line-through decoration-2">US$2.99</span>
+                      <span className="bg-blue-200 dark:bg-blue-900 text-blue-500 dark:text-blue-200 text-sm xl:text-base font-medium px-2.5 py-1 order-2 basis-[30%] xl:basis-1/5 rounded">Early Adopter Special</span>
                     </div>
                   </div>
                   
@@ -291,7 +323,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
                     <FeatureCarousel />
                   </div>
 
-                  <div className="w-min h-min bg-white mx-auto rounded-2xl p-1 shadow-lg border border-gray-100">
+                  <div className="w-min h-min bg-white dark:bg-gray-800 mx-auto rounded-2xl p-1 shadow-lg border border-gray-100 dark:border-gray-700">
                     <div ref={stripeContainerRef} className="flex justify-center"></div>
                   </div>
                 </div>

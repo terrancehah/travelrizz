@@ -84,6 +84,146 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     // Track polylines for cleanup
     const polylineRef = useRef<Map<string, google.maps.Polyline>>(new Map());
 
+    // Move setupMapInstance outside of the effect
+    async function setupMapInstance(forceUpdate = false) {
+        if (!mapRef.current || (!forceUpdate && mapInstanceRef.current)) return;
+
+        try {
+            // Use the city prop directly, fallback to session storage if needed
+            let targetCity = city;
+            if (!targetCity) {
+                const sessionData = sessionStorage.getItem(SESSION_CONFIG.STORAGE_KEY);
+                if (sessionData) {
+                    const parsed = JSON.parse(sessionData);
+                    targetCity = parsed.city;
+                }
+            }
+
+            if (!targetCity) {
+                console.error('No city specified');
+                setIsLoading(false);
+                return;
+            }
+
+            const location = await getLocation(targetCity);
+            const map = new window.google.maps.Map(mapRef.current, {
+                zoom: 12,
+                center: location,
+                mapId: theme === 'dark' ? 'bb7adeabb62a0de9' : '2d604af04a7c7fa8'
+                // styles: theme === 'dark' ? [
+                //     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                //     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                //     { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                //     {
+                //         featureType: "administrative.locality",
+                //         elementType: "labels.text.fill",
+                //         stylers: [{ color: "#d59563" }],
+                //     },
+                //     {
+                //         featureType: "poi",
+                //         elementType: "labels.text.fill",
+                //         stylers: [{ color: "#d59563" }],
+                //     },
+                //     {
+                //         featureType: "poi.park",
+                //         elementType: "geometry",
+                //         stylers: [{ color: "#263c3f" }],
+                //     },
+                //     {
+                //         featureType: "poi.park",
+                //         elementType: "labels.text.fill",
+                //         stylers: [{ color: "#6b9a76" }],
+                //     },
+                //     {
+                //         featureType: "road",
+                //         elementType: "geometry",
+                //         stylers: [{ color: "#38414e" }],
+                //     },
+                //     {
+                //         featureType: "road",
+                //         elementType: "geometry.stroke",
+                //         stylers: [{ color: "#212a37" }],
+                //     },
+                //     {
+                //         featureType: "road",
+                //         elementType: "labels.text.fill",
+                //         stylers: [{ color: "#9ca5b3" }],
+                //     },
+                //     {
+                //         featureType: "road.highway",
+                //         elementType: "geometry",
+                //         stylers: [{ color: "#746855" }],
+                //     },
+                //     {
+                //         featureType: "road.highway",
+                //         elementType: "geometry.stroke",
+                //         stylers: [{ color: "#1f2835" }],
+                //     },
+                //     {
+                //         featureType: "road.highway",
+                //         elementType: "labels.text.fill",
+                //         stylers: [{ color: "#f3d19c" }],
+                //     },
+                //     {
+                //         featureType: "transit",
+                //         elementType: "geometry",
+                //         stylers: [{ color: "#2f3948" }],
+                //     },
+                //     {
+                //         featureType: "transit.station",
+                //         elementType: "labels.text.fill",
+                //         stylers: [{ color: "#d59563" }],
+                //     },
+                //     {
+                //         featureType: "water",
+                //         elementType: "geometry",
+                //         stylers: [{ color: "#17263c" }],
+                //     },
+                //     {
+                //         featureType: "water",
+                //         elementType: "labels.text.fill",
+                //         stylers: [{ color: "#515c6d" }],
+                //     },
+                //     {
+                //         featureType: "water",
+                //         elementType: "labels.text.stroke",
+                //         stylers: [{ color: "#17263c" }],
+                //     },
+                // ] : []
+            });
+
+            mapInstanceRef.current = map;
+            setMap(map);
+            markersRef.current = new Map();
+
+            // Initialize the InfoWindow
+            infoWindowRef.current = new window.google.maps.InfoWindow({
+                maxWidth: 300,
+                pixelOffset: new window.google.maps.Size(0, -30)
+            });
+
+            setIsLoading(false);
+
+            // Check if geometry library is loaded
+            if (isGeometryReady()) {
+                geometryLoadedRef.current = true;
+            } else {
+                // Poll for geometry library
+                const checkGeometry = setInterval(() => {
+                    if (isGeometryReady()) {
+                        geometryLoadedRef.current = true;
+                        clearInterval(checkGeometry);
+                    }
+                }, 100);
+                // Clear interval after 10 seconds to prevent infinite polling
+                setTimeout(() => clearInterval(checkGeometry), 10000);
+            }
+        } catch (error) {
+            console.error('Error setting up map:', error);
+            setIsLoading(false);
+        }
+    }
+
     useEffect(() => {
         if (!apiKey) return;
 
@@ -92,7 +232,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 setupMapInstance();
             } else if (!scriptLoadedRef.current && !document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
                 const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker,geometry&v=beta&map_ids=2d604af04a7c7fa8&callback=setupMapInstance`;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker,geometry&v=3.47&map_ids=2d604af04a7c7fa8,bb7adeabb62a0de9&callback=setupMapInstance`;
                 script.async = true;
                 script.defer = true;
                 document.head.appendChild(script);
@@ -101,146 +241,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         };
 
         // Initial map setup and geometry library check
-        async function setupMapInstance() {
-            if (!mapRef.current || mapInstanceRef.current) return;
-
-            try {
-                // Use the city prop directly, fallback to session storage if needed
-                let targetCity = city;
-                if (!targetCity) {
-                    const sessionData = sessionStorage.getItem(SESSION_CONFIG.STORAGE_KEY);
-                    if (sessionData) {
-                        const parsed = JSON.parse(sessionData);
-                        targetCity = parsed.city;
-                    }
-                }
-
-                if (!targetCity) {
-                    console.error('No city specified');
-                    setIsLoading(false);
-                    return;
-                }
-
-                const location = await getLocation(targetCity);
-                const map = new window.google.maps.Map(mapRef.current, {
-                    zoom: 12,
-                    center: location,
-                    mapId: '2d604af04a7c7fa8',  // This is important for advanced markers
-                    // styles: theme === 'dark' ? [
-                    //     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-                    //     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-                    //     { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-                    //     {
-                    //         featureType: "administrative.locality",
-                    //         elementType: "labels.text.fill",
-                    //         stylers: [{ color: "#d59563" }],
-                    //     },
-                    //     {
-                    //         featureType: "poi",
-                    //         elementType: "labels.text.fill",
-                    //         stylers: [{ color: "#d59563" }],
-                    //     },
-                    //     {
-                    //         featureType: "poi.park",
-                    //         elementType: "geometry",
-                    //         stylers: [{ color: "#263c3f" }],
-                    //     },
-                    //     {
-                    //         featureType: "poi.park",
-                    //         elementType: "labels.text.fill",
-                    //         stylers: [{ color: "#6b9a76" }],
-                    //     },
-                    //     {
-                    //         featureType: "road",
-                    //         elementType: "geometry",
-                    //         stylers: [{ color: "#38414e" }],
-                    //     },
-                    //     {
-                    //         featureType: "road",
-                    //         elementType: "geometry.stroke",
-                    //         stylers: [{ color: "#212a37" }],
-                    //     },
-                    //     {
-                    //         featureType: "road",
-                    //         elementType: "labels.text.fill",
-                    //         stylers: [{ color: "#9ca5b3" }],
-                    //     },
-                    //     {
-                    //         featureType: "road.highway",
-                    //         elementType: "geometry",
-                    //         stylers: [{ color: "#746855" }],
-                    //     },
-                    //     {
-                    //         featureType: "road.highway",
-                    //         elementType: "geometry.stroke",
-                    //         stylers: [{ color: "#1f2835" }],
-                    //     },
-                    //     {
-                    //         featureType: "road.highway",
-                    //         elementType: "labels.text.fill",
-                    //         stylers: [{ color: "#f3d19c" }],
-                    //     },
-                    //     {
-                    //         featureType: "transit",
-                    //         elementType: "geometry",
-                    //         stylers: [{ color: "#2f3948" }],
-                    //     },
-                    //     {
-                    //         featureType: "transit.station",
-                    //         elementType: "labels.text.fill",
-                    //         stylers: [{ color: "#d59563" }],
-                    //     },
-                    //     {
-                    //         featureType: "water",
-                    //         elementType: "geometry",
-                    //         stylers: [{ color: "#17263c" }],
-                    //     },
-                    //     {
-                    //         featureType: "water",
-                    //         elementType: "labels.text.fill",
-                    //         stylers: [{ color: "#515c6d" }],
-                    //     },
-                    //     {
-                    //         featureType: "water",
-                    //         elementType: "labels.text.stroke",
-                    //         stylers: [{ color: "#17263c" }],
-                    //     },
-                    // ] : []
-                });
-
-                mapInstanceRef.current = map;
-                setMap(map);
-                markersRef.current = new Map();
-
-                // Initialize the InfoWindow
-                infoWindowRef.current = new window.google.maps.InfoWindow({
-                    maxWidth: 300,
-                    pixelOffset: new window.google.maps.Size(0, -30)
-                });
-
-                setIsLoading(false);
-
-                // Check if geometry library is loaded
-                if (isGeometryReady()) {
-                    geometryLoadedRef.current = true;
-                } else {
-                    // Poll for geometry library
-                    const checkGeometry = setInterval(() => {
-                        if (isGeometryReady()) {
-                            geometryLoadedRef.current = true;
-                            clearInterval(checkGeometry);
-                        }
-                    }, 100);
-                    // Clear interval after 10 seconds to prevent infinite polling
-                    setTimeout(() => clearInterval(checkGeometry), 10000);
-                }
-            } catch (error) {
-                console.error('Error setting up map:', error);
-                setIsLoading(false);
-            }
-        }
-
-        window.setupMapInstance = setupMapInstance;
         loadGoogleMapsScript();
 
         return () => {
@@ -480,93 +480,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     useEffect(() => {
         if (!mapInstanceRef.current) return;
         
-        mapInstanceRef.current.setOptions({
-            styles: theme === 'dark' ? [
-                { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-                { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-                { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-                {
-                    featureType: "administrative.locality",
-                    elementType: "labels.text.fill",
-                    stylers: [{ color: "#d59563" }],
-                },
-                {
-                    featureType: "poi",
-                    elementType: "labels.text.fill",
-                    stylers: [{ color: "#d59563" }],
-                },
-                {
-                    featureType: "poi.park",
-                    elementType: "geometry",
-                    stylers: [{ color: "#263c3f" }],
-                },
-                {
-                    featureType: "poi.park",
-                    elementType: "labels.text.fill",
-                    stylers: [{ color: "#6b9a76" }],
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry",
-                    stylers: [{ color: "#38414e" }],
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry.stroke",
-                    stylers: [{ color: "#212a37" }],
-                },
-                {
-                    featureType: "road",
-                    elementType: "labels.text.fill",
-                    stylers: [{ color: "#9ca5b3" }],
-                },
-                {
-                    featureType: "road.highway",
-                    elementType: "geometry",
-                    stylers: [{ color: "#746855" }],
-                },
-                {
-                    featureType: "road.highway",
-                    elementType: "geometry.stroke",
-                    stylers: [{ color: "#1f2835" }],
-                },
-                {
-                    featureType: "road.highway",
-                    elementType: "labels.text.fill",
-                    stylers: [{ color: "#f3d19c" }],
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry",
-                    stylers: [{ color: "#2f3948" }],
-                },
-                {
-                    featureType: "transit.station",
-                    elementType: "labels.text.fill",
-                    stylers: [{ color: "#d59563" }],
-                },
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [{ color: "#17263c" }],
-                },
-                {
-                    featureType: "water",
-                    elementType: "labels.text.fill",
-                    stylers: [{ color: "#515c6d" }],
-                },
-                {
-                    featureType: "water",
-                    elementType: "labels.text.stroke",
-                    stylers: [{ color: "#17263c" }],
-                },
-            ] : []
-        });
-    }, [theme]);
-
-    useEffect(() => {
-        if (!mapInstanceRef.current) return;
-
         const handleTravelInfoDisplay = (event: Event) => {
             const e = event as CustomEvent<{fromId: string, toId: string}>;
             setActiveRoutes(prev => [...prev, e.detail]);
@@ -672,6 +585,21 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             });
         };
     }, [activeRoutes]);
+
+    useEffect(() => {
+        if (mapInstanceRef.current) {
+            // Clear all markers first
+            markersRef.current?.forEach(marker => {
+                marker.map = null;
+            });
+            markersRef.current?.clear();
+            // Clear the map instance
+            mapInstanceRef.current = null;
+            setMap(null);
+            // Reinitialize
+            setupMapInstance(true);
+        }
+    }, [theme]);
 
     const drawRoute = async (places: Place[], color: string) => {
         if (!places || places.length !== 2 || !mapInstanceRef.current || !isGeometryReady()) return;

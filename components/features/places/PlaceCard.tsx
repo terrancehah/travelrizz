@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { Place, savedPlacesManager, searchPlaceByText } from '@/utils/places-utils';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
@@ -28,6 +28,9 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
   };
 
   const fonts = useLocalizedFont();
+
+  const retryCount = useRef<{ [key: string]: number }>({});
+  const MAX_RETRIES = 2;
 
   const handleSelect = useCallback(() => {
     if (onSelect) {
@@ -73,14 +76,29 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
                 name: typeof place.displayName === 'string' ? place.displayName : place.displayName.text
               });
               
-              // First try using Place ID if available
-              if (place.id) {
+              // Initialize and check retry count
+              if (!retryCount.current[place.id]) {
+                retryCount.current[place.id] = 0;
+              }
+
+              // If exceeded max retries, show placeholder
+              if (retryCount.current[place.id] >= MAX_RETRIES) {
+                e.currentTarget.src = '/images/placeholder-image.jpg';
+                e.currentTarget.parentElement?.classList.remove('animate-pulse');
+                return;
+              }
+
+              // Increment retry count
+              retryCount.current[place.id]++;
+
+              // First retry: Try Place ID
+              if (retryCount.current[place.id] === 1 && place.id) {
                 const placePhotoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${place.id}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`;
                 e.currentTarget.src = placePhotoUrl;
                 return;
               }
 
-              // If Place ID photo fails, try refreshing place data
+              // Second retry: Try refreshing place data
               e.currentTarget.parentElement?.classList.add('animate-pulse');
               searchPlaceByText(
                 typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
@@ -88,29 +106,18 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
                 'Singapore'
               ).then(freshPlace => {
                 if (freshPlace && freshPlace.photos && freshPlace.photos[0]) {
-                  console.log('[PlaceCard] Got fresh photo for:', {
-                    id: place.id,
-                    name: typeof place.displayName === 'string' ? place.displayName : place.displayName.text
-                  });
                   e.currentTarget.parentElement?.classList.remove('animate-pulse');
                   e.currentTarget.src = `https://places.googleapis.com/v1/${freshPlace.photos[0].name}/media?maxHeightPx=192&maxWidthPx=400&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`;
                   if (savedPlacesManager.hasPlace(place.id)) {
                     savedPlacesManager.addPlace(freshPlace);
                   }
                 } else {
-                  e.currentTarget.style.display = 'none';
-                  const noImageDiv = document.createElement('div');
-                  noImageDiv.className = 'w-full h-full flex items-center justify-center bg-gray-300';
-                  noImageDiv.innerHTML = '<span class="text-gray-500">No image available</span>';
-                  e.currentTarget.parentElement?.appendChild(noImageDiv);
+                  e.currentTarget.src = '/images/placeholder-image.jpg';
+                  e.currentTarget.parentElement?.classList.remove('animate-pulse');
                 }
-              }).catch(error => {
-                console.error('[PlaceCard] Error refreshing photo:', error);
-                e.currentTarget.style.display = 'none';
-                const noImageDiv = document.createElement('div');
-                noImageDiv.className = 'w-full h-full flex items-center justify-center bg-gray-300';
-                noImageDiv.innerHTML = '<span class="text-gray-500">No image available</span>';
-                e.currentTarget.parentElement?.appendChild(noImageDiv);
+              }).catch(() => {
+                e.currentTarget.src = '/images/placeholder-image.jpg';
+                e.currentTarget.parentElement?.classList.remove('animate-pulse');
               });
             }}
           />

@@ -148,7 +148,7 @@ export default async function handler(req: NextRequest) {
 
     The 'PLACES BROWSING AND INTRODUCTION' (Stage 3) facilitates user discovery of preference-matched locations.
     The initial entry to the stage follows a precise sequence: a brief welcome, followed by a compulsary 'carousel' tool calling.
-    Then, compose another message to provide brief place descriptions of the previous recommended placesformatted with markdown. Do not attach place images in the text message.
+    Then, compose another message to provide brief place descriptions of the previous recommended places formatted with markdown. Do not attach place images in the text message.
     The later ongoing flow handles place browsing requests based on user preferences while tracking 'savedPlaces' count.
     Everytime you trigger the tool 'carousel', always follow up with an acknowledgement message and the place descriptions.
     When user asks to see their saved places (e.g. "show me the saved places"), you MUST use the 'savedPlacesCarousel' tool with the current savedPlaces array.
@@ -212,7 +212,7 @@ export default async function handler(req: NextRequest) {
     - Any sentence ending with "?"or open-ended questions
     - "Save these places", "Save any of these places", or other similar phrases related to adding and saving places
     - Showing saved places in text form instead of using the savedPlacesCarousel tool
-    - addresses or hyperlinks for places in messages/place descriptions
+    - addresses or hyperlinks or links in messages or place descriptions
     - image and image links in messages/place descriptions
     - stage numbers in messages
     - any thing about stage

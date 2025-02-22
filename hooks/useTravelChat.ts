@@ -210,7 +210,7 @@ export function useTravelChat({
 
     const responses = quickResponseInvocation.result.props.responses;
     if (responses.length > 0) {
-          console.log('[QuickResponse] Got valid responses:', responses);
+          // console.log('[QuickResponse] Got valid responses:', responses);
           return responses;
       }
 

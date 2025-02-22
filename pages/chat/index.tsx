@@ -248,7 +248,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
             {/* Window header - fixed height */}
             <div className="flex border-b border-gray-200 dark:border-gray-700 px-3 md:px-6 py-2 bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400">
                 {/* Logo and Brand Name */}
-                <Link href="/" className="flex items-center h-min my-auto gap-x-1">
+                <Link href="/" className="flex items-center my-auto gap-x-1">
                     <Image
                         src="/images/travel-rizz.png"
                         alt="Travel-Rizz Logo"
@@ -256,7 +256,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                         height={48}
                         className="h-12 md:w-12 flex my-auto object-contain dark:invert dark:brightness-0 dark:contrast-200 transition-colors duration-400"
                     />
-                    <span className={`text-3xl h-min my-auto hidden lg:flex text-primary text-nowrap dark:text-white font-caveat transition-colors duration-400`}>Travel-Rizz</span>
+                    <span className={`text-3xl h-min my-auto hidden xl:flex text-primary text-nowrap dark:text-white font-caveat transition-colors duration-400`}>Travel-Rizz</span>
                 </Link>
                 
                 <StageProgress 

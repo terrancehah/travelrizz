@@ -68,13 +68,13 @@ export default function FeatureCarousel() {
               key={index}
               className="w-[250px] md:w-[300px] flex-shrink-0 pb-1"
             >
-              <div className="bg-white rounded-2xl w-[250px] md:w-[300px] h-[160px] md:h-[200px] flex align-middle p-5 mx-2 my-1 border border-gray-100 shadow-md transform transition-all hover:shadow-lg z-70">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl w-[250px] md:w-[300px] h-[160px] md:h-[200px] flex align-middle p-5 mx-2 my-1 border border-gray-100 dark:border-gray-700 shadow-md transform transition-all hover:shadow-lg hover:scale-[1.02] z-70">
                 <div className="flex flex-col items-center text-center space-y-2 my-auto">
-                  <div className="text-sky-blue bg-sky-50 p-3 rounded-full">
+                  <div className="text-sky-blue dark:text-sky-100 bg-sky-50 dark:bg-gray-700 p-3 rounded-full">
                     {feature.icon}
                   </div>
-                  <h3 className="text-base lg:text-lg font-bold leading-tight text-primary">{feature.title}</h3>
-                  <p className="text-gray-600 text-xs lg:text-sm">{feature.description}</p>
+                  <h3 className="text-base lg:text-lg font-bold leading-tight text-primary dark:text-white">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-xs lg:text-sm">{feature.description}</p>
                 </div>
               </div>
             </div>
@@ -88,13 +88,13 @@ export default function FeatureCarousel() {
               key={`duplicate-${index}`}
               className="w-[300px] md:w-[300px] flex-shrink-0"
             >
-              <div className="bg-white rounded-2xl w-[250px] md:w-[300px] h-[160px] md:h-[200px] flex align-middle p-3 md:p-5 mx-2 my-1 border border-gray-100 shadow-md transform transition-all  hover:shadow-lg">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl w-[250px] md:w-[300px] h-[160px] md:h-[200px] flex align-middle p-3 md:p-5 mx-2 my-1 border border-gray-100 dark:border-gray-700 shadow-md transform transition-all hover:shadow-lg hover:scale-[1.02]">
               <div className="flex flex-col items-center text-center space-y-2 my-auto">
-                  <div className="text-sky-blue bg-sky-50 p-3 rounded-full">
+                  <div className="text-sky-blue dark:text-sky-100 bg-sky-50 dark:bg-gray-700 p-3 rounded-full">
                     {feature.icon}
                   </div>
-                  <h3 className="text-base lg:text-lg font-bold leading-tight text-primary">{feature.title}</h3>
-                  <p className="text-gray-600 text-xs lg:text-sm">{feature.description}</p>
+                  <h3 className="text-base lg:text-lg font-bold leading-tight text-primary dark:text-white">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-xs lg:text-sm">{feature.description}</p>
                 </div>
               </div>
             </div>
