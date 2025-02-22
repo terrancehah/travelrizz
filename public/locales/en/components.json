@@ -5,6 +5,6 @@
     },
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Currency Rates",
-        "subheading": "as of {lastUpdated}"
+        "subheading": "as of {date}"
     }
 }

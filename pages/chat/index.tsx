@@ -328,7 +328,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                                 />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center">
-                                <p className="text-red-500">{apiError || 'Loading map...'}</p>
+                                <p className="text-sky-blue">{apiError || 'Loading map...'}</p>
                             </div>
                         )}
                     </div>

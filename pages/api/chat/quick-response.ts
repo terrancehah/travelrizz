@@ -143,19 +143,19 @@ export default async function handler(req: NextRequest) {
       - Otherwise: Focus on city information options 
       - Only provide options related to yes, no, currency, local customs, weather, culture and local tips
       - Never provide options related to introducing or finding places
-      - Available options are examples like "Tell me about the weather", "What's the currency conversion rate?", "Yes, let's move on", "Local customs and tips", "Tell me about the culture", 
+      - Available options are examples like "Tell me about the weather", "What's the currency conversion rate?", "Yes, let's move on to the next stage", "Local customs and tips", "Tell me about the culture", 
       "No, I want to know more about the city", "Tell me more about the destination", "Yes, let's proceed to places introduction"
 
     Stage 3 (Places Browsing and Introduction):
       - Only if Travel-Rizz suggesting stage advancement: Use suitable stage transition options
       - Otherwise: Focus on place discovery options
-      - Only provide options related to yes, no, and place discovery
+      - Only provide options related to yes, no, and places discovery
       - Provide options that prompts AI to introduce places related to preferences
-      - Never provide options related to saving or adding places (e.g., "Save Louvre Museum", "Add Changi Airport")
+      - NEVER provide options related to saving or adding places (e.g., "Save Louvre Museum", "Add Changi Airport", "Save this place")
       - Never provide options related to wanting to know more of a single specific place
       - Available options are examples like "Show me museums", "Find me some restaurants", "Popular landmarks", "Add some cafes", "Explore some famous attractions",
-      "No, I want to see more places", "Show me national parks", "Find me some theaters", "Popular eateries", "Explore some famous tourist spots",
-      "No, I want to add more places", "Continue to itinerary review", "Yes, let's proceed", "Yes, let's move on", "View pricing"
+      "No, I want to see more places", "Show me national parks", "Find me some theaters", "Popular eateries", "Explore some famous tourist spots", 
+      "Continue to itinerary review", "Yes, let's proceed", "Yes, let's move on", "View pricing"
 
     Stage 4 (Itinerary Review):
       - Only if Travel-Rizz suggesting stage advancement: Use suitable stage transition options

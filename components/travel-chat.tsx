@@ -158,31 +158,31 @@ export function TravelChat({
                 const isParameter = ['budgetSelector', 'preferenceSelector', 'datePicker', 'languageSelector'].includes(t.toolName);
                 const isVisible = toolVisibility[t.toolCallId];
                 
-                console.log('Tool Check:', {
-                    toolName: t.toolName,
-                    toolCallId: t.toolCallId,
-                    isParameter,
-                    isVisible,
-                    toolVisibility
-                });
+                // console.log('Tool Check:', {
+                //     toolName: t.toolName,
+                //     toolCallId: t.toolCallId,
+                //     isParameter,
+                //     isVisible,
+                //     toolVisibility
+                // });
                 
                 return isParameter && isVisible;
             })
         );
         
-        console.log('Quick Response Check:', {
-            hasActiveParameterComponent,
-            isLoading,
-            quickResponsesLength: quickResponses?.length,
-            isQuickResponseLoading,
-            messages: messages.map(m => ({
-                role: m.role,
-                toolInvocations: m.toolInvocations?.map(t => ({
-                    toolName: t.toolName,
-                    toolCallId: t.toolCallId
-                }))
-            }))
-        });
+        // console.log('Quick Response Check:', {
+        //     hasActiveParameterComponent,
+        //     isLoading,
+        //     quickResponsesLength: quickResponses?.length,
+        //     isQuickResponseLoading,
+        //     messages: messages.map(m => ({
+        //         role: m.role,
+        //         toolInvocations: m.toolInvocations?.map(t => ({
+        //             toolName: t.toolName,
+        //             toolCallId: t.toolCallId
+        //         }))
+        //     }))
+        // });
 
         if (hasActiveParameterComponent) {
             // console.log('[QuickResponse] Hidden due to active parameter component');
@@ -634,7 +634,8 @@ export function TravelChat({
                                     <div key={`${toolCallId}-${index}`} className="flex justify-star ml-4 my-2">
                                         <div className="relative overflow-hidden min-w-[200px] 
                                         before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
-                                        before:from-blue-400 before:via-purple-500 before:to-pink-400 before: to-orange-500
+                                        before:from-blue-400 before:via-purple-500 before:to-pink-400 before:     mapId: '2d604af04a7c7fa8'  // This is important for advanced markers
+0
                                         before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
                                         after:bg-white after:opacity-70 after:z-[1] shadow-sm
                                         text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">

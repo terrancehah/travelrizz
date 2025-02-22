@@ -147,8 +147,8 @@ export default async function handler(req: NextRequest) {
     If user agrees to advance to the next stage, you MUST trigger the 'stageProgress' tool to advance to the next stage.
 
     The 'PLACES BROWSING AND INTRODUCTION' (Stage 3) facilitates user discovery of preference-matched locations.
-    The initial entry to the stage follows a precise sequence: a brief welcome, followed by a 'carousel' tool calling.
-    Then, provide place descriptions text message formatted with markdown. Do not attach place images in the text message.
+    The initial entry to the stage follows a precise sequence: a brief welcome, followed by a compulsary 'carousel' tool calling.
+    Then, compose another message to provide brief place descriptions of the previous recommended placesformatted with markdown. Do not attach place images in the text message.
     The later ongoing flow handles place browsing requests based on user preferences while tracking 'savedPlaces' count.
     Everytime you trigger the tool 'carousel', always follow up with an acknowledgement message and the place descriptions.
     When user asks to see their saved places (e.g. "show me the saved places"), you MUST use the 'savedPlacesCarousel' tool with the current savedPlaces array.
