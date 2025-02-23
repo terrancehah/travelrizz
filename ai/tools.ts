@@ -119,11 +119,12 @@ export const placeCardTool = createTool({
             latitude: z.number(),
             longitude: z.number()
         }),
-        destination: z.string().describe('Name of the destination city')
+        destination: z.string().describe('Name of the destination city'),
+        languageCode: z.string().default('en')
     }),
-    execute: async function ({ searchText, location, destination }) {
+    execute: async function ({ searchText, location, destination, languageCode }) {
         try {
-            const place = await searchPlaceByText(searchText, location, destination);
+            const place = await searchPlaceByText(searchText, location, destination, languageCode);
             
             if (!place) {
                 console.error('No place found for search text:', searchText);
@@ -160,9 +161,10 @@ export const carouselTool = createTool({
             latitude: z.number(),
             longitude: z.number()
         }),
-        maxResults: z.number().optional().default(5)
+        maxResults: z.number().optional().default(5),
+        languageCode: z.string().default('en')  // Add language code parameter with default
     }),
-    execute: async function ({ preferences, placeType, location, maxResults }) {
+    execute: async function ({ preferences, placeType, location, maxResults, languageCode }) {
         try {
             let places: Place[] = [];
             
@@ -171,19 +173,21 @@ export const carouselTool = createTool({
                 places = await searchMultiplePlacesByText(
                     placeType,
                     location,
-                    maxResults
+                    maxResults,
+                    languageCode
                 );
             } else if (preferences && preferences.length > 0) {
                 // Get place types from preferences
                 const placeTypes = getPlaceTypesFromPreferences(preferences);
                 
-                // Use fetchPlaces with the new signature
+                // Use fetchPlaces with the language code
                 places = await fetchPlaces({
                     latitude: location.latitude,
                     longitude: location.longitude,
                     includedTypes: placeTypes,
                     maxResults,
-                    fromPreferences: true
+                    fromPreferences: true,
+                    languageCode
                 });
             }
 

@@ -67,10 +67,12 @@ interface FetchPlacesParams {
     maxResults?: number;
     fromPreferences?: boolean;
     fromPlaceTypes?: boolean;
+    languageCode: string;
 }
 
 import { TravelPreference, TravelSession } from '../managers/types';
 import { getStoredSession, getStoredMetrics, SESSION_CONFIG, safeStorageOp, storage } from '../managers/session-manager';
+import Router from 'next/router';
 
 // Updated preference to place types mapping based on travel-rizz.html
 export const preferenceToPlaceTypes: Record<TravelPreference, string[]> = {
@@ -382,6 +384,7 @@ interface PlacesSearchConfig {
     maxResults?: number;
     radius?: number;
     fieldMask?: string;
+    languageCode?: string;  // Add language code parameter
 }
 
 // Base search function that handles all search operations
@@ -400,7 +403,7 @@ async function searchPlacesBase(
         const headers = {
             'Content-Type': 'application/json',
             'X-Goog-Api-Key': process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-            'X-Goog-FieldMask': config.fieldMask || 'places.id,places.displayName,places.formattedAddress,places.location,places.primaryType,places.primaryTypeDisplayName,places.photos.name,places.photos.widthPx,places.photos.heightPx'
+            'X-Goog-FieldMask': 'places.id,places.displayName.text,places.displayName.languageCode,places.formattedAddress,places.location,places.primaryType,places.primaryTypeDisplayName.text,places.primaryTypeDisplayName.languageCode,places.photos.name,places.photos.widthPx,places.photos.heightPx'
         };
 
         const endpoint = config.endpoint === 'text' 
@@ -416,7 +419,8 @@ async function searchPlacesBase(
                         radius: config.radius || 20000.0
                     }
                 },
-                maxResultCount: config.maxResults || 5
+                maxResultCount: config.maxResults || 5,
+                languageCode: config.languageCode || 'en'  // Add language code
             }
             : {
                 locationRestriction: {
@@ -427,7 +431,7 @@ async function searchPlacesBase(
                 },
                 includedTypes: Array.isArray(config.query) ? config.query : [config.query],
                 maxResultCount: config.maxResults || 5,
-                languageCode: "en"
+                languageCode: config.languageCode || 'en'  // Modify to use config language code
             };
 
         const response = await fetch(endpoint, {
@@ -480,12 +484,14 @@ async function searchPlacesBase(
 export async function searchPlaceByText(
     searchText: string,
     location: { latitude: number; longitude: number },
-    destination: string
+    destination: string,
+    languageCode?: string  // Make languageCode optional
 ): Promise<Place | null> {
     console.log('[searchPlaceByText] Starting search with:', {
         searchText,
         location,
-        destination
+        destination,
+        languageCode
     });
 
     try {
@@ -493,7 +499,8 @@ export async function searchPlaceByText(
             endpoint: 'text',
             query: searchText,
             location,
-            maxResults: 1
+            maxResults: 1,
+            languageCode: languageCode || Router.locale || 'en'  // Use Router.locale as fallback
         });
         
         if (places.length === 0) {
@@ -534,14 +541,16 @@ export async function searchPlaceByText(
 export const searchMultiplePlacesByText = async (
     searchText: string,
     location: { latitude: number; longitude: number },
-    maxResults: number = 5
+    maxResults: number = 5,
+    languageCode: string = 'en'  // Add language code parameter with default
 ): Promise<Place[]> => {
     try {
         return await searchPlacesBase({
             endpoint: 'text',
             query: searchText,
             location,
-            maxResults
+            maxResults,
+            languageCode  // Pass the language code
         });
     } catch (error) {
         console.error('Error searching for places:', error);
@@ -555,7 +564,8 @@ export async function fetchPlaces({
     includedTypes,
     maxResults = 5,
     fromPreferences = false,
-    fromPlaceTypes = false
+    fromPlaceTypes = false,
+    languageCode
 }: FetchPlacesParams): Promise<Place[]> {
     try {
         console.log('Executing fetchplaces with params:', {
@@ -564,7 +574,8 @@ export async function fetchPlaces({
             includedTypes,
             maxResults,
             fromPreferences,
-            fromPlaceTypes
+            fromPlaceTypes,
+            languageCode
         });
 
         const location = { latitude, longitude };
@@ -575,7 +586,8 @@ export async function fetchPlaces({
                 endpoint: 'nearby',
                 query: type,
                 location,
-                maxResults: 1
+                maxResults: 1,
+                languageCode
             })
         );
 
@@ -595,7 +607,8 @@ async function trySearch(
     query: string,
     headers: any,
     location: { latitude: number; longitude: number },
-    maxResults: number = 5
+    maxResults: number = 5,
+    languageCode: string = 'en'  // Add language code parameter
 ): Promise<any> {
     try {
         // First try searching by type
@@ -613,7 +626,7 @@ async function trySearch(
                     },
                     includedTypes: [query],
                     maxResultCount: maxResults,
-                    languageCode: "en"
+                    languageCode: languageCode  // Use the passed language code
                 })
             }
         );
@@ -621,7 +634,7 @@ async function trySearch(
         if (!searchByTypeResponse.ok) {
             // If type search fails, fallback to text search
             console.log(`[trySearch] Type search failed for ${query}, falling back to text search`);
-            const places = await searchMultiplePlacesByText(query, location, maxResults);
+            const places = await searchMultiplePlacesByText(query, location, maxResults, languageCode);  // Pass language code
             return { places }; // Wrap in same format as type search response
         }
 
@@ -629,7 +642,7 @@ async function trySearch(
         if (!searchByTypeData.places || searchByTypeData.places.length === 0) {
             // If no results from type search, fallback to text search
             console.log(`[trySearch] No results from type search for ${query}, falling back to text search`);
-            const places = await searchMultiplePlacesByText(query, location, maxResults);
+            const places = await searchMultiplePlacesByText(query, location, maxResults, languageCode);  // Pass language code
             return { places }; // Wrap in same format as type search response
         }
 

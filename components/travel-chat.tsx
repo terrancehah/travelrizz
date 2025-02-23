@@ -285,21 +285,6 @@ export function TravelChat({
                 return;
             }
 
-            // Check if it's a place search request
-            if (text.toLowerCase().includes('add') && text.toLowerCase().includes('park')) {
-                const searchText = 'park';
-                if (currentDetails.destination) {
-                    const place = await searchPlaceByText(
-                        searchText,
-                        { latitude: 1.3521, longitude: 103.8198 }, // Singapore coordinates
-                        currentDetails.destination
-                    );
-                    if (place) {
-                        console.log('[handleQuickResponseSelect] Successfully found place:', place.id);
-                    }
-                }
-            }
-
             // Send the response to chat
             const body = {
                 message: text,
