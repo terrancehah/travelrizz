@@ -7,7 +7,7 @@ import {
     DialogTitle,
 } from '../ui/dialog';
 import { Button } from '../ui/button';
-import { updateLastActive, handleSessionExpiry } from '@/utils/session-manager';
+import { updateLastActive, handleSessionExpiry } from '@/managers/session-manager';
 
 interface SessionWarningModalProps {
     isOpen: boolean;

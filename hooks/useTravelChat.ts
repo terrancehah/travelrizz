@@ -5,7 +5,7 @@ import { Place, savedPlacesManager } from '../utils/places-utils';
 import { STAGE_LIMITS, validateStageProgression } from '../managers/stage-manager';
 import { Message as LocalMessage, ToolInvocation } from '../managers/types';
 import { Message as AiMessage } from 'ai';
-import { checkSessionWithWarning, getStoredSession, SESSION_CONFIG, handleSessionExpiry, updateStoredMetrics, checkInputLimits } from '../utils/session-manager';
+import { checkSessionWithWarning, getStoredSession, SESSION_CONFIG, handleSessionExpiry, updateStoredMetrics, checkInputLimits } from '../managers/session-manager';
 import { useRouter } from 'next/router';
 
 interface ChatRequestBody {

@@ -22,7 +22,7 @@ import { useTravelChat } from '../hooks/useTravelChat';
 import { useTravelTools } from '../hooks/useTravelTools';
 import { Place, savedPlacesManager, searchPlaceByText } from '../utils/places-utils';
 import { ToolInvocation } from '../managers/types';
-import { getStoredSession, checkInputLimits, handleSessionExpiry, checkSessionWithWarning, updateStoredMetrics } from '../utils/session-manager';
+import { getStoredSession, checkInputLimits, handleSessionExpiry, checkSessionWithWarning, updateStoredMetrics } from '../managers/session-manager';
 import PremiumUpgradeModal from './modals/premium-upgrade-modal';
 import SessionWarningModal from './modals/session-warning-modal';
 import { useRouter } from 'next/router';

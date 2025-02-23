@@ -1,5 +1,6 @@
 import { TravelSession } from '../managers/types';
 import { STAGE_LIMITS } from '../managers/stage-manager';
+import { savedPlacesManager } from '../utils/places-utils';
 
 export const SESSION_CONFIG = {
   STORAGE_KEY: 'travel_rizz_session',
@@ -401,6 +402,7 @@ export function clearSession() {
   console.log('[Session] Clearing session storage');
   safeStorageOp(() => {
     storage?.removeItem(SESSION_CONFIG.STORAGE_KEY);
+    savedPlacesManager.reset();
   }, undefined);
 }
 

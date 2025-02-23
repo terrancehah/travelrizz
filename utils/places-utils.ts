@@ -70,7 +70,7 @@ interface FetchPlacesParams {
 }
 
 import { TravelPreference, TravelSession } from '../managers/types';
-import { getStoredSession, getStoredMetrics, SESSION_CONFIG, safeStorageOp, storage } from './session-manager';
+import { getStoredSession, getStoredMetrics, SESSION_CONFIG, safeStorageOp, storage } from '../managers/session-manager';
 
 // Updated preference to place types mapping based on travel-rizz.html
 export const preferenceToPlaceTypes: Record<TravelPreference, string[]> = {
@@ -229,6 +229,7 @@ export interface SavedPlacesManager {
     _persist: () => void;
     _notifyChange: () => void;
     serialize: () => string;
+    reset: () => void;
 }
 
 const STORAGE_KEY = 'saved_places';
@@ -335,6 +336,12 @@ const createSavedPlacesManager = (): SavedPlacesManager => {
         },
         serialize() {
             return JSON.stringify(Array.from(places.values()));
+        },
+        reset() {
+            places.clear();
+            initialized = false;
+            this._persist();
+            this._notifyChange();
         }
     };
 };

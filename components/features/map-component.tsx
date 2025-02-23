@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { Place, savedPlacesManager, searchPlaceByText } from '@/utils/places-utils';
-import { SESSION_CONFIG } from '@/utils/session-manager';
+import { SESSION_CONFIG } from '@/managers/session-manager';
 import { travelInfoManager } from '@/utils/travel-info-utils';
 
 interface MapComponentProps {

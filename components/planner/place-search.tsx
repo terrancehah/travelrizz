@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Input } from '../ui/input'
 import { Search, Loader2 } from 'lucide-react'
 import { cn } from '@/utils/cn'
-import { getStoredSession } from '@/utils/session-manager'
+import { getStoredSession } from '@/managers/session-manager'
 import { Place, searchPlaceByText } from '@/utils/places-utils'
 
 interface PlaceSearchProps {

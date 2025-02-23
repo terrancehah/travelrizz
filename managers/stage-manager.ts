@@ -1,5 +1,5 @@
 import { TravelDetails, TravelSession } from './types';
-import { getStoredSession, initializeSession } from '../utils/session-manager';
+import { getStoredSession, initializeSession } from '../managers/session-manager';
 
 // Interface for tracking user interactions
 // export interface UserInteractionMetrics {

@@ -9,7 +9,7 @@ import {
   setPaymentReference,
   getPaymentReference,
   clearPaymentReference,
-} from '@/utils/session-manager'
+} from '@/managers/session-manager'
 
 // Declare the custom element for TypeScript
 declare global {

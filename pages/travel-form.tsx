@@ -13,7 +13,7 @@ import "react-day-picker/dist/style.css";
 import Image from "next/image"
 import Head from "next/head"
 import { TravelPreference, TravelSession, SupportedLanguage, BudgetLevel } from '../managers/types'
-import { initializeSession, generateSessionId, safeStorageOp, getStoredSession, clearSession, SESSION_CONFIG } from '../utils/session-manager'
+import { initializeSession, generateSessionId, safeStorageOp, getStoredSession, clearSession, SESSION_CONFIG } from '../managers/session-manager'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Link from "next/link"
 import { useLocalizedFont } from "@/hooks/useLocalizedFont"
@@ -22,6 +22,7 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useTheme } from 'next-themes';
 import { useRouter } from "next/router";
 import { cn } from '@/utils/cn';
+import { savedPlacesManager } from "@/utils/places-utils"
 
 // Add Google Maps types
 declare global {
@@ -245,6 +246,10 @@ export default function TravelFormPage() {
       // Use session manager's safe storage methods with verification
       console.log('About to store session:', session)
       const storageSuccess = safeStorageOp(() => {
+        // Remove old session first
+        window.sessionStorage.removeItem(SESSION_CONFIG.STORAGE_KEY);
+        
+        // Set new session
         window.sessionStorage.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session))
         // Verify write by reading back immediately
         const written = window.sessionStorage.getItem(SESSION_CONFIG.STORAGE_KEY)

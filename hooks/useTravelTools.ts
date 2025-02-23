@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TravelDetails, TravelSession } from '../managers/types';
 import { Place } from '../utils/places-utils';
-import { getStoredSession, safeStorageOp, storage, SESSION_CONFIG } from '../utils/session-manager';
+import { getStoredSession, safeStorageOp, storage, SESSION_CONFIG } from '../managers/session-manager';
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
