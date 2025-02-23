@@ -369,6 +369,220 @@ export const messageContainsPlaceType = (message: string): boolean => {
     return new RegExp(`\\b(${placeTypeKeywords.join('|')})\\b`, 'i').test(message);
 }
 
+// Base configuration type for search operations
+interface PlacesSearchConfig {
+    location: { latitude: number; longitude: number };
+    maxResults?: number;
+    radius?: number;
+    fieldMask?: string;
+}
+
+// Base search function that handles all search operations
+async function searchPlacesBase(
+    config: PlacesSearchConfig & {
+        endpoint: 'text' | 'nearby';
+        query: string | string[];
+    }
+): Promise<Place[]> {
+    try {
+        if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
+            console.error('Google Maps API key is missing');
+            return [];
+        }
+
+        const headers = {
+            'Content-Type': 'application/json',
+            'X-Goog-Api-Key': process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+            'X-Goog-FieldMask': config.fieldMask || 'places.id,places.displayName,places.formattedAddress,places.location,places.primaryType,places.primaryTypeDisplayName,places.photos.name,places.photos.widthPx,places.photos.heightPx'
+        };
+
+        const endpoint = config.endpoint === 'text' 
+            ? 'https://places.googleapis.com/v1/places:searchText'
+            : 'https://places.googleapis.com/v1/places:searchNearby';
+
+        const requestBody = config.endpoint === 'text' 
+            ? {
+                textQuery: config.query as string,
+                locationBias: {
+                    circle: {
+                        center: config.location,
+                        radius: config.radius || 20000.0
+                    }
+                },
+                maxResultCount: config.maxResults || 5
+            }
+            : {
+                locationRestriction: {
+                    circle: {
+                        center: config.location,
+                        radius: config.radius || 5000.0
+                    }
+                },
+                includedTypes: Array.isArray(config.query) ? config.query : [config.query],
+                maxResultCount: config.maxResults || 5,
+                languageCode: "en"
+            };
+
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.text();
+            console.error('Failed to search places:', {
+                status: response.status,
+                statusText: response.statusText,
+                error: errorData
+            });
+            return [];
+        }
+
+        const data = await response.json();
+        
+        if (!data.places || !Array.isArray(data.places) || data.places.length === 0) {
+            return [];
+        }
+
+        return data.places.map((place: any) => ({
+            id: place.id,
+            displayName: place.displayName?.text ? {
+                text: place.displayName.text,
+                languageCode: place.displayName.languageCode || 'en'
+            } : place.displayName,
+            primaryType: place.primaryType || 'place',
+            photos: place.photos?.map((photo: any) => ({ 
+                name: photo.name,
+                widthPx: photo.widthPx,
+                heightPx: photo.heightPx
+            })) || [],
+            formattedAddress: place.formattedAddress,
+            location: place.location,
+            primaryTypeDisplayName: place.primaryTypeDisplayName ? {
+                text: place.primaryTypeDisplayName.text,
+                languageCode: place.primaryTypeDisplayName.languageCode || 'en'
+            } : undefined
+        }));
+    } catch (error) {
+        console.error('Error in searchPlacesBase:', error);
+        return [];
+    }
+}
+
+export async function searchPlaceByText(
+    searchText: string,
+    location: { latitude: number; longitude: number },
+    destination: string
+): Promise<Place | null> {
+    console.log('[searchPlaceByText] Starting search with:', {
+        searchText,
+        location,
+        destination
+    });
+
+    try {
+        const places = await searchPlacesBase({
+            endpoint: 'text',
+            query: searchText,
+            location,
+            maxResults: 1
+        });
+        
+        if (places.length === 0) {
+            return null;
+        }
+
+        const place = places[0];
+        
+        // Check if place is already saved using savedPlacesManager
+        const isAlreadySaved = savedPlacesManager.hasPlace(place.id);
+        
+        if (!isAlreadySaved) {
+            console.log('[searchPlaceByText] Adding new place:', {
+                id: place.id,
+                name: getDisplayName(place)
+            });
+            savedPlacesManager.addPlace(place);
+            
+            // Update metrics
+            const metrics: TravelSession = metricsManager.get();
+            metrics.savedPlacesCount = savedPlacesManager.places.size;
+            metricsManager.update(metrics);
+        }
+
+        console.log('[searchPlaceByText] Found place:', {
+            id: place.id,
+            name: getDisplayName(place),
+            isAlreadySaved
+        });
+
+        return place;
+    } catch (error) {
+        console.error('[searchPlaceByText] Error searching for place:', error);
+        return null;
+    }
+}
+
+export const searchMultiplePlacesByText = async (
+    searchText: string,
+    location: { latitude: number; longitude: number },
+    maxResults: number = 5
+): Promise<Place[]> => {
+    try {
+        return await searchPlacesBase({
+            endpoint: 'text',
+            query: searchText,
+            location,
+            maxResults
+        });
+    } catch (error) {
+        console.error('Error searching for places:', error);
+        return [];
+    }
+};
+
+export async function fetchPlaces({
+    latitude,
+    longitude,
+    includedTypes,
+    maxResults = 5,
+    fromPreferences = false,
+    fromPlaceTypes = false
+}: FetchPlacesParams): Promise<Place[]> {
+    try {
+        console.log('Executing fetchplaces with params:', {
+            latitude,
+            longitude,
+            includedTypes,
+            maxResults,
+            fromPreferences,
+            fromPlaceTypes
+        });
+
+        const location = { latitude, longitude };
+
+        // Search for each type in parallel
+        const searchPromises = includedTypes.map(type => 
+            searchPlacesBase({
+                endpoint: 'nearby',
+                query: type,
+                location,
+                maxResults: 1
+            })
+        );
+
+        const results = await Promise.all(searchPromises);
+        const places = results.flat().filter(place => place !== null);
+
+        console.log('[fetchPlaces] Found places:', places.length);
+        return places;
+    } catch (error) {
+        console.error('[fetchPlaces] Error:', error);
+        return [];
+    }
+}
+
 // Helper function to handle different search strategies
 async function trySearch(
     query: string,
@@ -400,78 +614,27 @@ async function trySearch(
         if (!searchByTypeResponse.ok) {
             // If type search fails, fallback to text search
             console.log(`[trySearch] Type search failed for ${query}, falling back to text search`);
-            return await searchMultiplePlacesByText(query, location, maxResults);
+            const places = await searchMultiplePlacesByText(query, location, maxResults);
+            return { places }; // Wrap in same format as type search response
         }
 
         const searchByTypeData = await searchByTypeResponse.json();
         if (!searchByTypeData.places || searchByTypeData.places.length === 0) {
             // If no results from type search, fallback to text search
             console.log(`[trySearch] No results from type search for ${query}, falling back to text search`);
-            return await searchMultiplePlacesByText(query, location, maxResults);
+            const places = await searchMultiplePlacesByText(query, location, maxResults);
+            return { places }; // Wrap in same format as type search response
         }
 
         // We found a place by type search
-        const place = searchByTypeData.places[0];
-        console.log('[trySearch] Found place for type:', { type: query, id: place.id, name: place.displayName?.text || place.name });
-        return place;
+        console.log('[trySearch] Found place for type:', { 
+            type: query, 
+            id: searchByTypeData.places[0].id, 
+            name: searchByTypeData.places[0].displayName?.text || searchByTypeData.places[0].name 
+        });
+        return searchByTypeData;
     } catch (error) {
         console.error('[trySearch] Error searching for places:', error);
-        return null;
-    }
-}
-
-export async function searchPlaceByText(
-    searchText: string,
-    location: { latitude: number; longitude: number },
-    destination: string
-): Promise<Place | null> {
-    console.log('[searchPlaceByText] Starting search with:', {
-        searchText,
-        location,
-        destination
-    });
-
-    try {
-        const cityName = destination;
-        const result = await trySearch(searchText, {
-            'Content-Type': 'application/json',
-            'X-Goog-Api-Key': process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-        }, location, 1);
-        
-        if (!result?.places?.[0]) {
-            return null;
-        }
-
-        const place = transformPlaceResponse(result.places[0]);
-        if (!place) {
-            return null;
-        }
-
-        // Check if place is already saved using savedPlacesManager
-        const isAlreadySaved = savedPlacesManager.hasPlace(place.id);
-        
-        if (!isAlreadySaved) {
-            console.log('[searchPlaceByText] Adding new place:', {
-                id: place.id,
-                name: getDisplayName(place)
-            });
-            savedPlacesManager.addPlace(place);
-            
-            // Update metrics
-            const metrics: TravelSession = metricsManager.get();
-            metrics.savedPlacesCount = savedPlacesManager.places.size;
-            metricsManager.update(metrics);
-        }
-
-        console.log('[searchPlaceByText] Found place:', {
-            id: place.id,
-            name: getDisplayName(place),
-            isAlreadySaved
-        });
-
-        return place;
-    } catch (error) {
-        console.error('[searchPlaceByText] Error searching for place:', error);
         return null;
     }
 }
@@ -555,129 +718,4 @@ export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null
     };
 
     return transformed;
-};
-
-// Fetch places from Google Places API
-export async function fetchPlaces({
-    latitude,
-    longitude,
-    includedTypes,
-    maxResults = 5,
-    fromPreferences = false,
-    fromPlaceTypes = false
-}: FetchPlacesParams): Promise<Place[]> {
-    try {
-        console.log('Executing fetchplaces with params:', {
-            latitude,
-            longitude,
-            includedTypes,
-            maxResults,
-            fromPreferences,
-            fromPlaceTypes
-        });
-
-        const headers = {
-            'Content-Type': 'application/json',
-            'X-Goog-Api-Key': process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
-            'X-Goog-FieldMask': '*'
-        };
-
-        const location = { latitude, longitude };
-
-        // Search for each type in parallel
-        const searchPromises = includedTypes.map(type => 
-            trySearch(type, headers, location, 1)  // Get 1 place per type
-        );
-
-        const results = await Promise.all(searchPromises);
-        const places = results.filter((place): place is Place => place !== null);
-
-        console.log('[fetchPlaces] Found places:', places.length);
-        return places;
-    } catch (error) {
-        console.error('[fetchPlaces] Error:', error);
-        return [];
-    }
-}
-
-export const searchMultiplePlacesByText = async (
-    searchText: string,
-    location: { latitude: number; longitude: number },
-    maxResults: number = 5
-): Promise<Place[]> => {
-    try {
-        if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
-            console.error('Google Maps API key is missing');
-            return [];
-        }
-
-        console.log('Executing searchMultiplePlacesByText with params:', {
-            searchText,
-            location,
-            maxResults
-        });
-
-        const requestBody = {
-            textQuery: searchText,
-            locationBias: {
-                circle: {
-                    center: location,
-                    radius: 20000.0 // 20km radius
-                }
-            },
-            maxResultCount: maxResults
-        };
-
-        const headers = {
-            'Content-Type': 'application/json',
-            'X-Goog-Api-Key': process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-            'X-Goog-FieldMask': 'places.id,places.displayName,places.formattedAddress,places.location,places.primaryType,places.primaryTypeDisplayName,places.photos.name,places.photos.widthPx,places.photos.heightPx'
-        } as const;
-
-        const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(requestBody)
-        });
-
-        if (!response.ok) {
-            const errorData = await response.text();
-            console.error('Failed to search places:', {
-                status: response.status,
-                statusText: response.statusText,
-                error: errorData
-            });
-            return [];
-        }
-
-        const data = await response.json();
-        
-        if (!data.places || !Array.isArray(data.places) || data.places.length === 0) {
-            console.log('No places found for text search:', searchText);
-            return [];
-        }
-
-        return data.places.map((place: any) => ({
-            id: place.id,
-            displayName: place.displayName?.text ? {
-                text: place.displayName.text,
-                languageCode: place.displayName.languageCode || 'en'
-            } : place.displayName,
-            primaryType: place.primaryType || 'place',
-            photos: place.photos?.map((photo: any) => ({ 
-                name: photo.name,
-                widthPx: photo.widthPx,
-                heightPx: photo.heightPx
-            })) || [],
-            formattedAddress: place.formattedAddress,
-            location: place.location,
-            primaryTypeDisplayName: place.primaryTypeDisplayName ? {
-                text: place.primaryTypeDisplayName.text,
-                languageCode: place.primaryTypeDisplayName.languageCode || 'en'
-            } : undefined
-        }));
-    } catch (error) {
-        console.error('Error searching for places:', error);
-        return [];
-    }
 };

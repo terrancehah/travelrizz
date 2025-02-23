@@ -143,8 +143,8 @@ export default async function handler(req: NextRequest) {
       - Otherwise: Focus on city information options 
       - Only provide options related to yes, no, currency, local customs, weather, culture and local tips
       - Never provide options related to introducing or finding places
-      - Available options are examples like "Tell me about the weather", "What's the currency conversion rate?", "Yes, let's move on to the next stage", "Local customs and tips", "Tell me about the culture", 
-      "No, I want to know more about the city", "Tell me more about the destination", "Yes, let's proceed to places introduction"
+      - Available options are examples like "Tell me about the weather", "What's the currency conversion rate?", "Let's move on to the next stage", "Local customs and tips", "Tell me about the culture", 
+      "No, I want to know more about the city", "Tell me more about the destination", "Let's proceed to places introduction"
 
     Stage 3 (Places Browsing and Introduction):
       - Only if Travel-Rizz suggesting stage advancement: Use suitable stage transition options
@@ -203,7 +203,7 @@ export default async function handler(req: NextRequest) {
           role: m.role === 'user' ? ('user' as const) : ('assistant' as const)
         }))
       ],
-      temperature: 0.8,
+      temperature: 0.9,
       maxTokens: 200,
       tools: {
         quickResponse: tools.quickResponse,

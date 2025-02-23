@@ -177,7 +177,7 @@ export default async function handler(req: NextRequest) {
 
     Additional tools include:
     - 'weatherChart' for historical weather data for the same period from last year, trigger when user ask for weather information.
-    - 'currencyConverterTool' for displaying live currency conversion rates. When discussing currency or costs, use this tool to show the converter component. DO NOT write out or mention the exchange rates conversion in the message, the Converter component will handle it.
+    - 'currencyConverterTool' for displaying live currency conversion rates. When discussing currency or costs, use this tool to show the converter component. DO NOT list the exchange rates conversion in the message.
     - 'stageProgress' for stage advancement after user confirmation
 
     ## 4.0 Response Rules and Formatting
@@ -245,7 +245,7 @@ export default async function handler(req: NextRequest) {
       - Stage 3 Prompts Number: ${metrics?.stagePrompts?.[3] || 0}
       - Payment Status: ${metrics?.isPaid ? 'Paid' : 'Not Paid'}
 
-     `;
+    `;
 
     console.log('[chat] Processing request:', {
       messageCount: messages.length,

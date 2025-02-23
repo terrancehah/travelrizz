@@ -561,7 +561,7 @@ export function TravelChat({
                                         const placeProps = toolInvocation.result.props as { place: Place };
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                <div className="w-full">
+                                                <div className="w-[80%] md:w-[60%] mt-4 mx-auto">
                                                     {placeProps.place && (
                                                         <PlaceCard
                                                             place={placeProps.place}
