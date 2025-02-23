@@ -63,7 +63,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
   }, [place]);
 
   return (
-    <div className={`place-card w-[70%] mx-auto h-min shadow-md rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 ${className}`}>
+    <div className={`place-card h-min shadow-md rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 ${className}`}>
       <div className="bg-gray-200 h-48 flex items-center justify-center">
         {place.photos && place.photos[0] ? (
           <img
