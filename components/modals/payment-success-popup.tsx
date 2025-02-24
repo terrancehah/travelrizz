@@ -6,6 +6,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import confetti from 'canvas-confetti';
 import { useTranslations } from 'next-intl';
+import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface PaymentSuccessPopupProps {
   isOpen: boolean;
@@ -17,7 +18,8 @@ interface PaymentSuccessPopupProps {
 export default function PaymentSuccessPopup({ isOpen, onClose, title, description }: PaymentSuccessPopupProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const animationFrameRef = useRef<number>();
-  const tComp = useTranslations('components')
+  const tComp = useTranslations('components');
+  const fonts = useLocalizedFont();
 
   // Configure autoplay plugin
   const autoplayOptions = {
@@ -135,20 +137,22 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
 
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[10000]">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-3xl w-[80%] md:w-full mx-4 relative">
+    <div className="fixed inset-0 bg-black/50 dark:bg-black/60 flex items-center justify-center z-[10000]">
+      <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg dark:shadow-gray-900/50 p-8 px-6 max-w-3xl w-[80%] md:w-full mx-4 relative">
+        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute -top-2 -right-2 p-2 rounded-full bg-white hover:bg-gray-100 hover:shadow-slate-400 shadow-md shadow-slate-500 transition-colors"
+          className="absolute -top-2 -right-2 p-2 rounded-full bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-slate-400 dark:hover:shadow-gray-900 shadow-md shadow-slate-500 dark:shadow-gray-900 transition-colors"
           aria-label="Close popup"
         >
-          <X className="h-5 w-5 text-gray-600" />
+          <X className="h-5 w-5 text-gray-600 dark:text-gray-300" />
         </button>
         
         <div className="space-y-6">
+
           <div className="text-center">
-            <h3 className="text-2xl font-semibold mb-1">{title}</h3>
-            {description && <p className="text-gray-600 mb-2">{description}</p>}
+            <h3 className="text-2xl text-gray-700 dark:text-gray-300 font-semibold mb-2">{title}</h3>
+            {description && <p className="text-gray-600 dark:text-gray-400">{description}</p>}
           </div>
 
           {/* Image Carousel */}
@@ -159,7 +163,7 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
                   <div className="p-2 flex flex-col items-center justify-center">
                     {tutorial.src.endsWith('.mov') ? (
                       <video
-                        className="w-[90%] rounded-lg border border-slate-200"
+                        className="w-[90%] rounded-lg border border-slate-200 dark:border-gray-700"
                         src={tutorial.src}
                         autoPlay
                         loop
@@ -168,13 +172,13 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
                       />
                     ) : (
                       <img
-                        className="w-[90%] rounded-lg border border-slate-200"
+                        className="w-[90%] rounded-lg border border-slate-200 dark:border-gray-700"
                         src={tutorial.src}
                         alt={tutorial.title}
                       />
                     )}
-                    <h4 className="text-lg font-semibold mt-4 w-[90%]">{tutorial.title}</h4>
-                    <p className="text-gray-600 w-[90%]">{tutorial.description}</p>
+                    <h3 className={`text-gray-600 dark:text-gray-300 text-xl ${fonts.text} text-center font-bold my-4`}>{tutorial.title}</h3>
+                    <p className={`text-gray-600 dark:text-gray-400 ${fonts.text} text-center`}>{tutorial.description}</p>
                   </div>
                 </div>
               ))}
@@ -186,8 +190,8 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
             {VIDEO_TUTORIALS.map((_, index) => (
               <button
                 key={index}
-                className={`w-2 h-2 rounded-full ${
-                  index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentSlide ? 'bg-blue-500 dark:bg-sky-400' : 'bg-gray-300 dark:bg-gray-600'
                 }`}
                 onClick={() => emblaApi?.scrollTo(index)}
               />

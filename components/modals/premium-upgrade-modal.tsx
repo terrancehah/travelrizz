@@ -78,7 +78,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
 
     console.log('[Payment] Setting up button with reference ID:', refId);
 
-    // test bu-button
+    // test buy-button
     const buttonHtml = `
       <stripe-buy-button
         buy-button-id="${theme === 'dark' ? 'buy_btn_1QvFHUI41yHwVfoxAdnHirxn' : 'buy_btn_1QvFE0I41yHwVfoxoa2fvTlL'}"

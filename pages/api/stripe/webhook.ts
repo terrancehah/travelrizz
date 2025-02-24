@@ -9,6 +9,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 // This is necessary to handle raw body for Stripe webhooks
+// This webhook should be configured in Stripe CLI as:
+// stripe listen --forward-to localhost:3000/api/stripe/webhook
 export const config = {
   api: {
     bodyParser: false,
