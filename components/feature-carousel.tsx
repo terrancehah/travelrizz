@@ -2,42 +2,42 @@ import React from 'react'
 import { MapPin, Star, Calendar, Coffee, Headphones, Zap } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-const tComp = useTranslations('components')
-
-const features = [
-  {
-    icon: <MapPin className="w-6 h-6" />,
-    title: tComp('featureCarousel.features.unlimitedPlaces.title'),
-    description: tComp('featureCarousel.features.unlimitedPlaces.description'),
-  },
-  {
-    icon: <Star className="w-6 h-6" />,
-    title: tComp('featureCarousel.features.personalizedRecommendations.title'),
-    description: tComp('featureCarousel.features.personalizedRecommendations.description'),
-  },
-  {
-    icon: <Calendar className="w-6 h-6" />,
-    title: tComp('featureCarousel.features.advancedItineraryPlanning.title'),
-    description: tComp('featureCarousel.features.advancedItineraryPlanning.description'),
-  },
-  {
-    icon: <Coffee className="w-6 h-6" />,
-    title: tComp('featureCarousel.features.localCustomTips.title'),
-    description: tComp('featureCarousel.features.localCustomTips.description'),
-  },
-  // {
-  //   icon: <Headphones className="w-6 h-6 md:w-8 md:h-8" />,
-  //   title: "Priority Support",
-  //   description: "Get fast, personalized assistance whenever you need it.",
-  // },
-  {
-    icon: <Zap className="w-6 h-6 md:w-8 md:h-8" />,
-    title: tComp('featureCarousel.features.adFreeExperience.title'),
-    description: tComp('featureCarousel.features.adFreeExperience.description'),
-  }
-]
-
 export default function FeatureCarousel() {
+  const tComp = useTranslations('components')
+
+  const features = [
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: tComp('featureCarousel.features.unlimitedPlaces.title'),
+      description: tComp('featureCarousel.features.unlimitedPlaces.description'),
+    },
+    {
+      icon: <Star className="w-6 h-6" />,
+      title: tComp('featureCarousel.features.personalizedRecommendations.title'),
+      description: tComp('featureCarousel.features.personalizedRecommendations.description'),
+    },
+    {
+      icon: <Calendar className="w-6 h-6" />,
+      title: tComp('featureCarousel.features.advancedItineraryPlanning.title'),
+      description: tComp('featureCarousel.features.advancedItineraryPlanning.description'),
+    },
+    {
+      icon: <Coffee className="w-6 h-6" />,
+      title: tComp('featureCarousel.features.localCustomTips.title'),
+      description: tComp('featureCarousel.features.localCustomTips.description'),
+    },
+    // {
+    //   icon: <Headphones className="w-6 h-6 md:w-8 md:h-8" />,
+    //   title: "Priority Support",
+    //   description: "Get fast, personalized assistance whenever you need it.",
+    // },
+    {
+      icon: <Zap className="w-6 h-6 md:w-8 md:h-8" />,
+      title: tComp('featureCarousel.features.adFreeExperience.title'),
+      description: tComp('featureCarousel.features.adFreeExperience.description'),
+    }
+  ]
+
   return (
     <div className="w-full overflow-hidden relative">
       <style jsx>{`
