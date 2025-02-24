@@ -6,5 +6,37 @@
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Werte",
         "subheading": "als von {lastUpdated}"
+    },
+    "premiumUpgrade": {
+        "heading": "Das Limit für die kostenlose Nutzung wurde erreicht. Mit einer einmaligen Zahlung können Sie unbegrenzte Reiseplanung freischalten!",
+        "newPrice": "US$1.99",
+        "originalPrice": "US$2.99",
+        "tag": "Early-Adopter-Spezial",
+        "features": {
+            "0": "Personalisierte Reiseplanung",
+            "1": "Interaktive Routenvisualisierung",
+            "2": "Zielort-Einblicke und Tipps",
+            "3": "Werbefreies Erlebnis"
+        }
+    },
+    "featureCarousel": {
+        "features": {
+            "unlimitedPlaces": {
+                "title": "Unbegrenzte Ortserkundung",
+                "description": "Entdecken Sie eine endlose Auswahl an Reisezielen, die auf Sie zugeschnitten sind."
+            },
+            "personalizedRecommendations": {
+                "title": "Personalisierte Empfehlungen",
+                "description": "Erhalten Sie KI-gestützte Vorschläge auf Knopfdruck."
+            },
+            "advancedItinerary": {
+                "title": "Erweiterte Reiseplanung",
+                "description": "Erstellen Sie tageweise Reisepläne, die Ihren Vorlieben entsprechen."
+            },
+            "localTips": {
+                "title": "Lokale Insider-Tipps",
+                "description": "Entdecken Sie lokale Tipps, die Ihre Reise noch angenehmer machen."
+            }
+        }
     }
 }

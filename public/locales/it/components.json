@@ -6,5 +6,37 @@
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Taxas de Cambio",
         "subheading": "como de {lastUpdated}"
+    },
+    "premiumUpgrade": {
+        "heading": "Hai raggiunto il limite di utilizzo gratuito. Con un pagamento una tantum, sblocca la pianificazione illimitata dei viaggi!",
+        "newPrice": "US$1.99",
+        "originalPrice": "US$2.99",
+        "tag": "Speciale Early Adopter",
+        "features": {
+            "0": "Pianificazione viaggi personalizzata",
+            "1": "Visualizzazione interattiva degli itinerari",
+            "2": "Approfondimenti e consigli sulle destinazioni",
+            "3": "Esperienza senza pubblicità"
+        }
+    },
+    "featureCarousel": {
+        "features": {
+            "unlimitedPlaces": {
+                "title": "Esplorazione Illimitata dei Luoghi",
+                "description": "Esplora un'infinità di destinazioni su misura per te."
+            },
+            "personalizedRecommendations": {
+                "title": "Raccomandazioni Personalizzate",
+                "description": "Ottieni suggerimenti basati su IA a portata di mano."
+            },
+            "advancedItinerary": {
+                "title": "Pianificazione Avanzata degli Itinerari",
+                "description": "Crea itinerari giornalieri che si adattano alle tue preferenze."
+            },
+            "localTips": {
+                "title": "Consigli Locali Personalizzati",
+                "description": "Scopri consigli locali per rendere il tuo viaggio ancora più piacevole."
+            }
+        }
     }
 }

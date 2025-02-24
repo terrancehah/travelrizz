@@ -3,6 +3,7 @@ import { X } from 'lucide-react'
 import { cn } from '@/utils/cn'
 import FeatureCarousel from '../feature-carousel'
 import { useTheme } from 'next-themes'
+import { useTranslations } from 'next-intl'
 
 import { 
   setPaymentStatus, 
@@ -36,6 +37,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
   const clientReferenceId = useRef<string>()
   const pollInterval = useRef<NodeJS.Timeout>()
   const { theme } = useTheme()
+  const tComp = useTranslations('components')
 
   // Generate client reference ID on mount
   useEffect(() => {
@@ -277,11 +279,11 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
 
               <div className="flex-1 flex flex-col items-center font justify-center w-full px-4 py-4">
                 <div className="text-center">
-                  <h2 className="w-[70%] mx-auto text-lg font-bold text-primary dark:text-white mb-2">The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!</h2>
+                  <h2 className="w-[70%] mx-auto text-lg font-bold text-primary dark:text-white mb-2">{tComp('premiumUpgrade.title')}</h2>
                   <div className="flex flex-wrap items-center justify-center gap-2 text-xl">
-                    <span className="font-bold text-xl text-center order-1 basis-1/5 xl:basis-[15%] text-primary dark:text-white">US$1.99</span>
-                    <span className="text-gray-400 dark:text-gray-500 text-center text-xl order-1 basis-1/5 xl:basis-[15%] line-through decoration-2">US$2.99</span>
-                    <span className="bg-blue-200 dark:bg-blue-900 text-blue-500 dark:text-blue-200 text-sm font-medium px-2.5 py-1 order-2 basis-[35%] xl:basis-1/5 rounded">Early Adopter Special</span>
+                    <span className="font-bold text-xl text-center order-1 basis-1/5 xl:basis-[15%] text-primary dark:text-white">{tComp('premiumUpgrade.newPrice')}</span>
+                    <span className="text-gray-400 dark:text-gray-500 text-center text-xl order-1 basis-1/5 xl:basis-[15%] line-through decoration-2">{tComp('premiumUpgrade.originalPrice')}</span>
+                    <span className="bg-blue-200 dark:bg-blue-900 text-blue-500 dark:text-blue-200 text-sm font-medium px-2.5 py-1 order-2 basis-[35%] xl:basis-1/5 rounded">{tComp('premiumUpgrade.earlyAdopterSpecial')}</span>
                   </div>
                 </div>
                 
@@ -311,11 +313,11 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
 
                 <div className="flex flex-col items-center justify-center space-y-2 my-auto w-full h-full">
                   <div className="flex flex-col text-center gap-y-2">
-                    <h2 className="w-[70%] mx-auto text-base lg:text-lg font-bold text-primary dark:text-white mb-2">The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!</h2>
+                    <h2 className="w-[70%] mx-auto text-base lg:text-lg font-bold text-primary dark:text-white mb-2">{tComp('premiumUpgrade.title')}</h2>
                     <div className="flex flex-wrap items-center justify-center gap-1 text-xl">
-                      <span className="font-bold text-lg md:text-xl lg:text-2xl text-center order-1 basis-1/5 xl:basis-[15%] text-primary dark:text-white">US$1.99</span>
-                      <span className="text-gray-400 dark:text-gray-500 text-center text-lg md:text-xl lg:text-2xl order-1 basis-1/5 xl:basis-[15%] line-through decoration-2">US$2.99</span>
-                      <span className="bg-blue-200 dark:bg-blue-900 text-blue-500 dark:text-blue-200 text-sm xl:text-base font-medium px-2.5 py-1 order-2 basis-[30%] xl:basis-1/5 rounded">Early Adopter Special</span>
+                      <span className="font-bold text-lg md:text-xl lg:text-2xl text-center order-1 basis-1/5 xl:basis-[15%] text-primary dark:text-white">{tComp('premiumUpgrade.newPrice')}</span>
+                      <span className="text-gray-400 dark:text-gray-500 text-center text-lg md:text-xl lg:text-2xl order-1 basis-1/5 xl:basis-[15%] line-through decoration-2">{tComp('premiumUpgrade.originalPrice')}</span>
+                      <span className="bg-blue-200 dark:bg-blue-900 text-blue-500 dark:text-blue-200 text-sm xl:text-base font-medium px-2.5 py-1 order-2 basis-[30%] xl:basis-1/5 rounded">{tComp('premiumUpgrade.earlyAdopterSpecial')}</span>
                     </div>
                   </div>
                   

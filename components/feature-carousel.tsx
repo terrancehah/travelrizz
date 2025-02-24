@@ -1,26 +1,29 @@
 import React from 'react'
 import { MapPin, Star, Calendar, Coffee, Headphones, Zap } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+
+const tComp = useTranslations('components')
 
 const features = [
   {
     icon: <MapPin className="w-6 h-6" />,
-    title: "Unlimited Places Browsing",
-    description: "Explore an endless array of destinations tailored just for you.",
+    title: tComp('featureCarousel.features.unlimitedPlaces.title'),
+    description: tComp('featureCarousel.features.unlimitedPlaces.description'),
   },
   {
     icon: <Star className="w-6 h-6" />,
-    title: "Personalized Recommendations",
-    description: "Get AI-powered suggestions at your fingertips.",
+    title: tComp('featureCarousel.features.personalizedRecommendations.title'),
+    description: tComp('featureCarousel.features.personalizedRecommendations.description'),
   },
   {
     icon: <Calendar className="w-6 h-6" />,
-    title: "Advanced Itinerary Planning",
-    description: "Create day-by-day itineraries that match your preferences.",
+    title: tComp('featureCarousel.features.advancedItineraryPlanning.title'),
+    description: tComp('featureCarousel.features.advancedItineraryPlanning.description'),
   },
   {
     icon: <Coffee className="w-6 h-6" />,
-    title: "Local Custom Tips",
-    description: "Discover local tips and advice to make your trip even more enjoyable.",
+    title: tComp('featureCarousel.features.localCustomTips.title'),
+    description: tComp('featureCarousel.features.localCustomTips.description'),
   },
   // {
   //   icon: <Headphones className="w-6 h-6 md:w-8 md:h-8" />,
@@ -29,8 +32,8 @@ const features = [
   // },
   {
     icon: <Zap className="w-6 h-6 md:w-8 md:h-8" />,
-    title: "Ad-Free Experience",
-    description: "Enjoy a clean, distraction-free planning experience without any advertisements.",
+    title: tComp('featureCarousel.features.adFreeExperience.title'),
+    description: tComp('featureCarousel.features.adFreeExperience.description'),
   }
 ]
 

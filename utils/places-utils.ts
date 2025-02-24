@@ -201,12 +201,17 @@ export function filterUniquePlaces(places: Place[]): Place[] {
             : place.displayName.text.toLowerCase()
     ));
 
-     // Filter out places that:
+    // Track seen IDs in current result set
+    const seenIds = new Set<string>();
+
+    // Filter out places that:
     // 1. Have same ID as saved place
     // 2. Have same name as saved place
+    // 3. Have duplicate IDs in current result set
     return places.filter(place => {
         if (!place.id) return false;
         if (savedPlaceIds.has(place.id)) return false;
+        if (seenIds.has(place.id)) return false;
         
         const placeName = typeof place.displayName === 'string' 
             ? place.displayName.toLowerCase()
@@ -214,6 +219,7 @@ export function filterUniquePlaces(places: Place[]): Place[] {
             
         if (savedPlaceNames.has(placeName)) return false;
         
+        seenIds.add(place.id);
         return true;
     });
 }

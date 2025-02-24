@@ -6,5 +6,37 @@
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Taxas de Cambio",
         "subheading": "como de {lastUpdated}"
+    },
+    "premiumUpgrade": {
+        "heading": "無料利用枠が上限に達しました。1回限りのお支払いで、無制限の旅行プランニングがご利用いただけます！",
+        "newPrice": "US$1.99",
+        "originalPrice": "US$2.99",
+        "tag": "アーリーアダプター特典",
+        "features": {
+            "0": "パーソナライズされた旅行プラン",
+            "1": "インタラクティブなルート表示",
+            "2": "目的地の詳細な洞察とヒント",
+            "3": "広告なしの体験"
+        }
+    },
+    "featureCarousel": {
+        "features": {
+            "unlimitedPlaces": {
+                "title": "無制限の観光地閲覧",
+                "description": "あなたに合わせた無限の目的地をご覧いただけます。"
+            },
+            "personalizedRecommendations": {
+                "title": "パーソナライズされた推奨",
+                "description": "AIによるスマートな提案をいつでも。"
+            },
+            "advancedItinerary": {
+                "title": "高度な旅程プランニング",
+                "description": "あなたの好みに合わせた日程を作成。"
+            },
+            "localTips": {
+                "title": "現地のカスタムヒント",
+                "description": "旅をより楽しくする現地のアドバイスを発見。"
+            }
+        }
     }
 }

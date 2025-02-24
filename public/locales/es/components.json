@@ -6,5 +6,37 @@
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Tasa de Cambio",
         "subheading": "como de {lastUpdated}"
+    },
+    "premiumUpgrade": {
+        "heading": "Has alcanzado el límite de uso gratuito. ¡Con un pago único, desbloquea la planificación de viajes ilimitada!",
+        "newPrice": "US$1.99",
+        "originalPrice": "US$2.99",
+        "tag": "Especial Primeros Usuarios",
+        "features": {
+            "0": "Planificación de viajes personalizada",
+            "1": "Visualización interactiva de rutas",
+            "2": "Consejos y perspectivas de destinos",
+            "3": "Experiencia sin publicidad"
+        }
+    },
+    "featureCarousel": {
+        "features": {
+            "unlimitedPlaces": {
+                "title": "Navegación Ilimitada de Lugares",
+                "description": "Explora un sinfín de destinos adaptados especialmente para ti."
+            },
+            "personalizedRecommendations": {
+                "title": "Recomendaciones Personalizadas",
+                "description": "Obtén sugerencias impulsadas por IA al alcance de tu mano."
+            },
+            "advancedItinerary": {
+                "title": "Planificación Avanzada de Itinerarios",
+                "description": "Crea itinerarios día a día que se ajusten a tus preferencias."
+            },
+            "localTips": {
+                "title": "Consejos Locales Personalizados",
+                "description": "Descubre consejos y recomendaciones locales para hacer tu viaje aún más agradable."
+            }
+        }
     }
 }

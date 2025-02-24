@@ -6,5 +6,37 @@
     "currency":{
         "title": "{currencyName} ({currencySymbol}) 汇率",
         "subheading": "于 {lastUpdated}"
+    },
+    "premiumUpgrade": {
+        "heading": "免費使用額度已達上限。只需一次性付款，即可解鎖無限旅行規劃！",
+        "newPrice": "US$1.99",
+        "originalPrice": "US$2.99",
+        "tag": "早鳥特惠",
+        "features": {
+            "0": "個人化旅行規劃",
+            "1": "互動式路線視覺化",
+            "2": "目的地深度洞察與提示",
+            "3": "無廣告體驗"
+        }
+    },
+    "featureCarousel": {
+        "features": {
+            "unlimitedPlaces": {
+                "title": "無限景點瀏覽",
+                "description": "探索為您量身打造的無盡目的地。"
+            },
+            "personalizedRecommendations": {
+                "title": "個人化推薦",
+                "description": "隨時獲取AI驅動的智能建議。"
+            },
+            "advancedItinerary": {
+                "title": "進階行程規劃",
+                "description": "創建符合您喜好的每日行程。"
+            },
+            "localTips": {
+                "title": "在地特色提示",
+                "description": "發掘讓您的旅程更精彩的在地建議與提示。"
+            }
+        }
     }
 }
