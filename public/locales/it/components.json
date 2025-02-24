@@ -1,41 +1,71 @@
 {
     "weather":{
-        "title": "Meteo Storico di {city}",
+        "title": "Meteo storico di {city}",
         "subheading": "dal {startDate} al {endDate}"
     },
     "currency":{
-        "title": "{currencyName} ({currencySymbol}) Taxas de Cambio",
-        "subheading": "como de {lastUpdated}"
+        "title": "Tasso di cambio {currencyName} ({currencySymbol})",
+        "subheading": "al {lastUpdated}"
     },
     "premiumUpgrade": {
-        "heading": "Hai raggiunto il limite di utilizzo gratuito. Con un pagamento una tantum, sblocca la pianificazione illimitata dei viaggi!",
+        "heading": "Limite gratuito raggiunto! Sblocca la pianificazione illimitata dei viaggi con un unico pagamento.",
         "newPrice": "US$1.99",
         "originalPrice": "US$2.99",
-        "tag": "Speciale Early Adopter",
+        "tag": "Offerta early bird",
         "features": {
             "0": "Pianificazione viaggi personalizzata",
             "1": "Visualizzazione interattiva degli itinerari",
-            "2": "Approfondimenti e consigli sulle destinazioni",
+            "2": "Informazioni dettagliate e consigli sulla destinazione",
             "3": "Esperienza senza pubblicità"
         }
     },
     "featureCarousel": {
         "features": {
             "unlimitedPlaces": {
-                "title": "Esplorazione Illimitata dei Luoghi",
-                "description": "Esplora un'infinità di destinazioni su misura per te."
+                "title": "Luoghi illimitati",
+                "description": "Esplora infinite destinazioni selezionate appositamente per te."
             },
             "personalizedRecommendations": {
-                "title": "Raccomandazioni Personalizzate",
-                "description": "Ottieni suggerimenti basati su IA a portata di mano."
+                "title": "Raccomandazioni personalizzate",
+                "description": "Ricevi suggerimenti intelligenti basati sull'IA in qualsiasi momento."
             },
             "advancedItinerary": {
-                "title": "Pianificazione Avanzata degli Itinerari",
+                "title": "Pianificazione avanzata degli itinerari",
                 "description": "Crea itinerari giornalieri che si adattano alle tue preferenze."
             },
             "localTips": {
-                "title": "Consigli Locali Personalizzati",
-                "description": "Scopri consigli locali per rendere il tuo viaggio ancora più piacevole."
+                "title": "Consigli locali",
+                "description": "Scopri consigli e raccomandazioni locali per rendere il tuo viaggio ancora più piacevole."
+            },
+            "adFreeExperience": {
+                "title": "Esperienza senza pubblicità",
+                "description": "Goditi una pianificazione del viaggio fluida e senza pubblicità."
+            }
+        }
+    },
+    "paymentSuccessPopup": {
+        "heading": "Pagamento riuscito!",
+        "description": "Hai completato con successo il pagamento. Continuiamo a pianificare il tuo viaggio perfetto!",
+        "tutorials": {
+            "visualisedRoutes": {
+                "title": "Pianificazione visiva degli itinerari",
+                "description": "Con l'aiuto dell'API avanzata di Google Routes, possiamo visualizzare il tuo itinerario di viaggio in modo chiaro e accattivante."
+            },
+            "advancedDailyItinerary": {
+                "title": "Pianificazione avanzata dell'itinerario giornaliero",
+                "description": "Travel-Rizz ti aiuta a raggruppare attività e attrazioni per creare itinerari giornalieri."
+            },
+            "travelTimeBetweenAttractions": {
+                "title": "Tempo di viaggio tra le attrazioni",
+                "description": "Informati sui tempi di viaggio tra le attrazioni per pianificare la tua giornata in anticipo."
+            },
+            "dragAndDropAttractionOrganising": {
+                "title": "Organizzazione delle attrazioni con drag & drop",
+                "description": "Organizza il tuo viaggio trascinando e rilasciando le attrazioni. È così semplice!"
+            },
+            "addAndRemoveAttractionsEasily": {
+                "title": "Aggiungi e rimuovi attrazioni facilmente",
+                "description": "Aggiungi e rimuovi facilmente le attrazioni dal tuo viaggio per pianificare la tua giornata perfetta."
             }
         }
     }

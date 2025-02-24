@@ -4,8 +4,8 @@
         "subheading": "從{startDate}到{endDate}"
     },
     "currency":{
-        "title": "{currencyName} ({currencySymbol}) 汇率",
-        "subheading": "于 {lastUpdated}"
+        "title": "{currencyName} ({currencySymbol}) 匯率",
+        "subheading": "於 {lastUpdated}"
     },
     "premiumUpgrade": {
         "heading": "免費使用額度已達上限。只需一次性付款，即可解鎖無限旅行規劃！",
@@ -14,7 +14,7 @@
         "tag": "早鳥特惠",
         "features": {
             "0": "個人化旅行規劃",
-            "1": "互動式路線視覺化",
+            "1": "互動式路線可視化",
             "2": "目的地深度洞察與提示",
             "3": "無廣告體驗"
         }
@@ -34,8 +34,38 @@
                 "description": "創建符合您喜好的每日行程。"
             },
             "localTips": {
-                "title": "在地特色提示",
-                "description": "發掘讓您的旅程更精彩的在地建議與提示。"
+                "title": "當地特色提示",
+                "description": "發掘讓您的旅程更精彩的當地建議與提示。"
+            },
+            "adFreeExperience": {
+                "title": "無廣告體驗",
+                "description": "享受無廣告的流暢旅行規劃體驗。"
+            }
+        }
+    },
+    "paymentSuccessPopup": {
+        "heading": "支付成功！",
+        "description": "您已成功完成支付。讓我們繼續規劃您的完美旅程！",
+        "tutorials": {
+            "visualisedRoutes": {
+                "title": "可視化路線規劃",
+                "description": "藉助Google進階路線API，我們可以清晰直觀地展示您的旅行路線。"
+            },
+            "advancedDailyItinerary": {
+                "title": "進階每日行程規劃",
+                "description": "Travel-Rizz幫助您將活動和景點組合成每日行程。"
+            },
+            "travelTimeBetweenAttractions": {
+                "title": "景點間行程時間",
+                "description": "了解景點之間的行程時間，幫助您提前規劃每一天。"
+            },
+            "dragAndDropAttractionOrganising": {
+                "title": "拖放式景點管理",
+                "description": "通過拖放方式組織您的行程。就是這麼簡單！"
+            },
+            "addAndRemoveAttractionsEasily": {
+                "title": "輕鬆添加和移除景點",
+                "description": "輕鬆地在行程中添加和移除景點，幫助您規劃完美的一天。"
             }
         }
     }

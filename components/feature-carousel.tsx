@@ -18,13 +18,13 @@ export default function FeatureCarousel() {
     },
     {
       icon: <Calendar className="w-6 h-6" />,
-      title: tComp('featureCarousel.features.advancedItineraryPlanning.title'),
-      description: tComp('featureCarousel.features.advancedItineraryPlanning.description'),
+      title: tComp('featureCarousel.features.advancedItinerary.title'),
+      description: tComp('featureCarousel.features.advancedItinerary.description'),
     },
     {
       icon: <Coffee className="w-6 h-6" />,
-      title: tComp('featureCarousel.features.localCustomTips.title'),
-      description: tComp('featureCarousel.features.localCustomTips.description'),
+      title: tComp('featureCarousel.features.localTips.title'),
+      description: tComp('featureCarousel.features.localTips.description'),
     },
     // {
     //   icon: <Headphones className="w-6 h-6 md:w-8 md:h-8" />,
@@ -32,7 +32,7 @@ export default function FeatureCarousel() {
     //   description: "Get fast, personalized assistance whenever you need it.",
     // },
     {
-      icon: <Zap className="w-6 h-6 md:w-8 md:h-8" />,
+      icon: <Zap className="w-6 h-6" />,
       title: tComp('featureCarousel.features.adFreeExperience.title'),
       description: tComp('featureCarousel.features.adFreeExperience.description'),
     }

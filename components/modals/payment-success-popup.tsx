@@ -5,6 +5,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import confetti from 'canvas-confetti';
+import { useTranslations } from 'next-intl';
 
 interface PaymentSuccessPopupProps {
   isOpen: boolean;
@@ -13,55 +14,59 @@ interface PaymentSuccessPopupProps {
   description?: string;
 }
 
-// Video tutorials data - using placeholder images for now
-const VIDEO_TUTORIALS = [
+export default function PaymentSuccessPopup({ isOpen, onClose, title, description }: PaymentSuccessPopupProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const animationFrameRef = useRef<number>();
+  const tComp = useTranslations('components')
+
+  // Configure autoplay plugin
+  const autoplayOptions = {
+    delay: 7000,
+    stopOnInteraction: false,
+    stopOnMouseEnter: false,
+    rootNode: (emblaRoot: HTMLElement) => emblaRoot
+  };
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, dragFree: true },     
+    [Autoplay(autoplayOptions)]
+  );
+
+
+  const VIDEO_TUTORIALS = [
   {
     id: 1,
-    title: "Visualised Route Planning",
+    title: tComp('paymentSuccessPopup.tutorials.visualisedRoutes.title'),
     src: "/images/visualised-routes.png",
-    description: "With the help of Google Advanced Routes API, we can visualize your trip's route in a clear and engaging way."
+    description: tComp('paymentSuccessPopup.tutorials.visualisedRoutes.description')
   },
   {
     id: 2,
-    title: "Advanced Daily Itinerary Planning",
+    title: tComp('paymentSuccessPopup.tutorials.advancedDailyItinerary.title'),
     src: "/images/daily-itinerary-planning.png",
-    description: "Travel-Rizz helps you group activities and attractions to create daily itineraries."
+    description: tComp('paymentSuccessPopup.tutorials.advancedDailyItinerary.description')
   },
   {
     id: 3,
-    title: "Travel Time between Attractions",
+    title: tComp('paymentSuccessPopup.tutorials.travelTimeBetweenAttractions.title'),
     src: "/images/travel-info.png",
-    description: "Be informed about travel times between attractions for your trip, so you can plan your day ahead."
+    description: tComp('paymentSuccessPopup.tutorials.travelTimeBetweenAttractions.description')
   },
   {
     id: 4,
-    title: "Drag and Drop Attraction Organising",
+    title: tComp('paymentSuccessPopup.tutorials.dragAndDropAttractionOrganising.title'),
     src: "/videos/drag-and-drop-place.mov",
-    description: "Organise your trip by dragging and dropping attractions. It's just as simple as that."
+    description: tComp('paymentSuccessPopup.tutorials.dragAndDropAttractionOrganising.description')
   },
   {
     id: 5,
-    title: "Add and Remove Attractions Easily",
+    title: tComp('paymentSuccessPopup.tutorials.addAndRemoveAttractionsEasily.title'),
     src: "/videos/add-and-remove-place.mov",
-    description: "Add and remove attractions from your trip effortlessly, making it easy to plan your perfect day."
+    description: tComp('paymentSuccessPopup.tutorials.addAndRemoveAttractionsEasily.description')
   }
 ];
 
-// Configure autoplay plugin
-const autoplayOptions = {
-  delay: 7000,
-  stopOnInteraction: false,
-  stopOnMouseEnter: false,
-  rootNode: (emblaRoot: HTMLElement) => emblaRoot
-};
 
-export default function PaymentSuccessPopup({ isOpen, onClose, title, description }: PaymentSuccessPopupProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, dragFree: true }, 
-    [Autoplay(autoplayOptions)]
-  );
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const animationFrameRef = useRef<number>();
 
   useEffect(() => {
     if (!emblaApi) return;

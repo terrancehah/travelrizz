@@ -6,5 +6,47 @@
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Kadar Konversi",
         "subheading": "pada {lastUpdated}"
+    },
+    "featureCarousel": {
+        "features": {
+            "advancedItinerary": {
+                "title": "Perancangan Perjalanan Lanjutan",
+                "description": "Rancang perjalanan anda dengan ciri-ciri lanjutan dan alat yang berguna."
+            },
+            "localTips": {
+                "title": "Tip-tip Tempatan",
+                "description": "Temui tip-tip dan nasihat tempatan untuk membuat perjalanan anda lebih menyeronokkan."
+            },
+            "adFreeExperience": {
+                "title": "Pengalaman Tanpa Iklan",
+                "description": "Nikmati pengalaman merancang perjalanan yang lancar tanpa iklan."
+            }
+        }
+    },
+    "paymentSuccessPopup": {
+        "heading": "Pembayaran Berjaya!",
+        "description": "Anda telah berjaya melengkapkan pembayaran anda. Mari teruskan merancang perjalanan sempurna anda!",
+        "tutorials": {
+            "visualisedRoutes": {
+                "title": "Perancangan Laluan Visual",
+                "description": "Dengan bantuan Google Advanced Routes API, kami dapat menvisualisasikan laluan perjalanan anda dengan jelas dan menarik."
+            },
+            "advancedDailyItinerary": {
+                "title": "Perancangan Jadual Harian Lanjutan",
+                "description": "Travel-Rizz membantu anda mengumpulkan aktiviti dan tempat menarik untuk membuat jadual harian."
+            },
+            "travelTimeBetweenAttractions": {
+                "title": "Masa Perjalanan antara Tempat Menarik",
+                "description": "Dapatkan maklumat tentang masa perjalanan antara tempat menarik untuk perjalanan anda, supaya anda boleh merancang hari anda dengan lebih baik."
+            },
+            "dragAndDropAttractionOrganising": {
+                "title": "Susun Tempat Menarik dengan Seret dan Lepas",
+                "description": "Susun perjalanan anda dengan menyeret dan melepaskan tempat menarik. Ia semudah itu!"
+            },
+            "addAndRemoveAttractionsEasily": {
+                "title": "Tambah dan Buang Tempat Menarik dengan Mudah",
+                "description": "Tambah dan buang tempat menarik dari perjalanan anda dengan mudah, memudahkan anda merancang hari yang sempurna."
+            }
+        }
     }
 }

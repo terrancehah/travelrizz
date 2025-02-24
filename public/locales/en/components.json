@@ -36,6 +36,36 @@
             "localTips": {
                 "title": "Local Custom Tips",
                 "description": "Discover local tips and advice to make your trip even more enjoyable."
+            },
+            "adFreeExperience": {
+                "title": "Ad-Free Experience",
+                "description": "Enjoy a seamless and ad-free travel planning experience."
+            }
+        }
+    },
+    "paymentSuccessPopup": {
+        "heading": "Payment Successful!",
+        "description": "You have successfully completed your payment. Let's continue planning your perfect trip!",
+        "tutorials":{
+            "visualisedRoutes": {
+                "title": "Visualised Route Planning",
+                "description": "With the help of Google Advanced Routes API, we can visualize your trip's route in a clear and engaging way."
+            },
+            "advancedDailyItinerary": {
+                "title": "Advanced Daily Itinerary Planning",
+                "description": "Travel-Rizz helps you group activities and attractions to create daily itineraries."
+            },
+            "travelTimeBetweenAttractions": {
+                "title": "Travel Time between Attractions",
+                "description": "Be informed about travel times between attractions for your trip, so you can plan your day ahead."
+            },
+            "dragAndDropAttractionOrganising": {
+                "title": "Drag and Drop Attraction Organising",
+                "description": "Organise your trip by dragging and dropping attractions. It's just as simple as it sounds!"
+            },
+            "addAndRemoveAttractionsEasily": {
+                "title": "Add and Remove Attractions Easily",
+                "description": "Add and remove attractions from your trip effortlessly, making it easy to plan your perfect day."
             }
         }
     }

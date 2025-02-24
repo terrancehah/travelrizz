@@ -4,17 +4,17 @@
         "subheading": "{startDate}から{endDate}まで"
     },
     "currency":{
-        "title": "{currencyName} ({currencySymbol}) Taxas de Cambio",
-        "subheading": "como de {lastUpdated}"
+        "title": "{currencyName} ({currencySymbol}) 為替レート",
+        "subheading": "{lastUpdated}時点"
     },
     "premiumUpgrade": {
-        "heading": "無料利用枠が上限に達しました。1回限りのお支払いで、無制限の旅行プランニングがご利用いただけます！",
+        "heading": "無料枠を使い切りました。1回限りの支払いで無制限の旅行プランニングをお楽しみください！",
         "newPrice": "US$1.99",
         "originalPrice": "US$2.99",
-        "tag": "アーリーアダプター特典",
+        "tag": "アーリーバード特価",
         "features": {
             "0": "パーソナライズされた旅行プラン",
-            "1": "インタラクティブなルート表示",
+            "1": "インタラクティブなルート可視化",
             "2": "目的地の詳細な洞察とヒント",
             "3": "広告なしの体験"
         }
@@ -22,20 +22,50 @@
     "featureCarousel": {
         "features": {
             "unlimitedPlaces": {
-                "title": "無制限の観光地閲覧",
-                "description": "あなたに合わせた無限の目的地をご覧いただけます。"
+                "title": "無制限のスポット閲覧",
+                "description": "あなたのために厳選された無限の目的地をご覧ください。"
             },
             "personalizedRecommendations": {
-                "title": "パーソナライズされた推奨",
-                "description": "AIによるスマートな提案をいつでも。"
+                "title": "パーソナライズされたおすすめ",
+                "description": "AIによるスマートな提案をいつでも受け取れます。"
             },
             "advancedItinerary": {
                 "title": "高度な旅程プランニング",
-                "description": "あなたの好みに合わせた日程を作成。"
+                "description": "あなたの好みに合わせた毎日の旅程を作成します。"
             },
             "localTips": {
-                "title": "現地のカスタムヒント",
-                "description": "旅をより楽しくする現地のアドバイスを発見。"
+                "title": "ローカルなヒント",
+                "description": "旅をより楽しくするための現地のアドバイスやヒントを発見できます。"
+            },
+            "adFreeExperience": {
+                "title": "広告なしの体験",
+                "description": "広告なしでスムーズな旅行プランニングをお楽しみください。"
+            }
+        }
+    },
+    "paymentSuccessPopup": {
+        "heading": "支払い完了！",
+        "description": "支払いが正常に完了しました。理想的な旅行プランを続けて作成しましょう！",
+        "tutorials": {
+            "visualisedRoutes": {
+                "title": "ビジュアル化されたルートプランニング",
+                "description": "Google Advanced Routes APIを使用して、旅行ルートを明確で魅力的な方法で視覚化します。"
+            },
+            "advancedDailyItinerary": {
+                "title": "高度な毎日の旅程プランニング",
+                "description": "Travel-Rizzがアクティビティとスポットをグループ化して毎日の旅程を作成します。"
+            },
+            "travelTimeBetweenAttractions": {
+                "title": "スポット間の移動時間",
+                "description": "スポット間の移動時間を把握して、1日のプランを事前に立てることができます。"
+            },
+            "dragAndDropAttractionOrganising": {
+                "title": "ドラッグ＆ドロップでスポットを整理",
+                "description": "スポットをドラッグ＆ドロップで整理。それだけでこんなに簡単！"
+            },
+            "addAndRemoveAttractionsEasily": {
+                "title": "簡単なスポットの追加と削除",
+                "description": "旅程からスポットを簡単に追加・削除でき、完璧な1日のプランを立てられます。"
             }
         }
     }

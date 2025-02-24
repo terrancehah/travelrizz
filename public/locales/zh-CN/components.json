@@ -36,6 +36,36 @@
             "localTips": {
                 "title": "当地特色提示",
                 "description": "发掘让您的旅程更精彩的当地建议与提示。"
+            },
+            "adFreeExperience": {
+                "title": "无广告体验",
+                "description": "享受无广告的流畅旅行规划体验。"
+            }
+        }
+    },
+    "paymentSuccessPopup": {
+        "heading": "支付成功！",
+        "description": "您已成功完成支付。让我们继续规划您的完美旅程！",
+        "tutorials": {
+            "visualisedRoutes": {
+                "title": "可视化路线规划",
+                "description": "借助Google高级路线API，我们可以清晰直观地展示您的旅行路线。"
+            },
+            "advancedDailyItinerary": {
+                "title": "高级每日行程规划",
+                "description": "Travel-Rizz帮助您将活动和景点组合成每日行程。"
+            },
+            "travelTimeBetweenAttractions": {
+                "title": "景点间行程时间",
+                "description": "了解景点之间的行程时间，帮助您提前规划每一天。"
+            },
+            "dragAndDropAttractionOrganising": {
+                "title": "拖放式景点管理",
+                "description": "通过拖放方式组织您的行程。就是这么简单！"
+            },
+            "addAndRemoveAttractionsEasily": {
+                "title": "轻松添加和移除景点",
+                "description": "轻松地在行程中添加和移除景点，帮助您规划完美的一天。"
             }
         }
     }

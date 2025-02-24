@@ -15,6 +15,7 @@ import { Sun, Moon } from "lucide-react"
 import Image from 'next/image';
 import Link from "next/link"
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
+import { useTranslations } from 'next-intl';
 
 
 const TravelChatComponent = dynamic(() => import('../../components/travel-chat'), {
@@ -65,6 +66,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
     const [savedPlacesUpdate, setSavedPlacesUpdate] = useState(0);
     const [showPremiumModal, setShowPremiumModal] = useState(false);
     const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+    const tComp = useTranslations('components');
 
     useEffect(() => {
         // Check if we're on mobile
@@ -338,8 +340,8 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 <PaymentSuccessPopup
                     isOpen={showPaymentSuccess}
                     onClose={() => setShowPaymentSuccess(false)}
-                    title="Payment Successful!"
-                    description="You have successfully completed your payment. Let's continue planning your perfect trip!"
+                    title={tComp('paymentSuccessPopup.heading')}
+                    description={tComp('paymentSuccessPopup.description')}
                 />
             )}
             {showPremiumModal && (

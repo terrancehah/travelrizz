@@ -1,10 +1,72 @@
 {
     "weather":{
-        "title": "Historické počasí v {city}",
+        "title": "Historické počasí pro {city}",
         "subheading": "od {startDate} do {endDate}"
     },
     "currency":{
-        "title": "{currencyName} ({currencySymbol}) kurz",
-        "subheading": "aktualizovano {lastUpdated}"
+        "title": "Směnný kurz {currencyName} ({currencySymbol})",
+        "subheading": "k {lastUpdated}"
+    },
+    "premiumUpgrade": {
+        "heading": "Dosáhli jste bezplatného limitu! Odemkněte neomezené plánování cest jednorázovou platbou.",
+        "newPrice": "US$1.99",
+        "originalPrice": "US$2.99",
+        "tag": "Early bird nabídka",
+        "features": {
+            "0": "Personalizované plánování cest",
+            "1": "Interaktivní vizualizace tras",
+            "2": "Detailní informace a tipy o destinaci",
+            "3": "Prostředí bez reklam"
+        }
+    },
+    "featureCarousel": {
+        "features": {
+            "unlimitedPlaces": {
+                "title": "Neomezená místa",
+                "description": "Prozkoumejte nekonečné destinace vybrané speciálně pro vás."
+            },
+            "personalizedRecommendations": {
+                "title": "Personalizovaná doporučení",
+                "description": "Získejte inteligentní návrhy poháněné umělou inteligencí kdykoliv potřebujete."
+            },
+            "advancedItinerary": {
+                "title": "Pokročilé plánování itineráře",
+                "description": "Vytvořte denní itineráře, které odpovídají vašim preferencím."
+            },
+            "localTips": {
+                "title": "Místní tipy",
+                "description": "Objevte místní tipy a doporučení, které vaši cestu ještě více zpříjemní."
+            },
+            "adFreeExperience": {
+                "title": "Prostředí bez reklam",
+                "description": "Užijte si plynulé plánování cest bez reklam."
+            }
+        }
+    },
+    "paymentSuccessPopup": {
+        "heading": "Platba úspěšná!",
+        "description": "Vaše platba byla úspěšně dokončena. Pojďme dále plánovat vaši perfektní cestu!",
+        "tutorials": {
+            "visualisedRoutes": {
+                "title": "Vizuální plánování tras",
+                "description": "S pomocí pokročilého API Google Routes můžeme vizualizovat vaši cestovní trasu jasně a atraktivně."
+            },
+            "advancedDailyItinerary": {
+                "title": "Pokročilé denní plánování",
+                "description": "Travel-Rizz vám pomůže seskupit aktivity a atrakce do denních itinerářů."
+            },
+            "travelTimeBetweenAttractions": {
+                "title": "Doba cestování mezi atrakcemi",
+                "description": "Zjistěte dobu cestování mezi atrakcemi pro lepší plánování vašeho dne."
+            },
+            "dragAndDropAttractionOrganising": {
+                "title": "Organizace atrakcí pomocí přetahování",
+                "description": "Organizujte svou cestu přetahováním atrakcí. Je to tak jednoduché!"
+            },
+            "addAndRemoveAttractionsEasily": {
+                "title": "Snadné přidávání a odebírání atrakcí",
+                "description": "Snadno přidávejte a odebírejte atrakce ze své cesty pro naplánování perfektního dne."
+            }
+        }
     }
 }
