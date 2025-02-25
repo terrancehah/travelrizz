@@ -1,6 +1,6 @@
 // Utility for managing Google Maps script loading and configuration
 const GOOGLE_MAPS_CONFIG = {
-    version: 'v3.47',
+    version: 'weekly',  // Changed to weekly for latest updates
     libraries: ['places', 'marker', 'geometry'],
     mapIds: {
         light: '32620e6bdcb7e236',

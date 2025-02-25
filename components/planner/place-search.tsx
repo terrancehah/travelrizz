@@ -91,16 +91,20 @@ export function PlaceSearch({ onPlaceSelected, className = '', disabled = false 
   return (
     <div className="relative">
       {isSearching ? (
-        <Loader2 className="absolute left-2 top-2.5 h-4 w-4 animate-spin text-muted-foreground" />
+        <Loader2 className="absolute left-2 top-2.5 h-4 w-4 animate-spin text-muted-foreground dark:text-gray-400" />
       ) : (
-        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground dark:text-gray-400" />
       )}
       <Input
         ref={autocompleteInputRef}
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         placeholder={isSearching ? "Searching..." : "Search for a place to add..."}
-        className={cn("pl-8", isSearching && "text-muted-foreground", className)}
+        className={cn(
+          "pl-8 bg-white dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-400 dark:border-gray-700",
+          "focus-visible:ring-2 focus-visible:ring-sky-500 dark:focus-visible:ring-sky-400",
+          className
+        )}
         disabled={disabled || isSearching}
       />
       {searchError && (

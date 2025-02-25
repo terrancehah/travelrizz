@@ -56,8 +56,8 @@ export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChan
   })
 
   return (
-    <div className={`rounded-lg border bg-card p-4 shadow-sm ${className}`}>
-      <h2 className="mb-3 ml-1 text-lg font-semibold">Day {index + 1} ({formattedDate})</h2>
+    <div className={`rounded-lg border dark:border-gray-700 bg-card dark:bg-gray-900 p-4 shadow-sm ${className}`}>
+      <h2 className="mb-3 ml-1 text-lg font-semibold dark:text-gray-200">Day {index + 1} ({formattedDate})</h2>
       
       <div className="flex">
         {/* Places column with drag and drop */}
@@ -78,13 +78,13 @@ export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChan
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           className={cn(
-                            'rounded-lg bg-white shadow-sm overflow-hidden relative',
-                            snapshot.isDragging && 'ring-2 ring-primary ring-offset-2 z-30'
+                            'rounded-lg bg-white dark:bg-gray-800 shadow-sm overflow-hidden relative',
+                            snapshot.isDragging && 'ring-2 ring-primary dark:ring-sky-400 ring-offset-2 dark:ring-offset-gray-900 z-30'
                           )}
                         >
                           <div className="group relative">
                             <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                              <GripVertical className="h-7 w-5 text-gray-400 opacity-60 transition-opacity group-hover:opacity-100" />
+                              <GripVertical className="h-7 w-5 text-gray-400 dark:text-gray-500 opacity-60 transition-opacity group-hover:opacity-100" />
                             </div>
                             <PlaceCompactCard place={place} className="pl-10" onDelete={() => handlePlaceDelete(day.id, place.id)} />
                           </div>

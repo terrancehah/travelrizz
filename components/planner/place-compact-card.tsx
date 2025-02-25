@@ -23,9 +23,9 @@ export function PlaceCompactCard({ place, onDelete, dragHandleProps, className }
     : '/images/placeholder-image.jpg'
 
   return (
-    <div className={cn("group flex w-full items-start md:items-center gap-3 rounded-lg border bg-card p-3 shadow-sm", className)}>
+    <div className={cn("group flex w-full items-start md:items-center gap-3 rounded-lg border dark:border-gray-700 bg-card dark:bg-gray-800 p-3 shadow-sm", className)}>
       {dragHandleProps && (
-        <div {...dragHandleProps} className="text-gray-300">
+        <div {...dragHandleProps} className="text-gray-300 dark:text-gray-500">
           <GripVertical className="h-5 w-5" />
         </div>
       )}
@@ -54,19 +54,19 @@ export function PlaceCompactCard({ place, onDelete, dragHandleProps, className }
       <div className="flex flex-1 flex-col gap-1">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <h3 className="font-medium text-base leading-none">{displayName}</h3>
-            <p className="text-sm text-muted-foreground mt-1">{typeDisplay}</p>
+            <h3 className="font-medium text-base leading-none dark:text-gray-200">{displayName}</h3>
+            <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">{typeDisplay}</p>
           </div>
          
         </div>
-        <p className="text-xs text-muted-foreground">{place.formattedAddress}</p>
+        <p className="text-xs text-muted-foreground dark:text-gray-400">{place.formattedAddress}</p>
       </div>
       <button
             onClick={() => onDelete(place.id)}
             className="invisible group-hover:visible shrink-0"
             aria-label="Delete place"
           >
-            <X className="h-5 w-5 text-muted-foreground hover:text-destructive hover:text-red-600 hover:bg-red-100 rounded-sm" />
+            <X className="h-5 w-5 text-muted-foreground hover:text-destructive dark:text-gray-400 dark:hover:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-sm" />
           </button>
     </div>
   )

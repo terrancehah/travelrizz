@@ -109,87 +109,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             const map = new window.google.maps.Map(mapRef.current, {
                 zoom: 12,
                 center: location,
-                mapId: theme === 'dark' ? 'bb7adeabb62a0de9' : '2d604af04a7c7fa8'
-                // styles: theme === 'dark' ? [
-                //     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-                //     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-                //     { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-                //     {
-                //         featureType: "administrative.locality",
-                //         elementType: "labels.text.fill",
-                //         stylers: [{ color: "#d59563" }],
-                //     },
-                //     {
-                //         featureType: "poi",
-                //         elementType: "labels.text.fill",
-                //         stylers: [{ color: "#d59563" }],
-                //     },
-                //     {
-                //         featureType: "poi.park",
-                //         elementType: "geometry",
-                //         stylers: [{ color: "#263c3f" }],
-                //     },
-                //     {
-                //         featureType: "poi.park",
-                //         elementType: "labels.text.fill",
-                //         stylers: [{ color: "#6b9a76" }],
-                //     },
-                //     {
-                //         featureType: "road",
-                //         elementType: "geometry",
-                //         stylers: [{ color: "#38414e" }],
-                //     },
-                //     {
-                //         featureType: "road",
-                //         elementType: "geometry.stroke",
-                //         stylers: [{ color: "#212a37" }],
-                //     },
-                //     {
-                //         featureType: "road",
-                //         elementType: "labels.text.fill",
-                //         stylers: [{ color: "#9ca5b3" }],
-                //     },
-                //     {
-                //         featureType: "road.highway",
-                //         elementType: "geometry",
-                //         stylers: [{ color: "#746855" }],
-                //     },
-                //     {
-                //         featureType: "road.highway",
-                //         elementType: "geometry.stroke",
-                //         stylers: [{ color: "#1f2835" }],
-                //     },
-                //     {
-                //         featureType: "road.highway",
-                //         elementType: "labels.text.fill",
-                //         stylers: [{ color: "#f3d19c" }],
-                //     },
-                //     {
-                //         featureType: "transit",
-                //         elementType: "geometry",
-                //         stylers: [{ color: "#2f3948" }],
-                //     },
-                //     {
-                //         featureType: "transit.station",
-                //         elementType: "labels.text.fill",
-                //         stylers: [{ color: "#d59563" }],
-                //     },
-                //     {
-                //         featureType: "water",
-                //         elementType: "geometry",
-                //         stylers: [{ color: "#17263c" }],
-                //     },
-                //     {
-                //         featureType: "water",
-                //         elementType: "labels.text.fill",
-                //         stylers: [{ color: "#515c6d" }],
-                //     },
-                //     {
-                //         featureType: "water",
-                //         elementType: "labels.text.stroke",
-                //         stylers: [{ color: "#17263c" }],
-                //     },
-                // ] : []
+                mapId: theme === 'dark' ? '61462f35959f2552' : '32620e6bdcb7e236'
             });
 
             mapInstanceRef.current = map;
@@ -202,22 +122,21 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 pixelOffset: new window.google.maps.Size(0, -30)
             });
 
-            setIsLoading(false);
+            // Dynamically import the geometry library
+            console.log('[MapComponent] Loading geometry library...');
+            await google.maps.importLibrary("geometry");
+            geometryLoadedRef.current = true;
+            console.log('[MapComponent] Geometry library loaded successfully');
 
-            // Check if geometry library is loaded
-            if (isGeometryReady()) {
-                geometryLoadedRef.current = true;
-            } else {
-                // Poll for geometry library
-                const checkGeometry = setInterval(() => {
-                    if (isGeometryReady()) {
-                        geometryLoadedRef.current = true;
-                        clearInterval(checkGeometry);
-                    }
-                }, 100);
-                // Clear interval after 10 seconds to prevent infinite polling
-                setTimeout(() => clearInterval(checkGeometry), 10000);
+            // Re-trigger route drawing if we have active routes
+            if (activeRoutes.length > 0) {
+                console.log('[MapComponent] Re-triggering route drawing for existing routes');
+                const currentRoutes = activeRoutes;
+                setActiveRoutes([]);
+                setTimeout(() => setActiveRoutes(currentRoutes), 100);
             }
+
+            setIsLoading(false);
         } catch (error) {
             console.error('Error setting up map:', error);
             setIsLoading(false);
@@ -232,7 +151,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 setupMapInstance();
             } else if (!scriptLoadedRef.current && !document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
                 const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,geometry&v=weekly&map_ids=2d604af04a7c7fa8,bb7adeabb62a0de9&callback=setupMapInstance`;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker&v=weekly&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
                 script.async = true;
                 script.defer = true;
                 document.head.appendChild(script);
@@ -489,11 +408,13 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         
         const handleTravelInfoDisplay = (event: Event) => {
             const e = event as CustomEvent<{fromId: string, toId: string}>;
+            console.log('[MapComponent] Received travelinfo-displayed event:', e.detail);
             setActiveRoutes(prev => [...prev, e.detail]);
         };
 
         const handleTravelInfoHide = (event: Event) => {
             const e = event as CustomEvent<{fromId: string, toId: string}>;
+            console.log('[MapComponent] Received travelinfo-hidden event:', e.detail);
             setActiveRoutes(prev => 
                 prev.filter(route => 
                     !(route.fromId === e.detail.fromId && route.toId === e.detail.toId)
@@ -503,6 +424,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
 
         // Handle any place changes (drag, shuffle, removal)
         const handlePlacesChanged = () => {
+            console.log('[MapComponent] Places changed, clearing routes');
             // First clear all existing routes from the map
             polylineRef.current.forEach(polyline => polyline.setMap(null));
             polylineRef.current.clear();
@@ -517,10 +439,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         // Clear markers and redraw them
         const updateMarkers = () => {
             // Clear existing markers
-            markersRef.current.forEach(marker => {
+            markersRef.current?.forEach(marker => {
                 marker.map = null;
             });
-            markersRef.current.clear();
+            markersRef.current?.clear();
 
             // Add new markers
             const places = savedPlacesManager.getPlaces();
@@ -548,9 +470,17 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         };
     }, [mapInstanceRef.current]);
 
-    // Effect to handle route drawing
     useEffect(() => {
-        if (!mapInstanceRef.current) return;
+        if (!mapInstanceRef.current || !geometryLoadedRef.current) {
+            console.log('[MapComponent] Route drawing skipped:', {
+                hasMap: !!mapInstanceRef.current,
+                geometryLoaded: geometryLoadedRef.current,
+                activeRoutes
+            });
+            return;
+        }
+
+        console.log('[MapComponent] Starting to draw routes for:', activeRoutes);
 
         // Clear all existing routes first
         polylineRef.current.forEach(polyline => {
@@ -563,9 +493,17 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             const fromPlace = savedPlacesManager.getPlaceById(fromId);
             const toPlace = savedPlacesManager.getPlaceById(toId);
             
+            console.log('[MapComponent] Drawing route between places:', {
+                fromPlace: fromPlace?.displayName,
+                toPlace: toPlace?.displayName,
+                fromDayIndex: fromPlace?.dayIndex,
+                toDayIndex: toPlace?.dayIndex
+            });
+            
             if (!fromPlace?.location || !toPlace?.location || 
                 fromPlace.dayIndex === undefined || toPlace.dayIndex === undefined || 
                 fromPlace.dayIndex !== toPlace.dayIndex) {
+                console.log('[MapComponent] Skipping route due to invalid places or different days');
                 return;
             }
 
@@ -573,6 +511,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             const polyline = await drawRoute([fromPlace, toPlace], color);
             if (polyline) {
                 const routeKey = `${fromId}-${toId}`;
+                console.log('[MapComponent] Successfully created polyline for route:', routeKey);
                 // First remove any existing polyline for this route
                 const existingPolyline = polylineRef.current.get(routeKey);
                 if (existingPolyline) {
@@ -582,43 +521,58 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 polylineRef.current.set(routeKey, polyline);
                 // Now set the map
                 polyline.setMap(mapInstanceRef.current);
+            } else {
+                console.log('[MapComponent] Failed to create polyline for route:', {fromId, toId});
             }
         });
 
         // Cleanup function to ensure all polylines are removed when component unmounts or routes change
         return () => {
+            console.log('[MapComponent] Cleaning up routes');
             polylineRef.current.forEach(polyline => {
                 polyline.setMap(null);
             });
         };
     }, [activeRoutes]);
 
-    useEffect(() => {
-        if (mapInstanceRef.current) {
-            // Clear all markers first
-            markersRef.current?.forEach(marker => {
-                marker.map = null;
-            });
-            markersRef.current?.clear();
-            // Clear the map instance
-            mapInstanceRef.current = null;
-            setMap(null);
-            // Reinitialize
-            setupMapInstance(true);
-        }
-    }, [theme]);
-
     const drawRoute = async (places: Place[], color: string) => {
-        if (!places || places.length !== 2 || !mapInstanceRef.current || !isGeometryReady()) return;
+        if (!places || places.length !== 2 || !mapInstanceRef.current || !isGeometryReady()) {
+            console.log('[MapComponent] Draw route preconditions failed:', {
+                hasPlaces: !!places,
+                correctLength: places?.length === 2,
+                hasMap: !!mapInstanceRef.current,
+                geometryReady: isGeometryReady()
+            });
+            return;
+        }
 
         const [place1, place2] = places;
-        if (!place1.location || !place2.location) return;
+        if (!place1.location || !place2.location) {
+            console.log('[MapComponent] Missing location data:', {
+                place1Location: !!place1.location,
+                place2Location: !!place2.location
+            });
+            return;
+        }
 
         try {
+            console.log('[MapComponent] Fetching travel info for places:', {
+                from: place1.displayName,
+                to: place2.displayName
+            });
+            
             const info = await travelInfoManager.getTravelInfo(place1, place2);
+            console.log('[MapComponent] Got travel info:', {
+                hasInfo: !!info,
+                hasPolyline: !!info?.legPolyline,
+                polylineLength: info?.legPolyline?.length
+            });
+
             if (!info || !info.legPolyline) return;
 
             const path = google.maps.geometry.encoding.decodePath(info.legPolyline);
+            console.log('[MapComponent] Decoded path points:', path.length);
+            
             // Create polyline but don't set map yet
             return new google.maps.Polyline({
                 path,
@@ -632,8 +586,27 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         }
     };
 
-    const getPhotoUrl = (photo: google.maps.places.Photo, index: number) => {
-        return photo.getURI?.() || '';
+    const isGeometryReady = () => {
+        return !!(
+            window.google?.maps?.geometry?.encoding?.decodePath &&
+            typeof window.google.maps.geometry.encoding.decodePath === 'function'
+        );
+    };
+
+    const getRouteColor = (dayIndex: number) => {
+        const colors = [
+            '#2196F3', // Blue
+            '#9C27B0', // Purple
+            '#795548', // Brown
+            '#FF9800', // Orange
+            '#009688', // Teal
+            '#E91E63', // Pink
+            '#673AB7', // Deep Purple
+            '#3F51B5', // Indigo
+            '#00BCD4', // Cyan
+            '#4CAF50'  // Green
+        ];
+        return colors[dayIndex % colors.length];
     };
 
     const handleSlideChange = (_: any, index: number) => {
@@ -678,13 +651,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         `;
     };
 
-    const isGeometryReady = () => {
-        return !!(
-            window.google?.maps?.geometry?.encoding?.decodePath &&
-            typeof window.google.maps.geometry.encoding.decodePath === 'function'
-        );
-    };
-
     const getLocation = async (city: string) => {
         const geocoder = new window.google.maps.Geocoder();
 
@@ -701,22 +667,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 }
             );
         });
-    };
-
-    const getRouteColor = (dayIndex: number) => {
-        const colors = [
-            '#2196F3', // Blue
-            '#9C27B0', // Purple
-            '#795548', // Brown
-            '#FF9800', // Orange
-            '#009688', // Teal
-            '#E91E63', // Pink
-            '#673AB7', // Deep Purple
-            '#3F51B5', // Indigo
-            '#00BCD4', // Cyan
-            '#4CAF50'  // Green
-        ];
-        return colors[dayIndex % colors.length];
     };
 
     const createMarker = (place: Place) => {
@@ -761,6 +711,29 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
 
         return marker;
     };
+
+    useEffect(() => {
+        if (mapInstanceRef.current) {
+            console.log('[MapComponent] Theme change - clearing map');
+            // Clear all markers first
+            markersRef.current?.forEach(marker => {
+                marker.map = null;
+            });
+            markersRef.current?.clear();
+            // Clear the map instance
+            mapInstanceRef.current = null;
+            setMap(null);
+            // Reinitialize
+            setupMapInstance(true);
+            // Re-trigger route drawing
+            const currentRoutes = activeRoutes;
+            setActiveRoutes([]);
+            setTimeout(() => {
+                console.log('[MapComponent] Restoring routes after theme change:', currentRoutes);
+                setActiveRoutes(currentRoutes);
+            }, 100);
+        }
+    }, [theme]);
 
     return (
         <div className="w-full h-full relative">
