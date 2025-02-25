@@ -1,0 +1,16 @@
+{
+    "placeSearch": {
+        "searching": "Vyhledávání...",
+        "placeholder": "Vyhledat místo k přidání..."
+    },
+    "daySection": {
+        "day": "Den {index}"
+    },
+    "units": {
+        "hour": "h",
+        "minute": "min",
+        "minutes": "min",
+        "kilometer": "km",
+        "meter": "m"
+    }
+}

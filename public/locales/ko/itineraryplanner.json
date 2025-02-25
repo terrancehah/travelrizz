@@ -1,0 +1,16 @@
+{
+    "placeSearch": {
+        "searching": "검색 중...",
+        "placeholder": "추가할 장소 검색..."
+    },
+    "daySection": {
+        "day": "{index}일차"
+    },
+    "units": {
+        "hour": "시간",
+        "minute": "분",
+        "minutes": "분",
+        "kilometer": "km",
+        "meter": "m"
+    }
+}

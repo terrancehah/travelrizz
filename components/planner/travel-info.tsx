@@ -3,6 +3,7 @@ import { cn } from '@/utils/cn'
 import { useEffect, useState } from 'react'
 import { Place } from '@/utils/places-utils'
 import { travelInfoManager } from '@/utils/travel-info-utils'
+import { useTranslations } from 'next-intl'
 
 interface TravelInfoProps {
   place: Place
@@ -10,10 +11,33 @@ interface TravelInfoProps {
   className?: string
 }
 
+interface TravelData {
+  durationSeconds: number;
+  distanceMeters: number;
+  error?: boolean;
+}
+
 export function TravelInfo({ place, nextPlace, className }: TravelInfoProps) {
   const [isLoading, setIsLoading] = useState(true)
-  const [duration, setDuration] = useState('--')
-  const [distance, setDistance] = useState('--')
+  const [travelData, setTravelData] = useState<TravelData | null>(null)
+  const tPlan  = useTranslations('itineraryplanner')
+
+  const formatDuration = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    
+    if (hours > 0) {
+      return `${hours}${tPlan('units.hour')} ${minutes}${tPlan('units.minute')}`;
+    }
+    return `${minutes}${tPlan(minutes === 1 ? 'units.minute' : 'units.minutes')}`;
+  };
+
+  const formatDistance = (meters: number) => {
+    const km = meters / 1000;
+    return km >= 1 
+      ? `${km.toFixed(1)}${tPlan('units.kilometer')}`
+      : `${meters}${tPlan('units.meter')}`;
+  };
 
   useEffect(() => {
     const isMounted = { current: true }; // Track mount state
@@ -49,8 +73,11 @@ export function TravelInfo({ place, nextPlace, className }: TravelInfoProps) {
         console.log('[TravelInfo] Received info:', info);
         
         if (info) {
-          setDuration(info.duration)
-          setDistance(info.distance)
+          setTravelData({
+            durationSeconds: info.durationSeconds,
+            distanceMeters: info.distanceMeters,
+            error: info.error
+          })
           // Only notify for display if we have valid info AND component is still mounted
           if (!info.error && place?.id && nextPlace?.id && isMounted.current) {
             window.dispatchEvent(new CustomEvent('travelinfo-displayed', { 
@@ -118,7 +145,7 @@ export function TravelInfo({ place, nextPlace, className }: TravelInfoProps) {
           {isLoading ? (
             <div className="h-4 w-16 animate-pulse rounded bg-muted" />
           ) : (
-            <span>{duration}</span>
+            <span>{travelData ? formatDuration(travelData.durationSeconds) : '--'}</span>
           )}
         </div>
         <div className="flex items-center gap-1">
@@ -126,7 +153,7 @@ export function TravelInfo({ place, nextPlace, className }: TravelInfoProps) {
           {isLoading ? (
             <div className="h-4 w-14 animate-pulse rounded bg-muted" />
           ) : (
-            <span>{distance}</span>
+            <span>{travelData ? formatDistance(travelData.distanceMeters) : '--'}</span>
           )}
         </div>
       </div>

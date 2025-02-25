@@ -1,0 +1,16 @@
+{
+    "placeSearch": {
+        "searching": "検索中...",
+        "placeholder": "追加する場所を検索..."
+    },
+    "daySection": {
+        "day": "{index}日目"
+    },
+    "units": {
+        "hour": "時間",
+        "minute": "分",
+        "minutes": "分",
+        "kilometer": "km",
+        "meter": "m"
+    }
+}

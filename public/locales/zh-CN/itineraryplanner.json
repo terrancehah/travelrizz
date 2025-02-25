@@ -1,0 +1,16 @@
+{
+    "placeSearch": {
+        "searching": "搜索中...",
+        "placeholder": "搜索要添加的地点..."
+    },
+    "daySection": {
+        "day": "第{index}天"
+    },
+    "units": {
+        "hour": "小时",
+        "minute": "分钟",
+        "minutes": "分钟",
+        "kilometer": "公里",
+        "meter": "米"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "placeSearch": {
+        "searching": "Suche...",
+        "placeholder": "Nach einem Ort suchen..."
+    },
+    "daySection": {
+        "day": "Tag {index}"
+    },
+    "units": {
+        "hour": "Std",
+        "minute": "Min",
+        "minutes": "Min",
+        "kilometer": "km",
+        "meter": "m"
+    }
+}

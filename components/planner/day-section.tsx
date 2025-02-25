@@ -11,6 +11,8 @@ import { getStoredSession } from '../../managers/session-manager'
 import { cn } from '@/utils/cn'
 import { Fragment } from 'react'
 import { TravelInfo } from './travel-info'
+import {useTranslations} from 'next-intl'
+import { useRouter } from 'next/router'
 
 interface DaySectionProps {
   day: DayPlan
@@ -24,6 +26,8 @@ interface DaySectionProps {
 
 export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChange, className = '', isDragging = false }: DaySectionProps) {
   const [isSearching, setIsSearching] = useState(false)
+  const tPlan = useTranslations('itineraryPlanner')
+  const { locale } = useRouter()
   
   const handlePlaceDelete = (dayId: string, placeId: string) => {
     // Remove from map first
@@ -57,7 +61,7 @@ export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChan
 
   return (
     <div className={`rounded-lg border dark:border-gray-700 bg-card dark:bg-gray-900 p-4 shadow-sm ${className}`}>
-      <h2 className="mb-3 ml-1 text-lg font-semibold dark:text-gray-200">Day {index + 1} ({formattedDate})</h2>
+      <h2 className="mb-3 ml-1 text-lg font-semibold dark:text-gray-200">{tPlan('daySection.day', { index: index + 1 })} ({formattedDate})</h2>
       
       <div className="flex">
         {/* Places column with drag and drop */}

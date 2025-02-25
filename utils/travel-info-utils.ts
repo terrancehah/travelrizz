@@ -1,8 +1,8 @@
 import { Place } from './places-utils'
 
 interface TravelInfo {
-  duration: string
-  distance: string
+  durationSeconds: number
+  distanceMeters: number
   timestamp: number
   error?: boolean
   polyline?: string
@@ -40,7 +40,7 @@ class TravelInfoManager {
         loc1: place1?.location,
         loc2: place2?.location
       });
-      return { duration: '--', distance: '--', timestamp: Date.now(), error: true }
+      return { durationSeconds: 0, distanceMeters: 0, timestamp: Date.now(), error: true }
     }
 
     const key = this.getCacheKey(place1, place2)
@@ -84,27 +84,27 @@ class TravelInfoManager {
 
       if (!response.ok) {
         console.error('[TravelInfoManager] API Error:', response.status);
-        return { duration: '--', distance: '--', timestamp: Date.now(), error: true };
+        return { durationSeconds: 0, distanceMeters: 0, timestamp: Date.now(), error: true };
       }
       
       const data = await response.json()
       if (data.error) {
         console.error('[TravelInfoManager] Data Error:', data.error);
-        return { duration: '--', distance: '--', timestamp: Date.now(), error: true };
+        return { durationSeconds: 0, distanceMeters: 0, timestamp: Date.now(), error: true };
       }
 
       console.log('[TravelInfoManager] Raw API response:', data);
 
       const info: TravelInfo = {
-        duration: data.duration || '--',
-        distance: data.distance || '--',
+        durationSeconds: data.durationSeconds || 0,
+        distanceMeters: data.distanceMeters || 0,
         timestamp: Date.now(),
         polyline: data.polyline,
         legPolyline: data.legPolyline
       }
 
       // Only cache if we have valid data
-      if (data.duration && data.distance && !data.duration.includes('NaN') && !data.distance.includes('NaN')) {
+      if (data.durationSeconds && data.distanceMeters) {
         this.cache[key] = info;
       } else {
         console.error('[TravelInfoManager] Invalid data received:', data);
@@ -113,7 +113,7 @@ class TravelInfoManager {
       return info
     } catch (error) {
       console.error('[TravelInfoManager] Error:', error)
-      const errorInfo = { duration: '--', distance: '--', timestamp: Date.now(), error: true }
+      const errorInfo = { durationSeconds: 0, distanceMeters: 0, timestamp: Date.now(), error: true }
       this.cache[key] = errorInfo
       return errorInfo
     }

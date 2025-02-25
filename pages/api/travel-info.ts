@@ -96,9 +96,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'Invalid route data' });
     }
 
+    // Get raw values
+    const seconds = typeof duration === 'string' 
+      ? parseInt(duration.replace('s', ''))
+      : parseInt(duration.seconds);
+
     return res.json({
-      duration: formatDuration(duration),
-      distance: formatDistance(distance),
+      durationSeconds: seconds,
+      distanceMeters: distance,
       timestamp: Date.now(),
       polyline,
       legPolyline

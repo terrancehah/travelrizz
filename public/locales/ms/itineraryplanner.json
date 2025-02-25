@@ -1,0 +1,16 @@
+{
+    "placeSearch": {
+        "searching": "Mencari...",
+        "placeholder": "Cari tempat untuk ditambah..."
+    },
+    "daySection": {
+        "day": "Hari {index}"
+    },
+    "units": {
+        "hour": "j",
+        "minute": "min",
+        "minutes": "min",
+        "kilometer": "km",
+        "meter": "m"
+    }
+}

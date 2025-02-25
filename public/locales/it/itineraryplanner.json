@@ -1,0 +1,16 @@
+{
+    "placeSearch": {
+        "searching": "Ricerca in corso...",
+        "placeholder": "Cerca un luogo da aggiungere..."
+    },
+    "daySection": {
+        "day": "Giorno {index}"
+    },
+    "units": {
+        "hour": "h",
+        "minute": "min",
+        "minutes": "min",
+        "kilometer": "km",
+        "meter": "m"
+    }
+}
