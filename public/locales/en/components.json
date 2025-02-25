@@ -5,7 +5,7 @@
     },
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Currency Rates",
-        "subheading": "as of {date}"
+        "subheading": "as of {lastUpdated}"
     },
     "premiumUpgrade":{
         "heading": "The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!",

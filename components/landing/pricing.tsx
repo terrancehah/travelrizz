@@ -4,10 +4,21 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '../../hooks/useLocalizedFont';
+import { useRouter } from 'next/router';
+import { pricing } from '../../public/locales/centralised-pricing';
 
 export default function Pricing() {
   const t = useTranslations('landing');
+  const { locale } = useRouter();
   const fonts = useLocalizedFont();
+  const currentLocale = (locale || 'en') as SupportedLocale;
+  type SupportedLocale = 'en' | 'fr' | 'de' | 'es' | 'it' | 'cs' | 'ja' | 'ko' | 'ms' | 'zh-CN' | 'zh-TW';
+
+
+  const oneTimePrice = pricing.oneTime[currentLocale]?.price || pricing.oneTime.en.price;
+  const oneTimeOriginal = pricing.oneTime[currentLocale]?.originalPrice || pricing.oneTime.en.originalPrice;
+  const subscriptionPrice = pricing.subscription[currentLocale]?.price || pricing.subscription.en.price;
+
 
   return (
     <section id="pricing" className="w-full py-16 bg-white dark:bg-gray-900">
@@ -27,8 +38,8 @@ export default function Pricing() {
             <h3 className={`text-3xl font-bold mb-4 dark:text-white ${fonts.heading}`}>{t('pricing.oneTime.title')}</h3>
             <div className="space-y-2">
               <div className="flex items-center gap-x-3">
-                <span className="text-2xl font-raleway text-primary dark:text-white">{t('pricing.oneTime.price')}</span>
-                <span className="text-2xl font-raleway text-gray-400 line-through">{t('pricing.oneTime.originalPrice')}</span>
+                <span className="text-2xl font-raleway text-primary dark:text-white">{oneTimePrice}</span>
+                <span className="text-2xl font-raleway text-gray-400 line-through">{oneTimeOriginal}</span>
               </div>
               <div>
                 <span className="inline-block bg-blue-200 dark:bg-sky-500 text-blue-500 dark:text-sky-100 text-base font-medium px-2.5 py-1 rounded font-raleway">{t('pricing.oneTime.tag')}</span>
@@ -55,7 +66,7 @@ export default function Pricing() {
               <h3 className={`text-3xl font-bold mb-6 dark:text-white ${fonts.heading}`}>{t('pricing.subscription.title')}</h3>
               <div className="space-y-2 mb-6">
                 <div>
-                  <span className="text-2xl font-raleway text-primary dark:text-white">{t('pricing.subscription.price')}</span>
+                  <span className="text-2xl font-raleway text-primary dark:text-white">{subscriptionPrice}</span>
                 </div>
                 <div>
                   <span className="inline-block bg-blue-600/50 dark:bg-blue-600 text-blue-700 dark:text-gray-100 text-base font-medium px-2.5 py-1 rounded font-raleway">{t('pricing.subscription.tag')}</span>

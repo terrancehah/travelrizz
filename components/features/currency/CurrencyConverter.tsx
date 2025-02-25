@@ -67,7 +67,7 @@ export function CurrencyConverter({
                             {tComp('currency.title', { currencyName: CURRENCY_INFO[baseCurrency || 'USD']?.name || baseCurrency || 'USD', currencySymbol: baseCurrency || 'USD' })}
                         </label>
                         <p className={`${fonts.text} text-md text-gray-500 dark:text-gray-400 text-left w-full`}>
-                            {tComp('currency.subheading', { date: lastUpdated.toLocaleDateString() })}
+                            {tComp('currency.subheading', { lastUpdated: lastUpdated.toLocaleDateString() })}
                         </p>
                         <input
                             id="baseAmount"
