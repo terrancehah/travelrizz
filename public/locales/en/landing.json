@@ -1,47 +1,47 @@
 {
   "hero": {
     "title": "Plan Your Perfect Journey, Your Way",
-    "subtitle": "No more overwhelming research across multiple sites. Have a natural conversation with Travel-Rizz, our AI-powered travel companion, about your travel dreams. We'll help you turn them into reality - one thoughtful detail at a time.",
+    "subtitle": "No signup required. Start instantly with Travel-Rizz, our AI-powered travel companion. Have a natural conversation about your travel dreams, and we'll help you turn them into reality - one thoughtful detail at a time.",
     "cta": "Let's Plan Together"
   },
   "about": {
     "title": "About Travel-Rizz",
     "intro": "Travel-Rizz began with a simple truth: everyone deserves to experience the joy of a well-planned journey, regardless of their planning expertise. Through years of helping friends and family plan their trips, I saw how overwhelming the process could be.",
-    "experience": "That's why I created Travel-Rizz - to empower travelers with the right tools and knowledge. Whether you're exploring bustling cities or seeking quiet adventures, having a helpful companion in your planning journey makes all the difference.",
-    "mission": "By combining personal travel insights with thoughtful technology, we aim to make trip planning feel like having a conversation with a knowledgeable friend who's genuinely excited to help shape your perfect journey."
+    "experience": "That's why I created Travel-Rizz - to empower travelers with the right tools and AI technology. Whether you're exploring bustling cities or seeking quiet adventures, having an intelligent travel assistant in your planning journey makes all the difference.",
+    "mission": "By combining personal travel insights with advanced AI, we aim to make trip planning feel like having a conversation with a knowledgeable friend who's genuinely excited to help shape your perfect journey - all without requiring accounts or signups."
   },
   "features": {
     "title": "How We Help You Plan Better",
     "items": {
       "aiChat": {
-        "title": "Natural Travel Conversations",
-        "description": "Share your travel ideas as you would with a friend. Together, we'll explore possibilities and create plans that reflect your personal style."
+        "title": "AI-Powered Travel Conversations",
+        "description": "Chat instantly with our AI travel assistant - no account needed. Share your ideas as you would with a friend, and our intelligent system will understand your preferences to create personalized plans."
       },
       "insights": {
         "title": "Timely Travel Knowledge",
-        "description": "Access helpful insights about your destination - from weather patterns to local customs - exactly when you need them."
+        "description": "Access helpful insights about your destination - from weather patterns to local customs - exactly when you need them, all powered by our AI that learns what matters to you."
       },
       "routes": {
         "title": "Visual Journey Planning",
-        "description": "See your daily adventures laid out on interactive maps. Understand your routes and make adjustments until they feel just right."
+        "description": "See your daily adventures laid out on interactive maps. Our AI optimizes your routes based on your preferences, helping you make the most of each day."
       },
       "itinerary": {
         "title": "Flexible Day Planning",
-        "description": "Build your days with intuitive tools that let you organize activities your way. Easily adjust as your plans evolve."
+        "description": "Build your days with intuitive tools and AI assistance that organizes activities your way. Start planning in seconds with no registration required."
       }
     }
   },
   "pricing": {
     "title": "Simple, Clear Pricing",
-    "subtitle": "Focus on what matters - planning your perfect trip - with straightforward pricing that respects your journey.",
+    "subtitle": "Focus on what matters - planning your perfect trip - with straightforward pricing that respects your journey. No account creation, no hidden fees.",
     "oneTime": {
       "title": "One-Time Access",
       "price": "US$1.99",
       "originalPrice": "US$2.99",
       "tag": "Early Adopter Special",
       "features": {
-        "0": "Personalized travel planning",
-        "1": "Interactive route visualization",
+        "0": "AI-powered travel planning",
+        "1": "Interactive route optimization",
         "2": "Destination insights and tips",
         "3": "Ad-free experience"
       }
@@ -55,7 +55,7 @@
         "0": "Plan with friends",
         "1": "Multi-trip management",
         "2": "Premium templates",
-        "3": "Advanced recommendations"
+        "3": "Advanced AI recommendations"
       }
     },
     "cta": "Let's Plan Together"

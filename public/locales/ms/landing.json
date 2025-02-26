@@ -1,47 +1,47 @@
 {
+  "hero": {
+    "title": "Rancang Perjalanan Sempurna Anda, Mengikut Cara Anda",
+    "subtitle": "Tiada pendaftaran diperlukan. Mula segera dengan Travel-Rizz, pembantu perjalanan AI kami. Berbual secara natural tentang impian perjalanan anda, dan kami akan membantu menjadikannya kenyataan - satu perincian yang teliti pada satu masa.",
+    "cta": "Mula Merancang Sekarang"
+  },
   "about": {
     "title": "Mengenai Travel-Rizz",
     "intro": "Travel-Rizz bermula dari kepercayaan mudah bahawa setiap orang berhak menikmati perjalanan yang dirancang dengan sempurna, tanpa mengira pengalaman mereka dalam perancangan. Setelah bertahun membantu rakan merancang perjalanan mereka, saya sedar betapa rumitnya proses ini boleh jadi.",
-    "experience": "Itulah sebabnya saya mencipta Travel-Rizz - untuk memberi kuasa kepada pengembara dengan alat dan pengetahuan yang sesuai. Sama ada anda meneroka bandar yang sibuk atau mencari pengembaraan yang tenang, mempunyai teman dalam perjalanan perancangan anda membuat perbezaan yang besar.",
-    "mission": "Dengan menggabungkan pengalaman perjalanan peribadi dan teknologi yang bijak, kami berharap dapat menjadikan perancangan perjalanan seperti berbual dengan rakan yang berpengetahuan yang benar-benar teruja untuk membantu membentuk perjalanan sempurna anda."
+    "experience": "Itulah sebabnya saya mencipta Travel-Rizz - untuk memberi kuasa kepada pengembara dengan alat yang sesuai dan teknologi AI terkini. Sama ada anda meneroka bandar yang sibuk atau mencari pengembaraan yang tenang, mempunyai pembantu perjalanan pintar dalam perancangan anda membuat perbezaan yang besar.",
+    "mission": "Dengan menggabungkan pengalaman perjalanan peribadi dan AI termaju, kami berharap dapat menjadikan perancangan perjalanan seperti berbual dengan rakan yang berpengetahuan - tanpa memerlukan pendaftaran atau membuat akaun."
   },
   "features": {
     "title": "Bagaimana Kami Bantu Anda Merancang",
     "items": {
       "aiChat": {
-        "title": "Perbualan Perjalanan Semulajadi",
-        "description": "Kongsi idea perjalanan anda seperti berbual dengan kawan. Bersama-sama, kita akan meneroka kemungkinan dan membuat rancangan yang mencerminkan gaya peribadi anda."
+        "title": "Perbualan Perjalanan dengan AI",
+        "description": "Berbual segera dengan pembantu perjalanan AI kami - tanpa perlu akaun. Kongsi idea anda seperti dengan kawan, dan sistem pintar kami akan memahami keutamaan anda untuk mencipta rancangan yang dipersonalisasi."
       },
       "insights": {
         "title": "Pengetahuan Perjalanan Tepat Masa",
-        "description": "Dapatkan pandangan berguna tentang destinasi anda - dari corak cuaca hingga adat tempatan - tepat pada masa anda memerlukannya."
+        "description": "Dapatkan pandangan berguna tentang destinasi anda - dari corak cuaca hingga adat tempatan - tepat pada masa anda memerlukannya, semuanya dikuasakan oleh AI kami yang belajar apa yang penting untuk anda."
       },
       "routes": {
         "title": "Perancangan Visual",
-        "description": "Lihat pengembaraan harian anda tersusun di peta interaktif. Fahami laluan anda dan buat penyesuaian sehingga ia betul-betul sesuai."
+        "description": "Lihat pengembaraan harian anda tersusun di peta interaktif. AI kami mengoptimumkan laluan anda berdasarkan keutamaan anda, membantu anda memanfaatkan setiap hari sepenuhnya."
       },
       "itinerary": {
         "title": "Perancangan Hari Fleksibel",
-        "description": "Susun hari anda dengan alat intuitif yang membolehkan anda mengatur aktiviti mengikut cara anda. Mudah disesuaikan apabila rancangan anda berkembang."
+        "description": "Susun hari anda dengan alat intuitif dan bantuan AI yang mengatur aktiviti mengikut cara anda. Mula merancang dalam beberapa saat tanpa perlu pendaftaran."
       }
     }
   },
-  "hero": {
-    "title": "Rancang Perjalanan Sempurna Anda, Mengikut Cara Anda",
-    "subtitle": "Tiada lagi pencarian yang membebankan di pelbagai laman web. Berbual secara natural dengan Travel-Rizz, rakan perjalanan AI kami, tentang impian perjalanan anda. Kami akan membantu menjadikannya kenyataan - satu perincian yang teliti pada satu masa.",
-    "cta": "Mari Merancang Bersama"
-  },
   "pricing": {
     "title": "Harga Mudah dan Jelas",
-    "subtitle": "Fokus pada apa yang penting - merancang perjalanan sempurna anda - dengan harga yang menghormati perjalanan anda.",
+    "subtitle": "Fokus pada apa yang penting - merancang perjalanan sempurna anda - dengan harga yang menghormati perjalanan anda. Tiada pembuatan akaun, tiada bayaran tersembunyi.",
     "oneTime": {
       "title": "Akses Sekali",
       "price": "RM8.99",
       "originalPrice": "RM12.99",
-      "tag": "Promosi Pengguna Awal",
+      "tag": "Tawaran Istimewa",
       "features": {
-        "0": "Perancangan perjalanan peribadi",
-        "1": "Visualisasi laluan interaktif",
+        "0": "Perancangan perjalanan dengan AI",
+        "1": "Pengoptimuman laluan interaktif",
         "2": "Panduan destinasi",
         "3": "Pengalaman tanpa iklan"
       }
@@ -55,10 +55,10 @@
         "0": "Rancang dengan rakan",
         "1": "Urus pelbagai perjalanan",
         "2": "Templat premium",
-        "3": "Cadangan lanjutan"
+        "3": "Cadangan AI lanjutan"
       }
     },
-    "cta": "Mari Merancang Bersama"
+    "cta": "Mula Merancang Sekarang"
   },
   "footer": {
     "tagline": "Rancang Perjalanan Sempurna Anda",

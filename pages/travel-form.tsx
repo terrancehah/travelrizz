@@ -382,10 +382,10 @@ export default function TravelFormPage() {
                       '--rdp-accent-background-color': 'rgba(125, 211, 252, 0.2)',
                       '--rdp-day_button-border-radius': '6px',
                       '--rdp-selected-border': 'none',
-                      '--rdp-today-color': 'rgb(74 136 198)', // sky-blue for light mode
+                      '--rdp-today-color': 'rgb(56 189 248)', // sky-blue for light mode
                       '--rdp-range_start-date-background-color': 'rgb(74 136 198)', // sky-blue
                       '--rdp-range_end-date-background-color': 'rgb(74 136 198)', // sky-blue
-                      '--rdp-disabled-opacity': '0.25'
+                      '--rdp-disabled-opacity': '0.15'
                     } as React.CSSProperties}
                     mode="range" 
                     min={1}

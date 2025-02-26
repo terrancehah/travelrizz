@@ -24,55 +24,37 @@ export function useDetectBrowserPreferences() {
     const { setTheme } = useTheme();
     const router = useRouter();
 
+    // Run only once on mount
     useEffect(() => {
-        // Only run on client-side
         if (typeof window === 'undefined') return;
 
-        // 1. Apply time-based theme
-        const applyTimeBasedTheme = () => {
+        // One-time theme detection based on local time
         const currentHour = new Date().getHours();
-        // Dark mode between 7 PM (19) and 7 AM (7)
         const isDarkHours = currentHour >= 19 || currentHour < 7;
         setTheme(isDarkHours ? 'dark' : 'light');
-        };
 
-        // Apply immediately and then setup continuous checking
-        applyTimeBasedTheme();
-
-        // 2. Detect and apply browser locale
-        const detectAndApplyLocale = () => {
-        // Skip if we're already on a non-default locale path
-        if (router.locale !== router.defaultLocale) return;
-
+        // One-time locale detection
         const browserLanguages = navigator.languages || [navigator.language];
-        
-        // Try to find a matching locale from browser's preferred languages
-        let matchedLocale: string | null = null;
+        let matchedLocale = null;
         
         for (const lang of browserLanguages) {
-            // First try the exact language code
             if (lang in browserLocaleMap) {
-            matchedLocale = browserLocaleMap[lang];
-            break;
+                matchedLocale = browserLocaleMap[lang];
+                break;
             }
             
-            // Then try the language family (e.g., 'en-US' -> 'en')
             const langFamily = lang.split('-')[0];
             if (langFamily in browserLocaleMap) {
-            matchedLocale = browserLocaleMap[langFamily];
-            break;
+                matchedLocale = browserLocaleMap[langFamily];
+                break;
             }
         }
         
-        // If matched locale is different from current
         if (matchedLocale && matchedLocale !== router.locale) {
             router.push(router.asPath, router.asPath, { 
-            locale: matchedLocale, 
-            scroll: false 
+                locale: matchedLocale, 
+                scroll: false 
             });
         }
-        };
-
-        detectAndApplyLocale();
-    }, [setTheme, router]);
+    }, []); // Empty dependency array = run once on mount only
 }
