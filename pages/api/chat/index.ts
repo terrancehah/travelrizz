@@ -1,5 +1,5 @@
-import { openai } from '@ai-sdk/openai';
-// import { deepseek } from '@ai-sdk/deepseek';
+// import { openai } from '@ai-sdk/openai';
+import { deepseek } from '@ai-sdk/deepseek';
 // import { groq } from '@ai-sdk/groq';
 // import { createGroq } from '@ai-sdk/groq';
 // import { google } from '@ai-sdk/google';
@@ -15,7 +15,7 @@ export const config = {
 };
 
 // Allow streaming responses up to 40 seconds
-export const maxDuration = 40;
+export const maxDuration = 80;
 
 interface ChatRequestBody {
   messages: Message[];
@@ -136,7 +136,8 @@ export default async function handler(req: NextRequest) {
 
     The 'INITIAL PARAMETER CHECK' (Stage 1) only verifies the existence of all required parameters before proceeding with trip planning. 
     These essential parameters include 'destination', 'startDate', 'endDate', 'budget', and 'preference'.
-    All parameters should be present at the chat start, ask user if they want to change anything. If not, guide users to the next stage.
+    All parameters will be present at the chat start, you MUST ask user if they want to change any parameters. 
+    If user doesnot, guide users to the next stage.
     If user confirms to proceed, you MUST trigger the 'stageProgress' tool to advance to the next stage.
 
     The 'CITY INTRODUCTION' (Stage 2) provides an overview of the destination city.
@@ -254,19 +255,19 @@ export default async function handler(req: NextRequest) {
 
     // Get AI response
     const result = await streamText({
-      model: openai('gpt-4o-mini'),
-      // model: deepseek('deepseek-chat'),
+      // model: openai('gpt-4o-mini'),
+      model: deepseek('deepseek-chat'),
       // model: google('gemini-2.0-flash-001'),
       messages: [
         { role: 'system', content: staticSystemPrompt },
         { role: 'system', content: dynamicContext },
         ...messages
       ],
-      maxTokens: 2000,
+      maxTokens: 1500,
       
-      temperature: 0.8,
-      presencePenalty: 0.7,
-      frequencyPenalty: 0.3,
+      temperature: 0.6,
+      presencePenalty: 0.4,
+      frequencyPenalty: 0.2,
       maxSteps: 10,
       // experimental_transform: smoothStream({
       //   delayInMs: 70,

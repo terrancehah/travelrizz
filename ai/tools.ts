@@ -361,7 +361,8 @@ export const savedPlacesListTool = createTool({
 
 // Simplify the stage progress tool to only include nextStage
 export const stageProgressTool = createTool({
-    description: 'Update the current planning stage only when certain criteria are met.',
+    description: `Update the current planning stage only when certain criteria are met. 
+    Only trigger this tool if user want to proceed to the next stage and gives their explicit confirmation.`,
     parameters: z.object({
         nextStage: z.number().min(1).max(5),
         currentStage: z.number().min(1).max(5),
