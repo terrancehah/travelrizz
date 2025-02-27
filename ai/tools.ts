@@ -472,12 +472,40 @@ export const currencyConverterTool = createTool({
 
         const baseCurrency = getCurrencyFromCountry(destination);
         
+        // Fetch exchange rates to include in the response
+        let rates = {};
+        try {
+            // Direct server-side API call to FreeCurrency API
+            const apiKey = process.env.FREECURRENCY_API_KEY;
+            if (!apiKey) {
+                console.error('FreeCurrency API key is missing');
+                throw new Error('API key is missing');
+            }
+            
+            const response = await fetch(
+                `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&base_currency=${baseCurrency}`
+            );
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            if (data.data && typeof data.data === 'object') {
+                rates = data.data;
+            }
+        } catch (error) {
+            console.error('Error fetching rates for AI summary:', error);
+        }
+        
         return {
             type: 'currencyConverter',
             props: {
                 baseCurrency,
                 baseAmount: amount,
-                defaultCurrencies: ['USD', 'EUR', 'GBP', 'CNY', 'JPY']
+                defaultCurrencies: ['USD', 'EUR', 'GBP', 'CNY', 'JPY'],
+                // Include rates for AI to reference in its response
+                rates
             }
         };
     }

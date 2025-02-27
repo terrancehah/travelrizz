@@ -98,8 +98,8 @@ export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
                     </div>
 
                     {/* Steps Descriptions */}
-                    <div className="hidden md:flex flex-col items-start mt-1">
-                        <span className={`text-sm ${fonts.text} font-medium text-center text-primary dark:text-gray-200 transition-colors duration-400`}>{title}</span>
+                    <div className="hidden md:flex w-min flex-col items-start mt-1">
+                        <span className={`text-sm ${fonts.text} leading-tight font-medium text-center text-primary dark:text-gray-200 transition-colors duration-400`}>{title}</span>
                         {/* {description && (
                             <span className="text-xs text-gray-500">{description}</span>
                         )} */}

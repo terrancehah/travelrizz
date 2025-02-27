@@ -337,6 +337,7 @@ export interface CurrencyConverterProps {
     baseAmount?: number;
     onAmountChange?: (amount: number) => void;
     defaultCurrencies?: string[];
+    rates?: { [key: string]: number };
 }
 
 export interface CurrencyInfo {

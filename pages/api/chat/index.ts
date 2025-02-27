@@ -137,7 +137,7 @@ export default async function handler(req: NextRequest) {
     The 'INITIAL PARAMETER CHECK' (Stage 1) only verifies the existence of all required parameters before proceeding with trip planning. 
     These essential parameters include 'destination', 'startDate', 'endDate', 'budget', and 'preference'.
     All parameters will be present at the chat start, you MUST ask user if they want to change any parameters. 
-    If user doesnot, guide users to the next stage.
+    When user confirms to not change any parameters anymore, guide users to the next stage.
     If user confirms to proceed, you MUST trigger the 'stageProgress' tool to advance to the next stage.
 
     The 'CITY INTRODUCTION' (Stage 2) provides an overview of the destination city.
@@ -178,8 +178,8 @@ export default async function handler(req: NextRequest) {
 
     Additional tools include:
     - 'weatherChart' for historical weather data for the same period from last year, trigger when user ask for weather information.
-    - 'currencyConverterTool' for displaying live currency conversion rates. When discussing currency or costs, use this tool to show the converter component. DO NOT list the exchange rates conversion in the message.
-    - 'stageProgress' for stage advancement after user confirmation
+    - 'currencyConverterTool' for displaying live currency conversion rates. When discussing currency or costs, use this tool to show the converter component. When the tool returns, use the rates data included in the tool response to provide accurate exchange rate information to the user.
+    - 'stageProgress' for stage advancement. Only trigger this tool after user confirmation.
 
     ## 4.0 Response Rules and Formatting
 

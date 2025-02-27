@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { AlertCircle } from 'lucide-react'
 import { CurrencyConverterProps, CURRENCY_INFO } from '@/managers/types'
-import { fetchExchangeRates, formatCurrencyAmount } from '@/utils/currency-utils'
+import { formatCurrencyAmount } from '@/utils/currency-utils'
 import { CurrencyList } from './CurrencyList'
 import { useLocalizedFont } from '@/hooks/useLocalizedFont'
 import { useTranslations } from 'next-intl'
@@ -10,35 +10,30 @@ export function CurrencyConverter({
     baseCurrency, 
     baseAmount = 100,
     onAmountChange,
-    defaultCurrencies = ['USD', 'EUR', 'GBP', 'CNY', 'JPY']
+    defaultCurrencies = ['USD', 'EUR', 'GBP', 'CNY', 'JPY'],
+    rates: initialRates = {}
 }: CurrencyConverterProps) {
     const [amount, setAmount] = useState<number>(baseAmount)
-    const [rates, setRates] = useState<{ [key: string]: number }>({})
-    const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [rates, setRates] = useState<{ [key: string]: number }>(initialRates)
+    const [isLoading, setIsLoading] = useState<boolean>(Object.keys(initialRates).length === 0)
     const [error, setError] = useState<string | null>(null)
     const [lastUpdated, setLastUpdated] = useState<Date>(new Date())
     const fonts = useLocalizedFont()
     const tComp = useTranslations('components')
 
-    // Fetch exchange rates when component mounts or base currency changes
+    // Use rates from props if available, otherwise fetch them
     useEffect(() => {
-        const loadRates = async () => {
-            if (!baseCurrency) return; // Add early return if baseCurrency is undefined
-            try {
-                setIsLoading(true)
-                setError(null)
-                const ratesData = await fetchExchangeRates(baseCurrency)
-                setRates(ratesData)
-                setLastUpdated(new Date())
-                setIsLoading(false)
-            } catch (err) {
-                setError('Failed to load exchange rates. Please try again later.')
-                setIsLoading(false)
-            }
+        // If we already have rates from props, use those
+        if (Object.keys(initialRates).length > 0) {
+            setRates(initialRates)
+            setIsLoading(false)
+            return
         }
-
-        loadRates()
-    }, [baseCurrency])
+        
+        // Otherwise, use the rates that were passed in the props
+        setRates(initialRates)
+        setIsLoading(false)
+    }, [baseCurrency, initialRates])
 
     // Filter rates to only include default currencies
     const currencyData = Object.fromEntries(

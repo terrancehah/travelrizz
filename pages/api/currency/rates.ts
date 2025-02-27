@@ -72,6 +72,7 @@ export default async function handler(
         }
 
         const data = await response.json();
+        console.log('FreeCurrency API response structure:', JSON.stringify(data, null, 2));
         console.log('Successfully fetched rates');
         
         // Set cache headers
