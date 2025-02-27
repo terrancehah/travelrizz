@@ -1,5 +1,5 @@
-import { tool as createTool, ToolExecutionOptions } from 'ai';
 import { z } from 'zod';
+import { tool as createTool, ToolExecutionOptions } from 'ai';
 import { 
     TravelPreference,
     BudgetLevel,
@@ -15,7 +15,7 @@ import {
     getPlaceTypesFromPreferences
 } from '../utils/places-utils';
 import { validateStageProgression } from '../managers/stage-manager';
-import { getCurrencyFromCountry } from '../utils/currency-utils';
+import { fetchExchangeRates, getCurrencyFromCountry } from '@/utils/currency-utils';
 
 // Standardized Tool Response interfaces
 export interface ToolResponse<T = Record<string, unknown>> {
@@ -303,13 +303,13 @@ export const savedPlacesListTool = createTool({
                     languageCode: z.string()
                 }),
                 z.string()
-            ]).optional(), // Make optional
-            primaryType: z.string().optional(), // Make optional
+            ]).optional(),
+            primaryType: z.string().optional(),
             location: z.object({
                 latitude: z.number(),
                 longitude: z.number()
-            }).optional(), // Make optional
-            formattedAddress: z.string().optional(), // Make optional
+            }).optional(), 
+            formattedAddress: z.string().optional(),
             photos: z.array(z.object({
                 name: z.string(),
                 widthPx: z.number().optional(),
@@ -318,12 +318,12 @@ export const savedPlacesListTool = createTool({
                     displayName: z.string().optional(),
                     uri: z.string().optional(),
                     photoUri: z.string().optional()
-                })).optional() // Make optional
-            })).optional().default([]), // Make optional with default
+                })).optional()
+            })).optional().default([]), 
             primaryTypeDisplayName: z.object({
                 text: z.string(),
                 languageCode: z.string()
-            }).optional() // Already optional
+            }).optional()
         }))
     }),
     execute: async function ({ savedPlaces }) {
@@ -462,7 +462,7 @@ export const quickResponseTool = createTool({
 export const currencyConverterTool = createTool({
     description: 'Display currency conversion rates for the destination country. Use this when discussing costs, budgets, or when the user wants to understand currency exchange rates.',
     parameters: z.object({
-        amount: z.number().optional().describe('Amount to convert in the destination currency'),
+        amount: z.number().optional().default(100).describe('Amount to convert in the destination currency'),
         destination: z.string().describe('Destination country or city')
     }),
     execute: async function ({ amount = 100, destination }) {
@@ -472,42 +472,24 @@ export const currencyConverterTool = createTool({
 
         const baseCurrency = getCurrencyFromCountry(destination);
         
-        // Fetch exchange rates to include in the response
-        let rates = {};
         try {
-            // Direct server-side API call to FreeCurrency API
-            const apiKey = process.env.FREECURRENCY_API_KEY;
-            if (!apiKey) {
-                console.error('FreeCurrency API key is missing');
-                throw new Error('API key is missing');
-            }
-            
-            const response = await fetch(
-                `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&base_currency=${baseCurrency}`
-            );
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            if (data.data && typeof data.data === 'object') {
-                rates = data.data;
-            }
+            // Use the modified fetchExchangeRates function
+            const rates = await fetchExchangeRates(baseCurrency);
+
+            return {
+                type: 'currencyConverter',
+                props: {
+                    baseCurrency,
+                    baseAmount: amount,
+                    defaultCurrencies: ['USD', 'EUR', 'GBP', 'CNY', 'JPY'],
+                    // Include rates for AI to reference in its response
+                    rates
+                }
+            };
         } catch (error) {
-            console.error('Error fetching rates for AI summary:', error);
+            console.error('Error in currencyConverterTool:', error);
+            throw error;
         }
-        
-        return {
-            type: 'currencyConverter',
-            props: {
-                baseCurrency,
-                baseAmount: amount,
-                defaultCurrencies: ['USD', 'EUR', 'GBP', 'CNY', 'JPY'],
-                // Include rates for AI to reference in its response
-                rates
-            }
-        };
     }
 });
 

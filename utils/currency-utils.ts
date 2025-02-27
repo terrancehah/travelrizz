@@ -4,25 +4,26 @@ const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 const CACHE_KEY = 'currency_cache';
 
 export async function fetchExchangeRates(baseCurrency: string): Promise<{ [key: string]: number }> {
-    // Try to get cached data first
-    const cachedData = getCachedRates(baseCurrency);
-    if (cachedData) {
-        return cachedData;
+    // Check if we're in a browser environment
+    const isBrowser = typeof window !== 'undefined' && typeof sessionStorage !== 'undefined';
+    
+    // Try to get cached data first if in browser
+    if (isBrowser) {
+        const cachedData = getCachedRates(baseCurrency);
+        if (cachedData) {
+            return cachedData;
+        }
     }
 
     try {
+        // Use direct API call with absolute URL
+        const apiKey = process.env.FREECURRENCY_API_KEY || process.env.NEXT_PUBLIC_FREECURRENCY_API_KEY;
+        if (!apiKey) {
+            throw new Error('FreeCurrency API key is missing');
+        }
+        
         const response = await fetch(
-            `/api/currency/rates?baseCurrency=${encodeURIComponent(baseCurrency)}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                // Add cache control
-                cache: 'no-cache',
-                credentials: 'same-origin',
-            }
+            `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&base_currency=${baseCurrency}`
         );
 
         if (!response.ok) {
@@ -34,13 +35,15 @@ export async function fetchExchangeRates(baseCurrency: string): Promise<{ [key: 
             throw new Error('Invalid API response format');
         }
         
-        // Cache the response
-        const cache: CurrencyCache = {
-            timestamp: Date.now(),
-            rates: data.data,
-            baseCurrency
-        };
-        sessionStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+        // Cache the response if in browser
+        if (isBrowser) {
+            const cache: CurrencyCache = {
+                timestamp: Date.now(),
+                rates: data.data,
+                baseCurrency
+            };
+            sessionStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+        }
 
         return data.data;
     } catch (error) {
