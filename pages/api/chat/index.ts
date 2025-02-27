@@ -1,5 +1,5 @@
-// import { openai } from '@ai-sdk/openai';
-import { deepseek } from '@ai-sdk/deepseek';
+import { openai } from '@ai-sdk/openai';
+// import { deepseek } from '@ai-sdk/deepseek';
 // import { groq } from '@ai-sdk/groq';
 // import { createGroq } from '@ai-sdk/groq';
 // import { google } from '@ai-sdk/google';
@@ -255,19 +255,19 @@ export default async function handler(req: NextRequest) {
 
     // Get AI response
     const result = await streamText({
-      // model: openai('gpt-4o-mini'),
-      model: deepseek('deepseek-chat'),
+      model: openai('gpt-4o-mini'),
+      // model: deepseek('deepseek-chat'),
       // model: google('gemini-2.0-flash-001'),
       messages: [
         { role: 'system', content: staticSystemPrompt },
         { role: 'system', content: dynamicContext },
         ...messages
       ],
-      maxTokens: 1500,
+      maxTokens: 2000,
       
-      temperature: 0.6,
-      presencePenalty: 0.4,
-      frequencyPenalty: 0.2,
+      temperature: 0.8,
+      presencePenalty: 0.7,
+      frequencyPenalty: 0.3,
       maxSteps: 10,
       // experimental_transform: smoothStream({
       //   delayInMs: 70,

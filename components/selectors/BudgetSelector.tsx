@@ -21,8 +21,8 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
   ];
 
   return (
-    <div className="w-[80%] xl:w-fit flex mx-auto max-w-[600px] bg-white dark:bg-slate-800 rounded-3xl my-2
-    border border-gray-100 dark:border-slate-500 shadow-md dark:shadow-slate-300">
+    <div className="max-w-[80%] xl:w-fit flex mx-auto bg-white dark:bg-slate-800 rounded-3xl my-4
+    border border-gray-100 dark:border-slate-500 shadow-md">
       <div className="p-6">
         <h3 className={`text-lg ${fonts.text} font-semibold text-gray-700 dark:text-gray-200 mb-3`}>{t('budget.selector.prompt')}</h3>
         <div className="grid grid-cols-2 gap-3">
@@ -35,7 +35,7 @@ export const BudgetSelector: React.FC<BudgetSelectorProps> = ({ currentBudget, o
                 transition-all duration-300 ease-in-out hover:scale-[1.02] active:scale-[0.98]
                 ${String(currentBudget) === String(value)
                   ? 'bg-light-blue hover:bg-blue-200/70 text-sky-blue hover:text-blue-600 shadow-sm dark:bg-sky-900 dark:hover:bg-sky-800 dark:text-sky-200'
-                  : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600'
+                  : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600 dark:hover:text-gray-200'
                 }
               `}
             >
