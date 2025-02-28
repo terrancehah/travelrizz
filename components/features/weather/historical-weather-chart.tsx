@@ -71,9 +71,9 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
   if (loading) return (
     <div className="w-[80%] max-w-lg mx-auto rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-700">
       <CardHeader>
-        <CardTitle className="text-gray-700 dark:text-gray-200">{tComp('weather.title', { city: city })}</CardTitle>
+        <CardTitle className="text-gray-700 dark:text-gray-200">{tComp('weatherHistorical.title', { city: city })}</CardTitle>
         <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
-          {tComp('weather.subheading', { 
+          {tComp('weatherHistorical.subheading', { 
             startDate: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(startDate)),
             endDate: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(endDate))
           })}
@@ -89,9 +89,9 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
   if (error) return (
     <div className="w-[80%] max-w-lg mx-auto rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
       <CardHeader>
-        <CardTitle className={`${fonts.text} text-gray-700 dark:text-gray-200`}>{tComp('weather.title', { city: city })}</CardTitle>
+        <CardTitle className={`${fonts.text} text-gray-700 dark:text-gray-200`}>{tComp('weatherHistorical.title', { city: city })}</CardTitle>
         <CardDescription className="text-sm text-gray-500 dark:text-gray-400">
-          {tComp('weather.subheading', { 
+          {tComp('weatherHistorical.subheading', { 
             startDate: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(startDate)),
             endDate: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(new Date(endDate))
           })}
@@ -114,9 +114,9 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
   return (
     <div className="w-[80%] max-w-lg mx-auto rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
       <CardHeader>
-        <CardTitle className={`${fonts.text} text-gray-700 dark:text-gray-200`}>{tComp('weather.title', { city: city })}</CardTitle>
+        <CardTitle className={`${fonts.text} text-gray-700 dark:text-gray-200`}>{tComp('weatherHistorical.title', { city: city })}</CardTitle>
         <CardDescription className={`${fonts.text} text-sm text-gray-500 dark:text-gray-400`}>
-          {tComp('weather.subheading', { 
+          {tComp('weatherHistorical.subheading', { 
             startDate: formattedStartDate,
             endDate: formattedEndDate,
             year: historicalYear

@@ -265,6 +265,8 @@ export interface Message {
 }
 
 // Weather related types
+export type WeatherCondition = 'sunny' | 'cloudy' | 'rainy' | 'snowy' | 'stormy' | 'foggy' | 'windy' | 'partly-cloudy';
+
 export interface WeatherData {
     date: string;
     precipitation: {
@@ -275,6 +277,23 @@ export interface WeatherData {
     };
 }
 
+export interface WeatherForecast {
+    date: string;
+    dayOfWeek: string;
+    temperature: {
+        current: number;
+        max: number;
+        min: number;
+    };
+    precipitation: {
+        amount: number;
+        probability: number;
+    };
+    condition: WeatherCondition;
+    description: string;
+    icon: string;
+}
+
 export interface WeatherChartProps {
     lat: number;
     lon: number;
@@ -282,6 +301,29 @@ export interface WeatherChartProps {
     startDate: string;
     endDate: string;
     units?: 'us' | 'uk' | 'metric';
+    weatherData?: WeatherData[];
+    historicalYear?: number;
+    averages?: {
+        maxTemp: number;
+        precipitation: number;
+    };
+}
+
+export interface WeatherForecastProps {
+    lat: number;
+    lon: number;
+    city: string;
+    startDate: string;
+    endDate: string;
+    units?: 'us' | 'uk' | 'metric';
+    forecastData: WeatherForecast[];
+    summary: {
+        averageTemp: number;
+        maxTemp: number;
+        minTemp: number;
+        precipitationDays: number;
+        dominantCondition: WeatherCondition;
+    };
 }
 
 export interface OpenWeatherDayResponse {

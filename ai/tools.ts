@@ -16,6 +16,8 @@ import {
 } from '../utils/places-utils';
 import { validateStageProgression } from '../managers/stage-manager';
 import { fetchExchangeRates, getCurrencyFromCountry } from '@/utils/currency-utils';
+import { formatDateRange, fetchHistoricalWeatherData } from '@/utils/weather-utils';
+import { fetchWeatherForecast, isWithinForecastRange, formatDate } from '@/utils/forecast-utils';
 
 // Standardized Tool Response interfaces
 export interface ToolResponse<T = Record<string, unknown>> {
@@ -241,54 +243,38 @@ export const weatherChartTool = createTool({
         units: z.enum(['us', 'uk', 'metric'] as const).optional().default('metric')
     }),
     execute: async function ({ lat, lon, city, startDate, endDate, units = 'metric' }) {
-        // Parse DD/MM/YYYY dates
-        const [startDay, startMonth, startYear] = startDate.split('/').map(Number);
-        const [endDay, endMonth, endYear] = endDate.split('/').map(Number);
-        
-        // Format dates for API (YYYY-MM-DD)
-        const formattedStartDate = `${startYear}-${String(startMonth).padStart(2, '0')}-${String(startDay).padStart(2, '0')}`;
-        const formattedEndDate = `${endYear}-${String(endMonth).padStart(2, '0')}-${String(endDay).padStart(2, '0')}`;
-
-        // Calculate number of days in the range
-        const start = new Date(formattedStartDate);
-        const end = new Date(formattedEndDate);
-        const daysDiff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-        
-        // Calculate how many extra days we need for 30 days total
-        const extraDays = Math.max(0, 30 - daysDiff);
-        const daysToAddBefore = Math.floor(extraDays / 2);
-        const daysToAddAfter = extraDays - daysToAddBefore;
-
-        // Extend dates to get 30 days
-        start.setDate(start.getDate() - daysToAddBefore);
-        end.setDate(end.getDate() + daysToAddAfter);
-
-        // Format extended dates for API
-        const extendedStartDate = start.toISOString().split('T')[0];
-        const extendedEndDate = end.toISOString().split('T')[0];
-
-        console.log('[weatherChartTool] Date conversion:', {
-            originalDate: startDate,
-            originalEndDate: endDate,
-            formattedStartDate: extendedStartDate,
-            formattedEndDate: extendedEndDate,
-            totalDays: 30,
-            originalRange: daysDiff,
-            addedBefore: daysToAddBefore,
-            addedAfter: daysToAddAfter
-        });
-
-        return {
-            type: 'weatherChart',
-            props: {
-                lat,
-                lon,
-                city,
-                startDate: extendedStartDate,
-                endDate: extendedEndDate,
-                units,
-            }
-        };
+        try {
+            // Format dates using the utility function
+            const formattedDates = formatDateRange(startDate, endDate);
+            
+            // Fetch the actual weather data
+            const weatherData = await fetchHistoricalWeatherData(
+                lat, 
+                lon, 
+                formattedDates.startDate, 
+                formattedDates.endDate, 
+                units
+            );
+            
+            return {
+                type: 'weatherChart',
+                props: {
+                    lat,
+                    lon,
+                    city,
+                    startDate: formattedDates.startDate,
+                    endDate: formattedDates.endDate,
+                    units,
+                    // Include the actual weather data for the AI to reference
+                    weatherData: weatherData.data,
+                    historicalYear: weatherData.year,
+                    averages: weatherData.averages
+                }
+            };
+        } catch (error) {
+            console.error('Error in weatherChartTool:', error);
+            throw error;
+        }
     }
 });
 
@@ -493,12 +479,63 @@ export const currencyConverterTool = createTool({
     }
 });
 
+// Tool for Weather Forecast
+export const weatherForecastTool = createTool({
+    description: 'Display weather forecast for a location.',
+    parameters: z.object({
+        lat: z.number().min(-90).max(90).describe('Latitude of the location'),
+        lon: z.number().min(-180).max(180).describe('Longitude of the location'),
+        city: z.string().describe('City name for display'),
+        startDate: z.string().describe('Trip start date in DD/MM/YYYY format'),
+        endDate: z.string().describe('Trip end date in DD/MM/YYYY format'),
+        units: z.enum(['us', 'uk', 'metric'] as const).optional().default('metric')
+    }),
+    execute: async function ({ lat, lon, city, startDate, endDate, units = 'metric' }) {
+        try {
+            // Check if dates are within forecast range
+            const formattedStartDate = formatDate(startDate);
+            const formattedEndDate = formatDate(endDate);
+            
+            if (!isWithinForecastRange(formattedStartDate, formattedEndDate)) {
+                throw new Error('Travel dates are outside the forecast range (next 7 days)');
+            }
+            
+            // Fetch the actual weather forecast data
+            const forecastData = await fetchWeatherForecast(
+                lat, 
+                lon, 
+                startDate, 
+                endDate, 
+                units
+            );
+            
+            return {
+                type: 'weatherForecast',
+                props: {
+                    lat,
+                    lon,
+                    city,
+                    startDate: formattedStartDate,
+                    endDate: formattedEndDate,
+                    units,
+                    // Include the actual weather forecast data for the AI to reference
+                    forecastData: forecastData.data,
+                    summary: forecastData.summary
+                }
+            };
+        } catch (error) {
+            console.error('Error in weatherForecastTool:', error);
+            throw error;
+        }
+    }
+});
+
 // Export all tools with their names
 export const tools = {
     budgetSelector: budgetSelectorTool,
     preferenceSelector: preferenceSelectorTool,
     datePicker: datePickerTool,
-    // languageSelector: languageSelectorTool,
+    languageSelector: languageSelectorTool,
     transportSelector: transportSelectorTool,
     placeCard: placeCardTool,
     carousel: carouselTool,
@@ -507,5 +544,6 @@ export const tools = {
     savedPlacesList: savedPlacesListTool,
     stageProgress: stageProgressTool,
     quickResponse: quickResponseTool,
-    currencyConverter: currencyConverterTool
+    currencyConverter: currencyConverterTool,
+    weatherForecast: weatherForecastTool
 };

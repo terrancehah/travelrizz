@@ -177,7 +177,8 @@ export default async function handler(req: NextRequest) {
     - 'savedPlacesList': View ALL previously saved places. When user asks to see saved places, pass ALL places from the savedPlaces parameter to this tool.
 
     Additional tools include:
-    - 'weatherChart' for historical weather data for the same period from last year, trigger when user ask for weather information.
+    - 'weatherChart' for historical weather data for the same period from last year, trigger when user ask for weather information. Use ONLY when travel dates are beyond the next 7 days. This tool provides historical weather data for the same dates from previous years.
+    -'weatherForecast' tool: for weather forecast data for the next 7 days. Use ONLY when travel dates are within the next 7 days. This tool provides actual forecast data from weather services.
     - 'currencyConverterTool' for displaying live currency conversion rates. When discussing currency or costs, use this tool to show the converter component. When the tool returns, use the rates data included in the tool response to provide accurate exchange rate information to the user.
     - 'stageProgress' for stage advancement. Only trigger this tool after user confirmation.
 
@@ -224,7 +225,7 @@ export default async function handler(req: NextRequest) {
     - adding any text between descriptions and tool calls
     - including JSON or tool syntax in visible messages
 
-    ### 4.5 Automatic Places Saving Functions
+    ### 4.6 Automatic Places Saving Functions
     - Places are automatically saved when using 'placeCard'/'carousel', and map markers appear automatically.
     - Do not announce these automated actions or ask users to save places.
     

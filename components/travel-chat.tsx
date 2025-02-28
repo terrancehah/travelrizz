@@ -3,7 +3,7 @@
 'use client';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { BudgetLevel, SupportedLanguage, TravelDetails, TravelPreference, WeatherChartProps } from '../managers/types';
+import { BudgetLevel, SupportedLanguage, TravelDetails, TravelPreference, WeatherChartProps, WeatherForecastProps } from '../managers/types';
 import { BudgetSelector } from './selectors/BudgetSelector';
 import { PreferenceSelector } from './selectors/PreferenceSelector';
 import { DatePicker } from './selectors/DateSelector';
@@ -12,6 +12,7 @@ import { PlaceCard } from './features/places/PlaceCard';
 import { Carousel } from './features/places/PlaceCarousel';
 import { SavedPlacesList } from './features/places/SavedPlacesList';
 import HistoricalWeatherChart from './features/weather/historical-weather-chart';
+import WeatherForecast from './features/weather/WeatherForecast';
 import { ChevronUpIcon, ChevronDownIcon } from 'lucide-react';
 import { QuickResponse } from './chat/QuickResponse';
 import ReactMarkdown from 'react-markdown';
@@ -586,13 +587,26 @@ export function TravelChat({
                                             </div>
                                         );
 
+                                    case 'weatherForecast':
+                                        if (!toolInvocation.result?.props) return null;
+                                        const forecastProps = toolInvocation.result.props as unknown as WeatherForecastProps;
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <WeatherForecast 
+                                                        {...forecastProps}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+
                                     case 'currencyConverter':
                                         if (!toolInvocation.result?.props) return null;
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-full">
                                                     <CurrencyConverter 
-                                                        {...toolInvocation.result.props}
+                                                        {...toolInvocation.result.props as any}
                                                     />
                                                 </div>
                                             </div>

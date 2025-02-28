@@ -1,7 +1,17 @@
 {
-    "weather":{
+    "weatherHistorical":{
         "title": "{city} Historical Weather",
         "subheading": "from {startDate} to {endDate}"
+    },
+    "weatherForecast": {
+        "title": "Weather Forecast for {city}",
+        "subheading": "from {startDate} to {endDate}",
+        "precipitation": {
+            "none": "No precipitation expected",
+            "some": "{days} day with precipitation expected",
+            "multiple": "{days} days with precipitation expected"
+        },
+        "footer": "Weather data is subject to change."
     },
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Currency Rates",
