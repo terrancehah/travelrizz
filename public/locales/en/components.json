@@ -5,11 +5,16 @@
     },
     "weatherForecast": {
         "title": "Weather Forecast for {city}",
-        "subheading": "from {startDate} to {endDate}",
+        "subheading": "for the next 7 days",
+        "today": {
+            "title": "Today's Weather",
+            "high": "High",
+            "low": "Low"
+        },
         "precipitation": {
-            "none": "No precipitation expected",
-            "some": "{days} day with precipitation expected",
-            "multiple": "{days} days with precipitation expected"
+            "none": "No precipitation expected.",
+            "some": "{days} day with precipitation expected.",
+            "multiple": "{days} days with precipitation expected."
         },
         "footer": "Weather data is subject to change."
     },

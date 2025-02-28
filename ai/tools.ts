@@ -492,15 +492,11 @@ export const weatherForecastTool = createTool({
     }),
     execute: async function ({ lat, lon, city, startDate, endDate, units = 'metric' }) {
         try {
-            // Check if dates are within forecast range
+            // Format dates for display purposes only
             const formattedStartDate = formatDate(startDate);
             const formattedEndDate = formatDate(endDate);
             
-            if (!isWithinForecastRange(formattedStartDate, formattedEndDate)) {
-                throw new Error('Travel dates are outside the forecast range (next 7 days)');
-            }
-            
-            // Fetch the actual weather forecast data
+            // Fetch the actual weather forecast data (always 7 days from today)
             const forecastData = await fetchWeatherForecast(
                 lat, 
                 lon, 

@@ -3,24 +3,13 @@ import { WeatherForecast, WeatherCondition } from '@/managers/types';
 const BASE_URL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline';
 
 /**
- * Checks if the travel dates are within the forecast range (next 7 days)
- * @param startDate Start date in YYYY-MM-DD format
- * @param endDate End date in YYYY-MM-DD format
- * @returns Boolean indicating if dates are within forecast range
+ * Always returns true as we now always fetch 7 days of forecast data
+ * @param startDate Start date (not used)
+ * @param endDate End date (not used)
+ * @returns Always true
  */
 export function isWithinForecastRange(startDate: string, endDate: string): boolean {
-  const start = new Date(startDate);
-  const today = new Date();
-  
-  // Set today to beginning of day for accurate comparison
-  today.setHours(0, 0, 0, 0);
-  
-  // Calculate 7 days from now
-  const forecastLimit = new Date(today);
-  forecastLimit.setDate(today.getDate() + 7);
-  
-  // Only check if start date is not before today, we'll always fetch 7 days of data
-  return start >= today;
+  return true;
 }
 
 /**
@@ -62,10 +51,11 @@ export function mapWeatherCondition(condition: string): WeatherCondition {
 
 /**
  * Fetches weather forecast data for a location
+ * Always fetches 7 days of forecast data starting from today
  * @param lat Latitude
  * @param lon Longitude
- * @param startDate Start date in DD/MM/YYYY format
- * @param endDate End date in DD/MM/YYYY format
+ * @param startDate Start date in DD/MM/YYYY format (used for display only)
+ * @param endDate End date in DD/MM/YYYY format (used for display only)
  * @param units Units (metric, us, uk)
  * @returns Weather forecast data
  */
@@ -90,20 +80,17 @@ export async function fetchWeatherForecast(
     throw new Error('Missing NEXT_PUBLIC_VISUALCROSSING_API_KEY environment variable');
   }
 
-  // Format dates from DD/MM/YYYY to YYYY-MM-DD
-  const formattedStartDate = formatDate(startDate);
+  // Get today's date
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
   
-  // Calculate end date as 7 days from start date to always show a week of forecast
-  const start = new Date(formattedStartDate);
-  const forecastEnd = new Date(start);
-  forecastEnd.setDate(start.getDate() + 6); // +6 to include the start date for a total of 7 days
+  // Calculate end date as 7 days from today
+  const forecastEnd = new Date(today);
+  forecastEnd.setDate(today.getDate() + 6); // +6 to include today for a total of 7 days
   
-  const formattedEndDate = forecastEnd.toISOString().split('T')[0]; // Format as YYYY-MM-DD
-  
-  // Check if start date is within forecast range
-  if (!isWithinForecastRange(formattedStartDate, formattedEndDate)) {
-    throw new Error('Travel dates are outside the forecast range (next 7 days)');
-  }
+  // Format dates as YYYY-MM-DD for the API
+  const formattedStartDate = today.toISOString().split('T')[0];
+  const formattedEndDate = forecastEnd.toISOString().split('T')[0];
 
   // Build the API URL with more detailed parameters
   const url = `${BASE_URL}/${lat},${lon}/${formattedStartDate}/${formattedEndDate}?key=${apiKey}&unitGroup=${units}&include=days&elements=datetime,temp,tempmax,tempmin,precip,precipprob,conditions,description,icon`;

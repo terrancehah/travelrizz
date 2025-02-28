@@ -1,7 +1,6 @@
 import { NextRequest } from 'next/server';
 import { 
   fetchWeatherForecast, 
-  isWithinForecastRange, 
   formatDate 
 } from '@/utils/forecast-utils';
 
@@ -30,22 +29,8 @@ export default async function handler(
       );
     }
 
-    // Format dates from YYYY-MM-DD to check if they're within forecast range
-    const formattedStartDate = startDate.includes('/') ? formatDate(startDate) : startDate;
-    
-    // Check if start date is within forecast range (we'll always fetch 7 days)
-    if (!isWithinForecastRange(formattedStartDate, '')) {
-      return new Response(
-        JSON.stringify({ 
-          error: 'Travel dates are outside the forecast range (next 7 days)',
-          isForecasting: false
-        }),
-        { status: 400 }
-      );
-    }
-
     try {
-      // Use the utility function to fetch forecast data (will always fetch 7 days)
+      // Use the utility function to fetch forecast data (always fetches 7 days from today)
       const forecastData = await fetchWeatherForecast(
         lat, 
         lon, 
