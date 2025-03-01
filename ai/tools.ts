@@ -526,6 +526,27 @@ export const weatherForecastTool = createTool({
     }
 });
 
+// Tool for Local Tips
+export const localTipsTool = createTool({
+    description: 'Display destination-specific local tips and cultural etiquettes. Use this when users ask about local customs, cultural norms, or travel etiquette for their destination.',
+    parameters: z.object({
+        destination: z.string().describe('Name of the destination city/country'),
+        tips: z.array(z.object({
+            summary: z.string().describe('Brief overview of the tip (1-2 sentences)'),
+            description: z.string().describe('Detailed explanation of the tip')
+        }))
+    }),
+    execute: async function ({ destination, tips }) {
+        return {
+            type: 'localTips',
+            props: {
+                destination,
+                tips
+            }
+        };
+    }
+});
+
 // Export all tools with their names
 export const tools = {
     budgetSelector: budgetSelectorTool,
@@ -541,5 +562,6 @@ export const tools = {
     stageProgress: stageProgressTool,
     quickResponse: quickResponseTool,
     currencyConverter: currencyConverterTool,
-    weatherForecast: weatherForecastTool
+    weatherForecast: weatherForecastTool,
+    localTips: localTipsTool
 };

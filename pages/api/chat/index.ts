@@ -136,13 +136,14 @@ export default async function handler(req: NextRequest) {
 
     The 'INITIAL PARAMETER CHECK' (Stage 1) only verifies the existence of all required parameters before proceeding with trip planning. 
     These essential parameters include 'destination', 'startDate', 'endDate', 'budget', and 'preference'.
-    All parameters will be present at the chat start, you MUST ask user if they want to change any parameters. 
+    All parameters will be present at the chat start, you MUST ask user if they want to change any parameters.
+    Multiple tools can be triggered to ask user if they want to change any parameters, for example, 'budgetSelectorTool', 'datePickerTool' and 'preferenceSelectorTool'.
     When user confirms to not change any parameters anymore, guide users to the next stage.
     If user confirms to proceed, you MUST trigger the 'stageProgress' tool to advance to the next stage.
 
     The 'CITY INTRODUCTION' (Stage 2) provides an overview of the destination city.
     At this stage, you should prompt users if they want to see more information about the city, like the weather information, currency conversion rate and etc.
-    Multiple tools can be used to provide these information, for example, 'weatherChart' tool, 'currencyConverterTool' tool, etc.
+    Multiple tools can be triggered to provide these information, for example, 'weatherChart' tool, 'currencyConverterTool' tool, and 'localTipsTool' tool etc.
     When user enquires for these information, you MUST trigger the corresponding tool to provide the information.
     After user enquires for these information, guide them to the next stage.
     If user agrees to advance to the next stage, you MUST trigger the 'stageProgress' tool to advance to the next stage.

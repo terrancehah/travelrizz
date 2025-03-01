@@ -30,6 +30,7 @@ import { useRouter } from 'next/router';
 import { ChatHeader } from './chat/chat-header';
 import { useLocalizedFont } from '../hooks/useLocalizedFont';
 import { useTranslations } from 'next-intl';
+import LocalTips from './features/local-tips/LocalTips';
 
 interface TravelChatProps {
     initialDetails: TravelDetails;
@@ -612,16 +613,27 @@ export function TravelChat({
                                             </div>
                                         );
 
-                                        case 'savedPlacesList':
-                                            return (
-                                                <div key={`${toolCallId}-${index}`} className="flex justify-start">
-                                                    <div className="w-full">
-                                                        <SavedPlacesList
-                                                            onRemove={onPlaceRemoved}
-                                                        />
-                                                    </div>
+                                    case 'savedPlacesList':
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <SavedPlacesList
+                                                        onRemove={onPlaceRemoved}
+                                                    />
                                                 </div>
-                                            );
+                                            </div>
+                                        );
+
+                                    case 'localTips':
+                                        if (!toolInvocation.result?.props) return null;
+                                        const localTipsProps = toolInvocation.result.props as { destination: string; tips: { summary: string; description: string; }[] };
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <LocalTips {...localTipsProps} />
+                                                </div>
+                                            </div>
+                                        );
 
                                     default:
                                         return null;
