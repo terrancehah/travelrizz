@@ -62,21 +62,24 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
                                 fonts?.text
                             )}
                         >
-                            <div className="flex-1">
+                            <div className={cn(
+                                "flex-1 overflow-hidden transition-[max-height] duration-500 ease-in-out",
+                                expandedTips.includes(index) ? "max-h-[500px]" : "max-h-[24px]"
+                            )}>
                                 <p className={cn(
                                     "text-gray-600 dark:text-gray-300 pr-2",
-                                    expandedTips.includes(index) && "font-bold"
+                                    expandedTips.includes(index)
                                 )}>
                                     {tip.summary}
+                                    <span className={cn(
+                                        "transition-[opacity,visibility] duration-500 ease-in-out font-normal",
+                                        expandedTips.includes(index) 
+                                            ? "opacity-100 visible" 
+                                            : "opacity-0 invisible"
+                                    )}>
+                                        {" "}{tip.description}
+                                    </span>
                                 </p>
-                                <div className={cn(
-                                    "overflow-hidden transition-[max-height] duration-500 ease-in-out",
-                                    expandedTips.includes(index) ? "max-h-[500px]" : "max-h-0"
-                                )}>
-                                    <p className="text-gray-600 dark:text-gray-300 mt-2">
-                                        {tip.description}
-                                    </p>
-                                </div>
                             </div>
                             <div className={cn(
                                 "transition-transform duration-300 flex-shrink-0 ml-2",
