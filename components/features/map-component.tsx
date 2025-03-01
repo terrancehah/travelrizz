@@ -146,24 +146,54 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     useEffect(() => {
         if (!apiKey) return;
 
+        // First, attach setupMapInstance to window
+        window.setupMapInstance = () => {
+            setupMapInstance();
+        };
+
         const loadGoogleMapsScript = () => {
+            // If Maps is already loaded, initialize directly
             if (window.google?.maps) {
                 setupMapInstance();
-            } else if (!scriptLoadedRef.current && !document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
+                return;
+            }
+
+            // Don't load script if it's already being loaded
+            if (scriptLoadedRef.current || document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
+                return;
+            }
+
+            try {
                 const script = document.createElement('script');
                 script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker&v=weekly&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
                 script.async = true;
                 script.defer = true;
+                
+                // Add error handling
+                script.onerror = () => {
+                    console.error('[MapComponent] Failed to load Google Maps script');
+                    setError('Failed to load map');
+                    setIsLoading(false);
+                    scriptLoadedRef.current = false;
+                };
+
                 document.head.appendChild(script);
                 scriptLoadedRef.current = true;
+            } catch (error) {
+                console.error('[MapComponent] Error loading script:', error);
+                setError('Failed to initialize map');
+                setIsLoading(false);
             }
         };
 
-        // Initial map setup and geometry library check
+        // Load the script
         loadGoogleMapsScript();
 
+        // Cleanup
         return () => {
-            delete window.setupMapInstance;
+            if (window.setupMapInstance) {
+                delete window.setupMapInstance;
+            }
         };
     }, [apiKey]);
 

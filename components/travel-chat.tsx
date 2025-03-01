@@ -407,9 +407,9 @@ export function TravelChat({
                             <div key={`content-${message.id || index}`} className={`flex ${message.role === 'user' ? 'justify-end mr-4' : 'justify-start ml-4'}`}>
                                 <div className={`${
                                     message.role === 'user' 
-                                        ? 'bg-blue-600/75 dark:bg-blue-600 text-white rounded-br-none w-min min-w-[40%]' 
-                                        : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-bl-none w-[75%]'
-                                } rounded-2xl px-4 py-2 max-w-[75%]`}>
+                                        ? 'bg-blue-600/75 dark:bg-blue-600 text-white rounded-br-none min-w-[20%] w-fit max-w-[60%]' 
+                                        : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-bl-none min-w-[20%] w-fit max-w-[75%]'
+                                } rounded-2xl px-4 py-2`}>
                                     <ReactMarkdown 
                                         className={`prose max-w-none ${fonts?.text}`}
                                         components={{

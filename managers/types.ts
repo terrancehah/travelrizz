@@ -15,7 +15,7 @@ export interface TravelDetails {
     preferences: string[];
     budget: string;
     language: string;
-    transport: string[];
+    transport?: string[];
 }
 
 export enum ComponentType {
@@ -194,7 +194,7 @@ export interface TravelSession {
     preferences: string[];
     budget: string;
     language: string;
-    transport: string[];
+    transport?: string[];
     location?: {
         latitude: number;
         longitude: number;
