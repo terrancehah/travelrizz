@@ -1,7 +1,25 @@
 {
-    "weather":{
+    "weatherHistorical":{
         "title": "Clima histórico de {city}",
         "subheading": "desde {startDate} hasta {endDate}"
+    },
+    "weatherForecast": {
+        "title": "Pronóstico del tiempo para {city}",
+        "subheading": "para los próximos 7 días",
+        "today": {
+            "title": "Clima de hoy",
+            "high": "Máxima",
+            "low": "Mínima"
+        },
+        "precipitation": {
+            "none": "No se esperan precipitaciones.",
+            "some": "Se espera {days} día con precipitaciones.",
+            "multiple": "Se esperan {days} días con precipitaciones."
+        },
+        "footer": "Los datos meteorológicos están sujetos a cambios."
+    },
+    "localTips": {
+        "title": "Consejos locales para {destination}"
     },
     "currency":{
         "title": "Tasa de cambio de {currencyName} ({currencySymbol})",

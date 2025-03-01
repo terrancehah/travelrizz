@@ -1,10 +1,28 @@
 {
-    "weather":{
+    "weatherHistorical":{
         "title": "{city}历史天气",
-        "subheading": "从{startDate}到{endDate}"
+        "subheading": "从{startDate}至{endDate}"
+    },
+    "weatherForecast": {
+        "title": "{city}天气预报",
+        "subheading": "未来7天",
+        "today": {
+            "title": "今日天气",
+            "high": "最高温",
+            "low": "最低温"
+        },
+        "precipitation": {
+            "none": "预计无降水。",
+            "some": "预计{days}天有降水。",
+            "multiple": "预计{days}天有降水。"
+        },
+        "footer": "天气数据可能会有变化。"
+    },
+    "localTips": {
+        "title": "{destination}当地攻略"
     },
     "currency":{
-        "title": "{currencyName} ({currencySymbol}) 汇率",
+        "title": "{currencyName} ({currencySymbol})汇率",
         "subheading": "于 {lastUpdated}"
     },
     "premiumUpgrade": {

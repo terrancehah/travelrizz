@@ -1,7 +1,22 @@
 {
-    "weather":{
-        "title": "Historique météo de {city}",
+    "weatherHistorical":{
+        "title": "Historique météo pour {city}",
         "subheading": "du {startDate} au {endDate}"
+    },
+    "weatherForecast": {
+        "title": "Prévisions météo pour {city}",
+        "subheading": "pour les 7 prochains jours",
+        "today": {
+            "title": "Météo d'aujourd'hui",
+            "high": "Maximum",
+            "low": "Minimum"
+        },
+        "precipitation": {
+            "none": "Aucune précipitation prévue.",
+            "some": "{days} jour avec précipitations prévu.",
+            "multiple": "{days} jours avec précipitations prévus."
+        },
+        "footer": "Les données météorologiques sont sujettes à changement."
     },
     "currency":{
         "title": "Taux de change {currencyName} ({currencySymbol})",
@@ -42,6 +57,9 @@
                 "description": "Profitez d'une planification de voyage fluide et sans publicité."
             }
         }
+    },
+    "localTips": {
+        "title": "Conseils locaux pour {destination}"
     },
     "paymentSuccessPopup": {
         "heading": "Paiement réussi !",

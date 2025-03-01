@@ -1,7 +1,25 @@
 {
-    "weather":{
+    "weatherHistorical":{
         "title": "{city} 과거 날씨",
         "subheading": "{startDate}부터 {endDate}까지"
+    },
+    "weatherForecast": {
+        "title": "{city} 날씨 예보",
+        "subheading": "향후 7일간",
+        "today": {
+            "title": "오늘의 날씨",
+            "high": "최고기온",
+            "low": "최저기온"
+        },
+        "precipitation": {
+            "none": "강수 예상 없음.",
+            "some": "강수 예상일 {days}일.",
+            "multiple": "강수 예상일 {days}일."
+        },
+        "footer": "날씨 데이터는 변경될 수 있습니다."
+    },
+    "localTips": {
+        "title": "{destination} 현지 팁"
     },
     "currency":{
         "title": "{currencyName} ({currencySymbol}) 환율",

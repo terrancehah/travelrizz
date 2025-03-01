@@ -1,14 +1,52 @@
 {
-    "weather":{
-        "title": "Cuaca Sejarah {city}",
+    "weatherHistorical":{
+        "title": "Sejarah Cuaca {city}",
         "subheading": "dari {startDate} hingga {endDate}"
+    },
+    "weatherForecast": {
+        "title": "Ramalan Cuaca untuk {city}",
+        "subheading": "untuk 7 hari akan datang",
+        "today": {
+            "title": "Cuaca Hari Ini",
+            "high": "Tertinggi",
+            "low": "Terendah"
+        },
+        "precipitation": {
+            "none": "Tiada hujan dijangka.",
+            "some": "{days} hari dijangka hujan.",
+            "multiple": "{days} hari dijangka hujan."
+        },
+        "footer": "Data cuaca tertakluk kepada perubahan."
+    },
+    "localTips": {
+        "title": "Tip Tempatan untuk {destination}"
     },
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Kadar Konversi",
         "subheading": "pada {lastUpdated}"
     },
+    "premiumUpgrade": {
+        "heading": "Had percuma anda telah tamat. Dapatkan perancangan perjalanan tanpa had dengan bayaran sekali sahaja!",
+        "newPrice": "RM8.99",
+        "originalPrice": "RM12.99",
+        "tag": "Tawaran Awal",
+        "features": {
+            "0": "Perancangan perjalanan peribadi",
+            "1": "Visualisasi laluan interaktif",
+            "2": "Pandangan mendalam destinasi",
+            "3": "Pengalaman tanpa iklan"
+        }
+    },
     "featureCarousel": {
         "features": {
+            "unlimitedPlaces": {
+                "title": "Tempat Menarik Tanpa Had",
+                "description": "Terokai destinasi tanpa had yang disesuaikan untuk anda."
+            },
+            "personalizedRecommendations": {
+                "title": "Cadangan Peribadi",
+                "description": "Dapatkan cadangan pintar yang dipacu oleh AI."
+            },
             "advancedItinerary": {
                 "title": "Perancangan Perjalanan Lanjutan",
                 "description": "Rancang perjalanan anda dengan ciri-ciri lanjutan dan alat yang berguna."

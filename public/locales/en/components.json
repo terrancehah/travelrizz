@@ -18,6 +18,9 @@
         },
         "footer": "Weather data is subject to change."
     },
+    "localTips": {
+        "title": "Local Tips for {destination}"
+    },
     "currency":{
         "title": "{currencyName} ({currencySymbol}) Currency Rates",
         "subheading": "as of {lastUpdated}"

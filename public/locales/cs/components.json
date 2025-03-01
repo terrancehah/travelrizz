@@ -1,10 +1,28 @@
 {
-    "weather":{
+    "weatherHistorical":{
         "title": "Historické počasí pro {city}",
         "subheading": "od {startDate} do {endDate}"
     },
+    "weatherForecast": {
+        "title": "Předpověď počasí pro {city}",
+        "subheading": "na příštích 7 dní",
+        "today": {
+            "title": "Dnešní počasí",
+            "high": "Nejvyšší",
+            "low": "Nejnižší"
+        },
+        "precipitation": {
+            "none": "Neočekávají se žádné srážky.",
+            "some": "Očekává se {days} den se srážkami.",
+            "multiple": "Očekává se {days} dní se srážkami."
+        },
+        "footer": "Údaje o počasí se mohou změnit."
+    },
+    "localTips": {
+        "title": "Místní tipy pro {destination}"
+    },
     "currency":{
-        "title": "Směnný kurz {currencyName} ({currencySymbol})",
+        "title": "Kurzy měny {currencyName} ({currencySymbol})",
         "subheading": "k {lastUpdated}"
     },
     "premiumUpgrade": {

@@ -1,11 +1,29 @@
- {
-    "weather":{
+{
+    "weatherHistorical":{
         "title": "Historisches Wetter für {city}",
         "subheading": "von {startDate} bis {endDate}"
     },
+    "weatherForecast": {
+        "title": "Wettervorhersage für {city}",
+        "subheading": "für die nächsten 7 Tage",
+        "today": {
+            "title": "Heutiges Wetter",
+            "high": "Höchst",
+            "low": "Tiefst"
+        },
+        "precipitation": {
+            "none": "Kein Niederschlag erwartet.",
+            "some": "{days} Tag mit Niederschlag erwartet.",
+            "multiple": "{days} Tage mit Niederschlag erwartet."
+        },
+        "footer": "Wetterdaten können sich ändern."
+    },
+    "localTips": {
+        "title": "Lokale Tipps für {destination}"
+    },
     "currency":{
-        "title": "{currencyName} ({currencySymbol}) Wechselkurs",
-        "subheading": "Stand {lastUpdated}"
+        "title": "{currencyName} ({currencySymbol}) Wechselkurse",
+        "subheading": "Stand: {lastUpdated}"
     },
     "premiumUpgrade": {
         "heading": "Kostenloses Limit erreicht! Schalten Sie unbegrenzte Reiseplanung mit einer einmaligen Zahlung frei.",

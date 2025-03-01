@@ -1,7 +1,25 @@
 {
-    "weather":{
+    "weatherHistorical":{
         "title": "{city}の過去の天気",
         "subheading": "{startDate}から{endDate}まで"
+    },
+    "weatherForecast": {
+        "title": "{city}の天気予報",
+        "subheading": "今後7日間",
+        "today": {
+            "title": "今日の天気",
+            "high": "最高気温",
+            "low": "最低気温"
+        },
+        "precipitation": {
+            "none": "降水の予報はありません。",
+            "some": "降水予報は{days}日です。",
+            "multiple": "降水予報は{days}日間です。"
+        },
+        "footer": "天気データは変更される可能性があります。"
+    },
+    "localTips": {
+        "title": "{destination}の現地情報"
     },
     "currency":{
         "title": "{currencyName} ({currencySymbol}) 為替レート",
@@ -34,7 +52,7 @@
                 "description": "あなたの好みに合わせた毎日の旅程を作成します。"
             },
             "localTips": {
-                "title": "ローカルなヒント",
+                "title": "{destination}の現地情報",
                 "description": "旅をより楽しくするための現地のアドバイスやヒントを発見できます。"
             },
             "adFreeExperience": {

@@ -1,7 +1,25 @@
 {
-    "weather":{
+    "weatherHistorical":{
         "title": "{city}歷史天氣",
-        "subheading": "從{startDate}到{endDate}"
+        "subheading": "從{startDate}至{endDate}"
+    },
+    "weatherForecast": {
+        "title": "{city}天氣預報",
+        "subheading": "未來7天",
+        "today": {
+            "title": "今日天氣",
+            "high": "最高溫",
+            "low": "最低溫"
+        },
+        "precipitation": {
+            "none": "預計無降水。",
+            "some": "預計{days}天有降水。",
+            "multiple": "預計{days}天有降水。"
+        },
+        "footer": "天氣數據可能會有變化。"
+    },
+    "localTips": {
+        "title": "{destination}當地攻略"
     },
     "currency":{
         "title": "{currencyName} ({currencySymbol}) 匯率",
@@ -34,7 +52,7 @@
                 "description": "創建符合您喜好的每日行程。"
             },
             "localTips": {
-                "title": "當地特色提示",
+                "title": "{destination}當地攻略",
                 "description": "發掘讓您的旅程更精彩的當地建議與提示。"
             },
             "adFreeExperience": {
