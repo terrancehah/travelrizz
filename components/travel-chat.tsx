@@ -549,7 +549,7 @@ export function TravelChat({
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-[80%] md:w-[60%] mt-4 mx-auto">
-                                                    {placeProps.place && (
+                                                    {placeProps.place && mainChat.status === 'ready' && (
                                                         <PlaceCard
                                                             place={placeProps.place}
                                                             showActions={false}
@@ -566,7 +566,7 @@ export function TravelChat({
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-full">
-                                                    {carouselProps.places.length > 0 && (
+                                                    {carouselProps.places.length > 0 && mainChat.status === 'ready' && (
                                                         <Carousel 
                                                             places={carouselProps.places}
                                                         />

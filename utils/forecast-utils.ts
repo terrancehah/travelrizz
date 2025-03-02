@@ -13,11 +13,16 @@ export function isWithinForecastRange(startDate: string, endDate: string): boole
 }
 
 /**
- * Formats a date from DD/MM/YYYY to YYYY-MM-DD format
- * @param dateString Date in DD/MM/YYYY format
+ * Formats a date to YYYY-MM-DD format
+ * @param dateString Date in DD/MM/YYYY or YYYY-MM-DD format
  * @returns Date in YYYY-MM-DD format
  */
 export function formatDate(dateString: string): string {
+  // If already in YYYY-MM-DD format, return as is
+  if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+    return dateString;
+  }
+  // Otherwise, convert from DD/MM/YYYY format
   const [day, month, year] = dateString.split('/').map(Number);
   return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 }
