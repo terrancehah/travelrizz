@@ -126,6 +126,7 @@ export function useTravelChat({
   const mainChat = useChat({
     api: '/api/chat',
     id: chatId,
+    experimental_throttle: 250, // Add 250ms throttle to reduce UI updates during streaming
     body: {
       currentDetails,
       destination: currentDetails.destination,

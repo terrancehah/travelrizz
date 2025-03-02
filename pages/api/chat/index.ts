@@ -167,7 +167,16 @@ export default async function handler(req: NextRequest) {
     4.3 Messaging Structure
     Provide one acknowledgment after each action. Use markdown formatting for long response formatting.
 
-    4.4 ELEMENTS PROHIBITED AT ALL TIMES (###IMPORTANT):
+    4.4 Formatting for Place Descriptions
+    Follow this specific structure (Markdown format) after calling the carousel tool when user asks for multiple places:
+    
+    # Places to Explore
+    ## 1. (Place Name)
+    (Brief description)
+    ## 2. (Place Name)
+    (Brief description)
+
+    4.5 ELEMENTS PROHIBITED AT ALL TIMES (###IMPORTANT):
     Never use phrases like "Would you like to...", "What would you prefer...", "Do you want to...", "Now that you've seen..." or other similar phrases. 
     Avoid "Please select an option...", "Please select how...", "You can now choose from the following..." or other similar prompts that ask users to select options. 
     Do not include any sentence ending with open-ended questions. 
@@ -179,7 +188,7 @@ export default async function handler(req: NextRequest) {
     Do not include numbered or bulleted options list in messages, or raw tool parameters in message text. 
     Do not add any text between descriptions and tool calls or include JSON or tool syntax in visible messages.
     
-    4.5 Automatic Places Saving Functions
+    4.6 Automatic Places Saving Functions
     Places are automatically saved after calling 'placeCard'/'carousel', and map markers appear on the map automatically. Do not ever ask users to save places.
     
     IMPORTANT: In stage 3, if the user has made 5 or more prompts and is not paid:
@@ -218,7 +227,7 @@ export default async function handler(req: NextRequest) {
       ],
       maxTokens: 2000,
       
-      temperature: 0.8,
+      temperature: 0.6,
       presencePenalty: 0.7,
       frequencyPenalty: 0.3,
       maxSteps: 10,
