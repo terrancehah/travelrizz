@@ -170,13 +170,13 @@ export default async function handler(req: NextRequest) {
     `;
 
     const dynamicContext = `Current Context for Quick Response Generation:
-    - Travel Destination: ${currentDetails?.destination || 'Not set'}
-    - Current Stage: ${currentStage || 1}
-    - Travel Dates: ${currentDetails?.startDate || 'Not set'} to ${currentDetails?.endDate || 'Not set'}
-    - Chat Language: ${currentDetails?.language || 'Not set'}
-    - Travel Budget: ${currentDetails?.budget || 'Not set'}
-    - Travel Preferences: ${currentDetails?.preferences?.join(', ') || 'Not set'}
-    - Saved Places Count: ${savedPlaces?.length || 0}
+    - Travel Destination: ${currentDetails?.destination}
+    - Current Stage: ${currentStage}
+    - Travel Dates: ${currentDetails?.startDate} to ${currentDetails?.endDate}
+    - Chat Language: ${currentDetails?.language}
+    - Travel Budget: ${currentDetails?.budget}
+    - Travel Preferences: ${currentDetails?.preferences?.join(', ')}
+    - Saved Places Count: ${savedPlaces?.length}
     - Payment Status: ${metrics?.isPaid ? 'Paid' : 'Not Paid'}
 
     STRICT STAGE ENFORCEMENT:
@@ -203,7 +203,7 @@ export default async function handler(req: NextRequest) {
           role: m.role === 'user' ? ('user' as const) : ('assistant' as const)
         }))
       ],
-      temperature: 0.9,
+      temperature: 0.5,
       maxTokens: 200,
       tools: {
         quickResponse: tools.quickResponse,

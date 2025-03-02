@@ -39,7 +39,7 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
     };
 
     return (
-        <div className="w-[70%] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 mt-4 mx-auto">
+        <div className="w-[80%] md:w-[70%] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 mt-4 mx-auto">
             <h3 className={cn(
                 "text-lg font-semibold mb-4",
                 "text-gray-600 dark:text-gray-300",

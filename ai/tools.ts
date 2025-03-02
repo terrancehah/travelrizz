@@ -16,8 +16,8 @@ import {
 } from '../utils/places-utils';
 import { validateStageProgression } from '../managers/stage-manager';
 import { fetchExchangeRates, getCurrencyFromCountry } from '@/utils/currency-utils';
-import { formatDateRange, fetchHistoricalWeatherData } from '@/utils/weather-utils';
 import { fetchWeatherForecast, isWithinForecastRange, formatDate } from '@/utils/forecast-utils';
+import { formatDateRange, fetchHistoricalWeather } from '@/utils/historical-utils';
 
 // Standardized Tool Response interfaces
 export interface ToolResponse<T = Record<string, unknown>> {
@@ -232,7 +232,7 @@ export const detailsCardTool = createTool({
     }
 });
 
-export const weatherChartTool = createTool({
+export const weatherHistoricalTool = createTool({
     description: 'Display historical weather data including temperature and precipitation for a location.',
     parameters: z.object({
         lat: z.number().min(-90).max(90).describe('Latitude of the location'),
@@ -244,35 +244,24 @@ export const weatherChartTool = createTool({
     }),
     execute: async function ({ lat, lon, city, startDate, endDate, units = 'metric' }) {
         try {
-            // Format dates using the utility function
-            const formattedDates = formatDateRange(startDate, endDate);
-            
-            // Fetch the actual weather data
-            const weatherData = await fetchHistoricalWeatherData(
-                lat, 
-                lon, 
-                formattedDates.startDate, 
-                formattedDates.endDate, 
-                units
-            );
+            const weatherData = await fetchHistoricalWeather(lat, lon, startDate, endDate, units);
             
             return {
-                type: 'weatherChart',
+                type: 'weatherHistorical',
                 props: {
                     lat,
                     lon,
                     city,
-                    startDate: formattedDates.startDate,
-                    endDate: formattedDates.endDate,
+                    startDate,
+                    endDate,
                     units,
-                    // Include the actual weather data for the AI to reference
                     weatherData: weatherData.data,
                     historicalYear: weatherData.year,
                     averages: weatherData.averages
                 }
             };
         } catch (error) {
-            console.error('Error in weatherChartTool:', error);
+            console.error('Error in weatherHistoricalTool:', error);
             throw error;
         }
     }
@@ -557,7 +546,7 @@ export const tools = {
     placeCard: placeCardTool,
     carousel: carouselTool,
     detailsCard: detailsCardTool,
-    weatherChart: weatherChartTool,
+    weatherHistorical: weatherHistoricalTool,
     savedPlacesList: savedPlacesListTool,
     stageProgress: stageProgressTool,
     quickResponse: quickResponseTool,

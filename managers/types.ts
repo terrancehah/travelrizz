@@ -294,7 +294,7 @@ export interface WeatherForecast {
     icon: string;
 }
 
-export interface WeatherChartProps {
+export interface WeatherHistoricalProps {
     lat: number;
     lon: number;
     city: string;

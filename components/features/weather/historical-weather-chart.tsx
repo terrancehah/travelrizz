@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import { Bar, Line, ComposedChart, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
-import { OpenWeatherDayResponse, WeatherChartProps, WeatherResponse } from "@/managers/types"
+import { OpenWeatherDayResponse, WeatherHistoricalProps, WeatherResponse } from "@/managers/types"
 import { cn } from "@/utils/cn"
 import { useRouter } from 'next/router';
 import { useTranslations } from 'next-intl'
@@ -19,7 +19,7 @@ interface ChartDataPoint {
   precipitation: number;
 }
 
-export default function HistoricalWeatherChart({ lat, lon, city, startDate, endDate, units = 'metric' }: WeatherChartProps) {
+export default function HistoricalWeatherChart({ lat, lon, city, startDate, endDate, units = 'metric' }: WeatherHistoricalProps) {
   const [weatherData, setWeatherData] = useState<ChartDataPoint[]>([]);
   const [historicalYear, setHistoricalYear] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);

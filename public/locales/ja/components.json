@@ -52,7 +52,7 @@
                 "description": "あなたの好みに合わせた毎日の旅程を作成します。"
             },
             "localTips": {
-                "title": "{destination}の現地情報",
+                "title": "ローカルなヒント",
                 "description": "旅をより楽しくするための現地のアドバイスやヒントを発見できます。"
             },
             "adFreeExperience": {

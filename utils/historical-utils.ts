@@ -1,7 +1,5 @@
 import { WeatherResponse } from '@/managers/types';
 
-const BASE_URL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline';
-
 /**
  * Formats a date range from DD/MM/YYYY format to YYYY-MM-DD and extends it to 30 days if needed
  * @param startDate Start date in DD/MM/YYYY format
@@ -93,104 +91,54 @@ export function isValidCoordinates(lat: number, lon: number) {
  * @returns Boolean indicating if date range is valid
  */
 export function isValidDateRange(startDate: string, endDate: string) {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    const minDate = new Date('1970-01-01');  // Visual Crossing supports data from 1970
-    const maxDate = new Date(); // Current date since we're using historical data
+    try {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        
+        // Check if dates are valid
+        if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+            return false;
+        }
 
-    const daysDiff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+        // Check if start date is before end date
+        if (start > end) {
+            return false;
+        }
 
-    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+        // Check if date range is not too long (e.g., more than 60 days)
+        const daysDiff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+        if (daysDiff > 60) {
+            return false;
+        }
+
+        return true;
+    } catch (error) {
         return false;
     }
-
-    return (
-        start >= minDate &&
-        end <= maxDate &&
-        start <= end &&
-        daysDiff <= 31  // Allow up to 31 days
-    );
 }
 
 /**
  * Fetches historical weather data for a location
  * @param lat Latitude
  * @param lon Longitude
- * @param startDate Start date in YYYY-MM-DD format
- * @param endDate End date in YYYY-MM-DD format
+ * @param startDate Start date in DD/MM/YYYY format
+ * @param endDate End date in DD/MM/YYYY format
  * @param units Units (metric, us, uk)
- * @returns Weather data and metadata
+ * @returns Historical weather data
  */
-export async function fetchHistoricalWeatherData(
+export async function fetchHistoricalWeather(
     lat: number,
     lon: number,
     startDate: string,
     endDate: string,
     units: string = 'metric'
-): Promise<{
-    data: WeatherResponse[];
-    year: number;
-    averages: {
-        maxTemp: number;
-        precipitation: number;
-    };
-}> {
-    const apiKey = process.env.NEXT_PUBLIC_VISUALCROSSING_API_KEY;
-    if (!apiKey) {
-        throw new Error('Missing NEXT_PUBLIC_VISUALCROSSING_API_KEY environment variable');
-    }
-
-    // Get dates from previous year for historical data
-    const historicalDates = getPreviousYearDates(startDate, endDate);
+) {
+    const formattedDates = formatDateRange(startDate, endDate);
+    const response = await fetch(`/api/weather/historical?lat=${lat}&lon=${lon}&startDate=${formattedDates.startDate}&endDate=${formattedDates.endDate}&units=${units}`);
     
-    console.log('[fetchHistoricalWeatherData] Historical dates:', historicalDates);
-
-    // Validate parameters
-    if (!isValidCoordinates(lat, lon)) {
-        throw new Error('Invalid coordinates');
-    }
-
-    if (!isValidDateRange(historicalDates.startDate, historicalDates.endDate)) {
-        throw new Error('Invalid date range for historical data');
-    }
-
-    const url = `${BASE_URL}/${lat},${lon}/${historicalDates.startDate}/${historicalDates.endDate}?key=${apiKey}&unitGroup=${units}&include=days&elements=datetime,tempmax,precip`;
-    
-    console.log('[fetchHistoricalWeatherData] Fetching from URL:', url.replace(apiKey, '[REDACTED]'));
-
-    const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`Weather API responded with status: ${response.status}`);
     }
 
-    const data = await response.json();
-    
-    // Transform the data to match our expected format
-    const weatherData = data.days.map((day: any) => ({
-        data: {
-            date: day.datetime,
-            temperature: {
-                max: day.tempmax
-            },
-            precipitation: {
-                total: day.precip
-            }
-        }
-    }));
-
-    // Calculate averages for AI to reference
-    const maxTemps = data.days.map((day: any) => day.tempmax);
-    const precipitations = data.days.map((day: any) => day.precip);
-    
-    const averageMaxTemp = maxTemps.reduce((sum: number, temp: number) => sum + temp, 0) / maxTemps.length;
-    const totalPrecipitation = precipitations.reduce((sum: number, precip: number) => sum + precip, 0);
-
-    return {
-        data: weatherData,
-        year: historicalDates.year,
-        averages: {
-            maxTemp: parseFloat(averageMaxTemp.toFixed(1)),
-            precipitation: parseFloat(totalPrecipitation.toFixed(1))
-        }
-    };
+    return await response.json();
 }

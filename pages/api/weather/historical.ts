@@ -1,11 +1,12 @@
 import { NextRequest } from 'next/server';
 import { WeatherResponse } from '@/managers/types';
 import { 
-  fetchHistoricalWeatherData, 
   isValidCoordinates, 
   isValidDateRange, 
   getPreviousYearDates 
-} from '@/utils/weather-utils';
+} from '@/utils/historical-utils';
+
+const BASE_URL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline';
 
 // Define types for the API response
 interface ErrorResponse {
@@ -56,13 +57,49 @@ export default async function handler(
     }
 
     try {
-      // Use the utility function to fetch weather data
-      const weatherData = await fetchHistoricalWeatherData(lat, lon, historicalDates.startDate, historicalDates.endDate, units);
+      const apiKey = process.env.NEXT_PUBLIC_VISUALCROSSING_API_KEY;
+      if (!apiKey) {
+          throw new Error('Missing NEXT_PUBLIC_VISUALCROSSING_API_KEY environment variable');
+      }
+
+      const url = `${BASE_URL}/${lat},${lon}/${historicalDates.startDate}/${historicalDates.endDate}?key=${apiKey}&unitGroup=${units}&include=days&elements=datetime,tempmax,precip`;
+      
+      console.log('[historical] Fetching from URL:', url.replace(apiKey, '[REDACTED]'));
+
+      const response = await fetch(url);
+      if (!response.ok) {
+          throw new Error(`Weather API responded with status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // Transform the data to match our expected format
+      const weatherData = data.days.map((day: any) => ({
+          data: {
+              date: day.datetime,
+              temperature: {
+                  max: day.tempmax
+              },
+              precipitation: {
+                  total: day.precip
+              }
+          }
+      }));
+
+      // Calculate averages
+      const maxTemps = data.days.map((day: any) => day.tempmax);
+      const precipitations = data.days.map((day: any) => day.precip);
+      
+      const averageMaxTemp = maxTemps.reduce((sum: number, temp: number) => sum + temp, 0) / maxTemps.length;
+      const totalPrecipitation = precipitations.reduce((sum: number, precip: number) => sum + precip, 0);
 
       return new Response(JSON.stringify({
-        data: weatherData.data,
-        year: weatherData.year,
-        averages: weatherData.averages
+        data: weatherData,
+        year: historicalDates.year,
+        averages: {
+            maxTemp: parseFloat(averageMaxTemp.toFixed(1)),
+            precipitation: parseFloat(totalPrecipitation.toFixed(1))
+        }
       }), {
         headers: { 'Content-Type': 'application/json' }
       });

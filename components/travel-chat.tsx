@@ -3,7 +3,7 @@
 'use client';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { BudgetLevel, SupportedLanguage, TravelDetails, TravelPreference, WeatherChartProps, WeatherForecastProps } from '../managers/types';
+import { BudgetLevel, SupportedLanguage, TravelDetails, TravelPreference, WeatherForecastProps, WeatherHistoricalProps } from '../managers/types';
 import { BudgetSelector } from './selectors/BudgetSelector';
 import { PreferenceSelector } from './selectors/PreferenceSelector';
 import { DatePicker } from './selectors/DateSelector';
@@ -575,9 +575,9 @@ export function TravelChat({
                                             </div>
                                         );
 
-                                    case 'weatherChart':
+                                    case 'weatherHistorical':
                                         if(!toolInvocation.result?.props) return null;
-                                        const weatherProps = toolInvocation.result.props as unknown as WeatherChartProps;
+                                        const weatherProps = toolInvocation.result.props as unknown as WeatherHistoricalProps;
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-full">
