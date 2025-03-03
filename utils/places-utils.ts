@@ -1,4 +1,13 @@
 // Place related interfaces
+export enum PriceLevel {
+    UNSPECIFIED = 'PRICE_LEVEL_UNSPECIFIED',
+    FREE = 'PRICE_LEVEL_FREE',
+    INEXPENSIVE = 'PRICE_LEVEL_INEXPENSIVE',
+    MODERATE = 'PRICE_LEVEL_MODERATE',
+    EXPENSIVE = 'PRICE_LEVEL_EXPENSIVE',
+    VERY_EXPENSIVE = 'PRICE_LEVEL_VERY_EXPENSIVE'
+}
+
 export interface Place {
     name: string | undefined;
     id: string;
@@ -39,7 +48,7 @@ export interface Place {
     };
     rating?: number;
     userRatingCount?: number;
-    priceLevel?: number;
+    priceLevel?: PriceLevel;
 }
 
 interface GooglePlaceResponse {
@@ -79,7 +88,7 @@ interface GooglePlaceResponse {
     };
     rating?: number;
     userRatingCount?: number;
-    priceLevel?: number;
+    priceLevel?: PriceLevel;
 }
 
 interface FetchPlacesParams {

@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { Place, savedPlacesManager, searchPlaceByText } from '@/utils/places-utils';
+import { Place, savedPlacesManager, searchPlaceByText, PriceLevel } from '@/utils/places-utils';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface PlaceCardProps {
@@ -36,6 +36,26 @@ const StarRating = ({ rating }: { rating: number }) => {
         }
       })}
     </div>
+  );
+};
+
+const PriceLevelDisplay = ({ priceLevel }: { priceLevel?: PriceLevel }) => {
+  if (!priceLevel || priceLevel === PriceLevel.UNSPECIFIED) return null;
+
+  const dollarSigns = {
+    [PriceLevel.FREE]: '',
+    [PriceLevel.INEXPENSIVE]: '$',
+    [PriceLevel.MODERATE]: '$$',
+    [PriceLevel.EXPENSIVE]: '$$$',
+    [PriceLevel.VERY_EXPENSIVE]: '$$$$'
+  };
+
+  const signs = dollarSigns[priceLevel] || '';
+  
+  return (
+    <span className="text-emerald-600 dark:text-emerald-500 font-medium">
+      {signs}
+    </span>
   );
 };
 
@@ -133,7 +153,10 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
               )}
             </div>
           )}
-          <p className={`${fonts.text} text-sm text-gray-500 dark:text-gray-400 font-medium`}>{getTypeDisplay()}</p>
+          <div className="flex items-center gap-2">
+            <p className={`${fonts.text} text-sm text-gray-500 dark:text-gray-400 font-medium`}>{getTypeDisplay()}</p>
+            {place.priceLevel && <PriceLevelDisplay priceLevel={place.priceLevel} />}
+          </div>
           <p className={`${fonts.text} text-sm text-gray-600 dark:text-gray-300`}>{place.formattedAddress}</p>
         </div>
       
