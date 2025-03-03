@@ -91,7 +91,7 @@ export default async function handler(req: NextRequest) {
       - INITIAL PARAMETER CHECK (Stage 1)
       - CITY INTRODUCTION (Stage 2)
       - PLACES BROWSING AND INTRODUCTION (Stage 3)
-      - ITINERARY REVIEW (Stage 4)
+      - ROUTE PLANNING (Stage 4)
       - FINAL CONFIRMATION (Stage 5)
     You MUST ALWAYS trigger the quickResponse tool to generate quick response options, no exceptions.
 
@@ -124,7 +124,7 @@ export default async function handler(req: NextRequest) {
     Example 2:
     User: "I want to see more places."
     Assistant: Sure, what kind of places do you want to see?
-    You: quickResponse({ responses: ["Show me some museums", "Find me local restaurants", "Continue to itinerary review"] })
+    You: quickResponse({ responses: ["Show me some museums", "Find me local restaurants", "Continue to route planning"] })
     
     STAGE-SPECIFIC GUIDELINES:
 
@@ -157,14 +157,9 @@ export default async function handler(req: NextRequest) {
       "No, I want to see more places", "Show me national parks", "Find me some theaters", "Find some popular eateries", "Explore some famous tourist spots", 
       "Continue to route planning", "Yes, let's proceed", "Yes, let's move on", "View pricing"
 
-    Stage 4 (Itinerary Review):
-      - Only if Travel-Rizz suggesting stage advancement: Use suitable stage transition options
-      - Otherwise: Focus on itinerary refinement options 
-      - Available options are examples like "Add more activities", "Adjust the schedule", "Review the plan", "No, I want to review the plan", "No, I want to change my itinerary", "Yes, let's proceed", "Yes, let's move on"
-
-    Stage 5 (Final Confirmation):
-      - Focus on final preparations options ("Download itinerary", "Share with friends", "Make a copy")
-      
+    Stage 4 (Route Planning)and Stage 5 (Final Confirmation):
+    - No quick response options needed, as these two stages has no chat feature.
+    
     IMPORTANT: Carefully analyze Travel-Rizz's last message. 
     You should also study the conversation history to avoid repeating the same options.
     `;
@@ -185,7 +180,6 @@ export default async function handler(req: NextRequest) {
     ${currentStage === 1 ? '- ONLY provide parameter update and stage advancement options' :
       currentStage === 2 ? '- ONLY provide city information and stage advancement options. NO place exploration options allowed.' :
       currentStage === 3 ? '- ONLY provide place discovery and stage advancement options' :
-      currentStage === 4 ? '- ONLY provide itinerary refinement and stage advancement options' :
       '- ONLY provide final preparation options'}
 
     Last Travel-Rizz Message Analysis:
