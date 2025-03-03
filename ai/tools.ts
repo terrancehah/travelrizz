@@ -220,8 +220,7 @@ export const detailsCardTool = createTool({
             preferences: z.array(z.string()).optional(),
             budget: z.string().optional(),
             language: z.string().optional(),
-            transport: z.array(z.string()).optional(),
-            dining: z.array(z.string()).optional()
+            transport: z.array(z.string()).optional() // Changed to optional
         })
     }),
     execute: async function ({ content }) {
@@ -352,7 +351,7 @@ export const stageProgressTool = createTool({
             preferences: z.array(z.string()),
             budget: z.string(),
             language: z.string(),
-            transport: z.array(z.string())
+            transport: z.array(z.string()).optional(), // Changed to optional
         }),
         metrics: z.object({
             totalPrompts: z.number(),

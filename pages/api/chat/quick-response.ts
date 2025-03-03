@@ -92,7 +92,7 @@ export default async function handler(req: NextRequest) {
       - CITY INTRODUCTION (Stage 2)
       - PLACES BROWSING AND INTRODUCTION (Stage 3)
       - ROUTE PLANNING (Stage 4)
-      - FINAL CONFIRMATION (Stage 5)
+      - ITINERARY CONFIRMATION (Stage 5)
     You MUST ALWAYS trigger the quickResponse tool to generate quick response options, no exceptions.
 
     3. ALWAYS provide exactly 3 contextually relevant options that:
@@ -157,7 +157,7 @@ export default async function handler(req: NextRequest) {
       "No, I want to see more places", "Show me national parks", "Find me some theaters", "Find some popular eateries", "Explore some famous tourist spots", 
       "Continue to route planning", "Yes, let's proceed", "Yes, let's move on", "View pricing"
 
-    Stage 4 (Route Planning)and Stage 5 (Final Confirmation):
+    Stage 4 (Route Planning) and Stage 5 (Itinerary Confirmation):
     - No quick response options needed, as these two stages has no chat feature.
     
     IMPORTANT: Carefully analyze Travel-Rizz's last message. 

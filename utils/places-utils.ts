@@ -29,6 +29,17 @@ export interface Place {
     // Optional indices for itinerary planning
     dayIndex?: number;
     orderIndex?: number;
+    regularOpeningHours?: {
+        periods: Array<{
+            open: { day: number; time: string };
+            close: { day: number; time: string };
+        }>;
+        weekdayDescriptions: string[];
+        openNow: boolean;
+    };
+    rating?: number;
+    userRatingCount?: number;
+    priceLevel?: number;
 }
 
 interface GooglePlaceResponse {
@@ -58,6 +69,17 @@ interface GooglePlaceResponse {
             photoUri?: string;
         }>;
     }>;
+    regularOpeningHours?: {
+        periods: Array<{
+            open: { day: number; time: string };
+            close: { day: number; time: string };
+        }>;
+        weekdayDescriptions: string[];
+        openNow: boolean;
+    };
+    rating?: number;
+    userRatingCount?: number;
+    priceLevel?: number;
 }
 
 interface FetchPlacesParams {
@@ -409,7 +431,7 @@ async function searchPlacesBase(
         const headers = {
             'Content-Type': 'application/json',
             'X-Goog-Api-Key': process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-            'X-Goog-FieldMask': 'places.id,places.displayName.text,places.displayName.languageCode,places.formattedAddress,places.location,places.primaryType,places.primaryTypeDisplayName.text,places.primaryTypeDisplayName.languageCode,places.photos.name,places.photos.widthPx,places.photos.heightPx'
+            'X-Goog-FieldMask': 'places.id,places.displayName.text,places.displayName.languageCode,places.formattedAddress,places.location,places.primaryType,places.primaryTypeDisplayName.text,places.primaryTypeDisplayName.languageCode,places.photos.name,places.photos.widthPx,places.photos.heightPx,places.regularOpeningHours,places.rating,places.userRatingCount,places.priceLevel'
         };
 
         const endpoint = config.endpoint === 'text' 
@@ -462,25 +484,9 @@ async function searchPlacesBase(
             return [];
         }
 
-        return data.places.map((place: any) => ({
-            id: place.id,
-            displayName: place.displayName?.text ? {
-                text: place.displayName.text,
-                languageCode: place.displayName.languageCode || 'en'
-            } : place.displayName,
-            primaryType: place.primaryType || 'place',
-            photos: place.photos?.map((photo: any) => ({ 
-                name: photo.name,
-                widthPx: photo.widthPx,
-                heightPx: photo.heightPx
-            })) || [],
-            formattedAddress: place.formattedAddress,
-            location: place.location,
-            primaryTypeDisplayName: place.primaryTypeDisplayName ? {
-                text: place.primaryTypeDisplayName.text,
-                languageCode: place.primaryTypeDisplayName.languageCode || 'en'
-            } : undefined
-        }));
+        return data.places
+            .map((place: GooglePlaceResponse) => transformPlaceResponse(place))
+            .filter((place: Place | null): place is Place => place !== null);
     } catch (error) {
         console.error('Error in searchPlacesBase:', error);
         return [];
@@ -740,7 +746,11 @@ export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null
             name: photo.name,
             widthPx: photo.widthPx,
             heightPx: photo.heightPx
-        })) : []
+        })) : [],
+        regularOpeningHours: place.regularOpeningHours,
+        rating: place.rating,
+        userRatingCount: place.userRatingCount,
+        priceLevel: place.priceLevel
     };
 
     return transformed;

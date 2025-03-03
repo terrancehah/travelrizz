@@ -11,6 +11,34 @@ interface PlaceCardProps {
   className?: string;
 }
 
+const StarRating = ({ rating }: { rating: number }) => {
+  const totalStars = 5;
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+
+  return (
+    <div className="flex">
+      {[...Array(totalStars)].map((_, index) => {
+        if (index < fullStars) {
+          return <span key={index} className="text-yellow-400">★</span>;
+        } else if (index === fullStars && hasHalfStar) {
+          return (
+            <span key={index} className="relative">
+              <span className="absolute text-gray-300">★</span>
+              <span className="absolute text-yellow-400">★</span>
+              <div className="relative overflow-hidden w-[50%]">
+                <span className="text-yellow-400">★</span>
+              </div>
+            </span>
+          );
+        } else {
+          return <span key={index} className="text-gray-300">★</span>;
+        }
+      })}
+    </div>
+  );
+};
+
 export const PlaceCard: React.FC<PlaceCardProps> = ({
   place,
   onSelect,
@@ -91,8 +119,23 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
             ? place.displayName 
             : place.displayName.text}
         </h3>
-        <p className={`${fonts.text} text-sm text-gray-500 dark:text-gray-400 mb-3 font-medium`}>{getTypeDisplay()}</p>
-        <p className={`${fonts.text} text-sm text-gray-600 dark:text-gray-300`}>{place.formattedAddress}</p>
+        <div className="flex items-left gap-1 mb-1 flex-col">
+          {place.rating && (
+            <div className="flex items-center gap-2">
+              <span className={`${fonts.text} text-sm font-medium text-gray-900 dark:text-gray-100`}>
+                {place.rating.toFixed(1)}
+              </span>
+              <StarRating rating={place.rating} />
+              {place.userRatingCount && (
+                <span className={`${fonts.text} text-sm text-gray-500 dark:text-gray-400`}>
+                  ({place.userRatingCount.toLocaleString()})
+                </span>
+              )}
+            </div>
+          )}
+          <p className={`${fonts.text} text-sm text-gray-500 dark:text-gray-400 font-medium`}>{getTypeDisplay()}</p>
+          <p className={`${fonts.text} text-sm text-gray-600 dark:text-gray-300`}>{place.formattedAddress}</p>
+        </div>
       
         {showActions && (
           <div className="mt-4 flex justify-end gap-2">
