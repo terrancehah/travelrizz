@@ -233,7 +233,7 @@ export const detailsCardTool = createTool({
 });
 
 export const weatherHistoricalTool = createTool({
-    description: 'Display historical weather data including temperature and precipitation for a location.',
+    description: 'Display historical weather data for a location one year ago. Triggered when travel dates are beyond the forecastable range of the next 7 days.',
     parameters: z.object({
         lat: z.number().min(-90).max(90).describe('Latitude of the location'),
         lon: z.number().min(-180).max(180).describe('Longitude of the location'),
@@ -403,9 +403,7 @@ export const quickResponseTool = createTool({
     Stage-specific guidelines:
     Stage 1: Focus on parameter updates (e.g., \"Update my travel dates\", \"Change my budget\")
     Stage 2: Focus on city info (e.g., \"Check the weather\", \"See currency rates\")
-    Stage 3: Focus on places (e.g., \"Show me museums\", \"Find restaurants\")
-    Stage 4: Focus on itinerary (e.g., \"Add more activities\", \"Review the plan\")
-    Stage 5: Focus on completion (e.g., \"Download itinerary\", \"Share with friends\")`,
+    Stage 3: Focus on places (e.g., \"Show me museums\", \"Find restaurants\")`,
     parameters: z.object({
         responses: z.array(z.string()).length(3).describe('Exactly 3 quick response options')
     }),
@@ -470,7 +468,7 @@ export const currencyConverterTool = createTool({
 
 // Tool for Weather Forecast
 export const weatherForecastTool = createTool({
-    description: 'Display weather forecast for a location.',
+    description: 'Display weather forecast for a location. Triggered when travel dates are within the next 7 days.',
     parameters: z.object({
         lat: z.number().min(-90).max(90).describe('Latitude of the location'),
         lon: z.number().min(-180).max(180).describe('Longitude of the location'),
@@ -517,7 +515,7 @@ export const weatherForecastTool = createTool({
 
 // Tool for Local Tips
 export const localTipsTool = createTool({
-    description: 'Display destination-specific local tips and cultural etiquettes. Use this when users ask about local customs, cultural norms, or travel etiquette for their destination.',
+    description: 'Display about 5 destination-specific local tips and cultural etiquettes. Use this when users ask about local customs, cultural norms, or travel etiquette for their destination.',
     parameters: z.object({
         destination: z.string().describe('Name of the destination city/country'),
         tips: z.array(z.object({

@@ -70,21 +70,15 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
 
       // Check basic requirements
       const MIN_PLACES = 3;
-      const MIN_TYPES = 2;
-
       const hasEnoughPlaces = savedPlaces.length >= MIN_PLACES;
-      const hasVariety = new Set(savedPlaces.map(p => p.primaryType)).size >= MIN_TYPES;
 
       const missingRequirements: string[] = [];
       if (!hasEnoughPlaces) {
         missingRequirements.push(`Save at least ${MIN_PLACES} places`);
       }
-      if (!hasVariety) {
-        missingRequirements.push(`Choose ${MIN_TYPES} different types of places`);
-      }
 
       return {
-        isValid: !upgradeRequired && hasEnoughPlaces && hasVariety,
+        isValid: !upgradeRequired && hasEnoughPlaces,
         missingRequirements,
         upgradeRequired
       };
@@ -104,16 +98,8 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
 
       // Check minimum places for a good itinerary
       const MIN_PLACES_ITINERARY = 3;
-      const MIN_TYPES_ITINERARY = 2;
-
       if (savedPlaces.length < MIN_PLACES_ITINERARY) {
         missingRequirements.push(`Save at least ${MIN_PLACES_ITINERARY} places`);
-      }
-
-      // Check place type diversity
-      const itineraryTypes = new Set(savedPlaces.map(p => p.primaryType));
-      if (itineraryTypes.size < MIN_TYPES_ITINERARY) {
-        missingRequirements.push(`Need ${MIN_TYPES_ITINERARY} different place types`);
       }
 
       return {

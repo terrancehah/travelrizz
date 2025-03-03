@@ -150,8 +150,8 @@ export default async function handler(req: NextRequest) {
     For parameter change requests from users in stage 1, specific tools should be called to allow users to update their trip parameters.
     These tools include 'budgetSelectorTool' for budget options (call this when users want to change their budget level), 'datePickerTool' for date selection (call this when users want to change their travel dates), and 'preferenceSelectorTool' for travel preferences (call this when users want to change their travel preferences).
     In stage 2, there are informative tools to provide additional information to user.
-    These tools include 'weatherHistorical' for historical weather data for the same period from last year (trigger only when travel dates are beyond the next 7 days - this tool provides historical weather data from previous years); 
-    'weatherForecast' tool for weather forecast data for the next 7 days (use ONLY when travel dates are within the next 7 days - this tool provides actual forecast data from weather services); 
+    These tools include 'weatherHistorical' for historical weather data for the same period from last year (trigger when travel dates are beyond the next 7 days - this tool provides historical weather data from previous years); 
+    'weatherForecast' tool for weather forecast data for the next 7 days (use when travel dates are within the next 7 days - this tool provides actual forecast data from weather services); 
     and 'currencyConverterTool' for displaying live currency conversion rates (when the tool returns, use the rates data included in the tool response to provide accurate exchange rate information to the user); 
     For stage 3, we have tools related to place browsing and introduction.
     There are 'placeCard' for single place display when users ask for one place (e.g. "add one cafe" or "show me one restaurant"), which automatically saves the place after display; 
@@ -231,10 +231,10 @@ export default async function handler(req: NextRequest) {
       presencePenalty: 0.7,
       frequencyPenalty: 0.3,
       maxSteps: 10,
-      experimental_transform: smoothStream({
-        delayInMs: 70,
+      // experimental_transform: smoothStream({
+      //   delayInMs: 70,
         
-      }),
+      // }),
       tools,
     });
 
