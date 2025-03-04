@@ -40,21 +40,31 @@ const StarRating = ({ rating }: { rating: number }) => {
 };
 
 const PriceLevelDisplay = ({ priceLevel }: { priceLevel?: PriceLevel }) => {
+  // Don't show anything for undefined or UNSPECIFIED
   if (!priceLevel || priceLevel === PriceLevel.UNSPECIFIED) return null;
 
-  const dollarSigns = {
-    [PriceLevel.FREE]: '',
-    [PriceLevel.INEXPENSIVE]: '$',
-    [PriceLevel.MODERATE]: '$$',
-    [PriceLevel.EXPENSIVE]: '$$$',
-    [PriceLevel.VERY_EXPENSIVE]: '$$$$'
-  };
+  // Map price levels to number of filled dollar signs
+  const filledCount = {
+    [PriceLevel.FREE]: 1,
+    [PriceLevel.INEXPENSIVE]: 1,
+    [PriceLevel.MODERATE]: 2,
+    [PriceLevel.EXPENSIVE]: 3,
+    [PriceLevel.VERY_EXPENSIVE]: 4
+  }[priceLevel] || 0;
 
-  const signs = dollarSigns[priceLevel] || '';
+  // Always show 4 signs total
+  const totalSigns = 4;
   
   return (
-    <span className="text-emerald-600 dark:text-emerald-500 font-medium">
-      {signs}
+    <span className="flex items-center">
+      {[...Array(totalSigns)].map((_, i) => (
+        <span 
+          key={i} 
+          className={`${i < filledCount ? 'text-emerald-600 dark:text-emerald-500' : 'text-gray-300 dark:text-gray-600'} font-medium`}
+        >
+          $
+        </span>
+      ))}
     </span>
   );
 };
