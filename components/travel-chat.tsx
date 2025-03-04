@@ -614,12 +614,16 @@ export function TravelChat({
                                         );
 
                                     case 'savedPlacesList':
+                                        if (!toolInvocation.result?.props) return null;
+                                        const listProps = toolInvocation.result.props as unknown as { places: Place[] };
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-full">
-                                                    <SavedPlacesList
-                                                        onRemove={onPlaceRemoved}
-                                                    />
+                                                    {listProps.places.length > 0 && mainChat.status === 'ready' && (
+                                                        <SavedPlacesList
+                                                            onRemove={onPlaceRemoved}
+                                                        />
+                                                    )}
                                                 </div>
                                             </div>
                                         );

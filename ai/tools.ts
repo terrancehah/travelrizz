@@ -6,15 +6,16 @@ import {
     SupportedLanguage,
     ComponentType,
     TravelDetails
-} from '../managers/types';
+} from '@/managers/types';
 import { 
     fetchPlaces,
     searchPlaceByText,
     searchMultiplePlacesByText,
     Place,
-    getPlaceTypesFromPreferences
-} from '../utils/places-utils';
-import { validateStageProgression } from '../managers/stage-manager';
+    getPlaceTypesFromPreferences,
+    savedPlacesManager
+} from '@/utils/places-utils';
+import { validateStageProgression } from '@/managers/stage-manager';
 import { fetchExchangeRates, getCurrencyFromCountry } from '@/utils/currency-utils';
 import { fetchWeatherForecast, isWithinForecastRange, formatDate } from '@/utils/forecast-utils';
 import { formatDateRange, fetchHistoricalWeather } from '@/utils/historical-utils';
@@ -533,6 +534,120 @@ export const localTipsTool = createTool({
     }
 });
 
+// Tool for Place Optimization
+export const placeOptimizerTool = createTool({
+    description: 'Optimize the arrangement of saved places based on travel time and opening hours. Use this when the user wants to optimize their itinerary, reduce travel time, or avoid visiting closed places.',
+    parameters: z.object({
+        optimizationReason: z.string().optional().describe('Reason for optimization, e.g., "minimize travel time", "avoid closed venues"'),
+        startDate: z.string().describe('Trip start date'),
+        endDate: z.string().describe('Trip end date'),
+        savedPlaces: z.array(z.object({
+            id: z.string(),
+            name: z.string().optional(), // Add the missing name property
+            displayName: z.union([
+                z.object({
+                    text: z.string(),
+                    languageCode: z.string()
+                }),
+                z.string()
+            ]),
+            primaryType: z.string().optional(),
+            location: z.object({
+                latitude: z.number(),
+                longitude: z.number()
+            }).optional(), 
+            formattedAddress: z.string().optional(),
+            photos: z.array(z.object({
+                name: z.string(),
+                widthPx: z.number().optional(),
+                heightPx: z.number().optional(),
+                authorAttributions: z.array(z.object({
+                    displayName: z.string().optional(),
+                    uri: z.string().optional(),
+                    photoUri: z.string().optional()
+                })).optional()
+            })).optional(),
+            primaryTypeDisplayName: z.object({
+                text: z.string(),
+                languageCode: z.string()
+            }).optional(),
+            regularOpeningHours: z.object({
+                periods: z.array(z.object({
+                    open: z.object({
+                        day: z.number(),
+                        time: z.string()
+                    }),
+                    close: z.object({
+                        day: z.number(),
+                        time: z.string()
+                    })
+                })),
+                weekdayDescriptions: z.array(z.string()),
+                openNow: z.boolean()
+            }).optional(),
+            dayIndex: z.number().optional(),
+            orderIndex: z.number().optional()
+        })).describe('Array of saved places to optimize')
+    }),
+    execute: async function ({ optimizationReason, startDate, endDate, savedPlaces }) {
+        try {
+            // Check if we have places to optimize
+            if (!savedPlaces || !savedPlaces.length) {
+                return {
+                    type: 'error',
+                    props: {
+                        error: 'No saved places to optimize'
+                    }
+                };
+            }
+
+            // Import the optimizer 
+            const { optimizeItinerary } = await import('../utils/route-optimizer');
+
+            // Ensure places have all required properties for the Place type
+            const typedPlaces = savedPlaces.map(place => ({
+                ...place,
+                name: place.name || (typeof place.displayName === 'string' ? place.displayName : place.displayName?.text),
+                primaryType: place.primaryType || 'unknown',
+                photos: place.photos || []
+            })) as Place[];
+
+            // Perform optimization
+            const result = await optimizeItinerary(
+                typedPlaces,
+                startDate,
+                endDate,
+                optimizationReason
+            );
+
+            // Update places with optimized arrangement if we're in a client context
+            if (typeof window !== 'undefined') {
+                savedPlacesManager.updatePlaces(result.optimizedPlaces);
+
+                // Trigger UI update
+                window.dispatchEvent(new CustomEvent('places-changed', {
+                    detail: { trigger: 'optimization' }
+                }));
+            }
+
+            return {
+                type: 'text',
+                props: {
+                    content: result.explanation
+                }
+            };
+        } catch (error) {
+            console.error('Error in placeOptimizerTool:', error);
+            return {
+                type: 'error',
+                props: {
+                    error: 'Failed to optimize places: ' + (error instanceof Error ? error.message : String(error))
+                }
+            };
+        }
+    }
+});
+
 // Export all tools with their names
 export const tools = {
     budgetSelector: budgetSelectorTool,
@@ -549,5 +664,6 @@ export const tools = {
     quickResponse: quickResponseTool,
     currencyConverter: currencyConverterTool,
     weatherForecast: weatherForecastTool,
-    localTips: localTipsTool
+    localTips: localTipsTool,
+    placeOptimizer: placeOptimizerTool
 };

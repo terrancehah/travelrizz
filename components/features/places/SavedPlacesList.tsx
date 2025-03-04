@@ -64,7 +64,7 @@ export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps)
     }
 
     return (
-        <div className="w-[70%] max-w-2xl mx-auto rounded-2xl border shadow-md border-gray-200 overflow-hidden">
+        <div className="w-[70%] max-w-2xl mx-auto rounded-2xl border shadow-md border-gray-200 overflow-hidden mt-4">
             {uniquePlaces.map((place: Place) => {
                 const photoName = place.photos?.[0]?.name;
                 const photoUrl = photoName && photoUrls[photoName]
@@ -102,7 +102,7 @@ export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps)
 
                         {/* Content Section */}
                         <div className="w-2/3 p-4">
-                            <h3 className={`${fonts.heading} text-lg font-bold text-gray-900 mb-1`}>
+                            <h3 className={`${fonts.text} text-lg font-bold text-gray-900 mb-1`}>
                                 {typeof place.displayName === 'string' 
                                     ? place.displayName 
                                     : place.displayName.text}
