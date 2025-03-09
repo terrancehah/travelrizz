@@ -575,13 +575,15 @@ export const placeOptimizerTool = createTool({
                 periods: z.array(z.object({
                     open: z.object({
                         day: z.number(),
-                        time: z.string()
+                        hour: z.number(),
+                        minute: z.number()
                     }),
                     close: z.object({
                         day: z.number(),
-                        time: z.string()
+                        hour: z.number(),
+                        minute: z.number()
                     })
-                })),
+                })).optional(),
                 weekdayDescriptions: z.array(z.string()),
                 openNow: z.boolean()
             }).optional(),

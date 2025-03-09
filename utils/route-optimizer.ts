@@ -57,15 +57,15 @@ function formatDuration(seconds: number): string {
  * Checks if a place is open at a specific time
  */
 function isPlaceOpen(place: Place, date: Date): boolean {
-  if (!place.regularOpeningHours) return true // Assume open if no hours data
+  // Assume open if no hours data or no periods array
+  if (!place.regularOpeningHours || !place.regularOpeningHours.periods) return true
   
   // Get day of week (0 = Sunday, 6 = Saturday)
   const dayOfWeek = date.getDay()
   
-  // Get time in 24-hour format (e.g. "1430" for 2:30 PM)
-  const hours = date.getHours().toString().padStart(2, '0')
-  const minutes = date.getMinutes().toString().padStart(2, '0')
-  const timeString = `${hours}${minutes}`
+  // Get current hour and minute
+  const currentHour = date.getHours()
+  const currentMinute = date.getMinutes()
   
   // Check if place is open on this day
   const openPeriods = place.regularOpeningHours.periods.filter(period => 
@@ -77,16 +77,23 @@ function isPlaceOpen(place: Place, date: Date): boolean {
   
   // Check if current time falls within any open period
   return openPeriods.some(period => {
-    const openTime = period.open.time
-    const closeTime = period.close.time
+    const openHour = period.open.hour
+    const openMinute = period.open.minute
+    const closeHour = period.close.hour
+    const closeMinute = period.close.minute
+    
+    // Convert to minutes for easier comparison
+    const currentTimeInMinutes = currentHour * 60 + currentMinute
+    const openTimeInMinutes = openHour * 60 + openMinute
+    const closeTimeInMinutes = closeHour * 60 + closeMinute
     
     // Handle overnight periods (close time < open time)
-    if (closeTime < openTime) {
-      return timeString >= openTime || timeString < closeTime
+    if (closeTimeInMinutes < openTimeInMinutes) {
+      return currentTimeInMinutes >= openTimeInMinutes || currentTimeInMinutes < closeTimeInMinutes
     }
     
     // Normal case
-    return timeString >= openTime && timeString < closeTime
+    return currentTimeInMinutes >= openTimeInMinutes && currentTimeInMinutes < closeTimeInMinutes
   })
 }
 
@@ -105,12 +112,10 @@ function estimateArrivalTime(departureTime: Date, durationSeconds: number): Date
 async function fetchRouteMatrix(places: Place[]): Promise<RouteMatrix> {
   // Create waypoints from places with correct format for Google Routes API
   const waypoints = places.map(place => ({
-    waypoint: {
-      location: {
-        latLng: {
-          latitude: place.location?.latitude || 0,
-          longitude: place.location?.longitude || 0
-        }
+    location: {
+      latLng: {
+        latitude: place.location?.latitude || 0,
+        longitude: place.location?.longitude || 0
       }
     }
   }))
@@ -127,8 +132,7 @@ async function fetchRouteMatrix(places: Place[]): Promise<RouteMatrix> {
     body: JSON.stringify({
       origins: waypoints,
       destinations: waypoints,
-      travelMode: 'DRIVE',
-      routingPreference: 'TRAFFIC_AWARE'
+      languageCode: 'en'
     })
   })
   

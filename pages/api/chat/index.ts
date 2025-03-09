@@ -157,7 +157,8 @@ export default async function handler(req: NextRequest) {
     There are 'placeCard' for single place display when users ask for one place (e.g. "add one cafe" or "show me one restaurant"), which automatically saves the place after display; 
     'carousel' for multiple places display when users ask for multiple places (e.g. "add some museums" or "show me a few cinemas"), which automatically saves places after display; 
     and 'savedPlacesList' to view ALL previously saved places (when users ask to see saved places, ALL places from the savedPlaces parameter will be passed to this tool).
-    
+    Lastly, we have 'placeOptimizerTool' to optimize the itinerary, when you call this tool, always use all the places in the savedPlaces array.
+
     4.0 Response Rules and Formatting
     4.1 Language and Format
     Always respond in the language specified in the currentDetails parameter. Use markdown formatting and keep responses friendly and informative.
@@ -191,10 +192,6 @@ export default async function handler(req: NextRequest) {
     4.6 Automatic Places Saving Functions
     Places are automatically saved after calling 'placeCard'/'carousel', and map markers appear on the map automatically. Do not ever ask users to save places.
     
-    IMPORTANT: In stage 3, if the user has made 5 or more prompts and is not paid:
-    Thank them for their interest
-    Inform them they've reached the free limit
-    Suggest upgrading to unlock unlimited places
 `;
 
     const dynamicContext = `Current Planning Context:
@@ -205,8 +202,8 @@ export default async function handler(req: NextRequest) {
       - Travel Preferences: ${currentDetails.preferences?.join(', ')}
       - Chat Language: ${currentDetails.language}
       - Saved Places Count: ${typedSavedPlaces.length}
-      - Total User Prompts Number: ${metrics?.totalPrompts || 0}
-      - Stage 3 Prompts Number: ${metrics?.stagePrompts?.[3] || 0}
+      - Total User Prompts Number: ${metrics?.totalPrompts}
+      - Stage 3 Prompts Number: ${metrics?.stagePrompts?.[3]}
       - Payment Status: ${metrics?.isPaid ? 'Paid' : 'Not Paid'}
 
     `;

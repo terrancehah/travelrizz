@@ -14,9 +14,6 @@ interface Waypoint {
 interface RouteMatrixRequest {
   origins: Waypoint[]
   destinations: Waypoint[]
-  travelMode?: string
-  routingPreference?: string
-  departureTime?: string
   languageCode?: string
 }
 
@@ -39,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { origins, destinations, travelMode = 'DRIVE', routingPreference = 'TRAFFIC_AWARE', languageCode = 'en' } = req.body as RouteMatrixRequest
+    const { origins, destinations, languageCode = 'en' } = req.body as RouteMatrixRequest
     
     // Validate request
     if (!origins?.length || !destinations?.length) {
@@ -57,21 +54,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'Matrix size (origins × destinations) exceeds limit of 625' })
     }
     
-    if ((routingPreference === 'TRAFFIC_AWARE_OPTIMAL' || travelMode === 'TRANSIT') && matrixSize > 100) {
-      return res.status(400).json({ 
-        error: 'Matrix size exceeds limit of 100 for TRAFFIC_AWARE_OPTIMAL or TRANSIT mode'
-      })
-    }
-
     console.log('[route-matrix] Request:', { 
       originsCount: origins.length, 
-      destinationsCount: destinations.length,
-      travelMode,
-      routingPreference
+      destinationsCount: destinations.length
     })
-
-    // Current time as departure time if not specified
-    const departureTime = req.body.departureTime || new Date().toISOString()
 
     // Compute route matrix
     const response = await fetch('https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix', {
@@ -84,9 +70,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       body: JSON.stringify({
         origins,
         destinations,
-        travelMode,
-        routingPreference,
-        departureTime,
         languageCode
       })
     })

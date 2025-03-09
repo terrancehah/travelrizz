@@ -39,9 +39,9 @@ export interface Place {
     dayIndex?: number;
     orderIndex?: number;
     regularOpeningHours?: {
-        periods: Array<{
-            open: { day: number; time: string };
-            close: { day: number; time: string };
+        periods?: Array<{
+            open: { day: number; hour: number; minute: number };
+            close: { day: number; hour: number; minute: number };
         }>;
         weekdayDescriptions: string[];
         openNow: boolean;
@@ -79,9 +79,9 @@ interface GooglePlaceResponse {
         }>;
     }>;
     regularOpeningHours?: {
-        periods: Array<{
-            open: { day: number; time: string };
-            close: { day: number; time: string };
+        periods?: Array<{
+            open: { day: number; hour: number; minute: number };
+            close: { day: number; hour: number; minute: number };
         }>;
         weekdayDescriptions: string[];
         openNow: boolean;
@@ -264,9 +264,9 @@ export interface SavedPlacesManager {
     getPlaceById: (id: string) => Place | undefined;
     hasPlace: (id: string) => boolean;
     updatePlace: (place: Place) => void;
-    updatePlaces: (updatedPlaces: Place[]) => void;
-    _persist: () => void;
-    _notifyChange: () => void;
+    updatePlaces: (updatedPlaces: Place[]) => Promise<void>;
+    _persist: () => Promise<void>;
+    _notifyChange: () => Promise<void>;
     serialize: () => string;
     reset: () => void;
 }
@@ -335,17 +335,30 @@ const createSavedPlacesManager = (): SavedPlacesManager => {
                 this._notifyChange();
             }
         },
-        updatePlaces(updatedPlaces: Place[]) {
-            loadFromStorage(); // Ensure places are loaded
+        async updatePlaces(updatedPlaces: Place[]) {
+            if (!Array.isArray(updatedPlaces)) {
+                console.error('[savedPlacesManager.updatePlaces] Invalid input:', updatedPlaces);
+                return Promise.resolve();
+            }
+            
             updatedPlaces.forEach(place => {
                 if (place?.id) {
-                    places.set(place.id, place);
+                    const existingPlace = places.get(place.id);
+                    
+                    if (existingPlace) {
+                        places.set(place.id, {
+                            ...existingPlace,  // Keep existing place data
+                            ...place           // Update with new data (including indices if present)
+                        });
+                    } else {
+                        places.set(place.id, place);
+                    }
                 }
             });
-            this._persist();
-            this._notifyChange();
+            
+            return this._notifyChange();
         },
-        _persist() {
+        async _persist() {
             if (typeof window !== 'undefined') {
                 const placesArray = Array.from(places.values());
                 
@@ -354,16 +367,20 @@ const createSavedPlacesManager = (): SavedPlacesManager => {
                 if (session) {
                     session.savedPlaces = placesArray;
                     session.savedPlacesCount = places.size;
-                    safeStorageOp(() => {
-                        storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session));
-                    }, undefined);
+                    await new Promise<void>((resolve) => {
+                        safeStorageOp(() => {
+                            storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session));
+                            resolve();
+                        }, undefined);
+                    });
                 }
             }
+            return Promise.resolve();
         },
-        _notifyChange() {
+        async _notifyChange() {
             if (typeof window !== 'undefined') {
+                await this._persist();
                 window.savedPlaces = Array.from(this.places.values());
-                // Dispatch event with type to handle different update scenarios
                 window.dispatchEvent(new CustomEvent('savedPlacesChanged', {
                     detail: {
                         places: Array.from(this.places.values()),
@@ -371,7 +388,10 @@ const createSavedPlacesManager = (): SavedPlacesManager => {
                         type: 'update'
                     }
                 }));
+                
+                window.dispatchEvent(new CustomEvent('places-changed'));
             }
+            return Promise.resolve();
         },
         serialize() {
             return JSON.stringify(Array.from(places.values()));

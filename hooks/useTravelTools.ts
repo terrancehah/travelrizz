@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TravelDetails, TravelSession } from '../managers/types';
-import { Place } from '../utils/places-utils';
+import { Place, savedPlacesManager } from '../utils/places-utils';
 import { getStoredSession, safeStorageOp, storage, SESSION_CONFIG } from '../managers/session-manager';
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
@@ -190,6 +190,24 @@ export function useTravelTools({
       case 'stageProgress':
         if (result.props?.nextStage) {
           onStageUpdate(result.props.nextStage);
+        }
+        break;
+
+      case 'placeOptimizer':
+        // Handle place optimizer responses with optimizedPlaces
+        if (result.props?.optimizedPlaces && Array.isArray(result.props.optimizedPlaces)) {
+          console.log('[useTravelTools] Received optimized places with dayIndex/orderIndex:', 
+            result.props.optimizedPlaces.map((p: Place) => ({
+              id: p.id,
+              name: typeof p.displayName === 'string' ? p.displayName : p.displayName?.text,
+              dayIndex: p.dayIndex,
+              orderIndex: p.orderIndex
+            }))
+          );
+          
+          // Update the places in the savedPlacesManager
+          await savedPlacesManager.updatePlaces(result.props.optimizedPlaces);
+          console.log('[useTravelTools] Updated saved places with optimized arrangement');
         }
         break;
 
