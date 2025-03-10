@@ -538,9 +538,8 @@ export const localTipsTool = createTool({
 export const placeOptimizerTool = createTool({
     description: 'Optimize the arrangement of saved places based on travel time and opening hours. Use this when the user wants to optimize their itinerary, reduce travel time, or avoid visiting closed places.',
     parameters: z.object({
-        optimizationReason: z.string().optional().describe('Reason for optimization, e.g., "minimize travel time", "avoid closed venues"'),
-        startDate: z.string().describe('Trip start date'),
-        endDate: z.string().describe('Trip end date'),
+        startDate: z.string().describe('Trip start date in ISO format'),
+        endDate: z.string().describe('Trip end date in ISO format'),
         savedPlaces: z.array(z.object({
             id: z.string(),
             name: z.string().optional(), // Add the missing name property
@@ -589,61 +588,33 @@ export const placeOptimizerTool = createTool({
             }).optional(),
             dayIndex: z.number().optional(),
             orderIndex: z.number().optional()
-        })).describe('Array of saved places to optimize')
+        })).describe('Array of places to optimize')
     }),
-    execute: async function ({ optimizationReason, startDate, endDate, savedPlaces }) {
+    execute: async function ({ startDate, endDate, savedPlaces }) {
         try {
-            // Check if we have places to optimize
-            if (!savedPlaces || !savedPlaces.length) {
-                return {
-                    type: 'error',
-                    props: {
-                        error: 'No saved places to optimize'
-                    }
-                };
-            }
-
-            // Import the optimizer 
             const { optimizeItinerary } = await import('../utils/route-optimizer');
-
-            // Ensure places have all required properties for the Place type
-            const typedPlaces = savedPlaces.map(place => ({
-                ...place,
-                name: place.name || (typeof place.displayName === 'string' ? place.displayName : place.displayName?.text),
-                primaryType: place.primaryType || 'unknown',
-                photos: place.photos || []
-            })) as Place[];
-
-            // Perform optimization
+            
             const result = await optimizeItinerary(
-                typedPlaces,
+                savedPlaces as Place[],
                 startDate,
-                endDate,
-                optimizationReason
+                endDate
             );
 
-            // Update places with optimized arrangement if we're in a client context
             if (typeof window !== 'undefined') {
-                savedPlacesManager.updatePlaces(result.optimizedPlaces);
-
-                // Trigger UI update
-                window.dispatchEvent(new CustomEvent('places-changed', {
-                    detail: { trigger: 'optimization' }
-                }));
+                savedPlacesManager.updatePlaces(result);
+                window.dispatchEvent(new Event('places-changed'));
             }
 
             return {
                 type: 'text',
-                props: {
-                    content: result.explanation
-                }
+                props: { content: 'Successfully optimized travel itinerary' }
             };
         } catch (error) {
-            console.error('Error in placeOptimizerTool:', error);
             return {
                 type: 'error',
                 props: {
-                    error: 'Failed to optimize places: ' + (error instanceof Error ? error.message : String(error))
+                    error: 'Optimization failed: ' + 
+                        (error instanceof Error ? error.message : 'Unknown error')
                 }
             };
         }

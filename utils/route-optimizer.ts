@@ -1,39 +1,11 @@
 import { Place } from './places-utils'
 import { travelInfoManager } from './travel-info-utils'
-
-interface RouteMatrixElement {
-  originIndex: number
-  destinationIndex: number
-  status: {
-    code: number
-    message?: string
-  }
-  condition?: string
-  distanceMeters?: number
-  duration?: string
-  staticDuration?: string
-}
-
-interface RouteMatrix {
-  matrix: RouteMatrixElement[]
-  timestamp: number
-}
+import { RouteMatrix, RouteMatrixElement } from '../pages/api/maps/route-matrix'
 
 interface OptimizationResult {
   places: Place[]
-  changes: OptimizationChange[]
   totalTravelTime: number
   totalDistance: number
-}
-
-interface OptimizationChange {
-  placeId: string
-  placeName: string
-  fromDay: number
-  toDay: number
-  fromIndex: number
-  toIndex: number
-  reason: string
 }
 
 /**
@@ -44,14 +16,7 @@ function durationToSeconds(duration?: string): number {
   return parseInt(duration.replace('s', ''))
 }
 
-/**
- * Formats duration in seconds to a human-readable string
- */
-function formatDuration(seconds: number): string {
-  const hours = Math.floor(seconds / 3600)
-  const minutes = Math.floor((seconds % 3600) / 60)
-  return hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`
-}
+
 
 /**
  * Checks if a place is open at a specific time
@@ -110,44 +75,32 @@ function estimateArrivalTime(departureTime: Date, durationSeconds: number): Date
  * Fetches route matrix data for a set of places
  */
 async function fetchRouteMatrix(places: Place[]): Promise<RouteMatrix> {
-  // Create waypoints from places with correct format for Google Routes API
   const waypoints = places.map(place => ({
-    location: {
-      latLng: {
-        latitude: place.location?.latitude || 0,
-        longitude: place.location?.longitude || 0
+    waypoint: {
+      location: {
+        latLng: {
+          latitude: place.location?.latitude,
+          longitude: place.location?.longitude
+        }
       }
     }
   }))
   
-  // Determine base URL for API call
-  const baseUrl = typeof window !== 'undefined' 
-    ? '' // Empty string for client-side (relative URL)
-    : 'http://localhost:3000'; // Use appropriate URL for server-side
-  
-  // Fetch matrix data
+  const baseUrl = typeof window !== 'undefined' ? '' : 'http://localhost:3000'
   const response = await fetch(`${baseUrl}/api/maps/route-matrix`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      origins: waypoints,
-      destinations: waypoints,
-      languageCode: 'en'
-    })
+    body: JSON.stringify({ origins: waypoints, destinations: waypoints })
   })
   
-  if (!response.ok) {
-    throw new Error('Failed to fetch route matrix')
-  }
-  
-  return await response.json()
+  if (!response.ok) throw new Error('Failed to fetch route matrix')
+  return response.json()
 }
-
 /**
  * Gets travel time between two places from the route matrix
  */
 function getTravelTime(fromIndex: number, toIndex: number, matrix: RouteMatrixElement[]): number {
-  const element = matrix.find(e => 
+  const element = matrix.find((e: RouteMatrixElement) => 
     e.originIndex === fromIndex && e.destinationIndex === toIndex
   )
   
@@ -162,8 +115,7 @@ function getTravelTime(fromIndex: number, toIndex: number, matrix: RouteMatrixEl
 export async function optimizePlaces(
   places: Place[], 
   startDate: string, 
-  endDate: string,
-  optimizationReason?: string
+  endDate: string
 ): Promise<OptimizationResult> {
   // Ensure we have places to optimize
   if (!places || places.length === 0) {
@@ -182,7 +134,6 @@ export async function optimizePlaces(
   if (!validPlaces.length || validPlaces.length === 1) {
     return { 
       places: validPlaces, 
-      changes: [], 
       totalTravelTime: 0, 
       totalDistance: 0 
     }
@@ -191,14 +142,39 @@ export async function optimizePlaces(
   // Fetch route matrix for all places
   const routeMatrix = await fetchRouteMatrix(validPlaces)
   
-  // Group places by day
-  const placesByDay: Place[][] = []
-  validPlaces.forEach(place => {
-    const dayIndex = place.dayIndex || 0
-    if (!placesByDay[dayIndex]) {
-      placesByDay[dayIndex] = []
+  // Calculate number of days in the trip
+  const tripStartDate = new Date(startDate)
+  const tripEndDate = new Date(endDate)
+  const diffTime = Math.abs(tripEndDate.getTime() - tripStartDate.getTime())
+  const numberOfDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1
+
+  // Calculate places per day with minimum variance
+  const basePlaces = Math.floor(validPlaces.length / numberOfDays)
+  const remainder = validPlaces.length % numberOfDays
+  const distribution = Array(numberOfDays).fill(basePlaces)
+
+  // Distribute remainder to minimize variance (e.g., 10 places, 3 days -> [3,4,3])
+  if (remainder > 0) {
+    const midIndex = Math.floor(numberOfDays / 2)
+    let leftIndex = midIndex - 1
+    let rightIndex = midIndex
+
+    for (let i = 0; i < remainder; i++) {
+      if (i === 0) distribution[midIndex]++
+      else if (leftIndex >= 0) distribution[leftIndex--]++
+      else if (rightIndex < numberOfDays) distribution[rightIndex++]++
     }
-    placesByDay[dayIndex].push(place)
+  }
+
+  // Initialize placesByDay array
+  const placesByDay: Place[][] = Array(numberOfDays).fill(null).map(() => [])
+
+  // Distribute places according to calculated distribution
+  let placeIndex = 0
+  distribution.forEach((count, dayIndex) => {
+    for (let i = 0; i < count && placeIndex < validPlaces.length; i++) {
+      placesByDay[dayIndex].push(validPlaces[placeIndex++])
+    }
   })
   
   // Sort places within each day by orderIndex
@@ -213,9 +189,6 @@ export async function optimizePlaces(
     date.setDate(startDateObj.getDate() + i)
     return date
   })
-  
-  // Track changes for explanation
-  const changes: OptimizationChange[] = []
   
   // Check for closed places and optimize
   for (let dayIndex = 0; dayIndex < placesByDay.length; dayIndex++) {
@@ -263,15 +236,11 @@ export async function optimizePlaces(
       if (!isPlaceOpen(place, arrivalTime)) {
         // Try to find a better day for this place
         let bestDay = -1
-        let bestReason = ''
         
         for (let newDayIndex = 0; newDayIndex < dayDates.length; newDayIndex++) {
-          // Skip current day
           if (newDayIndex === dayIndex) continue
           
           const newDayDate = dayDates[newDayIndex]
-          
-          // Check if place would be open at same time on different day
           const newArrivalTime = new Date(newDayDate)
           newArrivalTime.setHours(
             arrivalTime.getHours(), 
@@ -281,28 +250,13 @@ export async function optimizePlaces(
           
           if (isPlaceOpen(place, newArrivalTime)) {
             bestDay = newDayIndex
-            const displayNameText = typeof place.displayName === 'string' 
-              ? place.displayName 
-              : place.displayName.text
-            bestReason = `${displayNameText} would be closed on day ${dayIndex + 1} at ${arrivalTime.getHours()}:${arrivalTime.getMinutes().toString().padStart(2, '0')}, but open on day ${newDayIndex + 1}`
             break
           }
         }
         
         // If found a better day, move the place
         if (bestDay !== -1) {
-          // Record the change
-          changes.push({
-            placeId: place.id,
-            placeName: typeof place.displayName === 'string' 
-              ? place.displayName 
-              : place.displayName.text,
-            fromDay: dayIndex,
-            toDay: bestDay,
-            fromIndex: i,
-            toIndex: placesByDay[bestDay].length, // Add to end of new day
-            reason: bestReason
-          })
+
           
           // Update place indices
           place.dayIndex = bestDay
@@ -358,19 +312,7 @@ export async function optimizePlaces(
       const originalIndex = dayPlaces.findIndex(p => p.id === nextPlace.id)
       const newIndex = optimizedOrder.length
       
-      if (originalIndex !== newIndex) {
-        changes.push({
-          placeId: nextPlace.id,
-          placeName: typeof nextPlace.displayName === 'string' 
-            ? nextPlace.displayName 
-            : nextPlace.displayName.text,
-          fromDay: dayIndex,
-          toDay: dayIndex,
-          fromIndex: originalIndex,
-          toIndex: newIndex,
-          reason: `Reordered to reduce travel time`
-        })
-      }
+
       
       optimizedOrder.push(nextPlace)
       unvisited.splice(bestIndex, 1)
@@ -422,42 +364,9 @@ export async function optimizePlaces(
   
   return {
     places: optimizedPlaces,
-    changes,
     totalTravelTime,
     totalDistance
   }
-}
-
-/**
- * Generates a human-readable explanation of optimization changes
- */
-export function generateOptimizationExplanation(result: OptimizationResult): string {
-  if (result.changes.length === 0) {
-    return 'No changes were needed. The current arrangement is already optimal.'
-  }
-  
-  let explanation = `I've optimized your itinerary to save you ${formatDuration(result.totalTravelTime)} of travel time.\n\n`
-  
-  // Group changes by type
-  const dayChanges = result.changes.filter(c => c.fromDay !== c.toDay)
-  const orderChanges = result.changes.filter(c => c.fromDay === c.toDay && c.fromIndex !== c.toIndex)
-  
-  if (dayChanges.length > 0) {
-    explanation += 'Changes between days:\n'
-    dayChanges.forEach(change => {
-      explanation += `- Moved "${change.placeName}" from Day ${change.fromDay + 1} to Day ${change.toDay + 1}: ${change.reason}\n`
-    })
-    explanation += '\n'
-  }
-  
-  if (orderChanges.length > 0) {
-    explanation += 'Reordered places to optimize travel time:\n'
-    orderChanges.forEach(change => {
-      explanation += `- Reordered "${change.placeName}" on Day ${change.fromDay + 1}\n`
-    })
-  }
-  
-  return explanation
 }
 
 /**
@@ -466,29 +375,8 @@ export function generateOptimizationExplanation(result: OptimizationResult): str
 export async function optimizeItinerary(
   places: Place[], 
   startDate: string, 
-  endDate: string,
-  optimizationReason?: string
-): Promise<{
-  optimizedPlaces: Place[],
-  explanation: string,
-  totalTravelTime: number,
-  totalDistance: number
-}> {
-  try {
-    // Perform optimization
-    const result = await optimizePlaces(places, startDate, endDate, optimizationReason)
-    
-    // Generate explanation
-    const explanation = generateOptimizationExplanation(result)
-    
-    return {
-      optimizedPlaces: result.places,
-      explanation,
-      totalTravelTime: result.totalTravelTime,
-      totalDistance: result.totalDistance
-    }
-  } catch (error) {
-    console.error('[optimizeItinerary] Error:', error)
-    throw error
-  }
+  endDate: string
+): Promise<Place[]> {
+  const result = await optimizePlaces(places, startDate, endDate)
+  return result.places
 }

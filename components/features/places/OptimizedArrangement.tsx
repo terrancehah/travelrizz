@@ -28,9 +28,9 @@ export function OptimizedArrangement({
     <div className="p-4 border rounded-lg bg-white dark:bg-gray-900 shadow-sm">
       <h3 className="text-lg font-medium mb-3">Optimized Itinerary</h3>
       
-      <div className="mb-4 p-3 bg-slate-100 dark:bg-gray-800 rounded">
+      {/* <div className="mb-4 p-3 bg-slate-100 dark:bg-gray-800 rounded">
         <p className="whitespace-pre-line text-sm">{explanation}</p>
-      </div>
+      </div> */}
       
       <div className="flex justify-end space-x-2 mt-4">
         <button 

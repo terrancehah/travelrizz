@@ -1,23 +1,30 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-interface LatLng {
+export interface LatLng {
   latitude: number
   longitude: number
 }
 
-interface Waypoint {
-  location: {
-    latLng: LatLng
+export interface Waypoint {
+  waypoint: {
+    location: {
+      latLng: LatLng
+    }
   }
 }
 
-interface RouteMatrixRequest {
+export interface RouteMatrixRequest {
   origins: Waypoint[]
   destinations: Waypoint[]
   languageCode?: string
 }
 
-interface RouteMatrixElement {
+export interface RouteMatrix {
+  matrix: RouteMatrixElement[]
+  timestamp: number
+}
+
+export interface RouteMatrixElement {
   originIndex: number
   destinationIndex: number
   status: {
@@ -84,10 +91,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const data = await response.json()
     
     // Format and return matrix data
-    return res.json({
-      matrix: data,
+    const routeMatrix = {
+      matrix: data as RouteMatrixElement[],
       timestamp: Date.now()
-    })
+    }
+    return res.json(routeMatrix)
   } catch (error) {
     console.error('[route-matrix] Error:', error)
     return res.status(500).json({ error: 'Failed to compute route matrix' })
