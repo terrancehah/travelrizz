@@ -30,10 +30,12 @@ interface GooglePlaceResponse {
     regularOpeningHours?: {
         periods?: Array<{
             open: { day: number; hour: number; minute: number };
-            close: { day: number; hour: number; minute: number };
+            close?: { day: number; hour: number; minute: number };
         }>;
         weekdayDescriptions: string[];
         openNow: boolean;
+        nextOpenTime?: { date: string } | null;
+        nextCloseTime?: { date: string } | null;
     };
     rating?: number;
     userRatingCount?: number;
@@ -566,12 +568,32 @@ export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null
         location: place.location,
         primaryType: place.primaryType ,  // Provide default value to satisfy string type
         primaryTypeDisplayName: place.primaryTypeDisplayName,
+        // Preserve dayIndex and orderIndex if they exist in the input place
+        dayIndex: (place as any).dayIndex,
+        orderIndex: (place as any).orderIndex,
         photos: place.photos ? place.photos.map(photo => ({
             name: photo.name,
             widthPx: photo.widthPx,
             heightPx: photo.heightPx
         })) : [],
-        regularOpeningHours: place.regularOpeningHours,  // Use original structure
+        regularOpeningHours: place.regularOpeningHours ? {
+            periods: place.regularOpeningHours.periods?.map(period => ({
+                open: {
+                    day: period.open.day,
+                    hour: period.open.hour,
+                    minute: period.open.minute
+                },
+                close: period.close ? {
+                    day: period.close.day,
+                    hour: period.close.hour,
+                    minute: period.close.minute
+                } : undefined
+            })),
+            weekdayDescriptions: place.regularOpeningHours.weekdayDescriptions || [],
+            openNow: place.regularOpeningHours.openNow,
+            nextOpenTime: place.regularOpeningHours.nextOpenTime,
+            nextCloseTime: place.regularOpeningHours.nextCloseTime
+        } : undefined,
         rating: place.rating,
         userRatingCount: place.userRatingCount,
         priceLevel: place.priceLevel

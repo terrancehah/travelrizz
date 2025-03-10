@@ -45,11 +45,13 @@ export interface Place {
     orderIndex?: number;
     regularOpeningHours?: {
         periods?: Array<{
-            open: { day: number; hour: number; minute: number };
-            close: { day: number; hour: number; minute: number };
+            open?: { day: number; hour: number; minute: number };
+            close?: { day: number; hour: number; minute: number };
         }>;
         weekdayDescriptions: string[];
         openNow: boolean;
+        nextOpenTime?: { date: string } | null;
+        nextCloseTime?: { date: string } | null;
     };
     rating?: number;
     userRatingCount?: number;

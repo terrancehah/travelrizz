@@ -9,7 +9,7 @@ export interface SavedPlacesManager {
     hasPlace: (id: string) => boolean
     updatePlace: (place: Place) => void
     updatePlaces: (updatedPlaces: Place[]) => Promise<void>
-    updatePlacesWithIndices: (optimizedPlaces: Place[][]) => Promise<void>
+    updatePlacesWithIndices: (optimizedPlaces: Place[]) => Promise<void>
     _persist: () => Promise<void>
     _notifyChange: () => Promise<void>
     serialize: () => string

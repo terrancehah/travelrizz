@@ -600,14 +600,14 @@ export const placeOptimizerTool = createTool({
                 endDate
             );
 
-            if (typeof window !== 'undefined') {
-                savedPlacesManager.updatePlaces(result);
-                window.dispatchEvent(new Event('places-changed'));
-            }
-
             return {
                 type: 'text',
-                props: { content: 'Successfully optimized travel itinerary' }
+                props: { 
+                    content: 'Successfully optimized travel itinerary',
+                    optimizedPlaces: result,
+                    startDate,
+                    endDate
+                }
             };
         } catch (error) {
             return {

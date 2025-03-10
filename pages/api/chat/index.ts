@@ -157,7 +157,7 @@ export default async function handler(req: NextRequest) {
     There are 'placeCard' for single place display when users ask for one place (e.g. "add one cafe" or "show me one restaurant"), which automatically saves the place after display; 
     'carousel' for multiple places display when users ask for multiple places (e.g. "add some museums" or "show me a few cinemas"), which automatically saves places after display; 
     and 'savedPlacesList' to view ALL previously saved places (when users ask to see saved places, ALL places from the savedPlaces parameter will be passed to this tool).
-    Lastly, we have 'placeOptimizerTool' to optimize the itinerary, when you call this tool, always use all the places in the savedPlaces array.
+    Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, always use all the places in the savedPlaces array.
 
     4.0 Response Rules and Formatting
     4.1 Language and Format
@@ -222,7 +222,7 @@ export default async function handler(req: NextRequest) {
         { role: 'system', content: dynamicContext },
         ...messages
       ],
-      maxTokens: 2000,
+      maxTokens: 4000,
       
       temperature: 0.6,
       presencePenalty: 0.7,

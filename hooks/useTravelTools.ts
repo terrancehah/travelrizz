@@ -206,9 +206,15 @@ export function useTravelTools({
             }))
           );
           
-          // Update the places in the savedPlacesManager
-          await savedPlacesManager.updatePlaces(result.props.optimizedPlaces);
-          console.log('[useTravelTools] Updated saved places with optimized arrangement');
+          // Update the places with their new indices
+          await savedPlacesManager.updatePlacesWithIndices(result.props.optimizedPlaces);
+          console.log('[useTravelTools] Updated saved places with optimized arrangement:', 
+            result.props.optimizedPlaces.map((p: Place) => ({
+              id: p.id,
+              name: typeof p.displayName === 'string' ? p.displayName : p.displayName?.text,
+              dayIndex: p.dayIndex,
+              orderIndex: p.orderIndex
+            })));
         }
         break;
 

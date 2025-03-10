@@ -21,31 +21,39 @@ function durationToSeconds(duration?: string): number {
 /**
  * Checks if a place is open at a specific time
  */
+/**
+ * Determines if a place is open at a specific date and time
+ * @param place - The place to check
+ * @param date - The date and time to check against
+ * @returns true if the place is open, false otherwise
+ */
 function isPlaceOpen(place: Place, date: Date): boolean {
-  // Assume open if no hours data or no periods array
+  // If no opening hours data available, assume the place is open
+  // This prevents false negatives when hours data is missing
   if (!place.regularOpeningHours || !place.regularOpeningHours.periods) return true
   
-  // Get day of week (0 = Sunday, 6 = Saturday)
+  // Get day of week (0 = Sunday, 6 = Saturday) and current time
   const dayOfWeek = date.getDay()
-  
-  // Get current hour and minute
   const currentHour = date.getHours()
   const currentMinute = date.getMinutes()
   
-  // Check if place is open on this day
+  // Find all valid opening periods for the current day
+  // We only consider periods that have both opening and closing times defined
   const openPeriods = place.regularOpeningHours.periods.filter(period => 
-    period.open.day === dayOfWeek
+    period.open?.day === dayOfWeek && period.open && period.close
   )
   
-  // If no periods for this day, place is closed
+  // If there are no valid opening periods for this day, the place is closed
   if (openPeriods.length === 0) return false
   
-  // Check if current time falls within any open period
+  // Check if the current time falls within any of the open periods
   return openPeriods.some(period => {
-    const openHour = period.open.hour
-    const openMinute = period.open.minute
-    const closeHour = period.close.hour
-    const closeMinute = period.close.minute
+    // We can safely use non-null assertion (!) here since we filtered out
+    // any periods with undefined open/close times in the filter above
+    const openHour = period.open!.hour
+    const openMinute = period.open!.minute
+    const closeHour = period.close!.hour
+    const closeMinute = period.close!.minute
     
     // Convert to minutes for easier comparison
     const currentTimeInMinutes = currentHour * 60 + currentMinute
@@ -331,6 +339,8 @@ export async function optimizePlaces(
   const optimizedPlaces: Place[] = []
   placesByDay.forEach((dayPlaces, dayIndex) => {
     dayPlaces.forEach((place, index) => {
+      console.log('[Optimizer] Setting indices:', 
+        { id: place.id, dayIndex, orderIndex: index })
       place.dayIndex = dayIndex
       place.orderIndex = index
       optimizedPlaces.push(place)

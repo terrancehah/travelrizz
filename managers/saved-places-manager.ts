@@ -81,21 +81,31 @@ function createSavedPlacesManager(): SavedPlacesManager {
 
     // New method to update places with day and order indices
     async updatePlacesWithIndices(optimizedPlaces: Place[]) {
-      // Update each place with its new indices
-      optimizedPlaces.forEach((place, index) => {
-        if (this.places.has(place.id)) {
-          const dayIndex = place.dayIndex ?? 0
-          const orderIndex = place.orderIndex ?? index
-          
-          const updatedPlace = {
-            ...place,
-            dayIndex,
-            orderIndex
-          }
-          this.places.set(place.id, updatedPlace)
-        }
-      })
+      console.log('[Manager] Received optimized places:', 
+        optimizedPlaces.map(p => ({ 
+          id: p.id, 
+          day: p.dayIndex,
+          order: p.orderIndex 
+        }))
+      );
       
+      optimizedPlaces.forEach(place => {
+        if (this.places.has(place.id)) {
+          const existing = this.places.get(place.id)!;
+          console.log('[Manager] Before update:', {
+            existingDay: existing.dayIndex,
+            existingOrder: existing.orderIndex,
+            newDay: place.dayIndex,
+            newOrder: place.orderIndex
+          });
+          
+          this.places.set(place.id, {
+            ...existing,
+            dayIndex: place.dayIndex,
+            orderIndex: place.orderIndex
+          });
+        }
+      });
       await this._persist()
       await this._notifyChange()
     },
@@ -103,13 +113,30 @@ function createSavedPlacesManager(): SavedPlacesManager {
     async _persist() {
       try {
         const session = getStoredSession()
-        if (session) {
-          session.savedPlaces = this.getPlaces()
-          session.savedPlacesCount = this.places.size
-          storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session))
+        if (!session) {
+          console.error('[SavedPlacesManager] No session found')
+          return
         }
+        const placesArray = Array.from(this.places.values());
+        
+        // Clone objects with explicit index inclusion
+        const persistData = placesArray.map(p => ({
+          ...p,
+          dayIndex: p.dayIndex,
+          orderIndex: p.orderIndex
+        }));
+
+        console.log('[Persist] Sample place:', persistData[0]);
+        session.savedPlaces = persistData
+        session.savedPlacesCount = this.places.size
+        if (!storage) {
+          console.error('[SavedPlacesManager] No storage available')
+          return
+        }
+        storage.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session))
+        console.log('[SavedPlacesManager] Successfully persisted to storage')
       } catch (error) {
-        console.error('Error persisting saved places to session:', error)
+        console.error('[SavedPlacesManager] Error persisting to session:', error)
       }
     },
 
