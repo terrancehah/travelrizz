@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Droppable, Draggable } from '@hello-pangea/dnd'
 import { DayPlan } from '../daily-planner'
-import { Place } from '@/utils/places-utils'
+import { Place } from '@/managers/types'
 import { PlaceCompactCard } from './place-compact-card'
 import { PlaceSearch } from './place-search'
 import { Loader2, GripVertical, Clock, MoveHorizontal, ArrowRight } from 'lucide-react'

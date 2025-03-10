@@ -1,8 +1,60 @@
 ///Users/terrancehah/Documents/terrancehah.com/managers/types.ts
 
 import { Message as AiMessage, JSONValue } from 'ai';
-import { Place } from '../utils/places-utils';
 import { ReactNode } from 'react';
+
+// Place related types
+export enum PriceLevel {
+    UNSPECIFIED = 'PRICE_LEVEL_UNSPECIFIED',
+    FREE = 'PRICE_LEVEL_FREE',
+    INEXPENSIVE = 'PRICE_LEVEL_INEXPENSIVE',
+    MODERATE = 'PRICE_LEVEL_MODERATE',
+    EXPENSIVE = 'PRICE_LEVEL_EXPENSIVE',
+    VERY_EXPENSIVE = 'PRICE_LEVEL_VERY_EXPENSIVE'
+}
+
+export interface Place {
+    name: string | undefined;
+    id: string;
+    displayName: {
+        text: string;
+        languageCode: string;
+    } | string;
+    formattedAddress?: string;
+    location?: {
+        latitude: number;
+        longitude: number;
+    };
+    primaryType?: string;
+    primaryTypeDisplayName?: {
+        text: string;
+        languageCode: string;
+    };
+    photos: { 
+        name: string;
+        widthPx?: number;
+        heightPx?: number;
+        authorAttributions?: Array<{
+            displayName?: string;
+            uri?: string;
+            photoUri?: string;
+        }>;
+    }[];
+    // Optional indices for itinerary planning
+    dayIndex?: number;
+    orderIndex?: number;
+    regularOpeningHours?: {
+        periods?: Array<{
+            open: { day: number; hour: number; minute: number };
+            close: { day: number; hour: number; minute: number };
+        }>;
+        weekdayDescriptions: string[];
+        openNow: boolean;
+    };
+    rating?: number;
+    userRatingCount?: number;
+    priceLevel?: PriceLevel;
+}
 
 export interface TravelDetails {
     destination: string;

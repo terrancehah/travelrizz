@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Place } from '@/utils/places-utils';
+import { Place } from '@/managers/types';
 import { PlaceCard } from './PlaceCard';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import { TravelPreference, BudgetLevel, SupportedLanguage, TravelDetails, TravelSession } from '@/managers/types';
 import StageProgress from '@/components/stage-progress';
-import { Place } from '@/utils/places-utils';
+import { Place } from '@/managers/types';
 import { getStoredSession, initializeSession, SESSION_CONFIG, checkSessionValidity, updateLastActive, storage, getPaymentReference, setPaymentStatus, clearPaymentReference, getPaymentStatus, updateSessionLocation } from '../../managers/session-manager';
 import PaymentSuccessPopup from '../../components/modals/payment-success-popup';
 import PremiumUpgradeModal from '../../components/modals/premium-upgrade-modal';

@@ -1,7 +1,8 @@
 import { useChat } from 'ai/react';
 import { useCallback, useRef, useEffect, useState, useMemo } from 'react';
 import { TravelDetails, TravelSession, StageProgressResult } from '../managers/types';
-import { Place, savedPlacesManager } from '../utils/places-utils';
+import { Place } from '../managers/types';
+import { savedPlacesManager } from '../utils/places-utils';
 import { STAGE_LIMITS, validateStageProgression } from '../managers/stage-manager';
 import { Message as LocalMessage, ToolInvocation } from '../managers/types';
 import { Message as AiMessage } from 'ai';

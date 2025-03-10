@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Place } from '@/utils/places-utils'
+import { Place } from '@/managers/types'
 
 interface OptimizedArrangementProps {
   places: Place[]

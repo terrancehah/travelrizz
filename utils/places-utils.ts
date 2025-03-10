@@ -1,55 +1,4 @@
-// Place related interfaces
-export enum PriceLevel {
-    UNSPECIFIED = 'PRICE_LEVEL_UNSPECIFIED',
-    FREE = 'PRICE_LEVEL_FREE',
-    INEXPENSIVE = 'PRICE_LEVEL_INEXPENSIVE',
-    MODERATE = 'PRICE_LEVEL_MODERATE',
-    EXPENSIVE = 'PRICE_LEVEL_EXPENSIVE',
-    VERY_EXPENSIVE = 'PRICE_LEVEL_VERY_EXPENSIVE'
-}
-
-export interface Place {
-    name: string | undefined;
-    id: string;
-    displayName: {
-        text: string;
-        languageCode: string;
-    } | string;
-    formattedAddress?: string;
-    location?: {
-        latitude: number;
-        longitude: number;
-    };
-    primaryType: string;
-    primaryTypeDisplayName?: {
-        text: string;
-        languageCode: string;
-    };
-    photos: { 
-        name: string;
-        widthPx?: number;
-        heightPx?: number;
-        authorAttributions?: Array<{
-            displayName?: string;
-            uri?: string;
-            photoUri?: string;
-        }>;
-    }[];
-    // Optional indices for itinerary planning
-    dayIndex?: number;
-    orderIndex?: number;
-    regularOpeningHours?: {
-        periods?: Array<{
-            open: { day: number; hour: number; minute: number };
-            close: { day: number; hour: number; minute: number };
-        }>;
-        weekdayDescriptions: string[];
-        openNow: boolean;
-    };
-    rating?: number;
-    userRatingCount?: number;
-    priceLevel?: PriceLevel;
-}
+import { Place, PriceLevel } from '../managers/types';
 
 interface GooglePlaceResponse {
     id: string;
@@ -225,8 +174,8 @@ export function filterUniquePlaces(places: Place[]): Place[] {
     // Get saved places from global state if available
     const savedPlaces = savedPlacesManager.getPlaces();
 
-    const savedPlaceIds = new Set(savedPlaces.map(place => place.id));
-    const savedPlaceNames = new Set(savedPlaces.map(place => 
+    const savedPlaceIds = new Set(savedPlaces.map((place: Place) => place.id));
+    const savedPlaceNames = new Set(savedPlaces.map((place: Place) => 
         typeof place.displayName === 'string' 
             ? place.displayName.toLowerCase() 
             : place.displayName.text.toLowerCase()
@@ -255,162 +204,8 @@ export function filterUniquePlaces(places: Place[]): Place[] {
     });
 }
 
-// Add SavedPlacesManager interface
-export interface SavedPlacesManager {
-    places: Map<string, Place>;
-    addPlace: (place: Place) => void;
-    removePlace: (id: string) => void;
-    getPlaces: () => Place[];
-    getPlaceById: (id: string) => Place | undefined;
-    hasPlace: (id: string) => boolean;
-    updatePlace: (place: Place) => void;
-    updatePlaces: (updatedPlaces: Place[]) => Promise<void>;
-    _persist: () => Promise<void>;
-    _notifyChange: () => Promise<void>;
-    serialize: () => string;
-    reset: () => void;
-}
-
-const STORAGE_KEY = 'saved_places';
-
-// SavedPlacesManager singleton
-const createSavedPlacesManager = (): SavedPlacesManager => {
-    const places = new Map<string, Place>();
-    let initialized = false;
-
-    // Load places from sessionStorage
-    const loadFromStorage = () => {
-        if (!initialized && typeof window !== 'undefined') {
-            const session = getStoredSession();
-            if (session?.savedPlaces) {
-                try {
-                    // Clear existing places before loading
-                    places.clear();
-                    
-                    session.savedPlaces.forEach(place => {
-                        if (place?.id) {
-                            places.set(place.id, place);
-                        }
-                    });
-                } catch (error) {
-                    console.error('[savedPlacesManager] Error loading places:', error);
-                }
-            }
-            initialized = true;
-        }
-    };
-
-    return {
-        places,
-        addPlace(place: Place) {
-            loadFromStorage(); // Ensure places are loaded
-            if (place?.id) {
-                places.set(place.id, place);
-                this._persist();
-                this._notifyChange();
-            }
-        },
-        removePlace(id: string) {
-            loadFromStorage(); // Ensure places are loaded
-            places.delete(id);
-            this._persist();
-            this._notifyChange();
-        },
-        getPlaces(): Place[] {
-            loadFromStorage(); // Ensure places are loaded
-            return Array.from(places.values());
-        },
-        getPlaceById(id: string): Place | undefined {
-            loadFromStorage(); // Ensure places are loaded
-            return places.get(id);
-        },
-        hasPlace(id: string): boolean {
-            loadFromStorage(); // Ensure places are loaded
-            return places.has(id);
-        },
-        updatePlace(place: Place) {
-            if (place?.id && places.has(place.id)) {
-                places.set(place.id, place);
-                this._persist();
-                this._notifyChange();
-            }
-        },
-        async updatePlaces(updatedPlaces: Place[]) {
-            if (!Array.isArray(updatedPlaces)) {
-                console.error('[savedPlacesManager.updatePlaces] Invalid input:', updatedPlaces);
-                return Promise.resolve();
-            }
-            
-            updatedPlaces.forEach(place => {
-                if (place?.id) {
-                    const existingPlace = places.get(place.id);
-                    
-                    if (existingPlace) {
-                        places.set(place.id, {
-                            ...existingPlace,  // Keep existing place data
-                            ...place           // Update with new data (including indices if present)
-                        });
-                    } else {
-                        places.set(place.id, place);
-                    }
-                }
-            });
-            
-            return this._notifyChange();
-        },
-        async _persist() {
-            if (typeof window !== 'undefined') {
-                const placesArray = Array.from(places.values());
-                
-                // Update travel_rizz_session
-                const session = getStoredSession();
-                if (session) {
-                    session.savedPlaces = placesArray;
-                    session.savedPlacesCount = places.size;
-                    await new Promise<void>((resolve) => {
-                        safeStorageOp(() => {
-                            storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session));
-                            resolve();
-                        }, undefined);
-                    });
-                }
-            }
-            return Promise.resolve();
-        },
-        async _notifyChange() {
-            if (typeof window !== 'undefined') {
-                await this._persist();
-                window.savedPlaces = Array.from(this.places.values());
-                window.dispatchEvent(new CustomEvent('savedPlacesChanged', {
-                    detail: {
-                        places: Array.from(this.places.values()),
-                        count: this.places.size,
-                        type: 'update'
-                    }
-                }));
-                
-                window.dispatchEvent(new CustomEvent('places-changed'));
-            }
-            return Promise.resolve();
-        },
-        serialize() {
-            return JSON.stringify(Array.from(places.values()));
-        },
-        reset() {
-            places.clear();
-            initialized = false;
-            this._persist();
-            this._notifyChange();
-        }
-    };
-};
-
-export const savedPlacesManager = createSavedPlacesManager();
-
-// Initialize on client side
-if (typeof window !== 'undefined') {
-    savedPlacesManager.places = new Map<string, Place>();
-}
+import { savedPlacesManager } from '../managers/saved-places-manager';
+export { savedPlacesManager };
 
 // Declare window interface for saved places
 declare global {
@@ -769,14 +564,14 @@ export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null
         displayName: place.displayName || { text: place.name || '', languageCode: 'en' },
         formattedAddress: place.formattedAddress,
         location: place.location,
-        primaryType: place.primaryType || 'place',
+        primaryType: place.primaryType ,  // Provide default value to satisfy string type
         primaryTypeDisplayName: place.primaryTypeDisplayName,
         photos: place.photos ? place.photos.map(photo => ({
             name: photo.name,
             widthPx: photo.widthPx,
             heightPx: photo.heightPx
         })) : [],
-        regularOpeningHours: place.regularOpeningHours,
+        regularOpeningHours: place.regularOpeningHours,  // Use original structure
         rating: place.rating,
         userRatingCount: place.userRatingCount,
         priceLevel: place.priceLevel

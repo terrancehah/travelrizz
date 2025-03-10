@@ -7,7 +7,7 @@ import { tools } from '../../../ai/tools';
 import { NextRequest } from 'next/server';
 import { TravelSession } from '../../../managers/types';
 import { validateStageProgression, STAGE_LIMITS } from '../../../managers/stage-manager';
-import { Place } from '../../../utils/places-utils';
+import { Place } from '../../../managers/types';
 
 export const config = {
   runtime: 'edge'

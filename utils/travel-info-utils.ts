@@ -1,4 +1,4 @@
-import { Place } from './places-utils'
+import { Place } from '../managers/types'
 
 interface TravelInfo {
   durationSeconds: number

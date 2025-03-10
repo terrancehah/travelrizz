@@ -1,7 +1,7 @@
 import { Clock, ArrowLeftRight } from 'lucide-react'
 import { cn } from '@/utils/cn'
 import { useEffect, useState } from 'react'
-import { Place } from '@/utils/places-utils'
+import { Place } from '@/managers/types'
 import { travelInfoManager } from '@/utils/travel-info-utils'
 import { useTranslations } from 'next-intl'
 

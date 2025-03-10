@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Grip, X, GripVertical } from 'lucide-react'
-import { Place } from '@/utils/places-utils'
+import { Place } from '@/managers/types'
 import Image from 'next/image'
 import { cn } from '@/utils/cn'
 

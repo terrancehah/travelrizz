@@ -11,10 +11,10 @@ import {
     fetchPlaces,
     searchPlaceByText,
     searchMultiplePlacesByText,
-    Place,
     getPlaceTypesFromPreferences,
     savedPlacesManager
 } from '@/utils/places-utils';
+import { Place } from '@/managers/types';
 import { validateStageProgression } from '@/managers/stage-manager';
 import { fetchExchangeRates, getCurrencyFromCountry } from '@/utils/currency-utils';
 import { fetchWeatherForecast, isWithinForecastRange, formatDate } from '@/utils/forecast-utils';

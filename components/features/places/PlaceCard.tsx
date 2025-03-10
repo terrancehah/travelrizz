@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
-import { Place, savedPlacesManager, searchPlaceByText, PriceLevel } from '@/utils/places-utils';
+import { Place, PriceLevel } from '@/managers/types';
+import { savedPlacesManager, searchPlaceByText } from '@/utils/places-utils';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface PlaceCardProps {
