@@ -13,6 +13,7 @@ import { Carousel } from './features/places/PlaceCarousel';
 import { SavedPlacesList } from './features/places/SavedPlacesList';
 import HistoricalWeatherChart from './features/weather/historical-weather-chart';
 import WeatherForecast from './features/weather/WeatherForecast';
+import { OptimizedArrangement } from './features/places/OptimizedArrangement';
 import { ChevronUpIcon, ChevronDownIcon } from 'lucide-react';
 import { QuickResponse } from './chat/QuickResponse';
 import ReactMarkdown from 'react-markdown';
@@ -637,6 +638,27 @@ export function TravelChat({
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-full">
                                                     <LocalTips {...localTipsProps} />
+                                                </div>
+                                            </div>
+                                        );
+
+                                    case 'placeOptimizer':
+                                        if (!toolInvocation.result?.props?.optimizedPlaces) return null;
+                                        return (
+                                            <div key={`${toolCallId}-${index}`} className="flex justify-start">
+                                                <div className="w-full">
+                                                    <OptimizedArrangement
+                                                        places={toolInvocation.result.props.optimizedPlaces}
+                                                        startDate={toolInvocation.result.props.startDate}
+                                                        endDate={toolInvocation.result.props.endDate}
+                                                        onAccept={() => {
+                                                            const result = { type: 'placeOptimizer', props: { optimizedPlaces: toolInvocation.result.props.optimizedPlaces } };
+                                                            handleToolUpdate({ toolInvocations: [{ toolCallId, toolName, result }] });
+                                                        }}
+                                                        onReject={() => {
+                                                            // Optionally log rejection or reset state
+                                                        }}
+                                                    />
                                                 </div>
                                             </div>
                                         );
