@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Place } from '@/managers/types';
-import { savedPlacesManager } from '@/utils/places-utils';
+import { savedPlacesManager } from '@/managers/saved-places-manager';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 interface SavedPlacesListProps {

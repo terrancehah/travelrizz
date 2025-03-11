@@ -2,7 +2,7 @@ import { useChat } from 'ai/react';
 import { useCallback, useRef, useEffect, useState, useMemo } from 'react';
 import { TravelDetails, TravelSession, StageProgressResult } from '../managers/types';
 import { Place } from '../managers/types';
-import { savedPlacesManager } from '../utils/places-utils';
+import { savedPlacesManager } from '../managers/saved-places-manager';
 import { STAGE_LIMITS, validateStageProgression } from '../managers/stage-manager';
 import { Message as LocalMessage, ToolInvocation } from '../managers/types';
 import { Message as AiMessage } from 'ai';
@@ -135,12 +135,13 @@ export function useTravelChat({
         ?.filter(place => place && place.id && place.displayName)
         ?.map(place => ({
           id: place.id,
-          displayName: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
+          displayName: place.displayName,
           formattedAddress: place.formattedAddress,
           location: place.location,
           primaryType: place.primaryType,
           primaryTypeDisplayName: place.primaryTypeDisplayName?.text,
-          photos: place.photos || []
+          photos: place.photos || [],
+          regularOpeningHours: place.regularOpeningHours
         })) || [],
       currentStage,
       metrics: {

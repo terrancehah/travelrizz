@@ -1,6 +1,6 @@
 import { TravelSession } from '../managers/types';
 import { STAGE_LIMITS } from '../managers/stage-manager';
-import { savedPlacesManager } from '../utils/places-utils';
+import { savedPlacesManager } from '../managers/saved-places-manager';
 
 export const SESSION_CONFIG = {
   STORAGE_KEY: 'travel_rizz_session',

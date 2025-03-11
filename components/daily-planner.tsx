@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 import { DaySection } from '../components/planner/day-section'
 import { Place } from '@/managers/types'
-import { savedPlacesManager } from '@/utils/places-utils'
+import { savedPlacesManager } from '../managers/saved-places-manager'
 import { getStoredSession } from '@/managers/session-manager'
 import { ChevronUpIcon, ChevronDownIcon } from 'lucide-react';
 import { TravelDetails } from '../managers/types'

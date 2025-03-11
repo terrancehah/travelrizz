@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { Place } from '@/managers/types';
-import { savedPlacesManager, searchPlaceByText } from '@/utils/places-utils';
+import { searchPlaceByText } from '@/utils/places-utils';
+import { savedPlacesManager } from '@/managers/saved-places-manager';
 import { SESSION_CONFIG } from '@/managers/session-manager';
 import { travelInfoManager } from '@/utils/travel-info-utils';
 

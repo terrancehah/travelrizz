@@ -22,7 +22,8 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { useTheme } from 'next-themes';
 import { useRouter } from "next/router";
 import { cn } from '@/utils/cn';
-import { savedPlacesManager } from "@/utils/places-utils"
+import { savedPlacesManager } from '../managers/saved-places-manager';
+
 
 // Add Google Maps types
 declare global {
@@ -364,7 +365,7 @@ export default function TravelFormPage() {
               {/* Calendar */}
               <div className="flex flex-col w-fit space-y-4 p-4 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-600 rounded-md [&_.rdp]:dark:[--rdp-accent-color:rgb(56,189,248)] [&_.rdp]:dark:[--rdp-background-color:rgb(31,41,55)] [&_.rdp]:dark:[--rdp-accent-background-color:rgba(56,189,248,0.2)]">
                   {/* Date display box */}
-                  <div className={`p-3 bg-gray-100 dark:bg-gray-700 rounded-lg text-center ${fonts.text} text-gray-700 dark:text-gray-200`}>
+                  <div className={`p-3 w-full bg-gray-100 dark:bg-gray-700 rounded-lg text-center ${fonts.text} text-gray-700 dark:text-gray-200`}>
                     {formData.startDate && formData.endDate ? (
                       <>
                         <span>{formData.startDate}</span>
@@ -375,6 +376,7 @@ export default function TravelFormPage() {
                       <span>{t('prompts.dateselection')}</span>
                     )}
                   </div>
+                  {/* Calendar Component */}
                   <CalendarComponent
                     style={{
                       '--rdp-accent-color': 'rgb(125 211 252)', // sky-400 for light mode
@@ -430,7 +432,7 @@ export default function TravelFormPage() {
                         }));
                       }
                     }}
-                    className={`${fonts.text}`}
+                    className={`${fonts.text} w-min lg:w-fit`}
                     classNames={{
                       caption_label: "pl-3 my-auto",
                       nav_button: cn(

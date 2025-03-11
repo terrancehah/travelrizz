@@ -11,14 +11,15 @@ import {
     fetchPlaces,
     searchPlaceByText,
     searchMultiplePlacesByText,
-    getPlaceTypesFromPreferences,
-    savedPlacesManager
+    getPlaceTypesFromPreferences
 } from '@/utils/places-utils';
+import { savedPlacesManager } from '@/managers/saved-places-manager';
 import { Place } from '@/managers/types';
 import { validateStageProgression } from '@/managers/stage-manager';
 import { fetchExchangeRates, getCurrencyFromCountry } from '@/utils/currency-utils';
 import { fetchWeatherForecast, isWithinForecastRange, formatDate } from '@/utils/forecast-utils';
 import { formatDateRange, fetchHistoricalWeather } from '@/utils/historical-utils';
+import { optimizeItinerary } from '@/utils/route-optimizer';
 
 // Standardized Tool Response interfaces
 export interface ToolResponse<T = Record<string, unknown>> {
@@ -536,13 +537,13 @@ export const localTipsTool = createTool({
 
 // Tool for Place Optimization
 export const placeOptimizerTool = createTool({
-    description: 'Optimize the arrangement of saved places based on travel time and opening hours. Use this when the user wants to optimize their itinerary, reduce travel time, or avoid visiting closed places.',
+    description: 'Optimize the arrangement of saved places based on travel time and opening hours. Use this when the user wants to optimize their itinerary or schedule.',
     parameters: z.object({
         startDate: z.string().describe('Trip start date in ISO format'),
         endDate: z.string().describe('Trip end date in ISO format'),
         savedPlaces: z.array(z.object({
             id: z.string(),
-            name: z.string().optional(), // Add the missing name property
+            name: z.string().optional(),
             displayName: z.union([
                 z.object({
                     text: z.string(),
@@ -588,12 +589,10 @@ export const placeOptimizerTool = createTool({
             }).optional(),
             dayIndex: z.number().optional(),
             orderIndex: z.number().optional()
-        })).describe('Array of places to optimize')
+        })).describe('Array of places to optimize into an itinerary')
     }),
     execute: async function ({ startDate, endDate, savedPlaces }) {
-        try {
-            const { optimizeItinerary } = await import('../utils/route-optimizer');
-            
+        try {            
             const result = await optimizeItinerary(
                 savedPlaces as Place[],
                 startDate,
@@ -601,7 +600,7 @@ export const placeOptimizerTool = createTool({
             );
 
             return {
-                type: 'text',
+                type: 'placeOptimizer',
                 props: { 
                     content: 'Successfully optimized travel itinerary',
                     optimizedPlaces: result,

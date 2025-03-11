@@ -158,6 +158,7 @@ export default async function handler(req: NextRequest) {
     'carousel' for multiple places display when users ask for multiple places (e.g. "add some museums" or "show me a few cinemas"), which automatically saves places after display; 
     and 'savedPlacesList' to view ALL previously saved places (when users ask to see saved places, ALL places from the savedPlaces parameter will be passed to this tool).
     Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, always use all the places in the savedPlaces array.
+    When calling 'placeOptimizerTool', include the complete savedPlaces array with all fields (id, displayName, location, regularOpeningHours, etc.) as provided in the current context.
 
     4.0 Response Rules and Formatting
     4.1 Language and Format
@@ -202,6 +203,7 @@ export default async function handler(req: NextRequest) {
       - Travel Preferences: ${currentDetails.preferences?.join(', ')}
       - Chat Language: ${currentDetails.language}
       - Saved Places Count: ${typedSavedPlaces.length}
+      - Saved Places Sample: ${JSON.stringify(typedSavedPlaces.slice(0, 1), null, 2)}
       - Total User Prompts Number: ${metrics?.totalPrompts}
       - Stage 3 Prompts Number: ${metrics?.stagePrompts?.[3]}
       - Payment Status: ${metrics?.isPaid ? 'Paid' : 'Not Paid'}

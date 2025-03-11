@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { TravelDetails, TravelSession } from '../managers/types';
 import { Place } from '../managers/types';
-import { savedPlacesManager } from '../utils/places-utils';
+import { savedPlacesManager } from '../managers/saved-places-manager';
+
 import { getStoredSession, safeStorageOp, storage, SESSION_CONFIG } from '../managers/session-manager';
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
@@ -45,6 +46,20 @@ export function useTravelTools({
   };
 
   const handleToolUpdate = async (message: any) => {
+    console.log('[useTravelTools] Received tool invocations:', message.toolInvocations.map((t: { 
+      toolName: string;
+      toolCallId: string;
+      result?: { 
+        type?: string;
+        props?: Record<string, any>;
+      };
+    }) => ({
+      toolName: t.toolName,
+      toolCallId: t.toolCallId,
+      resultType: t.result?.type,
+      resultProps: t.result?.props ? Object.keys(t.result.props) : []
+    })));
+
     if (!message.toolInvocations?.[0]) return;
 
     const toolInvocation = message.toolInvocations[0];
@@ -195,6 +210,13 @@ export function useTravelTools({
         break;
 
       case 'placeOptimizer':
+        console.log('[useTravelTools] Entering placeOptimizer case:', {
+          resultType: result.type,
+          hasProps: !!result.props,
+          propsKeys: result.props ? Object.keys(result.props) : [],
+          rawResult: result
+        });
+        
         // Handle place optimizer responses with optimizedPlaces
         if (result.props?.optimizedPlaces && Array.isArray(result.props.optimizedPlaces)) {
           console.log('[useTravelTools] Received optimized places with dayIndex/orderIndex:', 
@@ -215,6 +237,12 @@ export function useTravelTools({
               dayIndex: p.dayIndex,
               orderIndex: p.orderIndex
             })));
+        } else {
+          console.log('[useTravelTools] Invalid or missing optimizedPlaces in result:', {
+            hasOptimizedPlaces: !!result.props?.optimizedPlaces,
+            isArray: Array.isArray(result.props?.optimizedPlaces),
+            optimizedPlacesType: typeof result.props?.optimizedPlaces
+          });
         }
         break;
 

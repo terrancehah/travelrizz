@@ -207,7 +207,6 @@ export function filterUniquePlaces(places: Place[]): Place[] {
 }
 
 import { savedPlacesManager } from '../managers/saved-places-manager';
-export { savedPlacesManager };
 
 // Declare window interface for saved places
 declare global {
