@@ -38,22 +38,6 @@ declare global {
     }
 }
 
-// Modify map-component.tsx to expose a proper global interface
-// At the top of file
-interface SavedPlacesManager {
-    addPlace: (place: Place) => void;
-    removePlace: (placeId: string) => void;
-    getPlaces: () => Place[];
-    hasPlace: (placeId: string) => boolean;
-}
-
-// Expose type-safe global methods
-declare global {
-    interface Window {
-        savedPlacesManager: SavedPlacesManager;
-    }
-}
-
 declare global {
     namespace google.maps {
         interface MarkerLibrary {
@@ -67,7 +51,6 @@ declare global {
         }
     }
 }
-
 
 const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'light' }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -301,10 +284,15 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
                 
                 const markerId = data.place?.id || data.title || String(Date.now());
+                const dayIndex = data.place?.dayIndex ?? 0;
+                const orderIndex = data.place?.orderIndex ?? 0;
+                const color = getRouteColor(dayIndex);
+                
                 const pinElement = new PinElement({
-                    background: "#FF4444",  // Bright red
-                    borderColor: "#CC0000", // Darker red border
-                    glyphColor: "#FFFFFF",  // White glyph for better contrast
+                    background: color,
+                    borderColor: color,
+                    glyphColor: "#FFFFFF",
+                    glyph: `${orderIndex + 1}`
                 });
 
                 // Remove existing marker if it exists
@@ -461,10 +449,31 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             polylineRef.current.forEach(polyline => polyline.setMap(null));
             polylineRef.current.clear();
             
-            // Reset active routes state - this will force travel-info components to re-emit their routes
+            // Reset active routes state
             setActiveRoutes([]);
             
-            // Force re-render of travel-info components by dispatching an event
+            // Get all places and sort them by day and order
+            const places = savedPlacesManager.getPlaces();
+            const placesByDay = places.reduce((acc, place) => {
+                const dayIndex = place.dayIndex ?? 0;
+                if (!acc[dayIndex]) acc[dayIndex] = [];
+                acc[dayIndex].push(place);
+                return acc;
+            }, {} as Record<number, Place[]>);
+
+            // Sort places within each day and create routes
+            Object.entries(placesByDay).forEach(([dayIndex, dayPlaces]) => {
+                dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
+                
+                // Create routes between consecutive places
+                for (let i = 0; i < dayPlaces.length - 1; i++) {
+                    const fromPlace = dayPlaces[i];
+                    const toPlace = dayPlaces[i + 1];
+                    setActiveRoutes(prev => [...prev, { fromId: fromPlace.id, toId: toPlace.id }]);
+                }
+            });
+
+            // Force re-render of travel-info components
             window.dispatchEvent(new CustomEvent('places-reordered'));
         };
 
@@ -707,10 +716,15 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             return null;
         }
 
+        const dayIndex = place.dayIndex ?? 0;
+        const orderIndex = place.orderIndex ?? 0;
+        const color = getRouteColor(dayIndex);
+        
         const pinElement = new window.google.maps.marker.PinElement({
-            background: "#FF4444",  // Bright red
-            borderColor: "#CC0000", // Darker red border
-            glyphColor: "#FFFFFF",  // White glyph for better contrast
+            background: color,
+            borderColor: color,
+            glyphColor: "#FFFFFF",
+            glyph: `${orderIndex + 1}`
         });
 
         const marker = new window.google.maps.marker.AdvancedMarkerElement({
@@ -743,6 +757,69 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
 
         return marker;
     };
+
+    // Update markers with new color and glyph numberings
+    const updateOptimizedMarkers = useCallback(async () => {
+        if (!mapInstanceRef.current) return;
+
+        // Clear existing routes
+        polylineRef.current.forEach(polyline => polyline.setMap(null));
+        polylineRef.current.clear();
+
+        // Get optimized places with indices
+        const places = savedPlacesManager.getPlaces();
+        
+        // Group by day and update markers
+        const placesByDay = places.reduce((acc, place) => {
+            const dayIndex = place.dayIndex ?? 0;
+            if (!acc[dayIndex]) acc[dayIndex] = [];
+            acc[dayIndex].push(place);
+            return acc;
+        }, {} as Record<number, Place[]>);
+
+        // Update markers and prepare routes
+        const newActiveRoutes: { fromId: string, toId: string }[] = [];
+        
+        Object.entries(placesByDay).forEach(([dayIndex, dayPlaces]) => {
+            dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
+            
+            dayPlaces.forEach((place, index) => {
+                const marker = markersRef.current.get(place.id);
+                if (marker) {
+                    // Only update existing markers
+                    const color = getRouteColor(Number(dayIndex));
+                    const pinElement = new google.maps.marker.PinElement({
+                        background: color,
+                        borderColor: color,
+                        glyphColor: "#FFFFFF",
+                        glyph: `${index + 1}`
+                    });
+                    marker.content = pinElement.element;
+                }
+
+                // Create routes between consecutive places
+                if (index < dayPlaces.length - 1) {
+                    newActiveRoutes.push({
+                        fromId: place.id,
+                        toId: dayPlaces[index + 1].id
+                    });
+                }
+            });
+        });
+
+        // Update routes
+        setActiveRoutes(newActiveRoutes);
+    }, [mapInstanceRef.current]);
+
+    // useEffect that listens
+    useEffect(() => {
+        const handleOptimizationApplied = () => {
+            updateOptimizedMarkers();
+        };
+
+        window.addEventListener('optimization-applied', handleOptimizationApplied);
+        return () => window.removeEventListener('optimization-applied', handleOptimizationApplied);
+    }, [updateOptimizedMarkers]);
 
     useEffect(() => {
         if (mapInstanceRef.current) {

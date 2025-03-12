@@ -8,9 +8,9 @@ import {
     TravelDetails
 } from '@/managers/types';
 import { 
-    fetchPlaces,
     searchPlaceByText,
     searchMultiplePlacesByText,
+    parallelSearchByPreferences,
     getPlaceTypesFromPreferences
 } from '@/utils/places-utils';
 import { savedPlacesManager } from '@/managers/saved-places-manager';
@@ -184,8 +184,8 @@ export const carouselTool = createTool({
                 // Get place types from preferences
                 const placeTypes = getPlaceTypesFromPreferences(preferences);
                 
-                // Use fetchPlaces with the language code
-                places = await fetchPlaces({
+                // Use parallelSearchByPreferences with the language code
+                places = await parallelSearchByPreferences({
                     latitude: location.latitude,
                     longitude: location.longitude,
                     includedTypes: placeTypes,
@@ -543,7 +543,6 @@ export const placeOptimizerTool = createTool({
         endDate: z.string().describe('Trip end date in ISO format'),
         savedPlaces: z.array(z.object({
             id: z.string(),
-            name: z.string().optional(),
             displayName: z.union([
                 z.object({
                     text: z.string(),

@@ -14,7 +14,6 @@ export enum PriceLevel {
 }
 
 export interface Place {
-    name: string | undefined;
     id: string;
     displayName: {
         text: string;

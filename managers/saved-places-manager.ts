@@ -1,5 +1,6 @@
 import { Place } from './types'
-import { storage, SESSION_CONFIG, getStoredSession } from './session-manager'
+import { storage, safeStorageOp, SESSION_CONFIG, getStoredSession } from './session-manager'
+
 
 // SavedPlacesManager interface
 export interface SavedPlacesManager {
@@ -81,6 +82,7 @@ function createSavedPlacesManager(): SavedPlacesManager {
 
     // New method to update places with day and order indices
     async updatePlacesWithIndices(optimizedPlaces: Place[]) {
+
       console.log('[Manager] Received optimized places:', 
         optimizedPlaces.map(p => ({ 
           id: p.id, 
@@ -133,7 +135,10 @@ function createSavedPlacesManager(): SavedPlacesManager {
           console.error('[SavedPlacesManager] No storage available')
           return
         }
-        storage.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session))
+        safeStorageOp(
+          () => storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session)),
+          undefined 
+        );
         console.log('[SavedPlacesManager] Successfully persisted to storage')
       } catch (error) {
         console.error('[SavedPlacesManager] Error persisting to session:', error)
@@ -166,5 +171,5 @@ export const savedPlacesManager = createSavedPlacesManager()
 // Initialize on client side
 if (typeof window !== 'undefined') {
   window.savedPlaces = savedPlacesManager.getPlaces()
-  window.savedPlacesManager = savedPlacesManager
+  window.savedPlacesManager = savedPlacesManager as SavedPlacesManager // Type assertion
 }

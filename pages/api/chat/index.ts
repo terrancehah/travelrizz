@@ -182,7 +182,8 @@ export default async function handler(req: NextRequest) {
     Never use phrases like "Would you like to...", "What would you prefer...", "Do you want to...", "Now that you've seen..." or other similar phrases. 
     Avoid "Please select an option...", "Please select how...", "You can now choose from the following..." or other similar prompts that ask users to select options. 
     Do not include any sentence ending with open-ended questions. 
-    Never use phrases like "Save these places", "Save any of these places", or other similar phrases related to adding and saving places. 
+    Never use phrases like "Save these places", "Save any of these places", or other similar phrases related to adding and saving places.
+    Never use phrases to imply you are triggering a certain tool, like "Triggering places recommendation now...". You are not certain if your next step would be tool calling or not, so refrain from doing that.
     Do not show saved places in text form, instead call the savedPlacesCarousel tool. 
     Avoid including addresses, hyperlinks, images and links in messages/place descriptions. 
     Never mention stage numbers or related syntax in messages. 

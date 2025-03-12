@@ -54,9 +54,11 @@ export function OptimizedArrangement({
 
   // Handle user choice
   const handleAccept = () => {
-    setHasChosen(true)
-    onAccept()
-  }
+    setHasChosen(true);
+    onAccept();
+    // Dispatch event to trigger marker updates
+    window.dispatchEvent(new CustomEvent('optimization-applied'));
+  };
 
   const handleReject = () => {
     setHasChosen(true)

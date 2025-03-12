@@ -133,7 +133,7 @@ export async function optimizePlaces(
   // Ensure all places have the required properties
   const validPlaces = places.map(place => ({
     ...place,
-    name: place.name || (typeof place.displayName === 'string' ? place.displayName : place.displayName?.text),
+    displayName: place.displayName,
     primaryType: place.primaryType,
     primaryTypeDisplayName: place.primaryTypeDisplayName,
     photos: place.photos

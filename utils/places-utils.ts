@@ -1,9 +1,12 @@
 import { Place, PriceLevel } from '../managers/types';
+import { savedPlacesManager } from '../managers/saved-places-manager';
+import { TravelPreference, TravelSession } from '../managers/types';
+import { getStoredSession, getStoredMetrics, SESSION_CONFIG, safeStorageOp, storage } from '../managers/session-manager';
+import Router from 'next/router';
 
 interface GooglePlaceResponse {
     id: string;
-    name?: string;
-    displayName?: {
+    displayName: {
         text: string;
         languageCode: string;
     };
@@ -42,7 +45,7 @@ interface GooglePlaceResponse {
     priceLevel?: PriceLevel;
 }
 
-interface FetchPlacesParams {
+interface ParallelSearchParams {
     latitude: number;
     longitude: number;
     includedTypes: string[];
@@ -51,10 +54,6 @@ interface FetchPlacesParams {
     fromPlaceTypes?: boolean;
     languageCode: string;
 }
-
-import { TravelPreference, TravelSession } from '../managers/types';
-import { getStoredSession, getStoredMetrics, SESSION_CONFIG, safeStorageOp, storage } from '../managers/session-manager';
-import Router from 'next/router';
 
 // Updated preference to place types mapping based on travel-rizz.html
 export const preferenceToPlaceTypes: Record<TravelPreference, string[]> = {
@@ -103,7 +102,7 @@ export const preferenceToPlaceTypes: Record<TravelPreference, string[]> = {
         'off_roading_area',
         'sports_activity_location'
     ],
-    [TravelPreference.Arts]: [ // Arts and Museum
+    [TravelPreference.Arts]: [
         'art_gallery',
         'art_studio',
         'performing_arts_theater',
@@ -166,7 +165,7 @@ export const getDisplayName = (place: Place): string => {
     if (typeof place.displayName === 'string') {
         return place.displayName;
     }
-    return place.displayName?.text || place.name || '';
+    return place.displayName?.text;
 };
 
 // Function to filter out duplicate places
@@ -206,11 +205,10 @@ export function filterUniquePlaces(places: Place[]): Place[] {
     });
 }
 
-import { savedPlacesManager } from '../managers/saved-places-manager';
-
 // Declare window interface for saved places
 declare global {
     interface Window {
+        savedPlacesManager?: import('../managers/saved-places-manager').SavedPlacesManager
         savedPlaces: Place[];
         addPlaceToMap?: (place: {
             latitude: number;
@@ -220,15 +218,6 @@ declare global {
         }) => void;
         getSavedPlaces?: () => Place[];
     }
-}
-
-// New detection function
-export const messageContainsPlaceType = (message: string): boolean => {
-    const placeTypeKeywords = [
-        'museum', 'gallery', 'restaurant', 'cafe', 
-        'park', 'landmark', 'hotel', 'hostel'
-    ];
-    return new RegExp(`\\b(${placeTypeKeywords.join('|')})\\b`, 'i').test(message);
 }
 
 // Base configuration type for search operations
@@ -336,7 +325,7 @@ export async function searchPlaceByText(
             endpoint: 'text',
             query: searchText,
             location,
-            maxResults: 1,
+            maxResults: 5,
             languageCode: languageCode || Router.locale || 'en'  // Use Router.locale as fallback
         });
         
@@ -378,8 +367,8 @@ export async function searchPlaceByText(
 export const searchMultiplePlacesByText = async (
     searchText: string,
     location: { latitude: number; longitude: number },
-    maxResults: number = 5,
-    languageCode: string = 'en'  // Add language code parameter with default
+    maxResults: number = 10,
+    languageCode: string
 ): Promise<Place[]> => {
     try {
         return await searchPlacesBase({
@@ -395,17 +384,17 @@ export const searchMultiplePlacesByText = async (
     }
 };
 
-export async function fetchPlaces({
+export async function parallelSearchByPreferences({
     latitude,
     longitude,
     includedTypes,
-    maxResults = 5,
+    maxResults = 10,
     fromPreferences = false,
     fromPlaceTypes = false,
     languageCode
-}: FetchPlacesParams): Promise<Place[]> {
+}: ParallelSearchParams): Promise<Place[]> {
     try {
-        console.log('Executing fetchplaces with params:', {
+        console.log('Executing parallel search with params:', {
             latitude,
             longitude,
             includedTypes,
@@ -417,13 +406,17 @@ export async function fetchPlaces({
 
         const location = { latitude, longitude };
 
+        // Calculate results per type to achieve maxResults total
+        // Round up to ensure we get enough results after filtering
+        const resultsPerType = Math.ceil(maxResults / includedTypes.length);
+
         // Search for each type in parallel
         const searchPromises = includedTypes.map(type => 
             searchPlacesBase({
                 endpoint: 'nearby',
                 query: type,
                 location,
-                maxResults: 1,
+                maxResults: resultsPerType,
                 languageCode
             })
         );
@@ -431,68 +424,17 @@ export async function fetchPlaces({
         const results = await Promise.all(searchPromises);
         const places = results.flat().filter(place => place !== null);
 
-        console.log('[fetchPlaces] Found places:', places.length);
-        return places;
+        // Filter out duplicates using filterUniquePlaces
+        const uniquePlaces = filterUniquePlaces(places);
+
+        // Trim to maxResults if we got more than requested
+        const finalPlaces = uniquePlaces.slice(0, maxResults);
+
+        console.log('[parallelSearchByPreferences] Found unique places:', finalPlaces.length);
+        return finalPlaces;
     } catch (error) {
-        console.error('[fetchPlaces] Error:', error);
+        console.error('[parallelSearchByPreferences] Error:', error);
         return [];
-    }
-}
-
-// Helper function to handle different search strategies
-async function trySearch(
-    query: string,
-    headers: any,
-    location: { latitude: number; longitude: number },
-    maxResults: number = 5,
-    languageCode: string = 'en'  // Add language code parameter
-): Promise<any> {
-    try {
-        // First try searching by type
-        const searchByTypeResponse = await fetch(
-            'https://places.googleapis.com/v1/places:searchNearby',
-            {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({
-                    locationRestriction: {
-                        circle: {
-                            center: location,
-                            radius: 5000.0
-                        }
-                    },
-                    includedTypes: [query],
-                    maxResultCount: maxResults,
-                    languageCode: languageCode  // Use the passed language code
-                })
-            }
-        );
-
-        if (!searchByTypeResponse.ok) {
-            // If type search fails, fallback to text search
-            console.log(`[trySearch] Type search failed for ${query}, falling back to text search`);
-            const places = await searchMultiplePlacesByText(query, location, maxResults, languageCode);  // Pass language code
-            return { places }; // Wrap in same format as type search response
-        }
-
-        const searchByTypeData = await searchByTypeResponse.json();
-        if (!searchByTypeData.places || searchByTypeData.places.length === 0) {
-            // If no results from type search, fallback to text search
-            console.log(`[trySearch] No results from type search for ${query}, falling back to text search`);
-            const places = await searchMultiplePlacesByText(query, location, maxResults, languageCode);  // Pass language code
-            return { places }; // Wrap in same format as type search response
-        }
-
-        // We found a place by type search
-        console.log('[trySearch] Found place for type:', { 
-            type: query, 
-            id: searchByTypeData.places[0].id, 
-            name: searchByTypeData.places[0].displayName?.text || searchByTypeData.places[0].name 
-        });
-        return searchByTypeData;
-    } catch (error) {
-        console.error('[trySearch] Error searching for places:', error);
-        return null;
     }
 }
 
@@ -561,11 +503,10 @@ export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null
     // Only keep essential fields we need
     const transformed: Place = {
         id: place.id,
-        name: place.name,
-        displayName: place.displayName || { text: place.name || '', languageCode: 'en' },
+        displayName: place.displayName,
         formattedAddress: place.formattedAddress,
         location: place.location,
-        primaryType: place.primaryType ,  // Provide default value to satisfy string type
+        primaryType: place.primaryType, 
         primaryTypeDisplayName: place.primaryTypeDisplayName,
         // Preserve dayIndex and orderIndex if they exist in the input place
         dayIndex: (place as any).dayIndex,
