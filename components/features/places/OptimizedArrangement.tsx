@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Place } from '@/managers/types'
 
 interface OptimizedArrangementProps {
@@ -22,6 +22,9 @@ export function OptimizedArrangement({
   onAccept, 
   onReject
 }: OptimizedArrangementProps) {
+  // State to track if user has made a choice
+  const [hasChosen, setHasChosen] = useState(false)
+
   // Group places by day
   const placesByDay = places.reduce((acc, place) => {
     const dayIndex = place.dayIndex ?? 0
@@ -49,48 +52,39 @@ export function OptimizedArrangement({
     })
   }
 
+  // Handle user choice
+  const handleAccept = () => {
+    setHasChosen(true)
+    onAccept()
+  }
+
+  const handleReject = () => {
+    setHasChosen(true)
+    onReject()
+  }
+
   return (
-    <div className="p-4 border rounded-lg bg-white dark:bg-gray-900 shadow-sm space-y-4">
+    <div className="p-4 w-fit mx-auto border rounded-lg bg-white dark:bg-gray-900 shadow-sm space-y-6 mt-4">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div>
         <h3 className="text-lg font-medium text-gray-900 dark:text-white">
           Optimized Itinerary
         </h3>
-        <div className="flex space-x-2">
-          <button 
-            onClick={onReject}
-            className="px-3 py-1.5 border border-gray-300 dark:border-gray-600 
-                       text-gray-700 dark:text-gray-300 rounded text-sm
-                       hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            Keep Original
-          </button>
-          <button 
-            onClick={onAccept}
-            className="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 
-                       text-white rounded text-sm transition-colors"
-          >
-            Apply Changes
-          </button>
-        </div>
-      </div>
-
-      {/* Explanation
-      <div className="p-3 bg-slate-100 dark:bg-gray-800 rounded-md">
-        <p className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line">
-          {explanation}
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          Review the optimized arrangement of your places based on travel time and opening hours
         </p>
-      </div> */}
+      </div>
 
       {/* Days */}
       <div className="space-y-4">
         {Object.entries(placesByDay).map(([dayIndex, dayPlaces]) => (
           <div 
             key={dayIndex}
-            className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
+            className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden 
+                       transition-all duration-300 hover:border-sky-500 dark:hover:border-sky-400"
           >
             {/* Day Header */}
-            <div className="bg-slate-100 dark:bg-gray-800 px-4 py-2">
+            <div className="bg-slate-100 dark:bg-gray-800 px-4 py-3">
               <h4 className="font-medium text-gray-900 dark:text-white">
                 {getDayDate(parseInt(dayIndex))}
               </h4>
@@ -103,20 +97,20 @@ export function OptimizedArrangement({
                   key={place.id}
                   className="p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                 >
-                  <div className="flex items-center space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center
-                                 bg-sky-100 dark:bg-sky-900 text-sky-600 dark:text-sky-300
+                  <div className="flex items-center space-x-4">
+                    <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center
+                                   bg-sky-100 dark:bg-sky-900 text-sky-600 dark:text-sky-300
                                    rounded-full text-sm font-medium">
                       {index + 1}
                     </span>
-                    <div>
-                      <h5 className="text-gray-900 dark:text-white font-medium">
+                    <div className="min-w-0 flex-1">
+                      <h5 className="text-gray-900 dark:text-white font-medium truncate">
                         {typeof place.displayName === 'string' 
                           ? place.displayName 
                           : place.displayName?.text}
                       </h5>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        {place.primaryType?.replace(/_/g, ' ')}
+                      <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                        {place.primaryTypeDisplayName?.text}
                       </p>
                     </div>
                   </div>
@@ -126,6 +120,31 @@ export function OptimizedArrangement({
           </div>
         ))}
       </div>
+
+      {/* Action Buttons - Only show if user hasn't made a choice */}
+      {!hasChosen && (
+        <div className="flex justify-end space-x-3 pt-2 border-gray-200 dark:border-gray-700">
+          <button 
+            onClick={handleReject}
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 
+                     text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium
+                     hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors
+                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500
+                     dark:focus:ring-offset-gray-900"
+          >
+            Keep Original
+          </button>
+          <button 
+            onClick={handleAccept}
+            className="px-4 py-2 bg-sky-600 hover:bg-sky-700 
+                     text-white rounded-md text-sm font-medium transition-colors
+                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500
+                     dark:focus:ring-offset-gray-900"
+          >
+            Apply Changes
+          </button>
+        </div>
+      )}
     </div>
   )
 }

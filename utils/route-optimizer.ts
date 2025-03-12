@@ -134,8 +134,9 @@ export async function optimizePlaces(
   const validPlaces = places.map(place => ({
     ...place,
     name: place.name || (typeof place.displayName === 'string' ? place.displayName : place.displayName?.text),
-    primaryType: place.primaryType || 'unknown',
-    photos: place.photos || []
+    primaryType: place.primaryType,
+    primaryTypeDisplayName: place.primaryTypeDisplayName,
+    photos: place.photos
   }));
   
   // If no places or only one place, no optimization needed
@@ -339,11 +340,16 @@ export async function optimizePlaces(
   const optimizedPlaces: Place[] = []
   placesByDay.forEach((dayPlaces, dayIndex) => {
     dayPlaces.forEach((place, index) => {
-      console.log('[Optimizer] Setting indices:', 
-        { id: place.id, dayIndex, orderIndex: index })
-      place.dayIndex = dayIndex
-      place.orderIndex = index
-      optimizedPlaces.push(place)
+      // Get original place from validPlaces to ensure all fields are preserved
+      const originalPlace = validPlaces.find(p => p.id === place.id)
+      if (originalPlace) {
+        const optimizedPlace = {
+          ...originalPlace,
+          dayIndex,
+          orderIndex: index
+        }
+        optimizedPlaces.push(optimizedPlace)
+      }
     })
   })
   
