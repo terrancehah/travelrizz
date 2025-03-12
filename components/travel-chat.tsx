@@ -644,15 +644,20 @@ export function TravelChat({
 
                                     case 'placeOptimizer':
                                         if (!toolInvocation.result?.props?.optimizedPlaces) return null;
+                                        const { optimizedPlaces, startDate, endDate } = toolInvocation.result.props as {
+                                            optimizedPlaces: Place[];
+                                            startDate: string;
+                                            endDate: string;
+                                        };
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-full">
                                                     <OptimizedArrangement
-                                                        places={toolInvocation.result.props.optimizedPlaces}
-                                                        startDate={toolInvocation.result.props.startDate}
-                                                        endDate={toolInvocation.result.props.endDate}
+                                                        places={optimizedPlaces}
+                                                        startDate={startDate}
+                                                        endDate={endDate}
                                                         onAccept={() => {
-                                                            const result = { type: 'placeOptimizer', props: { optimizedPlaces: toolInvocation.result.props.optimizedPlaces } };
+                                                            const result = { type: 'placeOptimizer', props: { optimizedPlaces } };
                                                             handleToolUpdate({ toolInvocations: [{ toolCallId, toolName, result }] });
                                                         }}
                                                         onReject={() => {

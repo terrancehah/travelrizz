@@ -5,7 +5,6 @@ import { Place } from '@/managers/types'
 
 interface OptimizedArrangementProps {
   places: Place[]
-  explanation: string
   startDate: string
   endDate: string
   onAccept: () => void
@@ -18,11 +17,10 @@ interface OptimizedArrangementProps {
  */
 export function OptimizedArrangement({ 
   places, 
-  explanation,
   startDate,
   endDate, 
   onAccept, 
-  onReject 
+  onReject
 }: OptimizedArrangementProps) {
   // Group places by day
   const placesByDay = places.reduce((acc, place) => {
@@ -77,12 +75,12 @@ export function OptimizedArrangement({
         </div>
       </div>
 
-      {/* Explanation */}
+      {/* Explanation
       <div className="p-3 bg-slate-100 dark:bg-gray-800 rounded-md">
         <p className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line">
           {explanation}
         </p>
-      </div>
+      </div> */}
 
       {/* Days */}
       <div className="space-y-4">
