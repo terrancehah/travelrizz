@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { Place } from '@/managers/types'
+import { useTranslations } from 'next-intl'
+import { useLocalizedFont } from '@/hooks/useLocalizedFont'
 
 interface OptimizedArrangementProps {
   places: Place[]
@@ -24,6 +26,8 @@ export function OptimizedArrangement({
 }: OptimizedArrangementProps) {
   // State to track if user has made a choice
   const [hasChosen, setHasChosen] = useState(false)
+  const tComponent = useTranslations('components')
+  const font = useLocalizedFont()
 
   // Group places by day
   const placesByDay = places.reduce((acc, place) => {
@@ -69,21 +73,22 @@ export function OptimizedArrangement({
     <div className="p-4 w-fit mx-auto border rounded-lg bg-white dark:bg-gray-900 shadow-sm space-y-6 mt-4">
       {/* Header */}
       <div>
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-          Optimized Itinerary
+        <h3 className={`text-lg ${font.heading} font-medium text-gray-900 dark:text-white`}>
+          {tComponent('optimizedArrangement.heading')}
         </h3>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          Review the optimized arrangement of your places based on travel time and opening hours
+        <p className={`mt-1 ${font.heading} text-sm text-gray-500 dark:text-gray-400`}>
+          {tComponent('optimizedArrangement.subheading')}
         </p>
       </div>
 
+      {/* Days */}
       {/* Days */}
       <div className="space-y-4">
         {Object.entries(placesByDay).map(([dayIndex, dayPlaces]) => (
           <div 
             key={dayIndex}
             className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden 
-                       transition-all duration-300 hover:border-sky-500 dark:hover:border-sky-400"
+                      transition-all duration-300 hover:border-sky-500 dark:hover:border-sky-400"
           >
             {/* Day Header */}
             <div className="bg-slate-100 dark:bg-gray-800 px-4 py-3">
@@ -101,8 +106,8 @@ export function OptimizedArrangement({
                 >
                   <div className="flex items-center space-x-4">
                     <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center
-                                   bg-sky-100 dark:bg-sky-900 text-sky-600 dark:text-sky-300
-                                   rounded-full text-sm font-medium">
+                                  bg-sky-100 dark:bg-sky-900 text-sky-600 dark:text-sky-300
+                                  rounded-full text-sm font-medium">
                       {index + 1}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -129,19 +134,19 @@ export function OptimizedArrangement({
           <button 
             onClick={handleReject}
             className="px-4 py-2 border border-gray-300 dark:border-gray-600 
-                     text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium
-                     hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors
-                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500
-                     dark:focus:ring-offset-gray-900"
+                    text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium
+                    hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors
+                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500
+                    dark:focus:ring-offset-gray-900"
           >
             Keep Original
           </button>
           <button 
             onClick={handleAccept}
             className="px-4 py-2 bg-sky-600 hover:bg-sky-700 
-                     text-white rounded-md text-sm font-medium transition-colors
-                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500
-                     dark:focus:ring-offset-gray-900"
+                    text-white rounded-md text-sm font-medium transition-colors
+                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500
+                    dark:focus:ring-offset-gray-900"
           >
             Apply Changes
           </button>

@@ -25,6 +25,10 @@
         "title": "{currencyName} ({currencySymbol}) Currency Rates",
         "subheading": "as of {lastUpdated}"
     },
+    "optimizedArrangement":{
+        "heading": "Optimized Itinerary",
+        "subheading": "Here's the the optimized itinerary based on places locations and travel distance"
+    },
     "premiumUpgrade":{
         "heading": "The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!",
         "newPrice": "US$1.99",
