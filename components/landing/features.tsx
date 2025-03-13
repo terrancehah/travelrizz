@@ -70,6 +70,7 @@ export default function Features() {
                   src={feature.image}
                   alt={t(`features.items.${feature.key}.title`)}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                   className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover"
                 />
               </div>
@@ -103,6 +104,7 @@ export default function Features() {
                     src={feature.image}
                     alt={t(`features.items.${feature.key}.title`)}
                     fill
+                    sizes={`(max-width: 768px) 100vw, (max-width: 1200px) 50vw, ${index === 0 || index === 3 ? '66.66vw' : '33.33vw'}`}
                     className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover"
                   />
                 </div>
