@@ -21,16 +21,6 @@ declare global {
         prevSlide: () => void;
         goToSlide: (index: number) => void;
         google: typeof google;
-        removePlaceFromMap?: (title: string) => void;
-        addPlaceToMap?: (place: { 
-            latitude: number; 
-            longitude: number; 
-            title?: string;
-            place?: Place;
-        }) => void;
-        clearPlaceMarkers?: () => void;
-        savedPlaces: Place[];
-        getSavedPlaces?: () => Place[];
     }
 }
 
@@ -47,6 +37,22 @@ declare global {
         }
     }
 }
+
+// Custom events for map operations
+interface MapOperationEvent extends CustomEvent<MapOperationDetail> {}
+
+interface MapOperationDetail {
+    type: 'add-place' | 'remove-place' | 'places-changed';
+    place?: Place;
+    placeId?: string;
+    places?: Place[];
+    count?: number;
+}
+
+// Helper function to dispatch map operations
+const dispatchMapOperation = (detail: MapOperationDetail) => {
+    window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', { detail }));
+};
 
 const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'light' }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -209,11 +215,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             
             savedPlaces.forEach(place => {
                 if (place.location) {
-                    window.addPlaceToMap?.({
-                        latitude: place.location.latitude,
-                        longitude: place.location.longitude,
-                        title: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
-                        place: place
+                    dispatchMapOperation({
+                        type: 'add-place',
+                        place
                     });
                 }
             });
@@ -225,61 +229,76 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     useEffect(() => {
         if (!mapInstanceRef.current) return;
         
-        window.removePlaceFromMap = (placeId: string) => {
-            console.log('Debug - Starting removal process for placeId:', placeId);
+        const handleMapOperation = (event: MapOperationEvent) => {
+            const { type, place, placeId } = event.detail;
             
-            try {
-                mapManagerRef.current?.removeMarker(placeId);
-                savedPlacesManager.removePlace(placeId);
+            switch (type) {
+                case 'add-place':
+                    if (place?.location) {
+                        // Add place to saved places manager
+                        savedPlacesManager.addPlace(place);
+                        
+                        // Create marker with day and order index
+                        mapManagerRef.current?.createMarker(place, {
+                            dayIndex: place.dayIndex,
+                            orderIndex: place.orderIndex
+                        });
 
-                console.log('Debug - Successfully removed marker and place:', placeId);
-            } catch (error) {
-                console.error('Debug - Error during marker removal:', error);
-            }
-            
-            window.dispatchEvent(new CustomEvent('savedPlacesChanged', {
-                detail: {
-                    places: Array.from(savedPlacesManager.places.values()),
-                    count: savedPlacesManager.places.size
-                }
-            }));
-        };
-
-        window.addPlaceToMap = async (data: { 
-            latitude: number; 
-            longitude: number; 
-            title?: string;
-            place?: Place;
-        }) => {
-            try {
-                if (!data.place) return;
-                
-                // Add place to saved places manager
-                savedPlacesManager.addPlace(data.place);
-                
-                // Create marker with day and order index
-                await mapManagerRef.current?.createMarker(data.place, {
-                    dayIndex: data.place.dayIndex,
-                    orderIndex: data.place.orderIndex
-                });
-
-                // Notify about places change
-                window.dispatchEvent(new CustomEvent('savedPlacesChanged', {
-                    detail: {
-                        places: Array.from(savedPlacesManager.places.values()),
-                        count: savedPlacesManager.places.size
+                        // Notify about places change using map operation event
+                        dispatchMapOperation({
+                            type: 'places-changed',
+                            places: Array.from(savedPlacesManager.places.values()),
+                            count: savedPlacesManager.places.size
+                        });
                     }
-                }));
-            } catch (err) {
-                console.error('Error adding place marker:', err);
+                    break;
+                    
+                case 'remove-place':
+                    if (placeId) {
+                        mapManagerRef.current?.removeMarker(placeId);
+                        savedPlacesManager.removePlace(placeId);
+                        
+                        // Notify about places change using map operation event
+                        dispatchMapOperation({
+                            type: 'places-changed',
+                            places: Array.from(savedPlacesManager.places.values()),
+                            count: savedPlacesManager.places.size
+                        });
+                    }
+                    break;
+                
+                case 'places-changed':
+                    const { places, count } = event.detail;
+                    if (places && count !== undefined) {
+                        console.log('[MapComponent] Received places-changed event:', { places, count });
+                        // Update markers and routes accordingly
+                        updateMarkers();
+                        updateRoutes();
+                    }
+                    break;
             }
         };
 
-        window.getSavedPlaces = () => {
-            return savedPlacesManager.getPlaces();
-        };
+        window.addEventListener('map-operation', handleMapOperation as EventListener);
         
-    }, [mapInstanceRef.current]); // Only depend on the map instance
+        return () => {
+            window.removeEventListener('map-operation', handleMapOperation as EventListener);
+        };
+    }, [mapInstanceRef.current]);
+
+    useEffect(() => {
+        if (!mapInstanceRef.current) return;
+        
+        const savedPlaces = savedPlacesManager.getPlaces();
+        savedPlaces.forEach(place => {
+            if (place.location) {
+                dispatchMapOperation({
+                    type: 'add-place',
+                    place
+                });
+            }
+        });
+    }, [mapInstanceRef.current]);
 
     useEffect(() => {
         const sessionData = sessionStorage.getItem(SESSION_CONFIG.STORAGE_KEY);
@@ -323,8 +342,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                             savedPlacesManager.addPlace(place);
                         }
                     });
-                    window.dispatchEvent(new CustomEvent('savedPlacesChanged', {
+                    window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', {
                         detail: {
+                            type: 'places-changed',
                             places: Array.from(savedPlacesManager.places.values()),
                             count: savedPlacesManager.places.size
                         }
@@ -388,23 +408,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
 
             // Force re-render of travel-info components
             window.dispatchEvent(new CustomEvent('places-reordered'));
-        };
-
-        // Clear markers and redraw them
-        const updateMarkers = () => {
-            // Clear existing markers
-            mapManagerRef.current?.clearMarkers();
-            
-            // Add new markers
-            const places = savedPlacesManager.getPlaces();
-            places.forEach(place => {
-                if (place.location) {
-                    mapManagerRef.current?.createMarker(place, {
-                        dayIndex: place.dayIndex,
-                        orderIndex: place.orderIndex
-                    });
-                }
-            });
         };
 
         window.addEventListener('travelinfo-displayed', handleTravelInfoDisplay);
@@ -724,6 +727,66 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                     }
                 }
             );
+        });
+    };
+
+    const updateMarkers = () => {
+        // Clear existing markers
+        mapManagerRef.current?.clearMarkers();
+        
+        // Add new markers
+        const places = savedPlacesManager.getPlaces();
+        places.forEach(place => {
+            if (place.location) {
+                dispatchMapOperation({
+                    type: 'add-place',
+                    place
+                });
+            }
+        });
+    };
+
+    const updateRoutes = () => {
+        // Clear all existing routes first
+        polylineRef.current.forEach(polyline => polyline.setMap(null));
+        polylineRef.current.clear();
+
+        // Draw routes for each active travel-info
+        activeRoutes.forEach(async ({ fromId, toId }) => {
+            const fromPlace = savedPlacesManager.getPlaceById(fromId);
+            const toPlace = savedPlacesManager.getPlaceById(toId);
+            
+            console.log('[MapComponent] Drawing route between places:', {
+                fromPlace: fromPlace?.displayName,
+                toPlace: toPlace?.displayName,
+                fromDayIndex: fromPlace?.dayIndex,
+                toDayIndex: toPlace?.dayIndex
+            });
+            
+            if (!fromPlace?.location || !toPlace?.location || 
+                fromPlace.dayIndex === undefined || toPlace.dayIndex === undefined || 
+                fromPlace.dayIndex !== toPlace.dayIndex) {
+                console.log('[MapComponent] Skipping route due to invalid places or different days');
+                return;
+            }
+
+            const color = getRouteColor(fromPlace.dayIndex);
+            const polyline = await drawRoute([fromPlace, toPlace], color);
+            if (polyline) {
+                const routeKey = `${fromId}-${toId}`;
+                console.log('[MapComponent] Successfully created polyline for route:', routeKey);
+                // First remove any existing polyline for this route
+                const existingPolyline = polylineRef.current.get(routeKey);
+                if (existingPolyline) {
+                    existingPolyline.setMap(null);
+                }
+                // Store reference before setting map
+                polylineRef.current.set(routeKey, polyline);
+                // Now set the map
+                polyline.setMap(mapInstanceRef.current);
+            } else {
+                console.log('[MapComponent] Failed to create polyline for route:', {fromId, toId});
+            }
         });
     };
 

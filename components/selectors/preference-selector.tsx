@@ -20,12 +20,6 @@ export const PreferenceSelector: React.FC<PreferenceSelectorProps> = ({
     return currentPreferences || [];
   });
 
-  // Update tempPreferences when currentPreferences changes
-  React.useEffect(() => {
-    console.log('Current preferences updated:', currentPreferences); // Debug log
-    setTempPreferences(currentPreferences || []);
-  }, [currentPreferences]);
-
   const handleConfirm = () => {
     onUpdate?.(tempPreferences);
   };

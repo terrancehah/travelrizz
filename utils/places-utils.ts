@@ -205,18 +205,25 @@ export function filterUniquePlaces(places: Place[]): Place[] {
     });
 }
 
+// Updated interface for map operations
+interface MapOperationDetail {
+    type: 'add-place' | 'remove-place' | 'places-changed';
+    place?: Place;
+    placeId?: string;
+    places?: Place[];
+    count?: number;
+}
+
+// Helper function to dispatch map operations
+const dispatchMapOperation = (detail: MapOperationDetail) => {
+    window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', { detail }));
+};
+
 // Declare window interface for saved places
 declare global {
     interface Window {
-        savedPlacesManager?: import('../managers/saved-places-manager').SavedPlacesManager
+        savedPlacesManager?: import('../managers/saved-places-manager').SavedPlacesManager;
         savedPlaces: Place[];
-        addPlaceToMap?: (place: {
-            latitude: number;
-            longitude: number;
-            title?: string;
-            place?: Place;
-        }) => void;
-        getSavedPlaces?: () => Place[];
     }
 }
 
@@ -311,7 +318,7 @@ export async function searchPlaceByText(
     searchText: string,
     location: { latitude: number; longitude: number },
     destination: string,
-    languageCode?: string  // Make languageCode optional
+    languageCode?: string
 ): Promise<Place | null> {
     console.log('[searchPlaceByText] Starting search with:', {
         searchText,
@@ -326,7 +333,7 @@ export async function searchPlaceByText(
             query: searchText,
             location,
             maxResults: 5,
-            languageCode: languageCode || Router.locale || 'en'  // Use Router.locale as fallback
+            languageCode: languageCode || Router.locale || 'en'
         });
         
         if (places.length === 0) {
@@ -349,6 +356,12 @@ export async function searchPlaceByText(
             const metrics: TravelSession = metricsManager.get();
             metrics.savedPlacesCount = savedPlacesManager.places.size;
             metricsManager.update(metrics);
+
+            // Notify about new place using map operation event
+            dispatchMapOperation({
+                type: 'add-place',
+                place
+            });
         }
 
         console.log('[searchPlaceByText] Found place:', {

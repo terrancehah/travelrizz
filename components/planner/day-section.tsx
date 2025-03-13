@@ -24,6 +24,18 @@ interface DaySectionProps {
   isDragging?: boolean
 }
 
+interface MapOperationDetail {
+    type: 'add-place' | 'remove-place' | 'places-changed';
+    place?: Place;
+    placeId?: string;
+    places?: Place[];
+    count?: number;
+}
+
+const dispatchMapOperation = (detail: MapOperationDetail) => {
+    window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', { detail }));
+};
+
 export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChange, className = '', isDragging = false }: DaySectionProps) {
   const [isSearching, setIsSearching] = useState(false)
   const tPlan = useTranslations('itineraryPlanner')
@@ -31,7 +43,10 @@ export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChan
   
   const handlePlaceDelete = (dayId: string, placeId: string) => {
     // Remove from map first
-    window.removePlaceFromMap?.(placeId);
+    dispatchMapOperation({
+        type: 'remove-place',
+        placeId
+    });
     // Then remove from day section
     onDeletePlace(dayId, placeId);
   };
@@ -39,12 +54,10 @@ export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChan
   const handlePlaceAdd = (place: Place) => {
     // Add to map first
     if (place.location) {
-      window.addPlaceToMap?.({
-        latitude: place.location.latitude,
-        longitude: place.location.longitude,
-        title: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
-        place: place
-      });
+        dispatchMapOperation({
+            type: 'add-place',
+            place
+        });
     }
     // Then add to day section
     onAddPlace(day.id, place);

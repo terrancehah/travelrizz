@@ -4,10 +4,10 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { BudgetLevel, SupportedLanguage, TravelDetails, TravelPreference, WeatherForecastProps, WeatherHistoricalProps } from '../managers/types';
-import { BudgetSelector } from './selectors/BudgetSelector';
-import { PreferenceSelector } from './selectors/PreferenceSelector';
-import { DatePicker } from './selectors/DateSelector';
-import { LanguageSelector } from './selectors/LanguageSelector';
+import { BudgetSelector } from './selectors/budget-selector';
+import { PreferenceSelector } from './selectors/preference-selector';
+import { DatePicker } from './selectors/date-selector';
+import { LanguageSelector } from './selectors/language-selector';
 import { PlaceCard } from './features/places/PlaceCard';
 import { Carousel } from './features/places/PlaceCarousel';
 import { SavedPlacesList } from './features/places/SavedPlacesList';

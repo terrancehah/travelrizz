@@ -13,6 +13,18 @@ interface PlaceCardProps {
   className?: string;
 }
 
+interface MapOperationDetail {
+  type: 'add-place' | 'remove-place' | 'places-changed';
+  place?: Place;
+  placeId?: string;
+  places?: Place[];
+  count?: number;
+}
+
+const dispatchMapOperation = (detail: MapOperationDetail) => {
+  window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', { detail }));
+};
+
 const StarRating = ({ rating }: { rating: number }) => {
   const totalStars = 5;
   const fullStars = Math.floor(rating);
@@ -107,14 +119,11 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
 
   // Add marker to map when card is shown
   useEffect(() => {
-    // Add to map if location exists
-    if (place?.location && window.addPlaceToMap) {
+    if (place?.location) {
       console.log('[PlaceCard] Adding place to map:', place);
-      window.addPlaceToMap({
-        latitude: place.location.latitude,
-        longitude: place.location.longitude,
-        title: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
-        place // Pass the full place object for click handling
+      dispatchMapOperation({
+        type: 'add-place',
+        place
       });
     }
   }, [place]);

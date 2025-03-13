@@ -3,6 +3,20 @@ import { Place } from '@/managers/types';
 import { PlaceCard } from './PlaceCard';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
+// Interface for map operations
+interface MapOperationDetail {
+    type: 'add-place' | 'remove-place' | 'places-changed';
+    place?: Place;
+    placeId?: string;
+    places?: Place[];
+    count?: number;
+}
+
+// Helper function to dispatch map operations
+const dispatchMapOperation = (detail: MapOperationDetail) => {
+    window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', { detail }));
+};
+
 export const Carousel = ({ places }: { places: Place[] }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const fonts = useLocalizedFont();
@@ -18,12 +32,10 @@ export const Carousel = ({ places }: { places: Place[] }) => {
     // Add all places to map when carousel is shown
     useEffect(() => {
         places.forEach(place => {
-            if (place?.location && window.addPlaceToMap) {
-                window.addPlaceToMap({
-                    latitude: place.location.latitude,
-                    longitude: place.location.longitude,
-                    title: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
-                    place // Pass the full place object for click handling
+            if (place?.location) {
+                dispatchMapOperation({
+                    type: 'add-place',
+                    place
                 });
             }
         });
@@ -68,4 +80,3 @@ export const Carousel = ({ places }: { places: Place[] }) => {
         </div>
     );
 };
-
