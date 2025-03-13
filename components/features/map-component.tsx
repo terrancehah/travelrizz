@@ -235,21 +235,27 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             switch (type) {
                 case 'add-place':
                     if (place?.location) {
-                        // Add place to saved places manager
-                        savedPlacesManager.addPlace(place);
+                        // Check if place is already in savedPlacesManager
+                        if (!savedPlacesManager.hasPlace(place.id)) {
+                            savedPlacesManager.addPlace(place);
+                        }
                         
-                        // Create marker with day and order index
-                        mapManagerRef.current?.createMarker(place, {
-                            dayIndex: place.dayIndex,
-                            orderIndex: place.orderIndex
-                        });
-
-                        // Notify about places change using map operation event
-                        dispatchMapOperation({
-                            type: 'places-changed',
-                            places: Array.from(savedPlacesManager.places.values()),
-                            count: savedPlacesManager.places.size
-                        });
+                        // Check if marker already exists
+                        if (!mapManagerRef.current?.getMarker(place.id)) {
+                            mapManagerRef.current?.createMarker(place, {
+                                dayIndex: place.dayIndex,
+                                orderIndex: place.orderIndex
+                            });
+                        }
+                        
+                        // Only dispatch places-changed if this is a new place
+                        if (!savedPlacesManager.hasPlace(place.id)) {
+                            dispatchMapOperation({
+                                type: 'places-changed',
+                                places: Array.from(savedPlacesManager.places.values()),
+                                count: savedPlacesManager.places.size
+                            });
+                        }
                     }
                     break;
                     
@@ -258,7 +264,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                         mapManagerRef.current?.removeMarker(placeId);
                         savedPlacesManager.removePlace(placeId);
                         
-                        // Notify about places change using map operation event
                         dispatchMapOperation({
                             type: 'places-changed',
                             places: Array.from(savedPlacesManager.places.values()),
@@ -271,8 +276,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                     const { places, count } = event.detail;
                     if (places && count !== undefined) {
                         console.log('[MapComponent] Received places-changed event:', { places, count });
-                        // Update markers and routes accordingly
-                        updateMarkers();
+                        // Only update routes since markers are handled in add-place
                         updateRoutes();
                     }
                     break;
