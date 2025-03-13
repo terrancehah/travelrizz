@@ -289,10 +289,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 const color = getRouteColor(dayIndex);
                 
                 const pinElement = new PinElement({
-                    background: color,
-                    borderColor: color,
-                    glyphColor: "#FFFFFF",
-                    glyph: `${orderIndex + 1}`
+                    background: "#FF4444",  // Bright red
+                    borderColor: "#CC0000", // Darker red border
+                    glyphColor: "#FFFFFF",  // White glyph for better contrast
                 });
 
                 // Remove existing marker if it exists
@@ -721,10 +720,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         const color = getRouteColor(dayIndex);
         
         const pinElement = new window.google.maps.marker.PinElement({
-            background: color,
-            borderColor: color,
-            glyphColor: "#FFFFFF",
-            glyph: `${orderIndex + 1}`
+            background: "#FF4444",  // Bright red
+            borderColor: "#CC0000", // Darker red border
+            glyphColor: "#FFFFFF",  // White glyph for better contrast
         });
 
         const marker = new window.google.maps.marker.AdvancedMarkerElement({

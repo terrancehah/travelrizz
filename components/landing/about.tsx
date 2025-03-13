@@ -7,7 +7,7 @@ export default function About() {
   const fonts = useLocalizedFont();
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-gray-900">
+    <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-gray-900">
       <div className="container w-[80%] mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-8">

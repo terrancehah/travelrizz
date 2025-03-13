@@ -52,7 +52,7 @@ export default function Footer() {
             <h3 className={`font-semibold mb-4 text-primary dark:text-sky-100 font-raleway ${fonts.heading}`}>{t('footer.legal.title')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/legal" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/terms" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.terms')}
                 </Link>
               </li>

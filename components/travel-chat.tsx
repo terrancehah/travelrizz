@@ -15,11 +15,11 @@ import HistoricalWeatherChart from './features/weather/historical-weather-chart'
 import WeatherForecast from './features/weather/WeatherForecast';
 import { OptimizedArrangement } from './features/places/OptimizedArrangement';
 import { ChevronUpIcon, ChevronDownIcon } from 'lucide-react';
-import { QuickResponse } from './chat/QuickResponse';
+import { QuickResponse } from './chat/quick-response';
 import ReactMarkdown from 'react-markdown';
 import { validateStageProgression } from '../managers/stage-manager';
 import { TravelSession, StageProgressResult } from '../managers/types';
-import { CurrencyConverter } from './features/currency/CurrencyConverter';
+import { CurrencyConverter } from './features/currency/currency-converter';
 import { useTravelChat } from '../hooks/useTravelChat';
 import { useTravelTools } from '../hooks/useTravelTools';
 import { Place } from '../managers/types';
@@ -33,7 +33,7 @@ import { useRouter } from 'next/router';
 import { ChatHeader } from './chat/chat-header';
 import { useLocalizedFont } from '../hooks/useLocalizedFont';
 import { useTranslations } from 'next-intl';
-import LocalTips from './features/local-tips/LocalTips';
+import LocalTips from './features/local-tips/local-tips';
 
 interface TravelChatProps {
     initialDetails: TravelDetails;

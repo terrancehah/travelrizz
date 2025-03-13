@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { AlertCircle } from 'lucide-react'
 import { CurrencyConverterProps, CURRENCY_INFO } from '@/managers/types'
 import { formatCurrencyAmount } from '@/utils/currency-utils'
-import { CurrencyList } from './CurrencyList'
+import { CurrencyList } from './currency-list'
 import { useLocalizedFont } from '@/hooks/useLocalizedFont'
 import { useTranslations } from 'next-intl'
 

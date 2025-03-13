@@ -68,9 +68,9 @@ const CollapsibleSection = ({ section, isOpen, onToggle, fonts }: {
                     }`}
                   >
                     {processed.isNested ? (
-                      <div className="flex items-start">
-                        <span className="inline-block w-5">{processed.bullet}</span>
-                        <span className="flex-1">{processed.text}</span>
+                      <div className="flex items-start nested-list-item">
+                        <span className="inline-block bullet-point w-4 mr-4">{processed.bullet}</span>
+                        <span className="flex-1 nested-content">{processed.text}</span>
                       </div>
                     ) : item}
                   </li>
@@ -168,40 +168,53 @@ export default function Terms() {
       id: 'ai',
       title: '8. AI-Related Disclaimers',
       content: [
-        'Sensitive Information Warning: We strongly advise against sharing sensitive personal information in chats with our AI assistant.',
-        'AI Limitations: Our AI is designed to assist with travel planning but may not always be accurate or complete.'
+        'Our AI assistant is designed to help with travel planning, but it has limitations and may not always be accurate. Please treat its suggestions as recommendations rather than definitive advice.',
+        'Important: Avoid sharing sensitive personal information (e.g., credit card numbers, passwords) in chats with our AI. While we don\'t store chats, our service providers (Vercel and OpenAI) may retain them according to their policies.'
       ]
     },
     {
       id: 'ip',
       title: '9. Intellectual Property',
       content: [
-        'Ownership: All content on TravelRizz.app, including AI-generated travel plans, is owned by TravelRizz or its licensors.',
-        'User Restrictions: You may not copy, distribute, or create derivative works from our content without written permission.'
+        'Ownership: All content on TravelRizz.app, including AI-generated travel plans, text, graphics, and other materials, is owned by TravelRizz or its licensors. This content is protected by copyright, trademark, and other intellectual property laws.',
+        'User Permissions: You may use the AI-generated travel plans for your personal, non-commercial purposes, such as planning your own trips or sharing them with friends and family for their personal use.',
+        'Restrictions: You may not:',
+        '    • Copy, distribute, or share the content for commercial purposes (e.g., selling the plans or using them in a business)',
+        '    • Create derivative works from the content (e.g., modifying the plans and claiming them as your own)',
+        '    • Publicly display or publish the content on other platforms (e.g., social media, blogs, or websites) without our written permission',
+        'Attribution: If you share the travel plans with others, we kindly ask that you attribute them to TravelRizz.app'
       ]
     },
     {
       id: 'liability',
       title: '10. Limitation of Liability',
       content: [
-        "No Warranties: TravelRizz is provided 'as is.' We do not guarantee the accuracy of AI-generated travel plans.",
-        'Liability Cap: To the fullest extent allowed by law, TravelRizz is not liable for any damages arising from your use of the service.'
+        'TravelRizz.app and its services are provided "as is" without any warranties, express or implied. We do not guarantee the accuracy or completeness of AI-generated travel plans or any other content.',
+        'To the fullest extent permitted by law, TravelRizz is not liable for any direct, indirect, incidental, special, or consequential damages arising from your use of our service.'
       ]
     },
     {
       id: 'law',
       title: '11. Governing Law',
-      content: 'These ToS are governed by the laws of Malaysia. Any disputes will be resolved in the courts of Kuala Lumpur, Malaysia, in accordance with Malaysian law. We aim to resolve any disputes amicably, considering our international user base and the global nature of our service.'
+      content: 'These Terms of Service are governed by the laws of Malaysia. Any disputes will be resolved in the courts of Kuala Lumpur, Malaysia, in accordance with Malaysian law. We aim to resolve any disputes amicably, considering our international user base and the global nature of our service.'
     },
     {
       id: 'changes',
-      title: '12. Changes to Terms',
-      content: "We may modify these ToS at any time. Significant changes will be announced on our website or, if you've provided an email for payment purposes, via email. Your continued use of TravelRizz after changes take effect means you accept the updated terms."
+      title: '12. Updates to This Policy',
+      content: [
+        'Last Updated: March 13, 2025',
+        'We may update these Terms of Service periodically to reflect changes in our practices, services, or legal requirements. Significant changes will be announced on our website. Your continued use of TravelRizz.app after such changes constitutes acceptance of the updated policy.'
+      ]
     },
     {
       id: 'contact',
-      title: '13. Contact Information',
-      content: 'Questions? Reach out to us at our social medias with any inquiries about these ToS or our service.'
+      title: '13. Contact Us',
+      content: [
+        'Have questions or concerns about our Terms of Service? We\'d love to hear from you! Reach out through our social media channels:',
+        '    • X: @travelrizz',
+        '    • Instagram: @travelrizz',
+        '    • Facebook: @travelrizz'
+      ]
     }
   ];
 
@@ -212,9 +225,6 @@ export default function Terms() {
           <h1 className={`text-4xl md:text-5xl text-primary dark:text-sky-100 ${fonts.heading} transition-colors duration-400 text-center`}>
             Terms of Service
           </h1>
-          <p className={`text-gray-600 dark:text-gray-300 ${fonts.text} text-center mb-8`}>
-            Effective Date: March 13, 2025
-          </p>
           <div className="w-full max-w-4xl bg-white dark:bg-gray-900 rounded-lg shadow-sm">
             {sections.map(section => (
               <CollapsibleSection
