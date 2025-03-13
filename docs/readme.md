@@ -124,6 +124,7 @@ Supported languages:
 
 ## 🚧 Development Status
 
+[![built with Codeium](https://codeium.com/badges/main)](https://codeium.com)
 Currently in active development. Features are being added and refined based on user feedback.
 
 ## 📄 License
