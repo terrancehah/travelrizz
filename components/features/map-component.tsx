@@ -4,6 +4,7 @@ import { searchPlaceByText } from '@/utils/places-utils';
 import { savedPlacesManager } from '@/managers/saved-places-manager';
 import { SESSION_CONFIG } from '@/managers/session-manager';
 import { travelInfoManager } from '@/utils/travel-info-utils';
+import { loadGoogleMapsScript, getMapId, GoogleMapManager } from '../../utils/maps-utils';
 
 interface MapComponentProps {
     city: string;
@@ -15,17 +16,12 @@ declare global {
     interface Window {
         setupMapInstance?: () => void;
         currentSlide: number;
-        currentInfoWindow?: google.maps.InfoWindow;
         updateCarousel: () => void;
         nextSlide: () => void;
         prevSlide: () => void;
         goToSlide: (index: number) => void;
         google: typeof google;
         removePlaceFromMap?: (title: string) => void;
-        currentInfoWindowMarker?: {
-            markerId: string;
-            marker: google.maps.marker.AdvancedMarkerElement;
-        };
         addPlaceToMap?: (place: { 
             latitude: number; 
             longitude: number; 
@@ -55,14 +51,12 @@ declare global {
 const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'light' }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const mapInstanceRef = useRef<google.maps.Map | null>(null);
+    const mapManagerRef = useRef<GoogleMapManager | null>(null);
     const [map, setMap] = useState<google.maps.Map | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const scriptLoadedRef = useRef(false);
     const geometryLoadedRef = useRef(false);
     const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
-    const markersRef = useRef<Map<string, google.maps.marker.AdvancedMarkerElement>>(new Map());
-    const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
     const [markerCount, setMarkerCount] = useState(0);
     // Track current active routes - only store minimal required data
     const [activeRoutes, setActiveRoutes] = useState<{fromId: string, toId: string}[]>([]);
@@ -99,13 +93,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
 
             mapInstanceRef.current = map;
             setMap(map);
-            markersRef.current = new Map();
-
-            // Initialize the InfoWindow
-            infoWindowRef.current = new window.google.maps.InfoWindow({
-                maxWidth: 300,
-                pixelOffset: new window.google.maps.Size(0, -30)
-            });
+            
+            // Initialize map manager
+            mapManagerRef.current = new GoogleMapManager(mapInstanceRef.current, apiKey);
 
             // Dynamically import the geometry library
             console.log('[MapComponent] Loading geometry library...');
@@ -144,7 +134,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             }
 
             // Don't load script if it's already being loaded
-            if (scriptLoadedRef.current || document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
+            if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
                 return;
             }
 
@@ -159,11 +149,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                     console.error('[MapComponent] Failed to load Google Maps script');
                     setError('Failed to load map');
                     setIsLoading(false);
-                    scriptLoadedRef.current = false;
                 };
 
                 document.head.appendChild(script);
-                scriptLoadedRef.current = true;
             } catch (error) {
                 console.error('[MapComponent] Error loading script:', error);
                 setError('Failed to initialize map');
@@ -236,31 +224,15 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
 
     useEffect(() => {
         if (!mapInstanceRef.current) return;
-
+        
         window.removePlaceFromMap = (placeId: string) => {
             console.log('Debug - Starting removal process for placeId:', placeId);
             
             try {
-                const marker = markersRef.current.get(placeId);
-                if (marker) {
-                    console.log('Debug - Found marker:', marker);
-                    
-                    marker.map = null;
-                    
-                    if (infoWindowRef.current) {
-                        infoWindowRef.current.close();
-                    }
+                mapManagerRef.current?.removeMarker(placeId);
+                savedPlacesManager.removePlace(placeId);
 
-                    google.maps.event.clearInstanceListeners(marker);
-
-                    markersRef.current.delete(placeId);
-                    savedPlacesManager.removePlace(placeId);
-
-                    console.log('Debug - After removal markers:', [...markersRef.current.entries()]);
-                    console.log('Debug - Successfully removed marker and place:', placeId);
-                } else {
-                    console.warn('Debug - Could not find marker for placeId:', placeId);
-                }
+                console.log('Debug - Successfully removed marker and place:', placeId);
             } catch (error) {
                 console.error('Debug - Error during marker removal:', error);
             }
@@ -280,76 +252,18 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             place?: Place;
         }) => {
             try {
-                // Import the marker library dynamically
-                const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+                if (!data.place) return;
                 
-                const markerId = data.place?.id || data.title || String(Date.now());
-                const dayIndex = data.place?.dayIndex ?? 0;
-                const orderIndex = data.place?.orderIndex ?? 0;
-                const color = getRouteColor(dayIndex);
+                // Add place to saved places manager
+                savedPlacesManager.addPlace(data.place);
                 
-                const pinElement = new PinElement({
-                    background: "#FF4444",  // Bright red
-                    borderColor: "#CC0000", // Darker red border
-                    glyphColor: "#FFFFFF",  // White glyph for better contrast
+                // Create marker with day and order index
+                await mapManagerRef.current?.createMarker(data.place, {
+                    dayIndex: data.place.dayIndex,
+                    orderIndex: data.place.orderIndex
                 });
 
-                // Remove existing marker if it exists
-                if (markersRef.current.has(markerId)) {
-                    const existingMarker = markersRef.current.get(markerId);
-                    if (existingMarker) {
-                        existingMarker.map = null;
-                        if (existingMarker.element) {
-                            existingMarker.element.remove();
-                        }
-                        markersRef.current.delete(markerId);
-                    }
-                }
-
-                const marker = new AdvancedMarkerElement({
-                    position: {
-                        lat: data.latitude,
-                        lng: data.longitude
-                    },
-                    title: data.title,
-                    content: pinElement.element,
-                    gmpDraggable: false,
-                });
-
-                if (data.place) {
-                    savedPlacesManager.addPlace(data.place);
-                    setMarkerCount(prev => prev + 1);
-                }
-
-                // Ensure the marker is properly added to the map
-                marker.map = mapInstanceRef.current;
-
-                marker.addListener('click', () => {
-                    if (data.place) {
-                        // Close any existing InfoWindow
-                        if (window.currentInfoWindow) {
-                            window.currentInfoWindow.close();
-                        }
-
-                        // Create and open a new InfoWindow
-                        const infoWindow = new google.maps.InfoWindow({
-                            content: createPlaceInfoWindowContent(data.place, markerId),
-                            maxWidth: 300,
-                            pixelOffset: new google.maps.Size(0, -30)
-                        });
-
-                        infoWindow.open({
-                            map: mapInstanceRef.current,
-                            anchor: marker,
-                        });
-
-                        window.currentInfoWindow = infoWindow;
-                        window.currentInfoWindowMarker = { markerId, marker };
-                    }
-                });
-
-                markersRef.current.set(markerId, marker);
-                
+                // Notify about places change
                 window.dispatchEvent(new CustomEvent('savedPlacesChanged', {
                     detail: {
                         places: Array.from(savedPlacesManager.places.values()),
@@ -479,20 +393,16 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         // Clear markers and redraw them
         const updateMarkers = () => {
             // Clear existing markers
-            markersRef.current?.forEach(marker => {
-                marker.map = null;
-            });
-            markersRef.current?.clear();
-
+            mapManagerRef.current?.clearMarkers();
+            
             // Add new markers
             const places = savedPlacesManager.getPlaces();
             places.forEach(place => {
                 if (place.location) {
-                    const marker = createMarker(place);
-                    if (marker) {
-                        marker.map = mapInstanceRef.current;
-                        markersRef.current.set(place.id, marker);
-                    }
+                    mapManagerRef.current?.createMarker(place, {
+                        dayIndex: place.dayIndex,
+                        orderIndex: place.orderIndex
+                    });
                 }
             });
         };
@@ -655,41 +565,149 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         }
     };
 
-    const createPlaceInfoWindowContent = (place: Place, markerId: string) => {
-        console.log('Debug - Creating info window content for markerId:', markerId);
-        const photoUrl = place.photos && place.photos[0] 
-            ? `https://places.googleapis.com/v1/${place.photos[0].name}/media?maxHeightPx=200&maxWidthPx=300&key=${apiKey}`
-            : '';
+    const drawRouteBetweenPlaces = async (fromPlace: Place, toPlace: Place) => {
+        if (!mapInstanceRef.current || !fromPlace.location || !toPlace.location) return;
 
-        const placeTitle = typeof place.displayName === 'string' ? place.displayName : place.displayName.text;
+        try {
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer({
+                map: mapInstanceRef.current,
+                suppressMarkers: true,
+                preserveViewport: true,
+                polylineOptions: {
+                    strokeColor: getRouteColor(fromPlace.dayIndex ?? 0),
+                    strokeWeight: 3,
+                    strokeOpacity: 0.7
+                }
+            });
 
-        return `
-            <div class="bg-white rounded-lg shadow-sm" style="max-width: 300px;">
-                ${photoUrl ? `
-                    <div style="height: 150px; width: 100%;">
-                        <img src="${photoUrl}" 
-                            alt="${placeTitle}"
-                            style="width: 100%; height: 100%; object-fit: cover; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;"
-                        />
-                    </div>
-                ` : ''}
+            const request = {
+                origin: { lat: fromPlace.location.latitude, lng: fromPlace.location.longitude },
+                destination: { lat: toPlace.location.latitude, lng: toPlace.location.longitude },
+                travelMode: google.maps.TravelMode.WALKING
+            };
 
-                <div class="p-3">
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-1">
-                            ${placeTitle}
-                        </h3>
-                    </div>
-                    ${place.primaryTypeDisplayName 
-                        ? `<div class="text-sm text-gray-600 mb-1">${place.primaryTypeDisplayName.text}</div>`
-                        : ''}
-                    ${place.formattedAddress 
-                        ? `<p class="text-sm text-gray-500">${place.formattedAddress}</p>`
-                        : ''}
-                </div>
-            </div>
-        `;
+            const result = await directionsService.route(request);
+            directionsRenderer.setDirections(result);
+
+            // Store the renderer for later cleanup
+            setActiveRoutes(prev => [...prev, { fromId: fromPlace.id, toId: toPlace.id }]);
+            
+            return directionsRenderer;
+        } catch (error) {
+            console.error('[MapComponent] Error drawing route:', error);
+            return null;
+        }
     };
+
+    // Update markers for a specific day
+    const updateDayMarkers = useCallback((dayIndex: string) => {
+        if (!mapManagerRef.current) return;
+        
+        const dayPlaces = Array.from(savedPlacesManager.places.values())
+            .filter(place => place.dayIndex === Number(dayIndex));
+            
+        if (dayPlaces.length > 0) {
+            // Sort places by order index
+            dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
+            
+            dayPlaces.forEach((place, index) => {
+                const marker = mapManagerRef.current?.getMarker(place.id);
+                if (marker) {
+                    // Update marker appearance
+                    mapManagerRef.current?.updateMarker(place.id, {
+                        dayIndex: Number(dayIndex),
+                        orderIndex: index
+                    });
+                }
+            });
+
+            // Draw routes between consecutive places
+            for (let i = 0; i < dayPlaces.length - 1; i++) {
+                drawRouteBetweenPlaces(dayPlaces[i], dayPlaces[i + 1]);
+            }
+        }
+    }, [drawRouteBetweenPlaces]);
+
+    // Update markers with new color and glyph numberings after optimization
+    const updateOptimizedMarkers = useCallback(async () => {
+        if (!mapManagerRef.current || !mapInstanceRef.current) return;
+
+        // Clear existing routes
+        setActiveRoutes([]);
+
+        // Get optimized places with indices
+        const places = savedPlacesManager.getPlaces();
+        
+        // Group by day and update markers
+        const placesByDay = places.reduce((acc, place) => {
+            const dayIndex = place.dayIndex ?? 0;
+            if (!acc[dayIndex]) acc[dayIndex] = [];
+            acc[dayIndex].push(place);
+            return acc;
+        }, {} as Record<number, Place[]>);
+
+        // Update markers and prepare routes for each day
+        Object.entries(placesByDay).forEach(([dayIndex, dayPlaces]) => {
+            // Sort places by order index
+            dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
+            
+            // Update markers for this day
+            dayPlaces.forEach((place, index) => {
+                const marker = mapManagerRef.current?.getMarker(place.id);
+                if (marker) {
+                    mapManagerRef.current?.updateMarker(place.id, {
+                        dayIndex: Number(dayIndex),
+                        orderIndex: index
+                    });
+                }
+            });
+
+            // Draw routes between consecutive places
+            for (let i = 0; i < dayPlaces.length - 1; i++) {
+                drawRouteBetweenPlaces(dayPlaces[i], dayPlaces[i + 1]);
+            }
+        });
+    }, [drawRouteBetweenPlaces]);
+
+    useEffect(() => {
+        const handleOptimizationApplied = () => {
+            updateOptimizedMarkers();
+        };
+
+        window.addEventListener('optimization-applied', handleOptimizationApplied);
+        return () => window.removeEventListener('optimization-applied', handleOptimizationApplied);
+    }, [updateOptimizedMarkers]);
+
+    useEffect(() => {
+        if (mapInstanceRef.current) {
+            console.log('[MapComponent] Theme change - clearing map');
+            // Clear all markers first
+            mapManagerRef.current?.clearMarkers();
+            // Clear the map instance
+            mapInstanceRef.current = null;
+            setMap(null);
+            // Reinitialize
+            setupMapInstance(true);
+            // Re-trigger route drawing
+            const currentRoutes = activeRoutes;
+            setActiveRoutes([]);
+            setTimeout(() => {
+                console.log('[MapComponent] Restoring routes after theme change:', currentRoutes);
+                setActiveRoutes(currentRoutes);
+            }, 100);
+        }
+    }, [theme]);
+
+    const handlePlaceSelect = useCallback((place: Place) => {
+        if (!mapManagerRef.current) return;
+        
+        setSelectedPlace(place);
+        const marker = mapManagerRef.current.getMarker(place.id);
+        if (marker) {
+            mapManagerRef.current.showInfoWindow(place, marker);
+        }
+    }, []);
 
     const getLocation = async (city: string) => {
         const geocoder = new window.google.maps.Geocoder();
@@ -708,139 +726,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             );
         });
     };
-
-    const createMarker = (place: Place) => {
-        if (!place.location) {
-            console.warn('[MapComponent] Cannot create marker: place missing location', place);
-            return null;
-        }
-
-        const dayIndex = place.dayIndex ?? 0;
-        const orderIndex = place.orderIndex ?? 0;
-        const color = getRouteColor(dayIndex);
-        
-        const pinElement = new window.google.maps.marker.PinElement({
-            background: "#FF4444",  // Bright red
-            borderColor: "#CC0000", // Darker red border
-            glyphColor: "#FFFFFF",  // White glyph for better contrast
-        });
-
-        const marker = new window.google.maps.marker.AdvancedMarkerElement({
-            position: {
-                lat: place.location.latitude,
-                lng: place.location.longitude
-            },
-            title: typeof place.displayName === 'string' ? place.displayName : place.displayName.text,
-            content: pinElement.element,
-            gmpDraggable: false,
-        });
-
-        marker.addListener('click', () => {
-            // Close any existing InfoWindow
-            infoWindowRef.current?.close();
-            
-            window.currentInfoWindowMarker = {
-                markerId: place.id,
-                marker: marker
-            };
-            
-            const content = createPlaceInfoWindowContent(place, place.id);
-            if (content && infoWindowRef.current && mapInstanceRef.current) {
-                const position = marker.position as google.maps.LatLng;
-                infoWindowRef.current.setContent(content);
-                infoWindowRef.current.setPosition(position);
-                infoWindowRef.current.open(mapInstanceRef.current);
-            }
-        });
-
-        return marker;
-    };
-
-    // Update markers with new color and glyph numberings
-    const updateOptimizedMarkers = useCallback(async () => {
-        if (!mapInstanceRef.current) return;
-
-        // Clear existing routes
-        polylineRef.current.forEach(polyline => polyline.setMap(null));
-        polylineRef.current.clear();
-
-        // Get optimized places with indices
-        const places = savedPlacesManager.getPlaces();
-        
-        // Group by day and update markers
-        const placesByDay = places.reduce((acc, place) => {
-            const dayIndex = place.dayIndex ?? 0;
-            if (!acc[dayIndex]) acc[dayIndex] = [];
-            acc[dayIndex].push(place);
-            return acc;
-        }, {} as Record<number, Place[]>);
-
-        // Update markers and prepare routes
-        const newActiveRoutes: { fromId: string, toId: string }[] = [];
-        
-        Object.entries(placesByDay).forEach(([dayIndex, dayPlaces]) => {
-            dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
-            
-            dayPlaces.forEach((place, index) => {
-                const marker = markersRef.current.get(place.id);
-                if (marker) {
-                    // Only update existing markers
-                    const color = getRouteColor(Number(dayIndex));
-                    const pinElement = new google.maps.marker.PinElement({
-                        background: color,
-                        borderColor: color,
-                        glyphColor: "#FFFFFF",
-                        glyph: `${index + 1}`
-                    });
-                    marker.content = pinElement.element;
-                }
-
-                // Create routes between consecutive places
-                if (index < dayPlaces.length - 1) {
-                    newActiveRoutes.push({
-                        fromId: place.id,
-                        toId: dayPlaces[index + 1].id
-                    });
-                }
-            });
-        });
-
-        // Update routes
-        setActiveRoutes(newActiveRoutes);
-    }, [mapInstanceRef.current]);
-
-    // useEffect that listens
-    useEffect(() => {
-        const handleOptimizationApplied = () => {
-            updateOptimizedMarkers();
-        };
-
-        window.addEventListener('optimization-applied', handleOptimizationApplied);
-        return () => window.removeEventListener('optimization-applied', handleOptimizationApplied);
-    }, [updateOptimizedMarkers]);
-
-    useEffect(() => {
-        if (mapInstanceRef.current) {
-            console.log('[MapComponent] Theme change - clearing map');
-            // Clear all markers first
-            markersRef.current?.forEach(marker => {
-                marker.map = null;
-            });
-            markersRef.current?.clear();
-            // Clear the map instance
-            mapInstanceRef.current = null;
-            setMap(null);
-            // Reinitialize
-            setupMapInstance(true);
-            // Re-trigger route drawing
-            const currentRoutes = activeRoutes;
-            setActiveRoutes([]);
-            setTimeout(() => {
-                console.log('[MapComponent] Restoring routes after theme change:', currentRoutes);
-                setActiveRoutes(currentRoutes);
-            }, 100);
-        }
-    }, [theme]);
 
     return (
         <div className="w-full h-full relative">
