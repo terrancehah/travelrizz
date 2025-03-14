@@ -43,12 +43,25 @@ export interface Place {
     dayIndex?: number;
     orderIndex?: number;
     regularOpeningHours?: {
-        periods?: Array<{
-            open?: { day: number; hour: number; minute: number };
-            close?: { day: number; hour: number; minute: number };
+        // periods is required when regularOpeningHours is present
+        periods: Array<{
+            // open is required for each period
+            open: { 
+                day: number; 
+                hour: number; 
+                minute: number 
+            };
+            // close is optional for 24-hour businesses
+            close?: { 
+                day: number; 
+                hour: number; 
+                minute: number 
+            };
         }>;
+        // weekdayDescriptions and openNow are required
         weekdayDescriptions: string[];
         openNow: boolean;
+        // nextOpenTime and nextCloseTime are optional
         nextOpenTime?: { date: string } | null;
         nextCloseTime?: { date: string } | null;
     };

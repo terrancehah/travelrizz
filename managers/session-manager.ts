@@ -1,5 +1,6 @@
-import { TravelSession } from '../managers/types';
-import { STAGE_LIMITS } from '../managers/stage-manager';
+import { TravelSession } from './types';
+import { STAGE_LIMITS } from './stage-manager';
+import { savedPlacesManager } from './saved-places-manager';
 
 export const SESSION_CONFIG = {
   STORAGE_KEY: 'travel_rizz_session',
@@ -381,7 +382,7 @@ export function handleSessionExpiry() {
 
     // Save current state if needed
     const currentState = {
-      messages: window.getSavedPlaces?.() || [],
+      messages: savedPlacesManager.getPlaces() || [],
       lastUrl: window.location.pathname
     };
     storage?.setItem('expiredSessionState', JSON.stringify(currentState));

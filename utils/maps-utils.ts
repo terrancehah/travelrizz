@@ -40,6 +40,13 @@ const ROUTE_COLORS = [
     '#4CAF50'  // Green
 ];
 
+// Default marker styles
+const DEFAULT_MARKER_STYLES = {
+    background: "#FF4444",  // Bright red
+    borderColor: "#CC0000", // Darker red border
+    glyphColor: "#FFFFFF",  // White glyph
+};
+
 // Class to manage Google Maps markers and related operations
 export class GoogleMapManager {
     private markers: Map<string, google.maps.marker.AdvancedMarkerElement>;
@@ -64,15 +71,23 @@ export class GoogleMapManager {
             
             const markerId = place.id;
             const dayIndex = options?.dayIndex ?? place.dayIndex ?? 0;
-            const color = options?.color ?? ROUTE_COLORS[dayIndex % ROUTE_COLORS.length];
+            
+            // Use default styles unless dayIndex is provided or color is explicitly set
+            const useDefaultStyle = !options?.dayIndex && !options?.color;
+            const color = useDefaultStyle 
+                ? DEFAULT_MARKER_STYLES.background 
+                : (options?.color ?? ROUTE_COLORS[dayIndex % ROUTE_COLORS.length]);
+            const borderColor = useDefaultStyle
+                ? DEFAULT_MARKER_STYLES.borderColor
+                : color;
             
             // Remove existing marker if it exists
             this.removeMarker(markerId);
 
             const pinElement = new PinElement({
                 background: color,
-                borderColor: color,
-                glyphColor: "#FFFFFF",
+                borderColor: borderColor,
+                glyphColor: DEFAULT_MARKER_STYLES.glyphColor,
                 glyph: options?.orderIndex ? `${options.orderIndex + 1}` : undefined
             });
 

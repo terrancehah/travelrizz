@@ -31,7 +31,7 @@ interface GooglePlaceResponse {
         }>;
     }>;
     regularOpeningHours?: {
-        periods?: Array<{
+        periods: Array<{  // Removed ? since it's required when regularOpeningHours exists
             open: { day: number; hour: number; minute: number };
             close?: { day: number; hour: number; minute: number };
         }>;
@@ -529,8 +529,8 @@ export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null
             widthPx: photo.widthPx,
             heightPx: photo.heightPx
         })) : [],
-        regularOpeningHours: place.regularOpeningHours ? {
-            periods: place.regularOpeningHours.periods?.map(period => ({
+        regularOpeningHours: place.regularOpeningHours && place.regularOpeningHours.periods ? {
+            periods: place.regularOpeningHours.periods.map(period => ({
                 open: {
                     day: period.open.day,
                     hour: period.open.hour,
@@ -542,7 +542,7 @@ export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null
                     minute: period.close.minute
                 } : undefined
             })),
-            weekdayDescriptions: place.regularOpeningHours.weekdayDescriptions || [],
+            weekdayDescriptions: place.regularOpeningHours.weekdayDescriptions,
             openNow: place.regularOpeningHours.openNow,
             nextOpenTime: place.regularOpeningHours.nextOpenTime,
             nextCloseTime: place.regularOpeningHours.nextCloseTime
