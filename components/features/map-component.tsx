@@ -618,13 +618,13 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             // Sort places by order index
             dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
             
-            dayPlaces.forEach((place, index) => {
+            dayPlaces.forEach((place) => {
                 const marker = mapManagerRef.current?.getMarker(place.id);
                 if (marker) {
                     // Update marker appearance
                     mapManagerRef.current?.updateMarker(place.id, {
                         dayIndex: Number(dayIndex),
-                        orderIndex: index
+                        orderIndex: place.orderIndex // Persisted value
                     });
                 }
             });
@@ -660,12 +660,12 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
             
             // Update markers for this day
-            dayPlaces.forEach((place, index) => {
+            dayPlaces.forEach((place) => {
                 const marker = mapManagerRef.current?.getMarker(place.id);
                 if (marker) {
                     mapManagerRef.current?.updateMarker(place.id, {
                         dayIndex: Number(dayIndex),
-                        orderIndex: index
+                        orderIndex: place.orderIndex // Persisted value
                     });
                 }
             });

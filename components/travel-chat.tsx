@@ -327,7 +327,7 @@ export function TravelChat({
                 metrics: sessionMetadata
             };
             
-            console.log('[handleMessageSubmit] Sending message with body:', body);
+            // console.log('[handleMessageSubmit] Sending message with body:', body);
             
             // Send message to main chat
             await append({

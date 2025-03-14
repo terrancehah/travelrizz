@@ -70,18 +70,17 @@ export function OptimizedArrangement({
   }
 
   return (
-    <div className="p-4 w-fit mx-auto border rounded-lg bg-white dark:bg-gray-900 shadow-sm space-y-6 mt-4">
+    <div className="p-4 px-6 w-[80%] mx-auto border border-gray-200 dark:border-slate-500 rounded-lg bg-white dark:bg-gray-900 shadow-sm space-y-6 mt-4">
       {/* Header */}
       <div>
-        <h3 className={`text-lg ${font.heading} font-medium text-gray-900 dark:text-white`}>
+        <h3 className={`${font.text} text-lg font-semibold text-gray-900 dark:text-white`}>
           {tComponent('optimizedArrangement.heading')}
         </h3>
-        <p className={`mt-1 ${font.heading} text-sm text-gray-500 dark:text-gray-400`}>
+        <p className={`${font.text} text-sm text-gray-500 dark:text-gray-400 mt-1`}>
           {tComponent('optimizedArrangement.subheading')}
         </p>
       </div>
 
-      {/* Days */}
       {/* Days */}
       <div className="space-y-4">
         {Object.entries(placesByDay).map(([dayIndex, dayPlaces]) => (
@@ -102,7 +101,7 @@ export function OptimizedArrangement({
               {dayPlaces.map((place, index) => (
                 <div 
                   key={place.id}
-                  className="p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  className="p-4 transition-colors"
                 >
                   <div className="flex items-center space-x-4">
                     <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center
@@ -127,6 +126,11 @@ export function OptimizedArrangement({
           </div>
         ))}
       </div>
+
+      {/* Disclaimer */}
+      <p className={`${font.text} text-sm text-gray-500 dark:text-gray-400`}>
+        {tComponent('optimizedArrangement.disclaimer')}
+      </p>
 
       {/* Action Buttons - Only show if user hasn't made a choice */}
       {!hasChosen && (

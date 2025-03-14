@@ -116,47 +116,29 @@ export const preferenceToPlaceTypes: Record<TravelPreference, string[]> = {
 // Helper function to get place types based on preferences
 export function getPlaceTypesFromPreferences(preferences: TravelPreference[]): string[] {
     try {
-        // Track used types to avoid repeats
         const usedTypes = new Set<string>();
         const resultTypes: string[] = [];
-        
-        // Process each preference
+
+        // Select 1 random type per preference
         preferences.forEach(pref => {
             const availableTypes = preferenceToPlaceTypes[pref]?.filter(
                 type => !usedTypes.has(type)
             ) || [];
-            
-            // Take up to 3 types from each preference
-            const numTypes = Math.min(3, availableTypes.length);
-            const selectedTypes = availableTypes
-                .sort(() => Math.random() - 0.5)
-                .slice(0, numTypes);
-                
-            // Add to results and mark as used
-            selectedTypes.forEach(type => {
-                resultTypes.push(type);
-                usedTypes.add(type);
-            });
+
+            if (availableTypes.length > 0) {
+                // Randomly select 1 type from available options
+                const selectedType = availableTypes[
+                    Math.floor(Math.random() * availableTypes.length)
+                ];
+                resultTypes.push(selectedType);
+                usedTypes.add(selectedType);
+            }
         });
 
-        // If we don't have enough types, add more from the available types
-        if (resultTypes.length < 5) {
-            const allTypes = preferences.flatMap(pref => preferenceToPlaceTypes[pref] || []);
-            const remainingTypes = allTypes.filter(type => !usedTypes.has(type));
-            const additionalTypes = remainingTypes
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 5 - resultTypes.length);
-            additionalTypes.forEach(type => {
-                resultTypes.push(type);
-                usedTypes.add(type);
-            });
-        }
-
-        // Ensure we only return 5 types maximum
-        return resultTypes.slice(0, 5);
+        return resultTypes;
     } catch (error) {
         console.error('Error getting place types from preferences:', error);
-        return ['tourist_attraction']; // Default fallback
+        return [];
     }
 }
 

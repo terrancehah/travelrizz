@@ -88,7 +88,7 @@ export class GoogleMapManager {
                 background: color,
                 borderColor: borderColor,
                 glyphColor: DEFAULT_MARKER_STYLES.glyphColor,
-                glyph: options?.orderIndex ? `${options.orderIndex + 1}` : undefined
+                glyph: typeof options?.orderIndex !== 'undefined' ? `${options.orderIndex + 1}` : undefined
             });
 
             const marker = new AdvancedMarkerElement({

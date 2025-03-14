@@ -160,6 +160,23 @@ export default async function handler(req: NextRequest) {
     Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, always use all the places in the savedPlaces array.
     When calling 'placeOptimizerTool', include the complete savedPlaces array with all fields (id, displayName, location, regularOpeningHours, etc.) as provided in the current context.
 
+    3.2 Tool Data Formatting
+    When calling any tool, do not ever try to modify the data format:
+    1. Property names must be exact, without any extra spaces
+    2. All data must be passed exactly as received from savedPlaces or anywhere else
+    3. Example of correct format:
+    {
+        "id": "ChIJp8e_7NOY4jARN83NYCd7tVc",
+        "displayName": {
+            "text": "The Peninsula Bangkok",
+            "languageCode": "en"
+        },
+        "location": {
+            "latitude": 13.7231212,  // NO spaces in property names
+            "longitude": 100.5108006
+        }
+    }
+
     4.0 Response Rules and Formatting
     4.1 Language and Format
     Always respond in the language specified in the currentDetails parameter. Use markdown formatting and keep responses friendly and informative.

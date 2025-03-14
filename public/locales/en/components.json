@@ -27,7 +27,8 @@
     },
     "optimizedArrangement":{
         "heading": "Optimized Itinerary",
-        "subheading": "Here's the the optimized itinerary based on places locations and travel distance"
+        "subheading": "Optimized itinerary based on places locations and travel distance",
+        "disclaimer": "The itinerary may not be 100% accurate. It is recommended to verify the details of the places before visiting."
     },
     "premiumUpgrade":{
         "heading": "The prompt limit for free usage has been reached. Now with an one-time payment, you can unlock unlimited travel planning!",

@@ -19,19 +19,26 @@ const dispatchMapOperation = (detail: MapOperationDetail) => {
 
 export const Carousel = ({ places }: { places: Place[] }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [shuffledPlaces, setShuffledPlaces] = useState<Place[]>([]);
     const fonts = useLocalizedFont();
 
+    useEffect(() => {
+        const shuffled = [...places]
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 5);
+        setShuffledPlaces(shuffled);
+    }, [places]);
+
     const prevSlide = () => {
-        setCurrentIndex((currentIndex + places.length - 1) % places.length);
+        setCurrentIndex((prev) => (prev + shuffledPlaces.length - 1) % shuffledPlaces.length);
     };
 
     const nextSlide = () => {
-        setCurrentIndex((currentIndex + 1) % places.length);
+        setCurrentIndex((prev) => (prev + 1) % shuffledPlaces.length);
     };
 
-    // Add all places to map when carousel is shown
     useEffect(() => {
-        places.forEach(place => {
+        shuffledPlaces.forEach(place => {
             if (place?.location) {
                 dispatchMapOperation({
                     type: 'add-place',
@@ -39,7 +46,7 @@ export const Carousel = ({ places }: { places: Place[] }) => {
                 });
             }
         });
-    }, [places]);
+    }, [shuffledPlaces]);
 
     return (
         <div className="carousel-wrapper p-0 w-full max-h-min flex justify-center mt-4">
@@ -61,7 +68,7 @@ export const Carousel = ({ places }: { places: Place[] }) => {
                             transform: `translateX(-${currentIndex * 100}%)`,
                             height: 'min-content'
                         }}>
-                        {places.map((place: Place, index: number) => (
+                        {shuffledPlaces.map((place: Place, index: number) => (
                             <div key={place.id || index} className="flex-none max-h-min w-full mb-2 flex justify-center">
                                 <PlaceCard place={place} />
                             </div>
