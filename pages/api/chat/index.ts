@@ -148,11 +148,10 @@ export default async function handler(req: NextRequest) {
     There are 'placeCard' for single place display when users ask for one place (e.g. "add one cafe" or "show me one restaurant"), which automatically saves the place after display; 
     'carousel' for multiple places display when users ask for multiple places (e.g. "add some museums" or "show me a few cinemas"), which automatically saves places after display; 
     and 'savedPlacesList' to view ALL previously saved places (when users ask to see saved places, ALL places from the savedPlaces parameter will be passed to this tool).
-    Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, always use all the places in the savedPlaces array.
-    When calling 'placeOptimizerTool', include the complete savedPlaces array with all fields (id, displayName, location, regularOpeningHours, etc.) as provided in the current context.
-
+    Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, provide the startDate and endDate parameters. The savedPlaces will be automatically retrieved from the context.
+    
     3.2 Tool Data Formatting
-    When calling any tool, do not ever try to modify the data format:
+    When calling any tool, do not ever modify the data format:
     1. Property names must be exact, without any extra spaces
     2. All data must be passed exactly as received from savedPlaces or anywhere else
     3. Example of correct format:

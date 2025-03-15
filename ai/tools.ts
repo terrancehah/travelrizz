@@ -572,55 +572,7 @@ export const placeOptimizerTool = createTool({
     description: 'Optimize the arrangement of saved places based on travel time and opening hours. Use this when the user wants to optimize their itinerary or schedule.',
     parameters: z.object({
         startDate: z.string().describe('Trip start date in ISO format'),
-        endDate: z.string().describe('Trip end date in ISO format'),
-        savedPlaces: z.array(z.object({
-            id: z.string(),
-            displayName: z.union([
-                z.object({
-                    text: z.string(),
-                    languageCode: z.string()
-                }),
-                z.string()
-            ]),
-            primaryType: z.string().optional(),
-            location: z.object({
-                latitude: z.number(),
-                longitude: z.number()
-            }).optional(), 
-            formattedAddress: z.string().optional(),
-            photos: z.array(z.object({
-                name: z.string(),
-                widthPx: z.number().optional(),
-                heightPx: z.number().optional(),
-                authorAttributions: z.array(z.object({
-                    displayName: z.string().optional(),
-                    uri: z.string().optional(),
-                    photoUri: z.string().optional()
-                })).optional()
-            })).optional(),
-            primaryTypeDisplayName: z.object({
-                text: z.string(),
-                languageCode: z.string()
-            }).optional(),
-            regularOpeningHours: z.object({
-                periods: z.array(z.object({
-                    open: z.object({
-                        day: z.number(),
-                        hour: z.number(),
-                        minute: z.number()
-                    }),
-                    close: z.object({
-                        day: z.number(),
-                        hour: z.number(),
-                        minute: z.number()
-                    })
-                })).optional(),
-                weekdayDescriptions: z.array(z.string()),
-                openNow: z.boolean()
-            }).optional(),
-            dayIndex: z.number().optional(),
-            orderIndex: z.number().optional()
-        })).describe('Array of places to optimize into an itinerary')
+        endDate: z.string().describe('Trip end date in ISO format')
     }),
     execute: async function ({ startDate, endDate }) {
         try {
@@ -634,10 +586,10 @@ export const placeOptimizerTool = createTool({
             return {
                 type: 'placeOptimizer',
                 props: {
-                content: 'Successfully optimized travel itinerary',
-                optimizedPlaces: result,
-                startDate,
-                endDate,
+                    content: 'Successfully optimized travel itinerary',
+                    optimizedPlaces: result,
+                    startDate,
+                    endDate,
                 },
             };
         } catch (error) {

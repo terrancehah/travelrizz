@@ -120,7 +120,6 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
   // Add marker to map when card is shown
   useEffect(() => {
     if (place?.location) {
-      console.log('[PlaceCard] Adding place to map:', place);
       dispatchMapOperation({
         type: 'add-place',
         place
