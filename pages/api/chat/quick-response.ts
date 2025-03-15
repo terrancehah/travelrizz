@@ -154,7 +154,7 @@ export default async function handler(req: NextRequest) {
       - NEVER provide options related to saving or adding places (e.g., "Save Louvre Museum", "Add Changi Airport", "Save this place")
       - Never provide options related to wanting to know more of a single specific place
       - Available options are examples like "Show me museums", "Find me some restaurants", "Find some popular landmarks", "Add some cafes", "Explore some famous attractions",
-      "No, I want to see more places", "Show me national parks", "Find me some theaters", "Find some popular eateries", "Explore some famous tourist spots", 
+      "Show me national parks", "Find me some theaters", "Find some popular eateries", "Explore some famous tourist spots", 
       "Continue to route planning", "Yes, let's proceed", "Yes, let's move on", "View pricing"
 
     Stage 4 (Route Planning) and Stage 5 (Itinerary Confirmation):

@@ -62,8 +62,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const geometryLoadedRef = useRef(false);
-    const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
-    const [markerCount, setMarkerCount] = useState(0);
     // Track current active routes - only store minimal required data
     const [activeRoutes, setActiveRoutes] = useState<{fromId: string, toId: string}[]>([]);
     // Track polylines for cleanup
@@ -146,7 +144,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
 
             try {
                 const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker&v=weekly&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker,directions&v=weekly&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
                 script.async = true;
                 script.defer = true;
                 
@@ -566,116 +564,107 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         return colors[dayIndex % colors.length];
     };
 
-    const handleSlideChange = (_: any, index: number) => {
-        if (window.currentSlide !== undefined) {
-            window.currentSlide = index;
-        }
-    };
+    // const drawRouteBetweenPlaces = async (fromPlace: Place, toPlace: Place) => {
+    //     if (!mapInstanceRef.current || !fromPlace.location || !toPlace.location) return;
 
-    const drawRouteBetweenPlaces = async (fromPlace: Place, toPlace: Place) => {
-        if (!mapInstanceRef.current || !fromPlace.location || !toPlace.location) return;
+    //     try {
+    //         const directionsService = new google.maps.DirectionsService();
+    //         const directionsRenderer = new google.maps.DirectionsRenderer({
+    //             map: mapInstanceRef.current,
+    //             suppressMarkers: true,
+    //             preserveViewport: true,
+    //             polylineOptions: {
+    //                 strokeColor: getRouteColor(fromPlace.dayIndex ?? 0),
+    //                 strokeWeight: 3,
+    //                 strokeOpacity: 0.7
+    //             }
+    //         });
 
-        try {
-            const directionsService = new google.maps.DirectionsService();
-            const directionsRenderer = new google.maps.DirectionsRenderer({
-                map: mapInstanceRef.current,
-                suppressMarkers: true,
-                preserveViewport: true,
-                polylineOptions: {
-                    strokeColor: getRouteColor(fromPlace.dayIndex ?? 0),
-                    strokeWeight: 3,
-                    strokeOpacity: 0.7
-                }
-            });
+    //         const request = {
+    //             origin: { lat: fromPlace.location.latitude, lng: fromPlace.location.longitude },
+    //             destination: { lat: toPlace.location.latitude, lng: toPlace.location.longitude },
+    //             travelMode: google.maps.TravelMode.WALKING
+    //         };
 
-            const request = {
-                origin: { lat: fromPlace.location.latitude, lng: fromPlace.location.longitude },
-                destination: { lat: toPlace.location.latitude, lng: toPlace.location.longitude },
-                travelMode: google.maps.TravelMode.WALKING
-            };
+    //         const result = await directionsService.route(request);
+    //         directionsRenderer.setDirections(result);
 
-            const result = await directionsService.route(request);
-            directionsRenderer.setDirections(result);
-
-            // Store the renderer for later cleanup
-            setActiveRoutes(prev => [...prev, { fromId: fromPlace.id, toId: toPlace.id }]);
+    //         // Store the renderer for later cleanup
+    //         setActiveRoutes(prev => [...prev, { fromId: fromPlace.id, toId: toPlace.id }]);
             
-            return directionsRenderer;
-        } catch (error) {
-            console.error('[MapComponent] Error drawing route:', error);
-            return null;
-        }
-    };
+    //         return directionsRenderer;
+    //     } catch (error) {
+    //         console.error('[MapComponent] Error drawing route:', error);
+    //         return null;
+    //     }
+    // };
 
     // Update markers for a specific day
-    const updateDayMarkers = useCallback((dayIndex: string) => {
-        if (!mapManagerRef.current) return;
+    // const updateDayMarkers = useCallback((dayIndex: string) => {
+    //     if (!mapManagerRef.current) return;
         
-        const dayPlaces = Array.from(savedPlacesManager.places.values())
-            .filter(place => place.dayIndex === Number(dayIndex));
+    //     const dayPlaces = Array.from(savedPlacesManager.places.values())
+    //         .filter(place => place.dayIndex === Number(dayIndex));
             
-        if (dayPlaces.length > 0) {
-            // Sort places by order index
-            dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
+    //     if (dayPlaces.length > 0) {
+    //         // Sort places by order index
+    //         dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
             
-            dayPlaces.forEach((place) => {
-                const marker = mapManagerRef.current?.getMarker(place.id);
-                if (marker) {
-                    // Update marker appearance
-                    mapManagerRef.current?.updateMarker(place.id, {
-                        dayIndex: Number(dayIndex),
-                        orderIndex: place.orderIndex // Persisted value
-                    });
-                }
-            });
+    //         dayPlaces.forEach((place) => {
+    //             const marker = mapManagerRef.current?.getMarker(place.id);
+    //             if (marker) {
+    //                 // Update marker appearance
+    //                 mapManagerRef.current?.updateMarker(place.id, {
+    //                     dayIndex: Number(dayIndex),
+    //                     orderIndex: place.orderIndex // Persisted value
+    //                 });
+    //             }
+    //         });
 
-            // Draw routes between consecutive places
-            for (let i = 0; i < dayPlaces.length - 1; i++) {
-                drawRouteBetweenPlaces(dayPlaces[i], dayPlaces[i + 1]);
-            }
-        }
-    }, [drawRouteBetweenPlaces]);
+    //         // Draw routes between consecutive places
+    //         for (let i = 0; i < dayPlaces.length - 1; i++) {
+    //             drawRouteBetweenPlaces(dayPlaces[i], dayPlaces[i + 1]);
+    //         }
+    //     }
+    // }, [drawRouteBetweenPlaces]);
 
-    // Update markers with new color and glyph numberings after optimization
-    const updateOptimizedMarkers = useCallback(async () => {
+    const updateOptimizedMarkers = async () => {
         if (!mapManagerRef.current || !mapInstanceRef.current) return;
-
-        // Clear existing routes
-        setActiveRoutes([]);
-
-        // Get optimized places with indices
+    
+        setActiveRoutes([]); // Clear existing routes
+    
         const places = savedPlacesManager.getPlaces();
-        
-        // Group by day and update markers
         const placesByDay = places.reduce((acc, place) => {
             const dayIndex = place.dayIndex ?? 0;
             if (!acc[dayIndex]) acc[dayIndex] = [];
             acc[dayIndex].push(place);
             return acc;
         }, {} as Record<number, Place[]>);
-
-        // Update markers and prepare routes for each day
-        Object.entries(placesByDay).forEach(([dayIndex, dayPlaces]) => {
-            // Sort places by order index
+    
+        let newActiveRoutes: { fromId: string, toId: string }[] = [];
+    
+        Object.values(placesByDay).forEach(dayPlaces => {
             dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
             
-            // Update markers for this day
-            dayPlaces.forEach((place) => {
+            dayPlaces.forEach(place => {
                 const marker = mapManagerRef.current?.getMarker(place.id);
                 if (marker) {
                     mapManagerRef.current?.updateMarker(place.id, {
-                        dayIndex: Number(dayIndex),
-                        orderIndex: place.orderIndex // Persisted value
+                        dayIndex: place.dayIndex,
+                        orderIndex: place.orderIndex
                     });
                 }
             });
-
-            // Draw routes between consecutive places
+    
             for (let i = 0; i < dayPlaces.length - 1; i++) {
-                drawRouteBetweenPlaces(dayPlaces[i], dayPlaces[i + 1]);
+                const fromPlace = dayPlaces[i];
+                const toPlace = dayPlaces[i + 1];
+                newActiveRoutes.push({ fromId: fromPlace.id, toId: toPlace.id });
             }
         });
-    }, [drawRouteBetweenPlaces]);
+    
+        setActiveRoutes(newActiveRoutes);
+    };
 
     useEffect(() => {
         const handleOptimizationApplied = () => {
@@ -705,16 +694,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             }, 100);
         }
     }, [theme]);
-
-    const handlePlaceSelect = useCallback((place: Place) => {
-        if (!mapManagerRef.current) return;
-        
-        setSelectedPlace(place);
-        const marker = mapManagerRef.current.getMarker(place.id);
-        if (marker) {
-            mapManagerRef.current.showInfoWindow(place, marker);
-        }
-    }, []);
 
     const getLocation = async (city: string) => {
         const geocoder = new window.google.maps.Geocoder();
