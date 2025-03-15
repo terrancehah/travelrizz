@@ -85,7 +85,6 @@ export const preferenceToPlaceTypes: Record<TravelPreference, string[]> = {
         'bar_and_grill'
     ],
     [TravelPreference.Leisure]: [
-        'spa',
         'wellness_center',
         'shopping_mall',
         'beach',

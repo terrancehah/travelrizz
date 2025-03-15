@@ -34,9 +34,21 @@ export interface BaseToolProps {
     loading?: boolean;
 }
 
+// Context holder for request-specific data
+let requestContext: { savedPlaces: Place[] } | null = null;
+
+// Functions to manage the context
+export function setRequestContext(context: { savedPlaces: Place[] }) {
+    requestContext = context;
+}
+
+export function getRequestContext() {
+    return requestContext;
+}
+
 // Tool for Budget Selection
 export const budgetSelectorTool = createTool({
-    description: 'Display budget level options for the trip. Use this when discussing trip costs or when the user wants to set their budget preference.',
+    description: 'Display budget level options for the trip. Call this tool when the user wants to set their budget level.',
     parameters: z.object({
         currentBudget: z.enum(['Budget', 'Moderate', 'Luxury', 'Ultra Luxury'] as const).optional()
     }),
@@ -52,7 +64,7 @@ export const budgetSelectorTool = createTool({
 
 // Tool for Travel Preferences
 export const preferenceSelectorTool = createTool({
-    description: 'Display options for selecting travel preferences and interests.',
+    description: 'Display options for selecting travel preferences and interests. Call this tool when the user wants to set their travel preferences.',
     parameters: z.object({
         currentPreferences: z.array(z.nativeEnum(TravelPreference)).optional()
     }),
@@ -68,7 +80,7 @@ export const preferenceSelectorTool = createTool({
 
 // Tool for Date Selection
 export const datePickerTool = createTool({
-    description: 'Display a date picker for selecting travel dates.',
+    description: 'Display a date picker for selecting travel dates. Call this tool when the user wants to set their travel dates.',
     parameters: z.object({
         startDate: z.string().optional(),
         endDate: z.string().optional()
@@ -299,7 +311,27 @@ export const savedPlacesListTool = createTool({
             primaryTypeDisplayName: z.object({
                 text: z.string(),
                 languageCode: z.string()
-            }).optional()
+            }).optional(),
+            regularOpeningHours: z.object({
+                periods: z.array(z.object({
+                    open: z.object({
+                        day: z.number(),
+                        hour: z.number(),
+                        minute: z.number()
+                    }),
+                    close: z.object({
+                        day: z.number(),
+                        hour: z.number(),
+                        minute: z.number()
+                    }).optional()
+                })),
+                weekdayDescriptions: z.array(z.string()),
+                openNow: z.boolean(),
+                nextOpenTime: z.object({ date: z.string() }).nullable().optional(),
+                nextCloseTime: z.object({ date: z.string() }).nullable().optional()
+            }).optional(),
+            dayIndex: z.number().optional(),
+            orderIndex: z.number().optional()
         }))
     }),
     execute: async function ({ savedPlaces }) {
@@ -590,24 +622,26 @@ export const placeOptimizerTool = createTool({
             orderIndex: z.number().optional()
         })).describe('Array of places to optimize into an itinerary')
     }),
-    execute: async function ({ startDate, endDate, savedPlaces }) {
-        try {            
-            const result = await optimizeItinerary(
-                savedPlaces as Place[],
-                startDate,
-                endDate
-            );
-
+    execute: async function ({ startDate, endDate }) {
+        try {
+            // Access savedPlaces from the request context
+            const context = getRequestContext();
+            if (!context?.savedPlaces || context.savedPlaces.length === 0) {
+                throw new Error('No places to optimize');
+            }
+        
+            const result = await optimizeItinerary(context.savedPlaces, startDate, endDate);
             return {
                 type: 'placeOptimizer',
-                props: { 
-                    content: 'Successfully optimized travel itinerary',
-                    optimizedPlaces: result,
-                    startDate,
-                    endDate
-                }
+                props: {
+                content: 'Successfully optimized travel itinerary',
+                optimizedPlaces: result,
+                startDate,
+                endDate,
+                },
             };
         } catch (error) {
+            console.error('[placeOptimizerTool] Error:', error);
             return {
                 type: 'error',
                 props: {

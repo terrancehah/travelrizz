@@ -3,7 +3,7 @@ import { openai } from '@ai-sdk/openai';
 // import { groq } from '@ai-sdk/groq';
 // import { createGroq } from '@ai-sdk/groq';
 import { smoothStream, streamText, Message } from 'ai';
-import { tools } from '../../../ai/tools';
+import { tools, setRequestContext, placeOptimizerTool } from '../../../ai/tools';
 import { NextRequest } from 'next/server';
 import { TravelSession } from '../../../managers/types';
 import { validateStageProgression, STAGE_LIMITS } from '../../../managers/stage-manager';
@@ -26,7 +26,7 @@ interface ChatRequestBody {
     preferences: string[];
     language: string;
   };
-  savedPlaces: Partial<Place>[];
+  savedPlaces: Place[];
   currentStage: number;
   metrics: TravelSession;
 }
@@ -40,26 +40,14 @@ export default async function handler(req: NextRequest) {
     const { messages, currentDetails, savedPlaces, currentStage, metrics }: ChatRequestBody = await req.json();
     
     // Ensure savedPlaces is properly typed and has all required fields
-    const typedSavedPlaces = (savedPlaces || []).map((p: Partial<Place>) => ({
-      ...p,
-      photos: p.photos || [],
-      // Only set primaryTypeDisplayName if it doesn't exist AND we have a primaryType
-      primaryTypeDisplayName: p.primaryTypeDisplayName || (p.primaryType ? { text: p.primaryType, languageCode: 'en' } : undefined)
+    const typedSavedPlaces = (savedPlaces || []).map((place) => ({
+      ...place,
+      photos: place.photos, // Preserve photos if they exist
+      primaryTypeDisplayName: place.primaryTypeDisplayName // Preserve if it exists
     }));
-    
-    // console.log('Debug - API received:', { 
-    //   currentDetails,
-    //   savedPlaces: typedSavedPlaces.map(p => ({
-    //     id: p.id,
-    //     photos: p.photos,
-    //     primaryTypeDisplayName: p.primaryTypeDisplayName
-    //   })),
-    //   currentStage,
-    //   metrics,
-    //   message: messages[messages.length - 1] 
-    // });
 
-    // console.log('[chat] Processing request:', { messageCount: messages.length, destination: currentDetails.destination });
+    // Set the request context with savedPlaces
+    setRequestContext({ savedPlaces: typedSavedPlaces });
 
     // Validate request and required fields
     if (!messages?.length || !currentDetails || !metrics) {
@@ -147,12 +135,15 @@ export default async function handler(req: NextRequest) {
     There are multiple tools available to you to help you achieve your goal.
     Your job, is to call these tools below when necessary.
     'stageProgress' MUST be called for stage advancement (only trigger this tool after user confirmation to advance to the next stage).
+
     For parameter change requests from users in stage 1, specific tools should be called to allow users to update their trip parameters.
     These tools include 'budgetSelectorTool' for budget options (call this when users want to change their budget level), 'datePickerTool' for date selection (call this when users want to change their travel dates), and 'preferenceSelectorTool' for travel preferences (call this when users want to change their travel preferences).
+    
     In stage 2, there are informative tools to provide additional information to user.
     These tools include 'weatherHistorical' for historical weather data for the same period from last year (trigger when travel dates are beyond the next 7 days - this tool provides historical weather data from previous years); 
     'weatherForecast' tool for weather forecast data for the next 7 days (use when travel dates are within the next 7 days - this tool provides actual forecast data from weather services); 
     and 'currencyConverterTool' for displaying live currency conversion rates (when the tool returns, use the rates data included in the tool response to provide accurate exchange rate information to the user); 
+    
     For stage 3, we have tools related to place browsing and introduction.
     There are 'placeCard' for single place display when users ask for one place (e.g. "add one cafe" or "show me one restaurant"), which automatically saves the place after display; 
     'carousel' for multiple places display when users ask for multiple places (e.g. "add some museums" or "show me a few cinemas"), which automatically saves places after display; 
@@ -221,7 +212,6 @@ export default async function handler(req: NextRequest) {
       - Travel Preferences: ${currentDetails.preferences?.join(', ')}
       - Chat Language: ${currentDetails.language}
       - Saved Places Count: ${typedSavedPlaces.length}
-      - Saved Places Sample: ${JSON.stringify(typedSavedPlaces.slice(0, 1), null, 2)}
       - Total User Prompts Number: ${metrics?.totalPrompts}
       - Stage 3 Prompts Number: ${metrics?.stagePrompts?.[3]}
       - Payment Status: ${metrics?.isPaid ? 'Paid' : 'Not Paid'}

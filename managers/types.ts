@@ -29,7 +29,7 @@ export interface Place {
         text: string;
         languageCode: string;
     };
-    photos: { 
+    photos?: { 
         name: string;
         widthPx?: number;
         heightPx?: number;

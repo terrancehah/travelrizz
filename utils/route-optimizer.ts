@@ -1,6 +1,7 @@
 import { Place } from '../managers/types'
 import { travelInfoManager } from './travel-info-utils'
 import { RouteMatrix, RouteMatrixElement } from '../pages/api/maps/route-matrix'
+import { savedPlacesManager } from '../managers/saved-places-manager'
 
 interface OptimizationResult {
   places: Place[]
@@ -125,6 +126,7 @@ export async function optimizePlaces(
   startDate: string, 
   endDate: string
 ): Promise<OptimizationResult> {
+  console.log('Places from getPlaces:', places?.length, places);
   // Ensure we have places to optimize
   if (!places || places.length === 0) {
     throw new Error('No places to optimize')
@@ -389,10 +391,10 @@ export async function optimizePlaces(
  * Main optimization function that handles the entire process
  */
 export async function optimizeItinerary(
-  places: Place[], 
+  places: Place[],
   startDate: string, 
   endDate: string
 ): Promise<Place[]> {
-  const result = await optimizePlaces(places, startDate, endDate)
-  return result.places
+  const result = await optimizePlaces(places, startDate, endDate);
+  return result.places;
 }
