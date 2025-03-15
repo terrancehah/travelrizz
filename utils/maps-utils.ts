@@ -144,7 +144,7 @@ export class GoogleMapManager {
             background: color,
             borderColor: color,
             glyphColor: "#FFFFFF",
-            glyph: options.orderIndex ? `${options.orderIndex + 1}` : undefined
+            glyph: typeof options.orderIndex !== 'undefined' ? `${options.orderIndex + 1}` : undefined
         });
 
         marker.content = pinElement.element;
