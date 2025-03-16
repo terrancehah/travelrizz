@@ -47,6 +47,15 @@ const DEFAULT_MARKER_STYLES = {
     glyphColor: "#FFFFFF",  // White glyph
 };
 
+function darkenColor(hex: string, percent: number): string {
+    const num = parseInt(hex.replace('#', ''), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = (num >> 16) - amt;
+    const G = (num >> 8 & 0x00FF) - amt;
+    const B = (num & 0x0000FF) - amt;
+    return `#${(1 << 24 | (R < 0 ? 0 : R) << 16 | (G < 0 ? 0 : G) << 8 | (B < 0 ? 0 : B)).toString(16).slice(1)}`;
+}
+
 // Class to manage Google Maps markers and related operations
 export class GoogleMapManager {
     private markers: Map<string, google.maps.marker.AdvancedMarkerElement>;
@@ -70,25 +79,12 @@ export class GoogleMapManager {
             const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
             
             const markerId = place.id;
-            const dayIndex = options?.dayIndex ?? place.dayIndex ?? 0;
-            
-            // Use default styles unless dayIndex is provided or color is explicitly set
-            const useDefaultStyle = !options?.dayIndex && !options?.color;
-            const color = useDefaultStyle 
-                ? DEFAULT_MARKER_STYLES.background 
-                : (options?.color ?? ROUTE_COLORS[dayIndex % ROUTE_COLORS.length]);
-            const borderColor = useDefaultStyle
-                ? DEFAULT_MARKER_STYLES.borderColor
-                : color;
-            
-            // Remove existing marker if it exists
-            this.removeMarker(markerId);
 
             const pinElement = new PinElement({
-                background: color,
-                borderColor: borderColor,
+                background: DEFAULT_MARKER_STYLES.background,
+                borderColor: DEFAULT_MARKER_STYLES.borderColor,
                 glyphColor: DEFAULT_MARKER_STYLES.glyphColor,
-                glyph: typeof options?.orderIndex !== 'undefined' ? `${options.orderIndex + 1}` : undefined
+                glyph: options?.orderIndex != null ? `${options.orderIndex + 1}` : undefined
             });
 
             const marker = new AdvancedMarkerElement({
@@ -138,13 +134,13 @@ export class GoogleMapManager {
         if (!marker) return;
 
         const dayIndex = options.dayIndex ?? 0;
-        const color = options.color ?? ROUTE_COLORS[dayIndex % ROUTE_COLORS.length];
+        const color = ROUTE_COLORS[dayIndex % ROUTE_COLORS.length];
 
         const pinElement = new google.maps.marker.PinElement({
             background: color,
-            borderColor: color,
-            glyphColor: "#FFFFFF",
-            glyph: typeof options.orderIndex !== 'undefined' ? `${options.orderIndex + 1}` : undefined
+            borderColor: darkenColor(color, 40), // 40% darker
+            glyphColor: "#FFFFFF", //white
+            glyph: options.orderIndex != null ? `${options.orderIndex + 1}` : undefined
         });
 
         marker.content = pinElement.element;

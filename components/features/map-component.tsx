@@ -233,17 +233,24 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             switch (type) {
                 case 'add-place':
                     if (place?.location) {
-                        // Check if place is already in savedPlacesManager
-                        if (!savedPlacesManager.hasPlace(place.id)) {
-                            savedPlacesManager.addPlace(place);
-                        }
-                        
-                        // Check if marker already exists
-                        if (!mapManagerRef.current?.getMarker(place.id)) {
+                        const existingMarker = mapManagerRef.current?.getMarker(place.id);
+
+                        if (existingMarker) {
+                            // Update existing marker
+                            mapManagerRef.current?.updateMarker(place.id, {
+                                dayIndex: place.dayIndex,
+                                orderIndex: place.orderIndex
+                            });
+                        } else {
+                            // Create new marker only if none exists
                             mapManagerRef.current?.createMarker(place, {
                                 dayIndex: place.dayIndex,
                                 orderIndex: place.orderIndex
                             });
+                        }
+                        // Check if place is already in savedPlacesManager
+                        if (!savedPlacesManager.hasPlace(place.id)) {
+                            savedPlacesManager.addPlace(place);
                         }
                         
                         // Only dispatch places-changed if this is a new place

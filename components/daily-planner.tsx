@@ -320,3 +320,15 @@ export default function ItineraryPlanner({ onPlaceRemoved }: ItineraryPlannerPro
     </DragDropContext>
   )
 }
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+      props: {
+          messages: {
+              itineraryplanner: (await import(`/public/locales/${locale}/itineraryplanner.json`)).default,
+              parameters: (await import(`/public/locales/${locale}/parameters.json`)).default
+          },
+          locale
+      }
+  }
+}

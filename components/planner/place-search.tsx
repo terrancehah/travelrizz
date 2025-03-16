@@ -20,7 +20,7 @@ export function PlaceSearch({ onPlaceSelected, className = '', disabled = false 
   const [searchError, setSearchError] = useState('')
   const autocompleteInputRef = useRef<HTMLInputElement>(null)
   const session = getStoredSession()
-  const tPlan = useTranslations('itineraryPlanner')
+  const tPlan = useTranslations('itineraryplanner')
   const { locale } = useRouter()
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export function PlaceSearch({ onPlaceSelected, className = '', disabled = false 
         ref={autocompleteInputRef}
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        placeholder={isSearching ? tPlan('searching') : tPlan('placeholder')}
+        placeholder={isSearching ? tPlan('placeSearch.searching') : tPlan('placeSearch.placeholder')}
         className={cn(
           "pl-8 bg-white dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-400 dark:border-gray-700",
           "focus-visible:ring-2 focus-visible:ring-sky-500 dark:focus-visible:ring-sky-400",

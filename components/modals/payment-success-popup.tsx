@@ -151,8 +151,8 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
         <div className="space-y-6">
 
           <div className="text-center">
-            <h3 className="text-2xl text-gray-700 dark:text-gray-300 font-semibold mb-2">{title}</h3>
-            {description && <p className="text-gray-600 dark:text-gray-400">{description}</p>}
+            <h3 className={`${fonts.text} text-2xl text-gray-700 dark:text-gray-300 font-semibold mb-2`}>{title}</h3>
+            {description && <p className={`${fonts.text} text-lg text-gray-700 dark:text-gray-300`}>{description}</p>}
           </div>
 
           {/* Image Carousel */}
@@ -177,7 +177,7 @@ export default function PaymentSuccessPopup({ isOpen, onClose, title, descriptio
                         alt={tutorial.title}
                       />
                     )}
-                    <h3 className={`text-gray-600 dark:text-gray-300 text-xl ${fonts.text} text-center font-bold my-4`}>{tutorial.title}</h3>
+                    <h3 className={`text-gray-600 dark:text-gray-300 text-xl ${fonts.text} text-center font-bold mt-4 mb-2`}>{tutorial.title}</h3>
                     <p className={`text-gray-600 dark:text-gray-400 ${fonts.text} text-center`}>{tutorial.description}</p>
                   </div>
                 </div>

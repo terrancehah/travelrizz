@@ -57,7 +57,6 @@ export function PlaceCompactCard({ place, onDelete, dragHandleProps, className }
             <h3 className="font-medium text-base leading-none dark:text-gray-200">{displayName}</h3>
             <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">{typeDisplay}</p>
           </div>
-         
         </div>
         <p className="text-xs text-muted-foreground dark:text-gray-400">{place.formattedAddress}</p>
       </div>

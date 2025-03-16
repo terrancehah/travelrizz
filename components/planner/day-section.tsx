@@ -11,7 +11,7 @@ import { getStoredSession } from '../../managers/session-manager'
 import { cn } from '@/utils/cn'
 import { Fragment } from 'react'
 import { TravelInfo } from './travel-info'
-import {useTranslations} from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 
 interface DaySectionProps {
@@ -38,7 +38,7 @@ const dispatchMapOperation = (detail: MapOperationDetail) => {
 
 export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChange, className = '', isDragging = false }: DaySectionProps) {
   const [isSearching, setIsSearching] = useState(false)
-  const tPlan = useTranslations('itineraryPlanner')
+  const tPlan = useTranslations('itineraryplanner')
   const { locale } = useRouter()
   
   const handlePlaceDelete = (dayId: string, placeId: string) => {
