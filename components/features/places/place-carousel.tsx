@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Place } from '@/managers/types';
-import { PlaceCard } from './PlaceCard';
+import { PlaceCard } from './place-card';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 
 // Interface for map operations
