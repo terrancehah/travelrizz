@@ -3,10 +3,10 @@ import { openai } from '@ai-sdk/openai';
 // import { groq } from '@ai-sdk/groq';
 // import { createGroq } from '@ai-sdk/groq';
 import { smoothStream, streamText, Message } from 'ai';
-import { tools, setRequestContext, placeOptimizerTool } from '../../../ai/tools';
+import { tools, setRequestContext } from '../../../ai/tools';
 import { NextRequest } from 'next/server';
 import { TravelSession } from '../../../managers/types';
-import { validateStageProgression, STAGE_LIMITS } from '../../../managers/stage-manager';
+import { validateStageProgression } from '../../../managers/stage-manager';
 import { Place } from '../../../managers/types';
 
 export const config = {
@@ -238,10 +238,10 @@ export default async function handler(req: NextRequest) {
       presencePenalty: 0.7,
       frequencyPenalty: 0.3,
       maxSteps: 10,
-      // experimental_transform: smoothStream({
-      //   delayInMs: 70,
-        
-      // }),
+      experimental_transform: smoothStream({
+        delayInMs: 0,
+        chunking: 'word'
+      }),
       tools,
     });
 

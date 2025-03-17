@@ -496,6 +496,8 @@ export const metricsManager = {
     update: updateMetrics
 };
 
+const MAX_PHOTOS_PER_PLACE = 5; // Maximum number of photos to fetch per place
+
 // Helper function to transform Google Places API response to our Place type
 export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null => {
     if (!place || !place.id) return null;
@@ -511,11 +513,11 @@ export const transformPlaceResponse = (place: GooglePlaceResponse): Place | null
         // Preserve dayIndex and orderIndex if they exist in the input place
         dayIndex: (place as any).dayIndex,
         orderIndex: (place as any).orderIndex,
-        photos: place.photos ? place.photos.map(photo => ({
+        photos: place.photos?.slice(0, MAX_PHOTOS_PER_PLACE).map(photo => ({
             name: photo.name,
             widthPx: photo.widthPx,
             heightPx: photo.heightPx
-        })) : [],
+        })) || [],
         regularOpeningHours: place.regularOpeningHours && place.regularOpeningHours.periods ? {
             periods: place.regularOpeningHours.periods.map(period => ({
                 open: {
