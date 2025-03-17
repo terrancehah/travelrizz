@@ -506,22 +506,13 @@ export const weatherForecastTool = createTool({
         lat: z.number().min(-90).max(90).describe('Latitude of the location'),
         lon: z.number().min(-180).max(180).describe('Longitude of the location'),
         city: z.string().describe('City name for display'),
-        startDate: z.string().describe('Trip start date in DD/MM/YYYY format'),
-        endDate: z.string().describe('Trip end date in DD/MM/YYYY format'),
         units: z.enum(['us', 'uk', 'metric'] as const).optional().default('metric')
     }),
-    execute: async function ({ lat, lon, city, startDate, endDate, units = 'metric' }) {
+    execute: async function ({ lat, lon, city, units = 'metric' }) {
         try {
-            // Format dates for display purposes only
-            const formattedStartDate = formatDate(startDate);
-            const formattedEndDate = formatDate(endDate);
-            
-            // Fetch the actual weather forecast data (always 7 days from today)
             const forecastData = await fetchWeatherForecast(
                 lat, 
                 lon, 
-                startDate, 
-                endDate, 
                 units
             );
             
@@ -531,8 +522,6 @@ export const weatherForecastTool = createTool({
                     lat,
                     lon,
                     city,
-                    startDate: formattedStartDate,
-                    endDate: formattedEndDate,
                     units,
                     // Include the actual weather forecast data for the AI to reference
                     forecastData: forecastData.data,
