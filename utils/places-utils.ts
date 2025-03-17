@@ -246,17 +246,17 @@ async function searchPlacesBase(
                 locationBias: {
                     circle: {
                         center: config.location,
-                        radius: config.radius || 20000.0
+                        radius: config.radius || 15000.0
                     }
                 },
-                maxResultCount: config.maxResults || 5,
+                maxResultCount: config.maxResults || 10,
                 languageCode: config.languageCode || 'en'  // Add language code
             }
             : {
                 locationRestriction: {
                     circle: {
                         center: config.location,
-                        radius: config.radius || 5000.0
+                        radius: config.radius || 15000.0
                     }
                 },
                 includedTypes: Array.isArray(config.query) ? config.query : [config.query],
@@ -295,6 +295,7 @@ async function searchPlacesBase(
     }
 }
 
+// Return 1 place using text search
 export async function searchPlaceByText(
     searchText: string,
     location: { latitude: number; longitude: number },
@@ -313,7 +314,8 @@ export async function searchPlaceByText(
             endpoint: 'text',
             query: searchText,
             location,
-            maxResults: 5,
+            radius: 15000.0,
+            maxResults: 10,
             languageCode: languageCode || Router.locale || 'en'
         });
         
@@ -358,6 +360,7 @@ export async function searchPlaceByText(
     }
 }
 
+// Return 10 places using text search
 export const searchMultiplePlacesByText = async (
     searchText: string,
     location: { latitude: number; longitude: number },
@@ -368,6 +371,7 @@ export const searchMultiplePlacesByText = async (
         return await searchPlacesBase({
             endpoint: 'text',
             query: searchText,
+            radius: 15000.0,
             location,
             maxResults,
             languageCode  // Pass the language code
@@ -378,6 +382,7 @@ export const searchMultiplePlacesByText = async (
     }
 };
 
+// Return max 10 places with place types mapped
 export async function parallelSearchByPreferences({
     latitude,
     longitude,
@@ -410,6 +415,7 @@ export async function parallelSearchByPreferences({
                 endpoint: 'nearby',
                 query: type,
                 location,
+                radius: 15000.0,
                 maxResults: resultsPerType,
                 languageCode
             })

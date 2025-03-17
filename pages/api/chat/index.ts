@@ -113,7 +113,7 @@ export default async function handler(req: NextRequest) {
     Multiple tools can be triggered to provide this information, for example, 'weatherForecastTool' tool, 'weatherHistoricalTool' tool, 'currencyConverterTool', and 'localTipsTool' etc. 
     When users enquire about this information, you MUST trigger the corresponding tool to provide the information.
     After providing the information, guide them to the next stage. 
-    If users agree to advance to the next stage, you MUST trigger the 'stageProgress' tool to advance to the next stage.
+    If users agree to advance to the next stage, you MUST trigger the 'stageProgress' tool to advance to the next stage, then the carousel tool as well.
     
     Stage 3: 'PLACES BROWSING AND INTRODUCTION'
     This stage facilitates user discovery of preference-matched locations.
@@ -145,8 +145,9 @@ export default async function handler(req: NextRequest) {
     and 'currencyConverterTool' for displaying live currency conversion rates (when the tool returns, use the rates data included in the tool response to provide accurate exchange rate information to the user); 
     
     For stage 3, we have tools related to place browsing and introduction.
-    There are 'placeCard' for single place display when users ask for one place (e.g. "add one cafe" or "show me one restaurant"), which automatically saves the place after display; 
+    There are 'placeCard' for single place display when users ask for one place (e.g. "add one cafe" or "show me one restaurant"), which automatically saves the place after display;
     'carousel' for multiple places display when users ask for multiple places (e.g. "add some museums" or "show me a few cinemas"), which automatically saves places after display; 
+    'carousel' should also be called when the user advance from stage 2 to stage 3, and ask for place introductions;
     and 'savedPlacesList' to view ALL previously saved places (when users ask to see saved places, ALL places from the savedPlaces parameter will be passed to this tool).
     Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, provide the startDate and endDate parameters. The savedPlaces will be automatically retrieved from the context.
     

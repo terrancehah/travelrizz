@@ -29,15 +29,13 @@ interface InfoWindowOptions {
 // Colors for different days in the itinerary
 const ROUTE_COLORS = [
     '#2196F3', // Blue
-    '#9C27B0', // Purple
-    '#795548', // Brown
     '#FF9800', // Orange
-    '#009688', // Teal
-    '#E91E63', // Pink
-    '#673AB7', // Deep Purple
-    '#3F51B5', // Indigo
+    '#9C27B0', // Purple
+    '#4CAF50', // Green
+    '#795548', // Brown
     '#00BCD4', // Cyan
-    '#4CAF50'  // Green
+    '#E91E63', // Pink
+    '#3F51B5', // Indigo
 ];
 
 // Default marker styles
@@ -134,7 +132,7 @@ export class GoogleMapManager {
         if (!marker) return;
 
         const dayIndex = options.dayIndex ?? 0;
-        const color = ROUTE_COLORS[dayIndex % ROUTE_COLORS.length];
+        const color = options.dayIndex != null ? ROUTE_COLORS[dayIndex % ROUTE_COLORS.length] : DEFAULT_MARKER_STYLES.background;
 
         const pinElement = new google.maps.marker.PinElement({
             background: color,
