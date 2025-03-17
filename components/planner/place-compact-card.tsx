@@ -19,7 +19,7 @@ export function PlaceCompactCard({ place, onDelete, dragHandleProps, className }
   const typeDisplay = place.primaryTypeDisplayName?.text || place.primaryType
 
   const photoUrl = place.photos?.[0]?.name
-    ? `https://places.googleapis.com/v1/${place.photos[0].name}/media?maxHeightPx=192&maxWidthPx=400&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
+    ? `/api/places/photos?photoName=${place.photos[0].name}&maxWidth=400&maxHeight=192`
     : '/images/placeholder-image.jpg'
 
   return (

@@ -30,7 +30,7 @@ export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps)
             
             for (const place of uniquePlaces) {
                 if (place.photos?.[0]?.name) {
-                    const photoUrl = `https://places.googleapis.com/v1/${place.photos[0].name}/media?maxHeightPx=400&maxWidthPx=400&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`;
+                    const photoUrl = `/api/places/photos?photoName=${place.photos[0].name}&maxWidth=400&maxHeight=400`;
                     newPhotoUrls[place.photos[0].name] = photoUrl;
                 }
             }

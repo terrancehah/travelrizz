@@ -152,7 +152,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
             {/* Conditional actual photo */}
             {photos.length > 0 && (
                 <img
-                src={`https://places.googleapis.com/v1/${photos[currentPhotoIndex].name}/media?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&skipHttpRedirect=true&maxWidthPx=400&dpr=2`}
+                src={`/api/places/photos?photoName=${photos[currentPhotoIndex].name}&maxWidth=400`}
                 onError={handleImageError}
                 className="w-full h-full object-cover absolute inset-0"
                 alt=""
