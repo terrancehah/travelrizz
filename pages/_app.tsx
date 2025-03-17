@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import { IntlProvider } from 'next-intl'
-import { Noto_Sans_SC, Raleway, Caveat, Lato } from '@next/font/google'
+import { Noto_Sans_SC, Raleway, Caveat, Lato } from "next/font/google"
 import { useRouter } from 'next/router'
 import '../styles/globals.css'
 import 'flatpickr/dist/flatpickr.css'

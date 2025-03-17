@@ -16,7 +16,7 @@ export default function Features() {
     },
     {
       key: 'insights',
-      image: "/images/generative-ui.png",
+      image: "/images/generative-ui.jpg",
     },
     {
       key: 'routes',
@@ -38,19 +38,30 @@ export default function Features() {
 
         {/* Mobile Layout (default) */}
         <div className="grid grid-cols-1 gap-6 md:hidden">
+          
           {features.map((feature) => (
             <div
               key={feature.key}
-              className="flex flex-col gap-y-4 p-6 bg-gray-100/80 dark:bg-gray-700/70 rounded-xl backdrop-blur-sm transition-all duration-300"
+              className="flex flex-col rounded-xl overflow-hidden backdrop-blur-sm transition-all duration-300 shadow-md"
             >
-              <Image
-                src={feature.image}
-                alt={t(`features.items.${feature.key}.title`)}
-                width={600}
-                height={400}
-                className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover w-full"
-              />
-              <div className="space-y-2">
+              {/* Image Section */}
+              <div className="relative w-full">
+                <Image
+                  src={feature.image}
+                  alt={t(`features.items.${feature.key}.title`)}
+                  width={600}
+                  height={400}
+                  className="bg-gray-100/80  object-cover w-full"
+                />
+
+                {/* Blur Overlay */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-b from-transparent via-sky-100/60 to-sky-100/80 dark:via-gray-700/40 dark:to-gray-700/80"
+                  style={{ backdropFilter: 'blur(1px)' }}
+                />
+              </div>
+
+              <div className="space-y-2 p-6 pt-4 bg-sky-100/80 dark:bg-gray-700/80">
                 <h3 className={`text-xl md:text-2xl font-medium text-primary dark:text-sky-100 ${fonts.text}`}>{t(`features.items.${feature.key}.title`)}</h3>
                 <p className={`text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>
               </div>
@@ -63,18 +74,27 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={feature.key}
-              className="flex flex-col gap-y-4 p-6 bg-gray-100/80 dark:bg-gray-700/70 rounded-xl backdrop-blur-sm transition-all duration-300"
+              className="flex flex-col bg-sky-100/80 dark:bg-gray-700/70 rounded-xl overflow-hidden backdrop-blur-sm transition-all duration-300 shadow-md"
             >
+              {/* Image Section */}
               <div className="relative w-full h-[300px]">
                 <Image
                   src={feature.image}
                   alt={t(`features.items.${feature.key}.title`)}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                  className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover"
+                  className="object-cover"
+                />
+
+                {/* Blur Overlay */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-b from-transparent via-sky-100/60 to-sky-100/80 dark:via-gray-700/30 dark:to-gray-700/80"
+                  style={{ backdropFilter: 'blur(1px)' }}
                 />
               </div>
-              <div className="space-y-2">
+
+              {/* Text Section */}
+              <div className="space-y-2 p-6 pt-4">
                 <h3 className={`text-xl md:text-2xl font-medium text-primary dark:text-sky-100 ${fonts.text}`}>{t(`features.items.${feature.key}.title`)}</h3>
                 <p className={`text-gray-600 dark:text-gray-300 text-lg leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>
               </div>
@@ -88,33 +108,68 @@ export default function Features() {
             <div
               key={feature.key}
               className={cn(
-                "group overflow-hidden rounded-xl bg-sky-100/50 dark:bg-gray-700/70 backdrop-blur-sm transition-all duration-300",
+                "group overflow-hidden rounded-xl shadow-md",
                 index === 0 || index === 3 ? "col-span-8 h-[450px]" : "col-span-4 h-[450px]"
               )}
             >
-              <div className={cn(
-                "h-full w-full p-6 flex",
-                index === 0 || index === 3 ? "flex-row items-center" : "flex-col"
-              )}>
-                <div className={cn(
-                  "relative",
-                  index === 0 || index === 3 ? "w-[70%] h-[100%]" : "w-full h-3/5"
-                )}>
+              <div
+                className={cn(
+                  "relative h-full w-full flex",
+                  index === 0 || index === 3 ? "flex-row items-center" : "flex-col"
+                )}
+              >
+                {/* Image Section */}
+                <div
+                  className={cn(
+                    "relative transition-all duration-300",
+                    index === 0 || index === 3 ? "w-[70%] h-[100%] mr-8" : "w-full h-3/5 mb-6"
+                  )}
+                >
                   <Image
                     src={feature.image}
                     alt={t(`features.items.${feature.key}.title`)}
                     fill
                     sizes={`(max-width: 768px) 100vw, (max-width: 1200px) 50vw, ${index === 0 || index === 3 ? '66.66vw' : '33.33vw'}`}
-                    className="rounded-lg border border-gray-200 dark:border-gray-700 object-cover"
+                    className="object-cover"
                   />
+                  
+                  {/* Blur Overlay for flex-col (bottom edge) */}
+                  {!(index === 0 || index === 3) && (
+                    <div
+                      className="absolute -bottom-6 left-0 right-0 h-14 bg-gradient-to-b from-transparent via-sky-100/60 to-sky-100/80 dark:via-gray-700/50 dark:to-gray-700/80"
+                      style={{ backdropFilter: 'blur(1px)' }}
+                    />
+                  )}
+                  {/* Blur Overlay for flex-row (right edge) */}
+                  {(index === 0 || index === 3) && (
+                    <div
+                      className="absolute top-0 bottom-0 -right-8 w-24 bg-gradient-to-r from-transparent via-sky-100/50 to-sky-100/80 dark:via-gray-700/50 dark:to-gray-700/80"
+                      style={{ backdropFilter: 'blur(1px)'}}
+                    />
+                  )}
                 </div>
-                <div className={cn(
-                  "flex flex-col justify-center",
-                  index === 0 || index === 3 ? "w-[30%] pl-6" : "w-full h-2/5 pt-2"
-                )}>
-                  <h3 className={`text-xl font-medium text-primary dark:text-sky-100 mb-2 ${fonts.text}`}>{t(`features.items.${feature.key}.title`)}</h3>
-                  <p className={`text-gray-600 dark:text-gray-300 text-md leading-relaxed ${fonts.text}`}>{t(`features.items.${feature.key}.description`)}</p>
+
+                {/* Text Section */}
+                <div
+                  className={cn(
+                    "flex flex-col justify-center p-6 bg-sky-100/80 dark:bg-gray-700/80 transition-all duration-300",
+                    index === 0 || index === 3
+                      ? "w-[30%] pl-0 h-full"
+                      : "w-full h-2/5 pt-0"
+                  )}
+                >
+                  <h3
+                    className={`text-xl font-medium text-primary dark:text-sky-100 mb-2 ${fonts.text}`}
+                  >
+                    {t(`features.items.${feature.key}.title`)}
+                  </h3>
+                  <p
+                    className={`text-gray-600 dark:text-gray-300 text-md leading-relaxed ${fonts.text}`}
+                  >
+                    {t(`features.items.${feature.key}.description`)}
+                  </p>
                 </div>
+
               </div>
             </div>
           ))}
