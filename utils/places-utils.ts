@@ -209,88 +209,41 @@ declare global {
 }
 
 // Base configuration type for search operations
-interface PlacesSearchConfig {
+export interface SearchConfig {
+    endpoint: 'text' | 'nearby';
+    query: string | string[];
     location: { latitude: number; longitude: number };
     maxResults?: number;
     radius?: number;
-    fieldMask?: string;
-    languageCode?: string;  // Add language code parameter
+    languageCode?: string;
+    locationRestriction?: {
+        circle: {
+            center: { latitude: number; longitude: number };
+            radius: number;
+        };
+    };
 }
 
 // Base search function that handles all search operations
-async function searchPlacesBase(
-    config: PlacesSearchConfig & {
-        endpoint: 'text' | 'nearby';
-        query: string | string[];
-    }
-): Promise<Place[]> {
+async function searchPlacesBase(config: SearchConfig): Promise<Place[]> {
     try {
-        if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
-            console.error('Google Maps API key is missing');
-            return [];
-        }
-
-        const headers = {
-            'Content-Type': 'application/json',
-            'X-Goog-Api-Key': process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-            'X-Goog-FieldMask': 'places.id,places.displayName.text,places.displayName.languageCode,places.formattedAddress,places.location,places.primaryType,places.primaryTypeDisplayName.text,places.primaryTypeDisplayName.languageCode,places.photos.name,places.photos.widthPx,places.photos.heightPx,places.regularOpeningHours,places.rating,places.userRatingCount,places.priceLevel'
-        };
-
-        const endpoint = config.endpoint === 'text' 
-            ? 'https://places.googleapis.com/v1/places:searchText'
-            : 'https://places.googleapis.com/v1/places:searchNearby';
-
-        const requestBody = config.endpoint === 'text' 
-            ? {
-                textQuery: config.query as string,
-                locationBias: {
-                    circle: {
-                        center: config.location,
-                        radius: config.radius || 15000.0
-                    }
-                },
-                maxResultCount: config.maxResults || 10,
-                languageCode: config.languageCode || 'en'  // Add language code
-            }
-            : {
-                locationRestriction: {
-                    circle: {
-                        center: config.location,
-                        radius: config.radius || 15000.0
-                    }
-                },
-                includedTypes: Array.isArray(config.query) ? config.query : [config.query],
-                maxResultCount: config.maxResults || 5,
-                languageCode: config.languageCode || 'en'  // Modify to use config language code
-            };
-
-        const response = await fetch(endpoint, {
+        const response = await fetch('/api/places/search', {
             method: 'POST',
-            headers,
-            body: JSON.stringify(requestBody)
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(config)
         });
 
         if (!response.ok) {
-            const errorData = await response.text();
-            console.error('Failed to search places:', {
-                status: response.status,
-                statusText: response.statusText,
-                error: errorData
-            });
+            console.error('Failed to search places:', response.status);
             return [];
         }
 
         const data = await response.json();
-        
-        if (!data.places || !Array.isArray(data.places) || data.places.length === 0) {
-            return [];
-        }
-
-        return data.places
-            .map((place: GooglePlaceResponse) => transformPlaceResponse(place))
-            .filter((place: Place | null): place is Place => place !== null);
+        return data.places || [];
     } catch (error) {
-        console.error('Error in searchPlacesBase:', error);
+        console.error('Error searching places:', error);
         return [];
     }
 }
@@ -374,7 +327,7 @@ export const searchMultiplePlacesByText = async (
             radius: 15000.0,
             location,
             maxResults,
-            languageCode  // Pass the language code
+            languageCode
         });
     } catch (error) {
         console.error('Error searching for places:', error);
