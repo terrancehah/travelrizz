@@ -213,12 +213,19 @@ declare global {
 // Base configuration type for search operations
 export interface SearchConfig {
     endpoint: 'text' | 'nearby';
-    query: string | string[];
-    location: { latitude: number; longitude: number };
+    query?: string;
+    includedTypes?: string[];
+    location?: { latitude: number; longitude: number };
     maxResults?: number;
     radius?: number;
     languageCode?: string;
     locationRestriction?: {
+        circle: {
+            center: { latitude: number; longitude: number };
+            radius: number;
+        };
+    };
+    locationBias?: {
         circle: {
             center: { latitude: number; longitude: number };
             radius: number;
@@ -229,7 +236,15 @@ export interface SearchConfig {
 // Base search function that handles all search operations
 async function searchPlacesBase(config: SearchConfig): Promise<Place[]> {
     try {
-        const response = await fetch('/api/places/search', {
+        // Determine the base URL based on the environment
+        const baseUrl = process.env.VERCEL_URL 
+            ? `https://${process.env.VERCEL_URL}` 
+            : 'http://localhost:3000';
+        
+        // Construct the full URL
+        const url = `${baseUrl}/api/places/search`;
+        
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -326,8 +341,12 @@ export const searchMultiplePlacesByText = async (
         return await searchPlacesBase({
             endpoint: 'text',
             query: searchText,
-            radius: 15000.0,
-            location,
+            locationBias: {
+                circle: {
+                    center: { latitude: location.latitude, longitude: location.longitude },
+                    radius: 15000.0
+                }
+            },
             maxResults,
             languageCode
         });
@@ -358,19 +377,18 @@ export async function parallelSearchByPreferences({
             languageCode
         });
 
-        const location = { latitude, longitude };
-
-        // Calculate results per type to achieve maxResults total
-        // Round up to ensure we get enough results after filtering
         const resultsPerType = Math.ceil(maxResults / includedTypes.length);
 
-        // Search for each type in parallel
         const searchPromises = includedTypes.map(type => 
             searchPlacesBase({
                 endpoint: 'nearby',
-                query: type,
-                location,
-                radius: 15000.0,
+                includedTypes: [type],
+                locationRestriction: {
+                    circle: {
+                        center: { latitude: latitude, longitude: longitude },
+                        radius: 15000.0
+                    }
+                },
                 maxResults: resultsPerType,
                 languageCode
             })
@@ -378,11 +396,7 @@ export async function parallelSearchByPreferences({
 
         const results = await Promise.all(searchPromises);
         const places = results.flat().filter(place => place !== null);
-
-        // Filter out duplicates using filterUniquePlaces
         const uniquePlaces = filterUniquePlaces(places);
-
-        // Trim to maxResults if we got more than requested
         const finalPlaces = uniquePlaces.slice(0, maxResults);
 
         console.log('[parallelSearchByPreferences] Found unique places:', finalPlaces.length);

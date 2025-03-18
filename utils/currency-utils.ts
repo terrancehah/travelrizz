@@ -17,7 +17,7 @@ export async function fetchExchangeRates(baseCurrency: string): Promise<{ [key: 
 
     try {
         // Use direct API call with absolute URL
-        const apiKey = process.env.FREECURRENCY_API_KEY || process.env.NEXT_PUBLIC_FREECURRENCY_API_KEY;
+        const apiKey = process.env.FREECURRENCY_API_KEY;
         if (!apiKey) {
             throw new Error('FreeCurrency API key is missing');
         }

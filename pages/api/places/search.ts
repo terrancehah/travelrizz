@@ -2,12 +2,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { SearchConfig } from '@/utils/places-utils';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    // Set CORS headers
+    // CORS headers and preflight handling remain unchanged
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-    // Handle preflight
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
@@ -35,12 +34,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             ? 'https://places.googleapis.com/v1/places:searchText'
             : 'https://places.googleapis.com/v1/places:searchNearby';
 
+        const requestBody = config.endpoint === 'text' 
+            ? { 
+                textQuery: config.query, 
+                languageCode: config.languageCode,
+                locationBias: config.locationBias 
+            }
+            : {
+                locationRestriction: config.locationRestriction,
+                includedTypes: config.includedTypes || [],
+                maxResultCount: config.maxResults,
+                languageCode: config.languageCode
+            };
+
         const response = await fetch(endpoint, {
             method: 'POST',
             headers,
-            body: JSON.stringify(config.endpoint === 'text' 
-                ? { textQuery: config.query, languageCode: config.languageCode }
-                : { locationRestriction: config.locationRestriction })
+            body: JSON.stringify(requestBody)
         });
 
         if (!response.ok) {
