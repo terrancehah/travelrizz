@@ -5,6 +5,7 @@ import Footer from "@/components/landing/footer"
 import { useDetectBrowserPreferences } from '@/hooks/useDetectBrowserPreferences'
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { Analytics } from "@vercel/analytics/react"
 
 const Features = dynamic(() => import('@/components/landing/features'), { ssr: false });
 const Pricing = dynamic(() => import('@/components/landing/pricing'), { ssr: false });
@@ -48,6 +49,7 @@ export default function LandingPage() {
         <Footer />
         </main>
         </div>
+        <Analytics />
         </>
     )
 }
