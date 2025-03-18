@@ -51,6 +51,7 @@ export default function Features() {
             alt={t(`features.items.${feature.key}.title`)}
             width={600}
             height={400}
+            loading="lazy"
             className="bg-gray-100/80  object-cover w-full"
             />
             
@@ -82,6 +83,7 @@ export default function Features() {
             src={feature.image}
             alt={t(`features.items.${feature.key}.title`)}
             fill
+            loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
             className="object-cover"
             />
@@ -129,6 +131,7 @@ export default function Features() {
             src={feature.image}
             alt={t(`features.items.${feature.key}.title`)}
             fill
+            loading="lazy"
             sizes={`(max-width: 768px) 100vw, (max-width: 1200px) 50vw, ${index === 0 || index === 3 ? '66.66vw' : '33.33vw'}`}
             className="object-cover"
             />

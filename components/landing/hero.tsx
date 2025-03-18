@@ -3,6 +3,7 @@ import Link from "next/link"
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
 import { useLocalizedFont } from "../../hooks/useLocalizedFont";
+import Image from "next/image";
 
 export default function Hero() {
   const t = useTranslations('landing');
@@ -12,14 +13,16 @@ export default function Hero() {
   console.log('Current locale:', locale); 
 
   return (  
-    <section className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 flex items-center bg-white dark:bg-gray-900 transition-colors duration-400">
+    <section className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 flex items-center bg-white dark:bg-gray-900 min-h-[500px]">
       {/* Background image with overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat "
-        style={{
-          backgroundImage: 'url("/images/kalbarri-beach.jpeg")',
-          opacity: 0.3
-        }}
+      <Image 
+        alt="Kalbarri Beach"
+        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        loading="eager"
+        fill
+        quality={75}
+        priority
+        src="/images/kalbarri-beach.jpeg"
       />
       {/* Content */}
       <div className="relative z-10 flex flex-col w-[80%] mx-auto items-center text-center">
