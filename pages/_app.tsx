@@ -4,7 +4,6 @@ import { IntlProvider } from 'next-intl'
 import { Noto_Sans_SC, Raleway, Caveat, Lato } from "next/font/google"
 import { useRouter } from 'next/router'
 import '../styles/globals.css'
-import 'flatpickr/dist/flatpickr.css'
 import Head from 'next/head'
 
 const notoSansSC = Noto_Sans_SC({
@@ -61,18 +60,3 @@ export default function App({ Component, pageProps: { messages, locale, timeZone
   )
 }
 
-export async function getStaticProps({ locale }: { locale: string }) {
-  return {
-    props: {
-      messages: {
-        landing: (await import(`../public/locales/${locale}/landing.json`)).default,
-        travelForm: (await import(`../public/locales/${locale}/travel-form.json`)).default,
-        travelChat: (await import(`../public/locales/${locale}/travel-chat.json`)).default,
-        parameters: (await import(`../public/locales/${locale}/parameters.json`)).default,
-        components: (await import(`../public/locales/${locale}/components.json`)).default
-      },
-      locale,
-      timeZone: 'Asia/Singapore'
-    }
-  }
-}
