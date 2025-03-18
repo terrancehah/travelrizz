@@ -9,7 +9,8 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import PopupWindow from '../../components/modals/PopupWindow';
 import styles from '../../styles/TravelForm.module.css';
 import { TravelPreference, TravelSession } from '../../managers/types';
-import { initializeSession, SESSION_CONFIG, generateSessionId, safeStorageOp, getStoredSession } from '../../managers/session-manager';
+import { initializeSession, SESSION_CONFIG, generateSessionId, getStoredSession } from '../../managers/session-manager';
+import { safeStorageOp, storage } from '../../utils/storage-utils';
 
 // Add Google Maps types
 declare global {

@@ -1,5 +1,6 @@
 import { TravelSession } from './types';
-import { savedPlacesManager } from './saved-places-manager';
+import { safeStorageOp, storage } from '../utils/storage-utils'
+import { Place } from './types';
 
 export const SESSION_CONFIG = {
     STORAGE_KEY: 'travel_rizz_session',
@@ -10,26 +11,26 @@ export const SESSION_CONFIG = {
     PAYMENT_REF_KEY: 'payment_reference_id'
 };
 
-// Safe storage access
-export const getStorage = () => {
-    if (typeof window !== 'undefined') {
-        return window.sessionStorage;
-    }
-    return null;
-};
+// // Safe storage access
+// export const getStorage = () => {
+//     if (typeof window !== 'undefined') {
+//         return window.sessionStorage;
+//     }
+//     return null;
+// };
 
-export const storage = getStorage();
+// export const storage = getStorage();
 
-// Helper function to safely access storage
-export const safeStorageOp = <T>(operation: () => T, defaultValue: T): T => {
-    try {
-        if (!storage) return defaultValue;
-        return operation();
-    } catch (error) {
-        console.error('[Session] Storage operation failed:', error);
-        return defaultValue;
-    }
-};
+// // Helper function to safely access storage
+// export const safeStorageOp = <T>(operation: () => T, defaultValue: T): T => {
+//     try {
+//         if (!storage) return defaultValue;
+//         return operation();
+//     } catch (error) {
+//         console.error('[Session] Storage operation failed:', error);
+//         return defaultValue;
+//     }
+// };
 
 export function initializeSession(): TravelSession {
     const now = Date.now();
@@ -381,7 +382,7 @@ export function handleSessionExpiry() {
         
         // Save current state if needed
         const currentState = {
-            messages: savedPlacesManager.getPlaces() || [],
+            messages: window.savedPlacesManager?.getPlaces() || [],
             lastUrl: window.location.pathname
         };
         storage?.setItem('expiredSessionState', JSON.stringify(currentState));
@@ -439,5 +440,16 @@ export function clearSession() {
         session.location = location;
         safeStorageOp(() => {
             storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session));
+        }, undefined);
+    }
+
+    export function updateSavedPlacesInSession(places: Place[]) {
+        safeStorageOp(() => {
+            const session = getStoredSession();
+            if (session) {
+                session.savedPlaces = places;
+                session.savedPlacesCount = places.length;
+                storage?.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session));
+            }
         }, undefined);
     }

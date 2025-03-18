@@ -18,7 +18,7 @@ import { Place } from '@/managers/types';
 import { validateStageProgression } from '@/managers/stage-manager';
 import { fetchExchangeRates, getCurrencyFromCountry } from '@/utils/currency-utils';
 import { fetchWeatherForecast, isWithinForecastRange, formatDate } from '@/utils/forecast-utils';
-import { formatDateRange, fetchHistoricalWeather } from '@/utils/historical-utils';
+import { formatDateRange, fetchHistoricalWeatherData, processHistoricalData, getPreviousYearDates } from '@/utils/historical-utils';
 import { optimizeItinerary } from '@/utils/route-optimizer';
 
 // Standardized Tool Response interfaces
@@ -150,7 +150,7 @@ export const placeCardTool = createTool({
                     error: 'Could not find a unique place. Try searching for something else.'
                 };
             }
-
+            
             return {
                 type: 'placeCard',
                 props: { 
@@ -206,7 +206,7 @@ export const carouselTool = createTool({
                     languageCode
                 });
             }
-
+            
             return {
                 type: 'carousel',
                 props: { places }
@@ -242,41 +242,6 @@ export const detailsCardTool = createTool({
             type: 'detailsCard',
             props: { content }
         };
-    }
-});
-
-export const weatherHistoricalTool = createTool({
-    description: 'Display historical weather data for a location one year ago. Triggered when travel dates are beyond the forecastable range of the next 7 days.',
-    parameters: z.object({
-        lat: z.number().min(-90).max(90).describe('Latitude of the location'),
-        lon: z.number().min(-180).max(180).describe('Longitude of the location'),
-        city: z.string().describe('City name for display'),
-        startDate: z.string().describe('Trip start date in DD/MM/YYYY format'),
-        endDate: z.string().describe('Trip end date in DD/MM/YYYY format'),
-        units: z.enum(['us', 'uk', 'metric'] as const).optional().default('metric')
-    }),
-    execute: async function ({ lat, lon, city, startDate, endDate, units = 'metric' }) {
-        try {
-            const weatherData = await fetchHistoricalWeather(lat, lon, startDate, endDate, units);
-            
-            return {
-                type: 'weatherHistorical',
-                props: {
-                    lat,
-                    lon,
-                    city,
-                    startDate,
-                    endDate,
-                    units,
-                    weatherData: weatherData.data,
-                    historicalYear: weatherData.year,
-                    averages: weatherData.averages
-                }
-            };
-        } catch (error) {
-            console.error('Error in weatherHistoricalTool:', error);
-            throw error;
-        }
     }
 });
 
@@ -351,7 +316,7 @@ export const savedPlacesListTool = createTool({
                 props: { places: [] }
             };
         }
-
+        
         // Make sure we pass the complete place objects
         return {
             type: 'savedPlacesList',
@@ -402,7 +367,7 @@ export const stageProgressTool = createTool({
             nextStage,
             travelDetails as TravelDetails // Type assertion since we validate fields in validateStageProgression
         );
-
+        
         if (!validationResult.canProgress) {
             console.log('[StageProgressTool] Validation failed:', validationResult.missingRequirements);
             return {
@@ -414,7 +379,7 @@ export const stageProgressTool = createTool({
                 }
             };
         }
-
+        
         return {
             type: 'stageProgress',
             status: 'success',
@@ -442,19 +407,19 @@ export const quickResponseTool = createTool({
     }),
     execute: async function ({ responses }) {
         // console.log('[QuickResponse Tool] Executing with responses:', responses);
-
+        
         if (!Array.isArray(responses) || responses.length !== 3) {
             console.error('[QuickResponse Tool] Invalid responses:', responses);
             throw new Error('Must provide exactly 3 responses');
         }
-
+        
         // Validate each response
         responses.forEach((response, index) => {
             if (!response || typeof response !== 'string' || response.trim().length === 0) {
                 throw new Error(`Invalid response at index ${index}`);
             }
         });
-
+        
         console.log('[QuickResponse Tool] Returning valid responses');
         
         return {
@@ -475,13 +440,13 @@ export const currencyConverterTool = createTool({
         if (!destination) {
             throw new Error('Destination is required for currency conversion');
         }
-
+        
         const baseCurrency = getCurrencyFromCountry(destination);
         
         try {
             // Use the modified fetchExchangeRates function
             const rates = await fetchExchangeRates(baseCurrency);
-
+            
             return {
                 type: 'currencyConverter',
                 props: {
@@ -535,6 +500,44 @@ export const weatherForecastTool = createTool({
     }
 });
 
+export const weatherHistoricalTool = createTool({
+    description: 'Display historical weather data for a location one year ago. Triggered when travel dates are beyond the forecastable range of the next 7 days.',
+    parameters: z.object({
+        lat: z.number().min(-90).max(90).describe('Latitude of the location'),
+        lon: z.number().min(-180).max(180).describe('Longitude of the location'),
+        city: z.string().describe('City name for display'),
+        startDate: z.string().describe('Trip start date in DD/MM/YYYY format'),
+        endDate: z.string().describe('Trip end date in DD/MM/YYYY format'),
+        units: z.enum(['us', 'uk', 'metric'] as const).optional().default('metric'),
+    }),
+    execute: async function ({ lat, lon, city, startDate, endDate, units = 'metric' }) {
+        try {
+            const historicalDates = getPreviousYearDates(startDate, endDate);
+            const rawData = await fetchHistoricalWeatherData(lat, lon, historicalDates.startDate, historicalDates.endDate, units);
+            const processedData = processHistoricalData(rawData);
+            const { startDate: isoStart, endDate: isoEnd } = formatDateRange(startDate, endDate);
+            
+            return {
+                type: 'weatherHistorical',
+                props: {
+                    lat,
+                    lon,
+                    city,
+                    startDate: isoStart, // Original dates for display
+                    endDate: isoEnd,
+                    units,
+                    weatherData: processedData.data,
+                    historicalYear: historicalDates.year, // Use adjusted year
+                    averages: processedData.averages,
+                },
+            };
+        } catch (error) {
+            console.error('Error in weatherHistoricalTool:', error);
+            throw error;
+        }
+    },
+});
+
 // Tool for Local Tips
 export const localTipsTool = createTool({
     description: 'Display about 5 destination-specific local tips and cultural etiquettes. Use this when users ask about local customs, cultural norms, or travel etiquette for their destination.',
@@ -570,7 +573,7 @@ export const placeOptimizerTool = createTool({
             if (!context?.savedPlaces || context.savedPlaces.length === 0) {
                 throw new Error('No places to optimize');
             }
-        
+            
             const result = await optimizeItinerary(context.savedPlaces, startDate, endDate);
             return {
                 type: 'placeOptimizer',
@@ -587,7 +590,7 @@ export const placeOptimizerTool = createTool({
                 type: 'error',
                 props: {
                     error: 'Optimization failed: ' + 
-                        (error instanceof Error ? error.message : 'Unknown error')
+                    (error instanceof Error ? error.message : 'Unknown error')
                 }
             };
         }

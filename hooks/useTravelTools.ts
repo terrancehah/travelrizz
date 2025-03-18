@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { TravelDetails, TravelSession } from '../managers/types';
 import { Place } from '../managers/types';
 import { savedPlacesManager } from '../managers/saved-places-manager';
-
-import { getStoredSession, safeStorageOp, storage, SESSION_CONFIG } from '../managers/session-manager';
+import { getStoredSession, SESSION_CONFIG } from '../managers/session-manager';
+import { safeStorageOp, storage } from '../utils/storage-utils';
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 

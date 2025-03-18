@@ -2,31 +2,16 @@ import { WeatherForecast, WeatherCondition } from '@/managers/types';
 
 const BASE_URL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline';
 
-/**
-* Always returns true as we now always fetch 7 days of forecast data
-* @param startDate Start date (not used)
-* @param endDate End date (not used)
-* @returns Always true
-*/
+
 export function isWithinForecastRange(startDate: string, endDate: string): boolean {
     return true;
 }
 
-/**
-* Formats a date to YYYY-MM-DD format
-* @param dateString Date in DD/MM/YYYY format
-* @returns Date in YYYY-MM-DD format
-*/
 export function formatDate(dateString: string): string {
     const [day, month, year] = dateString.split('/').map(Number);
     return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 }
 
-/**
-* Maps Visual Crossing weather condition to our internal weather condition type
-* @param condition Visual Crossing weather condition string
-* @returns Standardized weather condition
-*/
 export function mapWeatherCondition(condition: string): WeatherCondition {
     const lowerCondition = condition.toLowerCase();
     
@@ -49,14 +34,7 @@ export function mapWeatherCondition(condition: string): WeatherCondition {
     }
 }
 
-/**
-* Fetches weather forecast data for a location
-* Always fetches 7 days of forecast data starting from today
-* @param lat Latitude
-* @param lon Longitude
-* @param units Units (metric, us, uk)
-* @returns Weather forecast data
-*/
+
 export async function fetchWeatherForecast(
     lat: number,
     lon: number,

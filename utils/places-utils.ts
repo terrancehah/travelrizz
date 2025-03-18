@@ -1,7 +1,9 @@
 import { Place, PriceLevel } from '../managers/types';
 import { savedPlacesManager } from '../managers/saved-places-manager';
 import { TravelPreference, TravelSession } from '../managers/types';
-import { getStoredSession, getStoredMetrics, SESSION_CONFIG, safeStorageOp, storage } from '../managers/session-manager';
+import { getStoredSession, getStoredMetrics, SESSION_CONFIG } from '../managers/session-manager';
+import { safeStorageOp, storage } from '../utils/storage-utils'
+
 import Router from 'next/router';
 
 interface GooglePlaceResponse {

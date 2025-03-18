@@ -13,7 +13,9 @@ import "react-day-picker/dist/style.css";
 import Image from "next/image"
 import Head from "next/head"
 import { TravelPreference, TravelSession, SupportedLanguage, BudgetLevel } from '../managers/types'
-import { initializeSession, generateSessionId, safeStorageOp, getStoredSession, clearSession, SESSION_CONFIG } from '../managers/session-manager'
+import { initializeSession, generateSessionId, getStoredSession, clearSession, SESSION_CONFIG } from '../managers/session-manager'
+import { safeStorageOp, storage } from '../utils/storage-utils'
+
 import LoadingSpinner from '../components/LoadingSpinner'
 import Link from "next/link"
 import { useLocalizedFont } from "@/hooks/useLocalizedFont"
