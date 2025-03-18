@@ -1,11 +1,13 @@
 import Header from "@/components/landing/header"
 import Hero from "@/components/landing/hero"
 import About from "@/components/landing/about"
-import Features from "@/components/landing/features"
-import Pricing from '@/components/landing/pricing'
 import Footer from "@/components/landing/footer"
 import { useDetectBrowserPreferences } from '@/hooks/useDetectBrowserPreferences'
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
+
+const Features = dynamic(() => import('@/components/landing/features'), { ssr: false });
+const Pricing = dynamic(() => import('@/components/landing/pricing'), { ssr: false });
 
 export default function LandingPage() {
     // Use our browser preferences detection hook

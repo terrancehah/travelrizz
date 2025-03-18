@@ -22,7 +22,7 @@ export default function Hero() {
         fill
         quality={75}
         priority
-        src="/images/kalbarri-beach.jpeg"
+        src="/images/kalbarri-beach.webp"
       />
       {/* Content */}
       <div className="relative z-10 flex flex-col w-[80%] mx-auto items-center text-center">
