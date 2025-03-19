@@ -18,6 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         const config: SearchConfig = req.body;
         const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+        console.log('API Key:', apiKey ? 'Present' : 'Missing');
 
         if (!apiKey) {
             console.error('[Places API] Google Maps API key not found');
@@ -26,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const headers = {
             'Content-Type': 'application/json',
-            'X-Goog-Api-Key': apiKey,
+            'X-Goog-Api-Key': process.env.GOOGLE_MAPS_API_KEY!,
             'X-Goog-FieldMask': 'places.id,places.displayName.text,places.displayName.languageCode,places.formattedAddress,places.location,places.primaryType,places.primaryTypeDisplayName.text,places.primaryTypeDisplayName.languageCode,places.photos.name,places.photos.widthPx,places.photos.heightPx,places.regularOpeningHours,places.rating,places.userRatingCount,places.priceLevel'
         };
 
@@ -34,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             ? 'https://places.googleapis.com/v1/places:searchText'
             : 'https://places.googleapis.com/v1/places:searchNearby';
 
-            const requestBody = config.endpoint === 'text' 
+        const requestBody = config.endpoint === 'text' 
             ? {
                 textQuery: config.query as string,
                 locationBias: {
