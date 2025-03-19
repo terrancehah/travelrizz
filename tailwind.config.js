@@ -53,6 +53,10 @@ module.exports = {
             }
         }
     },
-    purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+    // safelist: [
+    //     { pattern: /^pac-/ }, // Keep all Google Places classes
+    //     { pattern: /^gm-/ } // Keep Google Maps classes if needed
+    // ],  
+    // purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
     plugins: [],
 }

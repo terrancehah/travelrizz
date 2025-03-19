@@ -55,10 +55,7 @@ const nextConfig = withNextIntl({
     return config;
   },
   // Remove assetPrefix if not needed for production
-  trailingSlash: false,
-  experimental: {
-    appDir: true
-  }
+  trailingSlash: false
 })
 
 module.exports = nextConfig;

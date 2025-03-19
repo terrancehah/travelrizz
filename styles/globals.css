@@ -9,35 +9,8 @@
   --sky-blue: #4a88c6;
 }
 
-/* @layer base {
-  html {
-    font-family: 'Raleway', sans-serif;
-  }
-
-  body {
-    @apply min-h-screen m-0 p-0;
-  }
-
-  h1, h2 {
-    font-family: 'Lato', sans-serif;
-  }
-
-  h3, p {
-    font-family: 'Raleway', sans-serif;
-  }
-} */
-
 /* Custom components */
 @layer components {
-  #backgroundVideo {
-    @apply fixed right-0 bottom-0 w-full h-full -z-10;
-    object-fit: cover;
-    opacity: 0.5;
-  }
-
-  .shadow-all {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  }
 
   /* Override Google Places Autocomplete dropdown */
   .pac-container {
