@@ -18,11 +18,11 @@ import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 import { useTranslations } from 'next-intl';
 
 
-const TravelChatComponent = dynamic(() => import('../../components/travel-chat'), {
+const TravelChatComponent = dynamic(() => import('../../components/chat/travel-chat'), {
     ssr: false,
 })
 
-const ItineraryPlanner = dynamic(() => import('@/components/daily-planner'), {
+const ItineraryPlanner = dynamic(() => import('@/components/planner/daily-planner'), {
     ssr: false,
 })
 

@@ -5,7 +5,7 @@ import Script from 'next/script';
 import flatpickr from 'flatpickr';
 import Link from 'next/link';
 import { useBackgroundVideo } from '../../hooks/useBackgroundVideo';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import LoadingSpinner from '../../components/ui/LoadingSpinner';
 import PopupWindow from '../../components/modals/PopupWindow';
 import styles from '../../styles/TravelForm.module.css';
 import { TravelPreference, TravelSession } from '../../managers/types';

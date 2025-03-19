@@ -15,7 +15,7 @@ import Head from "next/head"
 import { TravelPreference, TravelSession, SupportedLanguage, BudgetLevel } from '../managers/types'
 import { initializeSession, generateSessionId, getStoredSession, clearSession, SESSION_CONFIG } from '../managers/session-manager'
 import { safeStorageOp, storage } from '../utils/storage-utils'
-import LoadingSpinner from '../components/LoadingSpinner'
+import LoadingSpinner from '../components/ui/LoadingSpinner'
 import Link from "next/link"
 import { useLocalizedFont } from "@/hooks/useLocalizedFont"
 import { useTranslations } from 'next-intl';

@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:css": "tailwindcss -i ./styles/globals.css -o ./styles/output.css --watch",
     "lint": "next lint"
   },
   "author": "Terrance Hah",

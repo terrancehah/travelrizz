@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
 import { cn } from '@/utils/cn'
-import FeatureCarousel from '../feature-carousel'
+import FeatureCarousel from '../ui/feature-carousel'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 
