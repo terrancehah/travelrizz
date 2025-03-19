@@ -40,6 +40,7 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
 
     return (
         <div className="w-[80%] md:w-[70%] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 mt-4 mx-auto">
+            {/* Component Title */}
             <h3 className={cn(
                 "text-lg font-semibold mb-4",
                 "text-gray-600 dark:text-gray-300",
@@ -47,6 +48,7 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
             )}>
                 {tComp('localTips.title', { destination })}
             </h3>
+            {/* Tips Container */}
             <div className="space-y-2">
                 {tips.map((tip, index) => (
                     <div
@@ -68,21 +70,26 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
                                 "flex-1 overflow-hidden transition-[max-height] duration-500 ease-in-out",
                                 expandedTips.includes(index) ? "max-h-[500px]" : "max-h-[24px]"
                             )}>
+                                {/* Tips Summary */}
                                 <p className={cn(
                                     "text-gray-600 dark:text-gray-300 pr-2",
-                                    expandedTips.includes(index)
+                                    expandedTips.includes(index) ? "font-semibold" : "font-normal",
+                                    fonts?.text
                                 )}>
                                     {tip.summary}
+
+                                    {/* Tips Description */}
                                     <span className={cn(
                                         "transition-[opacity,visibility] duration-400 ease-in-out font-normal",
                                         expandedTips.includes(index) 
                                             ? "opacity-100 visible" 
                                             : "opacity-0 invisible"
                                     )}>
-                                        {" "}{tip.description}
+                                        {""}: {tip.description}
                                     </span>
                                 </p>
                             </div>
+                            {/* Chevron Icon */}
                             <div className={cn(
                                 "transition-transform duration-300 flex-shrink-0 ml-2",
                                 expandedTips.includes(index) && "rotate-90"

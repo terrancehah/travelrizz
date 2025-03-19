@@ -6,6 +6,9 @@ node_modules
 # testing
 /coverage
 
+# legacy
+/legacy
+
 # next.js
 /.next/
 /out/
