@@ -158,6 +158,7 @@ export interface SearchConfig {
 async function searchPlacesBase(config: SearchConfig): Promise<Place[]> {
     try {
         const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+        console.log('Base URL is:', baseUrl);
         const url = `${baseUrl}/api/places/search`;
         const response = await fetch(url, {
             method: 'POST',

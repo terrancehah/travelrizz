@@ -17,7 +17,7 @@ export const QuickResponse: React.FC<QuickResponseProps> = ({
     const fonts = useLocalizedFont();
 
     if (isLoading) {
-        console.log('[QuickResponse] Loading...');
+        // console.log('[QuickResponse] Loading...');
         return (
             <div className="flex flex-wrap gap-2 px-4 py-3 justify-start">
                 {[1, 2, 3].map((key) => (
