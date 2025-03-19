@@ -66,8 +66,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
 
         if (!response.ok) {
+            const errorData = await response.json();
             console.error('[Places API] Search failed:', response.status);
-            return res.status(response.status).json({ error: 'Failed to search places' });
+            console.error('API Error:', errorData);
+            return res.status(response.status).json({ error: 'Failed to search places', details: errorData });
         }
 
         const data = await response.json();
