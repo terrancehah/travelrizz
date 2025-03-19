@@ -40,23 +40,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 textQuery: config.query as string,
                 locationBias: {
                     circle: {
-                        center: config.location,
-                        radius: config.radius || 20000.0
+                        center: { latitude: config.location.latitude, longitude: config.location.longitude },
+                        radius: config.locationBias?.circle?.radius
                     }
                 },
-                maxResultCount: config.maxResults || 5,
-                languageCode: config.languageCode || 'en'  // Add language code
+                maxResultCount: config.maxResults,
+                languageCode: config.languageCode
             }
             : {
                 locationRestriction: {
                     circle: {
-                        center: config.location,
-                        radius: config.radius || 5000.0
+                        center: { latitude: config.location.latitude, longitude: config.location.longitude },
+                        radius: config.locationBias?.circle?.radius
                     }
                 },
-                includedTypes: Array.isArray(config.query) ? config.query : [config.query],
-                maxResultCount: config.maxResults || 5,
-                languageCode: config.languageCode || 'en'  // Modify to use config language code
+                includedTypes: config.includedTypes,
+                maxResultCount: config.maxResults,
+                languageCode: config.languageCode
             };
 
         const response = await fetch(endpoint, {

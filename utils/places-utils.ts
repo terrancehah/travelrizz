@@ -215,7 +215,7 @@ export interface SearchConfig {
     endpoint: 'text' | 'nearby';
     query?: string;
     includedTypes?: string[];
-    location?: { latitude: number; longitude: number };
+    location: { latitude: number; longitude: number };
     maxResults?: number;
     radius?: number;
     languageCode?: string;
@@ -286,7 +286,7 @@ export async function searchPlaceByText(
             location,
             radius: 15000.0,
             maxResults: 10,
-            languageCode: languageCode || Router.locale || 'en'
+            languageCode
         });
         
         if (places.length === 0) {
@@ -341,6 +341,7 @@ export const searchMultiplePlacesByText = async (
         return await searchPlacesBase({
             endpoint: 'text',
             query: searchText,
+            location: location,
             locationBias: {
                 circle: {
                     center: { latitude: location.latitude, longitude: location.longitude },
@@ -382,14 +383,10 @@ export async function parallelSearchByPreferences({
         const searchPromises = includedTypes.map(type => 
             searchPlacesBase({
                 endpoint: 'nearby',
+                location: { latitude, longitude },
                 includedTypes: [type],
-                locationRestriction: {
-                    circle: {
-                        center: { latitude: latitude, longitude: longitude },
-                        radius: 15000.0
-                    }
-                },
                 maxResults: resultsPerType,
+                radius: 15000,  // Default to 15km
                 languageCode
             })
         );
