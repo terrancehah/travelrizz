@@ -34,17 +34,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             ? 'https://places.googleapis.com/v1/places:searchText'
             : 'https://places.googleapis.com/v1/places:searchNearby';
 
-        const requestBody = config.endpoint === 'text' 
-            ? { 
-                textQuery: config.query, 
-                languageCode: config.languageCode,
-                locationBias: config.locationBias 
+            const requestBody = config.endpoint === 'text' 
+            ? {
+                textQuery: config.query as string,
+                locationBias: {
+                    circle: {
+                        center: config.location,
+                        radius: config.radius || 20000.0
+                    }
+                },
+                maxResultCount: config.maxResults || 5,
+                languageCode: config.languageCode || 'en'  // Add language code
             }
             : {
-                locationRestriction: config.locationRestriction,
-                includedTypes: config.includedTypes || [],
-                maxResultCount: config.maxResults,
-                languageCode: config.languageCode
+                locationRestriction: {
+                    circle: {
+                        center: config.location,
+                        radius: config.radius || 5000.0
+                    }
+                },
+                includedTypes: Array.isArray(config.query) ? config.query : [config.query],
+                maxResultCount: config.maxResults || 5,
+                languageCode: config.languageCode || 'en'  // Modify to use config language code
             };
 
         const response = await fetch(endpoint, {

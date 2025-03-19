@@ -103,7 +103,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
   };
 
   return (
-    <div className="w-[80%] xl:w-fit mx-auto p-4 px-6 rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
+    <div className="w-fit mx-auto p-4 px-6 rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
       
       {/* City title and subheading */}
       <div className="p-0 mb-2">
@@ -160,7 +160,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
               {/* Desktop: Date/Day > Icon > Temps > Rain */}
               <div className="flex flex-1 items-center gap-x-5 md:flex-col md:items-center md:gap-y-2">
                 {/* Date and Day */}
-                <div className={`${fonts.text} md:min-w-[80px] min-w-[50px] md:text-center`}>
+                <div className={`${fonts.text} xl:min-w-[80px] min-w-[50px] md:text-center`}>
                   <p className="font-semibold text-gray-700 dark:text-gray-200">
                     {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   </p>

@@ -81,10 +81,6 @@ export function useTravelChat({
     
     // Simply use savedPlacesManager directly
     const currentSavedPlaces = savedPlacesManager.getPlaces();
-    // console.log('[useTravelChat] Current saved places:', currentSavedPlaces.map(p => ({
-    //   id: p.id,
-    //   photos: p.photos
-    // })));
     
     useEffect(() => {
         const handlePlacesChanged = () => {
@@ -101,7 +97,6 @@ export function useTravelChat({
         id: chatId,
         body: {
             currentDetails,
-            savedPlaces: currentSavedPlaces,
             currentStage,
             metrics
         },
@@ -114,6 +109,7 @@ export function useTravelChat({
             );
             if (!hasValidResponses) {
                 // console.log('[QuickResponse] No valid responses in finished message');
+                quickResponseInProgress.current = false;
                 return;
             }
             quickResponseInProgress.current = false;
@@ -121,7 +117,13 @@ export function useTravelChat({
         onError: useCallback((error: Error) => {
             // console.error('[QuickResponse] Error:', error);
             quickResponseInProgress.current = false;
-        }, [])
+        }, []),
+        headers: {
+            'Content-Type': 'text/event-stream',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive'
+        },
+        streamProtocol: 'data'
     });
     
     const mainChat = useChat({
@@ -161,6 +163,7 @@ export function useTravelChat({
             quickResponseInProgress.current = false;
         }, []),
         onFinish: useCallback(async (message: AiMessage) => {
+            
             if (message.role !== 'assistant' || !message.content?.trim()) {
                 quickResponseInProgress.current = false;
                 return;
@@ -168,19 +171,26 @@ export function useTravelChat({
             
             if (quickResponseInProgress.current) return;
             
-            if (message.content.includes("You've reached the maximum number of places")) {
-                quickResponseInProgress.current = false;
-                return;
-            }
-            
             quickResponseInProgress.current = true;
+
+            // Add a small delay to ensure all operations are completed
+            await new Promise(resolve => setTimeout(resolve, 100)); // 100ms delay
+
             try {
-                // await quickResponseChat.reload();
-                await quickResponseChat.append({
+                console.log('[QuickResponse] Triggering append for message:', message.id);
+                const responsePromise = quickResponseChat.append({
                     id: message.id,
                     content: message.content,
                     role: message.role
                 });
+
+                // Add a timeout to prevent indefinite hanging
+                const timeoutPromise = new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Quick Response timeout')), 10000) // 10s timeout
+                );
+
+                await Promise.race([responsePromise, timeoutPromise]);
+                console.log('[QuickResponse] Append completed for message:', message.id);
             } catch (error) {
                 console.error('[QuickResponse] Error:', error);
                 quickResponseInProgress.current = false;

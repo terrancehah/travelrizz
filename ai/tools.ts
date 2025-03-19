@@ -206,7 +206,6 @@ export const carouselTool = createTool({
                     languageCode
                 });
             }
-            
             return {
                 type: 'carousel',
                 props: { places }
