@@ -161,7 +161,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ dates, onUpdate, style }
               `w-full py-2 px-4 rounded-md text-white ${fonts.text} font-medium transition-colors duration-200 
               hover:scale-[1.02] active:scale-[0.98]`,
               tempDates.startDate && tempDates.endDate
-                ? "bg-sky-blue/70 hover:bg-sky-blue dark:bg-sky-700 dark:hover:bg-sky-500 text-gray-700 hover:text-gray-900 dark:text-gray-200 hover:dark:text-white"
+                ? "bg-sky-blue/70 hover:bg-sky-blue dark:bg-sky-700 dark:hover:bg-sky-500 text-gray-100 hover:text-white "
                 : "bg-gray-300 cursor-not-allowed"
             )}
           >

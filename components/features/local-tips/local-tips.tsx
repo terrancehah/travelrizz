@@ -60,8 +60,8 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
                             className={cn(
                                 "w-full px-4 py-3 flex items-center justify-between",
                                 "text-left transition-colors duration-500",
-                                "bg-slate-100/40 dark:bg-gray-800",
-                                "hover:bg-sky-100/60 dark:hover:bg-gray-700",
+                                "bg-sky-100/40 dark:bg-gray-800",
+                                "hover:bg-sky-100/80 dark:hover:bg-gray-700",
                                 "focus:outline-none focus:ring-2 focus:ring-sky-500",
                                 fonts?.text
                             )}

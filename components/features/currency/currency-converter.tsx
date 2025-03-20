@@ -70,10 +70,10 @@ export function CurrencyConverter({
                             value={amount}
                             onChange={(e) => handleAmountChange(parseFloat(e.target.value) || 0)}
                             className="w-full mt-2 px-3 py-2 text-lg mx-auto font-bold 
-                            bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200
-                            border border-gray-300 dark:border-slate-300 
-                            rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 dark:focus:ring-sky-500
-                            hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors duration-200"
+                            bg-sky-100/70 dark:bg-gray-800 text-gray-600 dark:text-gray-300
+                            border border-gray-200 dark:border-gray-600
+                            rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 dark:focus:ring-sky-400
+                            hover:bg-sky-200/70 dark:hover:bg-gray-700 transition-colors duration-200"
                             placeholder="Enter amount"
                         />
                     </div>

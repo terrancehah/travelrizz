@@ -36,9 +36,9 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
     const getIconColor = () => {
       switch (condition) {
         case 'sunny':
-          return theme === 'dark' ? "text-yellow-400" : "text-yellow-500";
+          return theme === 'dark' ? "text-yellow-300" : "text-yellow-400";
         case 'cloudy':
-          return theme === 'dark' ? "text-gray-400" : "text-gray-500";
+          return theme === 'dark' ? "text-gray-300" : "text-gray-400";
         case 'rainy':
           return theme === 'dark' ? "text-sky-300" : "text-sky-500";
         case 'snowy':
@@ -153,7 +153,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
           {forecastData.slice(1).map((day, index) => (
             <div 
               key={index} 
-              className={`flex items-center md:w-[80px] md:flex-col md:items-center md:flex-1 pt-3
+              className={`flex items-center xl:w-[80px] md:w-[60px] md:flex-col md:items-center md:flex-1 pt-3
                 ${index !== forecastData.slice(1).length - 1 ? 'border-b md:border-b-0 border-gray-400 dark:border-slate-500 pb-3 md:pb-2' : 'pb-0'}`}
             >
               {/* Mobile: Date/Day | Icon | Temps | Rain */}

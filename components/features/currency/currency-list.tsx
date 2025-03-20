@@ -35,7 +35,7 @@ export function CurrencyList({ baseCurrency, amount, currencyData }: CurrencyLis
                     <motion.li
                         key={currency}
                         className="flex items-center justify-between p-2 px-3 mt-0 rounded-lg gap-x-4
-                        bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 
+                        bg-sky-100/70 dark:bg-slate-700 hover:bg-sky-200/70 dark:hover:bg-slate-600 
                         transition-all duration-300 ease-in-out hover:scale-[1.02] active:scale-[0.98]"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
