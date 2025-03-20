@@ -39,10 +39,10 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
     };
 
     return (
-        <div className="w-[80%] md:w-[70%] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 mt-4 mx-auto">
+        <div className="w-[90%] md:w-[70%] border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-2xl shadow-md p-6 mt-4 mx-auto">
             {/* Component Title */}
             <h3 className={cn(
-                "text-lg font-semibold mb-4",
+                "text-lg font-semibold mb-3",
                 "text-gray-600 dark:text-gray-300",
                 fonts.text
             )}>
@@ -55,10 +55,11 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
                         key={index}
                         className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
                     >
+                        {/* Tips Buttons */}
                         <button
                             onClick={() => toggleTip(index)}
                             className={cn(
-                                "w-full px-4 py-3 flex items-center justify-between",
+                                "w-full px-3 py-2 flex items-center justify-between",
                                 "text-left transition-colors duration-500",
                                 "bg-sky-100/40 dark:bg-gray-800",
                                 "hover:bg-sky-100/80 dark:hover:bg-gray-700",
@@ -68,11 +69,11 @@ const LocalTips: React.FC<LocalTipsProps> = ({ tips, destination }) => {
                         >
                             <div className={cn(
                                 "flex-1 overflow-hidden transition-[max-height] duration-500 ease-in-out",
-                                expandedTips.includes(index) ? "max-h-[500px]" : "max-h-[24px]"
+                                expandedTips.includes(index) ? "max-h-[500px]" : "max-h-[20px]"
                             )}>
-                                {/* Tips Summary */}
+                                {/* Summarised Tips */}
                                 <p className={cn(
-                                    "text-gray-600 dark:text-gray-300 pr-2",
+                                    "text-gray-600 dark:text-gray-300 pr-2 text-sm my-auto",
                                     expandedTips.includes(index) ? "font-semibold" : "font-normal",
                                     fonts?.text
                                 )}>

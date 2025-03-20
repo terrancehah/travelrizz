@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Place } from '@/managers/types';
 import { PlaceCard } from './place-card';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
+import { savedPlacesManager } from '@/managers/saved-places-manager';
 
 // Interface for map operations
 interface MapOperationDetail {
@@ -40,6 +41,9 @@ export const Carousel = ({ places }: { places: Place[] }) => {
     useEffect(() => {
         shuffledPlaces.forEach(place => {
             if (place?.location) {
+                if (!savedPlacesManager.hasPlace(place.id)) {
+                    savedPlacesManager.addPlace(place);
+                }
                 dispatchMapOperation({
                     type: 'add-place',
                     place
@@ -54,8 +58,8 @@ export const Carousel = ({ places }: { places: Place[] }) => {
             <div className="relative w-full p-0 max-h-min flex flex-row justify-center max-w-2xl mx-auto">
 
                 {/* Previous button */}
-                <button className="h-min my-auto mr-4 z-10 bg-light-blue dark:bg-gray-700 text-black dark:text-white 
-                border border-slate-400/60 p-2 rounded-full hover:bg-gray-200 focus:outline-none" onClick={prevSlide}>
+                <button className="h-min my-auto mr-2 z-10 bg-sky-100/40 dark:bg-gray-700 text-black dark:text-white 
+                border border-slate-400/60 p-2 rounded-full hover:bg-sky-100 focus:outline-none" onClick={prevSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
@@ -69,7 +73,7 @@ export const Carousel = ({ places }: { places: Place[] }) => {
                             height: 'min-content'
                         }}>
                         {shuffledPlaces.map((place: Place, index: number) => (
-                            <div key={place.id || index} className="flex-none max-h-min w-full mb-2 flex justify-center">
+                            <div key={place.id || index} className="flex-none max-h-min w-full my-auto flex justify-center p-1">
                                 <PlaceCard place={place} />
                             </div>
                         ))}
@@ -77,8 +81,8 @@ export const Carousel = ({ places }: { places: Place[] }) => {
                 </div>
 
                 {/* Next button */}
-                <button className="h-min my-auto ml-4 z-10 bg-light-blue dark:bg-gray-700 text-black dark:text-white 
-                border border-slate-400/60 p-2 rounded-full hover:bg-gray-200 focus:outline-none" onClick={nextSlide}>
+                <button className="h-min my-auto ml-2 z-10 bg-sky-100/40 dark:bg-gray-700 text-black dark:text-white 
+                border border-slate-400/60 p-2 rounded-full hover:bg-sky-100 focus:outline-none" onClick={nextSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>

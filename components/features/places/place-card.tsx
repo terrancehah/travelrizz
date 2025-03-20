@@ -141,7 +141,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
     return (
         <div className={`place-card h-min shadow-md rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 ${className}`}>
         <div className="bg-gray-200 h-48 flex items-center justify-center">
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full shadow-md">
             {/* Permanent placeholder */}
             <img
                 src="/images/placeholder-image.jpg"
@@ -162,7 +162,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
         </div>
         
         <div className="p-4 bg-white dark:bg-gray-800">
-        <h3 className={`${fonts.text} text-lg font-bold text-gray-900 dark:text-white`}>
+        <h3 className={`${fonts.text} text-base font-bold text-gray-900 dark:text-white`}>
         {typeof place.displayName === 'string' 
             ? place.displayName 
             : place.displayName.text}

@@ -6,6 +6,7 @@ import { safeStorageOp, storage } from '../utils/storage-utils'
 // SavedPlacesManager interface
 export interface SavedPlacesManager {
     places: Map<string, Place>
+    temporaryPlaces: Set<Place>
     addPlace: (place: Place) => void
     removePlace: (id: string) => void
     getPlaces: () => Place[]
@@ -14,6 +15,8 @@ export interface SavedPlacesManager {
     updatePlace: (place: Place) => void
     updatePlaces: (updatedPlaces: Place[]) => Promise<void>
     updatePlacesWithIndices: (optimizedPlaces: Place[]) => Promise<void>
+    addTemporaryPlaces: (places: Place[]) => void
+    clearTemporaryPlaces: () => void
     _persist: () => Promise<void>
     _notifyChange: () => Promise<void>
     serialize: () => string
@@ -23,6 +26,7 @@ export interface SavedPlacesManager {
 // SavedPlacesManager singleton
 function createSavedPlacesManager(): SavedPlacesManager {
     const places = new Map<string, Place>()
+    const temporaryPlaces = new Set<Place>()
     
     // Load saved places from session
     try {
@@ -38,6 +42,7 @@ function createSavedPlacesManager(): SavedPlacesManager {
     
     const manager: SavedPlacesManager = {
         places,
+        temporaryPlaces,
         
         addPlace(place: Place) {
             this.places.set(place.id, place)
@@ -111,6 +116,14 @@ function createSavedPlacesManager(): SavedPlacesManager {
             });
             await this._persist()
             await this._notifyChange()
+        },
+        
+        addTemporaryPlaces(places: Place[]) {
+            places.forEach(place => this.temporaryPlaces.add(place))
+        },
+        
+        clearTemporaryPlaces() {
+            this.temporaryPlaces.clear()
         },
         
         async _persist() {

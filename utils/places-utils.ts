@@ -182,6 +182,7 @@ async function searchPlacesBase(config: SearchConfig): Promise<Place[]> {
     }
 }
 
+// Search for a place by text
 export async function searchPlaceByText(
     searchText: string,
     location: { latitude: number; longitude: number },
@@ -195,8 +196,8 @@ export async function searchPlaceByText(
             query: searchText,
             location,
             radius: 15000.0,
-            maxResults: 10,
-            languageCode: languageCode || Router.locale || 'en'
+            maxResults: 1,
+            languageCode: languageCode
         });
         if (places.length === 0) return null;
 

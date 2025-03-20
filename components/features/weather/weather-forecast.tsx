@@ -103,7 +103,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
   };
 
   return (
-    <div className="w-fit mx-auto p-4 px-6 rounded-3xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
+    <div className="xl:w-fit w-[90%] mx-auto p-4 px-6 rounded-2xl border border-gray-200 dark:border-slate-500 shadow-md mt-4 bg-white dark:bg-slate-800">
       
       {/* City title and subheading */}
       <div className="p-0 mb-2">
@@ -115,10 +115,10 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
         </p>
       </div>
 
-      <div className="p-4 bg-sky-100/70 dark:bg-slate-700 rounded-xl">
+      <div className="p-4 bg-sky-100/40 dark:bg-slate-700 rounded-xl">
 
         {/* Today's weather section */}
-        <div className="flex flex-row items-center border-b pb-4 border-gray-400 dark:border-slate-500">
+        <div className="flex flex-row items-center border-b pb-4 border-gray-200 dark:border-slate-500">
           <div className="flex flex-col gap-y-1 w-full md:mx-2">
             {/* Today's Heading */}
             <h3 className={`${fonts.text} font-medium text-lg text-gray-700 dark:text-gray-200`}>
@@ -151,20 +151,22 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
         {/* Daily forecast sections - show next 6 days */}
         <div className="flex flex-col md:flex-row md:justify-between md:gap-x-2">
           {forecastData.slice(1).map((day, index) => (
+            
             <div 
               key={index} 
-              className={`flex items-center xl:w-[80px] md:w-[60px] md:flex-col md:items-center md:flex-1 pt-3
-                ${index !== forecastData.slice(1).length - 1 ? 'border-b md:border-b-0 border-gray-400 dark:border-slate-500 pb-3 md:pb-2' : 'pb-0'}`}
+              className={`flex items-center xl:w-[80px] md:w-[60px] md:flex-col md:items-center md:flex-1 lg:py-3 pt-2
+                ${index !== forecastData.slice(1).length - 1 ? 'border-b md:border-b-0 border-gray-200 dark:border-slate-500 pb-2' : 'pb-1'}`}
             >
               {/* Mobile: Date/Day | Icon | Temps | Rain */}
               {/* Desktop: Date/Day > Icon > Temps > Rain */}
-              <div className="flex flex-1 items-center gap-x-5 md:flex-col md:items-center md:gap-y-2">
+              <div className="flex flex-1 items-center justify-between md:flex-col md:items-center md:gap-y-2">
+
                 {/* Date and Day */}
-                <div className={`${fonts.text} xl:min-w-[80px] min-w-[50px] md:text-center`}>
+                <div className={`${fonts.text}  xl:min-w-[80px] min-w-[50px] md:text-center`}>
                   <p className="font-semibold text-gray-700 dark:text-gray-200">
                     {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-base text-gray-500 dark:text-gray-400">
                     {day.dayOfWeek}
                   </p>
                 </div>
@@ -175,7 +177,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
                 </div>
 
                 {/* Temperature */}
-                <div className={`${fonts.text} text-sm md:text-center`}>
+                <div className={`${fonts.text} flex gap-x-2 lg:flex-col text-lg md:text-center`}>
                   <p className={`font-medium ${getTemperatureColor(day.temperature.max)}`}>
                     {formatTemp(day.temperature.max)}
                   </p>
@@ -186,7 +188,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
 
                 {/* Precipitation - if exists */}
                 {day.precipitation.probability > 20 && (
-                  <div className="flex items-center text-xs text-sky-500 dark:text-sky-400 md:mt-1">
+                  <div className="flex md:hidden items-center text-xs text-sky-500 dark:text-sky-400 md:mt-1">
                     <CloudRain size={14} className="mr-1" />
                     {formatPrecipProb(day.precipitation.probability)}
                   </div>

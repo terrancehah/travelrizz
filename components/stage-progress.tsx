@@ -48,7 +48,7 @@ export const StepsList = React.forwardRef<HTMLDivElement, StepsListProps>(
             {...props}
         >
             <div className="flex justify-around">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 md:gap-2 xl:gap-4">
                     {props.children}
                 </div>
             </div>
@@ -72,14 +72,14 @@ export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
         
         return (
             <>
-                <div className="flex flex-col items-center gap-1 relative md:w-40" ref={ref} {...props}>
+                <div className="flex flex-col items-center gap-1 relative md:w-36 xl:w-44" ref={ref} {...props}>
                     
                     {/* Steps Numbers */}
                     <div 
                         className={cn(
                             'w-8 h-8 rounded-full flex items-center justify-center transition-colors',
                             currentStep > step ? 'bg-green-500' : 
-                            currentStep === step ? 'bg-blue-600/80 dark:bg-blue-500' : 
+                            currentStep === step ? 'bg-blue-600/80 dark:bg-blue-600' : 
                             'bg-gray-200 dark:bg-gray-600',
                             isLocked ? 'cursor-not-allowed' : '',
                             className
@@ -98,7 +98,7 @@ export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
                     </div>
 
                     {/* Steps Descriptions */}
-                    <div className="hidden md:flex w-fit flex-col items-start mt-1">
+                    <div className="hidden lg:flex w-fit flex-col items-start mt-1">
                         <span className={`text-sm ${fonts.text} leading-tight font-medium text-center text-primary dark:text-gray-200 transition-colors duration-400`}>{title}</span>
                         {/* {description && (
                             <span className="text-xs text-gray-500">{description}</span>
