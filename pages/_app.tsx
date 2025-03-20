@@ -44,7 +44,7 @@ export default function App({ Component, pageProps: { messages, locale, timeZone
     >
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
         <Head>
-          <title>Travel-Rizz - Plan Your Dream Trip Effortlessly</title>
+          <title>Travel-Rizz - Your Friendly AI Travel Assistant.</title>
           <meta name="description" content="Plan your perfect journey with Travel-Rizz, combining human expertise with AI assistance to create personalized trips." />
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />

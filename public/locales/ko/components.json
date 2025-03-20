@@ -87,7 +87,7 @@
             }
         }
     },
-    "optimizedArrangement":{
+    "OptimizedItinerary":{
         "heading": "최적화된 여정",
         "subheading": "장소 위치 및 이동 거리를 기반으로 최적화된 여정",
         "disclaimer": "여정이 100% 정확하지 않을 수 있습니다. 방문 전 장소 세부 정보를 확인하는 것이 좋습니다."

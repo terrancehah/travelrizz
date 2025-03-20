@@ -87,7 +87,7 @@
             }
         }
     },
-    "optimizedArrangement":{
+    "OptimizedItinerary":{
         "heading": "Optimierte Reiseroute",
         "subheading": "Optimierte Reiseroute basierend auf Standorten und Entfernungen",
         "disclaimer": "Die Reiseroute ist möglicherweise nicht 100% genau. Es wird empfohlen, die Details der Orte vor dem Besuch zu überprüfen."

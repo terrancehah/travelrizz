@@ -22,6 +22,7 @@ module.exports = {
                 'secondary': '#456789',
                 'sky-blue': '#4a88c6',
                 'light-blue': '#e8f4ff',
+                
             },
             boxShadow: {
                 'all': '0px 0px 5px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.1)',

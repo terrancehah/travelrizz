@@ -87,7 +87,7 @@
             }
         }
     },
-    "optimizedArrangement":{
+    "OptimizedItinerary":{
         "heading": "Optimalizovaný itinerář",
         "subheading": "Optimalizovaný itinerář na základě polohy míst a cestovní vzdálenosti",
         "disclaimer": "Itinerář nemusí být 100% přesný. Před návštěvou doporučujeme ověřit podrobnosti míst."

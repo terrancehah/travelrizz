@@ -87,7 +87,7 @@
             }
         }
     },
-    "optimizedArrangement":{
+    "OptimizedItinerary":{
         "heading": "优化行程",
         "subheading": "根据地点位置和旅行距离优化的行程",
         "disclaimer": "行程可能并非100%准确。建议在访问前核实地点的详细信息。"

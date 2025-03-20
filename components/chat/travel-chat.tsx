@@ -13,7 +13,7 @@ import { Carousel } from '../features/places/place-carousel';
 import { SavedPlacesList } from '../features/places/saved-places-list';
 import HistoricalWeatherChart from '../features/weather/weather-historical';
 import WeatherForecast from '../features/weather/weather-forecast';
-import { OptimizedArrangement } from '../features/places/optimized-itinerary';
+import { OptimizedItinerary } from '../features/places/optimized-itinerary';
 import { ChevronUpIcon, ChevronDownIcon } from 'lucide-react';
 import { QuickResponse } from './quick-response';
 import ReactMarkdown from 'react-markdown';
@@ -652,7 +652,7 @@ export function TravelChat({
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-full">
-                                                    <OptimizedArrangement
+                                                    <OptimizedItinerary
                                                         places={optimizedPlaces}
                                                         startDate={startDate}
                                                         endDate={endDate}

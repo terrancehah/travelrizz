@@ -25,7 +25,7 @@
         "title": "{currencyName} ({currencySymbol}) Currency Rates",
         "subheading": "as of {lastUpdated}"
     },
-    "optimizedArrangement":{
+    "OptimizedItinerary":{
         "heading": "Optimized Itinerary",
         "subheading": "Optimized itinerary based on places locations and travel distance",
         "disclaimer": "The itinerary may not be 100% accurate. It is recommended to verify the details of the places before visiting."

@@ -5,7 +5,7 @@ import { Place } from '@/managers/types'
 import { useTranslations } from 'next-intl'
 import { useLocalizedFont } from '@/hooks/useLocalizedFont'
 
-interface OptimizedArrangementProps {
+interface OptimizedItineraryProps {
   places: Place[]
   startDate: string
   endDate: string
@@ -17,13 +17,13 @@ interface OptimizedArrangementProps {
  * Component to display optimized place arrangement with explanation
  * This is a placeholder component that will be implemented later
  */
-export function OptimizedArrangement({ 
+export function OptimizedItinerary({ 
   places, 
   startDate,
   endDate, 
   onAccept, 
   onReject
-}: OptimizedArrangementProps) {
+}: OptimizedItineraryProps) {
   // State to track if user has made a choice
   const [hasChosen, setHasChosen] = useState(false)
   const tComponent = useTranslations('components')
@@ -70,14 +70,14 @@ export function OptimizedArrangement({
   }
 
   return (
-    <div className="p-4 px-6 w-[90%] xl:w-[80%] mx-auto border border-gray-200 dark:border-slate-500 rounded-2xl bg-white dark:bg-gray-900 shadow-sm space-y-6 mt-4">
+    <div className="p-4 px-6 w-[90%] xl:w-[80%] mx-auto border border-gray-200 dark:border-slate-500 rounded-2xl bg-white dark:bg-gray-900 shadow-sm space-y-4 mt-4">
       {/* Header */}
       <div>
         <h3 className={`${font.text} text-lg font-semibold text-gray-900 dark:text-white`}>
-          {tComponent('optimizedArrangement.heading')}
+          {tComponent('OptimizedItinerary.heading')}
         </h3>
         <p className={`${font.text} text-sm text-gray-500 dark:text-gray-400 mt-1`}>
-          {tComponent('optimizedArrangement.subheading')}
+          {tComponent('OptimizedItinerary.subheading')}
         </p>
       </div>
 
@@ -132,7 +132,7 @@ export function OptimizedArrangement({
 
       {/* Disclaimer */}
       <p className={`${font.text} text-sm text-gray-500 dark:text-gray-400`}>
-        {tComponent('optimizedArrangement.disclaimer')}
+        {tComponent('OptimizedItinerary.disclaimer')}
       </p>
 
       {/* Action Buttons - Only show if user hasn't made a choice */}

@@ -177,7 +177,7 @@ export function useTravelChat({
             await new Promise(resolve => setTimeout(resolve, 100)); // 100ms delay
 
             try {
-                console.log('[QuickResponse] Triggering append for message:', message.id);
+                // console.log('[QuickResponse] Triggering append for message:', message.id);
                 const responsePromise = quickResponseChat.append({
                     id: message.id,
                     content: message.content,
@@ -190,7 +190,7 @@ export function useTravelChat({
                 );
 
                 await Promise.race([responsePromise, timeoutPromise]);
-                console.log('[QuickResponse] Append completed for message:', message.id);
+                // console.log('[QuickResponse] Append completed for message:', message.id);
             } catch (error) {
                 console.error('[QuickResponse] Error:', error);
                 quickResponseInProgress.current = false;

@@ -87,7 +87,7 @@
             }
         }
     },
-    "optimizedArrangement":{
+    "OptimizedItinerary":{
         "heading": "Jadual Perjalanan Dioptimumkan",
         "subheading": "Jadual perjalanan dioptimumkan berdasarkan lokasi dan jarak perjalanan tempat",
         "disclaimer": "Jadual perjalanan mungkin tidak 100% tepat. Adalah disyorkan untuk mengesahkan butiran tempat sebelum melawat."

@@ -560,7 +560,7 @@ export const localTipsTool = createTool({
 
 // Tool for Place Optimization
 export const placeOptimizerTool = createTool({
-    description: 'Optimize the arrangement of saved places based on travel time and opening hours. Use this when the user wants to optimize their itinerary or schedule.',
+    description: 'Optimize the arrangement of saved places based on travel time and opening hours. Use this when the user wants to optimize the itinerary or routes.',
     parameters: z.object({
         startDate: z.string().describe('Trip start date in ISO format'),
         endDate: z.string().describe('Trip end date in ISO format')

@@ -87,7 +87,7 @@
             }
         }
     },
-    "optimizedArrangement":{
+    "OptimizedItinerary":{
         "heading": "最適化された旅程",
         "subheading": "場所の位置と移動距離に基づいて最適化された旅程",
         "disclaimer": "旅程は100％正確でない場合があります。訪問前に場所の詳細を確認することをお勧めします。"

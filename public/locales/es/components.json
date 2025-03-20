@@ -87,7 +87,7 @@
             }
         }
     },
-    "optimizedArrangement":{
+    "OptimizedItinerary":{
         "heading": "Itinerario Optimizado",
         "subheading": "Itinerario optimizado según ubicaciones y distancias de los lugares",
         "disclaimer": "El itinerario puede no ser 100% preciso. Se recomienda verificar los detalles de los lugares antes de visitar."

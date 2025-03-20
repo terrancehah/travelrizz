@@ -65,7 +65,7 @@ export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps)
     }
 
     return (
-        <div className="w-[70%] max-w-2xl mx-auto rounded-2xl border shadow-md border-gray-200 overflow-hidden mt-4">
+        <div className="w-[90%] xl:w-[80%] max-w-2xl mx-auto rounded-2xl border shadow-md border-gray-200 dark:border-gray-700 overflow-hidden mt-4">
             {uniquePlaces.map((place: Place) => {
                 const photoName = place.photos?.[0]?.name;
                 const photoUrl = photoName && photoUrls[photoName]
@@ -86,10 +86,10 @@ export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps)
                 return (
                     <div 
                         key={place.id} 
-                        className="bg-white overflow-hidden flex border-b-[1px] border-gray-200"
+                        className="bg-white h-40 dark:bg-gray-900 overflow-hidden flex border-b-[1px] border-gray-200 dark:border-gray-700"
                     >
                         {/* Photo Section */}
-                        <div className="w-1/3 min-h-32">
+                        <div className="w-1/3">
                             <img
                                 src={photoUrl}
                                 alt={typeof place.displayName === 'string' ? place.displayName : place.displayName.text}
@@ -102,19 +102,19 @@ export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps)
                         </div>
 
                         {/* Content Section */}
-                        <div className="w-2/3 p-4">
-                            <h3 className={`${fonts.text} text-lg font-bold text-gray-900 mb-1`}>
+                        <div className="w-2/3 p-4 flex flex-col justify-around">
+                            <h3 className={`${fonts.text} text-lg font-bold text-gray-800 dark:text-gray-100`}>
                                 {typeof place.displayName === 'string' 
                                     ? place.displayName 
                                     : place.displayName.text}
                             </h3>
-                            <p className={`${fonts.text} text-sm text-gray-500 mb-2`}>
+                            <p className={`${fonts.text} text-sm text-gray-600 dark:text-gray-400`}>
                                 {place.primaryTypeDisplayName?.text || place.primaryType}
                             </p>
-                            <p className={`${fonts.text} text-sm text-gray-600 mb-2`}>{place.formattedAddress}</p>
+                            <p className={`${fonts.text} text-sm text-gray-700 dark:text-gray-300`}>{place.formattedAddress}</p>
                             
                             {/* Actions */}
-                            <div className="flex justify-end space-x-2">
+                            {/* <div className="flex justify-end space-x-2">
                                 {onCenterMap && place.location && (
                                     <button
                                         onClick={() => onCenterMap(place.location!)}
@@ -123,15 +123,15 @@ export function SavedPlacesList({ onCenterMap, onRemove }: SavedPlacesListProps)
                                         Center on Map
                                     </button>
                                 )}
-                                {/* {onRemove && (
+                                {onRemove && (
                                     <button
                                         onClick={() => onRemove(place.id)}
                                         className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
                                     >
                                         Remove
                                     </button>
-                                )} */}
-                            </div>
+                                )}
+                            </div> */}
                         </div>
                     </div>
                 );
