@@ -86,5 +86,10 @@
                 "description": "Tambah dan buang tempat menarik dari perjalanan anda dengan mudah, memudahkan anda merancang hari yang sempurna."
             }
         }
+    },
+    "optimizedArrangement":{
+        "heading": "Jadual Perjalanan Dioptimumkan",
+        "subheading": "Jadual perjalanan dioptimumkan berdasarkan lokasi dan jarak perjalanan tempat",
+        "disclaimer": "Jadual perjalanan mungkin tidak 100% tepat. Adalah disyorkan untuk mengesahkan butiran tempat sebelum melawat."
     }
 }

@@ -86,5 +86,10 @@
                 "description": "輕鬆地在行程中添加和移除景點，幫助您規劃完美的一天。"
             }
         }
+    },
+    "optimizedArrangement":{
+        "heading": "最佳行程",
+        "subheading": "根據地點位置和旅行距離最優化的行程",
+        "disclaimer": "行程可能並非100%準確。建議在訪問前核實地點的詳細資訊。"
     }
 }

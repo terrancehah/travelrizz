@@ -70,7 +70,7 @@ export function OptimizedArrangement({
   }
 
   return (
-    <div className="p-4 px-6 w-[80%] mx-auto border border-gray-200 dark:border-slate-500 rounded-lg bg-white dark:bg-gray-900 shadow-sm space-y-6 mt-4">
+    <div className="p-4 px-6 w-[90%] xl:w-[80%] mx-auto border border-gray-200 dark:border-slate-500 rounded-2xl bg-white dark:bg-gray-900 shadow-sm space-y-6 mt-4">
       {/* Header */}
       <div>
         <h3 className={`${font.text} text-lg font-semibold text-gray-900 dark:text-white`}>
@@ -91,7 +91,7 @@ export function OptimizedArrangement({
           >
             {/* Day Header */}
             <div className="bg-slate-100 dark:bg-gray-800 px-4 py-3">
-              <h4 className="font-medium text-gray-900 dark:text-white">
+              <h4 className={`${font.text} font-medium text-gray-900 dark:text-white`}>
                 {getDayDate(parseInt(dayIndex))}
               </h4>
             </div>
@@ -101,21 +101,24 @@ export function OptimizedArrangement({
               {dayPlaces.map((place, index) => (
                 <div 
                   key={place.id}
-                  className="p-4 transition-colors"
+                  className="p-3 transition-colors"
                 >
                   <div className="flex items-center space-x-4">
+                    {/* Day Number */}
                     <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center
                                   bg-sky-100 dark:bg-sky-900 text-sky-600 dark:text-sky-300
                                   rounded-full text-sm font-medium">
                       {index + 1}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <h5 className="text-gray-900 dark:text-white font-medium truncate">
+                      {/* Place Name */}
+                      <h5 className={`${font.text} text-gray-900 dark:text-white text-md font-medium truncate`}>
                         {typeof place.displayName === 'string' 
                           ? place.displayName 
                           : place.displayName?.text}
                       </h5>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                      {/* Place Type */}
+                      <p className={`${font.text} text-sm text-gray-500 dark:text-gray-400 truncate`}>
                         {place.primaryTypeDisplayName?.text}
                       </p>
                     </div>

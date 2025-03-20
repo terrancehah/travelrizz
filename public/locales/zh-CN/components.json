@@ -86,5 +86,10 @@
                 "description": "轻松地在行程中添加和移除景点，帮助您规划完美的一天。"
             }
         }
+    },
+    "optimizedArrangement":{
+        "heading": "优化行程",
+        "subheading": "根据地点位置和旅行距离优化的行程",
+        "disclaimer": "行程可能并非100%准确。建议在访问前核实地点的详细信息。"
     }
 }

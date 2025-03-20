@@ -86,5 +86,10 @@
                 "description": "Aggiungi e rimuovi facilmente le attrazioni dal tuo viaggio per pianificare la tua giornata perfetta."
             }
         }
+    },
+    "optimizedArrangement":{
+        "heading": "Itinerario Ottimizzato",
+        "subheading": "Itinerario ottimizzato in base alle posizioni e alle distanze di viaggio",
+        "disclaimer": "L'itinerario potrebbe non essere accurato al 100%. Si consiglia di verificare i dettagli dei luoghi prima della visita."
     }
 }

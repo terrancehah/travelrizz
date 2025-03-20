@@ -558,15 +558,13 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     const getRouteColor = (dayIndex: number) => {
         const colors = [
             '#2196F3', // Blue
-            '#9C27B0', // Purple
-            '#795548', // Brown
             '#FF9800', // Orange
-            '#009688', // Teal
-            '#E91E63', // Pink
-            '#673AB7', // Deep Purple
-            '#3F51B5', // Indigo
+            '#9C27B0', // Purple
+            '#4CAF50', // Green
+            '#795548', // Brown
             '#00BCD4', // Cyan
-            '#4CAF50'  // Green
+            '#E91E63', // Pink
+            '#3F51B5', // Indigo
         ];
         return colors[dayIndex % colors.length];
     };
