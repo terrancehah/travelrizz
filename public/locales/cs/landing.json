@@ -1,84 +1,84 @@
 {
-  "about": {
-    "title": "O Travel-Rizz",
-    "intro": "Travel-Rizz začal jednoduchou pravdou: každý si zaslouží zažít radost z dobře naplánované cesty, bez ohledu na své zkušenosti s plánováním. Po letech pomoci přátelům a rodině s plánováním jejich cest jsem viděl, jak náročný tento proces může být.",
-    "experience": "Proto jsem vytvořil Travel-Rizz - abych dal cestovatelům správné nástroje a pokročilou AI technologii. Ať už prozkoumáváte rušná města nebo hledáte klidná dobrodružství, mít inteligentního cestovního asistenta při plánování cesty dělá velký rozdíl.",
-    "mission": "Kombinací osobních cestovatelských zkušeností s pokročilou umělou inteligencí chceme, aby plánování cesty bylo jako rozhovor se znalým přítelem - to vše bez nutnosti registrace nebo vytváření účtu."
-  },
-  "features": {
-    "title": "Jak vám pomáháme lépe plánovat",
-    "items": {
-      "aiChat": {
-        "title": "AI konverzace o cestování",
-        "description": "Chatujte okamžitě s naším AI cestovním asistentem - bez potřeby účtu. Sdílejte své nápady jako s přítelem a náš inteligentní systém pochopí vaše preference a vytvoří personalizované plány."
-      },
-      "insights": {
-        "title": "Včasné cestovatelské znalosti",
-        "description": "Získejte užitečné informace o vaší destinaci - od předpovědi počasí po místní zvyky - přesně když je potřebujete, vše podporované naší AI, která se učí, co je pro vás důležité."
-      },
-      "routes": {
-        "title": "Vizuální plánování cesty",
-        "description": "Prohlédněte si svá denní dobrodružství na interaktivních mapách. Naše AI optimalizuje vaše trasy na základě vašich preferencí a pomáhá vám vytěžit maximum z každého dne."
-      },
-      "itinerary": {
-        "title": "Flexibilní denní plánování",
-        "description": "Sestavte své dny s intuitivními nástroji a AI asistencí, která organizuje aktivity podle vašeho způsobu. Začněte plánovat během několika sekund bez nutnosti registrace."
-      }
+    "about": {
+        "title": "O Travel-Rizz",
+        "intro": "Travel-Rizz začal jednoduchou pravdou: každý si zaslouží zažít radost z dobře naplánované cesty, bez ohledu na své zkušenosti s plánováním. Po letech pomoci přátelům a rodině s plánováním jejich cest jsem viděl, jak náročný tento proces může být.",
+        "experience": "Proto jsem vytvořil Travel-Rizz - abych dal cestovatelům správné nástroje a pokročilou AI technologii. Ať už prozkoumáváte rušná města nebo hledáte klidná dobrodružství, mít inteligentního cestovního asistenta při plánování cesty dělá velký rozdíl.",
+        "mission": "Kombinací osobních cestovatelských zkušeností s pokročilou umělou inteligencí chceme, aby plánování cesty bylo jako rozhovor se znalým přítelem - to vše bez nutnosti registrace nebo vytváření účtu."
+    },
+    "features": {
+        "title": "Jak vám pomáháme lépe plánovat",
+        "items": {
+            "aiChat": {
+                "title": "AI konverzace o cestování",
+                "description": "Chatujte okamžitě s naším AI cestovním asistentem - bez potřeby účtu. Sdílejte své nápady jako s přítelem a náš inteligentní systém pochopí vaše preference a vytvoří personalizované plány."
+            },
+            "insights": {
+                "title": "Včasné cestovatelské znalosti",
+                "description": "Získejte užitečné informace o vaší destinaci - od předpovědi počasí po místní zvyky - přesně když je potřebujete, vše podporované naší AI, která se učí, co je pro vás důležité."
+            },
+            "routes": {
+                "title": "Vizuální plánování cesty",
+                "description": "Prohlédněte si svá denní dobrodružství na interaktivních mapách. Naše AI optimalizuje vaše trasy na základě vašich preferencí a pomáhá vám vytěžit maximum z každého dne."
+            },
+            "itinerary": {
+                "title": "Flexibilní denní plánování",
+                "description": "Sestavte své dny s intuitivními nástroji a AI asistencí, která organizuje aktivity podle vašeho způsobu. Začněte plánovat během několika sekund bez nutnosti registrace."
+            }
+        }
+    },
+    "hero": {
+        "title": "Naplánujte si svou perfektní cestu, po svém",
+        "subtitle": "Žádná registrace není vyžadována. Začněte okamžitě s Travel-Rizz, naším AI cestovním společníkem. Veďte přirozenou konverzaci o vašich cestovatelských snech a my vám pomůžeme je proměnit ve skutečnost, jeden promyšlený detail po druhém.",
+        "cta": "Začněte plánovat hned teď"
+    },
+    "pricing": {
+        "title": "Jednoduché, jasné ceny",
+        "subtitle": "Soustřeďte se na to, co je důležité - plánování vaší dokonalé cesty - s přímočarými cenami, které respektují vaši cestu. Žádné vytváření účtu, žádné skryté poplatky.",
+        "oneTime": {
+            "title": "Jednorázový přístup",
+            "price": "49 Kč",
+            "originalPrice": "71.99 Kč",
+            "tag": "Speciální nabídka",
+            "features": {
+                "0": "AI plánování cesty",
+                "1": "Interaktivní optimalizace tras",
+                "2": "Informace a tipy o destinaci",
+                "3": "Prostředí bez reklam"
+            }
+        },
+        "subscription": {
+            "title": "Měsíční přístup",
+            "price": "219.99 Kč /měsíc",
+            "tag": "Pro časté cestovatele",
+            "badge": "Již brzy",
+            "features": {
+                "0": "Plánování s přáteli",
+                "1": "Správa více cest",
+                "2": "Premium šablony",
+                "3": "Pokročilá AI doporučení"
+            }
+        },
+        "cta": "Začněte plánovat okamžitě"
+    },
+    "footer": {
+        "tagline": "Naplánujte si perfektní cestu po svém",
+        "quickLinks": {
+            "title": "Rychlé odkazy",
+            "features": "Funkce",
+            "about": "O nás",
+            "start": "Začít plánovat"
+        },
+        "legal": {
+            "title": "Právní",
+            "terms": "Podmínky služby",
+            "privacy": "Ochrana soukromí",
+            "cookies": "Zásady cookies"
+        },
+        "connect": {
+            "title": "Spojte se s námi",
+            "twitter": "Twitter",
+            "instagram": "Instagram",
+            "facebook": "Facebook"
+        }
     }
-  },
-  "hero": {
-    "title": "Naplánujte si svou perfektní cestu, po svém",
-    "subtitle": "Žádná registrace není vyžadována. Začněte okamžitě s Travel-Rizz, naším AI cestovním společníkem. Veďte přirozenou konverzaci o vašich cestovatelských snech a my vám pomůžeme je proměnit ve skutečnost, jeden promyšlený detail po druhém.",
-    "cta": "Začněte plánovat hned teď"
-  },
-  "pricing": {
-    "title": "Jednoduché, jasné ceny",
-    "subtitle": "Soustřeďte se na to, co je důležité - plánování vaší dokonalé cesty - s přímočarými cenami, které respektují vaši cestu. Žádné vytváření účtu, žádné skryté poplatky.",
-    "oneTime": {
-      "title": "Jednorázový přístup",
-      "price": "49 Kč",
-      "originalPrice": "71.99 Kč",
-      "tag": "Speciální nabídka",
-      "features": {
-        "0": "AI plánování cesty",
-        "1": "Interaktivní optimalizace tras",
-        "2": "Informace a tipy o destinaci",
-        "3": "Prostředí bez reklam"
-      }
-    },
-    "subscription": {
-      "title": "Měsíční přístup",
-      "price": "219.99 Kč /měsíc",
-      "tag": "Pro časté cestovatele",
-      "badge": "Již brzy",
-      "features": {
-        "0": "Plánování s přáteli",
-        "1": "Správa více cest",
-        "2": "Premium šablony",
-        "3": "Pokročilá AI doporučení"
-      }
-    },
-    "cta": "Začněte plánovat okamžitě"
-  },
-  "footer": {
-    "tagline": "Naplánujte si perfektní cestu po svém",
-    "quickLinks": {
-      "title": "Rychlé odkazy",
-      "features": "Funkce",
-      "about": "O nás",
-      "start": "Začít plánovat"
-    },
-    "legal": {
-      "title": "Právní",
-      "terms": "Podmínky služby",
-      "privacy": "Ochrana soukromí",
-      "cookies": "Zásady cookies"
-    },
-    "connect": {
-      "title": "Spojte se s námi",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "facebook": "Facebook"
-    }
-  }
 }

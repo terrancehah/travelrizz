@@ -1,84 +1,84 @@
 {
-  "hero": {
-    "title": "Planen Sie Ihre perfekte Reise, ganz nach Ihren Wünschen",
-    "subtitle": "Keine Registrierung erforderlich. Starten Sie sofort mit Travel-Rizz, unserem KI-gestützten Reisebegleiter. Führen Sie ein natürliches Gespräch über Ihre Reiseträume, und wir helfen Ihnen, diese Schritt für Schritt Wirklichkeit werden zu lassen.",
-    "cta": "Sofort mit der Planung beginnen"
-  },
-  "about": {
-    "title": "Über Travel-Rizz",
-    "intro": "Travel-Rizz begann mit einer einfachen Wahrheit: Jeder verdient es, die Freude einer gut geplanten Reise zu erleben, unabhängig von seinen Planungskenntnissen. Nach jahrelanger Unterstützung von Freunden und Familie bei der Reiseplanung sah ich, wie überwältigend dieser Prozess sein konnte.",
-    "experience": "Deshalb habe ich Travel-Rizz geschaffen - um Reisende mit den richtigen Werkzeugen und modernster KI-Technologie auszustatten. Ob Sie pulsierende Städte erkunden oder ruhige Abenteuer suchen, ein intelligenter Reiseassistent bei der Planung macht den entscheidenden Unterschied.",
-    "mission": "Durch die Verbindung von persönlichen Reiseerfahrungen mit fortschrittlicher KI möchten wir die Reiseplanung so gestalten, als würden Sie mit einem sachkundigen Freund sprechen - ganz ohne Registrierung oder Anmeldung."
-  },
-  "features": {
-    "title": "Wie wir Ihnen bei der Planung helfen",
-    "items": {
-      "aiChat": {
-        "title": "KI-gestützte Reiseplanung",
-        "description": "Chatten Sie sofort mit unserem KI-Reiseassistenten - ohne Konto. Teilen Sie Ihre Ideen wie mit einem Freund, und unser intelligentes System versteht Ihre Vorlieben, um personalisierte Pläne zu erstellen."
-      },
-      "insights": {
-        "title": "Aktuelle Reiseinformationen",
-        "description": "Erhalten Sie hilfreiche Einblicke zu Ihrem Reiseziel - von Wettermustern bis zu lokalen Bräuchen - genau dann, wenn Sie sie brauchen, alles unterstützt von unserer KI, die lernt, was für Sie wichtig ist."
-      },
-      "routes": {
-        "title": "Visuelle Routenzeichnung",
-        "description": "Sehen Sie Ihre täglichen Abenteuer auf interaktiven Karten. Unsere KI optimiert Ihre Routen basierend auf Ihren Vorlieben und hilft Ihnen, jeden Tag optimal zu nutzen."
-      },
-      "itinerary": {
-        "title": "Flexible Tagesplanung",
-        "description": "Gestalten Sie Ihre Tage mit intuitiven Werkzeugen und KI-Unterstützung, die Aktivitäten nach Ihren Wünschen organisiert. Beginnen Sie in Sekunden mit der Planung, ohne Registrierung."
-      }
+    "hero": {
+        "title": "Planen Sie Ihre perfekte Reise, ganz nach Ihren Wünschen",
+        "subtitle": "Keine Registrierung erforderlich. Starten Sie sofort mit Travel-Rizz, unserem KI-gestützten Reisebegleiter. Führen Sie ein natürliches Gespräch über Ihre Reiseträume, und wir helfen Ihnen, diese Schritt für Schritt Wirklichkeit werden zu lassen.",
+        "cta": "Sofort mit der Planung beginnen"
+    },
+    "about": {
+        "title": "Über Travel-Rizz",
+        "intro": "Travel-Rizz begann mit einer einfachen Wahrheit: Jeder verdient es, die Freude einer gut geplanten Reise zu erleben, unabhängig von seinen Planungskenntnissen. Nach jahrelanger Unterstützung von Freunden und Familie bei der Reiseplanung sah ich, wie überwältigend dieser Prozess sein konnte.",
+        "experience": "Deshalb habe ich Travel-Rizz geschaffen - um Reisende mit den richtigen Werkzeugen und modernster KI-Technologie auszustatten. Ob Sie pulsierende Städte erkunden oder ruhige Abenteuer suchen, ein intelligenter Reiseassistent bei der Planung macht den entscheidenden Unterschied.",
+        "mission": "Durch die Verbindung von persönlichen Reiseerfahrungen mit fortschrittlicher KI möchten wir die Reiseplanung so gestalten, als würden Sie mit einem sachkundigen Freund sprechen - ganz ohne Registrierung oder Anmeldung."
+    },
+    "features": {
+        "title": "Wie wir Ihnen bei der Planung helfen",
+        "items": {
+            "aiChat": {
+                "title": "KI-gestützte Reiseplanung",
+                "description": "Chatten Sie sofort mit unserem KI-Reiseassistenten - ohne Konto. Teilen Sie Ihre Ideen wie mit einem Freund, und unser intelligentes System versteht Ihre Vorlieben, um personalisierte Pläne zu erstellen."
+            },
+            "insights": {
+                "title": "Aktuelle Reiseinformationen",
+                "description": "Erhalten Sie hilfreiche Einblicke zu Ihrem Reiseziel - von Wettermustern bis zu lokalen Bräuchen - genau dann, wenn Sie sie brauchen, alles unterstützt von unserer KI, die lernt, was für Sie wichtig ist."
+            },
+            "routes": {
+                "title": "Visuelle Routenzeichnung",
+                "description": "Sehen Sie Ihre täglichen Abenteuer auf interaktiven Karten. Unsere KI optimiert Ihre Routen basierend auf Ihren Vorlieben und hilft Ihnen, jeden Tag optimal zu nutzen."
+            },
+            "itinerary": {
+                "title": "Flexible Tagesplanung",
+                "description": "Gestalten Sie Ihre Tage mit intuitiven Werkzeugen und KI-Unterstützung, die Aktivitäten nach Ihren Wünschen organisiert. Beginnen Sie in Sekunden mit der Planung, ohne Registrierung."
+            }
+        }
+    },
+    "pricing": {
+        "title": "Einfache, klare Preise",
+        "subtitle": "Konzentrieren Sie sich auf das Wesentliche - die Planung Ihrer perfekten Reise - mit transparenten Preisen, die Ihre Reise respektieren. Keine Kontoerstellung, keine versteckten Kosten.",
+        "oneTime": {
+            "title": "Einmaliger Zugang",
+            "price": "1,99 €",
+            "originalPrice": "2,99 €",
+            "tag": "Sonderangebot für Erstnutzer",
+            "features": {
+                "0": "KI-gestützte Reiseplanung",
+                "1": "Interaktive Routenoptimierung",
+                "2": "Zielortinformationen und Tipps",
+                "3": "Werbefreie Nutzung"
+            }
+        },
+        "subscription": {
+            "title": "Monatlicher Zugang",
+            "price": "8,99 € /Monat",
+            "tag": "Für häufige Reisende",
+            "badge": "Demnächst verfügbar",
+            "features": {
+                "0": "Mit Freunden planen",
+                "1": "Mehrere Reisen verwalten",
+                "2": "Premium-Vorlagen",
+                "3": "Erweiterte KI-Empfehlungen"
+            }
+        },
+        "cta": "Sofort mit der Planung beginnen"
+    },
+    "footer": {
+        "tagline": "Planen Sie Ihre perfekte Reise, auf Ihre Art",
+        "quickLinks": {
+            "title": "Schnelllinks",
+            "features": "Funktionen",
+            "about": "Über uns",
+            "start": "Planung starten"
+        },
+        "legal": {
+            "title": "Rechtliches",
+            "terms": "Nutzungsbedingungen",
+            "privacy": "Datenschutz",
+            "cookies": "Cookie-Richtlinie"
+        },
+        "connect": {
+            "title": "Verbinden",
+            "twitter": "Twitter",
+            "instagram": "Instagram",
+            "facebook": "Facebook"
+        }
     }
-  },
-  "pricing": {
-    "title": "Einfache, klare Preise",
-    "subtitle": "Konzentrieren Sie sich auf das Wesentliche - die Planung Ihrer perfekten Reise - mit transparenten Preisen, die Ihre Reise respektieren. Keine Kontoerstellung, keine versteckten Kosten.",
-    "oneTime": {
-      "title": "Einmaliger Zugang",
-      "price": "1,99 €",
-      "originalPrice": "2,99 €",
-      "tag": "Sonderangebot für Erstnutzer",
-      "features": {
-        "0": "KI-gestützte Reiseplanung",
-        "1": "Interaktive Routenoptimierung",
-        "2": "Zielortinformationen und Tipps",
-        "3": "Werbefreie Nutzung"
-      }
-    },
-    "subscription": {
-      "title": "Monatlicher Zugang",
-      "price": "8,99 € /Monat",
-      "tag": "Für häufige Reisende",
-      "badge": "Demnächst verfügbar",
-      "features": {
-        "0": "Mit Freunden planen",
-        "1": "Mehrere Reisen verwalten",
-        "2": "Premium-Vorlagen",
-        "3": "Erweiterte KI-Empfehlungen"
-      }
-    },
-    "cta": "Sofort mit der Planung beginnen"
-  },
-  "footer": {
-    "tagline": "Planen Sie Ihre perfekte Reise, auf Ihre Art",
-    "quickLinks": {
-      "title": "Schnelllinks",
-      "features": "Funktionen",
-      "about": "Über uns",
-      "start": "Planung starten"
-    },
-    "legal": {
-      "title": "Rechtliches",
-      "terms": "Nutzungsbedingungen",
-      "privacy": "Datenschutz",
-      "cookies": "Cookie-Richtlinie"
-    },
-    "connect": {
-      "title": "Verbinden",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "facebook": "Facebook"
-    }
-  }
 }

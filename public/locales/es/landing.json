@@ -1,84 +1,84 @@
 {
-  "hero": {
-    "title": "Planifica tu viaje perfecto, a tu manera",
-    "subtitle": "Sin registro necesario. Comienza al instante con Travel-Rizz, nuestro asistente de viaje con IA. Mantén una conversación natural sobre tus sueños de viaje, y te ayudaremos a convertirlos en realidad, un detalle pensado a la vez.",
-    "cta": "Planifiquemos juntos"
-  },
-  "about": {
-    "title": "Sobre Travel-Rizz",
-    "intro": "Travel-Rizz comenzó con una simple verdad: todos merecen experimentar la alegría de un viaje bien planificado, sin importar su experiencia en planificación. Tras años ayudando a amigos y familiares a planificar sus viajes, vi lo abrumador que podía ser este proceso.",
-    "experience": "Por eso creé Travel-Rizz - para empoderar a los viajeros con las herramientas adecuadas y tecnología de IA. Ya sea que estés explorando ciudades bulliciosas o buscando aventuras tranquilas, tener un asistente de viaje inteligente marca toda la diferencia.",
-    "mission": "Al combinar experiencias personales de viaje con IA avanzada, buscamos que la planificación se sienta como una conversación con un amigo conocedor que está genuinamente emocionado por ayudarte - todo sin requerir registro ni creación de cuentas."
-  },
-  "features": {
-    "title": "Cómo te ayudamos a planificar mejor",
-    "items": {
-      "aiChat": {
-        "title": "Planificación de viajes impulsada por IA",
-        "description": "Chatea instantáneamente con nuestro asistente de IA - sin necesidad de cuenta. Comparte tus ideas como lo harías con un amigo, y nuestro sistema inteligente entenderá tus preferencias para crear planes personalizados."
-      },
-      "insights": {
-        "title": "Conocimiento oportuno de viajes",
-        "description": "Accede a información útil sobre tu destino - desde patrones climáticos hasta costumbres locales - exactamente cuando lo necesites, todo impulsado por nuestra IA que aprende lo que te importa."
-      },
-      "routes": {
-        "title": "Diseño visual de rutas",
-        "description": "Visualiza tus aventuras diarias en mapas interactivos. Nuestra IA optimiza tus rutas según tus preferencias, ayudándote a aprovechar al máximo cada día."
-      },
-      "itinerary": {
-        "title": "Itinerario flexible del día",
-        "description": "Organiza tus días con herramientas intuitivas y asistencia de IA que organizan actividades a tu manera. Comienza a planificar en segundos sin necesidad de registro."
-      }
+    "hero": {
+        "title": "Planifica tu viaje perfecto, a tu manera",
+        "subtitle": "Sin registro necesario. Comienza al instante con Travel-Rizz, nuestro asistente de viaje con IA. Mantén una conversación natural sobre tus sueños de viaje, y te ayudaremos a convertirlos en realidad, un detalle pensado a la vez.",
+        "cta": "Planifiquemos juntos"
+    },
+    "about": {
+        "title": "Sobre Travel-Rizz",
+        "intro": "Travel-Rizz comenzó con una simple verdad: todos merecen experimentar la alegría de un viaje bien planificado, sin importar su experiencia en planificación. Tras años ayudando a amigos y familiares a planificar sus viajes, vi lo abrumador que podía ser este proceso.",
+        "experience": "Por eso creé Travel-Rizz - para empoderar a los viajeros con las herramientas adecuadas y tecnología de IA. Ya sea que estés explorando ciudades bulliciosas o buscando aventuras tranquilas, tener un asistente de viaje inteligente marca toda la diferencia.",
+        "mission": "Al combinar experiencias personales de viaje con IA avanzada, buscamos que la planificación se sienta como una conversación con un amigo conocedor que está genuinamente emocionado por ayudarte - todo sin requerir registro ni creación de cuentas."
+    },
+    "features": {
+        "title": "Cómo te ayudamos a planificar mejor",
+        "items": {
+            "aiChat": {
+                "title": "Planificación de viajes impulsada por IA",
+                "description": "Chatea instantáneamente con nuestro asistente de IA - sin necesidad de cuenta. Comparte tus ideas como lo harías con un amigo, y nuestro sistema inteligente entenderá tus preferencias para crear planes personalizados."
+            },
+            "insights": {
+                "title": "Conocimiento oportuno de viajes",
+                "description": "Accede a información útil sobre tu destino - desde patrones climáticos hasta costumbres locales - exactamente cuando lo necesites, todo impulsado por nuestra IA que aprende lo que te importa."
+            },
+            "routes": {
+                "title": "Diseño visual de rutas",
+                "description": "Visualiza tus aventuras diarias en mapas interactivos. Nuestra IA optimiza tus rutas según tus preferencias, ayudándote a aprovechar al máximo cada día."
+            },
+            "itinerary": {
+                "title": "Itinerario flexible del día",
+                "description": "Organiza tus días con herramientas intuitivas y asistencia de IA que organizan actividades a tu manera. Comienza a planificar en segundos sin necesidad de registro."
+            }
+        }
+    },
+    "pricing": {
+        "title": "Precios simples y claros",
+        "subtitle": "Concéntrate en lo que importa - planificar tu viaje perfecto - con precios transparentes que respetan tu experiencia. Sin creación de cuenta, sin cargos ocultos.",
+        "oneTime": {
+            "title": "Acceso único",
+            "price": "1,99 €",
+            "originalPrice": "2,99 €",
+            "tag": "Oferta especial",
+            "features": {
+                "0": "Planificación con IA",
+                "1": "Optimización interactiva de rutas",
+                "2": "Información y consejos de destino",
+                "3": "Experiencia sin publicidad"
+            }
+        },
+        "subscription": {
+            "title": "Acceso mensual",
+            "price": "8,99 € /mes",
+            "tag": "Para viajeros frecuentes",
+            "badge": "Próximamente",
+            "features": {
+                "0": "Planifica con amigos",
+                "1": "Gestión de múltiples viajes",
+                "2": "Plantillas premium",
+                "3": "Recomendaciones avanzadas de IA"
+            }
+        },
+        "cta": "Planifiquemos juntos"
+    },
+    "footer": {
+        "tagline": "Planifica tu viaje perfecto, a tu manera",
+        "quickLinks": {
+            "title": "Enlaces rápidos",
+            "features": "Características",
+            "about": "Sobre nosotros",
+            "start": "Comenzar a planificar"
+        },
+        "legal": {
+            "title": "Legal",
+            "terms": "Términos de servicio",
+            "privacy": "Política de privacidad",
+            "cookies": "Política de cookies"
+        },
+        "connect": {
+            "title": "Conecta",
+            "twitter": "Twitter",
+            "instagram": "Instagram",
+            "facebook": "Facebook"
+        }
     }
-  },
-  "pricing": {
-    "title": "Precios simples y claros",
-    "subtitle": "Concéntrate en lo que importa - planificar tu viaje perfecto - con precios transparentes que respetan tu experiencia. Sin creación de cuenta, sin cargos ocultos.",
-    "oneTime": {
-      "title": "Acceso único",
-      "price": "1,99 €",
-      "originalPrice": "2,99 €",
-      "tag": "Oferta especial",
-      "features": {
-        "0": "Planificación con IA",
-        "1": "Optimización interactiva de rutas",
-        "2": "Información y consejos de destino",
-        "3": "Experiencia sin publicidad"
-      }
-    },
-    "subscription": {
-      "title": "Acceso mensual",
-      "price": "8,99 € /mes",
-      "tag": "Para viajeros frecuentes",
-      "badge": "Próximamente",
-      "features": {
-        "0": "Planifica con amigos",
-        "1": "Gestión de múltiples viajes",
-        "2": "Plantillas premium",
-        "3": "Recomendaciones avanzadas de IA"
-      }
-    },
-    "cta": "Planifiquemos juntos"
-  },
-  "footer": {
-    "tagline": "Planifica tu viaje perfecto, a tu manera",
-    "quickLinks": {
-      "title": "Enlaces rápidos",
-      "features": "Características",
-      "about": "Sobre nosotros",
-      "start": "Comenzar a planificar"
-    },
-    "legal": {
-      "title": "Legal",
-      "terms": "Términos de servicio",
-      "privacy": "Política de privacidad",
-      "cookies": "Política de cookies"
-    },
-    "connect": {
-      "title": "Conecta",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "facebook": "Facebook"
-    }
-  }
 }

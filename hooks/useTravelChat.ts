@@ -178,18 +178,32 @@ export function useTravelChat({
 
             try {
                 // console.log('[QuickResponse] Triggering append for message:', message.id);
-                const responsePromise = quickResponseChat.append({
-                    id: message.id,
-                    content: message.content,
-                    role: message.role
-                });
+                const attemptAppend = async (retryCount = 0) => {
+                    try {
+                        const responsePromise = quickResponseChat.append({
+                            id: message.id,
+                            content: message.content,
+                            role: message.role
+                        });
+                        
+                        const timeoutPromise = new Promise((_, reject) =>
+                            setTimeout(() => reject(new Error('Quick Response timeout')), 10000)
+                        );
 
-                // Add a timeout to prevent indefinite hanging
-                const timeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Quick Response timeout')), 10000) // 10s timeout
-                );
+                        await Promise.race([responsePromise, timeoutPromise]);
+                    } catch (error) {
+                        if (retryCount < 5) { // Allow five retries
+                            console.log(`[QuickResponse] Retry attempt ${retryCount + 1} of 5...`);
+                            await attemptAppend(retryCount + 1);
+                        } else {
+                            console.error('[QuickResponse] Max retries reached:', error);
+                            quickResponseInProgress.current = false;
+                            // Simply not show quickresponse by returning silently
+                        }
+                    }
+                };
 
-                await Promise.race([responsePromise, timeoutPromise]);
+                await attemptAppend();
                 // console.log('[QuickResponse] Append completed for message:', message.id);
             } catch (error) {
                 console.error('[QuickResponse] Error:', error);

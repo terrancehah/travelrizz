@@ -1,84 +1,84 @@
 {
-  "hero": {
-    "title": "Pianifica il tuo viaggio perfetto, a modo tuo",
-    "subtitle": "Nessuna registrazione richiesta. Inizia subito con Travel-Rizz, il nostro compagno di viaggio basato sull'IA. Fai una conversazione naturale sui tuoi sogni di viaggio, e ti aiuteremo a trasformarli in realtà, un dettaglio alla volta.",
-    "cta": "Inizia a pianificare subito"
-  },
-  "about": {
-    "title": "Su Travel-Rizz",
-    "intro": "Travel-Rizz è nato da una semplice verità: tutti meritano di vivere la gioia di un viaggio ben pianificato, indipendentemente dalla loro esperienza nella pianificazione. Dopo anni di aiuto ad amici e familiari nella pianificazione dei loro viaggi, ho visto quanto questo processo potesse essere travolgente.",
-    "experience": "Ecco perché ho creato Travel-Rizz - per dare ai viaggiatori gli strumenti giusti e la tecnologia IA avanzata. Che tu stia esplorando città vivaci o cercando avventure tranquille, avere un assistente di viaggio intelligente nel tuo percorso di pianificazione fa tutta la differenza.",
-    "mission": "Combinando esperienze personali di viaggio con l'IA avanzata, puntiamo a rendere la pianificazione del viaggio come una conversazione con un amico esperto - il tutto senza richiedere registrazioni o creazioni di account."
-  },
-  "features": {
-    "title": "Come ti aiutiamo a pianificare meglio",
-    "items": {
-      "aiChat": {
-        "title": "Pianificazione di viaggio potenziata dall'IA",
-        "description": "Chatta istantaneamente con il nostro assistente di viaggio IA - senza bisogno di account. Condividi le tue idee come faresti con un amico, e il nostro sistema intelligente comprenderà le tue preferenze per creare piani personalizzati."
-      },
-      "insights": {
-        "title": "Conoscenze di viaggio tempestive",
-        "description": "Accedi a informazioni utili sulla tua destinazione - dai modelli meteorologici alle usanze locali - esattamente quando ne hai bisogno, tutto potenziato dalla nostra IA che impara ciò che è importante per te."
-      },
-      "routes": {
-        "title": "Disegno di percorsi visivi",
-        "description": "Visualizza le tue avventure quotidiane su mappe interattive. La nostra IA ottimizza i tuoi percorsi in base alle tue preferenze, aiutandoti a sfruttare al meglio ogni giornata."
-      },
-      "itinerary": {
-        "title": "Itinerario flessibile della giornata",
-        "description": "Organizza le tue giornate con strumenti intuitivi e assistenza IA che organizza le attività a modo tuo. Inizia a pianificare in pochi secondi senza necessità di registrazione."
-      }
+    "hero": {
+        "title": "Pianifica il tuo viaggio perfetto, a modo tuo",
+        "subtitle": "Nessuna registrazione richiesta. Inizia subito con Travel-Rizz, il nostro compagno di viaggio basato sull'IA. Fai una conversazione naturale sui tuoi sogni di viaggio, e ti aiuteremo a trasformarli in realtà, un dettaglio alla volta.",
+        "cta": "Inizia a pianificare subito"
+    },
+    "about": {
+        "title": "Su Travel-Rizz",
+        "intro": "Travel-Rizz è nato da una semplice verità: tutti meritano di vivere la gioia di un viaggio ben pianificato, indipendentemente dalla loro esperienza nella pianificazione. Dopo anni di aiuto ad amici e familiari nella pianificazione dei loro viaggi, ho visto quanto questo processo potesse essere travolgente.",
+        "experience": "Ecco perché ho creato Travel-Rizz - per dare ai viaggiatori gli strumenti giusti e la tecnologia IA avanzata. Che tu stia esplorando città vivaci o cercando avventure tranquille, avere un assistente di viaggio intelligente nel tuo percorso di pianificazione fa tutta la differenza.",
+        "mission": "Combinando esperienze personali di viaggio con l'IA avanzata, puntiamo a rendere la pianificazione del viaggio come una conversazione con un amico esperto - il tutto senza richiedere registrazioni o creazioni di account."
+    },
+    "features": {
+        "title": "Come ti aiutiamo a pianificare meglio",
+        "items": {
+            "aiChat": {
+                "title": "Pianificazione di viaggio potenziata dall'IA",
+                "description": "Chatta istantaneamente con il nostro assistente di viaggio IA - senza bisogno di account. Condividi le tue idee come faresti con un amico, e il nostro sistema intelligente comprenderà le tue preferenze per creare piani personalizzati."
+            },
+            "insights": {
+                "title": "Conoscenze di viaggio tempestive",
+                "description": "Accedi a informazioni utili sulla tua destinazione - dai modelli meteorologici alle usanze locali - esattamente quando ne hai bisogno, tutto potenziato dalla nostra IA che impara ciò che è importante per te."
+            },
+            "routes": {
+                "title": "Disegno di percorsi visivi",
+                "description": "Visualizza le tue avventure quotidiane su mappe interattive. La nostra IA ottimizza i tuoi percorsi in base alle tue preferenze, aiutandoti a sfruttare al meglio ogni giornata."
+            },
+            "itinerary": {
+                "title": "Itinerario flessibile della giornata",
+                "description": "Organizza le tue giornate con strumenti intuitivi e assistenza IA che organizza le attività a modo tuo. Inizia a pianificare in pochi secondi senza necessità di registrazione."
+            }
+        }
+    },
+    "pricing": {
+        "title": "Prezzi semplici e chiari",
+        "subtitle": "Concentrati su ciò che conta - pianificare il tuo viaggio perfetto - con prezzi trasparenti che rispettano il tuo viaggio. Nessuna creazione di account, nessun costo nascosto.",
+        "oneTime": {
+            "title": "Accesso singolo",
+            "price": "1,99 €",
+            "originalPrice": "2,99 €",
+            "tag": "Offerta speciale",
+            "features": {
+                "0": "Pianificazione con IA",
+                "1": "Ottimizzazione interattiva dei percorsi",
+                "2": "Informazioni e consigli destinazione",
+                "3": "Esperienza senza pubblicità"
+            }
+        },
+        "subscription": {
+            "title": "Accesso mensile",
+            "price": "8,99 € /mese",
+            "tag": "Per viaggiatori frequenti",
+            "badge": "Prossimamente",
+            "features": {
+                "0": "Pianifica con gli amici",
+                "1": "Gestione più viaggi",
+                "2": "Modelli premium",
+                "3": "Raccomandazioni IA avanzate"
+            }
+        },
+        "cta": "Inizia a pianificare subito"
+    },
+    "footer": {
+        "tagline": "Pianifica il tuo viaggio perfetto, a modo tuo",
+        "quickLinks": {
+            "title": "Link rapidi",
+            "features": "Funzionalità",
+            "about": "Chi siamo",
+            "start": "Inizia a pianificare"
+        },
+        "legal": {
+            "title": "Legale",
+            "terms": "Termini di servizio",
+            "privacy": "Privacy",
+            "cookies": "Cookie"
+        },
+        "connect": {
+            "title": "Connettiti",
+            "twitter": "Twitter",
+            "instagram": "Instagram",
+            "facebook": "Facebook"
+        }
     }
-  },
-  "pricing": {
-    "title": "Prezzi semplici e chiari",
-    "subtitle": "Concentrati su ciò che conta - pianificare il tuo viaggio perfetto - con prezzi trasparenti che rispettano il tuo viaggio. Nessuna creazione di account, nessun costo nascosto.",
-    "oneTime": {
-      "title": "Accesso singolo",
-      "price": "1,99 €",
-      "originalPrice": "2,99 €",
-      "tag": "Offerta speciale",
-      "features": {
-        "0": "Pianificazione con IA",
-        "1": "Ottimizzazione interattiva dei percorsi",
-        "2": "Informazioni e consigli destinazione",
-        "3": "Esperienza senza pubblicità"
-      }
-    },
-    "subscription": {
-      "title": "Accesso mensile",
-      "price": "8,99 € /mese",
-      "tag": "Per viaggiatori frequenti",
-      "badge": "Prossimamente",
-      "features": {
-        "0": "Pianifica con gli amici",
-        "1": "Gestione più viaggi",
-        "2": "Modelli premium",
-        "3": "Raccomandazioni IA avanzate"
-      }
-    },
-    "cta": "Inizia a pianificare subito"
-  },
-  "footer": {
-    "tagline": "Pianifica il tuo viaggio perfetto, a modo tuo",
-    "quickLinks": {
-      "title": "Link rapidi",
-      "features": "Funzionalità",
-      "about": "Chi siamo",
-      "start": "Inizia a pianificare"
-    },
-    "legal": {
-      "title": "Legale",
-      "terms": "Termini di servizio",
-      "privacy": "Privacy",
-      "cookies": "Cookie"
-    },
-    "connect": {
-      "title": "Connettiti",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "facebook": "Facebook"
-    }
-  }
 }
