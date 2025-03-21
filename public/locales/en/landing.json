@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Plan Your Perfect Journey, Your Way",
-    "subtitle": "Meet Travel-Rizz - your friendly AI travel assistant. No signup required. Start instantly with Travel-Rizz, our AI-powered travel companion. Have a natural conversation about your travel dreams, and we'll help you turn them into reality - one thoughtful detail at a time.",
+    "subtitle": "Meet Travel-Rizz - your friendly AI travel planner. No signup required. Have a natural conversation about your travel dreams, and we'll help you turn them into reality - one thoughtful detail at a time.",
     "cta": "Let's Plan Together"
   },
   "about": {
@@ -14,7 +14,7 @@
     "title": "How We Help You Plan Better",
     "items": {
       "aiChat": {
-        "title": "AI-Powered Travel Conversations",
+        "title": "AI-Powered Travel Planning",
         "description": "Chat instantly with our AI travel assistant - no account needed. Share your ideas as you would with a friend, and our intelligent system will understand your preferences to create personalized plans."
       },
       "insights": {
@@ -22,11 +22,11 @@
         "description": "Access helpful insights about your destination - from weather patterns to local customs - exactly when you need them, all powered by our AI that learns what matters to you."
       },
       "routes": {
-        "title": "Visual Journey Planning",
+        "title": "Visual Routes Drawing",
         "description": "See your daily adventures laid out on interactive maps. Our AI optimizes your routes based on your preferences, helping you make the most of each day."
       },
       "itinerary": {
-        "title": "Flexible Day Planning",
+        "title": "Flexible Day Itinerary",
         "description": "Build your days with intuitive tools and AI assistance that organizes activities your way. Start planning in seconds with no registration required."
       }
     }

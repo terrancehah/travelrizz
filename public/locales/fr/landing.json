@@ -14,7 +14,7 @@
     "title": "Comment nous vous aidons à mieux planifier",
     "items": {
       "aiChat": {
-        "title": "Conversations de voyage propulsées par l'IA",
+        "title": "Planification de voyage propulsée par l'IA",
         "description": "Discutez instantanément avec notre assistant de voyage IA - sans compte nécessaire. Partagez vos idées comme avec un ami, et notre système intelligent comprendra vos préférences pour créer des plans personnalisés."
       },
       "insights": {
@@ -22,7 +22,7 @@
         "description": "Accédez à des informations utiles sur votre destination - des tendances météorologiques aux coutumes locales - exactement quand vous en avez besoin, le tout propulsé par notre IA qui apprend ce qui compte pour vous."
       },
       "routes": {
-        "title": "Planification visuelle du voyage",
+        "title": "Tracé de routes visuel",
         "description": "Visualisez vos aventures quotidiennes sur des cartes interactives. Notre IA optimise vos itinéraires en fonction de vos préférences, vous aidant à tirer le meilleur parti de chaque journée."
       },
       "itinerary": {

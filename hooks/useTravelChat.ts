@@ -240,10 +240,11 @@ export function useTravelChat({
             setShowPremiumModal(true);
             return {
                 type: 'stageProgress',
+                status: 'error',
                 props: {
                     nextStage: currentStage,
-                    reason: 'Premium required for advanced stages',
-                    criteria: ['premium subscription']
+                    error: 'Premium required for advanced stages',
+                    upgradeRequired: true
                 }
             };
         }
@@ -267,20 +268,20 @@ export function useTravelChat({
             
             return {
                 type: 'stageProgress',
+                status: 'success',
                 props: {
-                    nextStage,
-                    reason: 'Stage requirements met',
-                    criteria: missingRequirements
+                    nextStage
                 }
             };
         }
         
         return {
             type: 'stageProgress',
+            status: 'error',
             props: {
                 nextStage: currentStage,
-                reason: 'Stage requirements not met',
-                criteria: missingRequirements
+                error: 'Stage requirements not met',
+                upgradeRequired: upgradeRequired || false
             }
         };
     }, [currentStage, currentDetails, metrics.isPaid, onStageUpdate, setShowPremiumModal]);

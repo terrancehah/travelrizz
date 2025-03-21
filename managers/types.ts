@@ -252,7 +252,7 @@ export interface TravelSession {
     startTime: number;
     lastActive: number;
     expiresAt: number;
-
+    
     // Travel details
     destination: string;
     startDate: string;
@@ -265,11 +265,11 @@ export interface TravelSession {
         latitude: number;
         longitude: number;
     };
-
+    
     // Places
     savedPlaces: any[];
     currentStage: number;
-
+    
     // Metrics
     totalPrompts: number;
     stagePrompts: Record<number, number>;
@@ -399,30 +399,30 @@ export interface OpenWeatherDayResponse {
     date: string;
     units: string;
     cloud_cover: {
-    afternoon: number;
+        afternoon: number;
     };
     humidity: {
-    afternoon: number;
+        afternoon: number;
     };
     precipitation: {
-    total: number;
+        total: number;
     };
     temperature: {
-    min: number;
-    max: number;
-    afternoon: number;
-    night: number;
-    evening: number;
-    morning: number;
+        min: number;
+        max: number;
+        afternoon: number;
+        night: number;
+        evening: number;
+        morning: number;
     };
     pressure: {
-    afternoon: number;
+        afternoon: number;
     };
     wind: {
-    max: {
-        speed: number;
-        direction: number;
-    }
+        max: {
+            speed: number;
+            direction: number;
+        }
     }
 }
 
@@ -480,11 +480,20 @@ export interface CurrencyApiResponse {
 
 export const DEFAULT_CURRENCIES = ['USD', 'EUR', 'GBP', 'CNY', 'JPY'];
 
-export interface StageProgressResult {
+export type StageProgressResult =
+| {
     type: 'stageProgress';
+    status: 'success';
     props: {
         nextStage: number;
-        reason: string;
-        criteria: string[];
     };
 }
+| {
+    type: 'stageProgress';
+    status: 'error';
+    props: {
+        nextStage: number;
+        error: string;
+        upgradeRequired?: boolean;
+    };
+};

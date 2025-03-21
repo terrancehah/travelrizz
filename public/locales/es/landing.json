@@ -14,7 +14,7 @@
     "title": "Cómo te ayudamos a planificar mejor",
     "items": {
       "aiChat": {
-        "title": "Conversaciones de viaje con IA",
+        "title": "Planificación de viajes impulsada por IA",
         "description": "Chatea instantáneamente con nuestro asistente de IA - sin necesidad de cuenta. Comparte tus ideas como lo harías con un amigo, y nuestro sistema inteligente entenderá tus preferencias para crear planes personalizados."
       },
       "insights": {
@@ -22,11 +22,11 @@
         "description": "Accede a información útil sobre tu destino - desde patrones climáticos hasta costumbres locales - exactamente cuando lo necesites, todo impulsado por nuestra IA que aprende lo que te importa."
       },
       "routes": {
-        "title": "Planificación visual del viaje",
+        "title": "Diseño visual de rutas",
         "description": "Visualiza tus aventuras diarias en mapas interactivos. Nuestra IA optimiza tus rutas según tus preferencias, ayudándote a aprovechar al máximo cada día."
       },
       "itinerary": {
-        "title": "Planificación flexible del día",
+        "title": "Itinerario flexible del día",
         "description": "Organiza tus días con herramientas intuitivas y asistencia de IA que organizan actividades a tu manera. Comienza a planificar en segundos sin necesidad de registro."
       }
     }

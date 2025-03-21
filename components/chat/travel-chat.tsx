@@ -273,12 +273,10 @@ export function TravelChat({
                 if (toolInvocation.toolName === 'stageProgress' && 'result' in toolInvocation) {
                     const result = toolInvocation.result as StageProgressResult;
                     
-                    if (validateStageProgression(
-                        currentStage,
-                        result.props.nextStage,
-                        currentDetails
-                    )) {
+                    if (result.status === 'success') {
                         onStageUpdate(result.props.nextStage);
+                    } else if (result.status === 'error' && result.props.upgradeRequired) {
+                        setShowPremiumModal(true);
                     }
                 }
             });

@@ -374,7 +374,8 @@ export const stageProgressTool = createTool({
                 status: 'error',
                 props: { 
                     nextStage: currentStage,
-                    error: `Cannot progress to stage ${nextStage}. Missing requirements: ${validationResult.missingRequirements.join(', ')}`
+                    error: `Cannot progress to stage ${nextStage}. Missing requirements: ${validationResult.missingRequirements.join(', ')}`,
+                    upgradeRequired: validationResult.upgradeRequired
                 }
             };
         }

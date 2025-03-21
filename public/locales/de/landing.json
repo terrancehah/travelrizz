@@ -14,7 +14,7 @@
     "title": "Wie wir Ihnen bei der Planung helfen",
     "items": {
       "aiChat": {
-        "title": "KI-gestützte Reisegespräche",
+        "title": "KI-gestützte Reiseplanung",
         "description": "Chatten Sie sofort mit unserem KI-Reiseassistenten - ohne Konto. Teilen Sie Ihre Ideen wie mit einem Freund, und unser intelligentes System versteht Ihre Vorlieben, um personalisierte Pläne zu erstellen."
       },
       "insights": {
@@ -22,7 +22,7 @@
         "description": "Erhalten Sie hilfreiche Einblicke zu Ihrem Reiseziel - von Wettermustern bis zu lokalen Bräuchen - genau dann, wenn Sie sie brauchen, alles unterstützt von unserer KI, die lernt, was für Sie wichtig ist."
       },
       "routes": {
-        "title": "Visuelle Reiseplanung",
+        "title": "Visuelle Routenzeichnung",
         "description": "Sehen Sie Ihre täglichen Abenteuer auf interaktiven Karten. Unsere KI optimiert Ihre Routen basierend auf Ihren Vorlieben und hilft Ihnen, jeden Tag optimal zu nutzen."
       },
       "itinerary": {
