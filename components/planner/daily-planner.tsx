@@ -11,6 +11,7 @@ import { TravelDetails } from '../../managers/types'
 import react from 'react'
 import { travelInfoManager } from '@/utils/travel-info-utils'
 import { ChatHeader } from '../chat/chat-header';
+import { useTranslations } from 'next-intl'
 
 export interface DayPlan {
     id: string
@@ -325,8 +326,8 @@ export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
             messages: {
-                itineraryplanner: (await import(`/public/locales/${locale}/itineraryplanner.json`)).default,
-                parameters: (await import(`/public/locales/${locale}/parameters.json`)).default
+                itineraryplanner: (await import(`../../public/locales/${locale}/itineraryplanner.json`)).default,
+                parameters: (await import(`../../public/locales/${locale}/parameters.json`)).default
             },
             locale
         }

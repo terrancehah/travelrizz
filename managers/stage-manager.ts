@@ -45,13 +45,12 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
     // Stage 3: Places Introduction
     3: {
         validate: (details: TravelDetails, session: TravelSession) => {
-            const { stagePrompts } = session;
-            const stagePromptCount = stagePrompts?.[3];
-            const upgradeRequired = !session.isPaid && stagePromptCount >= 5;
-            const missingRequirements: string[] = [];
+            const isValid = session.isPaid;
+            const upgradeRequired = !session.isPaid;
+            const missingRequirements = session.isPaid ? [] : ['premium subscription'];
             
             return {
-                isValid: !upgradeRequired,
+                isValid,
                 missingRequirements,
                 upgradeRequired
             };
