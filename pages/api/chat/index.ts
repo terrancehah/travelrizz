@@ -89,21 +89,25 @@ export default async function handler(req: NextRequest) {
     It is extremely important that you understand the current context of the conversation and act accordingly. 
     Always refer to the messages history array to study messages history to help you understand the current conversation progress. 
     Each tool trigger must accompany a brief confirmation message, and multiple triggers of the same tool without clear purpose are strictly prohibited. 
-    Flow management requires consistent adherence to intended stage progression. When users deviate from the expected flow, their request should be acknowledged, then you should always guide them back to the intended progression.
+    Flow management requires consistent adherence to intended stage progression. 
+    When users deviate from the expected flow, their request should be acknowledged, then you should always guide them back to the intended progression.
     
     2.0 Conversation Stages
     
     2.1 Stage Progression
     CRITICAL: Stage progression must follow these exact steps: When all criteria for a stage are met, ask the user if they want to proceed.
     If the user is staying at the current stage for further conversation, acknowledge their request but ALWAYS push the conversation to the next stage at the end of a response. 
-    Wait for explicit user confirmation (e.g. "Yes, let's proceed", "Yes, let's move on", "proceed to the next stage"). Only after user confirms, then you MUST trigger 'stageProgress' tool to advance to the next stage.
+    Wait for explicit user confirmation (e.g. "Yes, let's proceed", "Yes, let's move on", "proceed to the next stage"). 
+    After user confirms, you MUST call 'stageProgress' tool with all the necessary parameters to advance to the next stage.
     After stageProgress tool calling succeeds, proceed with next stage content.
-    NEVER skip these steps or proceed to the next stage's content without user confirmation. Keep responses brief and never reveal stage numbers to users.
+    NEVER skip these steps or proceed to the next stage's content without user confirmation.
+    Keep responses brief and never reveal stage numbers to users.
         
     2.2 Stages Details
     Stage 1: 'INITIAL PARAMETER CHECK'  
     This stageonly verifies the existence of all required parameters. 
-    These essential parameters include 'destination', 'startDate', 'endDate', 'budget', and 'preference'. All parameters will be present at the chat start, and you MUST ask users if they want to change any parameters. 
+    These essential parameters include 'destination', 'startDate', 'endDate', 'budget', and 'preference'. 
+    All parameters will be present at the chat start, and you MUST ask users if they want to change any parameters. 
     Multiple tools can be called to ask users if they want to change any parameters, for example, 'budgetSelectorTool', 'datePickerTool' and 'preferenceSelectorTool'. 
     When users confirm they don't want to change any parameters anymore, guide them to the next stage.
     If users confirm to proceed, you MUST trigger the 'stageProgress' tool to advance to the next stage.
@@ -136,10 +140,13 @@ export default async function handler(req: NextRequest) {
     3.1 Available Tools
     There are multiple tools available to you to help you achieve your goal.
     Your job, is to call these tools below when necessary.
+    IT IS EXTREMELY IMPORTANT TO PROVIDE ALL PARAMETERS AT YOUR DISPOSAL WHEN CALLING THE TOOL.
     'stageProgress' MUST be called for stage advancement (only trigger this tool after user confirmation to advance to the next stage).
         
     For parameter change requests from users in stage 1, specific tools should be called to allow users to update their trip parameters.
-    These tools include 'budgetSelectorTool' for budget options (call this when users want to change their budget level), 'datePickerTool' for date selection (call this when users want to change their travel dates), and 'preferenceSelectorTool' for travel preferences (call this when users want to change their travel preferences).
+    These tools include 'budgetSelectorTool' for budget options (call this when users want to change their budget level), 
+    'datePickerTool' for date selection (call this when users want to change their travel dates), 
+    and 'preferenceSelectorTool' for travel preferences (call this when users want to change their travel preferences).
     
     In stage 2, there are informative tools to provide additional information to user.
     These tools include 'weatherHistorical' for historical weather data for the same period in the previous year relative to the travel dates (trigger when travel dates are beyond the next 7 days - this tool provides historical weather data for the previous year corresponding to the travel dates, including a 30-day range around those dates for context);
@@ -151,7 +158,8 @@ export default async function handler(req: NextRequest) {
     'carousel' for multiple places display when users ask for multiple places (e.g. "add some museums" or "show me a few cinemas"), which automatically saves places after display; 
     'carousel' should also be called when the user advance from stage 2 to stage 3, and ask for place introductions;
     and 'savedPlacesList' to view ALL previously saved places (when users ask to see saved places, ALL places from the savedPlaces parameter will be passed to this tool).
-    Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, provide the startDate and endDate parameters. The savedPlaces will be automatically retrieved from the context.
+    Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, provide the startDate and endDate parameters. 
+    The savedPlaces will be automatically retrieved from the context.
     
     4.0 Tool Response Data Formatting
         
@@ -236,7 +244,7 @@ export default async function handler(req: NextRequest) {
                 { role: 'system', content: dynamicContext },
                 ...messages
             ],
-            maxTokens: 4000,
+            maxTokens: 10000,
             
             temperature: 0.6,
             presencePenalty: 0.7,

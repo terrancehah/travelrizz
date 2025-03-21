@@ -28,9 +28,10 @@ declare global {
 interface PremiumUpgradeModalProps {
     isOpen: boolean;
     onClose: () => void;
+    onPaymentSuccess: () => void;
 }
 
-export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeModalProps) {
+export default function PremiumUpgradeModal({ isOpen, onClose, onPaymentSuccess }: PremiumUpgradeModalProps) {
     const [isMobile, setIsMobile] = useState(false)
     const [isPolling, setIsPolling] = useState(false)
     const stripeContainerRef = useRef<HTMLDivElement>(null)
@@ -80,12 +81,12 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
         
         // test buy-button
         const buttonHtml = `
-      <stripe-buy-button
-        buy-button-id="${theme === 'dark' ? 'buy_btn_1QvFHUI41yHwVfoxAdnHirxn' : 'buy_btn_1QvFE0I41yHwVfoxoa2fvTlL'}"
-        publishable-key="pk_test_51MtLXgI41yHwVfoxNp7MKLfz0Gh4qo2LwImaCBtCt0Gn48e613BLsbOajpHT1uJOs2l0ACRpUE3RZrh8FcLxdwef00QOtxcHmf"
-        client-reference-id="${refId}"
-      >
-      </stripe-buy-button>
+        <stripe-buy-button
+            buy-button-id="${theme === 'dark' ? 'buy_btn_1QvFHUI41yHwVfoxAdnHirxn' : 'buy_btn_1QvFE0I41yHwVfoxoa2fvTlL'}"
+            publishable-key="pk_test_51MtLXgI41yHwVfoxNp7MKLfz0Gh4qo2LwImaCBtCt0Gn48e613BLsbOajpHT1uJOs2l0ACRpUE3RZrh8FcLxdwef00QOtxcHmf"
+            client-reference-id="${refId}"
+        >
+        </stripe-buy-button>
     `;
         
         // production buy-button
@@ -217,6 +218,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
                     // Update states and trigger success popup
                     setPaymentStatus(true);
                     console.log(`[Payment Modal][${pollInstanceId}] Payment status updated to true for:`, refId);
+                    onPaymentSuccess();
                     clearPaymentReference();
                     console.log(`[Payment Modal][${pollInstanceId}] Payment reference cleared for:`, refId);
                     setIsPolling(false);
@@ -259,7 +261,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose }: PremiumUpgradeM
                 pollInterval.current = undefined;
             }
         };
-    }, [isPolling, isOpen]);
+    }, [isPolling, isOpen, onPaymentSuccess]);
     
     return (
         <>

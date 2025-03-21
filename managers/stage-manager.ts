@@ -1,15 +1,6 @@
 import { TravelDetails, TravelSession } from './types';
 import { getStoredSession, initializeSession } from '../managers/session-manager';
 
-// Interface for tracking user interactions
-// export interface UserInteractionMetrics {
-//   totalPrompts: number;
-//   savedPlacesCount: number;
-//   isPaid: boolean;
-//   stagePrompts?: Record<number, number>;
-//   paymentReference: string; // Track payment reference ID - required
-// }
-
 // Define requirements for each stage
 interface StageRequirements {
     validate: (
@@ -54,20 +45,13 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
     // Stage 3: Places Introduction
     3: {
         validate: (details: TravelDetails, session: TravelSession) => {
-            const { totalPrompts, stagePrompts, savedPlaces } = session;
+            const { stagePrompts } = session;
             const stagePromptCount = stagePrompts?.[3];
             const upgradeRequired = !session.isPaid && stagePromptCount >= 5;
-            
-            // Check basic requirements
-            const hasEnoughPlaces = savedPlaces.length >= 3;
-            
             const missingRequirements: string[] = [];
-            if (!hasEnoughPlaces) {
-                missingRequirements.push(`Save at least 3 places`);
-            }
             
             return {
-                isValid: !upgradeRequired && hasEnoughPlaces,
+                isValid: !upgradeRequired,
                 missingRequirements,
                 upgradeRequired
             };

@@ -41,18 +41,18 @@ export function useTravelChat({
     
     // Check if within stage limit
     const isWithinStageLimit = useMemo(() => {
-        const session = getStoredSession();
-        return checkInputLimits(currentStage).withinStageLimit;
-    }, [currentStage, getStoredSession()?.stagePrompts?.[currentStage]]);
+        const { withinStageLimit } = checkInputLimits(currentStage);
+        return withinStageLimit;
+    }, [currentStage, metrics.isPaid, metrics.stagePrompts?.[currentStage]]);
     
-    // Premium stage check
-    const checkPremiumStage = useCallback(() => {
-        if (currentStage === 3 && !metrics.isPaid && !isWithinStageLimit) {
-            setShowPremiumModal(true);
-            return false;
-        }
-        return true;
-    }, [currentStage, metrics.isPaid, isWithinStageLimit]);
+    // // Premium stage check
+    // const checkPremiumStage = useCallback(() => {
+    //     if (currentStage === 3 && !metrics.isPaid && !isWithinStageLimit) {
+    //         setShowPremiumModal(true);
+    //         return false;
+    //     }
+    //     return true;
+    // }, [currentStage, metrics.isPaid, isWithinStageLimit]);
     
     // Handle missing session
     useEffect(() => {
@@ -317,7 +317,7 @@ export function useTravelChat({
         setShowPremiumModal,
         premiumModalState,
         setPremiumModalState,
-        checkPremiumStage,
+        // checkPremiumStage,
         append
     };
 }

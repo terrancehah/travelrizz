@@ -53,11 +53,15 @@ export function TravelChat({
     const [currentDetails, setCurrentDetails] = useState<TravelDetails>(initialDetails);
     const fonts = useLocalizedFont();
     const router = useRouter();
-    const [sessionMetadata] = useState<TravelSession | null>(() => {
-        return getStoredSession();
-    });
+    const [sessionMetadata, setSessionMetadata] = useState<TravelSession | null>(() => getStoredSession());
     const t = useTranslations('travelChat');
     const tParam = useTranslations('parameters');
+
+    // Callback to refresh session data after payment
+    const refreshSession = useCallback(() => {
+        const updatedSession = getStoredSession();
+        setSessionMetadata(updatedSession);
+    }, []);
 
     // Handle missing session
     useEffect(() => {
@@ -383,7 +387,8 @@ export function TravelChat({
         <div className="relative flex flex-col h-full shadow-lg">
             <PremiumUpgradeModal 
                 isOpen={showPremiumModal} 
-                onClose={() => setShowPremiumModal(false)} 
+                onClose={() => setShowPremiumModal(false)}
+                onPaymentSuccess={refreshSession}
             />
             <SessionWarningModal 
                 isOpen={showSessionWarning}
@@ -745,7 +750,7 @@ export function TravelChat({
                         placeholder={t('chatUI.inputPlaceholder')}
                         className={`${fonts.text} flex-1 rounded-xl px-4 py-2 bg-white dark:bg-gray-800
                             border-2 border-gray-200 dark:border-gray-600  focus:border-blue-500 dark:focus:border-blue-800 focus:outline-none focus:ring-1 focus:ring-blue-500`}
-                        disabled={isLoading || !isWithinStageLimit}
+                        disabled={isLoading || (currentStage === 3 && !sessionMetadata.isPaid && !isWithinStageLimit)}
                     />
                     {/* {isLoading && (
                         <button
@@ -757,7 +762,7 @@ export function TravelChat({
                     )} */}
                     <button
                         type="submit"
-                        disabled={isLoading || !isWithinStageLimit}
+                        disabled={isLoading || (currentStage === 3 && !sessionMetadata.isPaid && !isWithinStageLimit)}
                         className={`${fonts.text} inline-flex items-center rounded-xl bg-blue-600/75 dark:bg-blue-800 hover:bg-blue-600 px-4 py-2 
                             text-sm font-semibold text-white dark:text-gray-200 dark:hover:text-white shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50`}
                     >

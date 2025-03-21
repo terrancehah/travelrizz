@@ -349,7 +349,7 @@ export const stageProgressTool = createTool({
             preferences: z.array(z.string()),
             budget: z.string(),
             language: z.string(),
-            transport: z.array(z.string()).optional(), // Changed to optional
+            transport: z.array(z.string()).optional(),
         }),
         metrics: z.object({
             totalPrompts: z.number(),
@@ -364,7 +364,7 @@ export const stageProgressTool = createTool({
         const validationResult = validateStageProgression(
             currentStage,
             nextStage,
-            travelDetails as TravelDetails // Type assertion since we validate fields in validateStageProgression
+            travelDetails as TravelDetails
         );
         
         if (!validationResult.canProgress) {

@@ -191,30 +191,37 @@ export function updateStoredMetrics(
 
 export function checkInputLimits(currentStage: number): {
     withinStageLimit: boolean;
-    withinTotalLimit: boolean;
     stageInputCount: number;
-    totalInputCount: number;
 } {
     return safeStorageOp(() => {
         const session = getStoredSession() || initializeSession();
-        const stagePrompts = session.stagePrompts || { 1: 0, 2: 0, 3: 0 };
-        const totalPrompts = session.totalPrompts || 0;
-        
+        const stagePrompts = session.stagePrompts || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
+        // If paid, no restrictions
+        if (session.isPaid) {
+            return {
+                withinStageLimit: true,
+                stageInputCount: stagePrompts[currentStage] || 0
+            };
+        }
+
+        // For unpaid users in stage 3, enforce 5-prompt limit
+        if (currentStage === 3) {
+            const stageInputCount = stagePrompts[currentStage] || 0;
+            return {
+                withinStageLimit: stageInputCount < 5,
+                stageInputCount
+            };
+        }
+
+        // No limits for other stages
         return {
-            withinStageLimit: currentStage === 3
-            ? (stagePrompts[currentStage] || 0) < 5
-            : true,
-            withinTotalLimit: currentStage === 3
-            ? totalPrompts < SESSION_CONFIG.MAX_TOTAL_INPUTS
-            : true,
-            stageInputCount: stagePrompts[currentStage] || 0,
-            totalInputCount: totalPrompts
+            withinStageLimit: true,
+            stageInputCount: stagePrompts[currentStage] || 0
         };
     }, {
         withinStageLimit: true,
-        withinTotalLimit: true,
-        stageInputCount: 0,
-        totalInputCount: 0
+        stageInputCount: 0
     });
 }
 

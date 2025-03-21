@@ -345,12 +345,13 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                     description={tComp('paymentSuccessPopup.description')}
                 />
             )}
-            {showPremiumModal && (
+            {/* {showPremiumModal && (
                 <PremiumUpgradeModal 
                     isOpen={showPremiumModal} 
                     onClose={() => setShowPremiumModal(false)}
+                    
                 />
-            )}
+            )} */}
         </div>
     );
 }
