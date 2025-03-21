@@ -9,7 +9,7 @@ import { PreferenceSelector } from '../selectors/preference-selector';
 import { DatePicker } from '../selectors/date-selector';
 import { LanguageSelector } from '../selectors/language-selector';
 import { PlaceCard } from '../features/places/place-card';
-import { Carousel } from '../features/places/place-carousel';
+import { PlaceCarousel } from '../features/places/place-carousel';
 import { SavedPlacesList } from '../features/places/saved-places-list';
 import HistoricalWeatherChart from '../features/weather/weather-historical';
 import WeatherForecast from '../features/weather/weather-forecast';
@@ -568,15 +568,15 @@ export function TravelChat({
                                             </div>
                                         );
 
-                                    case 'carousel':
+                                    case 'placeCarousel':
                                         if(!toolInvocation.result?.props?.places) return null;
-                                        const carouselProps = toolInvocation.result.props as { places: Place[] };
+                                        const placeCarouselProps = toolInvocation.result.props as { places: Place[] };
                                         return (
                                             <div key={`${toolCallId}-${index}`} className="flex justify-start">
                                                 <div className="w-full">
-                                                    {carouselProps.places.length > 0 && mainChat.status === 'ready' && (
-                                                        <Carousel 
-                                                            places={carouselProps.places}
+                                                    {placeCarouselProps.places.length > 0 && mainChat.status === 'ready' && (
+                                                        <PlaceCarousel 
+                                                            places={placeCarouselProps.places}
                                                         />
                                                     )}
                                                 </div>

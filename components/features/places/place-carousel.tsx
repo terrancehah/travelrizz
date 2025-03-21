@@ -18,7 +18,7 @@ const dispatchMapOperation = (detail: MapOperationDetail) => {
     window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', { detail }));
 };
 
-export const Carousel = ({ places }: { places: Place[] }) => {
+export const PlaceCarousel = ({ places }: { places: Place[] }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [shuffledPlaces, setShuffledPlaces] = useState<Place[]>([]);
     const fonts = useLocalizedFont();

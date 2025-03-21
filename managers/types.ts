@@ -91,9 +91,9 @@ export enum ComponentType {
     LanguageSelector = 'LanguageSelector',
     PlaceCard = 'PlaceCard',
     TransportSelector = 'TransportSelector',
-    Carousel = 'Carousel',
+    PlaceCarousel = 'PlaceCarousel',
     DetailsCard = 'DetailsCard',
-    SavedPlacesCarousel = 'SavedPlacesCarousel',
+    SavedPlacesList = 'SavedPlacesList',
     QuickResponse = 'QuickResponse'
 }
 
@@ -183,7 +183,7 @@ export interface ComponentProps {
         options: string[];
         onSelect: (option: string) => void;
     };
-    [ComponentType.Carousel]: {
+    [ComponentType.PlaceCarousel]: {
         items: Array<{
             title: string;
             description: string;
@@ -194,7 +194,7 @@ export interface ComponentProps {
         title: string;
         content: ReactNode;
     };
-    [ComponentType.SavedPlacesCarousel]: {
+    [ComponentType.SavedPlacesList]: {
         places: Place[];
         onDelete: (placeId: string) => void;
     };

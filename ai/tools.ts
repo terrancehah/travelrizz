@@ -168,7 +168,7 @@ export const placeCardTool = createTool({
 });
 
 // Tool for Place Carousel
-export const carouselTool = createTool({
+export const placeCarouselTool = createTool({
     description: 'Display multiple places in a carousel based on preferences or specific place types and automatically save them into savedPlaces.',
     parameters: z.object({
         preferences: z.array(z.nativeEnum(TravelPreference)).optional(), // Changed to array
@@ -207,13 +207,13 @@ export const carouselTool = createTool({
                 });
             }
             return {
-                type: 'carousel',
+                type: 'placeCarousel',
                 props: { places }
             };
         } catch (error) {
-            console.error('Error in carousel tool:', error);
+            console.error('Error in placeCarousel tool:', error);
             return {
-                type: 'carousel',
+                type: 'placeCarousel',
                 props: { places: [] }
             };
         }
@@ -604,7 +604,7 @@ export const tools = {
     languageSelector: languageSelectorTool,
     transportSelector: transportSelectorTool,
     placeCard: placeCardTool,
-    carousel: carouselTool,
+    placeCarousel: placeCarouselTool,
     detailsCard: detailsCardTool,
     weatherHistorical: weatherHistoricalTool,
     savedPlacesList: savedPlacesListTool,
