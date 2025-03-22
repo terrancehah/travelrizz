@@ -109,7 +109,7 @@ export function getStoredSession(): TravelSession | null {
         }
         try {
             const session = JSON.parse(storedData);
-            console.log('[Session] Parsed session:', session);
+            // console.log('[Session] Parsed session:', session);
             return session;
         } catch (error) {
             console.error('[Session] Failed to parse session data:', error);

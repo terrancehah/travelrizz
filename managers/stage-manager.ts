@@ -1,12 +1,9 @@
-import { TravelDetails, TravelSession } from './types';
-import { getStoredSession, initializeSession } from '../managers/session-manager';
-import { safeStorageOp } from '../utils/storage-utils';
+import { TravelDetails } from './types';
 
-// Define requirements for each stage
 interface StageRequirements {
     validate: (
         travelDetails: TravelDetails,
-        session: TravelSession
+        isPaid?: boolean
     ) => {
         isValid: boolean;
         missingRequirements: string[];
@@ -15,124 +12,87 @@ interface StageRequirements {
 }
 
 const STAGE_VALIDATORS: Record<number, StageRequirements> = {
-    // Stage 1: Initial Parameter Check
     1: {
-        validate: (details: TravelDetails, session: TravelSession) => {
+        validate: (details: TravelDetails) => {
             const missingRequirements: string[] = [];
-            
             if (!details.destination) missingRequirements.push('destination');
             if (!details.startDate) missingRequirements.push('start date');
             if (!details.endDate) missingRequirements.push('end date');
             if (!details.preferences?.length) missingRequirements.push('preferences');
             if (!details.language) missingRequirements.push('language');
-            
             return {
                 isValid: missingRequirements.length === 0,
                 missingRequirements
             };
         }
     },
-    
-    // Stage 2: City Introduction
     2: {
-        validate: (details: TravelDetails, session: TravelSession) => {
+        validate: (details: TravelDetails) => {
             return {
                 isValid: true,
                 missingRequirements: []
             };
         }
     },
-    
-    // Stage 3: Places Introduction
     3: {
-        validate: (details: TravelDetails, session: TravelSession) => {
-            const isValid = session.isPaid;
-            const upgradeRequired = !session.isPaid;
-            const missingRequirements = session.isPaid ? [] : ['premium subscription'];
-            
-            return {
-                isValid,
-                missingRequirements,
-                upgradeRequired
-            };
-        }
-    },
-    
-    // Stage 4: Itinerary Review (with payment check)
-    4: {
-        validate: (details: TravelDetails, session: TravelSession) => {
-            const isPaid = session.isPaid;
-            const missingRequirements: string[] = [];
-            
-            // Check payment status
-            if (!isPaid) {
-                missingRequirements.push('premium subscription');
+        validate: (details: TravelDetails, isPaid?: boolean) => {
+            if (isPaid === undefined) {
+                return { isValid: false, missingRequirements: ['payment status unknown'] };
             }
-            
+            const missingRequirements = isPaid ? [] : ['premium subscription'];
             return {
-                isValid: missingRequirements.length === 0,
+                isValid: isPaid,
                 missingRequirements,
                 upgradeRequired: !isPaid
             };
         }
     },
-    
-    // Stage 5: Final Confirmation (keeping it open as requested)
-    5: {
-        validate: (_, session: TravelSession) => {
-            const isPaid = session.isPaid;
+    4: {
+        validate: (details: TravelDetails, isPaid?: boolean) => {
+            if (isPaid === undefined) {
+                return { isValid: false, missingRequirements: ['payment status unknown'] };
+            }
+            const missingRequirements = isPaid ? [] : ['premium subscription'];
             return {
                 isValid: isPaid,
-                missingRequirements: isPaid ? [] : ['premium subscription'],
+                missingRequirements,
+                upgradeRequired: !isPaid
+            };
+        }
+    },
+    5: {
+        validate: (details: TravelDetails, isPaid?: boolean) => {
+            if (isPaid === undefined) {
+                return { isValid: false, missingRequirements: ['payment status unknown'] };
+            }
+            const missingRequirements = isPaid ? [] : ['premium subscription'];
+            return {
+                isValid: isPaid,
+                missingRequirements,
                 upgradeRequired: !isPaid
             };
         }
     }
 };
 
-// Main validation function to be used in the chat component
 export function validateStageProgression(
     currentStage: number,
     nextStage: number,
-    travelDetails: TravelDetails
+    travelDetails: TravelDetails,
+    isPaid: boolean
 ): {
     canProgress: boolean;
     missingRequirements: string[];
     upgradeRequired?: boolean;
 } {
-    let session = getStoredSession();
-
-    // If no session exists but we have travel details, initialize one
-    if (!session && travelDetails.destination) {
-        session = initializeSession();
-        session.destination = travelDetails.destination;
-        session.startDate = travelDetails.startDate || '';
-        session.endDate = travelDetails.endDate || '';
-        session.preferences = travelDetails.preferences || [];
-        session.budget = travelDetails.budget || '';
-        session.language = travelDetails.language || '';
-        session.transport = travelDetails.transport || [];
-        session.currentStage = 1; // Default to stage 1 for new sessions
-        safeStorageOp(() => {
-            sessionStorage?.setItem('sessionKey', JSON.stringify(session));
-        }, undefined);
-    }
-
-    // Check if session is still null after attempting initialization
-    if (!session) {
-        return { canProgress: false, missingRequirements: ['valid session'] };
-    }
-
-    // Get validator for current stage
     const validator = STAGE_VALIDATORS[currentStage];
     if (!validator) {
         return { canProgress: true, missingRequirements: [] };
     }
 
-    // Check if current stage requirements are met before progressing
     const { isValid, missingRequirements, upgradeRequired } = validator.validate(
         travelDetails,
-        session
+        [3, 4, 5].includes(currentStage) ? isPaid : undefined
     );
 
     return {

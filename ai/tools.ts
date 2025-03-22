@@ -342,7 +342,8 @@ export const stageProgressTool = createTool({
         const validationResult = validateStageProgression(
             currentStage,
             nextStage,
-            travelDetails as TravelDetails
+            travelDetails as TravelDetails,
+            metrics.isPaid
         );
         
         if (!validationResult.canProgress) {

@@ -266,7 +266,8 @@ export function useTravelChat({
         const { canProgress, missingRequirements, upgradeRequired } = validateStageProgression(
             currentStage,
             nextStage,
-            currentDetails
+            currentDetails,
+            metrics.isPaid
         );
         
         if (canProgress) {

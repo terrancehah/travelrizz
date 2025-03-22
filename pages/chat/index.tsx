@@ -68,6 +68,23 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
     const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
     const tComp = useTranslations('components');
 
+    // Listener to check payment status
+    useEffect(() => {
+        const checkPaymentStatus = () => {
+            const status = getPaymentStatus();
+            setIsPaid(status);
+        };
+
+        // Check initially
+        checkPaymentStatus();
+
+        // Set up interval to check periodically
+        const interval = setInterval(checkPaymentStatus, 5000); // Check every 5 seconds
+
+        // Cleanup
+        return () => clearInterval(interval);
+    }, []);
+
     useEffect(() => {
         // Check if we're on mobile
         const checkMobile = () => {
@@ -343,6 +360,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                     onClose={() => setShowPaymentSuccess(false)}
                     title={tComp('paymentSuccessPopup.heading')}
                     description={tComp('paymentSuccessPopup.description')}
+                    showConfetti={true} // Enable confetti for payment success
                 />
             )}
             {/* {showPremiumModal && (
