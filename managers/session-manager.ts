@@ -96,23 +96,20 @@ export function initializeSession(): TravelSession {
 }
 
 export function getStoredSession(): TravelSession | null {
+    if (typeof window === 'undefined') {
+        console.error('[Session] Cannot access sessionStorage outside browser');
+        return null;
+    }
     return safeStorageOp(() => {
-        // console.log('[Session] Attempting to get stored session');
-        const storedData = storage?.getItem(SESSION_CONFIG.STORAGE_KEY);
+        const storedData = window.sessionStorage.getItem(SESSION_CONFIG.STORAGE_KEY);
+        // console.log('[Session] Retrieved storedData:', storedData);
         if (!storedData) {
             console.log('[Session] No stored session data found');
             return null;
         }
-        
         try {
             const session = JSON.parse(storedData);
-            // console.log('[Session] Successfully parsed session:', {
-            //   sessionId: session.sessionId,
-            //   destination: session.destination,
-            //   startTime: new Date(session.startTime).toISOString(),
-            //   lastActive: new Date(session.lastActive).toISOString(),
-            //   expiresAt: new Date(session.expiresAt).toISOString()
-            // });
+            console.log('[Session] Parsed session:', session);
             return session;
         } catch (error) {
             console.error('[Session] Failed to parse session data:', error);

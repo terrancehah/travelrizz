@@ -92,7 +92,6 @@ export enum ComponentType {
     PlaceCard = 'PlaceCard',
     TransportSelector = 'TransportSelector',
     PlaceCarousel = 'PlaceCarousel',
-    DetailsCard = 'DetailsCard',
     SavedPlacesList = 'SavedPlacesList',
     QuickResponse = 'QuickResponse'
 }
@@ -190,10 +189,6 @@ export interface ComponentProps {
             imageUrl: string;
         }>;
     };
-    [ComponentType.DetailsCard]: {
-        title: string;
-        content: ReactNode;
-    };
     [ComponentType.SavedPlacesList]: {
         places: Place[];
         onDelete: (placeId: string) => void;
@@ -232,7 +227,6 @@ export interface ComponentUpdate {
 export interface MessageData {
     toolName?: ComponentType;
     componentProps?: any;
-    isDetailsCard?: boolean;
 }
 
 export interface ChatMessage extends Omit<AiMessage, 'data'> {

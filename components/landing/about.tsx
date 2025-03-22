@@ -19,13 +19,13 @@ export default function About() {
                 </React.Fragment>
               ))}
             </h2>
-            <p className={`text-gray-600 dark:text-gray-300 font-medium text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-400`}>
+            <p className={`text-gray-600 dark:text-gray-300 font-normal text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-400`}>
               {t('about.intro')}
             </p>
-            <p className={`text-gray-600 dark:text-gray-300 font-medium text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-200`}>
+            <p className={`text-gray-600 dark:text-gray-300 font-normal text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-200`}>
               {t('about.experience')}
             </p>
-            <p className={`text-gray-600 dark:text-gray-300 font-medium text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-200`}>
+            <p className={`text-gray-600 dark:text-gray-300 font-normal text-lg/relaxed md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ${fonts.text} transition-colors duration-200`}>
               {t('about.mission')}
             </p>
           </div>

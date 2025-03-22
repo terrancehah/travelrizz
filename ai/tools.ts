@@ -14,8 +14,10 @@ import {
     getPlaceTypesFromPreferences
 } from '@/utils/places-utils';
 import { savedPlacesManager } from '@/managers/saved-places-manager';
+import { getStoredSession, SESSION_CONFIG } from '@/managers/session-manager';
 import { Place } from '@/managers/types';
 import { validateStageProgression } from '@/managers/stage-manager';
+import { safeStorageOp, storage } from '@/utils/storage-utils';
 import { fetchExchangeRates, getCurrencyFromCountry } from '@/utils/currency-utils';
 import { fetchWeatherForecast, isWithinForecastRange, formatDate } from '@/utils/forecast-utils';
 import { formatDateRange, fetchHistoricalWeatherData, processHistoricalData, getPreviousYearDates } from '@/utils/historical-utils';
@@ -220,29 +222,6 @@ export const placeCarouselTool = createTool({
     }
 });
 
-// Tool for Details Card
-export const detailsCardTool = createTool({
-    description: 'Display travel details summary. Use this when the user wants to view a summary of their trip details, including destination, dates, preferences, budget, and more.',
-    parameters: z.object({
-        content: z.object({
-            destination: z.string(),
-            dates: z.object({
-                startDate: z.string(),
-                endDate: z.string()
-            }).optional(),
-            preferences: z.array(z.string()).optional(),
-            budget: z.string().optional(),
-            language: z.string().optional(),
-            transport: z.array(z.string()).optional() // Changed to optional
-        })
-    }),
-    execute: async function ({ content }) {
-        return {
-            type: 'detailsCard',
-            props: { content }
-        };
-    }
-});
 
 export const savedPlacesListTool = createTool({
     description: 'Display all currently saved places in a list view. When user asks to see saved places (e.g. "show me my saved places", "what places have I saved", etc), pass ALL places from the savedPlaces parameter to this tool.',
@@ -336,8 +315,8 @@ export const stageProgressTool = createTool({
     description: `Update the current planning stage only when certain criteria are met. 
     Only trigger this tool if user want to proceed to the next stage and gives their explicit confirmation.`,
     parameters: z.object({
-        nextStage: z.number().min(1).max(5),
         currentStage: z.number().min(1).max(5),
+        nextStage: z.number().min(1).max(5),
         travelDetails: z.object({
             destination: z.string(),
             location: z.object({
@@ -358,9 +337,8 @@ export const stageProgressTool = createTool({
             paymentReference: z.string()
         })
     }),
-    execute: async function({ nextStage, currentStage, travelDetails, metrics }) {
-        // console.log('[StageProgressTool] Executing:', { nextStage, currentStage, metrics });
-        
+    execute: async function({ currentStage, nextStage, travelDetails, metrics }) {
+        // Validate stages using validateStageProgression, assuming it's client-side
         const validationResult = validateStageProgression(
             currentStage,
             nextStage,
@@ -374,12 +352,13 @@ export const stageProgressTool = createTool({
                 status: 'error',
                 props: { 
                     nextStage: currentStage,
-                    error: `Cannot progress to stage ${nextStage}. Missing requirements: ${validationResult.missingRequirements.join(', ')}`,
+                    error: `Cannot progress to stage ${nextStage}. Missing: ${validationResult.missingRequirements.join(', ')}`,
                     upgradeRequired: validationResult.upgradeRequired
                 }
             };
         }
-        
+
+        // Return success, client will handle session update
         return {
             type: 'stageProgress',
             status: 'success',
@@ -606,7 +585,6 @@ export const tools = {
     transportSelector: transportSelectorTool,
     placeCard: placeCardTool,
     placeCarousel: placeCarouselTool,
-    detailsCard: detailsCardTool,
     weatherHistorical: weatherHistoricalTool,
     savedPlacesList: savedPlacesListTool,
     stageProgress: stageProgressTool,

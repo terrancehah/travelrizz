@@ -6,7 +6,7 @@ import { savedPlacesManager } from '@/managers/saved-places-manager';
 
 // Interface for map operations
 interface MapOperationDetail {
-    type: 'add-place' | 'remove-place' | 'places-changed';
+    type: 'add-place' | 'remove-place' | 'update-place';
     place?: Place;
     placeId?: string;
     places?: Place[];
@@ -43,11 +43,16 @@ export const PlaceCarousel = ({ places }: { places: Place[] }) => {
             if (place?.location) {
                 if (!savedPlacesManager.hasPlace(place.id)) {
                     savedPlacesManager.addPlace(place);
+                    dispatchMapOperation({
+                        type: 'add-place',
+                        place
+                    });
+                } else {
+                    dispatchMapOperation({
+                        type: 'update-place',
+                        place
+                    });
                 }
-                dispatchMapOperation({
-                    type: 'add-place',
-                    place
-                });
             }
         });
     }, [shuffledPlaces]);

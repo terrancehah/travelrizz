@@ -146,7 +146,7 @@ const StageProgress: React.FC<StageProgressProps> = ({ currentStage, isPaid }) =
                         step={stage.id}
                         currentStep={currentStage}
                         title={stage.title}
-                        isLocked={currentStage <= 3 && (stage.id === 4 || stage.id === 5)}
+                        isLocked={!isPaid && (stage.id === 4 || stage.id === 5)}
                         isLast={index === stages.length - 1}
                     />
                 ))}

@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import { IntlProvider } from 'next-intl'
 import { Noto_Sans_SC, Raleway, Caveat, Lato } from "next/font/google"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useRouter } from 'next/router'
 import '../styles/globals.css'
 import Head from 'next/head'
@@ -51,6 +52,7 @@ export default function App({ Component, pageProps: { messages, locale, timeZone
           <link rel="icon" href="/favicon.ico" sizes="any" />
           <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
+          <SpeedInsights/>
         </Head>
         <div className={`${notoSansSC.variable} ${raleway.variable} ${caveat.variable} ${lato.variable}`}>
           <Component {...pageProps} />

@@ -23,6 +23,19 @@ interface ItineraryPlannerProps {
     onPlaceRemoved: (placeId: string) => void
 }
 
+interface MapOperationDetail {
+    type: 'add-place' | 'remove-place' | 'update-place';
+    place?: Place;
+    placeId?: string;
+    places?: Place[];
+    count?: number;
+}
+
+// Helper function to dispatch map operations
+const dispatchMapOperation = (detail: MapOperationDetail) => {
+    window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', { detail }));
+};
+
 export default function ItineraryPlanner({ onPlaceRemoved }: ItineraryPlannerProps) {
     const [days, setDays] = useState<DayPlan[]>([])
     const [isLoading, setIsLoading] = useState(true)
@@ -108,78 +121,63 @@ export default function ItineraryPlanner({ onPlaceRemoved }: ItineraryPlannerPro
     
     const onDragEnd = (result: DropResult) => {
         setIsDragging(false);
-        
         if (!result.destination) return;
-        
         const { source, destination } = result;
-        
-        // If dropped in same day and same position
+    
         if (source.droppableId === destination.droppableId && source.index === destination.index) {
             return;
         }
-        
-        // Find the source and destination days
+    
         const sourceDayIndex = days.findIndex(day => day.id === source.droppableId);
         const destDayIndex = days.findIndex(day => day.id === destination.droppableId);
-        
         if (sourceDayIndex === -1 || destDayIndex === -1) return;
-        
+    
         const newDays = [...days];
         const sourceDay = { ...newDays[sourceDayIndex] };
         const destDay = sourceDayIndex === destDayIndex ? sourceDay : { ...newDays[destDayIndex] };
-        
-        // Remove from source day
+    
         const [movedPlace] = sourceDay.places.splice(source.index, 1);
-        
-        // Update the moved place's indices
         movedPlace.dayIndex = destDayIndex;
         movedPlace.orderIndex = destination.index;
-        
-        // Add to destination day
         destDay.places.splice(destination.index, 0, movedPlace);
-        
-        // Update order indices for source day places
+    
         sourceDay.places = sourceDay.places.map((place, idx) => ({
             ...place,
             dayIndex: sourceDayIndex,
             orderIndex: idx
         }));
-        
+    
         if (sourceDayIndex !== destDayIndex) {
-            // Update order indices for destination day places
             destDay.places = destDay.places.map((place, idx) => ({
                 ...place,
                 dayIndex: destDayIndex,
                 orderIndex: idx
             }));
         }
-        
-        // Update the days array
+    
         newDays[sourceDayIndex] = sourceDay;
         if (sourceDayIndex !== destDayIndex) {
             newDays[destDayIndex] = destDay;
         }
-        
-        // Update state
+    
         setDays(newDays);
-        
-        // Get all affected places in their final order
+    
         const allAffectedPlaces = [
-            ...sourceDay.places,  // Source day places with updated indices
-            ...(sourceDayIndex !== destDayIndex ? destDay.places : [])  // Destination day places if different
+            ...sourceDay.places,
+            ...(sourceDayIndex !== destDayIndex ? destDay.places : [])
         ];
-        
-        // Clear visual routes before updating places
+    
         window.dispatchEvent(new CustomEvent('clear-active-routes'));
-        
-        // Update places order
         savedPlacesManager.updatePlaces(allAffectedPlaces);
         travelInfoManager.clearRoutesForPlaces(allAffectedPlaces);
-        
-        // Trigger route recalculation
-        window.dispatchEvent(new CustomEvent('places-changed', {
-            detail: { trigger: 'drag-end' }
-        }));
+    
+        // Dispatch 'update-place' for each affected place
+        allAffectedPlaces.forEach(place => {
+            dispatchMapOperation({
+                type: 'update-place',
+                place
+            });
+        });
     };
     
     const handleDeletePlace = (dayId: string, placeId: string) => {

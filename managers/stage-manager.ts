@@ -1,5 +1,6 @@
 import { TravelDetails, TravelSession } from './types';
 import { getStoredSession, initializeSession } from '../managers/session-manager';
+import { safeStorageOp } from '../utils/storage-utils';
 
 // Define requirements for each stage
 interface StageRequirements {
@@ -60,7 +61,7 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
     // Stage 4: Itinerary Review (with payment check)
     4: {
         validate: (details: TravelDetails, session: TravelSession) => {
-            const { isPaid } = session;
+            const isPaid = session.isPaid;
             const missingRequirements: string[] = [];
             
             // Check payment status
@@ -100,7 +101,7 @@ export function validateStageProgression(
     upgradeRequired?: boolean;
 } {
     let session = getStoredSession();
-    
+
     // If no session exists but we have travel details, initialize one
     if (!session && travelDetails.destination) {
         session = initializeSession();
@@ -111,48 +112,29 @@ export function validateStageProgression(
         session.budget = travelDetails.budget || '';
         session.language = travelDetails.language || '';
         session.transport = travelDetails.transport || [];
-        session.currentStage = currentStage;
+        session.currentStage = 1; // Default to stage 1 for new sessions
+        safeStorageOp(() => {
+            sessionStorage?.setItem('sessionKey', JSON.stringify(session));
+        }, undefined);
     }
-    
+
+    // Check if session is still null after attempting initialization
     if (!session) {
-        return {
-            canProgress: false,
-            missingRequirements: ['valid session']
-        };
+        return { canProgress: false, missingRequirements: ['valid session'] };
     }
-    
-    // Ensure stage progression is sequential
-    if (nextStage !== currentStage + 1) {
-        return {
-            canProgress: false,
-            missingRequirements: ['invalid stage progression']
-        };
-    }
-    
+
     // Get validator for current stage
     const validator = STAGE_VALIDATORS[currentStage];
     if (!validator) {
-        return {
-            canProgress: true,
-            missingRequirements: []
-        };
+        return { canProgress: true, missingRequirements: [] };
     }
-    
+
     // Check if current stage requirements are met before progressing
     const { isValid, missingRequirements, upgradeRequired } = validator.validate(
         travelDetails,
         session
     );
-    
-    // If current stage requirements are met, allow progression
-    if (isValid) {
-        return {
-            canProgress: true,
-            missingRequirements: [],
-            upgradeRequired
-        };
-    }
-    
+
     return {
         canProgress: isValid,
         missingRequirements,

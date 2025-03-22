@@ -8,6 +8,7 @@ import { PlaceCompactCard } from './place-compact-card'
 import { PlaceSearch } from './place-search'
 import { Loader2, GripVertical, Clock, MoveHorizontal, ArrowRight } from 'lucide-react'
 import { getStoredSession } from '../../managers/session-manager'
+import { savedPlacesManager } from '../../managers/saved-places-manager'
 import { cn } from '@/utils/cn'
 import { Fragment } from 'react'
 import { TravelInfo } from './travel-info'
@@ -25,7 +26,7 @@ interface DaySectionProps {
 }
 
 interface MapOperationDetail {
-    type: 'add-place' | 'remove-place' | 'places-changed';
+    type: 'add-place' | 'remove-place' | 'update-place';
     place?: Place;
     placeId?: string;
     places?: Place[];
@@ -52,14 +53,19 @@ export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChan
     };
     
     const handlePlaceAdd = (place: Place) => {
-        // Add to map first
         if (place.location) {
-            dispatchMapOperation({
-                type: 'add-place',
-                place
-            });
+            if (!savedPlacesManager.hasPlace(place.id)) {
+                dispatchMapOperation({
+                    type: 'add-place',
+                    place
+                });
+            } else {
+                dispatchMapOperation({
+                    type: 'update-place',
+                    place
+                });
+            }
         }
-        // Then add to day section
         onAddPlace(day.id, place);
     };
     

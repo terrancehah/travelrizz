@@ -275,13 +275,13 @@ export function TravelChat({
                     
                     if (result.status === 'success') {
                         onStageUpdate(result.props.nextStage);
-                    } else if (result.status === 'error' && result.props.upgradeRequired) {
+                    } else if (result.status === 'error' && result.props.upgradeRequired && !sessionMetadata.isPaid) {
                         setShowPremiumModal(true);
                     }
                 }
             });
         }
-    }, [messages, onStageUpdate, currentStage]);
+    }, [messages, onStageUpdate, currentStage, sessionMetadata.isPaid]);
 
     // Function to handle quick response selection
     const handleQuickResponseSelect = async (text: string) => {
@@ -345,21 +345,6 @@ export function TravelChat({
                 metrics: sessionMetadata
             });
         }
-    };
-
-    // Update stage validation
-    const validateStageProgress = (nextStage: number): boolean => {
-        const validationResult = validateStageProgression(
-            currentStage,
-            nextStage,
-            currentDetails
-        );
-
-        if (!validationResult.canProgress) {
-            return false;
-        }
-
-        return true;
     };
 
     const mainChat = useTravelChat({

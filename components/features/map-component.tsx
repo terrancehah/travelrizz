@@ -42,7 +42,7 @@ declare global {
 interface MapOperationEvent extends CustomEvent<MapOperationDetail> {}
 
 interface MapOperationDetail {
-    type: 'add-place' | 'remove-place' | 'places-changed';
+    type: 'add-place' | 'remove-place' | 'update-place';
     place?: Place;
     placeId?: string;
     places?: Place[];
@@ -61,6 +61,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     const [map, setMap] = useState<google.maps.Map | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isMapReady, setIsMapReady] = useState(false); //track map readiness
     const geometryLoadedRef = useRef(false);
     // Track current active routes - only store minimal required data
     const [activeRoutes, setActiveRoutes] = useState<{fromId: string, toId: string}[]>([]);
@@ -107,6 +108,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             geometryLoadedRef.current = true;
             console.log('[MapComponent] Geometry library loaded successfully');
 
+            setIsMapReady(true); // Map is now ready
+            setIsLoading(false);
+
             // Re-trigger route drawing if we have active routes
             if (activeRoutes.length > 0) {
                 console.log('[MapComponent] Re-triggering route drawing for existing routes');
@@ -115,7 +119,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 setTimeout(() => setActiveRoutes(currentRoutes), 100);
             }
 
-            setIsLoading(false);
         } catch (error) {
             console.error('Error setting up map:', error);
             setIsLoading(false);
@@ -175,18 +178,16 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     }, [apiKey]);
 
     useEffect(() => {
-        if (!mapInstanceRef.current) return;
-
+        if (!isMapReady) return; // Only proceed if map is ready
         const setupMapFeatures = async () => {
-            if (!mapInstanceRef.current) return;
-
+            if (!mapInstanceRef.current || !isMapReady) return; // Double-check readiness
             try {
                 const location = await getLocation(city);
                 
-                // Update existing map instead of creating new one
-                mapInstanceRef.current.setCenter(location);
-                mapInstanceRef.current.setZoom(12);
-                
+                if (mapInstanceRef.current) { // Extra safety check
+                    mapInstanceRef.current.setCenter(location);
+                    mapInstanceRef.current.setZoom(12);
+                }
                 setIsLoading(false);
             } catch (error) {
                 console.error('Error updating map features:', error);
@@ -195,7 +196,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
         };
 
         setupMapFeatures();
-    }, [city]);
+    }, [city, isMapReady]);
 
     useEffect(() => {
         if (!map) return;
@@ -234,7 +235,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                 case 'add-place':
                     if (place?.location) {
                         const existingMarker = mapManagerRef.current?.getMarker(place.id);
-
                         if (existingMarker) {
                             // Update existing marker
                             mapManagerRef.current?.updateMarker(place.id, {
@@ -242,46 +242,38 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                                 orderIndex: place.orderIndex
                             });
                         } else {
-                            // Create new marker only if none exists
+                            // Create new marker
                             mapManagerRef.current?.createMarker(place, {
                                 dayIndex: place.dayIndex,
                                 orderIndex: place.orderIndex
                             });
                         }
-                        // Check if place is already in savedPlacesManager
                         if (!savedPlacesManager.hasPlace(place.id)) {
                             savedPlacesManager.addPlace(place);
                         }
-                        
-                        // Only dispatch places-changed if this is a new place
-                        if (!savedPlacesManager.hasPlace(place.id)) {
-                            dispatchMapOperation({
-                                type: 'places-changed',
-                                places: Array.from(savedPlacesManager.places.values()),
-                                count: savedPlacesManager.places.size
+                        // Update routes since a place was added
+                        updateRoutes();
+                    }
+                    break;
+                
+                case 'update-place':
+                    if (place?.location) {
+                        const existingMarker = mapManagerRef.current?.getMarker(place.id);
+                        if (existingMarker) {
+                            mapManagerRef.current?.updateMarker(place.id, {
+                                dayIndex: place.dayIndex,
+                                orderIndex: place.orderIndex
                             });
+                            savedPlacesManager.updatePlace(place); // Assume this method exists or adjust accordingly
+                            updateRoutes();
                         }
                     }
                     break;
-                    
+                
                 case 'remove-place':
                     if (placeId) {
                         mapManagerRef.current?.removeMarker(placeId);
                         savedPlacesManager.removePlace(placeId);
-                        
-                        dispatchMapOperation({
-                            type: 'places-changed',
-                            places: Array.from(savedPlacesManager.places.values()),
-                            count: savedPlacesManager.places.size
-                        });
-                    }
-                    break;
-                
-                case 'places-changed':
-                    const { places, count } = event.detail;
-                    if (places && count !== undefined) {
-                        console.log('[MapComponent] Received places-changed event:', { places, count });
-                        // Only update routes since markers are handled in add-place
                         updateRoutes();
                     }
                     break;
@@ -353,7 +345,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
                     });
                     window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', {
                         detail: {
-                            type: 'places-changed',
+                            type: 'update-place',
                             places: Array.from(savedPlacesManager.places.values()),
                             count: savedPlacesManager.places.size
                         }
@@ -688,6 +680,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             // Clear the map instance
             mapInstanceRef.current = null;
             setMap(null);
+            setIsMapReady(false); // Map is no longer ready
             // Reinitialize
             setupMapInstance(true);
             // Re-trigger route drawing
@@ -702,19 +695,15 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
 
     const getLocation = async (city: string) => {
         const geocoder = new window.google.maps.Geocoder();
-
         return new Promise<google.maps.LatLng>((resolve, reject) => {
-            geocoder.geocode(
-                { address: city },
-                (results, status) => {
-                    if (status !== 'OK' || !results?.[0]?.geometry?.location) {
-                        console.error('Geocoding failed:', status);
-                        reject('Could not find location for ' + city);
-                    } else {
-                        resolve(results[0].geometry.location);
-                    }
+            geocoder.geocode({ address: city }, (results, status) => {
+                if (status !== 'OK' || !results?.[0]?.geometry?.location) {
+                    console.error('Geocoding failed:', status);
+                    reject('Could not find location for ' + city);
+                } else {
+                    resolve(results[0].geometry.location);
                 }
-            );
+            });
         });
     };
 

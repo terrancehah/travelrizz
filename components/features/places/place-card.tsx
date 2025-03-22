@@ -14,7 +14,7 @@ interface PlaceCardProps {
 }
 
 interface MapOperationDetail {
-    type: 'add-place' | 'remove-place' | 'places-changed';
+    type: 'add-place' | 'remove-place' | 'update-place';
     place?: Place;
     placeId?: string;
     places?: Place[];
@@ -91,10 +91,10 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
     showActions = false,
     className = ''
 }) => {
-
+    
     const fonts = useLocalizedFont();
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-
+    
     // Get the display name with proper fallback
     const getTypeDisplay = () => {
         if (!place.primaryTypeDisplayName?.text) {
@@ -102,7 +102,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
         }
         return place.primaryTypeDisplayName.text;
     };
-        
+    
     const photos = place.photos || [];
     
     // Handle image errors by moving to the next photo
@@ -131,42 +131,47 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
     // Add marker to map when card is shown
     useEffect(() => {
         if (place?.location) {
-            dispatchMapOperation({
-                type: 'add-place',
-                place
-            });
+            if (!savedPlacesManager.hasPlace(place.id)) {
+                dispatchMapOperation({
+                    type: 'add-place',
+                    place
+                });
+            } else {
+                dispatchMapOperation({
+                    type: 'update-place',
+                    place
+                });
+            }
         }
     }, [place]);
     
     return (
-        <div className={`place-card h-min shadow-md rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 ${className}`}>
-        <div className="bg-gray-200 h-48 flex items-center justify-center">
-        <div className="relative w-full h-full shadow-md">
-            {/* Permanent placeholder */}
-            <img
+        <div className={`place-card h-min shadow-md rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600`}>
+            <div className="bg-gray-200 h-48 flex items-center justify-center relative">
+                {/* Permanent placeholder */}
+                <img
                 src="/images/placeholder-image.jpg"
                 alt={typeof place.displayName === 'string' ? place.displayName : place.displayName?.text || 'Place image'}
                 className="w-full h-full object-cover filter blur-[2px]"
-            />
-            
-            {/* Conditional actual photo */}
-            {photos.length > 0 && (
-                <img
-                src={`/api/places/photos?photoName=${photos[currentPhotoIndex].name}&maxWidth=400`}
-                onError={handleImageError}
-                className="w-full h-full object-cover absolute inset-0"
-                alt=""
                 />
-            )}
-        </div>
-        </div>
+                
+                {/* Conditional actual photo */}
+                {photos.length > 0 && (
+                    <img
+                    src={`/api/places/photos?photoName=${photos[currentPhotoIndex].name}&maxWidth=400`}
+                    onError={handleImageError}
+                    className="w-full h-full object-cover absolute inset-0"
+                    alt=""
+                    />
+                )}
+            </div>
         
         <div className="p-4 bg-white dark:bg-gray-800">
-        <h3 className={`${fonts.text} text-base font-bold text-gray-900 dark:text-white`}>
-        {typeof place.displayName === 'string' 
-            ? place.displayName 
-            : place.displayName.text}
-            </h3>
+            <h3 className={`${fonts.text} text-base font-bold text-gray-900 dark:text-white`}>
+            {typeof place.displayName === 'string' 
+                ? place.displayName 
+                : place.displayName.text}
+                </h3>
             <div className="flex items-left gap-1 mb-1 flex-col">
             {place.rating && (
                 <div className="flex items-center gap-2">
@@ -212,7 +217,7 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
                     */}
                     </div>
                 )}
-                </div>
-                </div>
-            );
-        };
+            </div>
+        </div>
+    );
+};
