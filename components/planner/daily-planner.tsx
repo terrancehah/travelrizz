@@ -119,7 +119,7 @@ export default function ItineraryPlanner({ onPlaceRemoved }: ItineraryPlannerPro
         setIsDragging(true)
     }
     
-    const onDragEnd = (result: DropResult) => {
+    const onDragEnd = async (result: DropResult) => {
         setIsDragging(false);
         if (!result.destination) return;
         const { source, destination } = result;
@@ -135,18 +135,18 @@ export default function ItineraryPlanner({ onPlaceRemoved }: ItineraryPlannerPro
         const newDays = [...days];
         const sourceDay = { ...newDays[sourceDayIndex] };
         const destDay = sourceDayIndex === destDayIndex ? sourceDay : { ...newDays[destDayIndex] };
-    
+
         const [movedPlace] = sourceDay.places.splice(source.index, 1);
         movedPlace.dayIndex = destDayIndex;
         movedPlace.orderIndex = destination.index;
         destDay.places.splice(destination.index, 0, movedPlace);
-    
+
         sourceDay.places = sourceDay.places.map((place, idx) => ({
             ...place,
             dayIndex: sourceDayIndex,
             orderIndex: idx
         }));
-    
+
         if (sourceDayIndex !== destDayIndex) {
             destDay.places = destDay.places.map((place, idx) => ({
                 ...place,
@@ -154,23 +154,25 @@ export default function ItineraryPlanner({ onPlaceRemoved }: ItineraryPlannerPro
                 orderIndex: idx
             }));
         }
-    
+
         newDays[sourceDayIndex] = sourceDay;
         if (sourceDayIndex !== destDayIndex) {
             newDays[destDayIndex] = destDay;
         }
-    
+
         setDays(newDays);
-    
+
         const allAffectedPlaces = [
             ...sourceDay.places,
             ...(sourceDayIndex !== destDayIndex ? destDay.places : [])
         ];
-    
+
+        // Ensure persistence completes before continuing
+        await savedPlacesManager.updatePlaces(allAffectedPlaces);
+
         window.dispatchEvent(new CustomEvent('clear-active-routes'));
-        savedPlacesManager.updatePlaces(allAffectedPlaces);
         travelInfoManager.clearRoutesForPlaces(allAffectedPlaces);
-    
+
         // Dispatch 'update-place' for each affected place
         allAffectedPlaces.forEach(place => {
             dispatchMapOperation({
