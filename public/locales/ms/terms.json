@@ -1,0 +1,104 @@
+{
+    "terms": {
+        "intro": {
+            "title": "1. Pengenalan dan Skop",
+            "content": "Selamat datang ke TravelRizz.app ('TravelRizz', 'kami', 'milik kami' atau 'kita'). Terma Perkhidmatan ('ToS') ini mengawal penggunaan perkhidmatan perancangan perjalanan berkuasa AI kami, yang tersedia di TravelRizz.app, termasuk ciri-ciri percuma dan premium. Dengan mengakses atau menggunakan perkhidmatan kami, anda bersetuju dengan ToS ini. Jika anda tidak bersetuju, sila elakkan dari menggunakan TravelRizz."
+        },
+        "account": {
+            "title": "2. Tiada Akaun Diperlukan; Bayaran untuk Perkhidmatan Premium",
+            "content": [
+                "Tiada Pendaftaran Diperlukan: Anda tidak perlu mencipta akaun atau memberikan maklumat peribadi untuk menggunakan mana-mana perkhidmatan kami, termasuk ciri-ciri premium.",
+                "Butiran Pembayaran untuk Perkhidmatan Premium: Untuk mengakses perkhidmatan premium, anda mesti memberikan butiran pembayaran. Kami memproses pembayaran dengan selamat melalui Stripe, penyedia pembayaran pihak ketiga kami. Dengan menggunakan perkhidmatan premium, anda bersetuju dengan terma dan syarat Stripe (tersedia di laman web mereka). Semua yuran tidak boleh dikembalikan melainkan dinyatakan sebaliknya."
+            ]
+        },
+        "usage": {
+            "title": "3. Penggunaan Perkhidmatan",
+            "content": [
+                "Penggunaan yang Dibenarkan: Anda boleh menggunakan TravelRizz hanya untuk tujuan perancangan perjalanan peribadi dan bukan komersial.",
+                "Tindakan yang Dilarang: Anda bersetuju untuk tidak menyalahgunakan perkhidmatan, termasuk tetapi tidak terhad kepada:",
+                ["Menghantar spam atau permintaan berlebihan",
+                "Mengikis atau mengekstrak data dari laman web",
+                "Mencuba untuk merekayasa balik atau mengganggu teknologi AI kami",
+                "Menggunakan perkhidmatan untuk aktiviti haram"]
+            ]
+        },
+        "data": {
+            "title": "4. Pengumpulan dan Penggunaan Data",
+            "content": [
+                "Tiada Data Peribadi Dikumpul oleh Kami: TravelRizz tidak memerlukan atau mengumpul maklumat peribadi daripada pengguna, kecuali butiran pembayaran yang diperlukan untuk perkhidmatan premium (dikendalikan oleh Stripe).",
+                "Pengumpulan Data oleh Pihak Ketiga: Laman web kami dihoskan di Vercel dan menggunakan tier percuma Cloudflare untuk keselamatan, proksi, DNS, dan analitik.",
+                "Tujuan Penggunaan Data: Sebarang data yang dikumpul melalui perkhidmatan pihak ketiga digunakan semata-mata untuk meningkatkan perkhidmatan kami dan memperibadikan pengalaman pengguna."
+            ]
+        },
+        "integrations": {
+            "title": "5. Integrasi Pihak Ketiga",
+            "content": [
+                "Cloudflare: Kami menggunakan Cloudflare untuk keselamatan, pengurusan DNS, dan analitik asas.",
+                "Vercel: Perkhidmatan kami dihoskan di Vercel, yang menyediakan analitik dan menguasakan ciri-ciri sembang AI kami.",
+                "Stripe: Pembayaran untuk perkhidmatan premium dikendalikan oleh Stripe.",
+                "Booking.com API (Dirancang): Kami bercadang untuk mengintegrasikan API cadangan hotel Booking.com."
+            ]
+        },
+        "retention": {
+            "title": "6. Penyimpanan dan Penghapusan Data",
+            "content": [
+                "Polisi Kami: TravelRizz tidak menyimpan data pengguna, termasuk sejarah sembang atau butiran peribadi, di pelayan kami sendiri.",
+                "Penyimpanan oleh Pihak Ketiga: Sebarang data yang dikumpul oleh pihak ketiga disimpan mengikut polisi masing-masing.",
+                "Nasihat untuk Pengguna: Untuk butiran mengenai penyimpanan atau permintaan penghapusan data, sila rujuk polisi penyedia pihak ketiga kami."
+            ]
+        },
+        "compliance": {
+            "title": "7. Pematuhan dan Hak Pengguna",
+            "content": [
+                "Pematuhan Peraturan: Kami bergantung pada penyedia pihak ketiga kami untuk mematuhi peraturan perlindungan data.",
+                "Permintaan Pengguna: Oleh kerana kami tidak mengumpul atau menyimpan data anda, permintaan berkaitan data harus diarahkan kepada perkhidmatan pihak ketiga yang berkaitan."
+            ]
+        },
+        "ai": {
+            "title": "8. Penafian Berkaitan AI",
+            "content": [
+                "Pembantu AI kami direka untuk membantu dengan perancangan perjalanan, tetapi ia mempunyai batasan dan mungkin tidak selalu tepat. Sila anggap cadangannya sebagai cadangan dan bukan nasihat muktamad.",
+                "Penting: Elakkan berkongsi maklumat peribadi sensitif (contohnya, nombor kad kredit, kata laluan) dalam sembang dengan AI kami. Walaupun kami tidak menyimpan sembang, penyedia perkhidmatan kami (Vercel dan OpenAI) mungkin menyimpannya mengikut polisi mereka."
+            ]
+        },
+        "ip": {
+            "title": "9. Harta Intelek",
+            "content": [
+                "Kepemilikan: Semua kandungan di TravelRizz.app, termasuk pelan perjalanan yang dihasilkan AI, teks, grafik, dan bahan lain, dimiliki oleh TravelRizz atau pemberi lesennya. Kandungan ini dilindungi oleh undang-undang hak cipta, tanda dagangan, dan undang-undang harta intelek lain.",
+                "Kebenaran Pengguna: Anda boleh menggunakan pelan perjalanan yang dihasilkan AI untuk tujuan peribadi dan bukan komersial, seperti merancang perjalanan anda sendiri atau berkongsi dengan rakan dan keluarga untuk kegunaan peribadi mereka.",
+                "Sekatan: Anda tidak boleh:",
+                ["Menyalin, mengedar, atau berkongsi kandungan untuk tujuan komersial (contohnya, menjual pelan atau menggunakannya dalam perniagaan)",
+                "Mencipta karya terbitan daripada kandungan (contohnya, mengubah pelan dan mendakwa ia sebagai milik anda)",
+                "Memaparkan atau menerbitkan kandungan secara terbuka di platform lain (contohnya, media sosial, blog, atau laman web) tanpa kebenaran bertulis kami",
+                "Atribusi: Jika anda berkongsi pelan perjalanan dengan orang lain, kami meminta anda dengan baik untuk mengaitkannya kepada TravelRizz.app"]
+            ]
+        },
+        "liability": {
+            "title": "10. Had Liabiliti",
+            "content": [
+                "TravelRizz.app dan perkhidmatannya disediakan 'seadanya' tanpa sebarang jaminan, sama ada tersurat atau tersirat. Kami tidak menjamin ketepatan atau kelengkapan pelan perjalanan yang dihasilkan AI atau sebarang kandungan lain.",
+                "Sejauh yang dibenarkan oleh undang-undang, TravelRizz tidak bertanggungjawab atas sebarang kerosakan langsung, tidak langsung, sampingan, khas, atau akibat yang timbul daripada penggunaan perkhidmatan kami."
+            ]
+        },
+        "law": {
+            "title": "11. Undang-undang yang Mengawal",
+            "content": "Terma Perkhidmatan ini diatur oleh undang-undang Malaysia. Sebarang pertikaian akan diselesaikan di mahkamah Kuala Lumpur, Malaysia, mengikut undang-undang Malaysia. Kami bertujuan untuk menyelesaikan sebarang pertikaian secara damai, dengan mengambil kira pangkalan pengguna antarabangsa kami dan sifat global perkhidmatan kami."
+        },
+        "changes": {
+            "title": "12. Kemaskini kepada Polisi Ini",
+            "content": [
+                "Kemaskini Terakhir: 13 Mac 2025",
+                "Kami mungkin mengemas kini Terma Perkhidmatan ini secara berkala untuk mencerminkan perubahan dalam amalan, perkhidmatan, atau keperluan undang-undang kami. Perubahan ketara akan diumumkan di laman web kami. Penggunaan berterusan TravelRizz.app selepas perubahan tersebut menunjukkan penerimaan polisi yang dikemas kini."
+            ]
+        },
+        "contact": {
+            "title": "13. Hubungi Kami",
+            "content": [
+                "Ada soalan atau kebimbangan tentang Terma Perkhidmatan kami? Kami ingin mendengar daripada anda! Hubungi kami melalui saluran media sosial kami:",
+                ["X: @travelrizz",
+                "Instagram: @travelrizz",
+                "Facebook: @travelrizz"]
+            ]
+        }
+    }
+}
