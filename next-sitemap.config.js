@@ -7,6 +7,7 @@ module.exports = {
         '/api/*',
         '/_next/*',
         '/_error',
-        '/404'
-    ]
+        '/chat',
+        '/*/chat',
+    ],
 };

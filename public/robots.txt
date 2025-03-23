@@ -1,9 +1,10 @@
-# *
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /payment-success
+Disallow: /404
+Disallow: /*.php$
+Disallow: /chat
+Disallow: /*/chat
 
-# Host
-Host: https://travelrizz.app
-
-# Sitemaps
 Sitemap: https://travelrizz.app/sitemap.xml
