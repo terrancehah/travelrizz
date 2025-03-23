@@ -262,7 +262,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
 
     return (
         // Main
-        <div className="flex flex-col min-h-screen h-[100dvh] w-full bg-white">
+        <div className="flex flex-col min-h-dvh w-full bg-white">
 
             {/* Window header - fixed height */}
             <div className="flex border-b border-gray-200 dark:border-gray-700 px-3 md:px-6 py-2 bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400">

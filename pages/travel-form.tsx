@@ -66,7 +66,6 @@ export default function TravelFormPage() {
     })
     
     const destinationRef = useRef<HTMLInputElement>(null)
-    const budgetRef = useRef<HTMLSelectElement>(null)
     
     // Function to fetch Maps API key
     const fetchMapsApiKey = async () => {
@@ -482,8 +481,8 @@ export default function TravelFormPage() {
                         {/* Navigation */}
                         <div className="flex space-x-4 justify-around">
                         <Button variant="outline" className={`w-full transition-colors duration-300 text-base 
-                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 
-                ${fonts.text}`} onClick={goToPrevStep}>
+                                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 
+                                ${fonts.text}`} onClick={goToPrevStep}>
                             {t('navigation.back')}
                             </Button>
                             <Button
@@ -514,7 +513,7 @@ export default function TravelFormPage() {
                                 key={value}
                                 variant={formData.preferences.includes(value as TravelPreference) ? "default" : "outline"}
                                 className={`flex items-center justify-start space-x-2 transition-all duration-300 text-base 
-                      hover:scale-[1.02] active:scale-[0.98] ${fonts.text} ${
+                                hover:scale-[1.02] active:scale-[0.98] ${fonts.text} ${
                                     formData.preferences.includes(value as TravelPreference) 
                                     ? 'shadow-md hover:shadow-lg' 
                                     : 'hover:border-sky-400 dark:hover:border-sky-400'
@@ -529,8 +528,8 @@ export default function TravelFormPage() {
                                 {/* Navigation */}
                                 <div className="flex space-x-4">
                                 <Button variant="outline" className={`w-full transition-colors duration-300 text-base 
-                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 
-                ${fonts.text}`} onClick={goToPrevStep}>
+                                border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 
+                                ${fonts.text}`} onClick={goToPrevStep}>
                                     {t('navigation.back')}
                                     </Button>
                                     <Button
@@ -592,10 +591,10 @@ export default function TravelFormPage() {
                                 }
                                 
                                 return (
-                                    <div className="md:min-h-screen bg-white dark:bg-gray-900 transition-colors duration-400">
-                                    <main className="flex min-h-[100dvh] w-full">
-                                    <div className="fixed flex flex-wrap flex-row top-0 left-0 right-0 z-10 md:relative md:w-64 bg-light-blue dark:bg-primary shadow-md 
-          md:space-y-14 gap-y-2 p-3 md:p-6 border-r dark:border-gray-800 md:flex-col items-center md:items-start justify-between">
+                                    <div className="h-[100%] bg-white dark:bg-gray-900 transition-colors duration-400">
+                                    <main className="flex min-h-dvh w-full">
+                                    <div className="fixed flex flex-wrap flex-row top-0 left-0 right-0 z-10 md:relative  bg-light-blue dark:bg-primary shadow-md 
+                                    md:space-y-14 gap-y-2 p-3 md:p-6 border-r dark:border-gray-800 md:flex-col items-center md:items-start justify-between">
                                     
                                     {/* Logo and Brand Name */}
                                     <Link href="/" className="flex gap-x-1 pr-4 w-auto order-1">

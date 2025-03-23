@@ -1,0 +1,104 @@
+{
+    "terms": {
+        "intro": {
+            "title": "1. Introduction and Scope",
+            "content": "Welcome to TravelRizz.app ('TravelRizz,' 'we,' 'our,' or 'us'). These Terms of Service ('ToS') govern your use of our AI-powered travel planning service, available at TravelRizz.app, including both free and premium features. By accessing or using our service, you agree to these ToS. If you do not agree, please refrain from using TravelRizz."
+        },
+        "account": {
+            "title": "2. No Account Required; Payment for Premium Services",
+            "content": [
+                "No Signup Needed: You don't need to create an account or provide personal information to use any of our services, including premium features.",
+                "Payment Details for Premium Services: To access premium services, you must provide payment details. We process payments securely through Stripe, our third-party payment provider. By using premium services, you agree to Stripe's terms and conditions (available on their website). All fees are non-refundable unless otherwise specified."
+            ]
+        },
+        "usage": {
+            "title": "3. Service Usage",
+            "content": [
+                "Acceptable Use: You may use TravelRizz for personal, non-commercial travel planning purposes only.",
+                "Prohibited Actions: You agree not to misuse the service, including but not limited to:",
+                ["Spamming or sending excessive requests",
+                "Scraping or extracting data from the site",
+                "Attempting to reverse-engineer or interfere with our AI technology",
+                "Using the service for illegal activities"]
+            ]
+        },
+        "data": {
+            "title": "4. Data Collection and Usage",
+            "content": [
+                "No Personal Data Collected by Us: TravelRizz does not require or collect personal information from users, except for payment details needed for premium services (handled by Stripe).",
+                "Third-Party Data Collection: Our site is hosted on Vercel and uses Cloudflare's free tier for security, proxy, DNS, and analytics.",
+                "Purpose of Data Use: Any data collected via third-party services is used solely for improving our service and personalizing user experiences."
+            ]
+        },
+        "integrations": {
+            "title": "5. Third-Party Integrations",
+            "content": [
+                "Cloudflare: We use Cloudflare for security, DNS management, and basic analytics.",
+                "Vercel: Our service is hosted on Vercel, which provides analytics and powers our AI chat features.",
+                "Stripe: Payments for premium services are handled by Stripe.",
+                "Booking.com API (Planned): We intend to integrate Booking.com's hotel recommendation API."
+            ]
+        },
+        "retention": {
+            "title": "6. Data Retention and Deletion",
+            "content": [
+                "Our Policy: TravelRizz does not store user data, including chat histories or personal details, on our own servers.",
+                "Third-Party Retention: Any data collected by third parties is retained according to their respective policies.",
+                "Advice for Users: For details on data retention or deletion requests, please refer to our third-party providers policies."
+            ]
+        },
+        "compliance": {
+            "title": "7. Compliance and User Rights",
+            "content": [
+                "Regulatory Compliance: We rely on our third-party providers to comply with data protection regulations.",
+                "User Requests: Since we don't collect or store your data, data-related requests should be directed to relevant third-party services."
+            ]
+        },
+        "ai": {
+            "title": "8. AI-Related Disclaimers",
+            "content": [
+                "Our AI assistant is designed to help with travel planning, but it has limitations and may not always be accurate. Please treat its suggestions as recommendations rather than definitive advice.",
+                "Important: Avoid sharing sensitive personal information (e.g., credit card numbers, passwords) in chats with our AI. While we don't store chats, our service providers (Vercel and OpenAI) may retain them according to their policies."
+            ]
+        },
+        "ip": {
+            "title": "9. Intellectual Property",
+            "content": [
+                "Ownership: All content on TravelRizz.app, including AI-generated travel plans, text, graphics, and other materials, is owned by TravelRizz or its licensors. This content is protected by copyright, trademark, and other intellectual property laws.",
+                "User Permissions: You may use the AI-generated travel plans for your personal, non-commercial purposes, such as planning your own trips or sharing them with friends and family for their personal use.",
+                "Restrictions: You may not:",
+                ["Copy, distribute, or share the content for commercial purposes (e.g., selling the plans or using them in a business)",
+                "Create derivative works from the content (e.g., modifying the plans and claiming them as your own)",
+                "Publicly display or publish the content on other platforms (e.g., social media, blogs, or websites) without our written permission",
+                "Attribution: If you share the travel plans with others, we kindly ask that you attribute them to TravelRizz.app"]
+            ]
+        },
+        "liability": {
+            "title": "10. Limitation of Liability",
+            "content": [
+                "TravelRizz.app and its services are provided \"as is\" without any warranties, express or implied. We do not guarantee the accuracy or completeness of AI-generated travel plans or any other content.",
+                "To the fullest extent permitted by law, TravelRizz is not liable for any direct, indirect, incidental, special, or consequential damages arising from your use of our service."
+            ]
+        },
+        "law": {
+            "title": "11. Governing Law",
+            "content": "These Terms of Service are governed by the laws of Malaysia. Any disputes will be resolved in the courts of Kuala Lumpur, Malaysia, in accordance with Malaysian law. We aim to resolve any disputes amicably, considering our international user base and the global nature of our service."
+        },
+        "changes": {
+            "title": "12. Updates to This Policy",
+            "content": [
+                "Last Updated: March 13, 2025",
+                "We may update these Terms of Service periodically to reflect changes in our practices, services, or legal requirements. Significant changes will be announced on our website. Your continued use of TravelRizz.app after such changes constitutes acceptance of the updated policy."
+            ]
+        },
+        "contact": {
+            "title": "13. Contact Us",
+            "content": [
+                "Have questions or concerns about our Terms of Service? We'd love to hear from you! Reach out through our social media channels:",
+                ["X: @travelrizz",
+                "Instagram: @travelrizz",
+                "Facebook: @travelrizz"]
+            ]
+        }
+    }
+}

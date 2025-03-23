@@ -24,9 +24,9 @@ export default function HistoricalWeatherChart({ lat, lon, city, startDate, endD
     const [historicalYear, setHistoricalYear] = useState<number | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const tComp = useTranslations('components')
-    const { theme } = useTheme()
-    const fonts = useLocalizedFont()
+    const tComp = useTranslations('components');
+    const { theme } = useTheme();
+    const fonts = useLocalizedFont();
     
     
     // Remains largely unchanged, but ensure compatibility with the API response

@@ -39,7 +39,7 @@ export default function LandingPage() {
                 crossOrigin="anonymous"
                 />
         </Head> */}
-        <div className="min-h-screen bg-white dark:bg-gray-900">
+        <div className="min-h-dvh bg-white dark:bg-gray-900">
         <Header />
         <main className="flex flex-col">
         <Hero />
