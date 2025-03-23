@@ -1,9 +1,12 @@
-import Terms from '../components/landing/terms';
+import Terms from '../components/landing/terms'
 import Header from "@/components/landing/header"
-import Footer from "@/components/landing/footer"  
+import Footer from "@/components/landing/footer"
+import { useDetectBrowserPreferences } from '@/hooks/useDetectBrowserPreferences'
+
 
 export default function TermsPage() {
-  return (
+    useDetectBrowserPreferences();
+    return (
     <>
       <Header />
       <main className="flex flex-col">

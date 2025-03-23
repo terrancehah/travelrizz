@@ -1,9 +1,11 @@
-import Privacy from '../components/landing/privacy';
+import Privacy from "../components/landing/privacy"
 import Header from "@/components/landing/header"
 import Footer from "@/components/landing/footer"
+import { useDetectBrowserPreferences } from '@/hooks/useDetectBrowserPreferences'
 
 
 export default function PrivacyPage() {
+  useDetectBrowserPreferences();
   return (
     <>
     <Header />
