@@ -7,7 +7,7 @@ import { useLocalizedFont } from '../../hooks/useLocalizedFont';
 type Content = string | Content[];
 
 interface Term {
-    content: Content;
+    [key: string]: { content: string };
 }
 
 interface Terms {
@@ -147,11 +147,11 @@ function CollapsibleSection({
             
             // Map sections to include title and content
             const sections: TermsSection[] = sectionIds.map((id) => {
-                const content = messages.terms[id].content;
+                const content = messages.terms.terms[id].content;
                 return {
                     id,
                     title: t(`terms.${id}.title`),
-                    content
+                    content,
                 };
             });
             
