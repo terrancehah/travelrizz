@@ -16,29 +16,36 @@ export default function LandingPage() {
     
     return (
         <>
-        {/* <Head>
-            <link
-                rel="preload"
-                href="/fonts/NotoSansSC-VariableFont_wght.ttf"
-                as="font"
-                type="font/ttf"
-                crossOrigin="anonymous"
-                />
-            <link
-                rel="preload"
-                href="/fonts/Raleway-VariableFont_wght.ttf"
-                as="font"
-                type="font/ttf"
-                crossOrigin="anonymous"
-                />
-            <link
-                rel="preload"
-                href="/fonts/Caveat-VariableFont_wght.ttf"
-                as="font"
-                type="font/ttf"
-                crossOrigin="anonymous"
-                />
-        </Head> */}
+        <Head>
+            {/* Allow indexing */}
+            <meta name="robots" content="index, follow" />
+            
+            {/* Canonical URL */}
+            <link rel="canonical" href="https://travelrizz.app/" />
+            
+            {/* Meta description for SEO */}
+            <meta
+            name="description"
+            content="Meet Travel-Rizz - your friendly AI travel planner. No signup required.."
+            />
+            
+            {/* Open Graph tags for social sharing */}
+            <meta property="og:title" content="TravelRizz - Your friendly AI travel planner" />
+            <meta
+            property="og:description"
+            content="TravelRizz - Your friendly AI travel planner. No signup required."
+            />
+            <meta property="og:url" content="https://travelrizz.app/" />
+            <meta property="og:type" content="website" />
+            
+            {/* Twitter Card tags */}
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content="TravelRizz - Your friendly AI travel planner" />
+            <meta
+            name="twitter:description"
+            content="TravelRizz - Your friendly AI travel planner. No signup required."
+            />
+        </Head>
         <div className="min-h-dvh bg-white dark:bg-gray-900">
         <Header />
         <main className="flex flex-col">

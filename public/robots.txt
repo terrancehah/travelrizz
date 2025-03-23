@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://travelrizz.app
+
+# Sitemaps
+Sitemap: https://travelrizz.app/sitemap.xml

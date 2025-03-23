@@ -297,10 +297,10 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
             </div>
 
             {/* Main content - Chat and Map - takes remaining height */}
-            <main className="flex-1 flex relative bg-white min-h-0">
+            <main className="flex-1 flex relative bg-white min-h-max">
 
                 {/* Left Half - Chat Interface, and Chat Input Container */}
-                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-full border-r border-gray-200 dark:border-gray-700`}>
+                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} max-h-dvh border-r border-gray-200 dark:border-gray-700`}>
                     {isDetailsReady ? (
                         <>
                             {currentStage < 4 && (
