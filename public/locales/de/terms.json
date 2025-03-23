@@ -1,104 +1,104 @@
 {
-    "terms": {
-        "intro": {
-            "title": "1. Einführung und Geltungsbereich",
-            "content": "Willkommen bei TravelRizz.app ('TravelRizz', 'wir', 'uns', 'unser'). Diese Nutzungsbedingungen ('AGB') regeln Ihre Nutzung unseres KI-gestützten Reiseplanungsdienstes, der unter TravelRizz.app verfügbar ist, einschließlich kostenloser und Premium-Funktionen. Durch den Zugriff auf oder die Nutzung unseres Dienstes stimmen Sie diesen AGB zu. Wenn Sie nicht einverstanden sind, nutzen Sie TravelRizz bitte nicht."
-        },
-        "account": {
-            "title": "2. Kein Konto erforderlich; Zahlung für Premium-Dienste",
-            "content": [
-                "Keine Anmeldung erforderlich: Sie müssen kein Konto erstellen oder persönliche Daten angeben, um unsere Dienste zu nutzen, einschließlich Premium-Funktionen.",
-                "Zahlungsdetails für Premium-Dienste: Für den Zugriff auf Premium-Dienste müssen Sie Zahlungsdetails angeben. Wir verarbeiten Zahlungen sicher über Stripe, unseren Zahlungsdienstleister. Durch die Nutzung von Premium-Diensten stimmen Sie den Geschäftsbedingungen von Stripe zu (verfügbar auf deren Website). Alle Gebühren sind nicht erstattungsfähig, sofern nicht anders angegeben."
-            ]
-        },
-        "usage": {
-            "title": "3. Dienstnutzung",
-            "content": [
-                "Zulässige Nutzung: Sie dürfen TravelRizz nur für persönliche, nicht-kommerzielle Reiseplanungszwecke nutzen.",
-                "Verbotene Handlungen: Sie stimmen zu, den Dienst nicht zu missbrauchen, einschließlich, aber nicht beschränkt auf:",
-                ["Spam oder übermäßige Anfragen senden",
-                "Daten von der Website scrapen oder extrahieren",
-                "Versuche, unsere KI-Technologie zurückzuentwickeln oder zu manipulieren",
-                "Nutzung des Dienstes für illegale Aktivitäten"]
-            ]
-        },
-        "data": {
-            "title": "4. Datenerfassung und -nutzung",
-            "content": [
-                "Keine Erhebung personenbezogener Daten durch uns: TravelRizz erfordert oder sammelt keine personenbezogenen Informationen von Nutzern, mit Ausnahme der für Premium-Dienste erforderlichen Zahlungsdetails (verarbeitet durch Stripe).",
-                "Datenerhebung durch Dritte: Unsere Website wird auf Vercel gehostet und nutzt Cloudflares kostenlosen Tarif für Sicherheit, Proxy, DNS und Analysen.",
-                "Zweck der Datennutzung: Alle über Drittanbieterdienste erhobenen Daten werden ausschließlich zur Verbesserung unseres Dienstes und zur Personalisierung der Nutzererfahrungen verwendet."
-            ]
-        },
-        "integrations": {
-            "title": "5. Drittanbieter-Integrationen",
-            "content": [
-                "Cloudflare: Wir nutzen Cloudflare für Sicherheit, DNS-Management und grundlegende Analysen.",
-                "Vercel: Unser Dienst wird auf Vercel gehostet, das Analysen bereitstellt und unsere KI-Chat-Funktionen betreibt.",
-                "Stripe: Zahlungen für Premium-Dienste werden von Stripe abgewickelt.",
-                "Booking.com API (Geplant): Wir beabsichtigen die Integration der Hotel-Empfehlungs-API von Booking.com."
-            ]
-        },
-        "retention": {
-            "title": "6. Datenspeicherung und -löschung",
-            "content": [
-                "Unsere Richtlinie: TravelRizz speichert keine Nutzerdaten, einschließlich Chat-Verläufe oder persönliche Details, auf unseren eigenen Servern.",
-                "Speicherung durch Dritte: Alle von Dritten erhobenen Daten werden gemäß deren jeweiligen Richtlinien gespeichert.",
-                "Hinweise für Nutzer: Für Details zur Datenspeicherung oder Löschungsanfragen wenden Sie sich bitte an die Richtlinien unserer Drittanbieter."
-            ]
-        },
-        "compliance": {
-            "title": "7. Compliance und Nutzerrechte",
-            "content": [
-                "Regulatorische Compliance: Wir verlassen uns darauf, dass unsere Drittanbieter die Datenschutzbestimmungen einhalten.",
-                "Nutzeranfragen: Da wir keine Daten sammeln oder speichern, sollten datenbezogene Anfragen an die relevanten Drittanbieterdienste gerichtet werden."
-            ]
-        },
-        "ai": {
-            "title": "8. KI-bezogene Haftungsausschlüsse",
-            "content": [
-                "Unser KI-Assistent ist für die Reiseplanung konzipiert, hat aber Einschränkungen und ist möglicherweise nicht immer präzise. Bitte behandeln Sie seine Vorschläge als Empfehlungen und nicht als definitive Ratschläge.",
-                "Wichtig: Vermeiden Sie die Weitergabe sensibler persönlicher Informationen (z.B. Kreditkartennummern, Passwörter) in Chats mit unserer KI. Während wir keine Chats speichern, können unsere Dienstleister (Vercel und OpenAI) diese gemäß ihren Richtlinien aufbewahren."
-            ]
-        },
-        "ip": {
-            "title": "9. Geistiges Eigentum",
-            "content": [
-                "Eigentum: Alle Inhalte auf TravelRizz.app, einschließlich KI-generierter Reisepläne, Texte, Grafiken und andere Materialien, sind Eigentum von TravelRizz oder seinen Lizenzgebern. Diese Inhalte sind durch Urheberrecht, Markenrecht und andere Gesetze zum Schutz geistigen Eigentums geschützt.",
-                "Nutzerberechtigungen: Sie dürfen die KI-generierten Reisepläne für Ihre persönlichen, nicht-kommerziellen Zwecke nutzen, wie die Planung Ihrer eigenen Reisen oder das Teilen mit Freunden und Familie für deren persönliche Nutzung.",
-                "Einschränkungen: Sie dürfen nicht:",
-                ["Inhalte für kommerzielle Zwecke kopieren, verteilen oder teilen (z.B. Verkauf der Pläne oder Nutzung in einem Unternehmen)",
-                "Abgeleitete Werke aus den Inhalten erstellen (z.B. Modifizierung der Pläne und Ausgabe als eigene)",
-                "Inhalte ohne unsere schriftliche Genehmigung öffentlich anzeigen oder auf anderen Plattformen veröffentlichen (z.B. soziale Medien, Blogs oder Websites)",
-                "Attribution: Wenn Sie die Reisepläne mit anderen teilen, bitten wir Sie, diese TravelRizz.app zuzuschreiben"]
-            ]
-        },
-        "liability": {
-            "title": "10. Haftungsbeschränkung",
-            "content": [
-                "TravelRizz.app und seine Dienste werden \"wie besehen\" ohne jegliche ausdrückliche oder stillschweigende Gewährleistung bereitgestellt. Wir garantieren nicht die Richtigkeit oder Vollständigkeit von KI-generierten Reiseplänen oder anderen Inhalten.",
-                "Im größtmöglichen gesetzlich zulässigen Umfang haftet TravelRizz nicht für direkte, indirekte, zufällige, besondere oder Folgeschäden, die aus Ihrer Nutzung unseres Dienstes entstehen."
-            ]
-        },
-        "law": {
-            "title": "11. Geltendes Recht",
-            "content": "Diese Nutzungsbedingungen unterliegen den Gesetzen Malaysias. Alle Streitigkeiten werden in den Gerichten von Kuala Lumpur, Malaysia, in Übereinstimmung mit malaysischem Recht beigelegt. Wir streben an, Streitigkeiten gütlich beizulegen, unter Berücksichtigung unserer internationalen Nutzerbasis und der globalen Natur unseres Dienstes."
-        },
-        "changes": {
-            "title": "12. Aktualisierungen dieser Richtlinie",
-            "content": [
-                "Zuletzt aktualisiert: 13. März 2025",
-                "Wir können diese Nutzungsbedingungen regelmäßig aktualisieren, um Änderungen in unseren Praktiken, Diensten oder rechtlichen Anforderungen widerzuspiegeln. Wesentliche Änderungen werden auf unserer Website angekündigt. Ihre fortgesetzte Nutzung von TravelRizz.app nach solchen Änderungen stellt die Annahme der aktualisierten Richtlinie dar."
-            ]
-        },
-        "contact": {
-            "title": "13. Kontakt",
-            "content": [
-                "Haben Sie Fragen oder Bedenken zu unseren Nutzungsbedingungen? Wir würden uns freuen, von Ihnen zu hören! Erreichen Sie uns über unsere Social-Media-Kanäle:",
-                ["X: @travelrizz",
-                "Instagram: @travelrizz",
-                "Facebook: @travelrizz"]
-            ]
-        }
+    "title": "Nutzungsbedingungen",
+    "intro": {
+        "title": "1. Einführung und Geltungsbereich",
+        "content": "Willkommen bei TravelRizz.app ('TravelRizz', 'wir', 'uns', 'unser'). Diese Nutzungsbedingungen ('AGB') regeln Ihre Nutzung unseres KI-gestützten Reiseplanungsdienstes, der unter TravelRizz.app verfügbar ist, einschließlich kostenloser und Premium-Funktionen. Durch den Zugriff auf oder die Nutzung unseres Dienstes stimmen Sie diesen AGB zu. Wenn Sie nicht einverstanden sind, nutzen Sie Travel-Rizz bitte nicht."
+    },
+    "account": {
+        "title": "2. Kein Konto erforderlich; Zahlung für Premium-Dienste",
+        "content": [
+            "Keine Anmeldung erforderlich: Sie müssen kein Konto erstellen oder persönliche Daten angeben, um unsere Dienste zu nutzen, einschließlich Premium-Funktionen.",
+            "Zahlungsdetails für Premium-Dienste: Für den Zugriff auf Premium-Dienste müssen Sie Zahlungsdetails angeben. Wir verarbeiten Zahlungen sicher über Stripe, unseren Zahlungsdienstleister. Durch die Nutzung von Premium-Diensten stimmen Sie den Geschäftsbedingungen von Stripe zu (verfügbar auf deren Website). Alle Gebühren sind nicht erstattungsfähig, sofern nicht anders angegeben."
+        ]
+    },
+    "usage": {
+        "title": "3. Dienstnutzung",
+        "content": [
+            "Zulässige Nutzung: Sie dürfen Travel-Rizz nur für persönliche, nicht-kommerzielle Reiseplanungszwecke nutzen.",
+            "Verbotene Handlungen: Sie stimmen zu, den Dienst nicht zu missbrauchen, einschließlich, aber nicht beschränkt auf:",
+            ["Spam oder übermäßige Anfragen senden",
+            "Daten von der Website scrapen oder extrahieren",
+            "Versuche, unsere KI-Technologie zurückzuentwickeln oder zu manipulieren",
+            "Nutzung des Dienstes für illegale Aktivitäten"]
+        ]
+    },
+    "data": {
+        "title": "4. Datenerfassung und -nutzung",
+        "content": [
+            "Keine Erhebung personenbezogener Daten durch uns: Travel-Rizz erfordert oder sammelt keine personenbezogenen Informationen von Nutzern, mit Ausnahme der für Premium-Dienste erforderlichen Zahlungsdetails (verarbeitet durch Stripe).",
+            "Datenerhebung durch Dritte: Unsere Website wird auf Vercel gehostet und nutzt Cloudflares kostenlosen Tarif für Sicherheit, Proxy, DNS und Analysen.",
+            "Zweck der Datennutzung: Alle über Drittanbieterdienste erhobenen Daten werden ausschließlich zur Verbesserung unseres Dienstes und zur Personalisierung der Nutzererfahrungen verwendet."
+        ]
+    },
+    "integrations": {
+        "title": "5. Drittanbieter-Integrationen",
+        "content": [
+            "Cloudflare: Wir nutzen Cloudflare für Sicherheit, DNS-Management und grundlegende Analysen.",
+            "Vercel: Unser Dienst wird auf Vercel gehostet, das Analysen bereitstellt und unsere KI-Chat-Funktionen betreibt.",
+            "Stripe: Zahlungen für Premium-Dienste werden von Stripe abgewickelt.",
+            "Booking.com API (Geplant): Wir beabsichtigen die Integration der Hotel-Empfehlungs-API von Booking.com."
+        ]
+    },
+    "retention": {
+        "title": "6. Datenspeicherung und -löschung",
+        "content": [
+            "Unsere Richtlinie: Travel-Rizz speichert keine Nutzerdaten, einschließlich Chat-Verläufe oder persönliche Details, auf unseren eigenen Servern.",
+            "Speicherung durch Dritte: Alle von Dritten erhobenen Daten werden gemäß deren jeweiligen Richtlinien gespeichert.",
+            "Hinweise für Nutzer: Für Details zur Datenspeicherung oder Löschungsanfragen wenden Sie sich bitte an die Richtlinien unserer Drittanbieter."
+        ]
+    },
+    "compliance": {
+        "title": "7. Compliance und Nutzerrechte",
+        "content": [
+            "Regulatorische Compliance: Wir verlassen uns darauf, dass unsere Drittanbieter die Datenschutzbestimmungen einhalten.",
+            "Nutzeranfragen: Da wir keine Daten sammeln oder speichern, sollten datenbezogene Anfragen an die relevanten Drittanbieterdienste gerichtet werden."
+        ]
+    },
+    "ai": {
+        "title": "8. KI-bezogene Haftungsausschlüsse",
+        "content": [
+            "Unser KI-Assistent ist für die Reiseplanung konzipiert, hat aber Einschränkungen und ist möglicherweise nicht immer präzise. Bitte behandeln Sie seine Vorschläge als Empfehlungen und nicht als definitive Ratschläge.",
+            "Wichtig: Vermeiden Sie die Weitergabe sensibler persönlicher Informationen (z.B. Kreditkartennummern, Passwörter) in Chats mit unserer KI. Während wir keine Chats speichern, können unsere Dienstleister (Vercel und OpenAI) diese gemäß ihren Richtlinien aufbewahren."
+        ]
+    },
+    "ip": {
+        "title": "9. Geistiges Eigentum",
+        "content": [
+            "Eigentum: Alle Inhalte auf TravelRizz.app, einschließlich KI-generierter Reisepläne, Texte, Grafiken und andere Materialien, sind Eigentum von Travel-Rizz oder seinen Lizenzgebern. Diese Inhalte sind durch Urheberrecht, Markenrecht und andere Gesetze zum Schutz geistigen Eigentums geschützt.",
+            "Nutzerberechtigungen: Sie dürfen die KI-generierten Reisepläne für Ihre persönlichen, nicht-kommerziellen Zwecke nutzen, wie die Planung Ihrer eigenen Reisen oder das Teilen mit Freunden und Familie für deren persönliche Nutzung.",
+            "Einschränkungen: Sie dürfen nicht:",
+            ["Inhalte für kommerzielle Zwecke kopieren, verteilen oder teilen (z.B. Verkauf der Pläne oder Nutzung in einem Unternehmen)",
+            "Abgeleitete Werke aus den Inhalten erstellen (z.B. Modifizierung der Pläne und Ausgabe als eigene)",
+            "Inhalte ohne unsere schriftliche Genehmigung öffentlich anzeigen oder auf anderen Plattformen veröffentlichen (z.B. soziale Medien, Blogs oder Websites)",
+            "Attribution: Wenn Sie die Reisepläne mit anderen teilen, bitten wir Sie, diese TravelRizz.app zuzuschreiben"]
+        ]
+    },
+    "liability": {
+        "title": "10. Haftungsbeschränkung",
+        "content": [
+            "TravelRizz.app und seine Dienste werden \"wie besehen\" ohne jegliche ausdrückliche oder stillschweigende Gewährleistung bereitgestellt. Wir garantieren nicht die Richtigkeit oder Vollständigkeit von KI-generierten Reiseplänen oder anderen Inhalten.",
+            "Im größtmöglichen gesetzlich zulässigen Umfang haftet Travel-Rizz nicht für direkte, indirekte, zufällige, besondere oder Folgeschäden, die aus Ihrer Nutzung unseres Dienstes entstehen."
+        ]
+    },
+    "law": {
+        "title": "11. Geltendes Recht",
+        "content": "Diese Nutzungsbedingungen unterliegen den Gesetzen Malaysias. Alle Streitigkeiten werden in den Gerichten von Kuala Lumpur, Malaysia, in Übereinstimmung mit malaysischem Recht beigelegt. Wir streben an, Streitigkeiten gütlich beizulegen, unter Berücksichtigung unserer internationalen Nutzerbasis und der globalen Natur unseres Dienstes."
+    },
+    "changes": {
+        "title": "12. Aktualisierungen dieser Richtlinie",
+        "content": [
+            "Zuletzt aktualisiert: 13. März 2025",
+            "Wir können diese Nutzungsbedingungen regelmäßig aktualisieren, um Änderungen in unseren Praktiken, Diensten oder rechtlichen Anforderungen widerzuspiegeln. Wesentliche Änderungen werden auf unserer Website angekündigt. Ihre fortgesetzte Nutzung von TravelRizz.app nach solchen Änderungen stellt die Annahme der aktualisierten Richtlinie dar."
+        ]
+    },
+    "contact": {
+        "title": "13. Kontakt",
+        "content": [
+            "Haben Sie Fragen oder Bedenken zu unseren Nutzungsbedingungen? Wir würden uns freuen, von Ihnen zu hören! Erreichen Sie uns über unsere Social-Media-Kanäle:",
+            ["X: @travelrizz",
+            "Instagram: @travelrizz",
+            "Facebook: @travelrizz"]
+        ]
     }
+    
 }

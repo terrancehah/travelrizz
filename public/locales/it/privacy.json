@@ -1,0 +1,98 @@
+{
+    "title": "Informativa sulla Privacy",
+    "intro": {
+        "title": "1. Introduzione",
+        "content": "Su TravelRizz.app ('TravelRizz', 'noi', 'nostro' o 'ci'), diamo valore alla tua privacy. Questa Informativa sulla Privacy descrive come raccogliamo, utilizziamo e proteggiamo le tue informazioni quando utilizzi il nostro servizio di pianificazione viaggi basato su IA su TravelRizz.app. Il nostro obiettivo è mantenere le cose semplici: non richiediamo registrazioni o dati personali per la maggior parte delle funzionalità, e qualsiasi gestione dei dati è ridotta al minimo o affidata a fornitori terzi fidati."
+    },
+    "collection": {
+        "title": "2. Informazioni che Raccogliamo",
+        "content": [
+            "Nessun Dato Personale Raccolto da Noi: Puoi utilizzare TravelRizz, incluse le funzionalità premium, senza creare un account o fornire informazioni personali come il tuo nome, email o indirizzo.",
+            "Informazioni di Pagamento per i Servizi Premium: Se scegli i servizi premium, fornirai dettagli di pagamento (ad esempio, informazioni sulla carta di credito). Questi sono elaborati in modo sicuro dal nostro fornitore di pagamenti terzo, Stripe, e noi non li memorizziamo né vi accediamo.",
+            "Raccolta Dati da Terzi: Utilizziamo servizi come Vercel (per l’hosting) e Cloudflare (per sicurezza, DNS e analisi), che possono raccogliere automaticamente:",
+            ["Dati sul traffico (ad esempio, il tuo paese)",
+            "Interazioni sul sito (ad esempio, clic o visualizzazioni di pagine)",
+            "Indirizzi IP (per sicurezza e analisi)",
+            "Interazioni via Chat: La nostra funzione di chat IA, alimentata da Vercel SDK e dal modello OpenAI ChatGPT-4o-mini, elabora le tue conversazioni per creare piani di viaggio. Non memorizziamo queste chat, ma Vercel e OpenAI potrebbero conservarle secondo le loro politiche."]
+        ]
+    },
+    "usage": {
+        "title": "3. Come Utilizziamo le Tue Informazioni",
+        "content": [
+            "Miglioramento del Servizio e Personalizzazione: I dati raccolti da servizi terzi vengono utilizzati per:",
+            ["Migliorare la nostra piattaforma (ad esempio, correggere bug, aumentare la velocità)",
+            "Personalizzare la tua esperienza (ad esempio, adattare i suggerimenti di viaggio in base ai dati demografici disponibili)",
+            "Niente Pubblicità: Non usiamo i tuoi dati per annunci e non abbiamo intenzione di iniziare.",
+            "Elaborazione dei Pagamenti: I dettagli di pagamento sono utilizzati esclusivamente per elaborare transazioni tramite Stripe."]
+        ]
+    },
+    "sharing": {
+        "title": "4. Condivisione dei Dati con Terzi",
+        "content": [
+            "Condivisione Limitata: Non condividiamo i tuoi dati personali salvo quando necessario per fornire i nostri servizi:",
+            ["Stripe: Gestisce l’elaborazione dei pagamenti per le funzionalità premium",
+            "Cloudflare: Fornisce sicurezza, DNS e analisi di base",
+            "Vercel: Ospita il nostro sito e supporta la funzionalità di chat IA",
+            "OpenAI: Alimenta il nostro assistente IA con ChatGPT-4o-mini",
+            "Integrazione con Booking.com: Abbiamo in programma di integrare l’API di Booking.com per raccomandazioni di hotel. Questo non comporterà la condivisione dei tuoi dati con Booking.com; serve solo a ottenere opzioni all’interno di TravelRizz."]
+        ]
+    },
+    "retention": {
+        "title": "5. Conservazione e Cancellazione dei Dati",
+        "content": [
+            "Nessuna Memorizzazione da Parte Nostra: TravelRizz non memorizza i dati degli utenti, inclusi gli storici delle chat o i dettagli personali, sui nostri server.",
+            "Conservazione da Terzi: I dati raccolti da Stripe, Cloudflare, Vercel o OpenAI vengono conservati secondo le loro politiche sulla privacy. Non possiamo controllare né specificare i loro periodi di conservazione.",
+            "Richieste di Cancellazione: Poiché non tratteniamo i tuoi dati, le richieste di cancellazione devono essere indirizzate direttamente ai nostri fornitori terzi:",
+            ["Cloudflare: Consulta la loro Informativa sulla Privacy su https://www.cloudflare.com/privacypolicy/",
+            "Vercel: Consulta la loro Informativa sulla Privacy su https://vercel.com/legal/privacy-policy",
+            "Stripe: Consulta la loro Informativa sulla Privacy su https://stripe.com/privacy",
+            "OpenAI: Consulta la loro Informativa sulla Privacy su https://openai.com/policies/privacy-policy"]
+        ]
+    },
+    "compliance": {
+        "title": "6. Conformità alle Leggi sulla Protezione dei Dati",
+        "content": [
+            "Conformità dei Terzi: Non raccogliamo né elaboriamo dati personali direttamente, quindi ci affidiamo ai nostri fornitori terzi per rispettare leggi come il Regolamento Generale sulla Protezione dei Dati (GDPR) e il California Consumer Privacy Act (CCPA).",
+            "Utenti Internazionali: Se ti trovi in una regione con regole specifiche sulla privacy (ad esempio, UE o California), consulta le politiche dei nostri fornitori per dettagli sui tuoi diritti."
+        ]
+    },
+    "rights": {
+        "title": "7. I Tuoi Diritti Riguardo ai Tuoi Dati",
+        "content": [
+            "Nessun Dato da Noi: Poiché non memorizziamo i tuoi dati personali, non possiamo fornire accesso, correzioni o cancellazioni.",
+            "Richieste ai Terzi: Per i dati detenuti dai nostri fornitori, contattali direttamente usando i link nella Sezione 5."
+        ]
+    },
+    "ai": {
+        "title": "8. Disclaimer su IA e Dati delle Chat",
+        "content": [
+            "Il nostro assistente IA è progettato per aiutare nella pianificazione dei viaggi, ma ha dei limiti e potrebbe non essere sempre accurato. Ti preghiamo di considerare i suoi suggerimenti come raccomandazioni piuttosto che consigli definitivi.",
+            "Importante: Evita di condividere informazioni personali sensibili (ad esempio, numeri di carte di credito, password) nelle chat con la nostra IA. Anche se non memorizziamo le chat, i nostri fornitori di servizi (Vercel e OpenAI) potrebbero conservarle secondo le loro politiche."
+        ]
+    },
+    "cookies": {
+        "title": "9. Cookie e Tecnologie di Tracciamento",
+        "content": [
+            "I nostri fornitori di servizi fidati (Cloudflare e Vercel) utilizzano cookie e tecnologie simili per sicurezza, analisi e ottimizzazione delle prestazioni.",
+            "Puoi gestire le preferenze sui cookie tramite le impostazioni del tuo browser. Per informazioni dettagliate sui cookie utilizzati, consulta la nostra Informativa sui Cookie.",
+            "Per maggiori dettagli, vedi la nostra Informativa sui Cookie su /cookies."
+        ]
+    },
+    "changes": {
+        "title": "10. Aggiornamenti a Questa Politica",
+        "content": [
+            "Ultimo Aggiornamento: 13 marzo 2025",
+            "Potremmo aggiornare questa Informativa sulla Privacy periodicamente per riflettere cambiamenti nelle nostre pratiche, servizi o requisiti legali. Le modifiche significative saranno annunciate sul nostro sito web. L’uso continuato di TravelRizz.app dopo tali modifiche costituisce accettazione della politica aggiornata."
+        ]
+    },
+    "contact": {
+        "title": "11. Contattaci",
+        "content": [
+            "Hai domande o preoccupazioni sulla nostra Informativa sulla Privacy? Ci piacerebbe avere tue notizie! Contattaci tramite i nostri canali social:",
+            ["X: @travelrizz",
+            "Instagram: @travelrizz",
+            "Facebook: @travelrizz"]
+        ]
+    }
+
+}

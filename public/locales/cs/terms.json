@@ -1,104 +1,104 @@
 {
-    "terms": {
-        "intro": {
-            "title": "1. Úvod a Rozsah",
-            "content": "Vítejte na TravelRizz.app ('TravelRizz', 'my', 'náš' nebo 'nás'). Tyto Smluvní podmínky ('ToS') upravují vaše používání našeho plánovacího cestovního servisu poháněného AI, dostupného na TravelRizz.app, včetně bezplatných i prémiových funkcí. Přístupem nebo používáním našeho servisu souhlasíte s těmito ToS. Pokud nesouhlasíte, prosím, zdržte se používání TravelRizz."
-        },
-        "account": {
-            "title": "2. Není Vyžadován Účet; Platba za Prémiové Služby",
-            "content": [
-                "Není Nutná Registrace: K používání jakýchkoliv našich služeb, včetně prémiových funkcí, nemusíte vytvářet účet ani poskytovat osobní údaje.",
-                "Platební Údaje pro Prémiové Služby: Pro přístup k prémiovým službám musíte poskytnout platební údaje. Platby zpracováváme bezpečně prostřednictvím Stripe, našeho externího poskytovatele plateb. Používáním prémiových služeb souhlasíte s podmínkami Stripe (dostupnými na jejich webu). Všechny poplatky jsou nevratné, pokud není uvedeno jinak."
-            ]
-        },
-        "usage": {
-            "title": "3. Používání Služby",
-            "content": [
-                "Přijatelné Použití: TravelRizz můžete používat pouze pro osobní, nekomerční účely plánování cest.",
-                "Zakázané Akce: Souhlasíte, že nebudete službu zneužívat, včetně, ale nejen:",
-                ["Odesílání spamu nebo nadměrných požadavků",
-                "Scraping nebo extrahování dat ze stránek",
-                "Pokus o reverzní inženýrství nebo narušení naší technologie AI",
-                "Používání služby pro nelegální aktivity"]
-            ]
-        },
-        "data": {
-            "title": "4. Sběr a Použití Dat",
-            "content": [
-                "Nesbíráme Osobní Data: TravelRizz nevyžaduje ani nesbírá osobní údaje od uživatelů, kromě platebních údajů potřebných pro prémiové služby (zpracovávaných Stripe).",
-                "Sběr Dat Třetími Stranami: Naše stránky jsou hostovány na Vercel a využívají bezplatnou úroveň Cloudflare pro zabezpečení, proxy, DNS a analýzu.",
-                "Účel Použití Dat: Jakákoliv data shromážděná prostřednictvím služeb třetích stran slouží výhradně k vylepšení našeho servisu a personalizaci uživatelských zážitků."
-            ]
-        },
-        "integrations": {
-            "title": "5. Integrace s Třetími Stranami",
-            "content": [
-                "Cloudflare: Používáme Cloudflare pro zabezpečení, správu DNS a základní analýzu.",
-                "Vercel: Naše služba je hostována na Vercel, který poskytuje analýzu a pohání naše funkce AI chatu.",
-                "Stripe: Platby za prémiové služby zpracovává Stripe.",
-                "Booking.com API (Plánováno): Plánujeme integrovat API pro doporučení hotelů od Booking.com."
-            ]
-        },
-        "retention": {
-            "title": "6. Uchovávání a Mazání Dat",
-            "content": [
-                "Naše Zásady: TravelRizz neukládá uživatelská data, včetně historie chatů nebo osobních údajů, na našich vlastních serverech.",
-                "Uchovávání Třetími Stranami: Jakákoliv data shromážděná třetími stranami jsou uchovávána podle jejich příslušných zásad.",
-                "Rada pro Uživatele: Pro podrobnosti o uchovávání nebo žádosti o smazání dat se prosím obraťte na zásady našich poskytovatelů třetích stran."
-            ]
-        },
-        "compliance": {
-            "title": "7. Dodržování Předpisů a Práva Uživatelů",
-            "content": [
-                "Regulační Soulad: Spoléháme na naše poskytovatele třetích stran, že dodržují předpisy o ochraně dat.",
-                "Žádosti Uživatelů: Protože neshromažďujeme ani neukládáme vaše data, žádosti týkající se dat by měly být směřovány na příslušné služby třetích stran."
-            ]
-        },
-        "ai": {
-            "title": "8. Upozornění Týkající se AI",
-            "content": [
-                "Náš AI asistent je navržen tak, aby pomáhal s plánováním cest, ale má svá omezení a nemusí být vždy přesný. Prosím, berte jeho návrhy jako doporučení, nikoli jako definitivní rady.",
-                "Důležité: Vyhněte se sdílení citlivých osobních informací (např. čísel kreditních karet, hesel) v chatech s naší AI. I když my chaty neukládáme, naši poskytovatelé služeb (Vercel a OpenAI) je mohou uchovávat podle svých zásad."
-            ]
-        },
-        "ip": {
-            "title": "9. Duševní Vlastnictví",
-            "content": [
-                "Vlastnictví: Veškerý obsah na TravelRizz.app, včetně cestovních plánů generovaných AI, textu, grafiky a dalších materiálů, je vlastnictvím TravelRizz nebo jeho poskytovatelů licence. Tento obsah je chráněn autorskými právy, ochrannými známkami a dalšími zákony o duševním vlastnictví.",
-                "Povolení Uživatelům: Cestovní plány generované AI můžete používat pro své osobní, nekomerční účely, například pro plánování vlastních cest nebo sdílení s přáteli a rodinou pro jejich osobní použití.",
-                "Omezení: Nesmíte:",
-                ["Kopírovat, distribuovat nebo sdílet obsah pro komerční účely (např. prodávat plány nebo je používat v podnikání)",
-                "Vytvářet odvozená díla z obsahu (např. upravovat plány a vydávat je za své)",
-                "Veřejně zobrazovat nebo publikovat obsah na jiných platformách (např. sociálních sítích, blozích nebo webových stránkách) bez našeho písemného souhlasu",
-                "Atribuce: Pokud sdílíte cestovní plány s ostatními, prosíme vás, abyste je připsali TravelRizz.app"]
-            ]
-        },
-        "liability": {
-            "title": "10. Omezení Odpovědnosti",
-            "content": [
-                "TravelRizz.app a jeho služby jsou poskytovány 'tak, jak jsou' bez jakýchkoliv záruk, výslovných nebo předpokládaných. Negarantujeme přesnost ani úplnost cestovních plánů generovaných AI ani žádného jiného obsahu.",
-                "V nejvyšší míře povolené zákonem není TravelRizz odpovědný za žádné přímé, nepřímé, náhodné, zvláštní nebo následné škody vyplývající z vašeho používání našeho servisu."
-            ]
-        },
-        "law": {
-            "title": "11. Rozhodné Právo",
-            "content": "Tyto Smluvní podmínky se řídí zákony Malajsie. Jakékoliv spory budou řešeny u soudů v Kuala Lumpur, Malajsie, v souladu s malajským právem. Naším cílem je řešit spory přátelsky, s ohledem na naši mezinárodní uživatelskou základnu a globální povahu našeho servisu."
-        },
-        "changes": {
-            "title": "12. Aktualizace Těchto Zásad",
-            "content": [
-                "Poslední Aktualizace: 13. března 2025",
-                "Tyto Smluvní podmínky můžeme pravidelně aktualizovat, aby odrážely změny v našich postupech, službách nebo právních požadavcích. Významné změny budou oznámeny na našich webových stránkách. Vaše pokračující používání TravelRizz.app po těchto změnách znamená přijetí aktualizovaných zásad."
-            ]
-        },
-        "contact": {
-            "title": "13. Kontaktujte Nás",
-            "content": [
-                "Máte otázky nebo obavy ohledně našich Smluvních podmínek? Rádi od vás uslyšíme! Kontaktujte nás prostřednictvím našich sociálních sítí:",
-                ["X: @travelrizz",
-                "Instagram: @travelrizz",
-                "Facebook: @travelrizz"]
-            ]
-        }
+    "title": "Smluvní podmínky",
+    "intro": {
+        "title": "1. Úvod a Rozsah",
+        "content": "Vítejte na TravelRizz.app ('TravelRizz', 'my', 'náš' nebo 'nás'). Tyto Smluvní podmínky ('ToS') upravují vaše používání našeho plánovacího cestovního servisu poháněného AI, dostupného na TravelRizz.app, včetně bezplatných i prémiových funkcí. Přístupem nebo používáním našeho servisu souhlasíte s těmito ToS. Pokud nesouhlasíte, prosím, zdržte se používání TravelRizz."
+    },
+    "account": {
+        "title": "2. Není Vyžadován Účet; Platba za Prémiové Služby",
+        "content": [
+            "Není Nutná Registrace: K používání jakýchkoliv našich služeb, včetně prémiových funkcí, nemusíte vytvářet účet ani poskytovat osobní údaje.",
+            "Platební Údaje pro Prémiové Služby: Pro přístup k prémiovým službám musíte poskytnout platební údaje. Platby zpracováváme bezpečně prostřednictvím Stripe, našeho externího poskytovatele plateb. Používáním prémiových služeb souhlasíte s podmínkami Stripe (dostupnými na jejich webu). Všechny poplatky jsou nevratné, pokud není uvedeno jinak."
+        ]
+    },
+    "usage": {
+        "title": "3. Používání Služby",
+        "content": [
+            "Přijatelné Použití: Travel-Rizz můžete používat pouze pro osobní, nekomerční účely plánování cest.",
+            "Zakázané Akce: Souhlasíte, že nebudete službu zneužívat, včetně, ale nejen:",
+            ["Odesílání spamu nebo nadměrných požadavků",
+            "Scraping nebo extrahování dat ze stránek",
+            "Pokus o reverzní inženýrství nebo narušení naší technologie AI",
+            "Používání služby pro nelegální aktivity"]
+        ]
+    },
+    "data": {
+        "title": "4. Sběr a Použití Dat",
+        "content": [
+            "Nesbíráme Osobní Data: Travel-Rizz nevyžaduje ani nesbírá osobní údaje od uživatelů, kromě platebních údajů potřebných pro prémiové služby (zpracovávaných Stripe).",
+            "Sběr Dat Třetími Stranami: Naše stránky jsou hostovány na Vercel a využívají bezplatnou úroveň Cloudflare pro zabezpečení, proxy, DNS a analýzu.",
+            "Účel Použití Dat: Jakákoliv data shromážděná prostřednictvím služeb třetích stran slouží výhradně k vylepšení našeho servisu a personalizaci uživatelských zážitků."
+        ]
+    },
+    "integrations": {
+        "title": "5. Integrace s Třetími Stranami",
+        "content": [
+            "Cloudflare: Používáme Cloudflare pro zabezpečení, správu DNS a základní analýzu.",
+            "Vercel: Naše služba je hostována na Vercel, který poskytuje analýzu a pohání naše funkce AI chatu.",
+            "Stripe: Platby za prémiové služby zpracovává Stripe.",
+            "Booking.com API (Plánováno): Plánujeme integrovat API pro doporučení hotelů od Booking.com."
+        ]
+    },
+    "retention": {
+        "title": "6. Uchovávání a Mazání Dat",
+        "content": [
+            "Naše Zásady: Travel-Rizz neukládá uživatelská data, včetně historie chatů nebo osobních údajů, na našich vlastních serverech.",
+            "Uchovávání Třetími Stranami: Jakákoliv data shromážděná třetími stranami jsou uchovávána podle jejich příslušných zásad.",
+            "Rada pro Uživatele: Pro podrobnosti o uchovávání nebo žádosti o smazání dat se prosím obraťte na zásady našich poskytovatelů třetích stran."
+        ]
+    },
+    "compliance": {
+        "title": "7. Dodržování Předpisů a Práva Uživatelů",
+        "content": [
+            "Regulační Soulad: Spoléháme na naše poskytovatele třetích stran, že dodržují předpisy o ochraně dat.",
+            "Žádosti Uživatelů: Protože neshromažďujeme ani neukládáme vaše data, žádosti týkající se dat by měly být směřovány na příslušné služby třetích stran."
+        ]
+    },
+    "ai": {
+        "title": "8. Upozornění Týkající se AI",
+        "content": [
+            "Náš AI asistent je navržen tak, aby pomáhal s plánováním cest, ale má svá omezení a nemusí být vždy přesný. Prosím, berte jeho návrhy jako doporučení, nikoli jako definitivní rady.",
+            "Důležité: Vyhněte se sdílení citlivých osobních informací (např. čísel kreditních karet, hesel) v chatech s naší AI. I když my chaty neukládáme, naši poskytovatelé služeb (Vercel a OpenAI) je mohou uchovávat podle svých zásad."
+        ]
+    },
+    "ip": {
+        "title": "9. Duševní Vlastnictví",
+        "content": [
+            "Vlastnictví: Veškerý obsah na TravelRizz.app, včetně cestovních plánů generovaných AI, textu, grafiky a dalších materiálů, je vlastnictvím Travel-Rizz nebo jeho poskytovatelů licence. Tento obsah je chráněn autorskými právy, ochrannými známkami a dalšími zákony o duševním vlastnictví.",
+            "Povolení Uživatelům: Cestovní plány generované AI můžete používat pro své osobní, nekomerční účely, například pro plánování vlastních cest nebo sdílení s přáteli a rodinou pro jejich osobní použití.",
+            "Omezení: Nesmíte:",
+            ["Kopírovat, distribuovat nebo sdílet obsah pro komerční účely (např. prodávat plány nebo je používat v podnikání)",
+            "Vytvářet odvozená díla z obsahu (např. upravovat plány a vydávat je za své)",
+            "Veřejně zobrazovat nebo publikovat obsah na jiných platformách (např. sociálních sítích, blozích nebo webových stránkách) bez našeho písemného souhlasu",
+            "Atribuce: Pokud sdílíte cestovní plány s ostatními, prosíme vás, abyste je připsali TravelRizz.app"]
+        ]
+    },
+    "liability": {
+        "title": "10. Omezení Odpovědnosti",
+        "content": [
+            "TravelRizz.app a jeho služby jsou poskytovány 'tak, jak jsou' bez jakýchkoliv záruk, výslovných nebo předpokládaných. Negarantujeme přesnost ani úplnost cestovních plánů generovaných AI ani žádného jiného obsahu.",
+            "V nejvyšší míře povolené zákonem není Travel-Rizz odpovědný za žádné přímé, nepřímé, náhodné, zvláštní nebo následné škody vyplývající z vašeho používání našeho servisu."
+        ]
+    },
+    "law": {
+        "title": "11. Rozhodné Právo",
+        "content": "Tyto Smluvní podmínky se řídí zákony Malajsie. Jakékoliv spory budou řešeny u soudů v Kuala Lumpur, Malajsie, v souladu s malajským právem. Naším cílem je řešit spory přátelsky, s ohledem na naši mezinárodní uživatelskou základnu a globální povahu našeho servisu."
+    },
+    "changes": {
+        "title": "12. Aktualizace Těchto Zásad",
+        "content": [
+            "Poslední Aktualizace: 13. března 2025",
+            "Tyto Smluvní podmínky můžeme pravidelně aktualizovat, aby odrážely změny v našich postupech, službách nebo právních požadavcích. Významné změny budou oznámeny na našich webových stránkách. Vaše pokračující používání TravelRizz.app po těchto změnách znamená přijetí aktualizovaných zásad."
+        ]
+    },
+    "contact": {
+        "title": "13. Kontaktujte Nás",
+        "content": [
+            "Máte otázky nebo obavy ohledně našich Smluvních podmínek? Rádi od vás uslyšíme! Kontaktujte nás prostřednictvím našich sociálních sítí:",
+            ["X: @travelrizz",
+            "Instagram: @travelrizz",
+            "Facebook: @travelrizz"]
+        ]
     }
+    
 }

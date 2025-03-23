@@ -23,7 +23,8 @@ export async function getStaticProps({ locale }: { locale: string }) {
               travelForm: (await import(`../public/locales/${locale}/travel-form.json`)).default,
               travelChat: (await import(`../public/locales/${locale}/travel-chat.json`)).default,
               parameters: (await import(`../public/locales/${locale}/parameters.json`)).default,
-              components: (await import(`../public/locales/${locale}/components.json`)).default
+              components: (await import(`../public/locales/${locale}/components.json`)).default,
+              privacy: (await import(`../public/locales/${locale}/privacy.json`)).default
           },
           locale,
           timeZone: 'Asia/Singapore'

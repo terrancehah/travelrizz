@@ -6,16 +6,13 @@ import { useLocalizedFont } from '../../hooks/useLocalizedFont';
 // Define types for messages and content
 type Content = string | Content[];
 
-interface Term {
-    [key: string]: { content: string };
-}
-
-interface Terms {
-    [key: string]: Term;
+interface SectionData {
+    title: string;
+    content: Content; // Now matches JSON structure
 }
 
 interface Messages {
-    terms: Terms;
+    terms: Record<string, SectionData>;
 }
 
 interface TermsSection {
@@ -147,11 +144,11 @@ function CollapsibleSection({
             
             // Map sections to include title and content
             const sections: TermsSection[] = sectionIds.map((id) => {
-                const content = messages.terms.terms[id].content;
+                const content = messages.terms[id].content;
                 return {
-                    id,
-                    title: t(`terms.${id}.title`),
-                    content,
+                id,
+                title: t(`${id}.title`),
+                content,
                 };
             });
             
@@ -162,7 +159,7 @@ function CollapsibleSection({
                 <h1
                 className={`text-4xl md:text-5xl text-primary dark:text-sky-100 ${fonts.heading} transition-colors duration-400 text-center`}
                 >
-                Terms of Service
+                    {t('title')}
                 </h1>
                 <div className="w-full max-w-4xl bg-white dark:bg-gray-900 rounded-lg shadow-sm">
                 {sections.map((section) => (

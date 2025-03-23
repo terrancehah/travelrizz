@@ -1,0 +1,107 @@
+{
+    "title": "Datenschutzrichtlinie",
+    "intro": {
+        "title": "1. Einführung",
+        "content": "Bei TravelRizz.app ('TravelRizz', 'wir', 'unser' oder 'uns') legen wir großen Wert auf Ihre Privatsphäre. Diese Datenschutzrichtlinie beschreibt, wie wir Ihre Informationen sammeln, verwenden und schützen, wenn Sie unseren KI-gestützten Reiseplanungsdienst auf TravelRizz.app nutzen. Unser Ziel ist es, die Dinge einfach zu halten: Für die meisten Funktionen ist keine Anmeldung oder Angabe persönlicher Daten erforderlich, und jegliche Datenverarbeitung wird minimiert oder von vertrauenswürdigen Drittanbietern verwaltet."
+    },
+    "collection": {
+        "title": "2. Informationen, die wir sammeln",
+        "content": [
+            "Keine persönlichen Daten von uns gesammelt: Sie können TravelRizz, einschließlich Premium-Funktionen, nutzen, ohne ein Konto zu erstellen oder persönliche Informationen wie Ihren Namen, Ihre E-Mail-Adresse oder Ihre Adresse anzugeben.",
+            "Zahlungsinformationen für Premium-Dienste: Wenn Sie sich für Premium-Dienste entscheiden, müssen Sie Zahlungsdetails (z. B. Kreditkarteninformationen) angeben. Diese werden sicher von unserem Drittanbieter für Zahlungen, Stripe, verarbeitet, und wir speichern oder greifen darauf nicht zu.",
+            "Datensammlung durch Dritte: Wir nutzen Dienste wie Vercel (für Hosting) und Cloudflare (für Sicherheit, DNS und Analysen), die automatisch Folgendes sammeln können:",
+            [
+                "Verkehrsdaten (z. B. Ihr Land)",
+                "Interaktionen auf der Website (z. B. Klicks oder Seitenaufrufe)",
+                "IP-Adressen (für Sicherheit und Analysen)",
+                "Chat-Interaktionen: Unsere KI-Chat-Funktion, unterstützt durch Vercel SDK und das OpenAI ChatGPT-4o-mini-Modell, verarbeitet Ihre Gespräche, um Reisepläne zu erstellen. Wir speichern diese Chats nicht, aber Vercel und OpenAI können sie gemäß ihren Richtlinien aufbewahren."
+            ]
+        ]
+    },
+    "usage": {
+        "title": "3. Wie wir Ihre Informationen verwenden",
+        "content": [
+            "Verbesserung und Personalisierung des Dienstes: Daten, die von Drittdiensten gesammelt werden, werden verwendet, um:",
+            [
+                "Unsere Plattform zu verbessern (z. B. Fehler beheben, Geschwindigkeit erhöhen)",
+                "Ihre Erfahrung zu personalisieren (z. B. Reisevorschläge basierend auf verfügbaren demografischen Daten anzupassen)",
+                "Keine Werbung: Wir verwenden Ihre Daten nicht für Werbung und haben auch keine Pläne, dies zu tun.",
+                "Zahlungsabwicklung: Zahlungsdetails werden ausschließlich zur Abwicklung von Transaktionen über Stripe verwendet."
+            ]
+        ]
+    },
+    "sharing": {
+        "title": "4. Weitergabe von Daten an Dritte",
+        "content": [
+            "Eingeschränkte Weitergabe: Wir geben Ihre persönlichen Daten nicht weiter, außer wenn dies zur Bereitstellung unserer Dienste erforderlich ist:",
+            [
+                "Stripe: Wickelt die Zahlungsabwicklung für Premium-Funktionen ab",
+                "Cloudflare: Bietet Sicherheit, DNS und grundlegende Analysen",
+                "Vercel: Hostet unsere Website und unterstützt die KI-Chat-Funktion",
+                "OpenAI: Betreibt unseren KI-Assistenten mit ChatGPT-4o-mini",
+                "Booking.com-Integration: Wir planen, die Booking.com-API für Hotelvorschläge zu integrieren. Dies beinhaltet keine Weitergabe Ihrer Daten an Booking.com; es dient nur dazu, Optionen innerhalb von TravelRizz abzurufen."
+            ]
+        ]
+    },
+    "retention": {
+        "title": "5. Datenspeicherung und -löschung",
+        "content": [
+            "Keine Speicherung durch uns: TravelRizz speichert keine Nutzerdaten, einschließlich Chatverläufe oder persönlicher Details, auf unseren Servern.",
+            "Aufbewahrung durch Dritte: Daten, die von Stripe, Cloudflare, Vercel oder OpenAI gesammelt werden, werden gemäß deren Datenschutzrichtlinien aufbewahrt. Wir können deren Aufbewahrungsfristen nicht kontrollieren oder festlegen.",
+            "Löschungsanfragen: Da wir Ihre Daten nicht speichern, sollten Löschungsanfragen direkt an unsere Drittanbieter gerichtet werden:",
+            [
+                "Cloudflare: Siehe deren Datenschutzrichtlinie unter https://www.cloudflare.com/privacypolicy/",
+                "Vercel: Siehe deren Datenschutzrichtlinie unter https://vercel.com/legal/privacy-policy",
+                "Stripe: Siehe deren Datenschutzrichtlinie unter https://stripe.com/privacy",
+                "OpenAI: Siehe deren Datenschutzrichtlinie unter https://openai.com/policies/privacy-policy"
+            ]
+        ]
+    },
+    "compliance": {
+        "title": "6. Einhaltung von Datenschutzgesetzen",
+        "content": [
+            "Einhaltung durch Dritte: Wir sammeln oder verarbeiten keine persönlichen Daten direkt, daher verlassen wir uns darauf, dass unsere Drittanbieter Gesetze wie die Datenschutz-Grundverordnung (DSGVO) und den California Consumer Privacy Act (CCPA) einhalten.",
+            "Internationale Nutzer: Wenn Sie sich in einer Region mit spezifischen Datenschutzvorschriften befinden (z. B. EU oder Kalifornien), überprüfen Sie die Richtlinien unserer Anbieter für Details zu Ihren Rechten."
+        ]
+    },
+    "rights": {
+        "title": "7. Ihre Rechte in Bezug auf Ihre Daten",
+        "content": [
+            "Keine Daten bei uns: Da wir Ihre persönlichen Daten nicht speichern, können wir keinen Zugriff, keine Korrekturen oder Löschungen bereitstellen.",
+            "Anfragen an Dritte: Für Daten, die von unseren Anbietern gehalten werden, wenden Sie sich direkt an diese über die Links in Abschnitt 5."
+        ]
+    },
+    "ai": {
+        "title": "8. Haftungsausschluss für KI- und Chat-Daten",
+        "content": [
+            "Unser KI-Assistent ist darauf ausgelegt, bei der Reiseplanung zu helfen, hat jedoch Einschränkungen und ist möglicherweise nicht immer genau. Bitte behandeln Sie seine Vorschläge als Empfehlungen und nicht als definitive Ratschläge.",
+            "Wichtig: Vermeiden Sie es, sensible persönliche Informationen (z. B. Kreditkartennummern, Passwörter) in Chats mit unserer KI zu teilen. Während wir Chats nicht speichern, können unsere Dienstleister (Vercel und OpenAI) diese gemäß ihren Richtlinien aufbewahren."
+        ]
+    },
+    "cookies": {
+        "title": "9. Cookies und Tracking-Technologien",
+        "content": [
+            "Unsere vertrauenswürdigen Dienstleister (Cloudflare und Vercel) verwenden Cookies und ähnliche Technologien für Sicherheit, Analysen und Leistungsoptimierung.",
+            "Sie können Ihre Cookie-Einstellungen über Ihre Browsereinstellungen verwalten. Für detaillierte Informationen zu den verwendeten Cookies verweisen wir auf unsere Cookie-Richtlinie.",
+            "Weitere Details finden Sie in unserer Cookie-Richtlinie unter /cookies."
+        ]
+    },
+    "changes": {
+        "title": "10. Aktualisierungen dieser Richtlinie",
+        "content": [
+            "Zuletzt aktualisiert: 13. März 2025",
+            "Wir können diese Datenschutzrichtlinie regelmäßig aktualisieren, um Änderungen in unseren Praktiken, Diensten oder gesetzlichen Anforderungen widerzuspiegeln. Wesentliche Änderungen werden auf unserer Website angekündigt. Ihre fortgesetzte Nutzung von TravelRizz.app nach solchen Änderungen gilt als Zustimmung zur aktualisierten Richtlinie."
+        ]
+    },
+    "contact": {
+        "title": "11. Kontaktieren Sie uns",
+        "content": [
+            "Haben Sie Fragen oder Bedenken zu unserer Datenschutzrichtlinie? Wir freuen uns, von Ihnen zu hören! Kontaktieren Sie uns über unsere Social-Media-Kanäle:",
+            [
+                "X: @travelrizz",
+                "Instagram: @travelrizz",
+                "Facebook: @travelrizz"
+            ]
+        ]
+    }
+}

@@ -1,0 +1,98 @@
+{
+    "title": "Zásady ochrany osobních údajů",
+    "intro": {
+        "title": "1. Úvod",
+        "content": "Na TravelRizz.app ('TravelRizz', 'my', 'náš' nebo 'nás') si vážíme vašeho soukromí. Tyto Zásady ochrany osobních údajů popisují, jak shromažďujeme, používáme a chráníme vaše informace, když používáte náš plánovací cestovní servis poháněný AI na TravelRizz.app. Naším cílem je udržet věci jednoduché: pro většinu funkcí nevyžadujeme registraci ani osobní údaje a jakékoli nakládání s daty je minimalizováno nebo spravováno důvěryhodnými poskytovateli třetích stran."
+    },
+    "collection": {
+        "title": "2. Informace, které shromažďujeme",
+        "content": [
+            "Žádné osobní údaje shromažďované námi: Můžete používat TravelRizz, včetně prémiových funkcí, bez vytvoření účtu nebo poskytnutí osobních informací, jako je vaše jméno, e-mail nebo adresa.",
+            "Platební informace pro prémiové služby: Pokud se rozhodnete pro prémiové služby, poskytnete platební údaje (např. informace o kreditní kartě). Tyto údaje zpracovává bezpečně náš poskytovatel plateb třetí strany, Stripe, a my je neukládáme ani k nim nemáme přístup.",
+            "Shromažďování dat třetími stranami: Používáme služby jako Vercel (pro hostování) a Cloudflare (pro zabezpečení, DNS a analýzu), které mohou automaticky shromažďovat:",
+            ["Data o provozu (např. vaše země)",
+            "Interakce na webu (např. kliknutí nebo zobrazení stránek)",
+            "IP adresy (pro zabezpečení a analýzu)",
+            "Interakce v chatu: Naše funkce AI chatu, poháněná Vercel SDK a modelem OpenAI ChatGPT-4o-mini, zpracovává vaše konverzace pro vytvoření cestovních plánů. Tyto chaty neukládáme, ale Vercel a OpenAI je mohou uchovávat podle svých zásad."]
+        ]
+    },
+    "usage": {
+        "title": "3. Jak používáme vaše informace",
+        "content": [
+            "Vylepšení služeb a personalizace: Data shromážděná službami třetích stran se používají k:",
+            ["Vylepšení naší platformy (např. oprava chyb, zlepšení rychlosti)",
+            "Personalizaci vašeho zážitku (např. přizpůsobení cestovních návrhů na základě dostupných demografických dat)",
+            "Žádná reklama: Vaše data nepoužíváme pro reklamy a nemáme v plánu to začít.",
+            "Zpracování plateb: Platební údaje se používají výhradně k zpracování transakcí prostřednictvím Stripe."]
+        ]
+    },
+    "sharing": {
+        "title": "4. Sdílení dat s třetími stranami",
+        "content": [
+            "Omezené sdílení: Vaše osobní data nesdílíme, kromě případů, kdy je to nutné k poskytování našich služeb:",
+            ["Stripe: Zpracovává platby pro prémiové funkce",
+            "Cloudflare: Poskytuje zabezpečení, DNS a základní analýzu",
+            "Vercel: Hostuje náš web a podporuje funkčnost AI chatu",
+            "OpenAI: Pohání našeho AI asistenta modelem ChatGPT-4o-mini",
+            "Integrace Booking.com: Plánujeme integrovat Booking.com API pro doporučení hotelů. To nebude zahrnovat sdílení vašich dat s Booking.com; slouží pouze k získání možností v rámci TravelRizz."]
+        ]
+    },
+    "retention": {
+        "title": "5. Uchovávání a mazání dat",
+        "content": [
+            "Žádné ukládání u nás: TravelRizz neukládá uživatelská data, včetně historie chatů nebo osobních údajů, na našich serverech.",
+            "Uchovávání třetími stranami: Data shromážděná Stripe, Cloudflare, Vercel nebo OpenAI jsou uchovávána podle jejich zásad ochrany osobních údajů. Nemůžeme kontrolovat ani specifikovat jejich dobu uchování.",
+            "Žádosti o smazání: Protože vaše data nedržíme, žádosti o smazání by měly být směřovány přímo našim poskytovatelům třetích stran:",
+            ["Cloudflare: Viz jejich Zásady ochrany osobních údajů na https://www.cloudflare.com/privacypolicy/",
+            "Vercel: Viz jejich Zásady ochrany osobních údajů na https://vercel.com/legal/privacy-policy",
+            "Stripe: Viz jejich Zásady ochrany osobních údajů na https://stripe.com/privacy",
+            "OpenAI: Viz jejich Zásady ochrany osobních údajů na https://openai.com/policies/privacy-policy"]
+        ]
+    },
+    "compliance": {
+        "title": "6. Dodržování zákonů o ochraně dat",
+        "content": [
+            "Dodržování třetími stranami: Přímo neshromažďujeme ani nezpracováváme osobní data, takže spoléháme na naše poskytovatele třetích stran, že dodržují zákony, jako je Obecné nařízení o ochraně osobních údajů (GDPR) a Kalifornský zákon o ochraně spotřebitelů (CCPA).",
+            "Mezinárodní uživatelé: Pokud jste v regionu se specifickými pravidly ochrany osobních údajů (např. EU nebo Kalifornie), podívejte se na zásady našich poskytovatelů pro podrobnosti o vašich právech."
+        ]
+    },
+    "rights": {
+        "title": "7. Vaše práva týkající se vašich dat",
+        "content": [
+            "Žádná data u nás: Protože neukládáme vaše osobní údaje, nemůžeme poskytnout přístup, opravy ani smazání.",
+            "Žádosti třetím stranám: Pro data držená našimi poskytovateli je kontaktujte přímo pomocí odkazů v sekci 5."
+        ]
+    },
+    "ai": {
+        "title": "8. Upozornění týkající se AI a dat z chatu",
+        "content": [
+            "Náš AI asistent je navržen tak, aby pomáhal s plánováním cest, ale má svá omezení a nemusí být vždy přesný. Prosím, berte jeho návrhy jako doporučení, nikoli jako definitivní rady.",
+            "Důležité: Vyhněte se sdílení citlivých osobních informací (např. čísel kreditních karet, hesel) v chatech s naší AI. I když my chaty neukládáme, naši poskytovatelé služeb (Vercel a OpenAI) je mohou uchovávat podle svých zásad."
+        ]
+    },
+    "cookies": {
+        "title": "9. Cookies a technologie sledování",
+        "content": [
+            "Naši důvěryhodní poskytovatelé služeb (Cloudflare a Vercel) používají cookies a podobné technologie pro zabezpečení, analýzu a optimalizaci výkonu.",
+            "Předvolby cookies můžete spravovat prostřednictvím nastavení vašeho prohlížeče. Pro podrobné informace o použitých cookies se podívejte na naše Zásady cookies.",
+            "Pro více podrobností viz naše Zásady cookies na /cookies."
+        ]
+    },
+    "changes": {
+        "title": "10. Aktualizace těchto zásad",
+        "content": [
+            "Poslední aktualizace: 13. března 2025",
+            "Tyto Zásady ochrany osobních údajů můžeme pravidelně aktualizovat, aby odrážely změny v našich postupech, službách nebo právních požadavcích. Významné změny budou oznámeny na našich webových stránkách. Vaše pokračující používání TravelRizz.app po těchto změnách znamená přijetí aktualizovaných zásad."
+        ]
+    },
+    "contact": {
+        "title": "11. Kontaktujte nás",
+        "content": [
+            "Máte otázky nebo obavy ohledně našich Zásad ochrany osobních údajů? Rádi od vás uslyšíme! Kontaktujte nás prostřednictvím našich sociálních sítí:",
+            ["X: @travelrizz",
+            "Instagram: @travelrizz",
+            "Facebook: @travelrizz"]
+        ]
+    }
+    
+}

@@ -1,0 +1,97 @@
+{
+    "title": "Polisi Privasi",
+    "intro": {
+        "title": "1. Pengenalan",
+        "content": "Di TravelRizz.app ('TravelRizz', 'kami', 'milik kami' atau 'kita'), kami menghargai privasi anda. Polisi Privasi ini menerangkan bagaimana kami mengumpul, menggunakan, dan melindungi maklumat anda apabila anda menggunakan perkhidmatan perancangan perjalanan berkuasa AI kami di TravelRizz.app. Matlamat kami adalah untuk memastikan segalanya ringkas: kami tidak memerlukan pendaftaran atau data peribadi untuk kebanyakan ciri, dan sebarang pengendalian data diminimumkan atau diurus oleh penyedia pihak ketiga yang dipercayai."
+    },
+    "collection": {
+        "title": "2. Maklumat yang Kami Kumpul",
+        "content": [
+            "Tiada Data Peribadi Dikumpul oleh Kami: Anda boleh menggunakan TravelRizz, termasuk ciri-ciri premium, tanpa mencipta akaun atau memberikan maklumat peribadi seperti nama, e-mel, atau alamat anda.",
+            "Maklumat Pembayaran untuk Perkhidmatan Premium: Jika anda memilih perkhidmatan premium, anda akan memberikan butiran pembayaran (contohnya, maklumat kad kredit). Ini diproses dengan selamat oleh penyedia pembayaran pihak ketiga kami, Stripe, dan kami tidak menyimpan atau mengaksesnya.",
+            "Pengumpulan Data oleh Pihak Ketiga: Kami menggunakan perkhidmatan seperti Vercel (untuk pengehosan) dan Cloudflare (untuk keselamatan, DNS, dan analitik), yang mungkin mengumpul secara automatik:",
+            ["Data trafik (contohnya, negara anda)",
+            "Interaksi laman web (contohnya, klik atau paparan halaman)",
+            "Alamat IP (untuk keselamatan dan analitik)",
+            "Interaksi Sembang: Ciri sembang AI kami, dikuasakan oleh Vercel SDK dan model OpenAI ChatGPT-4o-mini, memproses perbualan anda untuk mencipta pelan perjalanan. Kami tidak menyimpan sembang ini, tetapi Vercel dan OpenAI mungkin menyimpannya mengikut polisi mereka."]
+        ]
+    },
+    "usage": {
+        "title": "3. Bagaimana Kami Menggunakan Maklumat Anda",
+        "content": [
+            "Penambahbaikan Perkhidmatan dan Personalisasi: Data yang dikumpul oleh perkhidmatan pihak ketiga digunakan untuk:",
+            ["Meningkatkan platform kami (contohnya, membetulkan pepijat, meningkatkan kelajuan)",
+            "Memperibadikan pengalaman anda (contohnya, menyesuaikan cadangan perjalanan berdasarkan data demografi yang tersedia)",
+            "Tiada Iklan: Kami tidak menggunakan data anda untuk iklan dan tidak ada rancangan untuk memulakannya.",
+            "Pemprosesan Pembayaran: Butiran pembayaran digunakan semata-mata untuk memproses transaksi melalui Stripe."]
+        ]
+    },
+    "sharing": {
+        "title": "4. Perkongsian Data dengan Pihak Ketiga",
+        "content": [
+            "Perkongsian Terhad: Kami tidak berkongsi data peribadi anda kecuali jika perlu untuk menyampaikan perkhidmatan kami:",
+            ["Stripe: Mengendalikan pemprosesan pembayaran untuk ciri-ciri premium",
+            "Cloudflare: Menyediakan keselamatan, DNS, dan analitik asas",
+            "Vercel: Mengehos laman kami dan menyokong fungsi sembang AI",
+            "OpenAI: Menguasakan pembantu AI kami dengan ChatGPT-4o-mini"],
+            "Integrasi Booking.com: Kami merancang untuk mengintegrasikan Booking.com API untuk cadangan hotel. Ini tidak akan melibatkan perkongsian data anda dengan Booking.com; ia hanya untuk mendapatkan pilihan dalam TravelRizz."
+        ]
+    },
+    "retention": {
+        "title": "5. Penyimpanan dan Penghapusan Data",
+        "content": [
+            "Tiada Penyimpanan oleh Kami: TravelRizz tidak menyimpan data pengguna, termasuk sejarah sembang atau butiran peribadi, di pelayan kami.",
+            "Penyimpanan oleh Pihak Ketiga: Data yang dikumpul oleh Stripe, Cloudflare, Vercel, atau OpenAI disimpan mengikut polisi privasi masing-masing. Kami tidak dapat mengawal atau menentukan tempoh penyimpanan mereka.",
+            "Permintaan Penghapusan: Oleh kerana kami tidak memegang data anda, permintaan penghapusan harus diarahkan terus kepada penyedia pihak ketiga kami:",
+            ["Cloudflare: Lihat Polisi Privasi mereka di https://www.cloudflare.com/privacypolicy/",
+            "Vercel: Lihat Polisi Privasi mereka di https://vercel.com/legal/privacy-policy",
+            "Stripe: Lihat Polisi Privasi mereka di https://stripe.com/privacy",
+            "OpenAI: Lihat Polisi Privasi mereka di https://openai.com/policies/privacy-policy"]
+        ]
+    },
+    "compliance": {
+        "title": "6. Pematuhan dengan Undang-undang Perlindungan Data",
+        "content": [
+            "Pematuhan Pihak Ketiga: Kami tidak mengumpul atau memproses data peribadi secara langsung, jadi kami bergantung pada penyedia pihak ketiga kami untuk mematuhi undang-undang seperti Peraturan Perlindungan Data Umum (GDPR) dan Akta Privasi Pengguna California (CCPA).",
+            "Pengguna Antarabangsa: Jika anda berada di kawasan dengan peraturan privasi tertentu (contohnya, EU atau California), semak polisi penyedia kami untuk butiran mengenai hak anda."
+        ]
+    },
+    "rights": {
+        "title": "7. Hak Anda Berkenaan Data Anda",
+        "content": [
+            "Tiada Data dengan Kami: Oleh kerana kami tidak menyimpan data peribadi anda, kami tidak dapat menyediakan akses, pembetulan, atau penghapusan.",
+            "Permintaan kepada Pihak Ketiga: Untuk data yang dipegang oleh penyedia kami, hubungi mereka secara langsung menggunakan pautan di Seksyen 5."
+        ]
+    },
+    "ai": {
+        "title": "8. Penafian Data Sembang dan AI",
+        "content": [
+            "Pembantu AI kami direka untuk membantu dengan perancangan perjalanan, tetapi ia mempunyai batasan dan mungkin tidak selalu tepat. Sila anggap cadangannya sebagai cadangan dan bukan nasihat muktamad.",
+            "Penting: Elakkan berkongsi maklumat peribadi sensitif (contohnya, nombor kad kredit, kata laluan) dalam sembang dengan AI kami. Walaupun kami tidak menyimpan sembang, penyedia perkhidmatan kami (Vercel dan OpenAI) mungkin menyimpannya mengikut polisi mereka."
+        ]
+    },
+    "cookies": {
+        "title": "9. Kuki dan Teknologi Penjejakan",
+        "content": [
+            "Penyedia perkhidmatan kami yang dipercayai (Cloudflare dan Vercel) menggunakan kuki dan teknologi serupa untuk keselamatan, analitik, dan pengoptimuman prestasi.",
+            "Anda boleh mengurus keutamaan kuki melalui tetapan pelayar anda. Untuk maklumat terperinci tentang kuki yang digunakan, sila rujuk Polisi Kuki kami.",
+            "Untuk butiran lanjut, lihat Polisi Kuki kami di /cookies."
+        ]
+    },
+    "changes": {
+        "title": "10. Kemaskini kepada Polisi Ini",
+        "content": [
+            "Kemaskini Terakhir: 13 Mac 2025",
+            "Kami mungkin mengemas kini Polisi Privasi ini secara berkala untuk mencerminkan perubahan dalam amalan, perkhidmatan, atau keperluan undang-undang kami. Perubahan ketara akan diumumkan di laman web kami. Penggunaan berterusan TravelRizz.app selepas perubahan tersebut menunjukkan penerimaan polisi yang dikemas kini."
+        ]
+    },
+    "contact": {
+        "title": "11. Hubungi Kami",
+        "content": [
+            "Ada soalan atau kebimbangan tentang Polisi Privasi kami? Kami ingin mendengar daripada anda! Hubungi kami melalui saluran media sosial kami:",
+            ["X: @travelrizz",
+            "Instagram: @travelrizz",
+            "Facebook: @travelrizz"]
+        ]
+    }
+}
