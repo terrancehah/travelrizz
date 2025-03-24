@@ -1,0 +1,81 @@
+{
+    "title": "Polisi Kuki",
+    "intro": {
+        "title": "1. Pengenalan",
+        "content": "Di TravelRizz.app ('TravelRizz', 'kami', 'milik kami'), kami menggunakan perkhidmatan pihak ketiga untuk meningkatkan pengalaman anda, memastikan keselamatan, dan menganalisis prestasi laman web. Perkhidmatan ini mungkin menggunakan kuki—fail teks kecil yang disimpan pada peranti anda—untuk berfungsi dengan baik. Polisi Kuki ini menerangkan apa itu kuki, bagaimana ia digunakan di laman web kami melalui perkhidmatan pihak ketiga, dan bagaimana anda boleh menguruskannya."
+    },
+    "what": {
+        "title": "2. Apakah Kuki?",
+        "content": [
+            "Kuki adalah fail kecil yang diletakkan oleh laman web pada peranti anda untuk menyimpan maklumat, seperti keutamaan atau aktiviti pelayaran anda. Ia membantu laman web mengingati tindakan anda, meningkatkan kefungsian, dan memberikan pandangan tentang penggunaan laman tersebut. Kuki boleh jadi:",
+            [
+                "Kuki sesi: Sementara dan dipadamkan apabila anda menutup pelayar.",
+                "Kuki kekal: Kekal pada peranti anda untuk tempoh tertentu."
+            ]
+        ]
+    },
+    "third-party": {
+        "title": "3. Kuki Pihak Ketiga di TravelRizz.app",
+        "content": [
+            "TravelRizz.app tidak menetapkan kuki sendiri. Walau bagaimanapun, kami bergantung pada perkhidmatan pihak ketiga yang mungkin meletakkan kuki pada peranti anda untuk tujuan seperti keselamatan, analisis, dan pengoptimuman prestasi. Perkhidmatan ini termasuk:",
+            "Cloudflare: Menyediakan keselamatan, pengurusan DNS, dan analisis. Cloudflare mungkin menggunakan kuki untuk:",
+            [
+                "Mengenal pasti trafik web yang dipercayai.",
+                "Mengelakkan aktiviti berniat jahat.",
+                "Menganalisis prestasi dan penggunaan laman."
+            ],
+            "Untuk butiran lanjut, lihat [Polisi Kuki Cloudflare](https://www.cloudflare.com/cookie-policy/).",
+            "Vercel: Menyokong laman web kami dan menggerakkan ciri sembang AI. Vercel mungkin menggunakan kuki untuk:",
+            [
+                "Mengurus sesi pengguna.",
+                "Menganalisis penggunaan dan prestasi laman."
+            ],
+            "Untuk maklumat lanjut, rujuk [Polisi Privasi Vercel](https://vercel.com/legal/privacy-policy)."
+        ]
+    },
+    "booking": {
+        "title": "4. Integrasi API Booking.com",
+        "content": "Kami merancang untuk mengintegrasikan API Booking.com untuk menyediakan cadangan hotel dalam perkhidmatan kami. Integrasi ini tidak melibatkan penempatan kuki pada peranti anda; ia hanya mengambil data untuk memaparkan pilihan di TravelRizz.app."
+    },
+    "manage": {
+        "title": "5. Cara Mengurus Kuki",
+        "content": [
+            "Anda boleh mengawal atau mematikan kuki melalui tetapan pelayar anda. Kebanyakan pelayar membenarkan anda:",
+            [
+                "Melihat kuki yang disimpan pada peranti anda.",
+                "Menyekat atau memadam kuki tertentu.",
+                "Menetapkan keutamaan untuk menerima atau menolak kuki."
+            ],
+            "Berikut adalah pautan ke arahan untuk pelayar popular:",
+            [
+                "[Google Chrome](https://support.google.com/chrome/answer/95647)",
+                "[Mozilla Firefox](https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop)",
+                "[Safari](https://support.apple.com/en-my/guide/safari/manage-cookies-sfri11471/mac)",
+                "[Microsoft Edge](https://support.microsoft.com/en-my/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)"
+            ],
+            "Nota: Menyekat kuki mungkin mempengaruhi kefungsian beberapa ciri di TravelRizz.app atau perkhidmatan pihak ketiga yang kami gunakan."
+        ]
+    },
+    "consent": {
+        "title": "6. Persetujuan Anda",
+        "content": "Dengan menggunakan TravelRizz.app, anda bersetuju dengan penggunaan kuki oleh pembekal perkhidmatan pihak ketiga kami seperti yang diterangkan dalam polisi ini. Jika anda tidak bersetuju, anda boleh melaraskan tetapan pelayar anda untuk mengehadkan atau menyekat kuki, walaupun ini mungkin mempengaruhi pengalaman anda."
+    },
+    "updates": {
+        "title": "7. Kemaskini Polisi Ini",
+        "content": [
+            "Kemaskini Terakhir: 13 Mac 2025",
+            "Kami mungkin mengemas kini Polisi Kuki ini secara berkala untuk mencerminkan perubahan dalam amalan, perkhidmatan, atau keperluan undang-undang kami. Perubahan penting akan diumumkan di laman web kami. Penggunaan berterusan TravelRizz.app selepas perubahan tersebut merupakan penerimaan polisi yang dikemas kini."
+        ]
+    },
+    "contact": {
+        "title": "8. Hubungi Kami",
+        "content": [
+            "Ada soalan atau kebimbangan mengenai Polisi Kuki kami? Kami ingin mendengar daripada anda! Hubungi kami melalui saluran media sosial kami:",
+            [
+                "X: @travelrizz",
+                "Instagram: @travelrizz",
+                "Facebook: @travelrizz"
+            ]
+        ]
+    }
+}

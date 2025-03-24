@@ -1,0 +1,81 @@
+{
+    "title": "Cookie政策",
+    "intro": {
+        "title": "1. 引言",
+        "content": "在TravelRizz.app（以下簡稱「TravelRizz」、「我們」），我們使用第三方服務來提升您的體驗、確保安全並分析網站效能。這些服務可能會使用cookie—儲存在您設備上的小型文字檔案—以正常運作。本Cookie政策解釋了什麼是cookie、它們如何透過第三方服務在我們網站上使用，以及您如何管理它們。"
+    },
+    "what": {
+        "title": "2. 什麼是Cookie？",
+        "content": [
+            "Cookie是網站放置在您設備上的小檔案，用於儲存資訊，例如偏好設定或瀏覽活動。它們幫助網站記住您的操作，提升功能，並提供有關網站使用情況的見解。Cookie可分為：",
+            [
+                "會話Cookie：臨時的，關閉瀏覽器後即被刪除。",
+                "持久Cookie：在您的設備上保留一段時間。"
+            ]
+        ]
+    },
+    "third-party": {
+        "title": "3. TravelRizz.app上的第三方Cookie",
+        "content": [
+            "TravelRizz.app不設置自己的cookie。然而，我們依賴第三方服務，這些服務可能會在您的設備上放置cookie，以實現安全性、分析和效能優化等目的。這些服務包括：",
+            "Cloudflare：提供安全性、DNS管理和分析。Cloudflare可能會使用cookie來：",
+            [
+                "識別可信的網絡流量。",
+                "防止惡意活動。",
+                "分析網站效能和使用情況。"
+            ],
+            "有關更多詳情，請查看[Cloudflare的Cookie政策](https://www.cloudflare.com/cookie-policy/)。",
+            "Vercel：託管我們的網站並支援AI聊天功能。Vercel可能會使用cookie來：",
+            [
+                "管理使用者會話。",
+                "分析網站使用情況和效能。"
+            ],
+            "有關更多資訊，請參閱[Vercel的隱私政策](https://vercel.com/legal/privacy-policy)。"
+        ]
+    },
+    "booking": {
+        "title": "4. Booking.com API整合",
+        "content": "我們計劃整合Booking.com的API，以便在我們的服務中提供酒店推薦。此整合不會在您的設備上放置cookie；它僅獲取資料以在TravelRizz.app上顯示選項。"
+    },
+    "manage": {
+        "title": "5. 如何管理Cookie",
+        "content": [
+            "您可以透過瀏覽器設置控制或禁用cookie。大多數瀏覽器允許您：",
+            [
+                "查看儲存在您設備上的cookie。",
+                "阻止或刪除特定cookie。",
+                "設置接受或拒絕cookie的偏好。"
+            ],
+            "以下是熱門瀏覽器的說明連結：",
+            [
+                "[Google Chrome](https://support.google.com/chrome/answer/95647)",
+                "[Mozilla Firefox](https://support.mozilla.org/zh-TW/kb/firefox-增強型追蹤保護)",
+                "[Safari](https://support.apple.com/zh-tw/guide/safari/manage-cookies-sfri11471/mac)",
+                "[Microsoft Edge](https://support.microsoft.com/zh-tw/microsoft-edge/在-microsoft-edge-中刪除-cookie-63947406-40ac-c3b8-57b9-2a946a29ae09)"
+            ],
+            "注意：阻止cookie可能會影響TravelRizz.app或我們使用的第三方服務的一些功能。"
+        ]
+    },
+    "consent": {
+        "title": "6. 您的同意",
+        "content": "使用TravelRizz.app即表示您同意我們的第三方服務提供者按照本政策所述使用cookie。如果您不同意，可以調整瀏覽器設置以限制或阻止cookie，儘管這可能會影響您的體驗。"
+    },
+    "updates": {
+        "title": "7. 本政策的更新",
+        "content": [
+            "最後更新：2025年3月13日",
+            "我們可能會定期更新本Cookie政策，以反映我們的做法、服務或法律要求的變化。重大更改將在我們的網站上公布。您在更改後繼續使用TravelRizz.app即表示接受更新後的政策。"
+        ]
+    },
+    "contact": {
+        "title": "8. 聯繫我們",
+        "content": [
+            "對我們的Cookie政策有疑問或疑慮嗎？我們很樂意聽取您的意見！請透過以下社交媒體聯繫我們：",
+            [
+                "X: @travelrizz",
+                "Instagram: @travelrizz",
+                "Facebook: @travelrizz"
+            ]
+        ]
+    }
+}

@@ -1,0 +1,81 @@
+{
+    "title": "Politique relative aux cookies",
+    "intro": {
+        "title": "1. Introduction",
+        "content": "Chez TravelRizz.app ('TravelRizz', 'nous', 'notre'), nous utilisons des services tiers pour améliorer votre expérience, assurer la sécurité et analyser les performances du site. Ces services peuvent utiliser des cookies—petits fichiers texte stockés sur votre appareil—pour fonctionner correctement. Cette politique relative aux cookies explique ce que sont les cookies, comment ils sont utilisés sur notre site via des services tiers, et comment vous pouvez les gérer."
+    },
+    "what": {
+        "title": "2. Que sont les cookies ?",
+        "content": [
+            "Les cookies sont de petits fichiers que les sites web placent sur votre appareil pour stocker des informations, telles que vos préférences ou vos activités de navigation. Ils aident les sites à se souvenir de vos actions, à améliorer les fonctionnalités et à fournir des informations sur l'utilisation du site. Les cookies peuvent être :",
+            [
+                "Cookies de session : Temporaires et supprimés lorsque vous fermez votre navigateur.",
+                "Cookies persistants : Restent sur votre appareil pendant une période définie."
+            ]
+        ]
+    },
+    "third-party": {
+        "title": "3. Cookies tiers sur TravelRizz.app",
+        "content": [
+            "TravelRizz.app ne définit pas ses propres cookies. Cependant, nous dépendons de services tiers qui peuvent placer des cookies sur votre appareil à des fins telles que la sécurité, l'analyse et l'optimisation des performances. Ces services incluent :",
+            "Cloudflare : Fournit la sécurité, la gestion DNS et des analyses. Cloudflare peut utiliser des cookies pour :",
+            [
+                "Identifier le trafic web fiable.",
+                "Prévenir les activités malveillantes.",
+                "Analyser les performances et l'utilisation du site."
+            ],
+            "Pour plus de détails, voir [Politique de cookies de Cloudflare](https://www.cloudflare.com/cookie-policy/).",
+            "Vercel : Héberge notre site et alimente les fonctionnalités de chat AI. Vercel peut utiliser des cookies pour :",
+            [
+                "Gérer les sessions utilisateur.",
+                "Analyser l'utilisation et les performances du site."
+            ],
+            "Pour plus d'informations, consultez [Politique de confidentialité de Vercel](https://vercel.com/legal/privacy-policy)."
+        ]
+    },
+    "booking": {
+        "title": "4. Intégration de l'API Booking.com",
+        "content": "Nous prévoyons d'intégrer l'API de Booking.com pour fournir des recommandations d'hôtels au sein de notre service. Cette intégration n'implique pas de placer des cookies sur votre appareil ; elle récupère simplement des données pour afficher des options sur TravelRizz.app."
+    },
+    "manage": {
+        "title": "5. Comment gérer les cookies",
+        "content": [
+            "Vous pouvez contrôler ou désactiver les cookies via les paramètres de votre navigateur. La plupart des navigateurs vous permettent de :",
+            [
+                "Voir les cookies stockés sur votre appareil.",
+                "Bloquer ou supprimer des cookies spécifiques.",
+                "Définir des préférences pour accepter ou rejeter les cookies."
+            ],
+            "Voici des liens vers les instructions pour les navigateurs populaires :",
+            [
+                "[Google Chrome](https://support.google.com/chrome/answer/95647)",
+                "[Mozilla Firefox](https://support.mozilla.org/fr/kb/protection-renforcee-contre-pistage-firefox-ordinateur)",
+                "[Safari](https://support.apple.com/fr-fr/guide/safari/manage-cookies-sfri11471/mac)",
+                "[Microsoft Edge](https://support.microsoft.com/fr-fr/microsoft-edge/supprimer-les-cookies-dans-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)"
+            ],
+            "Remarque : Bloquer les cookies peut affecter le fonctionnement de certaines fonctionnalités de TravelRizz.app ou des services tiers que nous utilisons."
+        ]
+    },
+    "consent": {
+        "title": "6. Votre consentement",
+        "content": "En utilisant TravelRizz.app, vous consentez à l'utilisation de cookies par nos fournisseurs de services tiers comme décrit dans cette politique. Si vous n'êtes pas d'accord, vous pouvez ajuster les paramètres de votre navigateur pour limiter ou bloquer les cookies, bien que cela puisse affecter votre expérience."
+    },
+    "updates": {
+        "title": "7. Mises à jour de cette politique",
+        "content": [
+            "Dernière mise à jour : 13 mars 2025",
+            "Nous pouvons mettre à jour cette politique relative aux cookies périodiquement pour refléter les changements dans nos pratiques, services ou exigences légales. Les modifications significatives seront annoncées sur notre site web. Votre utilisation continue de TravelRizz.app après ces changements constitue une acceptation de la politique mise à jour."
+        ]
+    },
+    "contact": {
+        "title": "8. Contactez-nous",
+        "content": [
+            "Vous avez des questions ou des préoccupations concernant notre politique relative aux cookies ? Nous serions ravis d'avoir de vos nouvelles ! Contactez-nous via nos réseaux sociaux :",
+            [
+                "X : @travelrizz",
+                "Instagram : @travelrizz",
+                "Facebook : @travelrizz"
+            ]
+        ]
+    }
+}

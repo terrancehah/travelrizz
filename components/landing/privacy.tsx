@@ -10,6 +10,7 @@ interface SectionData {
     title: string;
     content: Content;
 }
+
 interface Messages {
     privacy: Record<string, SectionData>;
 }
@@ -116,7 +117,6 @@ export default function Privacy() {
     const t = useTranslations('privacy');
     const messages = useMessages() as unknown as Messages;
     const [openSections, setOpenSections] = useState<string[]>([]);
-
     const toggleSection = (sectionId: string) => {
         setOpenSections((prev) =>
             prev.includes(sectionId)

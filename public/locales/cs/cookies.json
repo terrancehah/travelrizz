@@ -1,0 +1,81 @@
+{
+    "title": "Zásady používání cookies",
+    "intro": {
+        "title": "1. Úvod",
+        "content": "Na TravelRizz.app ('TravelRizz', 'my', 'naše') využíváme služby třetích stran k vylepšení vašeho zážitku, zajištění bezpečnosti a analýze výkonu webu. Tyto služby mohou používat cookies—malé textové soubory uložené na vašem zařízení—k řádnému fungování. Tyto zásady vysvětlují, co jsou cookies, jak jsou využívány na našem webu prostřednictvím služeb třetích stran a jak je můžete spravovat."
+    },
+    "what": {
+        "title": "2. Co jsou cookies?",
+        "content": [
+            "Cookies jsou malé soubory, které webové stránky ukládají na vaše zařízení, aby uchovaly informace, jako jsou preference nebo aktivity při prohlížení. Pomáhají webům zapamatovat si vaše akce, zlepšit funkčnost a poskytnout přehled o tom, jak je stránka využívána. Cookies mohou být:",
+            [
+                "Sesiční cookies: Dočasné a smažou se po zavření prohlížeče.",
+                "Trvalé cookies: Zůstávají na vašem zařízení po stanovenou dobu."
+            ]
+        ]
+    },
+    "third-party": {
+        "title": "3. Cookies třetích stran na TravelRizz.app",
+        "content": [
+            "TravelRizz.app nevytváří vlastní cookies. Spoléháme však na služby třetích stran, které mohou na vaše zařízení umístit cookies za účelem zabezpečení, analýzy a optimalizace výkonu. Tyto služby zahrnují:",
+            "Cloudflare: Poskytuje zabezpečení, správu DNS a analýzy. Cloudflare může používat cookies k:",
+            [
+                "Identifikaci důvěryhodného webového provozu.",
+                "Prevenci škodlivých aktivit.",
+                "Analýze výkonu a využití stránky."
+            ],
+            "Pro více informací viz [Zásady cookies Cloudflare](https://www.cloudflare.com/cookie-policy/).",
+            "Vercel: Hostuje náš web a podporuje funkce AI chatu. Vercel může používat cookies k:",
+            [
+                "Správě uživatelských relací.",
+                "Analýze využití a výkonu stránky."
+            ],
+            "Pro více informací se podívejte na [Zásady ochrany osobních údajů Vercel](https://vercel.com/legal/privacy-policy)."
+        ]
+    },
+    "booking": {
+        "title": "4. Integrace API Booking.com",
+        "content": "Plánujeme integraci API Booking.com, abychom v rámci naší služby poskytovali doporučení hotelů. Tato integrace nezahrnuje ukládání cookies na vaše zařízení; pouze získává data pro zobrazení možností na TravelRizz.app."
+    },
+    "manage": {
+        "title": "5. Jak spravovat cookies",
+        "content": [
+            "Cookies můžete ovládat nebo zakázat v nastavení vašeho prohlížeče. Většina prohlížečů vám umožňuje:",
+            [
+                "Zobrazit cookies uložené na vašem zařízení.",
+                "Blokovat nebo smazat konkrétní cookies.",
+                "Nastavit preference pro přijímání nebo odmítání cookies."
+            ],
+            "Zde jsou odkazy na pokyny pro populární prohlížeče:",
+            [
+                "[Google Chrome](https://support.google.com/chrome/answer/95647)",
+                "[Mozilla Firefox](https://support.mozilla.org/cs/kb/vylepsena-ochrana-sledovani-firefox-pro-pc)",
+                "[Safari](https://support.apple.com/cs-cz/guide/safari/manage-cookies-sfri11471/mac)",
+                "[Microsoft Edge](https://support.microsoft.com/cs-cz/microsoft-edge/odstranění-souborů-cookie-v-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09)"
+            ],
+            "Poznámka: Blokování cookies může ovlivnit funkčnost některých funkcí na TravelRizz.app nebo služeb třetích stran, které využíváme."
+        ]
+    },
+    "consent": {
+        "title": "6. Váš souhlas",
+        "content": "Používáním TravelRizz.app souhlasíte s využíváním cookies našimi poskytovateli služeb třetích stran, jak je popsáno v těchto zásadách. Pokud nesouhlasíte, můžete upravit nastavení prohlížeče tak, aby omezilo nebo blokovalo cookies, i když to může ovlivnit váš zážitek."
+    },
+    "updates": {
+        "title": "7. Aktualizace těchto zásad",
+        "content": [
+            "Poslední aktualizace: 13. března 2025",
+            "Tyto zásady používání cookies můžeme pravidelně aktualizovat, aby odrážely změny v našich postupech, službách nebo právních požadavcích. Významné změny budou oznámeny na našem webu. Vaše pokračující používání TravelRizz.app po těchto změnách znamená přijetí aktualizovaných zásad."
+        ]
+    },
+    "contact": {
+        "title": "8. Kontaktujte nás",
+        "content": [
+            "Máte otázky nebo obavy ohledně našich zásad používání cookies? Rádi od vás uslyšíme! Kontaktujte nás prostřednictvím našich sociálních sítí:",
+            [
+                "X: @travelrizz",
+                "Instagram: @travelrizz",
+                "Facebook: @travelrizz"
+            ]
+        ]
+    }
+}

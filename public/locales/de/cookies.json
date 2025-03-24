@@ -1,0 +1,81 @@
+{
+    "title": "Cookie-Richtlinie",
+    "intro": {
+        "title": "1. Einführung",
+        "content": "Bei TravelRizz.app ('TravelRizz', 'wir', 'unser') nutzen wir Dienste Dritter, um Ihre Erfahrung zu verbessern, die Sicherheit zu gewährleisten und die Website-Performance zu analysieren. Diese Dienste können Cookies—kleine Textdateien, die auf Ihrem Gerät gespeichert werden—verwenden, um ordnungsgemäß zu funktionieren. Diese Cookie-Richtlinie erklärt, was Cookies sind, wie sie auf unserer Website durch Drittanbieter-Dienste genutzt werden und wie Sie sie verwalten können."
+    },
+    "what": {
+        "title": "2. Was sind Cookies?",
+        "content": [
+            "Cookies sind kleine Dateien, die Websites auf Ihrem Gerät platzieren, um Informationen wie Präferenzen oder Browsing-Aktivitäten zu speichern. Sie helfen Websites, sich an Ihre Aktionen zu erinnern, die Funktionalität zu verbessern und Einblicke in die Nutzung der Seite zu geben. Cookies können sein:",
+            [
+                "Sitzungscookies: Temporär und werden beim Schließen des Browsers gelöscht.",
+                "Permanente Cookies: Bleiben für einen festgelegten Zeitraum auf Ihrem Gerät."
+            ]
+        ]
+    },
+    "third-party": {
+        "title": "3. Cookies von Drittanbietern auf TravelRizz.app",
+        "content": [
+            "TravelRizz.app setzt keine eigenen Cookies. Wir verlassen uns jedoch auf Dienste Dritter, die Cookies auf Ihrem Gerät platzieren können, um Sicherheit, Analysen und Leistungsoptimierung zu gewährleisten. Diese Dienste umfassen:",
+            "Cloudflare: Bietet Sicherheit, DNS-Verwaltung und Analysen. Cloudflare kann Cookies verwenden, um:",
+            [
+                "Vertrauenswürdigen Webverkehr zu identifizieren.",
+                "Bösartige Aktivitäten zu verhindern.",
+                "Leistung und Nutzung der Seite zu analysieren."
+            ],
+            "Weitere Details finden Sie in der [Cookie-Richtlinie von Cloudflare](https://www.cloudflare.com/cookie-policy/).",
+            "Vercel: Hostet unsere Website und betreibt unsere KI-Chat-Funktionen. Vercel kann Cookies verwenden, um:",
+            [
+                "Benutzersitzungen zu verwalten.",
+                "Nutzung und Leistung der Seite zu analysieren."
+            ],
+            "Weitere Informationen finden Sie in der [Datenschutzrichtlinie von Vercel](https://vercel.com/legal/privacy-policy)."
+        ]
+    },
+    "booking": {
+        "title": "4. Booking.com API-Integration",
+        "content": "Wir planen, die Booking.com-API zu integrieren, um Hotel-Empfehlungen innerhalb unseres Dienstes bereitzustellen. Diese Integration beinhaltet keine Platzierung von Cookies auf Ihrem Gerät; sie ruft lediglich Daten ab, um Optionen auf TravelRizz.app anzuzeigen."
+    },
+    "manage": {
+        "title": "5. Wie Sie Cookies verwalten können",
+        "content": [
+            "Sie können Cookies über die Einstellungen Ihres Browsers steuern oder deaktivieren. Die meisten Browser erlauben Ihnen:",
+            [
+                "Die auf Ihrem Gerät gespeicherten Cookies anzuzeigen.",
+                "Spezifische Cookies zu blockieren oder zu löschen.",
+                "Präferenzen für das Akzeptieren oder Ablehnen von Cookies festzulegen."
+            ],
+            "Hier sind Links zu Anleitungen für gängige Browser:",
+            [
+                "[Google Chrome](https://support.google.com/chrome/answer/95647)",
+                "[Mozilla Firefox](https://support.mozilla.org/de/kb/verbesserter-schutz-aktivitatenverfolgung-desktop)",
+                "[Safari](https://support.apple.com/de-de/guide/safari/manage-cookies-sfri11471/mac)",
+                "[Microsoft Edge](https://support.microsoft.com/de-de/microsoft-edge/cookies-in-microsoft-edge-löschen-63947406-40ac-c3b8-57b9-2a946a29ae09)"
+            ],
+            "Hinweis: Das Blockieren von Cookies kann die Funktionalität einiger Funktionen auf TravelRizz.app oder der von uns genutzten Drittanbieter-Dienste beeinträchtigen."
+        ]
+    },
+    "consent": {
+        "title": "6. Ihre Zustimmung",
+        "content": "Durch die Nutzung von TravelRizz.app stimmen Sie der Verwendung von Cookies durch unsere Drittanbieter-Dienste zu, wie in dieser Richtlinie beschrieben. Wenn Sie nicht zustimmen, können Sie Ihre Browsereinstellungen anpassen, um Cookies einzuschränken oder zu blockieren, was jedoch Ihre Erfahrung beeinträchtigen kann."
+    },
+    "updates": {
+        "title": "7. Aktualisierungen dieser Richtlinie",
+        "content": [
+            "Zuletzt aktualisiert: 13. März 2025",
+            "Wir können diese Cookie-Richtlinie regelmäßig aktualisieren, um Änderungen in unseren Praktiken, Diensten oder gesetzlichen Anforderungen widerzuspiegeln. Wesentliche Änderungen werden auf unserer Website angekündigt. Ihre fortgesetzte Nutzung von TravelRizz.app nach solchen Änderungen stellt die Annahme der aktualisierten Richtlinie dar."
+        ]
+    },
+    "contact": {
+        "title": "8. Kontaktieren Sie uns",
+        "content": [
+            "Haben Sie Fragen oder Bedenken zu unserer Cookie-Richtlinie? Wir freuen uns, von Ihnen zu hören! Kontaktieren Sie uns über unsere sozialen Medien:",
+            [
+                "X: @travelrizz",
+                "Instagram: @travelrizz",
+                "Facebook: @travelrizz"
+            ]
+        ]
+    }
+}

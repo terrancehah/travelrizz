@@ -17,6 +17,9 @@ export default function LandingPage() {
     return (
         <>
         <Head>
+            {/* Page Title */}
+            <title>Travel-Rizz: Your Friendly AI Trip Planner for Perfect Itineraries</title>
+            
             {/* Allow indexing */}
             <meta name="robots" content="index, follow" />
             
@@ -26,25 +29,27 @@ export default function LandingPage() {
             {/* Meta description for SEO */}
             <meta
             name="description"
-            content="Meet Travel-Rizz - your friendly AI travel planner. No signup required.."
+            content="Create your perfect trip with Travel-Rizz, the friendly AI trip planner that builds personalized itineraries effortlessly. No signup needed — start planning now!"
             />
             
             {/* Open Graph tags for social sharing */}
-            <meta property="og:title" content="TravelRizz - Your friendly AI travel planner" />
+            <meta property="og:title" content="Travel-Rizz: Your Friendly AI Trip Planner for Perfect Itineraries" />
             <meta
             property="og:description"
-            content="TravelRizz - Your friendly AI travel planner. No signup required."
+            content="Create your perfect trip with Travel-Rizz, the friendly AI trip planner that builds personalized itineraries effortlessly. No signup needed — start planning now!"
             />
             <meta property="og:url" content="https://travelrizz.app/" />
             <meta property="og:type" content="website" />
-            
+            <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/92208d0d-9316-4bdf-b3c6-307ae71fa951.jpg?token=aBf1vZ_HMp8u6j70oAHDe5B4MDLqT2j5nNKKpWxwFoM&height=900&width=1200&expires=33278759575" />
+
             {/* Twitter Card tags */}
             <meta name="twitter:card" content="summary" />
-            <meta name="twitter:title" content="TravelRizz - Your friendly AI travel planner" />
+            <meta name="twitter:title" content="Travel-Rizz: Your Friendly AI Trip Planner for Perfect Itineraries" />
             <meta
             name="twitter:description"
-            content="TravelRizz - Your friendly AI travel planner. No signup required."
+            content="Create your perfect trip with Travel-Rizz, the friendly AI trip planner that builds personalized itineraries effortlessly. No signup needed — start planning now!"
             />
+            <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/92208d0d-9316-4bdf-b3c6-307ae71fa951.jpg?token=aBf1vZ_HMp8u6j70oAHDe5B4MDLqT2j5nNKKpWxwFoM&height=900&width=1200&expires=33278759575" />
         </Head>
         <div className="min-h-dvh bg-white dark:bg-gray-900">
         <Header />
