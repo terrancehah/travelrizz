@@ -1,10 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
-import { cn } from '@/utils/cn'
 import FeatureCarousel from '../ui/feature-carousel'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
-
 import { 
     setPaymentStatus, 
     setPaymentReference,
@@ -83,7 +81,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose, onPaymentSuccess 
         const buttonHtml = `
         <stripe-buy-button
             buy-button-id="${theme === 'dark' ? 'buy_btn_1QvFHUI41yHwVfoxAdnHirxn' : 'buy_btn_1QvFE0I41yHwVfoxoa2fvTlL'}"
-            publishable-key="pk_test_51MtLXgI41yHwVfoxNp7MKLfz0Gh4qo2LwImaCBtCt0Gn48e613BLsbOajpHT1uJOs2l0ACRpUE3RZrh8FcLxdwef00QOtxcHmf"
+            publishable-key="${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}"
             client-reference-id="${refId}"
         >
         </stripe-buy-button>
@@ -104,29 +102,37 @@ export default function PremiumUpgradeModal({ isOpen, onClose, onPaymentSuccess 
         const script = document.createElement('script');
         script.src = 'https://js.stripe.com/v3/buy-button.js';
         script.async = true;
-        document.head.appendChild(script);
-        
+
+        // Check if the script is already loaded before appending
+        if (!document.querySelector(`script[src="${script.src}"]`)) {
+            document.head.appendChild(script);
+        }
+
+        script.onerror = () => {
+            stripeContainerRef.current!.innerHTML = '<p>Error loading payment button. Please try again.</p>';
+        };
+
         // Add custom styles
         const style = document.createElement('style')
         style.textContent = `
-      stripe-buy-button {
+        stripe-buy-button {
         display: flex !important;
         justify-content: center !important;
         width: 40% !important;
         margin: 0 auto !important;
-      }
-      stripe-buy-button > * {
+        }
+        stripe-buy-button > * {
         border: 2px solid #e2e8f0 !important;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
         border-radius: 0.5rem !important;
         width: 100% !important;
-      }
-      stripe-buy-button button {
+        }
+        stripe-buy-button button {
         width: 100% !important;
-      }
+        }
         
-      /* Dark mode styles */
-      @media (prefers-color-scheme: dark) {
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
         stripe-buy-button > * {
           border-color: #374151 !important; /* gray-700 */
           background-color: #1f2937 !important; /* gray-800 */
@@ -139,21 +145,21 @@ export default function PremiumUpgradeModal({ isOpen, onClose, onPaymentSuccess 
         stripe-buy-button button:hover {
           background-color: #374151 !important; /* gray-700 */
         }
-      }
+        }
         
       /* For class-based dark mode */
-      .dark stripe-buy-button > * {
+        .dark stripe-buy-button > * {
         border-color: #374151 !important; /* gray-700 */
         background-color: #1f2937 !important; /* gray-800 */
         color: #f3f4f6 !important; /* gray-100 */
-      }
-      .dark stripe-buy-button button {
+        }
+        .dark stripe-buy-button button {
         background-color: #1f2937 !important; /* gray-800 */
         color: #f3f4f6 !important; /* gray-100 */
-      }
-      .dark stripe-buy-button button:hover {
+        }
+        .dark stripe-buy-button button:hover {
         background-color: #374151 !important; /* gray-700 */
-      }
+        }
     `
         document.head.appendChild(style)
         
@@ -226,7 +232,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose, onPaymentSuccess 
                     (window as any).setShowPaymentSuccess(true);
                     console.log(`[Payment Modal][${pollInstanceId}] Payment success popup opened for:`, refId);
                     // (window as any).setCurrentStage(4);
-                    console.log(`[Payment Modal][${pollInstanceId}] Stage advanced to 4 for:`, refId);
+                    // console.log(`[Payment Modal][${pollInstanceId}] Stage advanced to 4 for:`, refId);
                     onClose();
                     
                     return true;
@@ -253,7 +259,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose, onPaymentSuccess 
                     pollInterval.current = undefined;
                 }
             }
-        }, 2000);
+        }, 5000);
         
         return () => {
             if (pollInterval.current) {

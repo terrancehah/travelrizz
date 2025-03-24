@@ -262,7 +262,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
 
     return (
         // Main
-        <div className="flex flex-col min-h-dvh w-full bg-white">
+        <div className="flex flex-col max-h-dvh w-full overflow-hidden bg-white">
 
             {/* Window header - fixed height */}
             <div className="flex border-b border-gray-200 dark:border-gray-700 px-3 md:px-6 py-2 bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400">
@@ -297,10 +297,10 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
             </div>
 
             {/* Main content - Chat and Map - takes remaining height */}
-            <main className="flex-1 flex relative bg-white min-h-max">
+            <main className="flex-1 flex relative bg-white h-auto overflow-y-hidden">
 
                 {/* Left Half - Chat Interface, and Chat Input Container */}
-                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} max-h-dvh border-r border-gray-200 dark:border-gray-700`}>
+                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-auto overflow-y-hidden border-r border-gray-200 dark:border-gray-700`}>
                     {isDetailsReady ? (
                         <>
                             {currentStage < 4 && (

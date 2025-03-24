@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+        {/* <script async src="https://js.stripe.com/v3/buy-button.js"></script> */}
       </Head>
       <body>
         <Main />
