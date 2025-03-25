@@ -149,20 +149,20 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
         </div>
 
         {/* Daily forecast sections - show next 6 days */}
-        <div className="flex flex-col md:flex-row md:justify-between md:gap-x-2">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:gap-x-2">
           {forecastData.slice(1).map((day, index) => (
             
             <div 
               key={index} 
-              className={`flex items-center xl:w-[80px] md:w-[60px] md:flex-col md:items-center md:flex-1 lg:py-3 pt-2
-                ${index !== forecastData.slice(1).length - 1 ? 'border-b md:border-b-0 border-gray-200 dark:border-slate-500 pb-2' : 'pb-1'}`}
+              className={`flex items-center xl:w-[80px] lg:w-[60px] lg:flex-col lg:items-center lg:flex-1 lg:py-3 pt-2
+                ${index !== forecastData.slice(1).length - 1 ? 'border-b lg:border-b-0 border-gray-200 dark:border-slate-500 pb-2' : 'pb-1'}`}
             >
               {/* Mobile: Date/Day | Icon | Temps | Rain */}
               {/* Desktop: Date/Day > Icon > Temps > Rain */}
-              <div className="flex flex-1 items-center justify-between md:flex-col md:items-center md:gap-y-2">
+              <div className="flex flex-1 items-center justify-between lg:flex-col lg:items-center lg:gap-y-2">
 
                 {/* Date and Day */}
-                <div className={`${fonts.text}  xl:min-w-[80px] min-w-[50px] md:text-center`}>
+                <div className={`${fonts.text} xl:min-w-[80px] min-w-[60px] lg:text-center`}>
                   <p className="font-semibold text-gray-700 dark:text-gray-200">
                     {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   </p>
@@ -172,12 +172,12 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({
                 </div>
 
                 {/* Weather Icon */}
-                <div className="md:my-1">
+                <div className="lg:my-1">
                   {getWeatherIcon(day.condition)}
                 </div>
 
                 {/* Temperature */}
-                <div className={`${fonts.text} flex gap-x-2 lg:flex-col text-lg md:text-center`}>
+                <div className={`${fonts.text} flex gap-x-2 lg:flex-col text-lg lg:text-center`}>
                   <p className={`font-medium ${getTemperatureColor(day.temperature.max)}`}>
                     {formatTemp(day.temperature.max)}
                   </p>
