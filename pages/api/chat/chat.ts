@@ -159,6 +159,7 @@ export default async function handler(req: NextRequest) {
         and 'savedPlacesList' to view ALL previously saved places (when users ask to see saved places, ALL places from the savedPlaces parameter will be passed to this tool).
         Lastly, we have 'placeOptimizerTool' to trigger when user ask to optimize the itinerary. When you call this tool, provide the startDate and endDate parameters. 
         The savedPlaces will be automatically retrieved from the context.
+        After receiving the result, present the user with their optimized itinerary, listing each day's activities with place descriptions, opening hours, and relevant details in Markdown format.
         
         4.0 Tool Response Data Formatting
             
