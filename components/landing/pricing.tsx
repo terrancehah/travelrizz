@@ -39,7 +39,7 @@ export default function Pricing() {
             <div className="space-y-2">
               <div className="flex items-center gap-x-3">
                 <span className="text-2xl font-raleway text-primary dark:text-white">{oneTimePrice}</span>
-                <span className="text-2xl font-raleway text-gray-400 line-through">{oneTimeOriginal}</span>
+                <span className="text-2xl font-raleway text-gray-500 line-through">{oneTimeOriginal}</span>
               </div>
               <div>
                 <span className="inline-block bg-blue-200 dark:bg-sky-500 text-blue-500 dark:text-sky-100 text-base font-medium px-2.5 py-1 rounded font-raleway">{t('pricing.oneTime.tag')}</span>
@@ -89,7 +89,7 @@ export default function Pricing() {
         </div>
 
         <div className="space-x-4 w-full pt-12 items-center flex justify-center">
-          <Button asChild size="lg" className="bg-sky-blue hover:bg-sky-600 text-white text-base dark:bg-sky-500 dark:hover:bg-sky-400 font-raleway">
+          <Button asChild size="lg" className="bg-sky-500 hover:bg-sky-700 text-white text-base dark:bg-sky-500 dark:hover:bg-sky-400 font-raleway">
           <Link href="/travel-form">{t('pricing.cta')}</Link>
           </Button>
         </div>

@@ -36,13 +36,13 @@ export default function Header() {
         {/* Navigation Links */}
         <div className="flex items-center gap-x-1">
           <div className="hidden md:flex items-center gap-x-4">
-            <Link href="https://x.com/travelrizz" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
+            <Link href="https://x.com/travelrizz" title="X" aria-label="X" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
               <Twitter className="h-6 w-6" />
             </Link>
-            <Link href="https://instagram.com/travelrizz" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
+            <Link href="https://instagram.com/travelrizz" title="Instagram" aria-label="Instagram" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
               <Instagram className="h-6 w-6" />
             </Link>
-            <Link href="https://facebook.com/travelrizz" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
+            <Link href="https://facebook.com/travelrizz" title="Facebook" aria-label="Facebook" target="_blank" className="text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-400">
               <Facebook className="h-6 w-6" />
             </Link>
           </div>

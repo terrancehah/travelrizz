@@ -18,7 +18,8 @@ export default function PrivacyPage() {
         {/* Meta description for SEO */}
         <meta
         name="description"
-        content="Read the Privacy Policy for TravelRizz, your go-to travel planning app. Learn about how we collect and use your data, and your rights under our privacy policy."
+        content="Read the Privacy Policy for TravelRizz, your go-to travel planning app. 
+        Learn about how we collect and use your data, and your rights under our privacy policy."
         />
         
         {/* Open Graph tags for social sharing */}

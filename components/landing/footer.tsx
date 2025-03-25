@@ -52,17 +52,17 @@ export default function Footer() {
             <h3 className={`font-semibold mb-4 text-primary dark:text-sky-100 font-raleway ${fonts.heading}`}>{t('footer.legal.title')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/terms" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/terms" title="Terms of Service" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.terms')}
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/privacy" title="Privacy Policy" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.privacy')}
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/cookies" title="Cookie Policy" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.cookies')}
                 </Link>
               </li>

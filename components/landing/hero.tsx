@@ -37,7 +37,7 @@ export default function Hero() {
         </div>
         
         <div className="space-x-4 mt-8">
-        <Button asChild size="lg" className={`bg-sky-blue hover:bg-sky-600 text-white text-base dark:bg-sky-500 dark:hover:bg-sky-400 ${fonts.text}`}>
+        <Button asChild size="lg" className={`bg-sky-500 hover:bg-sky-700 text-white text-base dark:bg-sky-500 dark:hover:bg-sky-400 ${fonts.text}`}>
         <Link href="/travel-form">{t('hero.cta')}</Link>
         </Button>
         </div>

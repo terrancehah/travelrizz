@@ -19,7 +19,8 @@ export default function TermsPage() {
             {/* Meta description for SEO */}
             <meta
             name="description"
-            content="Read the Terms of Service for TravelRizz, your go-to travel planning app. Learn about our policies, user responsibilities, and more."
+            content="Read the Terms of Service for TravelRizz, your go-to travel planning app. 
+            Learn about our policies, user responsibilities, and more."
             />
             
             {/* Open Graph tags for social sharing */}
