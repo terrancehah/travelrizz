@@ -39,7 +39,7 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
             if (isPaid === undefined) {
                 return { isValid: false, missingRequirements: ['payment status unknown'] };
             }
-            const missingRequirements = isPaid ? [] : ['premium subscription'];
+            const missingRequirements = isPaid ? [] : ['one time payment needed'];
             return {
                 isValid: isPaid,
                 missingRequirements,
@@ -52,7 +52,7 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
             if (isPaid === undefined) {
                 return { isValid: false, missingRequirements: ['payment status unknown'] };
             }
-            const missingRequirements = isPaid ? [] : ['premium subscription'];
+            const missingRequirements = isPaid ? [] : ['one time payment needed'];
             return {
                 isValid: isPaid,
                 missingRequirements,
@@ -65,7 +65,7 @@ const STAGE_VALIDATORS: Record<number, StageRequirements> = {
             if (isPaid === undefined) {
                 return { isValid: false, missingRequirements: ['payment status unknown'] };
             }
-            const missingRequirements = isPaid ? [] : ['premium subscription'];
+            const missingRequirements = isPaid ? [] : ['one time payment needed'];
             return {
                 isValid: isPaid,
                 missingRequirements,

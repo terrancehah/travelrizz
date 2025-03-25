@@ -80,85 +80,89 @@ export function DaySection({ day, index, onDeletePlace, onAddPlace, onPlacesChan
     
     return (
         <div className={`rounded-lg border dark:border-gray-700 bg-card dark:bg-gray-900 p-4 shadow-sm ${className}`}>
-        <h2 className="mb-3 ml-1 text-lg font-semibold dark:text-gray-200">{tPlan('daySection.day', { index: index + 1 })} ({formattedDate})</h2>
-        
-        <div className="flex">
-        {/* Places column with drag and drop */}
-        <div className="flex-1">
-        <Droppable droppableId={day.id}>
-        {(provided) => (
-            <div
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            className="space-y-1 md:space-y-4" // Increased gap for mobile to fit travel info
-            >
-            {day.places.map((place, placeIndex) => (
-                <Fragment key={place.id}>
-                <Draggable draggableId={place.id} index={placeIndex}>
-                {(provided, snapshot) => (
-                    <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    className={cn(
-                        'rounded-lg bg-white dark:bg-gray-800 shadow-sm overflow-hidden relative',
-                        snapshot.isDragging && 'ring-2 ring-primary dark:ring-sky-400 ring-offset-2 dark:ring-offset-gray-900 z-30'
+            <h2 className="mb-3 ml-1 text-lg font-semibold dark:text-gray-200">{tPlan('daySection.day', { index: index + 1 })} ({formattedDate})</h2>
+            
+            <div className="flex">
+                {/* Places column with drag and drop */}
+                <div className="flex-1">
+                    <Droppable droppableId={day.id}>
+                    {(provided) => (
+                        <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        className="" // Increased gap for mobile to fit travel info
+                        >
+                        {day.places.map((place, placeIndex) => (
+                            <Fragment key={place.id}>
+                            <Draggable draggableId={place.id} index={placeIndex}>
+                            {(provided, snapshot) => (
+                                // Drag and drop container
+                                <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                className={cn(
+                                    'w-[95%] lg:w-full xl:min-h-32 rounded-lg  bg-white dark:bg-gray-800 border dark:border-gray-700 shadow-sm overflow-hidden relative my-3',
+                                    snapshot.isDragging && 'ring-2 ring-primary dark:ring-sky-400 ring-offset-2 dark:ring-offset-gray-900 z-30'
+                                )}
+                                >
+                                    {/* Drag and place compact card */}
+                                    <div className="group flex xl:min-h-32">
+                                        {/* Drag handle */}
+                                        <div className="absolute left-1.5 top-1/2 -translate-y-1/2">
+                                            <GripVertical className="h-7 w-5 text-gray-400 dark:text-gray-500 opacity-60 transition-opacity group-hover:opacity-100" />
+                                        </div>
+                                        <PlaceCompactCard place={place} className="pl-8 mx-auto" onDelete={() => handlePlaceDelete(day.id, place.id)} />
+                                    </div>
+                                </div>
+                            )}
+                            </Draggable>
+                            
+                            {/* Travel info below each place except last */}
+                            {placeIndex < day.places.length - 1 && (
+                                <div className="flex xl:hidden left-[40%]">
+                                <TravelInfo 
+                                key={`${place.id}-${day.places[placeIndex + 1]?.id}`}
+                                place={place}
+                                nextPlace={day.places[placeIndex + 1]}
+                                className="pointer-events-none px-4"
+                                />
+                                </div>
+                            )}
+                            </Fragment>
+                        ))}
+                        {provided.placeholder}
+                        </div>
                     )}
-                    >
-                    <div className="group relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                    <GripVertical className="h-7 w-5 text-gray-400 dark:text-gray-500 opacity-60 transition-opacity group-hover:opacity-100" />
+                    </Droppable>
+                </div>
+            
+                {/* Travel info column - Only on desktop */}
+                <div className="hidden xl:flex w-[15%] relative flex-col lg:gap-y-16 xl:gap-y-14 my-auto">
+                {day.places.slice(0, -1).map((place, idx) => (
+                    <div key={`travel-${place.id}-${day.places[idx + 1]?.id}`} className="relative mx-auto align-middle flex" style={{ height: '88px' }}>
+                        
+                        <div className="my-auto">
+                            <TravelInfo 
+                            key={`${place.id}-${day.places[idx + 1]?.id}`}
+                            place={place}
+                            nextPlace={day.places[idx + 1]}
+                            className="pointer-events-none"
+                            />
+                        </div>
                     </div>
-                    <PlaceCompactCard place={place} className="pl-10" onDelete={() => handlePlaceDelete(day.id, place.id)} />
-                    </div>
-                    </div>
-                )}
-                </Draggable>
-                
-                {/* Travel info below each place except last */}
-                {placeIndex < day.places.length - 1 && (
-                    <div className="md:hidden -mt-4 mb-4">
-                    <TravelInfo 
-                    key={`${place.id}-${day.places[placeIndex + 1]?.id}`}
-                    place={place}
-                    nextPlace={day.places[placeIndex + 1]}
-                    className="pointer-events-none px-4"
-                    />
-                    </div>
-                )}
-                </Fragment>
-            ))}
-            {provided.placeholder}
+                ))}
+                </div>
             </div>
-        )}
-        </Droppable>
-        </div>
-        
-        {/* Travel info column with connecting lines - Only visible on desktop */}
-        <div className="hidden md:flex w-[84px] relative flex-col gap-y-5 my-auto">
-        {day.places.slice(0, -1).map((place, idx) => (
-            <div key={`travel-${place.id}-${day.places[idx + 1]?.id}`} className="relative ml-[15px] align-middle flex" style={{ height: '88px' }}>
-            {/* Travel info centered between places */}
-            <div className="my-auto">
-            <TravelInfo 
-            key={`${place.id}-${day.places[idx + 1]?.id}`}
-            place={place}
-            nextPlace={day.places[idx + 1]}
-            className="pointer-events-none"
-            />
+            
+            {/* Place search button */}
+            <div className="mt-4">
+                <PlaceSearch
+                onPlaceSelected={(place) => handlePlaceAdd(place)}
+                disabled={isSearching}
+                className="w-full"
+                />  
             </div>
-            </div>
-        ))}
-        </div>
-        </div>
-        
-        <div className="mt-4">
-        <PlaceSearch
-        onPlaceSelected={(place) => handlePlaceAdd(place)}
-        disabled={isSearching}
-        className="w-full"
-        />
-        </div>
         </div>
     )
 }

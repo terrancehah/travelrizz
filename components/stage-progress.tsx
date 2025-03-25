@@ -72,7 +72,7 @@ export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
         
         return (
             <>
-                <div className="flex flex-col items-center gap-1 relative md:w-36 xl:w-44" ref={ref} {...props}>
+                <div className="flex flex-col items-center gap-1 relative md:w-20 lg:w-36 xl:w-44" ref={ref} {...props}>
                     
                     {/* Steps Numbers */}
                     <div 

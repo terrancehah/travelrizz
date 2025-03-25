@@ -380,7 +380,8 @@ export async function getStaticProps({ locale }: { locale: string }) {
             messages: {
                 travelChat: (await import(`../../public/locales/${locale}/travel-chat.json`)).default,
                 parameters: (await import(`../../public/locales/${locale}/parameters.json`)).default,
-                components: (await import(`../../public/locales/${locale}/components.json`)).default
+                components: (await import(`../../public/locales/${locale}/components.json`)).default,
+                itineraryplanner: (await import(`../../public/locales/${locale}/itineraryplanner.json`)).default
             },
             locale
         }
