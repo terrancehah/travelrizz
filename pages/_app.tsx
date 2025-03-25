@@ -89,7 +89,7 @@ export default function App({ Component, pageProps: { messages, locale, timeZone
                     }}
                     >
                         We use third-party cookies from Stripe for payment processing.{" "}
-                        <Link href="/cookies" title="Learn more about our cookie policy" style={{ color: "#3b82f6", textDecoration: "underline" }}>
+                        <Link href="/cookies" title="Cookie Policy" aria-label="Learn more about our cookie policy" style={{ color: "#3b82f6", textDecoration: "underline" }}>
                             Learn more
                         </Link>
                     </CookieConsent>

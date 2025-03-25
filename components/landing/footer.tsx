@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mx-auto">
           
           <div className="flex flex-col w-[100%] mx-auto space-y-4">
-            <Link href="/" className="flex items-center space-x-1">
+            <Link href="/" title="Home" aria-label="Home" className="flex items-center space-x-1">
               <Image
                 src="/images/travel-rizz.png"
                 alt="Travel-Rizz Logo"
@@ -31,17 +31,17 @@ export default function Footer() {
             <h3 className={`font-semibold mb-4 text-primary dark:text-sky-100 font-raleway ${fonts.heading}`}>{t('footer.quickLinks.title')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#features" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="#features" title="Features" aria-label="Features" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.quickLinks.features')}
                 </Link>
               </li>
               <li>
-                <Link href="#about" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="#about" title="About" aria-label="About" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.quickLinks.about')}
                 </Link>
               </li>
               <li>
-                <Link href="/travel-form" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/travel-form" title="Start" aria-label="Start" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.quickLinks.start')}
                 </Link>
               </li>
@@ -52,17 +52,17 @@ export default function Footer() {
             <h3 className={`font-semibold mb-4 text-primary dark:text-sky-100 font-raleway ${fonts.heading}`}>{t('footer.legal.title')}</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/terms" title="Terms of Service" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/terms" title="Terms of Service" aria-label="Terms of Service" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.terms')}
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" title="Privacy Policy" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/privacy" title="Privacy Policy" aria-label="Privacy Policy" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.privacy')}
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" title="Cookie Policy" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
+                <Link href="/cookies" title="Cookie Policy" aria-label="Cookie Policy" className={`text-secondary dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 font-raleway ${fonts.text}`}>
                   {t('footer.legal.cookies')}
                 </Link>
               </li>
@@ -72,13 +72,13 @@ export default function Footer() {
           <div className="mt-2 flex flex-col w-[90%] md:w-[60%] mx-auto">
             <h3 className={`font-semibold mb-4 text-primary dark:text-sky-100 font-raleway ${fonts.heading}`}>{t('footer.connect.title')}</h3>
             <div className="flex space-x-4">
-              <Link href="https://x.com/travelrizz" target="_blank" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 ${fonts.text}`}>
+              <Link href="https://x.com/travelrizz" title="X" aria-label="X" target="_blank" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 ${fonts.text}`}>
                 <Twitter className="h-5 w-5" aria-label={t('footer.connect.twitter')} />
               </Link>
-              <Link href="https://instagram.com/travelrizz" target="_blank" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 ${fonts.text}`}>
+              <Link href="https://instagram.com/travelrizz" title="Instagram" aria-label="Instagram" target="_blank" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 ${fonts.text}`}>
                 <Instagram className="h-5 w-5" aria-label={t('footer.connect.instagram')} />
               </Link>
-              <Link href="https://facebook.com/travelrizz" target="_blank" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 ${fonts.text}`}>
+              <Link href="https://facebook.com/travelrizz" title="Facebook" aria-label="Facebook" target="_blank" className={`text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-400 ${fonts.text}`}>
                 <Facebook className="h-5 w-5" aria-label={t('footer.connect.facebook')} />
               </Link>
             </div>
