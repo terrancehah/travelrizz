@@ -7,6 +7,8 @@ import { Info } from 'lucide-react';
 import PaymentSuccessPopup from './modals/payment-success-popup';
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
+import Link from 'next/link';
+import { Button } from './ui/button';
 
 interface StageProgressProps {
     currentStage: number;
@@ -151,14 +153,23 @@ const StageProgress: React.FC<StageProgressProps> = ({ currentStage, isPaid }) =
                     />
                 ))}
 
-                {/* Stages 4 and 5 Info Button */}
-                {currentStage > 3 && (
-                    <button 
-                        onClick={() => setShowPopup(true)}
-                        className="ml-4 p-2 text-gray-500 hover:text-gray-700 absolute right-2"
-                    >
-                        <Info size={20} />
-                    </button>
+                {/* Stage 4 Itinerary Button and Info Button */}
+                {currentStage === 4 && (
+                    <>
+                        <Link href="/itinerary-export" className="ml-4">
+                            <Button
+                                className="bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-600 hover:to-indigo-600 text-white"
+                            >
+                                View Itinerary
+                            </Button>
+                        </Link>
+                        <button 
+                            onClick={() => setShowPopup(true)}
+                            className="ml-4 p-2 text-gray-500 hover:text-gray-700"
+                        >
+                            <Info size={20} />
+                        </button>
+                    </>
                 )}
                 <PaymentSuccessPopup 
                     isOpen={showPopup} 

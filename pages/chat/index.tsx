@@ -17,16 +17,19 @@ import Link from "next/link"
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 import { useTranslations } from 'next-intl';
 
-
 const TravelChatComponent = dynamic(() => import('../../components/chat/travel-chat'), {
     ssr: false,
 })
 
-const ItineraryPlanner = dynamic(() => import('@/components/planner/daily-planner'), {
+const DailyPlanner = dynamic(() => import('@/components/planner/daily-planner'), {
     ssr: false,
 })
 
 const MapComponent = dynamic(() => import('@/components/features/map-component'), {
+    ssr: false,
+})
+
+const ItineraryExport = dynamic(() => import('@/components/planner/itinerary-export'), {
     ssr: false,
 })
 
@@ -312,9 +315,12 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                                 />
                             )}
                             {currentStage === 4 && (
-                                <ItineraryPlanner 
+                                <DailyPlanner 
                                     onPlaceRemoved={handlePlaceRemoved}
                                 />
+                            )}
+                            {currentStage === 5 && (
+                                <ItineraryExport />
                             )}
                         </>
                     ) : (
@@ -325,7 +331,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 </div>
 
                 {/* Map Toggle Button (Mobile Only) */}
-                {isMobile && (
+                {isMobile && currentStage !== 5 && (
                     <button
                         onClick={() => setShowMap(!showMap)}
                         className="fixed top-[124px] right-3 z-[50] border border-gray-200 dark:border-0 
@@ -336,7 +342,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 )}
 
                 {/* Map Container */}
-                {(showMap || !isMobile) && (
+                {(showMap || !isMobile) && currentStage !== 5 && (
                     <div className={`${isMobile ? 'fixed inset-0 z-40 h-[100dvh]' : 'w-[50%]'} 
                         ${isMobile && !showMap ? 'hidden' : ''}`}>
                         {apiKey ? (

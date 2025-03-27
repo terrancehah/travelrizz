@@ -65,7 +65,7 @@ export function PlaceCompactCard({ place, onDelete, dragHandleProps, className }
         className="invisible group-hover:visible shrink-0"
         aria-label="Delete place"
         >
-        <X className="h-5 w-5 text-muted-foreground hover:text-destructive dark:text-gray-400 dark:hover:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-sm" />
+        <X className="h-6 w-6 text-muted-foreground hover:text-destructive text-gray-300 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-600 hover:bg-red-600/40 dark:hover:bg-red-900/30 rounded-md" />
         </button>
         </div>
     )
