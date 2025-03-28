@@ -1,9 +1,13 @@
 "use client"
 
+import dynamic from 'next/dynamic';
 import { useState, useEffect } from "react"
+import { Place, TravelDetails } from '@/managers/types';
+import { getStoredSession, checkSessionValidity, updateLastActive, updateSessionLocation } from '../../managers/session-manager';
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useLocalizedFont } from "@/hooks/useLocalizedFont"
 
 import {
     MapPin,
@@ -25,10 +29,14 @@ import {
     Users,
     Umbrella,
     Clock,
+    Map
 } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
-import { getStoredSession } from '@/managers/session-manager';
+
+const MapComponent = dynamic(() => import('@/components/features/map-component'), {
+    ssr: false,
+})
 
 interface TripData {
     destination: string;
@@ -39,14 +47,16 @@ interface TripData {
     savedPlaces: any[];
 }
 
-interface Place {
-    id: string;
-    displayName: { text: string; languageCode: string };
-    formattedAddress: string;
-    primaryType: string;
-    rating: number;
-    openNow: boolean;
-}
+// interface Place {
+//     id: string;
+//     displayName: { text: string; languageCode: string };
+//     formattedAddress: string;
+//     primaryType: string;
+//     rating: number;
+//     openNow: boolean;
+// }
+
+
 
 // City information
 const cityInfo = {
@@ -61,7 +71,7 @@ const cityInfo = {
 }
 
 // Travel details
-const travelDetails = {
+const travelNotableDetails = {
     currency:
     "The official currency is the Thai Baht (THB). As of March 2025, 1 USD ≈ 32 THB. ATMs are widely available, and credit cards are accepted at most established businesses.",
     safety:
@@ -70,6 +80,8 @@ const travelDetails = {
     "Most shops open around 10:00 AM and close between 8:00-10:00 PM. Government offices operate from 8:30 AM to 4:30 PM, Monday to Friday. Shopping malls typically open from 10:00 AM to 10:00 PM daily.",
     navigation:
     "The BTS Skytrain and MRT subway are efficient ways to navigate the city while avoiding traffic. Taxis, tuk-tuks, and ride-sharing services are also widely available. Consider using boat services on the Chao Phraya River to reach riverside attractions.",
+    localTips:
+    "Bangkok is a city of contrasts, where ancient temples coexist with modern skyscrapers. The city's vibrant street life offers unique dining experiences, from street food to upscale restaurants. Don't miss the bustling markets, which provide a window into Thai culture and daily life."
 }
 
 // Emergency contacts
@@ -259,25 +271,161 @@ const weatherForecast = [
     { day: "Mar 29", temp: 31, high: 35, low: 28, icon: "cloudy" },
 ]
 
+type SessionData = {
+    messages: any[];
+    travelDetails: TravelDetails;
+    savedPlaces: Place[];
+    currentStage: number;
+    isPaid: boolean;
+};
+
 export default function ItineraryExport() {
+    const [apiKey, setApiKey] = useState('');
+    const [apiError, setApiError] = useState('');
+    const [sessionId, setSessionId] = useState<string>('');
+    const [isPaid, setIsPaid] = useState<boolean>(false);
+    const [currentStage, setCurrentStage] = useState<number>(1);
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
     const [tripData, setTripData] = useState<TripData | null>(null)
-    
-    useEffect(() => {
-        setMounted(true)
-        const session = getStoredSession()
-        if (session) {
-            setTripData({
-                destination: session.destination,
-                startDate: session.startDate,
-                endDate: session.endDate,
-                budget: session.budget,
-                preferences: session.preferences,
-                savedPlaces: session.savedPlaces
-            })
+    const font = useLocalizedFont()
+    const [travelDetails, setTravelDetails] = useState<TravelDetails>({
+        destination: '',
+        startDate: '',
+        endDate: '',
+        preferences: [],
+        budget: '',
+        language: '',
+        transport: [],
+        location: {
+            latitude: 0,
+            longitude: 0
         }
-    }, [])
+    });
+
+    // Handle image errors by moving to the next photo
+    const handleImageError = (placeId: string) => {
+        setCurrentPhotoIndex(prev => {
+            const place = tripData?.savedPlaces?.find(p => p.id === placeId);
+            const photos = place?.photos || [];
+            return prev < photos.length - 1 ? prev + 1 : prev;
+        });
+    };
+
+    useEffect(() => {
+        const session = getStoredSession();
+                
+        // First check session validity
+        if (!checkSessionValidity()) {
+            console.error('[ItineraryExport] Session is invalid or expired');
+            window.location.replace('/travel-form');
+            return;
+        }
+
+        // Then validate required session data
+        if (!session || !session.sessionId || !session.destination) {
+            console.error('[ItineraryExport] Required session data missing');
+            window.location.replace('/travel-form');
+            return;
+        }
+
+        // Update lastActive timestamp
+        updateLastActive();
+        
+        const travelDetails = {
+            destination: session.destination,
+            startDate: session.startDate,
+            endDate: session.endDate,
+            preferences: session.preferences,
+            budget: session.budget,
+            language: session.language,
+            transport: session.transport,
+            location: session.location
+        };
+        
+        // Set trip data from session with proper defaults
+        setTripData({
+            destination: session.destination,
+            startDate: session.startDate,
+            endDate: session.endDate,
+            budget: session.budget,
+            preferences: session.preferences,
+            savedPlaces: session.savedPlaces
+        });
+        
+        setTravelDetails(travelDetails);
+        setIsPaid(session.isPaid);
+        setCurrentStage(session.currentStage);
+        setMounted(true);
+        setSessionId(session.sessionId as string);
+    }, []);
+    
+
+    useEffect(() => {
+        const fetchMapKey = async () => {
+            if (!sessionId || apiKey) return;
+            
+            try {
+                const response = await fetch('/api/maps-key', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    cache: 'no-store'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (!data.key) {
+                    throw new Error('No API key in response');
+                }
+                
+                setApiKey(data.key);
+            } catch (error) {
+                setApiError('Failed to load Google Maps');
+            }
+        };
+
+        fetchMapKey();
+    }, [sessionId, apiKey]);
+
+    useEffect(() => {
+        if (!travelDetails.destination || !apiKey) return;
+
+        const fetchCoordinates = async () => {
+            try {
+                const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(travelDetails.destination)}&key=${apiKey}`);
+                if (!res.ok) {
+                    throw new Error(`Failed to fetch coordinates: ${res.status}`);
+                }
+                const data = await res.json();
+                
+                if (data.results && data.results.length > 0) {
+                    const location = data.results[0].geometry.location;
+                    const newLocation = {
+                        latitude: location.lat,
+                        longitude: location.lng
+                    };
+                    
+                    setTravelDetails(prevDetails => ({
+                        ...prevDetails,
+                        location: newLocation
+                    }));
+                    
+                    updateSessionLocation(newLocation);
+                }
+            } catch (error) {
+                console.error('Error fetching coordinates:', error);
+            }
+        };
+
+        fetchCoordinates();
+    }, [travelDetails.destination, apiKey]);
     
     const handlePrint = () => {
         window.print()
@@ -288,7 +436,7 @@ export default function ItineraryExport() {
         // In a real implementation, you might use a library like jsPDF or react-pdf
         // to generate a proper PDF instead of using the browser's print functionality
     }
-    
+
     const toggleTheme = () => {
         setTheme(theme === "dark" ? "light" : "dark")
     }
@@ -297,279 +445,340 @@ export default function ItineraryExport() {
     
     return (
         <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white dark:from-slate-900 dark:to-slate-800 print:bg-white">
-        {/* Header with controls - will not be printed */}
-        <div className="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-sky-200 dark:border-slate-700 print:hidden">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-        <div className="h-10 w-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white">
-        <Plane className="h-5 w-5 rotate-45" />
-        </div>
-        <h1 className="text-xl font-semibold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
-        Travel-Rizz
-        </h1>
-        </div>
-        <div className="flex items-center space-x-4">
-        <Button
-        variant="outline"
-        size="sm"
-        onClick={toggleTheme}
-        className="border-sky-200 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-800"
-        >
-        {theme === "dark" ? (
-            <Sun className="h-4 w-4 text-amber-400" />
-        ) : (
-            <Moon className="h-4 w-4 text-indigo-600" />
-        )}
-        </Button>
-        <Button
-        variant="outline"
-        size="sm"
-        onClick={handlePrint}
-        className="border-sky-200 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-800"
-        >
-        <Printer className="h-4 w-4 mr-2 text-sky-600 dark:text-sky-400" />
-        Print
-        </Button>
-        <Button
-        variant="default"
-        size="sm"
-        onClick={handleExportPDF}
-        className="bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-600 hover:to-indigo-600 text-white"
-        >
-        <Download className="h-4 w-4 mr-2" />
-        Export PDF
-        </Button>
-        </div>
-        </div>
-        </div>
-        
-        {/* Main content */}
-        <div className="container mx-auto px-4 py-8 max-w-5xl print:py-2">
-        {/* Itinerary Header */}
-        <div className="relative mb-12 print:mb-8">
-        <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-sky-500/20 to-indigo-500/20 rounded-full blur-xl print:hidden"></div>
-        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-500/20 to-pink-500/20 rounded-full blur-xl print:hidden"></div>
-        
-        <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden border border-sky-100 dark:border-slate-700">
-        <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-sky-400 to-indigo-500 print:hidden"></div>
-        <div className="absolute top-0 left-0 w-full h-24 bg-[url('/placeholder.svg?height=200&width=1000')] bg-cover bg-center opacity-20 print:hidden"></div>
-        
-        <div className="relative pt-16 pb-8 px-8 text-center">
-        <div className="inline-flex items-center justify-center p-2 bg-white dark:bg-slate-800 rounded-full shadow-md mb-4 border-2 border-sky-100 dark:border-slate-700 print:hidden">
-        <div className="h-16 w-16 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white">
-        <Plane className="h-8 w-8 rotate-45" />
-        </div>
-        </div>
-        
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text mb-2">
-        {tripData.destination}
-        </h1>
-        
-        <div className="flex items-center justify-center text-slate-600 dark:text-slate-300 mb-4">
-        <Calendar className="h-4 w-4 mr-2 text-sky-500 dark:text-sky-400" />
-        <span>
-        {tripData.startDate} to {tripData.endDate}
-        </span>
-        </div>
-        
-        <div className="flex flex-wrap justify-center gap-2 mb-4">
-        <div className="inline-block bg-gradient-to-r from-sky-500/10 to-indigo-500/10 dark:from-sky-500/20 dark:to-indigo-500/20 text-sky-700 dark:text-sky-300 px-4 py-1.5 rounded-full text-sm font-medium border border-sky-200 dark:border-sky-800">
-        {tripData.budget} Budget
-        </div>
-        {tripData.preferences.map((pref, index) => (
-            <div
-            key={index}
-            className="inline-block bg-gradient-to-r from-amber-500/10 to-pink-500/10 dark:from-amber-500/20 dark:to-pink-500/20 text-amber-700 dark:text-amber-300 px-4 py-1.5 rounded-full text-sm font-medium border border-amber-200 dark:border-amber-800 capitalize"
-            >
-            {pref}
+
+            {/* Header with controls - will not be printed */}
+            <div className="sticky top-0 z-10 flex space-x-4 p-4 justify-end bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-sky-200 dark:border-slate-700 print:hidden">
+                {/* Print and Export buttons */}
+                <Button
+                variant="outline"
+                size="sm"
+                onClick={handlePrint}
+                className={`${font.text}border-sky-200 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-800`}
+                >
+                    <Printer className="h-4 w-4 mr-2 text-sky-600 dark:text-sky-400" />
+                    Print
+                </Button>
+            
+                <Button
+                variant="default"
+                size="sm"
+                onClick={handleExportPDF}
+                className={`${font.text} bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-600 hover:to-indigo-600 text-white`}
+                >
+                <Download className="h-4 w-4 mr-2" />
+                Export PDF
+                </Button>
             </div>
-        ))}
-        </div>
         
-        {/* Weather summary */}
-        <div className="flex justify-center items-center space-x-6 mt-6 print:hidden">
-        {weatherForecast.map((day, index) => (
-            <div key={index} className="text-center">
-            <div className="text-sm font-medium text-slate-600 dark:text-slate-300">{day.day}</div>
-            <div className="mt-1 w-10 h-10 mx-auto bg-gradient-to-br from-sky-400 to-indigo-400 rounded-full flex items-center justify-center text-white">
-            <Umbrella className="h-5 w-5" />
-            </div>
-            <div className="mt-1 text-lg font-bold text-slate-800 dark:text-white">{day.temp}°</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400">
-            {day.low}° / {day.high}°
-            </div>
-            </div>
-        ))}
-        </div>
-        </div>
-        </div>
-        </div>
+            {/* Main content */}
+            <div className="container mx-auto px-4 py-8 max-w-5xl print:py-2">
+
+                {/* PDF Page 1 */}
+                <section className="print:h-[1122px]">
+
+                    {/* Printed Page Header */}
+                    <div className="hidden print:flex print:flex-row print:justify-start p-4">
+                        <Image
+                            src="/images/travel-rizz.png"
+                            alt="Travel-Rizz Logo"
+                            width={48}
+                            height={48}
+                            className="h-10 w-10 flex my-auto dark:invert dark:brightness-0 dark:contrast-200"
+                        />
+                        <span className={`text-xl h-min my-auto text-primary text-nowrap dark:text-white font-caveat`}>Travel-Rizz</span>
+                    </div>
+
+                    {/* Itinerary Hero Container */}
+                    <div className="relative mb-12 print:mb-8">
+                        {/* Decorative circles */}
+                        <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-sky-500/20 to-indigo-500/20 rounded-full blur-xl print:hidden"></div>
+                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-500/20 to-pink-500/20 rounded-full blur-xl print:hidden"></div>
+                    
+                        {/* Itinerary Hero Content */}
+                        <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden border border-sky-100 dark:border-slate-700">        
+                            <div className="relative p-8 text-center">
+                                {/* Destination Name */}
+                                <h1 className={`${font.text} text-4xl h-full font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text mb-2`}>
+                                {tripData.destination}
+                                </h1>
+
+                                {/* Date Range */}
+                                <div className="flex items-center justify-center text-slate-600 dark:text-slate-300 mb-4">
+                                    <Calendar className="h-4 w-4 mr-2 text-sky-500 dark:text-sky-400" />
+                                    <span className={`${font.text}`}>
+                                    {tripData.startDate} to {tripData.endDate}
+                                    </span>
+                                </div>
+
+                                {/* Budget and Preferences */}
+                                <div className="flex flex-wrap justify-center gap-2 mb-4">
+                                    <div className="inline-block bg-gradient-to-r from-sky-500/10 to-indigo-500/10 dark:from-sky-500/20 dark:to-indigo-500/20 text-sky-700 dark:text-sky-300 px-4 py-1.5 rounded-full text-sm font-medium border border-sky-200 dark:border-sky-800">
+                                    {tripData.budget} $$
+                                    </div>
+                                    {tripData.preferences.map((pref, index) => (
+                                        <div
+                                        key={index}
+                                        className="inline-block bg-gradient-to-r from-amber-500/10 to-pink-500/10 dark:from-amber-500/20 dark:to-pink-500/20 text-amber-700 dark:text-amber-300 px-4 py-1.5 rounded-full text-sm font-medium border border-amber-200 dark:border-amber-800 capitalize"
+                                        >
+                                        {pref}
+                                        </div>
+                                    ))}
+                                </div>
+                            
+                                {/* Weather Forecast */}
+                                <div className="flex justify-center items-center space-x-6 mt-6 print:hidden">
+                                    {weatherForecast.map((day, index) => (
+                                        <div key={index} className="text-center">
+                                        <div className="text-sm font-medium text-slate-600 dark:text-slate-300">{day.day}</div>
+                                        <div className="mt-1 w-10 h-10 mx-auto bg-gradient-to-br from-sky-400 to-indigo-400 rounded-full flex items-center justify-center text-white">
+                                        <Umbrella className="h-5 w-5" />
+                                        </div>
+                                        <div className="mt-1 text-lg font-bold text-slate-800 dark:text-white">{day.temp}°</div>
+                                        <div className="text-xs text-slate-500 dark:text-slate-400">
+                                        {day.low}° / {day.high}°
+                                        </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+            
+                    {/* City Introduction */}
+                    <div className="mb-12 print:mb-8 relative">
+                        {/* City Introduction Decoration */}
+                        <div className="absolute -z-10 top-1/2 left-0 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-sky-500/10 to-indigo-500/10 rounded-full blur-xl print:hidden"></div>
+                        
+                        {/* City Introduction Title Container */}
+                        <div className="flex items-center mb-6">
+                            {/* City Introduction Icon */}
+                            <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
+                                <Globe className="h-5 w-5" />
+                            </div>
+                            <h2 className={`${font.text} text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text`}>
+                                City Introduction
+                            </h2>
+                        </div>
+
+                        {/* City Introduction Content */}
+                        <Card className={`${font.text} p-8 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden`}>
+                            {/* City Introduction Content Decoration */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent rounded-bl-full print:hidden"></div>
+                            {/* City Introduction Content in two columns */}
+                            <div className="grid md:grid-cols-2 gap-8">
+                                
+                                {/* Left Column */}
+                                <div className="space-y-6">
+                                    {/* About City */}
+                                    <div>
+                                        <div className="flex items-center mb-3">
+                                            <Info className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                                            <h3 className="font-semibold text-lg text-slate-800 dark:text-white">About Bangkok</h3>
+                                        </div>
+                                        <p className="text-slate-600 dark:text-slate-300">{cityInfo.intro}</p>
+                                    </div>
+                                    {/* Weather & Climate */}
+                                    <div>
+                                        <div className="flex items-center mb-3">
+                                            <Umbrella className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                                            <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Weather & Climate</h3>
+                                        </div>
+                                        <p className="text-slate-600 dark:text-slate-300">{cityInfo.weather}</p>
+                                    </div>
+                                </div>
+                            
+                                {/* Right Column */}
+                                <div className="space-y-6">
+                                    {/* Languages Spoken */}
+                                    <div>
+                                        <div className="flex items-center mb-3">
+                                            <Languages className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                                            <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Languages Spoken</h3>
+                                        </div>
+                                        <p className="text-slate-600 dark:text-slate-300">{cityInfo.language}</p>
+                                    </div>                            
+                                    {/* Population */}
+                                    <div>
+                                        <div className="flex items-center mb-3">
+                                            <Users className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                                            <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Population</h3>
+                                        </div>
+                                        <p className="text-slate-600 dark:text-slate-300">{cityInfo.population}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </Card>
+                    </div>
+                </section>
+
         
-        {/* City Introduction */}
-        <section className="mb-12 print:mb-8 relative">
-        <div className="absolute -z-10 top-1/2 left-0 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-sky-500/10 to-indigo-500/10 rounded-full blur-xl print:hidden"></div>
-        
-        <div className="flex items-center mb-6">
-        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
-        <Globe className="h-5 w-5" />
-        </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
-        City Introduction
-        </h2>
-        </div>
-        
-        <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent rounded-bl-full print:hidden"></div>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-        <div className="space-y-6">
-        <div>
-        <div className="flex items-center mb-3">
-        <Info className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">About Bangkok</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{cityInfo.intro}</p>
-        </div>
-        
-        <div>
-        <div className="flex items-center mb-3">
-        <Umbrella className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Weather & Climate</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{cityInfo.weather}</p>
-        </div>
-        </div>
-        
-        <div className="space-y-6">
-        <div>
-        <div className="flex items-center mb-3">
-        <Languages className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Languages Spoken</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{cityInfo.language}</p>
-        </div>
-        
-        <div>
-        <div className="flex items-center mb-3">
-        <Users className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Population</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{cityInfo.population}</p>
-        </div>
-        </div>
-        </div>
-        </Card>
-        </section>
-        
-        {/* Travel Details */}
-        <section className="mb-12 print:mb-8 relative">
-        <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-amber-500/10 to-pink-500/10 rounded-full blur-xl print:hidden"></div>
-        
-        <div className="flex items-center mb-6">
-        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-amber-500 to-pink-500 rounded-full flex items-center justify-center text-white shadow-md">
-        <Compass className="h-5 w-5" />
-        </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-pink-600 dark:from-amber-400 dark:to-pink-400 text-transparent bg-clip-text">
-        Notable Travel Details
-        </h2>
-        </div>
-        
-        <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-transparent rounded-br-full print:hidden"></div>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-        <div className="space-y-6">
-        <div>
-        <div className="flex items-center mb-3">
-        <CreditCard className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Currency Information</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelDetails.currency}</p>
-        </div>
-        
-        <div>
-        <div className="flex items-center mb-3">
-        <AlertTriangle className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Safety Tips</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelDetails.safety}</p>
-        </div>
-        </div>
-        
-        <div className="space-y-6">
-        <div>
-        <div className="flex items-center mb-3">
-        <Clock className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Business Operating Hours</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelDetails.businessHours}</p>
-        </div>
-        
-        <div>
-        <div className="flex items-center mb-3">
-        <MapPin className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Local Navigation</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelDetails.navigation}</p>
-        </div>
-        </div>
-        </div>
-        </Card>
-        </section>
+                {/* PDF Page 2 - Travel Details Section*/}
+                <section className="mb-12 print:mb-8 relative print:h-[1122px]">
+                    {/* Printed Page Header */}
+                    <div className="hidden print:flex print:flex-row print:justify-start p-4">
+                        <Image
+                            src="/images/travel-rizz.png"
+                            alt="Travel-Rizz Logo"
+                            width={48}
+                            height={48}
+                            className="h-10 w-10 flex my-auto dark:invert dark:brightness-0 dark:contrast-200"
+                        />
+                        <span className={`text-xl h-min my-auto text-primary text-nowrap dark:text-white font-caveat`}>Travel-Rizz</span>
+                    </div>
+
+                    {/* Background Gradient */}
+                    <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-amber-500/10 to-pink-500/10 rounded-full blur-xl print:hidden"></div>
+                    
+                    <div className="flex items-center mb-6">
+                        {/* Icon */}
+                        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-amber-500 to-pink-500 rounded-full flex items-center justify-center text-white shadow-md">
+                            <Compass className="h-5 w-5" />
+                        </div>
+                        {/* Title */}
+                        <h2 className={`${font.text}text-2xl font-bold bg-gradient-to-r from-amber-600 to-pink-600 dark:from-amber-400 dark:to-pink-400 text-transparent bg-clip-text`}>
+                            Notable Travel Details
+                        </h2>
+                    </div>
+                    
+                    {/* Travel DetailsCard */}
+                    <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
+                        {/* Background Gradient */}
+                        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-transparent rounded-br-full print:hidden"></div>
+                        {/* Travel Details Content in two columns */}
+                        <div className={`${font.text} grid md:grid-cols-2 gap-8`}>
+                            {/* Left Column */}
+                            <div className="space-y-6">
+                                {/* Currency Information */}
+                                <div>
+                                    <div className="flex items-center mb-3">
+                                        <CreditCard className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Currency Information</h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.currency}</p>
+                                </div>
+                                
+                                {/* Safety Tips */}
+                                <div>
+                                    <div className="flex items-center mb-3">
+                                        <AlertTriangle className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Safety Tips</h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.safety}</p>
+                                </div>
+
+                                {/* Local Tips */}
+                                <div>
+                                    <div className="flex items-center mb-3">
+                                        <Map className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Local Tips</h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.localTips}</p>
+                                </div>
+                            </div>
+
+                            {/* Right Column */}
+                            <div className="space-y-6">
+                                {/* Business Operating Hours */}
+                                <div>
+                                    <div className="flex items-center mb-3">
+                                        <Clock className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Business Operating Hours</h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.businessHours}</p>
+                                </div>
+                                
+                                {/* Local Navigation */}
+                                <div>
+                                    <div className="flex items-center mb-3">
+                                        <MapPin className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Local Navigation</h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.navigation}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </section>
         
         {/* Map with Saved Places */}
         <section className="mb-12 print:mb-8">
-        <div className="flex items-center mb-6">
-        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
-        <MapPin className="h-5 w-5" />
-        </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
-        Map of Saved Places
-        </h2>
-        </div>
-        
+            {/* Title and Logo */}
+            <div className="flex items-center mb-6">
+                <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
+                    <MapPin className="h-5 w-5" />
+                </div>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
+                    Map of Saved Places
+                </h2>
+            </div>
+    
         <Card className="p-0 overflow-hidden border-0 shadow-lg bg-white dark:bg-slate-800">
-        <div className="aspect-video relative">
-        <Image
-        src="/placeholder.svg?height=600&width=1200"
-        alt="Map of Bangkok with saved places"
-        fill
-        className="object-cover"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-        <p className="bg-white/80 dark:bg-slate-800/80 p-4 rounded-md text-slate-800 dark:text-white">
-        Interactive map would be displayed here
-        </p>
-        </div>
-        </div>
-        
-        <div className="p-8">
-        <h3 className="font-semibold text-xl mb-6 text-slate-800 dark:text-white">Saved Places</h3>
-        <div className="grid md:grid-cols-2 gap-6">
-        {tripData.savedPlaces.map((place) => (
-            <div
-            key={place.id}
-            className="flex items-start bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-sky-900/30 dark:to-indigo-900/30 p-4 rounded-lg border border-sky-100 dark:border-slate-700"
-            >
-            <div className="mr-4 mt-1 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md shrink-0">
-            <MapPin className="h-5 w-5" />
+            <div className="aspect-video relative">
+                {apiKey && travelDetails.destination ? (
+                    <MapComponent
+                        city={travelDetails.destination}
+                        apiKey={apiKey}
+                        theme={theme as 'light' | 'dark'}
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                        <p className="text-sky-blue">{apiError || 'Loading map...'}</p>
+                    </div>
+                )}
             </div>
-            <div>
-            <h4 className="font-medium text-slate-800 dark:text-white">{place.displayName.text}</h4>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{place.formattedAddress}</p>
-            <div className="flex items-center mt-2">
-            <span className="text-sm bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full mr-2 font-medium">
-            {place.rating} ★
-            </span>
-            <span className="text-sm text-slate-500 dark:text-slate-400 capitalize">
-            {place.primaryType.replace("_", " ")}
-            </span>
+
+            {/* Saved Places */}
+            <div className="p-8">
+                <h3 className={`${font.text} font-semibold text-xl mb-6 text-slate-800 dark:text-white`}>Saved Places</h3>
+                {/* Saved Places Grid*/}
+                <div className="grid md:grid-cols-2 gap-6">
+                    {tripData?.savedPlaces?.map((place) => (
+                        <div
+                            key={place.id}
+                            className={`${font.text} flex items-start bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-sky-900/30 dark:to-indigo-900/30 p-4 rounded-lg border border-sky-100 dark:border-slate-700`}
+                        >
+                            <div className="relative w-24 h-24 mr-4 my-auto rounded-lg overflow-hidden shrink-0">
+                                {/* Permanent placeholder */}
+                                <img
+                                    src="/images/placeholder-image.jpg"
+                                    alt={typeof place.displayName === 'string' ? place.displayName : place.displayName?.text || 'Place image'}
+                                    className="w-full h-full object-cover filter blur-[2px]"
+                                />
+                                
+                                {/* Conditional actual photo */}
+                                {place.photos && place.photos.length > 0 && (
+                                    <img
+                                        src={`/api/places/photos?photoName=${place.photos[currentPhotoIndex].name}&maxWidth=400`}
+                                        onError={() => handleImageError(place.id)}
+                                        className="w-full h-full object-cover absolute inset-0"
+                                        alt=""
+                                    />
+                                )}
+                            </div>
+                            <div>
+                                <h4 className="font-medium text-slate-800 dark:text-white">
+                                    {typeof place.displayName === 'string' ? place.displayName : place.displayName.text}
+                                </h4>
+                                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{place.formattedAddress}</p>
+                                <div className="flex items-center mt-2">
+                                    {place.rating && (
+                                        <span className="text-sm bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full mr-2 font-medium">
+                                            {place.rating} ★
+                                        </span>
+                                    )}
+                                    {place.primaryType && (
+                                        <span className="text-sm text-slate-500 dark:text-slate-400 capitalize">
+                                            {place.primaryType.replace(/_/g, " ")}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            </div>
-            </div>
-        ))}
-        </div>
-        </div>
         </Card>
         </section>
         
@@ -815,29 +1024,8 @@ export default function ItineraryExport() {
         Itinerary created with Travel-Rizz on {new Date().toLocaleDateString()}
         </p>
         <p className="mt-1 text-slate-500 dark:text-slate-400">
-        For updates or changes to your itinerary, visit travel-rizz.com
+        For updates or changes to your itinerary, visit travelrizz.app
         </p>
-        
-        <div className="mt-6 flex justify-center space-x-4 print:hidden">
-        <Button
-        variant="outline"
-        size="sm"
-        onClick={handlePrint}
-        className="border-sky-200 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-800"
-        >
-        <Printer className="h-4 w-4 mr-2 text-sky-600 dark:text-sky-400" />
-        Print
-        </Button>
-        <Button
-        variant="default"
-        size="sm"
-        onClick={handleExportPDF}
-        className="bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-600 hover:to-indigo-600 text-white"
-        >
-        <Download className="h-4 w-4 mr-2" />
-        Export PDF
-        </Button>
-        </div>
         </footer>
         </div>
         </div>

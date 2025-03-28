@@ -7,12 +7,11 @@ import { Info } from 'lucide-react';
 import PaymentSuccessPopup from './modals/payment-success-popup';
 import { useTranslations } from 'next-intl';
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
-import Link from 'next/link';
-import { Button } from './ui/button';
 
 interface StageProgressProps {
     currentStage: number;
     isPaid: boolean;
+    onGenerateItinerary: () => void;
 }
 
 interface StepsRootProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -126,8 +125,9 @@ export const StepsItem = React.forwardRef<HTMLDivElement, StepsItemProps>(
 );
 StepsItem.displayName = 'StepsItem';
 
-const StageProgress: React.FC<StageProgressProps> = ({ currentStage, isPaid }) => {
+const StageProgress: React.FC<StageProgressProps> = ({ currentStage, isPaid, onGenerateItinerary }) => {
     const t = useTranslations('travelChat');
+    const fonts = useLocalizedFont();
 
     const stages = [
         { id: 1, title: t('stages.stage1') },
@@ -142,37 +142,41 @@ const StageProgress: React.FC<StageProgressProps> = ({ currentStage, isPaid }) =
     return (
         <StepsRoot>
             <StepsList>
-                {stages.map((stage, index) => (
-                    <StepsItem
-                        key={stage.id}
-                        step={stage.id}
-                        currentStep={currentStage}
-                        title={stage.title}
-                        isLocked={!isPaid && (stage.id === 4 || stage.id === 5)}
-                        isLast={index === stages.length - 1}
-                    />
-                ))}
-
-                {/* Stage 4 Itinerary Button and Info Button */}
-                {currentStage === 4 && (
-                    <>
-                        <Link href="/itinerary-export" className="ml-4">
-                            <Button
-                                className="bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-600 hover:to-indigo-600 text-white"
-                            >
-                                View Itinerary
-                            </Button>
-                        </Link>
-                        <button 
+                {/* Steps */}
+                <div className="flex items-center gap-4 md:gap-2 xl:gap-4">
+                    {stages.map((stage, index) => (
+                        <StepsItem
+                            key={stage.id}
+                            step={stage.id}
+                            currentStep={currentStage}
+                            title={stage.title}
+                            isLocked={!isPaid && (stage.id === 4 || stage.id === 5)}
+                            isLast={index === stages.length - 1}
+                        />
+                    ))}
+                </div>
+                {/* Action Buttons */}
+                <div className="flex items-center gap-2 ml-4">
+                    {currentStage === 4 && (
+                        <button
+                            onClick={onGenerateItinerary}
+                            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+                        >
+                            Generate Itinerary
+                        </button>
+                    )}
+                    {currentStage === 4 && (
+                        <button
                             onClick={() => setShowPopup(true)}
-                            className="ml-4 p-2 text-gray-500 hover:text-gray-700"
+                            className="p-2 text-gray-500 hover:text-gray-700"
                         >
                             <Info size={20} />
                         </button>
-                    </>
-                )}
-                <PaymentSuccessPopup 
-                    isOpen={showPopup} 
+                    )}
+                </div>
+                {/* Popup */}
+                <PaymentSuccessPopup
+                    isOpen={showPopup}
                     onClose={() => setShowPopup(false)}
                     title="Travel-Rizz Features"
                     description="Here are a range of features to help you plan your trip effectively:"

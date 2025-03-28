@@ -2,7 +2,6 @@
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import { TravelPreference, BudgetLevel, SupportedLanguage, TravelDetails, TravelSession } from '@/managers/types';
-import StageProgress from '@/components/stage-progress';
 import { Place } from '@/managers/types';
 import { getStoredSession, initializeSession, SESSION_CONFIG, checkSessionValidity, updateLastActive, getPaymentReference, setPaymentStatus, clearPaymentReference, getPaymentStatus, updateSessionLocation } from '../../managers/session-manager';
 import PaymentSuccessPopup from '../../components/modals/payment-success-popup';
@@ -17,11 +16,12 @@ import Link from "next/link"
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 import { useTranslations } from 'next-intl';
 
+
 const TravelChatComponent = dynamic(() => import('../../components/chat/travel-chat'), {
     ssr: false,
 })
 
-const DailyPlanner = dynamic(() => import('@/components/planner/daily-planner'), {
+const ItineraryPlanner = dynamic(() => import('@/components/planner/daily-planner'), {
     ssr: false,
 })
 
@@ -29,7 +29,11 @@ const MapComponent = dynamic(() => import('@/components/features/map-component')
     ssr: false,
 })
 
-const ItineraryExport = dynamic(() => import('@/components/planner/itinerary-export'), {
+const StageProgress = dynamic(() => import('@/components/stage-progress'), { 
+    ssr: false,
+})
+
+const ItineraryExport = dynamic(() => import('@/components/planner/itinerary-export'), { 
     ssr: false,
 })
 
@@ -63,6 +67,9 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
             longitude: 0
         }
     });
+    const handleGenerateItinerary = () => {
+        setCurrentStage(5); // Move to stage 5
+    };
     const [currentStage, setCurrentStage] = useState<number>(1);
     const [isPaid, setIsPaid] = useState<boolean>(false);
     const [sessionId, setSessionId] = useState<string>('');
@@ -268,7 +275,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
         <div className="flex flex-col h-dvh w-full overflow-hidden bg-white">
 
             {/* Window header - fixed height */}
-            <div className="flex border-b border-gray-200 dark:border-gray-700 px-3 md:px-6 py-2 bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400">
+            <div className="flex border-b border-gray-200 dark:border-gray-700 px-3 md:px-6 py-2 bg-light-blue/60 dark:bg-gray-900 transition-colors duration-400 print:hidden">
                 {/* Logo and Brand Name */}
                 <Link href="/" className="flex items-center my-auto gap-x-1">
                     <Image
@@ -284,6 +291,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 <StageProgress 
                     currentStage={currentStage} 
                     isPaid={isPaid}
+                    onGenerateItinerary={handleGenerateItinerary}
                 />
                 <div className="flex items-center justify-center bg-sky-200/80 dark:bg-blue-900 rounded-md h-min my-auto p-2 transition-colors duration-400">
                     <Button
@@ -301,62 +309,61 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
 
             {/* Main content - Chat and Map - takes remaining height */}
             <main className="flex-1 flex relative bg-white h-max overflow-y-hidden">
-
-                {/* Left Half - Chat Interface, and Chat Input Container */}
-                <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-auto overflow-y-hidden border-r border-gray-200 dark:border-gray-700`}>
-                    {isDetailsReady ? (
-                        <>
-                            {currentStage < 4 && (
-                                <TravelChatComponent 
-                                    initialDetails={travelDetails} 
-                                    onPlaceRemoved={handlePlaceRemoved}
-                                    currentStage={currentStage}
-                                    onStageUpdate={setCurrentStage}
-                                />
+                {currentStage < 5 ? (
+                    <>
+                        <div className={`${isMobile ? 'w-full' : 'w-[50%]'} h-auto overflow-y-hidden border-r border-gray-200 dark:border-gray-700`}>
+                            {isDetailsReady ? (
+                                <>
+                                    {currentStage < 4 && (
+                                        <TravelChatComponent 
+                                            initialDetails={travelDetails} 
+                                            onPlaceRemoved={handlePlaceRemoved}
+                                            currentStage={currentStage}
+                                            onStageUpdate={setCurrentStage}
+                                        />
+                                    )}
+                                    {currentStage === 4 && (
+                                        <ItineraryPlanner 
+                                            onPlaceRemoved={handlePlaceRemoved}
+                                        />
+                                    )}
+                                </>
+                            ) : (
+                                <div className="flex items-center justify-center h-full">
+                                    <p className="text-gray-500">Loading travel details...</p>
+                                </div>
                             )}
-                            {currentStage === 4 && (
-                                <DailyPlanner 
-                                    onPlaceRemoved={handlePlaceRemoved}
-                                />
-                            )}
-                            {currentStage === 5 && (
-                                <ItineraryExport />
-                            )}
-                        </>
-                    ) : (
-                        <div className="flex items-center justify-center h-full">
-                            <p className="text-gray-500">Loading travel details...</p>
                         </div>
-                    )}
-                </div>
-
-                {/* Map Toggle Button (Mobile Only) */}
-                {isMobile && currentStage !== 5 && (
-                    <button
-                        onClick={() => setShowMap(!showMap)}
-                        className="fixed top-[124px] right-3 z-[50] border border-gray-200 dark:border-0 
-                        bg-white dark:bg-blue-900 p-3 rounded-lg dark:shadow-gray-900 shadow-md"
-                    >
-                        <Map className={`h-5 w-5 text-sky-400 dark:text-gray-300`} />
-                    </button>
-                )}
-
-                {/* Map Container */}
-                {(showMap || !isMobile) && currentStage !== 5 && (
-                    <div className={`${isMobile ? 'fixed inset-0 z-40 h-[100dvh]' : 'w-[50%]'} 
-                        ${isMobile && !showMap ? 'hidden' : ''}`}>
-                        {apiKey ? (
-                                <MapComponent
-                                    city={travelDetails.destination || ''}
-                                    apiKey={apiKey}
-                                    theme={theme as 'light' | 'dark'}
-                                    key={`map-${savedPlacesUpdate}`}
-                                />
-                        ) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                                <p className="text-sky-blue">{apiError || 'Loading map...'}</p>
+                        {(showMap || !isMobile) && currentStage < 5 && (
+                            <div className={`${isMobile ? 'fixed inset-0 z-40 h-[100dvh]' : 'w-[50%]'} 
+                                ${isMobile && !showMap ? 'hidden' : ''}`}>
+                                {apiKey ? (
+                                    <MapComponent
+                                        city={travelDetails.destination || ''}
+                                        apiKey={apiKey}
+                                        theme={theme as 'light' | 'dark'}
+                                        key={`map-${savedPlacesUpdate}`}
+                                    />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center">
+                                        <p className="text-sky-blue">{apiError || 'Loading map...'}</p>
+                                    </div>
+                                )}
                             </div>
                         )}
+                        {isMobile && currentStage < 5 && (
+                            <button
+                                onClick={() => setShowMap(!showMap)}
+                                className="fixed top-[124px] right-3 z-[50] border border-gray-200 dark:border-0 
+                                bg-white dark:bg-blue-900 p-3 rounded-lg dark:shadow-gray-900 shadow-md"
+                            >
+                                <Map className={`h-5 w-5 text-sky-400 dark:text-gray-300`} />
+                            </button>
+                        )}
+                    </>
+                ) : (
+                    <div className="w-full h-full overflow-y-scroll">
+                        <ItineraryExport />
                     </div>
                 )}
             </main>
