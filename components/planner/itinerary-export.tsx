@@ -444,7 +444,7 @@ export default function ItineraryExport() {
     if (!mounted || !tripData) return null
     
     return (
-        <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white dark:from-slate-900 dark:to-slate-800 print:bg-white">
+        <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white dark:from-slate-900 dark:to-slate-800">
 
             {/* Header with controls - will not be printed */}
             <div className="sticky top-0 z-10 flex space-x-4 p-4 justify-end bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-sky-200 dark:border-slate-700 print:hidden">
@@ -471,10 +471,10 @@ export default function ItineraryExport() {
             </div>
         
             {/* Main content */}
-            <div className="container mx-auto px-4 py-8 max-w-5xl print:py-2">
+            <div className="container mx-auto px-4 py-8 max-w-5xl">
 
                 {/* PDF Page 1 */}
-                <section className="print:h-[1122px]">
+                <section className="print:break-before-page">
 
                     {/* Printed Page Header */}
                     <div className="hidden print:flex print:flex-row print:justify-start p-4">
@@ -489,10 +489,10 @@ export default function ItineraryExport() {
                     </div>
 
                     {/* Itinerary Hero Container */}
-                    <div className="relative mb-12 print:mb-8">
+                    <div className="relative mb-12">
                         {/* Decorative circles */}
-                        <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-sky-500/20 to-indigo-500/20 rounded-full blur-xl print:hidden"></div>
-                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-500/20 to-pink-500/20 rounded-full blur-xl print:hidden"></div>
+                        <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-sky-500/20 to-indigo-500/20 rounded-full blur-xl "></div>
+                        <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-500/20 to-pink-500/20 rounded-full blur-xl "></div>
                     
                         {/* Itinerary Hero Content */}
                         <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden border border-sky-100 dark:border-slate-700">        
@@ -526,7 +526,7 @@ export default function ItineraryExport() {
                                 </div>
                             
                                 {/* Weather Forecast */}
-                                <div className="flex justify-center items-center space-x-6 mt-6 print:hidden">
+                                <div className="flex justify-center items-center space-x-6 mt-6">
                                     {weatherForecast.map((day, index) => (
                                         <div key={index} className="text-center">
                                         <div className="text-sm font-medium text-slate-600 dark:text-slate-300">{day.day}</div>
@@ -546,9 +546,9 @@ export default function ItineraryExport() {
                     </div>
             
                     {/* City Introduction */}
-                    <div className="mb-12 print:mb-8 relative">
+                    <div className="mb-12 relative">
                         {/* City Introduction Decoration */}
-                        <div className="absolute -z-10 top-1/2 left-0 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-sky-500/10 to-indigo-500/10 rounded-full blur-xl print:hidden"></div>
+                        <div className="absolute -z-10 top-1/2 left-0 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-sky-500/10 to-indigo-500/10 rounded-full blur-xl"></div>
                         
                         {/* City Introduction Title Container */}
                         <div className="flex items-center mb-6">
@@ -564,7 +564,7 @@ export default function ItineraryExport() {
                         {/* City Introduction Content */}
                         <Card className={`${font.text} p-8 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden`}>
                             {/* City Introduction Content Decoration */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent rounded-bl-full print:hidden"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent rounded-bl-full"></div>
                             {/* City Introduction Content in two columns */}
                             <div className="grid md:grid-cols-2 gap-8">
                                 
@@ -615,7 +615,7 @@ export default function ItineraryExport() {
 
         
                 {/* PDF Page 2 - Travel Details Section*/}
-                <section className="mb-12 print:mb-8 relative print:h-[1122px]">
+                <section className="mb-12 relative print:break-before-page">
                     {/* Printed Page Header */}
                     <div className="hidden print:flex print:flex-row print:justify-start p-4">
                         <Image
@@ -629,7 +629,7 @@ export default function ItineraryExport() {
                     </div>
 
                     {/* Background Gradient */}
-                    <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-amber-500/10 to-pink-500/10 rounded-full blur-xl print:hidden"></div>
+                    <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-amber-500/10 to-pink-500/10 rounded-full blur-xl"></div>
                     
                     <div className="flex items-center mb-6">
                         {/* Icon */}
@@ -645,7 +645,7 @@ export default function ItineraryExport() {
                     {/* Travel DetailsCard */}
                     <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
                         {/* Background Gradient */}
-                        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-transparent rounded-br-full print:hidden"></div>
+                        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-transparent rounded-br-full"></div>
                         {/* Travel Details Content in two columns */}
                         <div className={`${font.text} grid md:grid-cols-2 gap-8`}>
                             {/* Left Column */}
@@ -703,7 +703,7 @@ export default function ItineraryExport() {
                 </section>
         
         {/* Map with Saved Places */}
-        <section className="mb-12 print:mb-8">
+        <section className="mb-12 print:break-before-page">
             {/* Title and Logo */}
             <div className="flex items-center mb-6">
                 <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
@@ -783,8 +783,8 @@ export default function ItineraryExport() {
         </section>
         
         {/* Daily Itinerary */}
-        <section className="mb-12 print:mb-8 relative">
-        <div className="absolute -z-10 top-1/3 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-sky-500/5 to-indigo-500/5 rounded-full blur-3xl print:hidden"></div>
+        <section className="mb-12 relative print:break-before-page">
+        <div className="absolute -z-10 top-1/3 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-sky-500/5 to-indigo-500/5 rounded-full blur-3xl"></div>
         
         <div className="flex items-center mb-6">
         <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
@@ -796,7 +796,7 @@ export default function ItineraryExport() {
         </div>
         
         <Tabs defaultValue="day1" className="w-full">
-        <TabsList className="grid grid-cols-3 mb-6 print:hidden bg-white dark:bg-slate-800 p-1 rounded-lg shadow-md border border-sky-100 dark:border-slate-700">
+        <TabsList className="grid grid-cols-3 mb-6 bg-white dark:bg-slate-800 p-1 rounded-lg shadow-md border border-sky-100 dark:border-slate-700">
         <TabsTrigger
         value="day1"
         className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-sky-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
@@ -820,8 +820,8 @@ export default function ItineraryExport() {
         {/* For print, show all days */}
         <div className="hidden print:block space-y-8">
         {dailyItinerary.map((day) => (
-            <Card key={day.day} className="p-6 border-0 shadow-lg bg-white overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent rounded-bl-full"></div>
+            <Card key={day.day} className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent dark:from-sky-500/20 rounded-bl-full"></div>
             
             <h3 className="text-xl font-bold text-sky-600 mb-4 flex items-center">
             <Calendar className="h-5 w-5 mr-2 text-sky-500" />
@@ -858,7 +858,7 @@ export default function ItineraryExport() {
         
         {/* For screen, show tabs */}
         {dailyItinerary.map((day) => (
-            <TabsContent key={day.day} value={`day${day.day}`} className="print:hidden">
+            <TabsContent key={day.day} value={`day${day.day}`} className="">
             <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent dark:from-sky-500/20 rounded-bl-full"></div>
             
@@ -904,8 +904,8 @@ export default function ItineraryExport() {
         </section>
         
         {/* Travel Reminders */}
-        <section className="mb-12 print:mb-8 relative">
-        <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-pink-500/10 to-purple-500/10 rounded-full blur-xl print:hidden"></div>
+        <section className="mb-12 relative print:break-before-page">
+        <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-pink-500/10 to-purple-500/10 rounded-full blur-xl"></div>
         
         <div className="flex items-center mb-6">
         <div className="mr-4 w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white shadow-md">
@@ -917,7 +917,7 @@ export default function ItineraryExport() {
         </div>
         
         <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-transparent dark:from-pink-500/20 rounded-br-full print:hidden"></div>
+        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-transparent dark:from-pink-500/20 rounded-br-full"></div>
         
         <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-6">
@@ -962,7 +962,7 @@ export default function ItineraryExport() {
         </section>
         
         {/* Emergency Contacts */}
-        <section className="mb-12 print:mb-8">
+        <section className="mb-12">
         <div className="flex items-center mb-6">
         <div className="mr-4 w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white shadow-md">
         <Phone className="h-5 w-5" />
@@ -973,7 +973,7 @@ export default function ItineraryExport() {
         </div>
         
         <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-500/10 to-transparent dark:from-red-500/20 rounded-bl-full print:hidden"></div>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-500/10 to-transparent dark:from-red-500/20 rounded-bl-full"></div>
         
         <div className="bg-gradient-to-r from-red-50 to-red-100/50 dark:from-red-900/30 dark:to-red-800/20 p-5 rounded-lg border border-red-200 dark:border-red-800 mb-6">
         <div className="flex items-center mb-3">
@@ -1013,8 +1013,8 @@ export default function ItineraryExport() {
         </section>
         
         {/* Footer */}
-        <footer className="text-center mt-16 mb-8 print:mt-8">
-        <div className="inline-flex items-center justify-center p-2 bg-white dark:bg-slate-800 rounded-full shadow-md mb-4 border-2 border-sky-100 dark:border-slate-700 print:hidden">
+        <footer className="text-center mt-16 mb-8">
+        <div className="inline-flex items-center justify-center p-2 bg-white dark:bg-slate-800 rounded-full shadow-md mb-4 border-2 border-sky-100 dark:border-slate-700">
         <div className="h-12 w-12 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white">
         <Plane className="h-6 w-6 rotate-45" />
         </div>
