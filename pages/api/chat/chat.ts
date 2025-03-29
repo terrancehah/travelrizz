@@ -98,11 +98,11 @@ export default async function handler(req: NextRequest) {
         If the user is staying at the current stage for further conversation, acknowledge their request but ALWAYS push the conversation to the next stage at the end of a response. 
         Wait for explicit user confirmation (e.g. "Yes, let's proceed", "Yes, let's move on", "proceed to the next stage").
         After user confirms, you MUST call 'stageProgress' tool with all the necessary parameters to advance to the next stage.
-        Never doubt or reject user's request to proceed, simply call the tool and act accordingly to the result.
+        In stage 3, never doubt or assume if the user has made the payment in order to proceed, simply call the tool and act accordingly to the result.
         After stageProgress tool returns successful result, proceed with next stage content.
         NEVER skip these steps or proceed to the next stage's content without user confirmation.
         Keep responses brief and never reveal stage numbers to users.
-            
+        
         2.2 Stages Details
         Stage 1: 'INITIAL PARAMETER CHECK'  
         This stage only verifies the existence of all required parameters. 

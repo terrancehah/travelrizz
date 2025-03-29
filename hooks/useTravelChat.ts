@@ -317,6 +317,14 @@ export function useTravelChat({
         });
     }, [mainChat, currentStage]);
     
+    // Handle payment success by informing AI
+    const handlePaymentSuccess = useCallback(async () => {
+        await append({
+            role: 'system',
+            content: 'Payment has been successfully processed. Premium features are now available.'
+        });
+    }, [append]);
+
     return {
         ...mainChat,
         messages: mainChat.messages.map(msg => ({
@@ -334,6 +342,7 @@ export function useTravelChat({
         premiumModalState,
         setPremiumModalState,
         // checkPremiumStage,
+        handlePaymentSuccess,
         append
     };
 }

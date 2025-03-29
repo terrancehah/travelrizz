@@ -427,10 +427,6 @@ export default function ItineraryExport() {
         fetchCoordinates();
     }, [travelDetails.destination, apiKey]);
     
-    const handlePrint = () => {
-        window.print()
-    }
-    
     const handleExportPDF = () => {
         window.print()
         // In a real implementation, you might use a library like jsPDF or react-pdf
@@ -449,16 +445,6 @@ export default function ItineraryExport() {
             {/* Header with controls - will not be printed */}
             <div className="sticky top-0 z-10 flex space-x-4 p-4 justify-end bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-sky-200 dark:border-slate-700 print:hidden">
                 {/* Print and Export buttons */}
-                <Button
-                variant="outline"
-                size="sm"
-                onClick={handlePrint}
-                className={`${font.text}border-sky-200 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-800`}
-                >
-                    <Printer className="h-4 w-4 mr-2 text-sky-600 dark:text-sky-400" />
-                    Print
-                </Button>
-            
                 <Button
                 variant="default"
                 size="sm"
@@ -498,7 +484,7 @@ export default function ItineraryExport() {
                         <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden border border-sky-100 dark:border-slate-700">        
                             <div className="relative p-8 text-center">
                                 {/* Destination Name */}
-                                <h1 className={`${font.text} text-4xl h-full font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text mb-2`}>
+                                <h1 className={`${font.text} text-4xl h-full font-bold bg-gradient-to-r text-sky-600 dark:text-sky-400 mb-2`}>
                                 {tripData.destination}
                                 </h1>
 

@@ -129,7 +129,8 @@ export function TravelChat({
         setShowSessionWarning,
         isWithinStageLimit,
         showPremiumModal,
-        setShowPremiumModal
+        setShowPremiumModal,
+        handlePaymentSuccess
     } = useTravelChat({
         currentDetails,
         currentStage,
@@ -366,12 +367,18 @@ export function TravelChat({
         }
     }, [mainChat, currentDetails, currentStage, onStageUpdate]);
 
+    // Handle payment success
+    const handlePaymentComplete = useCallback(async () => {
+        refreshSession();
+        await handlePaymentSuccess();
+    }, [refreshSession, handlePaymentSuccess]);
+
     return (
         <div className="relative flex flex-col h-full shadow-lg">
             <PremiumUpgradeModal 
                 isOpen={showPremiumModal} 
                 onClose={() => setShowPremiumModal(false)}
-                onPaymentSuccess={refreshSession}
+                onPaymentSuccess={handlePaymentComplete}
             />
             <SessionWarningModal 
                 isOpen={showSessionWarning}

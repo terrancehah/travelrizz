@@ -232,8 +232,7 @@ export default function PremiumUpgradeModal({ isOpen, onClose, onPaymentSuccess 
                     (window as any).setShowPaymentSuccess(true);
                     console.log(`[Payment Modal][${pollInstanceId}] Payment success popup opened for:`, refId);
                     // (window as any).setCurrentStage(4);
-                    // console.log(`[Payment Modal][${pollInstanceId}] Stage advanced to 4 for:`, refId);
-                    onClose();
+                    // console.log(`[Payment Modal][${pollInstanceId}] Stage advanced to 4 for:`, refId);                    onClose();
                     
                     return true;
                 }
