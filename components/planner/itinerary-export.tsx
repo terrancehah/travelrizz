@@ -484,7 +484,7 @@ export default function ItineraryExport() {
                         <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden border border-sky-100 dark:border-slate-700">        
                             <div className="relative p-8 text-center">
                                 {/* Destination Name */}
-                                <h1 className={`${font.text} text-4xl h-full font-bold bg-gradient-to-r text-sky-600 dark:text-sky-400 mb-2`}>
+                                <h1 className={`${font.text} text-4xl h-full font-bold text-sky-600 dark:text-sky-400 mb-2`}>
                                 {tripData.destination}
                                 </h1>
 
@@ -688,332 +688,338 @@ export default function ItineraryExport() {
                     </Card>
                 </section>
         
-        {/* Map with Saved Places */}
-        <section className="mb-12 print:break-before-page">
-            {/* Title and Logo */}
-            <div className="flex items-center mb-6">
-                <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
-                    <MapPin className="h-5 w-5" />
-                </div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
-                    Map of Saved Places
-                </h2>
-            </div>
-    
-        <Card className="p-0 overflow-hidden border-0 shadow-lg bg-white dark:bg-slate-800">
-            <div className="aspect-video relative">
-                {apiKey && travelDetails.destination ? (
-                    <MapComponent
-                        city={travelDetails.destination}
-                        apiKey={apiKey}
-                        theme={theme as 'light' | 'dark'}
-                    />
-                ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                        <p className="text-sky-blue">{apiError || 'Loading map...'}</p>
+                {/* Map with Saved Places */}
+                <section className="mb-12 print:break-before-page">
+                    {/* Title and Logo */}
+                    <div className="flex items-center mb-6">
+                        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
+                            <MapPin className="h-5 w-5" />
+                        </div>
+                        <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
+                            Map of Saved Places
+                        </h2>
                     </div>
-                )}
-            </div>
-
-            {/* Saved Places */}
-            <div className="p-8">
-                <h3 className={`${font.text} font-semibold text-xl mb-6 text-slate-800 dark:text-white`}>Saved Places</h3>
-                {/* Saved Places Grid*/}
-                <div className="grid md:grid-cols-2 gap-6">
-                    {tripData?.savedPlaces?.map((place) => (
-                        <div
-                            key={place.id}
-                            className={`${font.text} flex items-start bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-sky-900/30 dark:to-indigo-900/30 p-4 rounded-lg border border-sky-100 dark:border-slate-700`}
-                        >
-                            <div className="relative w-24 h-24 mr-4 my-auto rounded-lg overflow-hidden shrink-0">
-                                {/* Permanent placeholder */}
-                                <img
-                                    src="/images/placeholder-image.jpg"
-                                    alt={typeof place.displayName === 'string' ? place.displayName : place.displayName?.text || 'Place image'}
-                                    className="w-full h-full object-cover filter blur-[2px]"
-                                />
-                                
-                                {/* Conditional actual photo */}
-                                {place.photos && place.photos.length > 0 && (
-                                    <img
-                                        src={`/api/places/photos?photoName=${place.photos[currentPhotoIndex].name}&maxWidth=400`}
-                                        onError={() => handleImageError(place.id)}
-                                        className="w-full h-full object-cover absolute inset-0"
-                                        alt=""
-                                    />
-                                )}
+            
+                    <Card className="p-0 overflow-hidden border-0 shadow-lg bg-white dark:bg-slate-800">
+                        <div className="aspect-video relative">
+                            {apiKey && travelDetails.destination ? (
+                                <MapComponent
+                                    city={travelDetails.destination}
+                                    apiKey={apiKey}
+                                theme={theme as 'light' | 'dark'}
+                            />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                                <p className="text-sky-blue">{apiError || 'Loading map...'}</p>
                             </div>
-                            <div>
-                                <h4 className="font-medium text-slate-800 dark:text-white">
-                                    {typeof place.displayName === 'string' ? place.displayName : place.displayName.text}
-                                </h4>
-                                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{place.formattedAddress}</p>
-                                <div className="flex items-center mt-2">
-                                    {place.rating && (
-                                        <span className="text-sm bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full mr-2 font-medium">
-                                            {place.rating} ★
-                                        </span>
-                                    )}
-                                    {place.primaryType && (
-                                        <span className="text-sm text-slate-500 dark:text-slate-400 capitalize">
-                                            {place.primaryType.replace(/_/g, " ")}
-                                        </span>
-                                    )}
+                        )}
+                    </div>
+
+                    {/* Saved Places */}
+                    <div className="p-8">
+                        <h3 className={`${font.text} font-semibold text-xl mb-6 text-slate-800 dark:text-white`}>Saved Places</h3>
+                        {/* Saved Places Grid*/}
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {tripData?.savedPlaces?.map((place) => (
+                                <div
+                                    key={place.id}
+                                    className={`${font.text} flex items-start bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-sky-900/30 dark:to-indigo-900/30 p-4 rounded-lg border border-sky-100 dark:border-slate-700`}
+                                >
+                                    <div className="relative w-24 h-24 mr-4 my-auto rounded-lg overflow-hidden shrink-0">
+                                        {/* Permanent placeholder */}
+                                        <img
+                                            src="/images/placeholder-image.jpg"
+                                            alt={typeof place.displayName === 'string' ? place.displayName : place.displayName?.text || 'Place image'}
+                                            className="w-full h-full object-cover filter blur-[2px]"
+                                        />
+                                        
+                                        {/* Conditional actual photo */}
+                                        {place.photos && place.photos.length > 0 && (
+                                            <img
+                                                src={`/api/places/photos?photoName=${place.photos[currentPhotoIndex].name}&maxWidth=400`}
+                                                onError={() => handleImageError(place.id)}
+                                                className="w-full h-full object-cover absolute inset-0"
+                                                alt=""
+                                            />
+                                        )}
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium text-slate-800 dark:text-white">
+                                            {typeof place.displayName === 'string' ? place.displayName : place.displayName.text}
+                                        </h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{place.formattedAddress}</p>
+                                        <div className="flex items-center mt-2">
+                                            {place.rating && (
+                                                <span className="text-sm bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 px-2 py-0.5 rounded-full mr-2 font-medium">
+                                                    {place.rating} ★
+                                                </span>
+                                            )}
+                                            {place.primaryType && (
+                                                <span className="text-sm text-slate-500 dark:text-slate-400 capitalize">
+                                                    {place.primaryType.replace(/_/g, " ")}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </Card>
+                </section>
+                
+                {/* Daily Itinerary */}
+                <section className={`${font.text} mb-12 relative print:break-before-page`}>
+                    {/* Gradient background */}
+                    <div className="absolute -z-10 top-1/3 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-sky-500/5 to-indigo-500/5 rounded-full blur-3xl"></div>
+                    
+                    {/* Daily Itinerary Title and Logo */}
+                    <div className="flex items-center mb-6">
+                        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
+                            <Calendar className="h-5 w-5" />
+                        </div>
+                        <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
+                            Daily Itinerary
+                        </h2>
+                    </div>
+                
+                    {/* Daily Itinerary Tabs */}
+                    <Tabs defaultValue="day1" className="w-full">
+                        <TabsList className="grid grid-cols-3 mb-6 bg-white dark:bg-slate-800 p-1 rounded-lg shadow-md border border-sky-100 dark:border-slate-700">
+                            <TabsTrigger
+                                value="day1"
+                                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-sky-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
+                            >
+                                Day 1
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="day2"
+                                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-sky-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
+                            >
+                                Day 2
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="day3"
+                                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-sky-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
+                            >
+                                Day 3
+                            </TabsTrigger>
+                        </TabsList>
+                
+                        {/* All daily itinerary for printing and exporting */}
+                        <div className="hidden print:block space-y-8">
+                            {dailyItinerary.map((day) => (
+                                <Card key={day.day} className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent dark:from-sky-500/20 rounded-bl-full"></div>
+                    
+                                    <h3 className="text-xl font-bold text-sky-600 mb-4 flex items-center">
+                                        <Calendar className="h-5 w-5 mr-2 text-sky-500" />
+                                        Day {day.day}: {day.date}
+                                    </h3>
+                    
+                                    <div className="space-y-8">
+                                        {day.schedule.map((timeSlot) => (
+                                            <div key={timeSlot.time} className="relative">
+                                                <div className="flex items-center mb-4">
+                                                    {timeSlot.time === "Morning" && <Sunrise className="h-5 w-5 mr-2 text-amber-500" />}
+                                                    {timeSlot.time === "Afternoon" && <Sun className="h-5 w-5 mr-2 text-amber-500" />}
+                                                    {timeSlot.time === "Evening" && <Sunset className="h-5 w-5 mr-2 text-amber-500" />}
+                                                    <h4 className="text-lg font-medium text-amber-600">{timeSlot.time}</h4>
+                                                </div>
+                                            
+                                                <div className="space-y-4 pl-6 border-l-2 border-amber-200">
+                                                    {timeSlot.activities.map((activity, index) => (
+                                                        <div
+                                                        key={index}
+                                                        className="ml-2 bg-gradient-to-r from-amber-50 to-amber-100/50 p-4 rounded-lg border border-amber-200"
+                                                        >
+                                                            <h5 className="font-medium text-slate-800">{activity.name}</h5>
+                                                            <p className="text-sm text-slate-600 mt-1">{activity.description}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+                
+                        {/* For screen, show tabs */}
+                        {dailyItinerary.map((day) => (
+                            <TabsContent key={day.day} value={`day${day.day}`} className="">
+                                <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 overflow-hidden relative">
+                                    
+                                    {/* Decoration */}
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent dark:from-sky-500/20 rounded-bl-full"></div>
+                                    <h3 className="text-xl font-bold text-sky-600 dark:text-sky-400 mb-4 flex items-center">
+                                        <Calendar className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                                        Day {day.day}: {day.date}
+                                    </h3>
+                                
+                                    <div className="space-y-8">
+                                        {day.schedule.map((timeSlot) => (
+                                            <div key={timeSlot.time} className="relative">
+                                                <div className="flex items-center mb-4">
+                                                    {timeSlot.time === "Morning" && (
+                                                        <Sunrise className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
+                                                    )}
+                                                    {timeSlot.time === "Afternoon" && (
+                                                        <Sun className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
+                                                    )}
+                                                    {timeSlot.time === "Evening" && (
+                                                        <Sunset className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
+                                                    )}
+                                                    <h4 className="text-lg font-medium text-amber-600 dark:text-amber-400">{timeSlot.time}</h4>
+                                                </div>
+                                        
+                                                <div className="space-y-4 pl-6 border-l-2 border-amber-200 dark:border-amber-800">
+                                                    {timeSlot.activities.map((activity, index) => (
+                                                        <div
+                                                        key={index}
+                                                        className="ml-2 bg-gradient-to-r from-amber-50 to-amber-100/50 dark:from-amber-900/30 dark:to-amber-800/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800"
+                                                        >
+                                                            <h5 className="font-medium text-slate-800 dark:text-white">{activity.name}</h5>
+                                                            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{activity.description}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </Card>
+                            </TabsContent>
+                        ))}
+                    </Tabs>
+                </section>
+                
+                {/* Travel Reminders */}
+                <section className={`${font.text} mb-12 relative print:break-before-page`}>
+                    {/* Decoration */}
+                    <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-pink-500/10 to-purple-500/10 rounded-full blur-xl"></div>
+                
+                    <div className="flex items-center mb-6">
+                        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white shadow-md">
+                            <AlertTriangle className="h-5 w-5" />
+                        </div>
+                        <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 dark:from-pink-400 dark:to-purple-400 text-transparent bg-clip-text">
+                            Travel Reminders
+                        </h2>
+                    </div>
+                
+                    <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
+                        {/* Decoration */}
+                        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-transparent dark:from-pink-500/20 rounded-br-full"></div>
+                    
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div className="space-y-6">
+                                <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
+                                    <div className="flex items-center mb-3">
+                                        <AlertTriangle className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Travel Documents & Visa</h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelReminders.documents}</p>
+                                </div>
+                        
+                                <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
+                                    <div className="flex items-center mb-3">
+                                        <CreditCard className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Tax Refund Procedure</h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelReminders.taxRefund}</p>
+                                </div>
+                            </div>
+                        
+                            <div className="space-y-6">
+                                <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
+                                    <div className="flex items-center mb-3">
+                                        <Info className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">
+                                            Local Etiquette & Cultural Norms
+                                        </h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelReminders.etiquette}</p>
+                                </div>
+                        
+                                <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
+                                    <div className="flex items-center mb-3">
+                                        <Umbrella className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
+                                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Health & Vaccination</h3>
+                                    </div>
+                                    <p className="text-slate-600 dark:text-slate-300">{travelReminders.health}</p>
                                 </div>
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
-        </Card>
-        </section>
-        
-        {/* Daily Itinerary */}
-        <section className="mb-12 relative print:break-before-page">
-        <div className="absolute -z-10 top-1/3 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-sky-500/5 to-indigo-500/5 rounded-full blur-3xl"></div>
-        
-        <div className="flex items-center mb-6">
-        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
-        <Calendar className="h-5 w-5" />
-        </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
-        Daily Itinerary
-        </h2>
-        </div>
-        
-        <Tabs defaultValue="day1" className="w-full">
-        <TabsList className="grid grid-cols-3 mb-6 bg-white dark:bg-slate-800 p-1 rounded-lg shadow-md border border-sky-100 dark:border-slate-700">
-        <TabsTrigger
-        value="day1"
-        className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-sky-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
-        >
-        Day 1
-        </TabsTrigger>
-        <TabsTrigger
-        value="day2"
-        className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-sky-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
-        >
-        Day 2
-        </TabsTrigger>
-        <TabsTrigger
-        value="day3"
-        className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-sky-500 data-[state=active]:to-indigo-500 data-[state=active]:text-white"
-        >
-        Day 3
-        </TabsTrigger>
-        </TabsList>
-        
-        {/* For print, show all days */}
-        <div className="hidden print:block space-y-8">
-        {dailyItinerary.map((day) => (
-            <Card key={day.day} className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent dark:from-sky-500/20 rounded-bl-full"></div>
-            
-            <h3 className="text-xl font-bold text-sky-600 mb-4 flex items-center">
-            <Calendar className="h-5 w-5 mr-2 text-sky-500" />
-            Day {day.day}: {day.date}
-            </h3>
-            
-            <div className="space-y-8">
-            {day.schedule.map((timeSlot) => (
-                <div key={timeSlot.time} className="relative">
-                <div className="flex items-center mb-4">
-                {timeSlot.time === "Morning" && <Sunrise className="h-5 w-5 mr-2 text-amber-500" />}
-                {timeSlot.time === "Afternoon" && <Sun className="h-5 w-5 mr-2 text-amber-500" />}
-                {timeSlot.time === "Evening" && <Sunset className="h-5 w-5 mr-2 text-amber-500" />}
-                <h4 className="text-lg font-medium text-amber-600">{timeSlot.time}</h4>
-                </div>
+                    </Card>
+                </section>
                 
-                <div className="space-y-4 pl-6 border-l-2 border-amber-200">
-                {timeSlot.activities.map((activity, index) => (
-                    <div
-                    key={index}
-                    className="ml-2 bg-gradient-to-r from-amber-50 to-amber-100/50 p-4 rounded-lg border border-amber-200"
-                    >
-                    <h5 className="font-medium text-slate-800">{activity.name}</h5>
-                    <p className="text-sm text-slate-600 mt-1">{activity.description}</p>
+                {/* Emergency Contacts */}
+                <section className={`${font.text} mb-12`}>
+                    <div className="flex items-center mb-6">
+                        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white shadow-md">
+                            <Phone className="h-5 w-5" />
+                        </div>
+                        <h2 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-pink-600 dark:from-red-400 dark:to-pink-400 text-transparent bg-clip-text">
+                            Emergency Contacts
+                        </h2>
                     </div>
-                ))}
-                </div>
-                </div>
-            ))}
-            </div>
-            </Card>
-        ))}
-        </div>
-        
-        {/* For screen, show tabs */}
-        {dailyItinerary.map((day) => (
-            <TabsContent key={day.day} value={`day${day.day}`} className="">
-            <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent dark:from-sky-500/20 rounded-bl-full"></div>
-            
-            <h3 className="text-xl font-bold text-sky-600 dark:text-sky-400 mb-4 flex items-center">
-            <Calendar className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-            Day {day.day}: {day.date}
-            </h3>
-            
-            <div className="space-y-8">
-            {day.schedule.map((timeSlot) => (
-                <div key={timeSlot.time} className="relative">
-                <div className="flex items-center mb-4">
-                {timeSlot.time === "Morning" && (
-                    <Sunrise className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-                )}
-                {timeSlot.time === "Afternoon" && (
-                    <Sun className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-                )}
-                {timeSlot.time === "Evening" && (
-                    <Sunset className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-                )}
-                <h4 className="text-lg font-medium text-amber-600 dark:text-amber-400">{timeSlot.time}</h4>
-                </div>
                 
-                <div className="space-y-4 pl-6 border-l-2 border-amber-200 dark:border-amber-800">
-                {timeSlot.activities.map((activity, index) => (
-                    <div
-                    key={index}
-                    className="ml-2 bg-gradient-to-r from-amber-50 to-amber-100/50 dark:from-amber-900/30 dark:to-amber-800/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800"
-                    >
-                    <h5 className="font-medium text-slate-800 dark:text-white">{activity.name}</h5>
-                    <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{activity.description}</p>
+                    <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-500/10 to-transparent dark:from-red-500/20 rounded-bl-full"></div>
+                
+                        <div className="bg-gradient-to-r from-red-50 to-red-100/50 dark:from-red-900/30 dark:to-red-800/20 p-5 rounded-lg border border-red-200 dark:border-red-800 mb-6">
+                            <div className="flex items-center mb-3">
+                                <Phone className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
+                                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Local Emergency Numbers</h3>
+                            </div>
+                            <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.emergency}</p>
+                        </div>
+                
+                        <h3 className="font-semibold text-lg text-slate-800 dark:text-white mb-4 flex items-center">
+                            <AlertTriangle className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
+                            Hospitals
+                        </h3>
+                
+                        <div className="grid md:grid-cols-2 gap-6 mb-6">
+                            {emergencyContacts.hospitals.map((hospital, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-red-200 dark:border-red-800 shadow-sm"
+                                >
+                                    <h4 className="font-medium text-slate-800 dark:text-white">{hospital.name}</h4>
+                                    <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{hospital.address}</p>
+                                    <p className="text-sm text-red-600 dark:text-red-400 font-medium mt-1">{hospital.phone}</p>
+                                    <p className="text-sm italic text-slate-500 dark:text-slate-400 mt-1">{hospital.notes}</p>
+                                </div>
+                            ))}
+                        </div>
+                
+                        <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
+                            <div className="flex items-center mb-3">
+                                <Globe className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
+                                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Embassy Information</h3>
+                            </div>
+                            <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.embassy}</p>
+                        </div>
+                    </Card>
+                </section>
+                
+                {/* Footer */}
+                <footer className={`${font.text} text-center mt-16 mb-8`}>
+                    <div className="inline-flex items-center justify-center p-2 bg-white dark:bg-slate-800 rounded-full shadow-md mb-4 border-2 border-sky-100 dark:border-slate-700">
+                        <div className="h-12 w-12 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white">
+                            <Plane className="h-6 w-6 rotate-45" />
+                        </div>
                     </div>
-                ))}
-                </div>
-                </div>
-            ))}
+                
+                    <p className="text-slate-600 dark:text-slate-300">
+                        Itinerary created with Travel-Rizz on {new Date().toLocaleDateString()}
+                    </p>
+                    <p className="mt-1 text-slate-500 dark:text-slate-400">
+                        For updates or changes to your itinerary, visit travelrizz.app
+                    </p>
+                </footer>
             </div>
-            </Card>
-            </TabsContent>
-        ))}
-        </Tabs>
-        </section>
-        
-        {/* Travel Reminders */}
-        <section className="mb-12 relative print:break-before-page">
-        <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-pink-500/10 to-purple-500/10 rounded-full blur-xl"></div>
-        
-        <div className="flex items-center mb-6">
-        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white shadow-md">
-        <AlertTriangle className="h-5 w-5" />
-        </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 dark:from-pink-400 dark:to-purple-400 text-transparent bg-clip-text">
-        Travel Reminders
-        </h2>
-        </div>
-        
-        <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-transparent dark:from-pink-500/20 rounded-br-full"></div>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-        <div className="space-y-6">
-        <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
-        <div className="flex items-center mb-3">
-        <AlertTriangle className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Travel Documents & Visa</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelReminders.documents}</p>
-        </div>
-        
-        <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
-        <div className="flex items-center mb-3">
-        <CreditCard className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Tax Refund Procedure</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelReminders.taxRefund}</p>
-        </div>
-        </div>
-        
-        <div className="space-y-6">
-        <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
-        <div className="flex items-center mb-3">
-        <Info className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">
-        Local Etiquette & Cultural Norms
-        </h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelReminders.etiquette}</p>
-        </div>
-        
-        <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
-        <div className="flex items-center mb-3">
-        <Umbrella className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Health & Vaccination</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelReminders.health}</p>
-        </div>
-        </div>
-        </div>
-        </Card>
-        </section>
-        
-        {/* Emergency Contacts */}
-        <section className="mb-12">
-        <div className="flex items-center mb-6">
-        <div className="mr-4 w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white shadow-md">
-        <Phone className="h-5 w-5" />
-        </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-pink-600 dark:from-red-400 dark:to-pink-400 text-transparent bg-clip-text">
-        Emergency Contacts
-        </h2>
-        </div>
-        
-        <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-500/10 to-transparent dark:from-red-500/20 rounded-bl-full"></div>
-        
-        <div className="bg-gradient-to-r from-red-50 to-red-100/50 dark:from-red-900/30 dark:to-red-800/20 p-5 rounded-lg border border-red-200 dark:border-red-800 mb-6">
-        <div className="flex items-center mb-3">
-        <Phone className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Local Emergency Numbers</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.emergency}</p>
-        </div>
-        
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white mb-4 flex items-center">
-        <AlertTriangle className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
-        Hospitals
-        </h3>
-        
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-        {emergencyContacts.hospitals.map((hospital, index) => (
-            <div
-            key={index}
-            className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-red-200 dark:border-red-800 shadow-sm"
-            >
-            <h4 className="font-medium text-slate-800 dark:text-white">{hospital.name}</h4>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{hospital.address}</p>
-            <p className="text-sm text-red-600 dark:text-red-400 font-medium mt-1">{hospital.phone}</p>
-            <p className="text-sm italic text-slate-500 dark:text-slate-400 mt-1">{hospital.notes}</p>
-            </div>
-        ))}
-        </div>
-        
-        <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
-        <div className="flex items-center mb-3">
-        <Globe className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Embassy Information</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.embassy}</p>
-        </div>
-        </Card>
-        </section>
-        
-        {/* Footer */}
-        <footer className="text-center mt-16 mb-8">
-        <div className="inline-flex items-center justify-center p-2 bg-white dark:bg-slate-800 rounded-full shadow-md mb-4 border-2 border-sky-100 dark:border-slate-700">
-        <div className="h-12 w-12 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white">
-        <Plane className="h-6 w-6 rotate-45" />
-        </div>
-        </div>
-        
-        <p className="text-slate-600 dark:text-slate-300">
-        Itinerary created with Travel-Rizz on {new Date().toLocaleDateString()}
-        </p>
-        <p className="mt-1 text-slate-500 dark:text-slate-400">
-        For updates or changes to your itinerary, visit travelrizz.app
-        </p>
-        </footer>
-        </div>
         </div>
     )
 }
