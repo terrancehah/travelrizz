@@ -238,8 +238,8 @@ export default async function handler(req: NextRequest) {
         
         // Get AI response
         const result = await streamText({
-            // model: openai('gpt-4o-mini'),
-            model: deepseek('deepseek-chat'),
+            model: openai('gpt-4o-mini'),
+            // model: deepseek('deepseek-chat'),
             messages: [
                 { role: 'system', content: staticSystemPrompt },
                 { role: 'system', content: dynamicContext },
