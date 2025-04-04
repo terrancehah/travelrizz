@@ -70,7 +70,7 @@ export default function TravelFormPage() {
     // Function to fetch Maps API key
     const fetchMapsApiKey = async () => {
         try {
-            const response = await fetch('/api/maps-key');
+            const response = await fetch('/api/maps/places-key');
             const data = await response.json();
             return data.key;
         } catch (error) {

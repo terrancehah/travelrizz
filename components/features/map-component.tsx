@@ -8,7 +8,6 @@ import { loadGoogleMapsScript, getMapId, GoogleMapManager } from '../../utils/ma
 
 interface MapComponentProps {
     city: string;
-    apiKey: string;
     theme?: 'dark' | 'light';
 }
 
@@ -54,7 +53,7 @@ const dispatchMapOperation = (detail: MapOperationDetail) => {
     window.dispatchEvent(new CustomEvent<MapOperationDetail>('map-operation', { detail }));
 };
 
-const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'light' }) => {
+const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     const mapInstanceRef = useRef<google.maps.Map | null>(null);
     const mapManagerRef = useRef<GoogleMapManager | null>(null);
@@ -100,7 +99,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
             setMap(map);
             
             // Initialize map manager
-            mapManagerRef.current = new GoogleMapManager(mapInstanceRef.current, apiKey);
+            mapManagerRef.current = new GoogleMapManager(mapInstanceRef.current, '');
 
             // Dynamically import the geometry library
             console.log('[MapComponent] Loading geometry library...');
@@ -126,56 +125,61 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, apiKey, theme = 'ligh
     }
 
     useEffect(() => {
-        if (!apiKey) return;
-
-        // First, attach setupMapInstance to window
-        window.setupMapInstance = () => {
-            setupMapInstance();
-        };
-
-        const loadGoogleMapsScript = () => {
-            // If Maps is already loaded, initialize directly
-            if (window.google?.maps) {
-                setupMapInstance();
-                return;
-            }
-
-            // Don't load script if it's already being loaded
-            if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
-                return;
-            }
-
+        // Load the Google Maps script
+        const loadGoogleMapsScript = async () => {
             try {
-                const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker,directions&v=weekly&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
-                script.async = true;
-                script.defer = true;
-                
-                // Add error handling
-                script.onerror = () => {
-                    console.error('[MapComponent] Failed to load Google Maps script');
-                    setError('Failed to load map');
-                    setIsLoading(false);
+                // Get API key and coordinates from our secure endpoint
+                const response = await fetch('/api/maps/geocode', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ address: city })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to initialize map');
+                }
+
+                const data = await response.json();
+                if (!data.location || !data.key) {
+                    throw new Error('No location data found');
+                }
+
+                // Setup map with the coordinates
+                window.setupMapInstance = () => {
+                    const mapInstance = new google.maps.Map(mapRef.current!, {
+                        center: { lat: data.location.latitude, lng: data.location.longitude },
+                        zoom: 13,
+                        styles: theme === 'dark' ? [] : [],
+                        mapId: theme === 'dark' ? '61462f35959f2552' : '32620e6bdcb7e236'
+                    });
+                    mapInstanceRef.current = mapInstance;
+                    setMap(mapInstance);
+                    setIsMapReady(true);
                 };
 
+                // Load Google Maps script with API key and map IDs
+                const script = document.createElement('script');
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&libraries=places&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
+                script.async = true;
+                script.defer = true;
                 document.head.appendChild(script);
             } catch (error) {
-                console.error('[MapComponent] Error loading script:', error);
+                console.error('Error loading map:', error);
                 setError('Failed to initialize map');
                 setIsLoading(false);
             }
         };
 
-        // Load the script
         loadGoogleMapsScript();
 
-        // Cleanup
         return () => {
             if (window.setupMapInstance) {
                 delete window.setupMapInstance;
             }
         };
-    }, [apiKey]);
+    }, [city, theme]);
 
     useEffect(() => {
         if (!isMapReady) return; // Only proceed if map is ready

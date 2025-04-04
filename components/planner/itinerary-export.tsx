@@ -110,8 +110,12 @@ type SessionData = {
 };
 
 export default function ItineraryExport({ itineraryData }: { itineraryData: ItineraryData }) {
-    const [apiKey, setApiKey] = useState('');
-    const [apiError, setApiError] = useState('');
+    const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [showMap, setShowMap] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
+    const fonts = useLocalizedFont();
+    const [isDetailsReady, setIsDetailsReady] = useState(false);
     const [sessionId, setSessionId] = useState<string>('');
     const [isPaid, setIsPaid] = useState<boolean>(false);
     const [currentStage, setCurrentStage] = useState<number>(1);
@@ -235,62 +239,33 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         setSessionId(session.sessionId as string);
     }, []);
     
-    
     useEffect(() => {
-        const fetchMapKey = async () => {
-            if (!sessionId || apiKey) return;
-            
-            try {
-                const response = await fetch('/api/maps-key', {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                    },
-                    cache: 'no-store'
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                if (!data.key) {
-                    throw new Error('No API key in response');
-                }
-                
-                setApiKey(data.key);
-            } catch (error) {
-                setApiError('Failed to load Google Maps');
-            }
-        };
-        
-        fetchMapKey();
-    }, [sessionId, apiKey]);
-    
-    useEffect(() => {
-        if (!travelDetails.destination || !apiKey) return;
+        if (!travelDetails.destination) return;
         
         const fetchCoordinates = async () => {
             try {
-                const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(travelDetails.destination)}&key=${apiKey}`);
+                const res = await fetch('/api/maps/geocode', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        address: travelDetails.destination 
+                    })
+                });
+                
                 if (!res.ok) {
                     throw new Error(`Failed to fetch coordinates: ${res.status}`);
                 }
-                const data = await res.json();
                 
-                if (data.results && data.results.length > 0) {
-                    const location = data.results[0].geometry.location;
-                    const newLocation = {
-                        latitude: location.lat,
-                        longitude: location.lng
-                    };
-                    
+                const data = await res.json();
+                if (data.location) {
                     setTravelDetails(prevDetails => ({
                         ...prevDetails,
-                        location: newLocation
+                        location: data.location
                     }));
                     
-                    updateSessionLocation(newLocation);
+                    updateSessionLocation(data.location);
                 }
             } catch (error) {
                 console.error('Error fetching coordinates:', error);
@@ -298,7 +273,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         };
         
         fetchCoordinates();
-    }, [travelDetails.destination, apiKey]);
+    }, [travelDetails.destination]);
     
     const handleExportPDF = () => {
         window.print()
@@ -496,7 +471,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <Compass className="h-5 w-5" />
         </div>
         {/* Title */}
-        <h2 className={`${font.text}text-2xl font-bold bg-gradient-to-r from-amber-600 to-pink-600 dark:from-amber-400 dark:to-pink-400 text-transparent bg-clip-text`}>
+        <h2 className={`${fonts.text}text-2xl font-bold bg-gradient-to-r from-amber-600 to-pink-600 dark:from-amber-400 dark:to-pink-400 text-transparent bg-clip-text`}>
         Notable Travel Details
         </h2>
         </div>
@@ -504,9 +479,9 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         {/* Travel DetailsCard */}
         <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
         {/* Background Gradient */}
-        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-transparent rounded-br-full"></div>
+        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-transparent dark:from-amber-500/20 rounded-br-full"></div>
         {/* Travel Details Content in two columns */}
-        <div className={`${font.text} grid md:grid-cols-2 gap-8`}>
+        <div className={`${fonts.text} grid md:grid-cols-2 gap-8`}>
         {/* Left Column */}
         <div className="space-y-6">
         {/* Currency Information */}
@@ -587,15 +562,14 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         
         <Card className="p-0 overflow-hidden border-0 shadow-lg bg-white dark:bg-slate-800">
         <div className="aspect-video relative">
-        {apiKey && travelDetails.destination ? (
+        {travelDetails.destination && travelDetails.location ? (
             <MapComponent
-            city={travelDetails.destination}
-            apiKey={apiKey}
-            theme={theme as 'light' | 'dark'}
+                city={travelDetails.destination}
+                theme={theme as 'light' | 'dark'}
             />
         ) : (
             <div className="w-full h-full flex items-center justify-center">
-            <p className="text-sky-blue">{apiError || 'Loading map...'}</p>
+            <p className="text-sky-blue">Loading map...</p>
             </div>
         )}
         </div>

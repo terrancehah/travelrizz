@@ -207,75 +207,39 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
             }, []);
             
             useEffect(() => {
-                const fetchMapKey = async () => {
-                    try {
-                        console.log('[Index] Fetching Maps API key...');
-                        // Add cache-control headers and explicit API path
-                        const response = await fetch('/api/maps-key', {
-                            method: 'GET',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Cache-Control': 'no-cache',
-                                'Pragma': 'no-cache'
-                            },
-                            // Add cache busting and explicit next handling
-                            cache: 'no-store',
-                            next: { revalidate: 0 }
-                        });
-                        
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        
-                        const data = await response.json();
-                        if (!data.key) {
-                            throw new Error('No API key in response');
-                        }
-                        
-                        console.log('[Index] Successfully fetched Maps API key');
-                        setApiKey(data.key);
-                    } catch (error) {
-                        console.error('[Index] Error fetching Maps API key:', error);
-                        setApiError('Failed to load Google Maps');
-                    } finally {
-                        setIsLoadingKey(false);
-                    }
-                };
-                
-                if (!isLoadingKey || apiKey || !sessionId) return;
-                
-                fetchMapKey();
-            }, [isLoadingKey, apiKey, sessionId]);
-            
+                // Initialize map immediately since we don't need to wait for API key anymore
+                setIsLoadingKey(false);
+                setApiKey('true'); // Just need a truthy value since key is handled server-side
+            }, []);
+
             useEffect(() => {
-                if (!travelDetails.destination || !apiKey || !isDetailsReady) return;
+                if (!travelDetails.destination || !isDetailsReady) return;
                 
                 const fetchCoordinates = async () => {
                     try {
-                        const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(travelDetails.destination as string)}&key=${apiKey}`);
+                        const res = await fetch('/api/maps/geocode', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ 
+                                address: travelDetails.destination 
+                            })
+                        });
+                        
                         if (!res.ok) {
                             throw new Error(`Failed to fetch coordinates: ${res.status}`);
                         }
-                        const data = await res.json();
-                        console.log('Geocoding API Response:', data);
                         
-                        if (data.results && data.results.length > 0) {
-                            const location = data.results[0].geometry.location;
-                            console.log('Parsed Location:', location);
-                            
-                            // Update both travel details and session
-                            const newLocation = {
-                                latitude: location.lat,
-                                longitude: location.lng
-                            };
-                            
+                        const data = await res.json();
+                        if (data.location) {
                             setTravelDetails(prevDetails => ({
                                 ...prevDetails,
-                                location: newLocation
+                                location: data.location
                             }));
                             
                             // Store location in session
-                            updateSessionLocation(newLocation);
+                            updateSessionLocation(data.location);
                         }
                     } catch (error) {
                         console.error('Error fetching coordinates:', error);
@@ -283,7 +247,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 };
                 
                 fetchCoordinates();
-            }, [travelDetails.destination, apiKey, isDetailsReady]);
+            }, [travelDetails.destination, isDetailsReady]);
             
             useEffect(() => {
                 (window as any).setShowPaymentSuccess = setShowPaymentSuccess;
@@ -362,72 +326,71 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                     {(showMap || !isMobile) && currentStage < 5 && (
                         <div className={`${isMobile ? 'fixed inset-0 z-40 h-[100dvh]' : 'w-[50%]'} 
                                 ${isMobile && !showMap ? 'hidden' : ''}`}>
-                            {apiKey ? (
+                            {travelDetails.destination ? (
                                 <MapComponent
-                                city={travelDetails.destination || ''}
-                                apiKey={apiKey}
-                                theme={theme as 'light' | 'dark'}
-                                key={`map-${savedPlacesUpdate}`}
+                                    city={travelDetails.destination}
+                                    theme={theme as 'light' | 'dark'}
+                                    key={`map-${savedPlacesUpdate}`}
                                 />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center">
-                                <p className="text-sky-blue">{apiError || 'Loading map...'}</p>
+                                    <p className="text-sky-blue">Please enter a destination</p>
                                 </div>
                             )}
-                            </div>
-                        )}
-                        {isMobile && currentStage < 5 && (
-                            <button
-                            onClick={() => setShowMap(!showMap)}
-                            className="fixed top-[124px] right-3 z-[50] border border-gray-200 dark:border-0 
-                                bg-white dark:bg-blue-900 p-3 rounded-lg dark:shadow-gray-900 shadow-md"
-                            >
-                            <Map className={`h-5 w-5 text-sky-400 dark:text-gray-300`} />
-                            </button>
-                        )}
-                        </>
-                    ) : (
-                        <div className="w-full h-full overflow-y-scroll">
-                            {isLoading ? (
-                                <p>Loading...</p>
-                            ) : error ? (
-                                <p>{error}</p>
-                            ) : (
-                                <ItineraryExport itineraryData={itineraryData} />
-                            )}
                         </div>
                     )}
-                    </main>
-                    {showPaymentSuccess && (
-                        <PaymentSuccessPopup
-                        isOpen={showPaymentSuccess}
-                        onClose={() => setShowPaymentSuccess(false)}
-                        title={tComp('paymentSuccessPopup.heading')}
-                        description={tComp('paymentSuccessPopup.description')}
-                        showConfetti={true} // Enable confetti for payment success
-                        />
+                    {isMobile && currentStage < 5 && (
+                        <button
+                        onClick={() => setShowMap(!showMap)}
+                        className="fixed top-[124px] right-3 z-[50] border border-gray-200 dark:border-0 
+                            bg-white dark:bg-blue-900 p-3 rounded-lg dark:shadow-gray-900 shadow-md"
+                        >
+                        <Map className={`h-5 w-5 text-sky-400 dark:text-gray-300`} />
+                        </button>
                     )}
-                    {/* {showPremiumModal && (
-                        <PremiumUpgradeModal 
-                        isOpen={showPremiumModal} 
-                        onClose={() => setShowPremiumModal(false)}
-                        
-                        />
-                        )} */}
-                        </div>
-                    );
-                }
-                
-                export async function getStaticProps({ locale }: { locale: string }) {
-                    return {
-                        props: {
-                            messages: {
-                                travelChat: (await import(`../../public/locales/${locale}/travel-chat.json`)).default,
-                                parameters: (await import(`../../public/locales/${locale}/parameters.json`)).default,
-                                components: (await import(`../../public/locales/${locale}/components.json`)).default,
-                                itineraryplanner: (await import(`../../public/locales/${locale}/itineraryplanner.json`)).default
-                            },
-                            locale
-                        }
+                    </>
+                ) : (
+                    <div className="w-full h-full overflow-y-scroll">
+                        {isLoading ? (
+                            <p>Loading...</p>
+                        ) : error ? (
+                            <p>{error}</p>
+                        ) : (
+                            <ItineraryExport itineraryData={itineraryData} />
+                        )}
+                    </div>
+                )}
+                </main>
+                {showPaymentSuccess && (
+                    <PaymentSuccessPopup
+                    isOpen={showPaymentSuccess}
+                    onClose={() => setShowPaymentSuccess(false)}
+                    title={tComp('paymentSuccessPopup.heading')}
+                    description={tComp('paymentSuccessPopup.description')}
+                    showConfetti={true} // Enable confetti for payment success
+                    />
+                )}
+                {/* {showPremiumModal && (
+                    <PremiumUpgradeModal 
+                    isOpen={showPremiumModal} 
+                    onClose={() => setShowPremiumModal(false)}
+                    
+                    />
+                    )} */}
+                    </div>
+                );
+            }
+            
+            export async function getStaticProps({ locale }: { locale: string }) {
+                return {
+                    props: {
+                        messages: {
+                            travelChat: (await import(`../../public/locales/${locale}/travel-chat.json`)).default,
+                            parameters: (await import(`../../public/locales/${locale}/parameters.json`)).default,
+                            components: (await import(`../../public/locales/${locale}/components.json`)).default,
+                            itineraryplanner: (await import(`../../public/locales/${locale}/itineraryplanner.json`)).default
+                        },
+                        locale
                     }
                 }
+            }
