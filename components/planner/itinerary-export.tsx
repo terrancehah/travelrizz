@@ -563,6 +563,18 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         
         {/* Map with Saved Places */}
         <section className="mb-12 print:break-before-page">
+        {/* Printed Page Header */}
+        <div className="hidden print:flex print:flex-row print:justify-start p-4">
+        <Image
+        src="/images/travel-rizz.png"
+        alt="Travel-Rizz Logo"
+        width={48}
+        height={48}
+        className="h-10 w-10 flex my-auto dark:invert dark:brightness-0 dark:contrast-200"
+        />
+        <span className={`text-xl h-min my-auto text-primary text-nowrap dark:text-white font-caveat`}>Travel-Rizz</span>
+        </div>
+        
         {/* Title and Logo */}
         <div className="flex items-center mb-6">
         <div className="mr-4 w-10 h-10 bg-gradient-to-br from-sky-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-md">
@@ -643,6 +655,18 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         
         {/* Daily Itinerary */}
         <section className={`${font.text} mb-12 relative print:break-before-page`}>
+        {/* Printed Page Header */}
+        <div className="hidden print:flex print:flex-row print:justify-start p-4">
+        <Image
+        src="/images/travel-rizz.png"
+        alt="Travel-Rizz Logo"
+        width={48}
+        height={48}
+        className="h-10 w-10 flex my-auto dark:invert dark:brightness-0 dark:contrast-200"
+        />
+        <span className={`text-xl h-min my-auto text-primary text-nowrap dark:text-white font-caveat`}>Travel-Rizz</span>
+        </div>
+        
         {/* Gradient background */}
         <div className="absolute -z-10 top-1/3 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-sky-500/5 to-indigo-500/5 rounded-full blur-3xl"></div>
         
@@ -768,6 +792,18 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         
         {/* Travel Reminders */}
         <section className={`${font.text} mb-12 relative print:break-before-page`}>
+        {/* Printed Page Header */}
+        <div className="hidden print:flex print:flex-row print:justify-start p-4">
+        <Image
+        src="/images/travel-rizz.png"
+        alt="Travel-Rizz Logo"
+        width={48}
+        height={48}
+        className="h-10 w-10 flex my-auto dark:invert dark:brightness-0 dark:contrast-200"
+        />
+        <span className={`text-xl h-min my-auto text-primary text-nowrap dark:text-white font-caveat`}>Travel-Rizz</span>
+        </div>
+        
         {/* Decoration */}
         <div className="absolute -z-10 top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 bg-gradient-to-bl from-pink-500/10 to-purple-500/10 rounded-full blur-xl"></div>
         
@@ -827,7 +863,19 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         </section>
         
         {/* Emergency Contacts */}
-        <section className={`${font.text} mb-12`}>
+        <section className={`${font.text} mb-12 print:break-before-page`}>
+        {/* Printed Page Header */}
+        <div className="hidden print:flex print:flex-row print:justify-start p-4">
+        <Image
+        src="/images/travel-rizz.png"
+        alt="Travel-Rizz Logo"
+        width={48}
+        height={48}
+        className="h-10 w-10 flex my-auto dark:invert dark:brightness-0 dark:contrast-200"
+        />
+        <span className={`text-xl h-min my-auto text-primary text-nowrap dark:text-white font-caveat`}>Travel-Rizz</span>
+        </div>
+        
         <div className="flex items-center mb-6">
         <div className="mr-4 w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white shadow-md">
         <Phone className="h-5 w-5" />

@@ -78,23 +78,24 @@ export default function PremiumUpgradeModal({ isOpen, onClose, onPaymentSuccess 
         console.log('[Payment] Setting up button with reference ID:', refId);
         
         // test buy-button
+        // const buttonHtml = `
+        // <stripe-buy-button
+        //     buy-button-id="${theme === 'dark' ? 'buy_btn_1QvFHUI41yHwVfoxAdnHirxn' : 'buy_btn_1QvFE0I41yHwVfoxoa2fvTlL'}"
+        //     publishable-key="${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}"
+        //     client-reference-id="${refId}"
+        // >
+        // </stripe-buy-button>
+        // `;
+        
+        // production buy-button
         const buttonHtml = `
         <stripe-buy-button
-            buy-button-id="${theme === 'dark' ? 'buy_btn_1QvFHUI41yHwVfoxAdnHirxn' : 'buy_btn_1QvFE0I41yHwVfoxoa2fvTlL'}"
+            buy-button-id="buy_btn_1QbgllI41yHwVfoxHUfAJEEx"
             publishable-key="${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}"
             client-reference-id="${refId}"
         >
         </stripe-buy-button>
-    `;
-        
-        // production buy-button
-        // const buttonHtml = `
-        // <stripe-buy-button
-        //   buy-button-id="buy_btn_1QbgllI41yHwVfoxHUfAJEEx"
-        //   publishable-key="pk_live_51MtLXgI41yHwVfoxoenCC4Y3iWAv4dwTMPFtBsuAWnJItf6KjcLgtClHE281ixQp5j7tQdmHt9JCtyVSvGaVOI4N00AXx9Bg3a"
-        // >
-        // </stripe-buy-button>
-        // `;
+        `;
         
         stripeContainerRef.current.innerHTML = buttonHtml;
         
