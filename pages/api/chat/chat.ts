@@ -1,5 +1,5 @@
 import { openai } from '@ai-sdk/openai';
-// import { deepseek } from '@ai-sdk/deepseek';
+import { deepseek } from '@ai-sdk/deepseek';
 // import { groq } from '@ai-sdk/groq';
 // import { createGroq } from '@ai-sdk/groq';
 import { smoothStream, streamText, Message } from 'ai';
@@ -238,8 +238,8 @@ export default async function handler(req: NextRequest) {
         
         // Get AI response
         const result = await streamText({
-            model: openai('gpt-4o-mini'),
-            // model: deepseek('deepseek-chat'),
+            // model: openai('gpt-4o-mini'),
+            model: deepseek('deepseek-chat'),
             messages: [
                 { role: 'system', content: staticSystemPrompt },
                 { role: 'system', content: dynamicContext },

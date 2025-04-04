@@ -1,5 +1,5 @@
 import { openai } from '@ai-sdk/openai';
-// import { deepseek } from '@ai-sdk/deepseek';
+import { deepseek } from '@ai-sdk/deepseek';
 import { streamText, smoothStream } from 'ai';
 import { NextRequest } from 'next/server';
 import { tools } from '../../../ai/tools';
@@ -187,8 +187,8 @@ export default async function handler(req: NextRequest) {
     `;
 
     const result = await streamText({
-      model: openai('gpt-4o-mini'),
-      // model: deepseek('deepseek-chat'),
+      // model: openai('gpt-4o-mini'),
+      model: deepseek('deepseek-chat'),
       messages: [
         { role: 'system' as const, content: systemPrompt },
         { role: 'system' as const, content: dynamicContext },
