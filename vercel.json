@@ -1,3 +1,5 @@
 {
-    "cleanUrls": true
+    "cleanUrls": true,
+    "regions": ["iad1"]
+
 }
