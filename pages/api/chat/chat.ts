@@ -14,7 +14,7 @@ export const config = {
 };
 
 // Allow streaming responses up to 40 seconds
-export const maxDuration = 80;
+export const maxDuration = 60;
 
 interface ChatRequestBody {
     messages: Message[];
@@ -245,7 +245,7 @@ export default async function handler(req: NextRequest) {
                 { role: 'system', content: dynamicContext },
                 ...messages
             ],
-            maxTokens: 10000,
+            maxTokens: 8192, // DeepSeek has a limit of 8192 tokens
             
             temperature: 0.6,
             presencePenalty: 0.7,
