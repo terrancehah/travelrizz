@@ -20,7 +20,7 @@ export default function Features() {
         },
         {
             key: 'routes',
-            image: "/images/visualised-routes.png",
+            image: "/images/visualised-routes.jpg",
         },
         {
             key: 'itinerary',
