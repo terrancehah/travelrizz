@@ -1,0 +1,57 @@
+{
+    "buttons": {
+        "print": "印刷",
+        "exportPDF": "PDFをエクスポート"
+    },
+    "sections": {
+        "cityIntroduction": "都市紹介",
+        "notableDetails": "重要な旅行詳細",
+        "mapSavedPlaces": "保存した場所の地図",
+        "dailyItinerary": "日程表",
+        "travelReminders": "旅行の注意事項",
+        "emergencyContacts": "緊急連絡先"
+    },
+    "cityInfo": {
+        "about": "について",
+        "weatherClimate": "天気と気候",
+        "languagesSpoken": "使用言語",
+        "population": "人口",
+        "notAvailable": "利用不可"
+    },
+    "travelDetails": {
+        "currencyInfo": "通貨情報",
+        "safetyTips": "安全のヒント",
+        "localTips": "現地のヒント",
+        "businessHours": "営業時間",
+        "localNavigation": "現地での移動"
+    },
+    "itinerary": {
+        "day": "日目",
+        "morning": "午前",
+        "afternoon": "午後",
+        "evening": "夜",
+        "savedPlaces": "保存した場所"
+    },
+    "reminders": {
+        "documentsVisa": "旅行書類とビザ",
+        "taxRefund": "税金還付手続き",
+        "etiquette": "現地のマナーと文化規範",
+        "health": "健康と予防接種"
+    },
+    "emergency": {
+        "localNumbers": "現地の緊急電話番号",
+        "hospitals": "病院",
+        "embassy": "大使館情報"
+    },
+    "weather": {
+        "high": "最高",
+        "low": "最低"
+    },
+    "footer": {
+        "createdWith": "Travel-Rizzで作成された旅程表",
+        "updateNote": "旅程表の更新や変更については、travelrizz.appをご覧ください"
+    },
+    "loading": {
+        "map": "地図を読み込み中..."
+    }
+}

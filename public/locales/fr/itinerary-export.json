@@ -1,0 +1,57 @@
+{
+    "buttons": {
+        "print": "Imprimer",
+        "exportPDF": "Exporter en PDF"
+    },
+    "sections": {
+        "cityIntroduction": "Présentation de la Ville",
+        "notableDetails": "Détails Importants du Voyage",
+        "mapSavedPlaces": "Carte des Lieux Enregistrés",
+        "dailyItinerary": "Itinéraire Quotidien",
+        "travelReminders": "Rappels de Voyage",
+        "emergencyContacts": "Contacts d'Urgence"
+    },
+    "cityInfo": {
+        "about": "À propos de",
+        "weatherClimate": "Météo et Climat",
+        "languagesSpoken": "Langues Parlées",
+        "population": "Population",
+        "notAvailable": "Non disponible."
+    },
+    "travelDetails": {
+        "currencyInfo": "Informations sur la Monnaie",
+        "safetyTips": "Conseils de Sécurité",
+        "localTips": "Conseils Locaux",
+        "businessHours": "Heures d'Ouverture",
+        "localNavigation": "Navigation Locale"
+    },
+    "itinerary": {
+        "day": "Jour",
+        "morning": "Matin",
+        "afternoon": "Après-midi",
+        "evening": "Soir",
+        "savedPlaces": "Lieux Enregistrés"
+    },
+    "reminders": {
+        "documentsVisa": "Documents de Voyage et Visa",
+        "taxRefund": "Procédure de Remboursement de TVA",
+        "etiquette": "Étiquette Locale et Normes Culturelles",
+        "health": "Santé et Vaccination"
+    },
+    "emergency": {
+        "localNumbers": "Numéros d'Urgence Locaux",
+        "hospitals": "Hôpitaux",
+        "embassy": "Informations sur l'Ambassade"
+    },
+    "weather": {
+        "high": "Maximale",
+        "low": "Minimale"
+    },
+    "footer": {
+        "createdWith": "Itinéraire créé avec Travel-Rizz le",
+        "updateNote": "Pour les mises à jour ou modifications de votre itinéraire, visitez travelrizz.app"
+    },
+    "loading": {
+        "map": "Chargement de la carte..."
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "buttons": {
+        "print": "인쇄",
+        "exportPDF": "PDF 내보내기"
+    },
+    "sections": {
+        "cityIntroduction": "도시 소개",
+        "notableDetails": "주요 여행 정보",
+        "mapSavedPlaces": "저장된 장소 지도",
+        "dailyItinerary": "일일 일정",
+        "travelReminders": "여행 알림",
+        "emergencyContacts": "비상 연락처"
+    },
+    "cityInfo": {
+        "about": "정보",
+        "weatherClimate": "날씨와 기후",
+        "languagesSpoken": "사용 언어",
+        "population": "인구",
+        "notAvailable": "이용 불가"
+    },
+    "travelDetails": {
+        "currencyInfo": "통화 정보",
+        "safetyTips": "안전 팁",
+        "localTips": "현지 팁",
+        "businessHours": "영업 시간",
+        "localNavigation": "현지 이동"
+    },
+    "itinerary": {
+        "day": "일차",
+        "morning": "오전",
+        "afternoon": "오후",
+        "evening": "저녁",
+        "savedPlaces": "저장된 장소"
+    },
+    "reminders": {
+        "documentsVisa": "여행 서류 및 비자",
+        "taxRefund": "세금 환급 절차",
+        "etiquette": "현지 예절과 문화 규범",
+        "health": "건강 및 예방 접종"
+    },
+    "emergency": {
+        "localNumbers": "현지 긴급 전화번호",
+        "hospitals": "병원",
+        "embassy": "대사관 정보"
+    },
+    "weather": {
+        "high": "최고",
+        "low": "최저"
+    },
+    "footer": {
+        "createdWith": "Travel-Rizz로 작성된 여행 일정",
+        "updateNote": "여행 일정 업데이트나 변경은 travelrizz.app을 방문하세요"
+    },
+    "loading": {
+        "map": "지도 로딩 중..."
+    }
+}

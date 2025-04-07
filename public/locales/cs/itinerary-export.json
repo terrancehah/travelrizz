@@ -1,0 +1,57 @@
+{
+    "buttons": {
+        "print": "Tisk",
+        "exportPDF": "Exportovat PDF"
+    },
+    "sections": {
+        "cityIntroduction": "Představení města",
+        "notableDetails": "Důležité cestovní informace",
+        "mapSavedPlaces": "Mapa uložených míst",
+        "dailyItinerary": "Denní itinerář",
+        "travelReminders": "Cestovní připomínky",
+        "emergencyContacts": "Nouzové kontakty"
+    },
+    "cityInfo": {
+        "about": "O městě",
+        "weatherClimate": "Počasí a klima",
+        "languagesSpoken": "Používané jazyky",
+        "population": "Obyvatelstvo",
+        "notAvailable": "Není k dispozici."
+    },
+    "travelDetails": {
+        "currencyInfo": "Informace o měně",
+        "safetyTips": "Bezpečnostní tipy",
+        "localTips": "Místní tipy",
+        "businessHours": "Otevírací doba",
+        "localNavigation": "Místní navigace"
+    },
+    "itinerary": {
+        "day": "Den",
+        "morning": "Ráno",
+        "afternoon": "Odpoledne",
+        "evening": "Večer",
+        "savedPlaces": "Uložená místa"
+    },
+    "reminders": {
+        "documentsVisa": "Cestovní doklady a víza",
+        "taxRefund": "Postup vrácení daně",
+        "etiquette": "Místní etiketa a kulturní normy",
+        "health": "Zdraví a očkování"
+    },
+    "emergency": {
+        "localNumbers": "Místní tísňová čísla",
+        "hospitals": "Nemocnice",
+        "embassy": "Informace o ambasádě"
+    },
+    "weather": {
+        "high": "Vysoká",
+        "low": "Nízká"
+    },
+    "footer": {
+        "createdWith": "Itinerář vytvořen pomocí Travel-Rizz dne",
+        "updateNote": "Pro aktualizace nebo změny vašeho itineráře navštivte travelrizz.app"
+    },
+    "loading": {
+        "map": "Načítání mapy..."
+    }
+}

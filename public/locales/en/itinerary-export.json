@@ -1,4 +1,57 @@
 {
-    "print": "Print",
-    "exportPDF": "Export PDF"
+    "buttons": {
+        "print": "Print",
+        "exportPDF": "Export PDF"
+    },
+    "sections": {
+        "cityIntroduction": "City Introduction",
+        "notableDetails": "Notable Travel Details",
+        "mapSavedPlaces": "Map of Saved Places",
+        "dailyItinerary": "Daily Itinerary",
+        "travelReminders": "Travel Reminders",
+        "emergencyContacts": "Emergency Contacts"
+    },
+    "cityInfo": {
+        "about": "About",
+        "weatherClimate": "Weather & Climate",
+        "languagesSpoken": "Languages Spoken",
+        "population": "Population",
+        "notAvailable": "Not available."
+    },
+    "travelDetails": {
+        "currencyInfo": "Currency Information",
+        "safetyTips": "Safety Tips",
+        "localTips": "Local Tips",
+        "businessHours": "Business Operating Hours",
+        "localNavigation": "Local Navigation"
+    },
+    "itinerary": {
+        "day": "Day",
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "savedPlaces": "Saved Places"
+    },
+    "reminders": {
+        "documentsVisa": "Travel Documents & Visa",
+        "taxRefund": "Tax Refund Procedure",
+        "etiquette": "Local Etiquette & Cultural Norms",
+        "health": "Health & Vaccination"
+    },
+    "emergency": {
+        "localNumbers": "Local Emergency Numbers",
+        "hospitals": "Hospitals",
+        "embassy": "Embassy Information"
+    },
+    "weather": {
+        "high": "High",
+        "low": "Low"
+    },
+    "footer": {
+        "createdWith": "Itinerary created with Travel-Rizz on",
+        "updateNote": "For updates or changes to your itinerary, visit travelrizz.app"
+    },
+    "loading": {
+        "map": "Loading map..."
+    }
 }

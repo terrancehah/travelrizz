@@ -1,0 +1,57 @@
+{
+    "buttons": {
+        "print": "Cetak",
+        "exportPDF": "Eksport PDF"
+    },
+    "sections": {
+        "cityIntroduction": "Pengenalan Bandar",
+        "notableDetails": "Maklumat Perjalanan Penting",
+        "mapSavedPlaces": "Peta Lokasi Tersimpan",
+        "dailyItinerary": "Jadual Harian",
+        "travelReminders": "Peringatan Perjalanan",
+        "emergencyContacts": "Nombor Kecemasan"
+    },
+    "cityInfo": {
+        "about": "Mengenai",
+        "weatherClimate": "Cuaca & Iklim",
+        "languagesSpoken": "Bahasa Digunakan",
+        "population": "Penduduk",
+        "notAvailable": "Tidak tersedia."
+    },
+    "travelDetails": {
+        "currencyInfo": "Maklumat Mata Wang",
+        "safetyTips": "Tip Keselamatan",
+        "localTips": "Tip Tempatan",
+        "businessHours": "Waktu Perniagaan",
+        "localNavigation": "Navigasi Tempatan"
+    },
+    "itinerary": {
+        "day": "Hari",
+        "morning": "Pagi",
+        "afternoon": "Tengah Hari",
+        "evening": "Petang",
+        "savedPlaces": "Lokasi Tersimpan"
+    },
+    "reminders": {
+        "documentsVisa": "Dokumen Perjalanan & Visa",
+        "taxRefund": "Prosedur Pemulangan Cukai",
+        "etiquette": "Etika Tempatan & Norma Budaya",
+        "health": "Kesihatan & Vaksinasi"
+    },
+    "emergency": {
+        "localNumbers": "Nombor Kecemasan Tempatan",
+        "hospitals": "Hospital",
+        "embassy": "Maklumat Kedutaan"
+    },
+    "weather": {
+        "high": "Tinggi",
+        "low": "Rendah"
+    },
+    "footer": {
+        "createdWith": "Jadual perjalanan dibuat dengan Travel-Rizz pada",
+        "updateNote": "Untuk kemaskini atau perubahan jadual perjalanan anda, layari travelrizz.app"
+    },
+    "loading": {
+        "map": "Memuatkan peta..."
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "buttons": {
+        "print": "Imprimir",
+        "exportPDF": "Exportar PDF"
+    },
+    "sections": {
+        "cityIntroduction": "Introducción a la Ciudad",
+        "notableDetails": "Detalles Importantes del Viaje",
+        "mapSavedPlaces": "Mapa de Lugares Guardados",
+        "dailyItinerary": "Itinerario Diario",
+        "travelReminders": "Recordatorios de Viaje",
+        "emergencyContacts": "Contactos de Emergencia"
+    },
+    "cityInfo": {
+        "about": "Acerca de",
+        "weatherClimate": "Clima y Tiempo",
+        "languagesSpoken": "Idiomas Hablados",
+        "population": "Población",
+        "notAvailable": "No disponible."
+    },
+    "travelDetails": {
+        "currencyInfo": "Información de Moneda",
+        "safetyTips": "Consejos de Seguridad",
+        "localTips": "Consejos Locales",
+        "businessHours": "Horario Comercial",
+        "localNavigation": "Navegación Local"
+    },
+    "itinerary": {
+        "day": "Día",
+        "morning": "Mañana",
+        "afternoon": "Tarde",
+        "evening": "Noche",
+        "savedPlaces": "Lugares Guardados"
+    },
+    "reminders": {
+        "documentsVisa": "Documentos de Viaje y Visa",
+        "taxRefund": "Procedimiento de Devolución de Impuestos",
+        "etiquette": "Etiqueta Local y Normas Culturales",
+        "health": "Salud y Vacunación"
+    },
+    "emergency": {
+        "localNumbers": "Números de Emergencia Locales",
+        "hospitals": "Hospitales",
+        "embassy": "Información de la Embajada"
+    },
+    "weather": {
+        "high": "Alta",
+        "low": "Baja"
+    },
+    "footer": {
+        "createdWith": "Itinerario creado con Travel-Rizz el",
+        "updateNote": "Para actualizaciones o cambios en su itinerario, visite travelrizz.app"
+    },
+    "loading": {
+        "map": "Cargando mapa..."
+    }
+}

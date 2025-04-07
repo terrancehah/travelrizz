@@ -1,0 +1,57 @@
+{
+    "buttons": {
+        "print": "Drucken",
+        "exportPDF": "Als PDF exportieren"
+    },
+    "sections": {
+        "cityIntroduction": "Stadtvorstellung",
+        "notableDetails": "Wichtige Reisedetails",
+        "mapSavedPlaces": "Karte der gespeicherten Orte",
+        "dailyItinerary": "Tagesablauf",
+        "travelReminders": "Reiseerinnerungen",
+        "emergencyContacts": "Notfallkontakte"
+    },
+    "cityInfo": {
+        "about": "Über",
+        "weatherClimate": "Wetter & Klima",
+        "languagesSpoken": "Gesprochene Sprachen",
+        "population": "Bevölkerung",
+        "notAvailable": "Nicht verfügbar."
+    },
+    "travelDetails": {
+        "currencyInfo": "Währungsinformationen",
+        "safetyTips": "Sicherheitstipps",
+        "localTips": "Lokale Tipps",
+        "businessHours": "Geschäftszeiten",
+        "localNavigation": "Lokale Navigation"
+    },
+    "itinerary": {
+        "day": "Tag",
+        "morning": "Morgen",
+        "afternoon": "Nachmittag",
+        "evening": "Abend",
+        "savedPlaces": "Gespeicherte Orte"
+    },
+    "reminders": {
+        "documentsVisa": "Reisedokumente & Visa",
+        "taxRefund": "Steuerrückerstattung",
+        "etiquette": "Lokale Etikette & kulturelle Normen",
+        "health": "Gesundheit & Impfungen"
+    },
+    "emergency": {
+        "localNumbers": "Lokale Notrufnummern",
+        "hospitals": "Krankenhäuser",
+        "embassy": "Botschaftsinformationen"
+    },
+    "weather": {
+        "high": "Hoch",
+        "low": "Niedrig"
+    },
+    "footer": {
+        "createdWith": "Reiseplan erstellt mit Travel-Rizz am",
+        "updateNote": "Für Aktualisierungen oder Änderungen Ihres Reiseplans besuchen Sie travelrizz.app"
+    },
+    "loading": {
+        "map": "Karte wird geladen..."
+    }
+}

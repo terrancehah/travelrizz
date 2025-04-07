@@ -1,0 +1,57 @@
+{
+    "buttons": {
+        "print": "列印",
+        "exportPDF": "匯出PDF"
+    },
+    "sections": {
+        "cityIntroduction": "城市介紹",
+        "notableDetails": "重要旅行詳情",
+        "mapSavedPlaces": "已儲存地點地圖",
+        "dailyItinerary": "每日行程",
+        "travelReminders": "旅行提醒",
+        "emergencyContacts": "緊急聯絡方式"
+    },
+    "cityInfo": {
+        "about": "關於",
+        "weatherClimate": "天氣和氣候",
+        "languagesSpoken": "使用語言",
+        "population": "人口",
+        "notAvailable": "暫無資訊"
+    },
+    "travelDetails": {
+        "currencyInfo": "貨幣資訊",
+        "safetyTips": "安全提示",
+        "localTips": "當地提示",
+        "businessHours": "營業時間",
+        "localNavigation": "當地導航"
+    },
+    "itinerary": {
+        "day": "第天",
+        "morning": "上午",
+        "afternoon": "下午",
+        "evening": "晚上",
+        "savedPlaces": "已儲存地點"
+    },
+    "reminders": {
+        "documentsVisa": "旅行證件和簽證",
+        "taxRefund": "退稅程序",
+        "etiquette": "當地禮儀和文化規範",
+        "health": "健康和疫苗接種"
+    },
+    "emergency": {
+        "localNumbers": "當地緊急電話",
+        "hospitals": "醫院",
+        "embassy": "大使館資訊"
+    },
+    "weather": {
+        "high": "最高",
+        "low": "最低"
+    },
+    "footer": {
+        "createdWith": "行程由Travel-Rizz建立於",
+        "updateNote": "如需更新或更改行程，請訪問travelrizz.app"
+    },
+    "loading": {
+        "map": "載入地圖中..."
+    }
+}

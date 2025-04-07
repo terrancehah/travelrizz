@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useLocalizedFont } from "@/hooks/useLocalizedFont"
+import { useTranslations } from 'next-intl';
 
 import {
     Calendar,
@@ -138,6 +139,8 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
             longitude: 0
         }
     });
+
+    const t = useTranslations('itinerary-export');
 
     // Handle image errors by moving to the next photo
     const handleImageError = (placeId: string) => {
@@ -300,7 +303,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         className={`${font.text} bg-gradient-to-r from-sky-500 to-indigo-500 hover:from-sky-600 hover:to-indigo-600 text-white`}
         >
         <Download className="h-4 w-4 mr-2" />
-        Export PDF
+        {t('buttons.exportPDF')}
         </Button>
         </div>
         
@@ -391,7 +394,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <Globe className="h-5 w-5" />
         </div>
         <h2 className={`${font.text} text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text`}>
-        City Introduction
+        {t('sections.cityIntroduction')}
         </h2>
         </div>
         
@@ -408,7 +411,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <Info className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">About Bangkok</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.about')} {tripData.destination}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{cityInfo.intro}</p>
         </div>
@@ -416,7 +419,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <Umbrella className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Weather & Climate</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.weatherClimate')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{cityInfo.weather}</p>
         </div>
@@ -428,7 +431,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <Languages className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Languages Spoken</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.languagesSpoken')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{cityInfo.language}</p>
         </div>                            
@@ -436,7 +439,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <Users className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Population</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.population')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{cityInfo.population}</p>
         </div>
@@ -472,7 +475,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         </div>
         {/* Title */}
         <h2 className={`${fonts.text}text-2xl font-bold bg-gradient-to-r from-amber-600 to-pink-600 dark:from-amber-400 dark:to-pink-400 text-transparent bg-clip-text`}>
-        Notable Travel Details
+        {t('sections.notableDetails')}
         </h2>
         </div>
         
@@ -488,7 +491,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <CreditCard className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Currency Information</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('travelDetails.currencyInfo')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.currency}</p>
         </div>
@@ -497,7 +500,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <AlertTriangle className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Safety Tips</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('travelDetails.safetyTips')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.safety}</p>
         </div>
@@ -506,7 +509,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <Map className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Local Tips</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('travelDetails.localTips')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.localTips}</p>
         </div>
@@ -518,7 +521,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <Clock className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Business Operating Hours</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('travelDetails.businessHours')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.businessHours}</p>
         </div>
@@ -527,7 +530,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div>
         <div className="flex items-center mb-3">
         <MapPin className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Local Navigation</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('travelDetails.localNavigation')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.navigation}</p>
         </div>
@@ -556,7 +559,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <MapPin className="h-5 w-5" />
         </div>
         <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
-        Map of Saved Places
+        {t('sections.mapSavedPlaces')}
         </h2>
         </div>
         
@@ -569,14 +572,14 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
             />
         ) : (
             <div className="w-full h-full flex items-center justify-center">
-            <p className="text-sky-blue">Loading map...</p>
+            <p className="text-sky-blue">{t('loading.map')}</p>
             </div>
         )}
         </div>
         
         {/* Saved Places */}
         <div className="p-8">
-        <h3 className={`${font.text} font-semibold text-xl mb-6 text-slate-800 dark:text-white`}>Saved Places</h3>
+        <h3 className={`${font.text} font-semibold text-xl mb-6 text-slate-800 dark:text-white`}>{t('itinerary.savedPlaces')}</h3>
         {/* Saved Places Grid*/}
         <div className="grid md:grid-cols-2 gap-6">
         {tripData?.savedPlaces?.map((place) => (
@@ -650,7 +653,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <Calendar className="h-5 w-5" />
         </div>
         <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 text-transparent bg-clip-text">
-        Daily Itinerary
+        {t('sections.dailyItinerary')}
         </h2>
         </div>
         
@@ -685,7 +688,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
             
             <h3 className="text-xl font-bold text-sky-600 mb-4 flex items-center">
             <Calendar className="h-5 w-5 mr-2 text-sky-500" />
-            Day {day.day}: {day.date}
+            {t('itinerary.day')} {day.day}: {day.date}
             </h3>
             
             <div className="space-y-8">
@@ -725,7 +728,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent dark:from-sky-500/20 rounded-bl-full"></div>
             <h3 className="text-xl font-bold text-sky-600 dark:text-sky-400 mb-4 flex items-center">
             <Calendar className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-            Day {day.day}: {day.date}
+            {t('itinerary.day')} {day.day}: {day.date}
             </h3>
             
             <div className="space-y-8">
@@ -786,7 +789,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <AlertTriangle className="h-5 w-5" />
         </div>
         <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 dark:from-pink-400 dark:to-purple-400 text-transparent bg-clip-text">
-        Travel Reminders
+        {t('sections.travelReminders')}
         </h2>
         </div>
         
@@ -799,7 +802,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
         <div className="flex items-center mb-3">
         <AlertTriangle className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Travel Documents & Visa</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.documentsVisa')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelReminders.documents}</p>
         </div>
@@ -807,7 +810,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
         <div className="flex items-center mb-3">
         <CreditCard className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Tax Refund Procedure</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.taxRefund')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelReminders.taxRefund}</p>
         </div>
@@ -818,7 +821,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div className="flex items-center mb-3">
         <Info className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
         <h3 className="font-semibold text-lg text-slate-800 dark:text-white">
-        Local Etiquette & Cultural Norms
+        {t('reminders.etiquette')}
         </h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelReminders.etiquette}</p>
@@ -827,7 +830,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
         <div className="flex items-center mb-3">
         <Umbrella className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Health & Vaccination</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.health')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{travelReminders.health}</p>
         </div>
@@ -855,7 +858,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <Phone className="h-5 w-5" />
         </div>
         <h2 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-pink-600 dark:from-red-400 dark:to-pink-400 text-transparent bg-clip-text">
-        Emergency Contacts
+        {t('sections.emergencyContacts')}
         </h2>
         </div>
         
@@ -865,14 +868,14 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div className="bg-gradient-to-r from-red-50 to-red-100/50 dark:from-red-900/30 dark:to-red-800/20 p-5 rounded-lg border border-red-200 dark:border-red-800 mb-6">
         <div className="flex items-center mb-3">
         <Phone className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Local Emergency Numbers</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('emergency.localNumbers')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.emergency}</p>
         </div>
         
         <h3 className="font-semibold text-lg text-slate-800 dark:text-white mb-4 flex items-center">
         <AlertTriangle className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
-        Hospitals
+        {t('emergency.hospitals')}
         </h3>
         
         <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -892,7 +895,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
         <div className="flex items-center mb-3">
         <Globe className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">Embassy Information</h3>
+        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('emergency.embassy')}</h3>
         </div>
         <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.embassy}</p>
         </div>
@@ -908,10 +911,10 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         </div>
         
         <p className="text-slate-600 dark:text-slate-300">
-        Itinerary created with Travel-Rizz on {new Date().toLocaleDateString()}
+        {t('footer.createdWith')} {new Date().toLocaleDateString()}
         </p>
         <p className="mt-1 text-slate-500 dark:text-slate-400">
-        For updates or changes to your itinerary, visit travelrizz.app
+        {t('footer.updateNote')}
         </p>
         </footer>
         </div>
