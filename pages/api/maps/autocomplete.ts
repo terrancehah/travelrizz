@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         }
 
         // Get API key from environment variables
-        const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+        const apiKey = process.env.GOOGLE_MAPS_BACKEND_API_KEY;
         if (!apiKey) {
             console.error('[Autocomplete API] Google Maps API key not found in environment variables');
             return res.status(500).json({ error: 'Google Maps API key not configured' });

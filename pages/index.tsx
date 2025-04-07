@@ -23,6 +23,9 @@ export default function LandingPage() {
             {/* Allow indexing */}
             <meta name="robots" content="index, follow" />
             
+            {/* Keywords */}
+            <meta name="keywords" content="travelrizz, travel rizz, travel-rizz, trip planner, AI trip planner, AI travel planner, itinerary builder" />
+            
             {/* Canonical URL */}
             <link rel="canonical" href="https://travelrizz.app/" />
             

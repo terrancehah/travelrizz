@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
         const config: SearchConfig = req.body;
-        const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+        const apiKey = process.env.GOOGLE_MAPS_BACKEND_API_KEY;
         if (!apiKey) {
             console.error('[Places API] Google Maps API key not found');
             return res.status(500).json({ error: 'API key not configured' });

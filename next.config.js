@@ -38,6 +38,16 @@ const nextConfig = withNextIntl({
                 destination: '/travel-form',
                 permanent: true,
             },
+            {
+                source: '/travel-rizz',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/travelrizz',
+                destination: '/',
+                permanent: true,
+            },
             // Ensure consistent trailing slash handling
             {
                 source: '/:path+/',
