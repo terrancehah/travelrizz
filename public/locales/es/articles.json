@@ -1,0 +1,266 @@
+{
+    "common": {
+        "backHome": "Volver a Inicio"
+    },
+    "navigation": {
+        "previous": "Artículo Anterior",
+        "next": "Próximo Artículo"
+    },
+    "links": {
+        "official": {
+            "visa": {
+                "iata": {
+                    "title": "IATA Travel Centre",
+                    "url": "https://www.iata.org/en/services/compliance/timatic/travel-documentation/",
+                    "description": "Base de datos oficial utilizada por aerolíneas de todo el mundo para la verificación de documentos de viaje"
+                },
+                "schengen": {
+                    "title": "Portal de Visas de la UE",
+                    "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/applying-schengen-visa_en",
+                    "description": "Información oficial de la Unión Europea sobre solicitudes de visado Schengen"
+                },
+                "us": {
+                    "title": "Departamento de Estado de EE. UU.",
+                    "url": "https://travel.state.gov/content/travel/en/us-visas.html",
+                    "description": "Información y requisitos oficiales para visas de EE. UU."
+                }
+            },
+            "health": {
+                "cdc": {
+                    "title": "CDC Travelers' Health",
+                    "url": "https://wwwnc.cdc.gov/travel",
+                    "description": "Requisitos y recomendaciones oficiales de salud de EE. UU. para viajeros"
+                },
+                "who": {
+                    "title": "OMS Viajes Internacionales y Salud",
+                    "url": "https://www.who.int/health-topics/travel-and-health",
+                    "description": "Directrices de la Organización Mundial de la Salud sobre viajes y salud"
+                },
+                "icvp": {
+                    "title": "Certificado Internacional de Vacunación",
+                    "url": "https://wwwnc.cdc.gov/travel/page/icvp",
+                    "description": "Información oficial sobre tarjetas amarillas y certificados de vacunación"
+                }
+            },
+            "insurance": {
+                "schengen": {
+                    "title": "Requisitos de Seguro de la UE",
+                    "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/travel-medical-insurance_en",
+                    "description": "Requisitos oficiales de seguro de viaje para el espacio Schengen"
+                }
+            }
+        }
+    },
+    "visa": {
+        "meta": {
+            "title": "Tu guía amigable sobre visas y permisos de viaje",
+            "description": "¡Todo lo que necesitas saber sobre visas, de manera sencilla! Obtén asesoramiento experto sobre solicitudes, tiempos de procesamiento y requisitos por país, todo impulsado por la confiable base de datos IATA Timatic.",
+            "keywords": "solicitud de visa, permiso de viaje, visa de turista, documentos de viaje, requisitos de visa, pasaporte, IATA Timatic, visa Schengen, visa de EE. UU., visa de Japón"
+        },
+        "title": "Tu guía fácil sobre visas y permisos de viaje",
+        "introduction": {
+            "title": "Hablemos sobre visas de viaje",
+            "content": "¡Piensa en una visa como tu boleto dorado para la aventura! Es simplemente un documento oficial que te da la bienvenida a un país. Mantenemos todo preciso y actualizado usando la base de datos Timatic de IATA, la misma en la que confían las aerolíneas de todo el mundo, con actualizaciones en tiempo real de más de 1,000 fuentes oficiales."
+        },
+        "popular": {
+            "title": "Tus destinos de viaje favoritos",
+            "countries": {
+                "europe": {
+                    "title": "✈️ Explorando Europa (Visa Schengen)",
+                    "requirements": "¿Listo para tu aventura europea? ¡La mayoría de los visitantes no pertenecientes a la UE necesitan esta práctica visa que abre las puertas a 27 países increíbles! El procesamiento suele tomar 15 días (a veces hasta 45). Necesitarás: Un pasaporte válido (6+ meses), seguro de viaje (cobertura de 30,000+ euros), tus planes de alojamiento, reservas de vuelos, extractos bancarios recientes y prueba de empleo. ¡No te preocupes, te ayudaremos a organizarlo todo!"
+                },
+                "usa": {
+                    "title": "🗽 Visitando los Estados Unidos",
+                    "requirements": "¿Planeando tu viaje a Estados Unidos? ¡La visa de turista B1/B2 es tu llave! Aunque el procesamiento toma de 2 a 3 meses (varía según la ubicación), la emoción valdrá la espera. Deberás completar el formulario DS-160, tener un pasaporte válido, sonreír para una foto, hablar con la embajada y mostrar tus conexiones y finanzas en tu país. ¡Buenas noticias si vienes de un país con exención de visa: podrías calificar para ESTA y quedarte hasta 90 días!"
+                },
+                "japan": {
+                    "title": "🗼 Descubriendo Japón",
+                    "requirements": "¿Emocionado por Japón? ¡Su nuevo sistema de eVisa hace las cosas súper fáciles para muchos viajeros! Solo toma de 5 a 7 días procesar. Solo prepara tu pasaporte, planes de viaje, prueba de fondos y detalles laborales. Consejo profesional: ¡Consigue tu Japan Rail Pass antes de irte! Ya sea que te unas a un tour o explores por tu cuenta, ¡te tenemos cubierto!"
+                },
+                "australia": {
+                    "title": "🦘 Aventuras en Australia",
+                    "requirements": "¿Soñando con el Down Under? ¡La visa eVisitor (651) o ETA (601) es perfecta para viajeros elegibles! La mayoría de las solicitudes se procesan en 24 horas a 2 semanas. Solo conéctate en línea, ten tu pasaporte listo y asegúrate de estar en buen estado de salud. ¡Bono para jóvenes aventureros (18-30): echa un vistazo a sus increíbles opciones de vacaciones laborales!"
+                }
+            }
+        },
+        "tips": {
+            "title": "Consejos expertos para la solicitud de visa",
+            "list": {
+                "early": "Solicita al menos 3 meses antes de viajar. Las temporadas altas (verano, festivos) pueden requerir tiempos de procesamiento más largos. Considera el procesamiento acelerado si está disponible.",
+                "documents": "Usa listas de verificación de documentos oficiales de los sitios web de las embajadas. Haz que los documentos sean traducidos por traductores certificados. Guarda copias digitales de todas las presentaciones.",
+                "insurance": "Obtén un seguro de viaje completo que supere los requisitos mínimos. Asegúrate de que la cobertura incluya evacuación médica y problemas relacionados con COVID-19.",
+                "embassy": "Sigue los tiempos de procesamiento de visas en los sitios web oficiales de las embajadas. Configura alertas por correo electrónico para cambios en los requisitos. Considera usar centros autorizados de procesamiento de visas para mayor comodidad."
+            }
+        },
+        "resources": {
+            "title": "Recursos oficiales",
+            "list": {
+                "iata": "IATA Travel Centre (timatic.iata.org) – La base de datos más precisa para requisitos de visa",
+                "embassies": "Sitios web oficiales de embajadas para requisitos específicos por país",
+                "state": "Departamento de Estado de EE. UU. travel.state.gov para ciudadanos estadounidenses",
+                "europa": "europa.eu/immigration para información sobre la visa Schengen"
+            }
+        },
+        "help": {
+            "title": "¿Listo para hacer realidad tus sueños de viaje?",
+            "content": "¡Trabajemos juntos para crear tu plan de viaje perfecto! Te ayudaremos a navegar por los requisitos de visa y los tiempos mientras diseñamos una aventura increíble que sea perfecta para ti.",
+            "cta": "¡Planifiquemos juntos!"
+        }
+    },
+    "service": {
+        "meta": {
+            "title": "Cómo funciona Travel-Rizz – Tu compañero de viaje con IA",
+            "description": "Descubre cómo el asistente de viaje con IA de Travel-Rizz te ayuda a planificar tu viaje perfecto a través de conversaciones naturales, información en tiempo real y herramientas de planificación interactivas – sin necesidad de cuenta.",
+            "keywords": "planificador de viajes con IA, asistente de viaje, planificación de viajes, travel-rizz, viaje personalizado, optimización de rutas, información de viaje, sin registro requerido"
+        },
+        "title": "Cómo Travel-Rizz hace que la planificación de viajes sea fácil",
+        "introduction": {
+            "title": "Tu compañero de viaje con IA amigable",
+            "content": "Travel-Rizz está diseñado para que la planificación de viajes se sienta como charlar con un amigo conocedor. Sin cuentas, sin formularios complicados – solo comparte tus sueños de viaje de manera natural y nuestra IA te ayudará a darles vida con sugerencias personalizadas e información en tiempo real."
+        },
+        "workflow": {
+            "title": "Planificar tu viaje es simple",
+            "steps": {
+                "input": {
+                    "title": "Habla sobre tus sueños de viaje",
+                    "description": "Inicia una conversación natural sobre a dónde te gustaría ir y qué experiencias estás buscando. Nuestra IA entiende tu estilo y preferencias, como si hablaras con un amigo que te conoce bien."
+                },
+                "ai": {
+                    "title": "Obtén información de viaje en tiempo real",
+                    "description": "Mientras charlas, nuestra IA proporciona información oportuna sobre tu destino – desde patrones climáticos hasta costumbres locales, requisitos de visa y joyas ocultas – exactamente cuando la necesitas."
+                },
+                "customize": {
+                    "title": "Visualiza tu viaje",
+                    "description": "Ve cómo tus aventuras diarias cobran vida en mapas interactivos. Nuestra IA optimiza tus rutas y sugiere los mejores momentos para cada actividad, ayudándote a aprovechar al máximo cada momento."
+                },
+                "download": {
+                    "title": "Tu itinerario perfecto",
+                    "description": "Obtén un plan diario flexible que puedes ajustar fácilmente. Todo está organizado a tu manera, con sugerencias inteligentes para tiempos y logística – todo sin necesidad de crear una cuenta."
+                }
+            }
+        },
+        "features": {
+            "title": "Características que mejoran la planificación",
+            "list": {
+                "aiChat": {
+                    "title": "Planificación de viajes con IA",
+                    "description": "Chatea al instante con nuestro asistente de viaje con IA – sin necesidad de cuenta. Comparte tus ideas como lo harías con un amigo, y nuestro sistema inteligente entenderá tus preferencias para crear planes personalizados."
+                },
+                "insights": {
+                    "title": "Conocimiento de viaje oportuno",
+                    "description": "Accede a información útil sobre tu destino – desde patrones climáticos hasta costumbres locales – exactamente cuando la necesitas, todo impulsado por nuestra IA que aprende lo que te importa."
+                },
+                "routes": {
+                    "title": "Dibujo de rutas visuales",
+                    "description": "Ve tus aventuras diarias desplegadas en mapas interactivos. Nuestra IA optimiza tus rutas según tus preferencias, ayudándote a aprovechar al máximo cada día."
+                },
+                "itinerary": {
+                    "title": "Itinerario diario flexible",
+                    "description": "Construye tus días con herramientas intuitivas y asistencia de IA que organiza las actividades a tu manera. Comienza a planificar en segundos sin necesidad de registrarte."
+                }
+            }
+        },
+        "cta": {
+            "title": "¿Listo para empezar a planificar?",
+            "content": "Experimenta la alegría de una planificación de viajes sin esfuerzo con un compañero de IA que te entiende.",
+            "button": "¡Planifiquemos juntos!"
+        }
+    },
+    "preparation": {
+        "meta": {
+            "title": "Tu guía definitiva para la preparación de viajes en 2025",
+            "description": "¡Prepárate para un viaje increíble con nuestra lista de verificación de viaje! Desde documentos esenciales hasta consejos inteligentes para empacar, hacemos que la preparación del viaje sea fácil. ¡Comienza a planificar ahora!",
+            "keywords": "preparación de viaje, planificación de viaje, lista de empaque, lista de verificación de viaje, viaje internacional, requisitos de salud, lista de verificación de viaje 2025, cómo prepararse para un viaje internacional"
+        },
+        "title": "Tu guía definitiva para la preparación de viajes",
+        "introduction": {
+            "title": "¡Emociónate por tu aventura!",
+            "content": "¡Los mejores viajes comienzan con una gran preparación, y con el interés por viajar alcanzando su punto máximo meses antes de la salida, ahora es el momento perfecto para empezar! Nuestra guía, creada por expertos, asegura que estés listo para tu aventura de 2025, combinando estándares internacionales con información en tiempo real. ¡Hagamos que tu preparación de viaje sea fluida, sin estrés y divertida!"
+        },
+        "categories": {
+            "documentation": {
+                "title": "📄 Tus documentos de viaje",
+                "description": "¡Organicemos tus documentos de manera fácil!",
+                "checklist": {
+                    "item1": "Pasaporte (válido por 6+ meses con 2 páginas en blanco) – ¡verifica la fecha de vencimiento con anticipación!",
+                    "item2": "Visa o permisos de entrada (verifica los requisitos con [IATA Travel Centre](https://www.iata.org/en/services/compliance/timatic/travel-documentation/))",
+                    "item3": "Seguro de viaje con cobertura para COVID-19 y médica (esencial para tu tranquilidad)",
+                    "item4": "Registros de vacunación (si son requeridos – consulta [CDC Travelers' Health](https://wwwnc.cdc.gov/travel))"
+                }
+            },
+            "packing": {
+                "title": "🧳 Empacar de manera inteligente y simple",
+                "description": "¡Empaca como un profesional con estos consejos específicos por región!",
+                "checklist": {
+                    "item1": "Ropa adecuada para el clima de tu destino (¡las capas funcionan genial para Norteamérica y Europa!)",
+                    "item2": "Adaptador universal y cargador portátil (imprescindible para viajeros tecnológicos)",
+                    "item3": "Artículos de aseo en tamaño de viaje (compatibles con TSA para controles de seguridad sin problemas)",
+                    "item4": "Copias de respaldo de documentos importantes (digitales y en papel – clave para viajes internacionales)"
+                },
+                "genderSpecific": {
+                    "title": "Para viajeras",
+                    "description": "Agrega estos esenciales para mayor comodidad y seguridad.",
+                    "checklist": {
+                        "item1": "Alarma de seguridad personal o silbato",
+                        "item2": "Espejo compacto y cargador portátil con linterna",
+                        "item3": "Productos de higiene femenina (considera opciones ecológicas)"
+                    }
+                }
+            },
+            "booking": {
+                "title": "✈️ Arreglos de viaje",
+                "description": "Asegura tus reservas con anticipación para evitar problemas de última hora.",
+                "checklist": {
+                    "item1": "Vuelos con asignación de asientos y preferencias de comida (¡reserva temprano para ofertas!)",
+                    "item2": "Alojamiento con políticas de cancelación flexibles (¡imprescindible para 2025!)",
+                    "item3": "Traslados al aeropuerto y pases de transporte local (ahorra tiempo y dinero)",
+                    "item4": "Atracciones y tours prioritarios (las opciones para saltar la fila salvan el día)"
+                }
+            },
+            "health": {
+                "title": "🏥 Preparativos de salud",
+                "description": "Mantente saludable en el camino con estos consejos expertos.",
+                "checklist": {
+                    "item1": "Vacunas requeridas (verifica las [notificaciones de salud para viajeros de CDC](https://wwwnc.cdc.gov/travel) para actualizaciones)",
+                    "item2": "Seguro de salud de viaje con cobertura internacional (no omitas la protección contra COVID-19)",
+                    "item3": "Medicamentos recetados con nota del médico (empaca extra por si acaso)",
+                    "item4": "Botiquín de primeros auxilios básico (compatible con TSA para un viaje fácil)"
+                }
+            },
+            "finance": {
+                "title": "💰 Planificación financiera",
+                "description": "Viaja sin preocupaciones con estos consejos financieros.",
+                "checklist": {
+                    "item1": "Presupuesto diario con un fondo de contingencia del 20% (planifica para imprevistos)",
+                    "item2": "Múltiples métodos de pago (tarjetas, efectivo, billeteras digitales – clave para Europa y Australia)",
+                    "item3": "Notificaciones de viaje al banco y contactos de emergencia (evita problemas con la tarjeta en el extranjero)",
+                    "item4": "Moneda local y monitoreo de tasas de cambio (prueba aplicaciones como XE)"
+                }
+            }
+        },
+        "timeline": {
+            "title": "Tu cuenta regresiva para el viaje",
+            "months3": {
+                "title": "¡3 meses para el viaje! 🎉",
+                "tasks": "¡Adelántate a la multitud! Solicita tu pasaporte/visa, reserva vuelos y alojamiento, verifica las necesidades de vacunación y revisa viajes pasados para inspirarte."
+            },
+            "months1": {
+                "title": "¡1 mes para el viaje! ✨",
+                "tasks": "¡Se está poniendo serio! Termina las vacunas, asegura tu seguro de viaje, planifica actividades diarias, organiza traslados al aeropuerto y confirma tu plan telefónico para uso internacional."
+            },
+            "weeks2": {
+                "title": "¡Solo 2 semanas! 🎈",
+                "tasks": "¡La emoción crece! Consigue moneda local, haz copias de tus documentos, comienza a empacar, verifica el clima y descarga mapas sin conexión."
+            },
+            "days1": {
+                "title": "¡Ya casi estás ahí! ⭐",
+                "tasks": "¡Cuenta regresiva final! Haz el check-in en línea, confirma todas tus reservas, empaca tus maletas, carga tus dispositivos, descarga entretenimiento y revisa las últimas actualizaciones de viaje."
+            }
+        },
+        "planner": {
+            "title": "¿Quieres hacer esto aún más fácil?",
+            "content": "¡Deja que nuestra IA amigable cree un cronograma de preparación personalizado según tu destino y estilo de viaje! Perfecto para viajeros ocupados durante las temporadas altas de planificación.",
+            "cta": "¡Planifiquemos juntos!"
+        }
+    }
+}

@@ -1,0 +1,266 @@
+{
+    "common": {
+        "backHome": "返回首页"
+    },
+    "navigation": {
+        "previous": "上一篇文章",
+        "next": "下一篇文章"
+    },
+    "links": {
+        "official": {
+            "visa": {
+                "iata": {
+                    "title": "IATA Travel Centre",
+                    "url": "https://www.iata.org/en/services/compliance/timatic/travel-documentation/",
+                    "description": "全球航空公司用于旅行文件验证的官方数据库"
+                },
+                "schengen": {
+                    "title": "欧盟签证门户",
+                    "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/applying-schengen-visa_en",
+                    "description": "欧盟官方签证申请信息"
+                },
+                "us": {
+                    "title": "美国国务院",
+                    "url": "https://travel.state.gov/content/travel/en/us-visas.html",
+                    "description": "美国签证信息及要求的官方信息"
+                }
+            },
+            "health": {
+                "cdc": {
+                    "title": "CDC Travelers' Health",
+                    "url": "https://wwwnc.cdc.gov/travel",
+                    "description": "美国官方旅行者健康要求和建议"
+                },
+                "who": {
+                    "title": "世界卫生组织国际旅行与健康",
+                    "url": "https://www.who.int/health-topics/travel-and-health",
+                    "description": "世界卫生组织关于旅行和健康的指南"
+                },
+                "icvp": {
+                    "title": "国际疫苗接种证书",
+                    "url": "https://wwwnc.cdc.gov/travel/page/icvp",
+                    "description": "关于黄卡和疫苗接种证书的官方信息"
+                }
+            },
+            "insurance": {
+                "schengen": {
+                    "title": "欧盟保险要求",
+                    "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/travel-medical-insurance_en",
+                    "description": "申根地区官方旅行保险要求"
+                }
+            }
+        }
+    },
+    "visa": {
+        "meta": {
+            "title": "您的友好签证与旅行许可指南",
+            "description": "关于签证的一切，简单易懂！获取关于申请、处理时间和各国要求的专家指导，所有这些都由值得信赖的IATA Timatic数据库提供支持。",
+            "keywords": "签证申请，旅行许可，旅游签证，旅行文件，签证要求，护照，IATA Timatic，申根签证，美国签证，日本签证"
+        },
+        "title": "您的简易签证与旅行许可指南",
+        "introduction": {
+            "title": "让我们谈谈旅行签证",
+            "content": "将签证想象成您的冒险金票！它只是一个正式文件，欢迎您进入一个国家。我们通过使用IATA的Timatic数据库保持信息的准确性和实时性——这是全球航空公司信赖的数据库，来自超过1,000个官方来源的实时更新。"
+        },
+        "popular": {
+            "title": "您的热门旅行目的地",
+            "countries": {
+                "europe": {
+                    "title": "✈️ 探索欧洲（申根签证）",
+                    "requirements": "准备好您的欧洲冒险了吗？大多数非欧盟游客需要这个方便的签证，它可以打开27个精彩国家的大门！处理通常需要15天（有时最多45天）。您需要：有效护照（6个月以上），旅行保险（覆盖30,000欧元以上），您的住宿计划，航班预订，最近的银行对账单，以及工作证明。别担心——我们会帮您把一切都安排好！"
+                },
+                "usa": {
+                    "title": "🗽 访问美国",
+                    "requirements": "正在计划您的美国之旅吗？B1/B2旅游签证是您的钥匙！虽然处理需要2-3个月（根据地点不同），但这种兴奋值得等待。您需要填写DS-160表格，持有有效护照，微笑拍照，与大使馆面谈，并展示您与祖国的联系和财务状况。如果您来自免签证国家，好消息——您可能有资格申请ESTA并停留最多90天！"
+                },
+                "japan": {
+                    "title": "🗼 发现日本",
+                    "requirements": "对日本感到兴奋吗？他们的新eVisa系统让许多旅行者感到非常方便！处理只需5-7天。只需准备好您的护照、旅行计划、资金证明和工作详情即可。专业建议：在出发前购买Japan Rail Pass！无论您是参加旅行团还是独自探索，我们都会为您提供支持。"
+                },
+                "australia": {
+                    "title": "🦘 澳大利亚冒险",
+                    "requirements": "梦想去澳大利亚吗？eVisitor（651）或ETA（601）签证非常适合符合条件的旅行者！大多数申请在24小时至2周内处理完成。只需在线登录，准备好您的护照，并确保您身体健康。对于18-30岁的年轻冒险者来说还有额外福利：看看他们惊艳的工作假期选项吧！"
+                }
+            }
+        },
+        "tips": {
+            "title": "签证申请专家建议",
+            "list": {
+                "early": "至少在旅行前3个月申请。旺季（夏季、节假日）可能需要更长的处理时间。如果可以，考虑加急处理。",
+                "documents": "使用大使馆网站上的官方文件清单。请由认证翻译人员翻译文件。保留所有提交文件的数字副本。",
+                "insurance": "购买超过最低要求的全面旅行保险。确保保险覆盖医疗撤离和COVID-19相关问题。",
+                "embassy": "在大使馆官方网站上跟踪签证处理时间。设置电子邮件提醒以了解要求变更。考虑使用授权签证处理中心以方便。"
+            }
+        },
+        "resources": {
+            "title": "官方资源",
+            "list": {
+                "iata": "IATA Travel Centre (timatic.iata.org) – 签证要求最准确的数据库",
+                "embassies": "大使馆官方网站，提供各国具体要求",
+                "state": "美国国务院 travel.state.gov，适用于美国公民",
+                "europa": "europa.eu/immigration，提供申根签证信息"
+            }
+        },
+        "help": {
+            "title": "准备好实现您的旅行梦想了吗？",
+            "content": "让我们一起打造您的完美旅行计划吧！我们将帮助您处理签证要求和时间安排，同时设计一个完全适合您的精彩冒险。",
+            "cta": "让我们一起计划吧！"
+        }
+    },
+    "service": {
+        "meta": {
+            "title": "Travel-Rizz如何运作 – 您的AI旅行伴侣",
+            "description": "了解Travel-Rizz的AI旅行助手如何通过自然对话、实时信息和交互式规划工具帮助您计划完美旅行 – 无需账户。",
+            "keywords": "AI旅行规划器，旅行助手，旅行规划，travel-rizz，个性化旅行，路线优化，旅行信息，无需注册"
+        },
+        "title": "Travel-Rizz如何让旅行规划变得简单",
+        "introduction": {
+            "title": "您的友好AI旅行伴侣",
+            "content": "Travel-Rizz旨在让旅行规划感觉像是与一位知识渊博的朋友聊天。无需账户，无需复杂表格 – 只需自然地分享您的旅行梦想，我们的AI将通过个性化建议和实时信息帮助您实现它们。"
+        },
+        "workflow": {
+            "title": "规划您的旅行很简单",
+            "steps": {
+                "input": {
+                    "title": "聊聊您的旅行梦想",
+                    "description": "开始一场自然的对话，谈谈您想去的地方和您寻求的体验。我们的AI能理解您的风格和偏好，就像与一位很了解您的朋友交谈一样。"
+                },
+                "ai": {
+                    "title": "获取实时旅行信息",
+                    "description": "在您聊天的过程中，我们的AI会及时提供有关目的地的信息 – 从天气模式到当地习俗，从签证要求到隐藏的宝藏 – 都在您需要的时候提供。"
+                },
+                "customize": {
+                    "title": "可视化您的旅程",
+                    "description": "在交互式地图上看到您的每日冒险变得生动。我们的AI会根据您的偏好优化路线，并为每个活动建议最佳时间，帮助您充分利用每一刻。"
+                },
+                "download": {
+                    "title": "您的完美行程",
+                    "description": "获取一个灵活的每日计划，您可以轻松调整。一切都按您的意愿组织，并提供关于时间和物流的智能建议 – 所有这些都不需要创建账户。"
+                }
+            }
+        },
+        "features": {
+            "title": "让规划更出色的功能",
+            "list": {
+                "aiChat": {
+                    "title": "AI驱动的旅行规划",
+                    "description": "立即与我们的AI旅行助手聊天 – 无需账户。像与朋友分享一样分享您的想法，我们的智能系统会理解您的偏好，创建个性化计划。"
+                },
+                "insights": {
+                    "title": "及时的旅行知识",
+                    "description": "在您需要时获取有关目的地的有用信息 – 从天气模式到当地习俗 – 所有这些都由我们的AI提供，它会学习对您重要的事情。"
+                },
+                "routes": {
+                    "title": "可视化路线绘制",
+                    "description": "在交互式地图上看到您的每日冒险展开。我们的AI根据您的偏好优化路线，帮助您充分利用每一天。"
+                },
+                "itinerary": {
+                    "title": "灵活的每日行程",
+                    "description": "使用直观的工具和AI协助，按您的意愿组织活动，构建您的每一天。无需注册，几秒钟即可开始规划。"
+                }
+            }
+        },
+        "cta": {
+            "title": "准备好开始规划了吗？",
+            "content": "与一个理解您的AI伴侣一起，体验轻松旅行规划的乐趣。",
+            "button": "让我们一起计划吧！"
+        }
+    },
+    "preparation": {
+        "meta": {
+            "title": "2025年您的终极旅行准备指南",
+            "description": "用我们的旅行清单为一次精彩的旅行做好准备！从必备文件到智能打包建议，我们让旅行准备变得轻松。现在就开始规划吧！",
+            "keywords": "旅行准备，旅行规划，打包清单，旅行清单，国际旅行，健康要求，2025年旅行清单，如何准备国际旅行"
+        },
+        "title": "您的终极旅行准备指南",
+        "introduction": {
+            "title": "为您的冒险感到兴奋吧！",
+            "content": "最好的旅行从出色的准备开始，随着旅行兴趣在出发前几个月达到顶峰，现在是开始的最佳时机！我们由专家打造的指南确保您为2025年的冒险做好准备，结合国际标准和实时信息。让我们让您的旅行准备顺畅、无压力且有趣吧！"
+        },
+        "categories": {
+            "documentation": {
+                "title": "📄 您的旅行文件",
+                "description": "让我们以简单的方式整理您的文件吧！",
+                "checklist": {
+                    "item1": "护照（有效期6个月以上且有2页空白页） – 提前检查到期日期！",
+                    "item2": "签证或入境许可（通过[IATA Travel Centre](https://www.iata.org/en/services/compliance/timatic/travel-documentation/)确认要求）",
+                    "item3": "包含COVID-19和医疗保障的旅行保险（为安心必不可少）",
+                    "item4": "疫苗接种记录（如需要 – 查看[CDC Travelers' Health](https://wwwnc.cdc.gov/travel)）"
+                }
+            },
+            "packing": {
+                "title": "🧳 智能打包变得简单",
+                "description": "用这些特定地区的聪明建议像专业人士一样打包吧！",
+                "checklist": {
+                    "item1": "适合目的地天气的服装（北美和欧洲适合多层穿搭！）",
+                    "item2": "通用适配器和便携式充电器（科技爱好旅行者的必备品）",
+                    "item3": "旅行装洗漱用品（符合TSA要求，便于安检）",
+                    "item4": "重要文件的备份副本（数字和纸质 – 国际旅行的关键）"
+                },
+                "genderSpecific": {
+                    "title": "为女性旅行者准备",
+                    "description": "添加这些必需品以增加舒适度和安全性。",
+                    "checklist": {
+                        "item1": "个人安全警报器或哨子",
+                        "item2": "小型镜子和带手电筒的便携式充电器",
+                        "item3": "女性卫生用品（考虑环保选项）"
+                    }
+                }
+            },
+            "booking": {
+                "title": "✈️ 旅行安排",
+                "description": "提前确保您的预订，以避免最后一刻的麻烦。",
+                "checklist": {
+                    "item1": "包含座位分配和餐饮偏好的航班（提前预订以获取优惠！）",
+                    "item2": "具有灵活取消政策的住宿（2025年必备！）",
+                    "item3": "机场接送和当地交通通行证（节省时间和金钱）",
+                    "item4": "优先景点和旅行团（跳过排队的选项能救场）"
+                }
+            },
+            "health": {
+                "title": "🏥 健康准备",
+                "description": "用这些专家建议在旅途中保持健康。",
+                "checklist": {
+                    "item1": "所需疫苗（查看[CDC旅行健康通知](https://wwwnc.cdc.gov/travel)以获取更新）",
+                    "item2": "包含国际保障的旅行健康保险（不要忽略COVID-19保护）",
+                    "item3": "带医生证明的处方药（以防万一多带一些）",
+                    "item4": "基本急救包（符合TSA要求，便于旅行）"
+                }
+            },
+            "finance": {
+                "title": "💰 财务规划",
+                "description": "用这些财务建议无忧旅行。",
+                "checklist": {
+                    "item1": "每日预算，包含20%的应急资金（为意外情况做准备）",
+                    "item2": "多种支付方式（卡、现金、数字钱包 – 在欧洲和澳大利亚很重要）",
+                    "item3": "银行旅行通知和紧急联系人（避免海外卡问题）",
+                    "item4": "当地货币和汇率监控（试试像XE这样的应用）"
+                }
+            }
+        },
+        "timeline": {
+            "title": "您的旅行倒计时",
+            "months3": {
+                "title": "还有3个月！ 🎉",
+                "tasks": "赶在人群之前！申请您的护照/签证，预订航班和住宿，检查疫苗需求，并从过去的旅行中获取灵感。"
+            },
+            "months1": {
+                "title": "还有1个月！ ✨",
+                "tasks": "越来越真实了！完成疫苗接种，确保您的旅行保险，规划每日活动，安排机场接送，并确认您的国际电话计划。"
+            },
+            "weeks2": {
+                "title": "仅剩2周！ 🎈",
+                "tasks": "兴奋感在增加！获取当地货币，制作文件副本，开始打包，检查天气，并下载离线地图。"
+            },
+            "days1": {
+                "title": "几乎到了！ ⭐",
+                "tasks": "最后倒计时！在线办理登机手续，确认所有预订，收拾行李，充电设备，下载娱乐内容，并查看最新的旅行更新。"
+            }
+        },
+        "planner": {
+            "title": "想让这一切更简单吗？",
+            "content": "让我们的友好AI为您打造一个根据您的目的地和旅行风格定制的准备时间表。非常适合高峰规划季节的忙碌旅行者！",
+            "cta": "让我们一起计划吧！"
+        }
+    }
+}
