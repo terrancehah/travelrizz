@@ -60,6 +60,23 @@
     },
     "cta": "Let's Plan Together"
   },
+  "articles": {
+    "title": "Articles",
+    "subtitle": "Helpful guides and resources to make your travel planning easier",
+    "readMore": "Read More",
+    "visa": {
+      "title": "Visa & Travel Permits",
+      "description": "Learn about visa requirements and application processes for popular destinations."
+    },
+    "service": {
+      "title": "How Travel-Rizz Works",
+      "description": "Discover how our AI helps create your perfect travel itinerary."
+    },
+    "preparation": {
+      "title": "Trip Preparation Guide",
+      "description": "Essential checklist and timeline for planning your perfect trip."
+    }
+  },
   "footer": {
     "tagline": "Plan Your Perfect Journey, Your Way",
     "quickLinks": {

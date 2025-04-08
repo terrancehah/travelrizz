@@ -1,6 +1,7 @@
 import Header from "@/components/landing/header"
 import Hero from "@/components/landing/hero"
 import About from "@/components/landing/about"
+import Articles from "@/components/landing/articles"
 import Footer from "@/components/landing/footer"
 import { useDetectBrowserPreferences } from '@/hooks/useDetectBrowserPreferences'
 import Head from 'next/head';
@@ -61,6 +62,7 @@ export default function LandingPage() {
         <About />
         <Features />
         <Pricing />
+        <Articles />
         <Footer />
         </main>
         </div>
