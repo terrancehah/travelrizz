@@ -33,6 +33,11 @@ export default function ServiceGuide() {
                 <meta name="keywords" content={t('service.meta.keywords')} />
                 <meta property="og:title" content={t('service.meta.title')} />
                 <meta property="og:description" content={t('service.meta.description')} />
+                <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/92208d0d-9316-4bdf-b3c6-307ae71fa951.jpg?token=aBf1vZ_HMp8u6j70oAHDe5B4MDLqT2j5nNKKpWxwFoM&height=900&width=1200&expires=33278759575" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="900" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/92208d0d-9316-4bdf-b3c6-307ae71fa951.jpg?token=aBf1vZ_HMp8u6j70oAHDe5B4MDLqT2j5nNKKpWxwFoM&height=900&width=1200&expires=33278759575" />
                 <link rel="canonical" href="https://travelrizz.app/articles/service-guide" />
             </Head>
 
