@@ -60,6 +60,23 @@
         },
         "cta": "지금 바로 계획 시작하기"
     },
+    "articles": {
+        "title": "기사",
+        "subtitle": "여행 계획을 더 쉽게 만드는 유용한 가이드와 리소스",
+        "readMore": "더 보기",
+        "visa": {
+            "title": "비자 및 여행 허가",
+            "description": "인기 있는 목적지의 비자 요건과 신청 절차에 대해 알아보세요."
+        },
+        "service": {
+            "title": "Travel-Rizz 작동 방식",
+            "description": "우리의 AI가 당신의 완벽한 여행 일정을 만드는 방법을 발견하세요."
+        },
+        "preparation": {
+            "title": "여행 준비 가이드",
+            "description": "완벽한 여행을 계획하기 위한 필수 체크리스트와 타임라인."
+        }
+    },
     "footer": {
         "tagline": "당신만의 방식으로 완벽한 여행 계획",
         "quickLinks": {

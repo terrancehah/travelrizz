@@ -31,6 +31,23 @@
             }
         }
     },
+    "articles": {
+        "title": "Artikel",
+        "subtitle": "Panduan dan sumber berguna untuk memudahkan perancangan perjalanan anda",
+        "readMore": "Baca Lagi",
+        "visa": {
+            "title": "Visa & Permit Perjalanan",
+            "description": "Ketahui tentang keperluan visa dan proses permohonan untuk destinasi popular."
+        },
+        "service": {
+            "title": "Bagaimana Travel-Rizz Berfungsi",
+            "description": "Ketahui bagaimana AI kami membantu mencipta jadual perjalanan sempurna anda."
+        },
+        "preparation": {
+            "title": "Panduan Persediaan Perjalanan",
+            "description": "Senarai semak penting dan garis masa untuk merancang perjalanan sempurna anda."
+        }
+    },
     "pricing": {
         "title": "Harga Mudah dan Jelas",
         "subtitle": "Fokus pada apa yang penting - merancang perjalanan sempurna anda - dengan harga yang menghormati perjalanan anda. Tiada pembuatan akaun, tiada bayaran tersembunyi.",

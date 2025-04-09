@@ -60,6 +60,23 @@
         },
         "cta": "今すぐプランニング開始"
     },
+    "articles": {
+        "title": "記事",
+        "subtitle": "旅行計画を簡単にするための役立つガイドとリソース",
+        "readMore": "続きを読む",
+        "visa": {
+            "title": "ビザと渡航許可",
+            "description": "人気の目的地のビザ要件と申請プロセスについて学びましょう。"
+        },
+        "service": {
+            "title": "Travel-Rizzの仕組み",
+            "description": "AIがあなたの完璧な旅程を作成する方法をご紹介します。"
+        },
+        "preparation": {
+            "title": "旅行準備ガイド",
+            "description": "完璧な旅行を計画するための必須チェックリストとタイムライン。"
+        }
+    },
     "footer": {
         "tagline": "あなたらしい旅の形を",
         "quickLinks": {

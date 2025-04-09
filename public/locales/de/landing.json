@@ -60,6 +60,23 @@
         },
         "cta": "Sofort mit der Planung beginnen"
     },
+    "articles": {
+        "title": "Artikel",
+        "subtitle": "Hilfreiche Leitfäden und Ressourcen für eine einfachere Reiseplanung",
+        "readMore": "Weiterlesen",
+        "visa": {
+            "title": "Visa & Reisegenehmigungen",
+            "description": "Erfahren Sie mehr über Visaanforderungen und Antragsprozesse für beliebte Reiseziele."
+        },
+        "service": {
+            "title": "Wie Travel-Rizz funktioniert",
+            "description": "Entdecken Sie, wie unsere KI Ihnen hilft, Ihre perfekte Reiseroute zu erstellen."
+        },
+        "preparation": {
+            "title": "Reisevorbereitungsguide",
+            "description": "Wesentliche Checkliste und Zeitplan für die Planung Ihrer perfekten Reise."
+        }
+    },
     "footer": {
         "tagline": "Planen Sie Ihre perfekte Reise, auf Ihre Art",
         "quickLinks": {

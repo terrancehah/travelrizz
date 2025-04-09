@@ -60,6 +60,23 @@
         },
         "cta": "Začněte plánovat okamžitě"
     },
+    "articles": {
+        "title": "Články",
+        "subtitle": "Užitečné průvodce a zdroje pro snadnější plánování cesty",
+        "readMore": "Číst více",
+        "visa": {
+            "title": "Víza a cestovní povolení",
+            "description": "Zjistěte více o vízových požadavcích a procesu žádosti pro populární destinace."
+        },
+        "service": {
+            "title": "Jak Travel-Rizz funguje",
+            "description": "Objevte, jak naše AI pomáhá vytvořit váš perfektní cestovní itinerář."
+        },
+        "preparation": {
+            "title": "Průvodce přípravou na cestu",
+            "description": "Základní kontrolní seznam a časový plán pro plánování vaší dokonalé cesty."
+        }
+    },
     "footer": {
         "tagline": "Naplánujte si perfektní cestu po svém",
         "quickLinks": {

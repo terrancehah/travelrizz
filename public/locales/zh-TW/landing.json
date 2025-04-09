@@ -60,6 +60,23 @@
         },
         "cta": "立即開始規劃"
     },
+    "articles": {
+        "title": "文章",
+        "subtitle": "實用指南和資源，讓您的旅行規劃更輕鬆",
+        "readMore": "閱讀更多",
+        "visa": {
+            "title": "簽證和旅行許可",
+            "description": "了解熱門目的地的簽證要求和申請流程。"
+        },
+        "service": {
+            "title": "Travel-Rizz 如何運作",
+            "description": "探索我們的人工智慧如何幫助您制定完美的旅行行程。"
+        },
+        "preparation": {
+            "title": "旅行準備指南",
+            "description": "規劃完美旅行的基本清單和時間表。"
+        }
+    },
     "footer": {
         "tagline": "規劃專屬於你的完美旅程",
         "quickLinks": {

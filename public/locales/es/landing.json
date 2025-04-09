@@ -60,6 +60,23 @@
         },
         "cta": "Planifiquemos juntos"
     },
+    "articles": {
+        "title": "Artículos",
+        "subtitle": "Guías y recursos útiles para facilitar la planificación de tu viaje",
+        "readMore": "Leer más",
+        "visa": {
+            "title": "Visas y Permisos de Viaje",
+            "description": "Aprende sobre los requisitos de visa y procesos de solicitud para destinos populares."
+        },
+        "service": {
+            "title": "Cómo funciona Travel-Rizz",
+            "description": "Descubre cómo nuestra IA te ayuda a crear tu itinerario de viaje perfecto."
+        },
+        "preparation": {
+            "title": "Guía de Preparación para el Viaje",
+            "description": "Lista de verificación esencial y cronograma para planificar tu viaje perfecto."
+        }
+    },
     "footer": {
         "tagline": "Planifica tu viaje perfecto, a tu manera",
         "quickLinks": {
