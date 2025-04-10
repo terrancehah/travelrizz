@@ -11,123 +11,256 @@
             "visa": {
                 "iata": {
                     "title": "IATA Travel Centre",
-                    "url": "https://www.iata.org/en/services/compliance/timatic/travel-documentation/",
-                    "description": "Official database used by airlines worldwide for travel document verification"
+                    "url": "https://www.iatatravelcentre.com/",
+                    "description": "Your go-to tool for up-to-date visa and health requirements, trusted by airlines globally!"
                 },
                 "schengen": {
                     "title": "EU Visa Portal",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/applying-schengen-visa_en",
-                    "description": "Official European Union visa application information"
+                    "description": "Official European Union info to make your Schengen visa application super easy"
                 },
                 "us": {
                     "title": "U.S. Department of State",
                     "url": "https://travel.state.gov/content/travel/en/us-visas.html",
-                    "description": "Official U.S. visa information and requirements"
+                    "description": "Everything you need for U.S. visas, straight from the official source"
+                },
+                "visaguide": {
+                    "title": "VisaGuide.World",
+                    "url": "https://visaguide.world/",
+                    "description": "A friendly guide with visa requirements for over 200 countries—perfect for planning your adventure!"
                 }
             },
             "health": {
                 "cdc": {
                     "title": "CDC Travelers' Health",
                     "url": "https://wwwnc.cdc.gov/travel",
-                    "description": "Official U.S. health requirements and recommendations"
+                    "description": "Official U.S. health requirements and recommendations for travelers"
                 },
                 "who": {
                     "title": "WHO International Travel and Health",
                     "url": "https://www.who.int/health-topics/travel-and-health",
-                    "description": "World Health Organization travel health guidelines"
+                    "description": "World Health Organization guidelines on travel and health"
                 },
                 "icvp": {
                     "title": "International Certificate of Vaccination",
                     "url": "https://wwwnc.cdc.gov/travel/page/icvp",
-                    "description": "Official information about Yellow Cards and vaccination certificates"
+                    "description": "Official info on yellow cards and vaccination certificates"
                 }
             },
             "insurance": {
                 "schengen": {
                     "title": "EU Insurance Requirements",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/travel-medical-insurance_en",
-                    "description": "Official Schengen travel insurance requirements"
+                    "description": "Official travel insurance requirements for the Schengen area"
                 }
             }
         }
     },
     "visa": {
         "meta": {
-            "title": "Your Friendly Guide to Visas & Travel Permits",
-            "description": "Everything you need to know about visas made simple! Get expert guidance on applications, processing times, and country requirements - all powered by the trusted IATA Timatic database.",
-            "keywords": "visa application, travel permit, tourist visa, travel documents, visa requirements, passport, IATA Timatic, Schengen visa, US visa, Japan visa"
+            "title": "Your Friendly Guide to Visas and Travel Permits",
+            "description": "Everything you need to know about visas, made simple! Get expert advice on applications, processing times, and country requirements, powered by the reliable IATA Timatic database and VisaGuide.World.",
+            "keywords": "visa application, travel permit, tourist visa, travel documents, visa requirements, passport, IATA Timatic, VisaGuide.World, Schengen visa, U.S. visa, Japan visa, ESTA, ETIAS"
         },
-        "title": "Your Easy Guide to Visas & Travel Permits",
+        "title": "Your Easy and Fun Guide to Visas and Travel Permits",
         "introduction": {
-            "title": "Let's Talk About Travel Visas",
-            "content": "Think of a visa as your golden ticket to adventure! It's simply an official document that welcomes you into a country. We keep things accurate and up-to-date by using IATA's Timatic database - the same one airlines trust worldwide, with real-time updates from over 1,000 official sources."
+            "title": "Let’s Talk About Travel Visas!",
+            "content": "Think of a visa as your VIP pass to explore the world! It’s just an official document that says ‘welcome!’ to a country. We keep everything up-to-date with the IATA Timatic database—the same one airlines trust—and give you the freshest details from over 1,000 official sources. Ready to plan your next adventure? We’ve got you covered!"
         },
         "popular": {
-            "title": "Your Top Travel Destinations",
+            "title": "Your Favorite Travel Destinations",
             "countries": {
                 "europe": {
                     "title": "✈️ Exploring Europe (Schengen Visa)",
-                    "requirements": "Ready for your European adventure? Most non-EU visitors need this handy visa that opens doors to 27 amazing countries! Processing usually takes 15 days (sometimes up to 45). You'll need: A valid passport (6+ months), travel insurance (€30,000+ coverage), your accommodation plans, flight bookings, recent bank statements, and proof of employment. Don't worry - we'll help you get everything sorted!"
+                    "requirements": "Ready for a European getaway? The Schengen visa opens doors to 27 amazing countries—from France to Finland. It usually takes 15 days to process (up to 45 in peak season). You’ll need a passport valid for 6+ months, travel insurance with €30,000+ coverage, accommodation and flight bookings, recent bank statements, and proof of employment. Don’t worry, we’ll make it easy for you!"
                 },
                 "usa": {
                     "title": "🗽 Visiting the United States",
-                    "requirements": "Planning your American journey? The B1/B2 tourist visa is your key! While processing takes 2-3 months (varies by location), the excitement will be worth the wait. You'll need to fill out the DS-160 form, have a valid passport, smile for a photo, chat with the embassy, and show your home connections and finances. Great news if you're from a Visa Waiver country - you might qualify for ESTA and stay up to 90 days!"
+                    "requirements": "Dreaming of the U.S.? The B1/B2 tourist visa is your ticket, though it can take 2-3 months (depending on location). Complete the DS-160 form, have a valid passport, a recent photo, and be ready for a chat with the embassy showing your ties back home. From a visa waiver country? ESTA lets you stay 90 days with less hassle!"
                 },
                 "japan": {
                     "title": "🗼 Discovering Japan",
-                    "requirements": "Excited about Japan? Their new eVisa system makes things super easy for many travelers! It only takes 5-7 days to process. Just prepare your passport, travel plans, proof of funds, and work details. Pro tip: Grab your Japan Rail Pass before you go! Whether you're joining a tour or exploring solo, we've got you covered."
+                    "requirements": "Japan fan? Their eVisa system is a dream—processed in 5-7 days for many travelers. Just need your passport, travel plans, proof of funds, and employment details. Golden tip: Buy your Japan Rail Pass before you go to save and explore more! We’ll guide you every step."
                 },
                 "australia": {
                     "title": "🦘 Adventures in Australia",
-                    "requirements": "Dreaming of Down Under? The eVisitor (651) or ETA (601) visa is perfect for eligible travelers! Most applications are processed within 24 hours to 2 weeks. Just hop online, have your passport ready, and make sure you're in good health. Bonus for young adventurers (18-30): Check out their amazing working holiday options!"
+                    "requirements": "Fantasizing about Australia? The eVisitor (651) or ETA (601) visas process in 24 hours to 2 weeks—perfect for eligible travelers. Just apply online with your passport and a health clearance. Young (18-30)? Working holiday visas are a great adventure option!"
                 }
             }
         },
-        "tips": {
-            "title": "Expert Visa Application Tips",
+        "steps": {
+            "title": "How to Apply for Your Visa, Step by Step",
+            "countries": {
+                "europe": {
+                    "title": "Schengen Visa (Europe)",
+                    "list": {
+                        "step1": "Choose the embassy of the country where you’ll spend the most time (e.g., France if it’s your focus).",
+                        "step2": "Complete the online form on the embassy’s site or the EU Visa Portal.",
+                        "step3": "Gather your passport, biometric photo, €30,000+ insurance, itinerary, and proof of funds.",
+                        "step4": "Book an appointment—many embassies do this online.",
+                        "step5": "Submit everything at your appointment and wait 15-45 days. Easy, right?"
+                    }
+                },
+                "usa": {
+                    "title": "U.S. Visa (B1/B2)",
+                    "list": {
+                        "step1": "Fill out the DS-160 form on travel.state.gov—it’s your key first step.",
+                        "step2": "Pay the fee (around $160, check the current rate).",
+                        "step3": "Schedule your embassy interview—yes, it’s required for most.",
+                        "step4": "Bring passport, photo, proof of funds, and ties to home (job, family).",
+                        "step5": "Chat with the officer and wait 2-3 months. Patience, it’ll be worth it!"
+                    }
+                },
+                "japan": {
+                    "title": "Japan eVisa",
+                    "list": {
+                        "step1": "Check if you qualify for eVisa on mofa.go.jp.",
+                        "step2": "Apply online with passport, itinerary, and employment details.",
+                        "step3": "Upload documents digitally—no fuss.",
+                        "step4": "Wait 5-7 days and get your eVisa by email. Print it and go!"
+                    }
+                },
+                "australia": {
+                    "title": "Australia eVisitor/ETA",
+                    "list": {
+                        "step1": "Confirm eligibility on immi.homeaffairs.gov.au.",
+                        "step2": "Apply online with passport and health declaration.",
+                        "step3": "Wait 24 hours to 2 weeks—usually super quick.",
+                        "step4": "Get approval by email, linked to your passport. Time to explore!"
+                    }
+                }
+            }
+        },
+        "mistakes": {
+            "title": "Common Mistakes to Avoid",
             "list": {
-                "early": "Apply at least 3 months before travel. Peak seasons (summer, holidays) may require longer processing times. Consider expedited processing if available.",
-                "documents": "Use official document checklists from embassy websites. Get documents translated by certified translators. Keep digital copies of all submissions.",
-                "insurance": "Get comprehensive travel insurance that exceeds minimum requirements. Ensure coverage includes medical evacuation and COVID-19 related issues.",
-                "embassy": "Track visa processing times on official embassy websites. Set up email alerts for requirement changes. Consider using authorized visa processing centers for convenience."
+                "late": "Not applying early—aim for 3 months ahead, especially in summer or holidays.",
+                "incomplete": "Incorrect forms—double-check signatures and dates to avoid rejection.",
+                "funds": "Insufficient funds—show enough money for your trip (bank statements, payslips).",
+                "insurance": "Inadequate insurance—you need €30,000+ for Schengen, don’t forget.",
+                "ties": "Not proving ties to home—employment or family help avoid doubts in the U.S."
+            }
+        },
+        "visafree": {
+            "title": "Travel Without a Visa or With Easy Permits!",
+            "content": "Did you know some destinations don’t need a full visa? With electronic authorizations like ESTA or ETIAS, you can skip the long process if you’re from certain countries. Here are some popular options for 2025—quick and simple.",
+            "table": {
+                "destination": "Destination",
+                "type": "Type",
+                "cost": "Cost",
+                "validity": "Validity",
+                "stay": "Max Stay",
+                "entries": {
+                    "usa": {
+                        "destination": "USA",
+                        "type": "ESTA",
+                        "cost": "USD 14",
+                        "validity": "2 years",
+                        "stay": "90 days"
+                    },
+                    "canada": {
+                        "destination": "Canada",
+                        "type": "eTA",
+                        "cost": "CAD 7",
+                        "validity": "5 years",
+                        "stay": "6 months"
+                    },
+                    "europe": {
+                        "destination": "Europe (Schengen)",
+                        "type": "ETIAS (from May 2025)",
+                        "cost": "€7",
+                        "validity": "3 years",
+                        "stay": "3 months"
+                    }
+                }
+            }
+        },
+        "insurance": {
+            "title": "Travel Insurance: Your Best Travel Buddy!",
+            "content": "Insurance is mandatory for places like Schengen (€30,000+ coverage) and highly recommended elsewhere like Japan. Look for one covering medical emergencies, evacuation, and COVID-19 for your whole trip. Try options like World Nomads or Allianz—they keep you safe so you can focus on fun."
+        },
+        "tips": {
+            "title": "Expert Tips for Your Visa Application",
+            "list": {
+                "early": "Apply 3 months in advance—peak seasons (summer, holidays) fill up fast. In a hurry? Check expedited options.",
+                "documents": "Follow official embassy checklists—get certified translations if needed and keep digital copies.",
+                "insurance": "Choose comprehensive insurance—beyond the minimum, with medical evacuation and COVID-19 coverage.",
+                "embassy": "Monitor processing times on embassy sites—set email alerts and consider authorized visa centers."
+            }
+        },
+        "checklist": {
+            "title": "Visa Preparation Checklist",
+            "table": {
+                "item": "Item",
+                "details": "Details",
+                "items": {
+                    "passport": {
+                        "name": "Valid Passport",
+                        "details": "Check expiration date, ensure 2+ blank pages"
+                    },
+                    "form": {
+                        "name": "Application Form",
+                        "details": "Completed, signed, submitted online or in person"
+                    },
+                    "photo": {
+                        "name": "Biometric Photo",
+                        "details": "Recent, meets embassy specifications"
+                    },
+                    "insurance": {
+                        "name": "Travel Insurance",
+                        "details": "Covers medical, €30,000+ for Schengen"
+                    },
+                    "funds": {
+                        "name": "Proof of Funds",
+                        "details": "Bank statements, payslips, enough for your trip"
+                    },
+                    "accommodation": {
+                        "name": "Accommodation Proof",
+                        "details": "Hotel bookings, invitation letters"
+                    },
+                    "itinerary": {
+                        "name": "Travel Itinerary",
+                        "details": "Flight bookings, planned activities"
+                    }
+                }
             }
         },
         "resources": {
-            "title": "Official Resources",
+            "title": "Official Visa Resources",
             "list": {
-                "iata": "IATA Travel Centre (timatic.iata.org) - Most accurate visa requirements database",
-                "embassies": "Official embassy websites for detailed country-specific requirements",
-                "state": "U.S. Department of State travel.state.gov for U.S. citizens",
-                "europa": "europa.eu/immigration for Schengen visa information"
+                "iata": "IATA Travel Centre – Personalized, up-to-date visa info",
+                "visaguide": "VisaGuide.World – Detailed requirements for 200+ countries",
+                "schengen": "EU Visa Portal – All about the Schengen visa",
+                "us": "U.S. Department of State – Official U.S. visa guide"
             }
         },
         "help": {
-            "title": "Ready to Make Your Travel Dreams Real?",
-            "content": "Let's work together to create your perfect travel plan! We'll help you navigate visa requirements and timing while crafting an amazing adventure that's just right for you.",
-            "cta": "Let's Plan Together"
+            "title": "Ready for Your Travel Dreams?",
+            "content": "Let’s team up to plan your perfect adventure! We’ll guide you through visa requirements and timelines, creating an amazing trip just for you.",
+            "cta": "Let’s Plan Together!"
         }
     },
     "service": {
         "meta": {
-            "title": "How Travel-Rizz Works - Your AI Travel Companion",
-            "description": "Discover how Travel-Rizz's AI travel assistant helps you plan your perfect trip through natural conversation, real-time insights, and interactive planning tools - no account needed.",
-            "keywords": "AI travel planner, travel assistant, trip planning, travel-rizz, personalized travel, route optimization, travel insights, no signup required"
+            "title": "How Travel-Rizz Works – Your AI Travel Companion",
+            "description": "Discover how Travel-Rizz’s AI travel assistant helps you plan your perfect trip through natural conversations, real-time info, and interactive planning tools—no account needed.",
+            "keywords": "AI travel planner, travel assistant, trip planning, travel-rizz, personalized travel, route optimization, travel insights, no sign-up required"
         },
-        "title": "How Travel-Rizz Makes Travel Planning Easy",
+        "title": "How Travel-Rizz Makes Trip Planning Easy",
         "introduction": {
             "title": "Your Friendly AI Travel Companion",
-            "content": "Travel-Rizz is designed to make trip planning feel like chatting with a knowledgeable friend. No accounts, no complicated forms - just share your travel dreams naturally, and our AI will help bring them to life with personalized suggestions and real-time insights."
+            "content": "Travel-Rizz is designed to make trip planning feel like chatting with a knowledgeable friend. No accounts, no complicated forms—just share your travel dreams naturally, and our AI will bring them to life with personalized suggestions and real-time info."
         },
         "workflow": {
             "title": "Planning Your Trip is Simple",
             "steps": {
                 "input": {
-                    "title": "Chat About Your Travel Dreams",
-                    "description": "Start a natural conversation about where you'd like to go and what experiences you're seeking. Our AI understands your style and preferences, just like talking to a friend who knows you well."
+                    "title": "Talk About Your Travel Dreams",
+                    "description": "Start a natural conversation about where you’d like to go and what experiences you’re seeking. Our AI understands your style and preferences, like talking to a friend who knows you well."
                 },
                 "ai": {
                     "title": "Get Real-Time Travel Insights",
-                    "description": "As you chat, our AI provides timely information about your destination - from weather patterns to local customs, visa requirements to hidden gems - exactly when you need it."
+                    "description": "As you chat, our AI provides timely info on your destination—from weather patterns to local customs, visa requirements, and hidden gems—exactly when you need it."
                 },
                 "customize": {
                     "title": "Visualize Your Journey",
@@ -135,7 +268,7 @@
                 },
                 "download": {
                     "title": "Your Perfect Itinerary",
-                    "description": "Get a flexible day-by-day plan that you can easily adjust. Everything is organized your way, with smart suggestions for timing and logistics - all without needing to create an account."
+                    "description": "Get a flexible daily plan you can easily adjust. Everything’s organized your way, with smart suggestions for timing and logistics—all without creating an account."
                 }
             }
         },
@@ -143,62 +276,62 @@
             "title": "Features That Make Planning Better",
             "list": {
                 "aiChat": {
-                    "title": "AI-Powered Travel Planning",
-                    "description": "Chat instantly with our AI travel assistant - no account needed. Share your ideas as you would with a friend, and our intelligent system will understand your preferences to create personalized plans."
+                    "title": "AI Trip Planning",
+                    "description": "Chat instantly with our AI travel assistant—no account needed. Share your ideas like you would with a friend, and our smart system will understand your preferences to create personalized plans."
                 },
                 "insights": {
                     "title": "Timely Travel Knowledge",
-                    "description": "Access helpful insights about your destination - from weather patterns to local customs - exactly when you need them, all powered by our AI that learns what matters to you."
+                    "description": "Access helpful info about your destination—from weather patterns to local customs—exactly when you need it, all powered by our AI that learns what matters to you."
                 },
                 "routes": {
-                    "title": "Visual Routes Drawing",
+                    "title": "Visual Route Mapping",
                     "description": "See your daily adventures laid out on interactive maps. Our AI optimizes your routes based on your preferences, helping you make the most of each day."
                 },
                 "itinerary": {
-                    "title": "Flexible Day Itinerary",
-                    "description": "Build your days with intuitive tools and AI assistance that organizes activities your way. Start planning in seconds with no registration required."
+                    "title": "Flexible Daily Itinerary",
+                    "description": "Build your days with intuitive tools and AI assistance that organizes activities your way. Start planning in seconds without signing up."
                 }
             }
         },
         "cta": {
             "title": "Ready to Start Planning?",
-            "content": "Experience the joy of effortless travel planning with an AI companion that understands you.",
-            "button": "Let's Plan Together"
+            "content": "Experience the joy of effortless trip planning with an AI companion that understands you.",
+            "button": "Let’s Plan Together!"
         }
     },
     "preparation": {
         "meta": {
-            "title": "Your Ultimate Trip Preparation Guide for 2025",
-            "description": "Get ready for an amazing journey with our travel checklist! From essential documents to smart packing tips, we make trip preparation effortless. Start planning now!",
-            "keywords": "trip preparation, travel planning, packing list, travel checklist, international travel, health requirements, travel preparation checklist 2025, how to prepare for international travel"
+            "title": "Your Ultimate Travel Preparation Guide for 2025",
+            "description": "Get ready for an amazing trip with our travel checklist! From essential documents to smart packing tips, we make trip prep easy. Start planning now!",
+            "keywords": "travel preparation, trip planning, packing list, travel checklist, international travel, health requirements, 2025 travel checklist, how to prepare for international travel"
         },
-        "title": "Your Ultimate Travel Prep Guide",
+        "title": "Your Ultimate Travel Preparation Guide",
         "introduction": {
-            "title": "Getting Excited for Your Adventure!",
-            "content": "The best journeys start with great preparation, and with travel interest peaking months before departure, now’s the perfect time to dive in! Our expertly crafted guide ensures you’re ready for your 2025 adventure, blending international standards with real-time insights. Let’s make your travel prep smooth, stress-free, and fun!"
+            "title": "Get Excited for Your Adventure!",
+            "content": "The best trips start with great preparation, and with travel interest peaking months before departure, now’s the perfect time to begin! Our expert-crafted guide ensures you’re ready for your 2025 adventure, blending international standards with real-time info. Let’s make your travel prep smooth, stress-free, and fun!"
         },
         "categories": {
             "documentation": {
                 "title": "📄 Your Travel Documents",
-                "description": "Let’s sort your paperwork the easy way!",
+                "description": "Let’s organize your documents the easy way!",
                 "checklist": {
-                    "item1": "Passport (valid for 6+ months with 2 blank pages) – check expiration early!",
-                    "item2": "Visa or entry permits (verify requirements with [IATA Travel Centre](https://www.iata.org/en/services/compliance/timatic/travel-documentation/))",
-                    "item3": "Travel insurance with COVID-19 and medical coverage (essential for peace of mind)",
-                    "item4": "Vaccination records (if required – see [CDC Travelers' Health](https://wwwnc.cdc.gov/travel))"
+                    "item1": "Passport (valid for 6+ months with 2 blank pages)—check the expiration date early!",
+                    "item2": "Visa or entry permits (check requirements with [IATA Travel Centre](https://www.iatatravelcentre.com/))",
+                    "item3": "Travel insurance with medical and COVID-19 coverage (essential for peace of mind)",
+                    "item4": "Vaccination records (if required—see [CDC Travelers' Health](https://wwwnc.cdc.gov/travel))"
                 }
             },
             "packing": {
-                "title": "🧳 Smart Packing Made Simple",
-                "description": "Pack like a pro with these clever, region-specific tips!",
+                "title": "🧳 Packing Smart and Simple",
+                "description": "Pack like a pro with these region-specific tips!",
                 "checklist": {
-                    "item1": "Outfits suited for your destination’s weather (layering works great for North America and Europe!)",
-                    "item2": "Universal adapter and portable charger (a must for tech-savvy travelers)",
-                    "item3": "Travel-sized toiletries (TSA-friendly for smooth security checks)",
-                    "item4": "Backup copies of important docs (digital and paper – key for international travel)"
+                    "item1": "Clothing suited to your destination’s climate (layers work great for North America and Europe!)",
+                    "item2": "Universal adapter and portable charger (must-haves for tech-savvy travelers)",
+                    "item3": "Travel-sized toiletries (TSA-compliant for smooth security checks)",
+                    "item4": "Backup copies of important documents (digital and paper—key for international trips)"
                 },
                 "genderSpecific": {
-                    "title": "For Women Travelers",
+                    "title": "For Female Travelers",
                     "description": "Add these essentials for extra comfort and safety.",
                     "checklist": {
                         "item1": "Personal safety alarm or whistle",
@@ -212,7 +345,7 @@
                 "description": "Secure your bookings early to avoid last-minute hassles.",
                 "checklist": {
                     "item1": "Flights with seat assignments and meal preferences (book early for deals!)",
-                    "item2": "Accommodation with flexible cancellation policies (a 2025 must-have)",
+                    "item2": "Accommodation with flexible cancellation policies (a must for 2025!)",
                     "item3": "Airport transfers and local transport passes (save time and money)",
                     "item4": "Priority attractions and tours (skip-the-line options save the day)"
                 }
@@ -221,9 +354,9 @@
                 "title": "🏥 Health Preparations",
                 "description": "Stay healthy on the road with these expert tips.",
                 "checklist": {
-                    "item1": "Required vaccinations (check [CDC travel health notices](https://wwwnc.cdc.gov/travel) for updates)",
+                    "item1": "Required vaccinations (check [CDC Traveler Health Notices](https://wwwnc.cdc.gov/travel) for updates)",
                     "item2": "Travel health insurance with international coverage (don’t skip COVID-19 protection)",
-                    "item3": "Prescription medications with a doctor’s note (pack extra just in case)",
+                    "item3": "Prescription medications with doctor’s note (pack extras just in case)",
                     "item4": "Basic first aid kit (TSA-compliant for easy travel)"
                 }
             },
@@ -231,36 +364,36 @@
                 "title": "💰 Financial Planning",
                 "description": "Travel worry-free with these financial tips.",
                 "checklist": {
-                    "item1": "Daily budget with a 20% contingency fund (plan for surprises)",
-                    "item2": "Multiple payment methods (cards, cash, digital wallets – key for Europe and Australia)",
+                    "item1": "Daily budget with 20% contingency fund (plan for the unexpected)",
+                    "item2": "Multiple payment methods (cards, cash, digital wallets—key for Europe and Australia)",
                     "item3": "Bank travel notifications and emergency contacts (avoid card issues abroad)",
                     "item4": "Local currency and exchange rate monitoring (try apps like XE)"
                 }
             }
         },
         "timeline": {
-            "title": "Your Journey Countdown",
+            "title": "Your Travel Countdown",
             "months3": {
                 "title": "3 Months to Go! 🎉",
-                "tasks": "Beat the rush! Apply for your passport/visa, book flights and accommodations, check vaccination needs, and review past trips for inspiration."
+                "tasks": "Beat the crowd! Apply for passport/visa, book flights and accommodation, check vaccination needs, and review past trips for inspiration."
             },
             "months1": {
-                "title": "1 Month Away! ✨",
+                "title": "1 Month to Go! ✨",
                 "tasks": "It’s getting real! Finish vaccinations, secure travel insurance, plan daily activities, arrange airport transfers, and confirm your phone plan for international use."
             },
             "weeks2": {
-                "title": "Just 2 Weeks! 🎈",
-                "tasks": "The excitement builds! Grab local currency, make document copies, start packing, check the weather, and download offline maps."
+                "title": "Just 2 Weeks Left! 🎈",
+                "tasks": "Excitement’s building! Get local currency, make document copies, start packing, check the weather, and download offline maps."
             },
             "days1": {
                 "title": "Almost There! ⭐",
-                "tasks": "Final countdown! Check in online, confirm bookings, pack your bags, charge devices, download entertainment, and review the latest travel updates."
+                "tasks": "Final countdown! Check in online, confirm all bookings, pack your bags, charge devices, download entertainment, and review latest travel updates."
             }
         },
         "planner": {
             "title": "Want to Make This Even Easier?",
-            "content": "Let our friendly AI craft a custom preparation timeline tailored to your destination and travel style. Perfect for busy travelers during peak planning seasons!",
-            "cta": "Let's Plan Together"
+            "content": "Let our friendly AI create a personalized preparation timeline based on your destination and travel style! Perfect for busy travelers during peak planning seasons.",
+            "cta": "Let’s Plan Together!"
         }
     }
 }

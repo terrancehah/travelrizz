@@ -10,26 +10,31 @@
         "official": {
             "visa": {
                 "iata": {
-                    "title": "IATA Travel Centre",
-                    "url": "https://www.iata.org/en/services/compliance/timatic/travel-documentation/",
-                    "description": "Pangkalan data rasmi yang digunakan oleh syarikat penerbangan di seluruh dunia untuk pengesahan dokumen perjalanan"
+                    "title": "Pusat Perjalanan IATA",
+                    "url": "https://www.iatatravelcentre.com/",
+                    "description": "Alat rujukan anda untuk keperluan visa dan kesihatan yang terkini, dipercayai oleh syarikat penerbangan di seluruh dunia!"
                 },
                 "schengen": {
                     "title": "Portal Visa EU",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/applying-schengen-visa_en",
-                    "description": "Maklumat rasmi Kesatuan Eropah mengenai permohonan visa Schengen"
+                    "description": "Maklumat rasmi Kesatuan Eropah untuk memudahkan permohonan visa Schengen anda"
                 },
                 "us": {
-                    "title": "Jabatan Negara A.S.",
+                    "title": "Jabatan Negara Amerika Syarikat",
                     "url": "https://travel.state.gov/content/travel/en/us-visas.html",
-                    "description": "Maklumat dan keperluan rasmi untuk visa A.S."
+                    "description": "Segala yang anda perlukan untuk visa AS, terus dari sumber rasmi"
+                },
+                "visaguide": {
+                    "title": "VisaGuide.World",
+                    "url": "https://visaguide.world/",
+                    "description": "Panduan mesra dengan keperluan visa untuk lebih 200 negara—sempurna untuk merancang pengembaraan anda!"
                 }
             },
             "health": {
                 "cdc": {
-                    "title": "CDC Travelers' Health",
+                    "title": "Kesihatan Pengembara CDC",
                     "url": "https://wwwnc.cdc.gov/travel",
-                    "description": "Keperluan dan cadangan kesihatan rasmi A.S. untuk pelancong"
+                    "description": "Keperluan dan cadangan kesihatan rasmi AS untuk pengembara"
                 },
                 "who": {
                     "title": "WHO Perjalanan Antarabangsa dan Kesihatan",
@@ -39,167 +44,295 @@
                 "icvp": {
                     "title": "Sijil Vaksinasi Antarabangsa",
                     "url": "https://wwwnc.cdc.gov/travel/page/icvp",
-                    "description": "Maklumat rasmi mengenai Kad Kuning dan sijil vaksinasi"
+                    "description": "Maklumat rasmi mengenai kad kuning dan sijil vaksinasi"
                 }
             },
             "insurance": {
                 "schengen": {
                     "title": "Keperluan Insurans EU",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/travel-medical-insurance_en",
-                    "description": "Keperluan rasmi insurans perjalanan untuk kawasan Schengen"
+                    "description": "Keperluan insurans perjalanan rasmi untuk kawasan Schengen"
                 }
             }
         }
     },
     "visa": {
         "meta": {
-            "title": "Panduan Mesra Anda untuk Visa & Permit Perjalanan",
-            "description": "Segala yang anda perlu tahu tentang visa dibuat mudah! Dapatkan panduan pakar mengenai permohonan, masa pemprosesan, dan keperluan negara – semua dikuasakan oleh pangkalan data IATA Timatic yang dipercayai.",
-            "keywords": "permohonan visa, permit perjalanan, visa pelancong, dokumen perjalanan, keperluan visa, pasport, IATA Timatic, visa Schengen, visa A.S., visa Jepun"
+            "title": "Panduan Mesra Anda untuk Visa dan Permit Perjalanan",
+            "description": "Segala yang anda perlu tahu tentang visa, dijelaskan dengan mudah! Dapatkan nasihat pakar mengenai permohonan, masa pemprosesan, dan keperluan mengikut negara, dikuasakan oleh pangkalan data IATA Timatic yang boleh dipercayai dan VisaGuide.World.",
+            "keywords": "permohonan visa, permit perjalanan, visa pelancong, dokumen perjalanan, keperluan visa, pasport, IATA Timatic, VisaGuide.World, visa Schengen, visa AS, visa Jepun, ESTA, ETIAS"
         },
-        "title": "Panduan Mudah Anda untuk Visa & Permit Perjalanan",
+        "title": "Panduan Mudah dan Menyeronokkan Anda untuk Visa dan Permit Perjalanan",
         "introduction": {
-            "title": "Mari Berbual Tentang Visa Perjalanan",
-            "content": "Anggap visa sebagai tiket emas anda ke pengembaraan! Ia hanyalah dokumen rasmi yang menyambut anda ke sesebuah negara. Kami memastikan segalanya tepat dan terkini dengan menggunakan pangkalan data Timatic IATA – yang sama dipercayai oleh syarikat penerbangan di seluruh dunia, dengan kemas kini masa nyata daripada lebih 1,000 sumber rasmi."
+            "title": "Mari Bercakap Tentang Visa Perjalanan!",
+            "content": "Bayangkan visa sebagai pas VIP anda untuk meneroka dunia! Ia hanyalah dokumen rasmi yang mengatakan 'selamat datang!' ke sebuah negara. Kami memastikan segala-galanya terkini dengan pangkalan data IATA Timatic—yang sama yang dipercayai oleh syarikat penerbangan—dan memberi anda butiran terbaru dari lebih 1,000 sumber rasmi. Bersedia untuk merancang pengembaraan seterusnya? Kami ada untuk anda!"
         },
         "popular": {
-            "title": "Destinasi Perjalanan Popular Anda",
+            "title": "Destinasi Perjalanan Kegemaran Anda",
             "countries": {
                 "europe": {
                     "title": "✈️ Meneroka Eropah (Visa Schengen)",
-                    "requirements": "Bersedia untuk pengembaraan Eropah anda? Kebanyakan pelawat bukan EU memerlukan visa berguna ini yang membuka pintu ke 27 negara hebat! Pemprosesan biasanya mengambil masa 15 hari (kadang-kadang sehingga 45). Anda memerlukan: Pasport yang sah (6+ bulan), insurans perjalanan (perlindungan 30,000+ euro), rancangan penginapan anda, tempahan penerbangan, penyata bank terkini, dan bukti pekerjaan. Jangan risau – kami akan membantu anda menyusun segalanya!"
+                    "requirements": "Bersedia untuk percutian Eropah? Visa Schengen membuka pintu ke 27 negara yang menakjubkan—dari Perancis ke Finland. Ia biasanya mengambil masa 15 hari untuk diproses (sehingga 45 hari pada musim puncak). Anda memerlukan pasport yang sah selama 6+ bulan, insurans perjalanan dengan perlindungan €30,000+, tempahan penginapan dan penerbangan, penyata bank terkini, dan bukti pekerjaan. Jangan ris SEARCHau, kami akan memudahkannya untuk anda!"
                 },
                 "usa": {
                     "title": "🗽 Melawat Amerika Syarikat",
-                    "requirements": "Merancang perjalanan Amerika anda? Visa pelancong B1/B2 adalah kunci anda! Walaupun pemprosesan mengambil masa 2-3 bulan (berbeza mengikut lokasi), keseronokan itu berbaloi dengan penantian. Anda perlu mengisi borang DS-160, mempunyai pasport yang sah, tersenyum untuk gambar, berbual dengan kedutaan, dan menunjukkan hubungan serta kewangan anda di negara asal. Berita baik jika anda dari negara Bebas Visa – anda mungkin layak untuk ESTA dan boleh tinggal sehingga 90 hari!"
+                    "requirements": "Bermimpi ke AS? Visa pelancong B1/B2 adalah tiket anda, walaupun ia boleh mengambil masa 2-3 bulan (bergantung pada lokasi). Lengkapkan borang DS-160, mempunyai pasport yang sah, gambar terkini, dan bersedia untuk temuduga di kedutaan yang menunjukkan hubungan anda dengan negara asal. Dari negara pengecualian visa? ESTA membolehkan anda tinggal 90 hari dengan kurang kerumitan!"
                 },
                 "japan": {
                     "title": "🗼 Menemui Jepun",
-                    "requirements": "Teruja tentang Jepun? Sistem eVisa baharu mereka memudahkan perkara untuk ramai pelancong! Ia hanya mengambil masa 5-7 hari untuk diproses. Sediakan saja pasport anda, rancangan perjalanan, bukti kewangan, dan butiran kerja. Petua pro: Dapatkan Japan Rail Pass anda sebelum pergi! Sama ada anda menyertai lawatan atau meneroka sendiri, kami menyokong anda."
+                    "requirements": "Peminat Jepun? Sistem eVisa mereka adalah impian—diproses dalam 5-7 hari untuk ramai pelancong. Anda hanya memerlukan pasport, rancangan perjalanan, bukti dana, dan butiran pekerjaan. Petua emas: Beli Japan Rail Pass anda sebelum pergi untuk menjimatkan dan meneroka lebih banyak! Kami akan membimbing anda setiap langkah."
                 },
                 "australia": {
                     "title": "🦘 Pengembaraan di Australia",
-                    "requirements": "Bermimpi tentang Australia? Visa eVisitor (651) atau ETA (601) sangat sesuai untuk pelancong yang layak! Kebanyakan permohonan diproses dalam masa 24 jam hingga 2 minggu. Hanya log masuk dalam talian, sediakan pasport anda, dan pastikan anda sihat. Bonus untuk pengembara muda (18-30): Lihat pilihan percutian kerja mereka yang menakjubkan!"
+                    "requirements": "Bermimpi tentang Australia? Visa eVisitor (651) atau ETA (601) diproses dalam 24 jam hingga 2 minggu—sempurna untuk pelancong yang layak. Hanya mohon dalam talian dengan pasport dan sijil kesihatan. Muda (18-30)? Visa cuti bekerja adalah pilihan pengembaraan yang hebat!"
                 }
             }
         },
-        "tips": {
-            "title": "Petua Pakar untuk Permohonan Visa",
+        "steps": {
+            "title": "Cara Memohon Visa Anda, Langkah demi Langkah",
+            "countries": {
+                "europe": {
+                    "title": "Visa Schengen (Eropah)",
+                    "list": {
+                        "step1": "Pilih kedutaan negara di mana anda akan menghabiskan paling banyak masa (contohnya, Perancis jika ia adalah fokus anda).",
+                        "step2": "Lengkapkan borang dalam talian di laman web kedutaan atau Portal Visa EU.",
+                        "step3": "Kumpulkan pasport, gambar biometrik, insurans €30,000+, itinerari, dan bukti dana.",
+                        "step4": "Buat temujanji—banyak kedutaan melakukannya dalam talian.",
+                        "step5": "Serahkan semuanya pada temujanji anda dan tunggu 15-45 hari. Mudah, kan?"
+                    }
+                },
+                "usa": {
+                    "title": "Visa AS (B1/B2)",
+                    "list": {
+                        "step1": "Lengkapkan borang DS-160 di travel.state.gov—ini adalah langkah pertama yang penting.",
+                        "step2": "Bayar yuran (sekitar $160, semak kadar semasa).",
+                        "step3": "Jadualkan temuduga kedutaan—ya, ia wajib untuk kebanyakan orang.",
+                        "step4": "Bawa pasport, gambar, bukti dana, dan hubungan dengan negara asal (pekerjaan, keluarga).",
+                        "step5": "Bercakap dengan pegawai dan tunggu 2-3 bulan. Sabar, ia berbaloi!"
+                    }
+                },
+                "japan": {
+                    "title": "eVisa Jepun",
+                    "list": {
+                        "step1": "Semak kelayakan eVisa di mofa.go.jp.",
+                        "step2": "Mohon dalam talian dengan pasport, itinerari, dan butiran pekerjaan.",
+                        "step3": "Muat naik dokumen secara digital—tiada kerumitan.",
+                        "step4": "Tunggu 5-7 hari dan dapatkan eVisa anda melalui e-mel. Cetak dan pergi!"
+                    }
+                },
+                "australia": {
+                    "title": "eVisitor/ETA Australia",
+                    "list": {
+                        "step1": "Sahkan kelayakan di immi.homeaffairs.gov.au.",
+                        "step2": "Mohon dalam talian dengan pasport dan pengisytiharan kesihatan.",
+                        "step3": "Tunggu 24 jam hingga 2 minggu—biasanya super cepat.",
+                        "step4": "Dapatkan kelulusan melalui e-mel, dikaitkan dengan pasport anda. Masa untuk meneroka!"
+                    }
+                }
+            }
+        },
+        "mistakes": {
+            "title": "Kesilapan Biasa yang Perlu Dielakkan",
             "list": {
-                "early": "Mohon sekurang-kurangnya 3 bulan sebelum perjalanan. Musim puncak (musim panas, cuti) mungkin memerlukan masa pemprosesan yang lebih lama. Pertimbangkan pemprosesan dipercepatkan jika ada.",
-                "documents": "Gunakan senarai semak dokumen rasmi dari laman web kedutaan. Dapatkan dokumen diterjemahkan oleh penterjemah bertauliah. Simpan salinan digital semua penyerahan.",
-                "insurance": "Dapatkan insurans perjalanan komprehensif yang melebihi keperluan minimum. Pastikan perlindungan termasuk pemindahan perubatan dan isu berkaitan COVID-19.",
-                "embassy": "Jejaki masa pemprosesan visa di laman web rasmi kedutaan. Tetapkan amaran e-mel untuk perubahan keperluan. Pertimbangkan menggunakan pusat pemprosesan visa yang dibenarkan untuk kemudahan."
+                "late": "Tidak memohon awal—sasarkan 3 bulan lebih awal, terutamanya pada musim panas atau cuti.",
+                "incomplete": "Borang yang salah—semak semula tandatangan dan tarikh untuk mengelakkan penolakan.",
+                "funds": "Dana yang tidak mencukupi—tunjukkan wang yang cukup untuk perjalanan anda (penyata bank, slip gaji).",
+                "insurance": "Insurans yang tidak mencukupi—anda memerlukan lebih dari €30,000 untuk Schengen, jangan lupa.",
+                "ties": "Tidak membuktikan hubungan dengan negara asal—pekerjaan atau keluarga membantu mengelakkan keraguan di AS."
+            }
+        },
+        "visafree": {
+            "title": "Perjalanan Tanpa Visa atau Dengan Permit Mudah!",
+            "content": "Tahukah anda beberapa destinasi tidak memerlukan visa penuh? Dengan kebenaran elektronik seperti ESTA atau ETIAS, anda boleh melangkau proses yang panjang jika anda dari negara tertentu. Berikut adalah beberapa pilihan popular untuk 2025—cepat dan mudah.",
+            "table": {
+                "destination": "Destinasi",
+                "type": "Jenis",
+                "cost": "Kos",
+                "validity": "Tempoh Sah",
+                "stay": "Maksimum Penginapan",
+                "entries": {
+                    "usa": {
+                        "destination": "AS",
+                        "type": "ESTA",
+                        "cost": "USD 14",
+                        "validity": "2 tahun",
+                        "stay": "90 hari"
+                    },
+                    "canada": {
+                        "destination": "Kanada",
+                        "type": "eTA",
+                        "cost": "CAD 7",
+                        "validity": "5 tahun",
+                        "stay": "6 bulan"
+                    },
+                    "europe": {
+                        "destination": "Eropah (Schengen)",
+                        "type": "ETIAS (dari Mei 2025)",
+                        "cost": "€7",
+                        "validity": "3 tahun",
+                        "stay": "3 bulan"
+                    }
+                }
+            }
+        },
+        "insurance": {
+            "title": "Insurans Perjalanan: Rakan Perjalanan Terbaik Anda!",
+            "content": "Insurans adalah wajib untuk tempat seperti Schengen (perlindungan €30,000+) dan sangat disyorkan di tempat lain seperti Jepun. Cari yang meliputi kecemasan perubatan, pemindahan, dan COVID-19 untuk keseluruhan perjalanan anda. Cuba pilihan seperti World Nomads atau Allianz—mereka memastikan anda selamat supaya anda boleh fokus pada keseronokan."
+        },
+        "tips": {
+            "title": "Petua Pakar untuk Permohonan Visa Anda",
+            "list": {
+                "early": "Mohon 3 bulan lebih awal—musim puncak (musim panas, cuti) cepat penuh. Tergesa-gesa? Semak pilihan dipercepatkan.",
+                "documents": "Ikuti senarai semak rasmi kedutaan—dapatkan terjemahan yang disahkan jika diperlukan dan simpan salinan digital.",
+                "insurance": "Pilih insurans komprehensif—melebihi minimum, dengan pemindahan perubatan dan perlindungan COVID-19.",
+                "embassy": "Pantau masa pemprosesan di laman web kedutaan—tetapkan amaran e-mel dan pertimbangkan pusat visa yang dibenarkan."
+            }
+        },
+        "checklist": {
+            "title": "Senarai Semak Persediaan Visa",
+            "table": {
+                "item": "Item",
+                "details": "Butiran",
+                "items": {
+                    "passport": {
+                        "name": "Pasport Sah",
+                        "details": "Semak tarikh luput, pastikan ada 2+ halaman kosong"
+                    },
+                    "form": {
+                        "name": "Borang Permohonan",
+                        "details": "Lengkap, ditandatangani, diserahkan dalam talian atau secara peribadi"
+                    },
+                    "photo": {
+                        "name": "Gambar Biometrik",
+                        "details": "Terkini, memenuhi spesifikasi kedutaan"
+                    },
+                    "insurance": {
+                        "name": "Insurans Perjalanan",
+                        "details": "Meliputi perubatan, €30,000+ untuk Schengen"
+                    },
+                    "funds": {
+                        "name": "Bukti Dana",
+                        "details": "Penyata bank, slip gaji, cukup untuk perjalanan anda"
+                    },
+                    "accommodation": {
+                        "name": "Bukti Penginapan",
+                        "details": "Tempahan hotel, surat jemputan"
+                    },
+                    "itinerary": {
+                        "name": "Itinerari Perjalanan",
+                        "details": "Tempahan penerbangan, aktiviti yang dirancang"
+                    }
+                }
             }
         },
         "resources": {
-            "title": "Sumber Rasmi",
+            "title": "Sumber Rasmi Visa",
             "list": {
-                "iata": "IATA Travel Centre (timatic.iata.org) – Pangkalan data paling tepat untuk keperluan visa",
-                "embassies": "Laman web rasmi kedutaan untuk keperluan khusus mengikut negara",
-                "state": "Jabatan Negara A.S. travel.state.gov untuk rakyat A.S.",
-                "europa": "europa.eu/immigration untuk maklumat visa Schengen"
+                "iata": "Pusat Perjalanan IATA – Maklumat visa yang diperibadikan dan terkini",
+                "visaguide": "VisaGuide.World – Keperluan terperinci untuk 200+ negara",
+                "schengen": "Portal Visa EU – Semua tentang visa Schengen",
+                "us": "Jabatan Negara AS – Panduan visa AS rasmi"
             }
         },
         "help": {
-            "title": "Bersedia untuk Merealisasikan Impian Perjalanan Anda?",
-            "content": "Mari kita bekerjasama untuk mencipta pelan perjalanan yang sempurna untuk anda! Kami akan membantu anda menavigasi keperluan visa dan masa sambil merancang pengembaraan hebat yang sesuai untuk anda.",
-            "cta": "Mari Merancang Bersama!"
+            "title": "Bersedia untuk Impian Perjalanan Anda?",
+            "content": "Mari bekerjasama untuk merancang pengembaraan sempurna anda! Kami akan membimbing anda melalui keperluan visa dan garis masa, mencipta perjalanan yang menakjubkan khas untuk anda.",
+            "cta": "Mari Rancang Bersama!"
         }
     },
     "service": {
         "meta": {
-            "title": "Cara Travel-Rizz Berfungsi – Rakan Perjalanan AI Anda",
-            "description": "Ketahui bagaimana pembantu perjalanan AI Travel-Rizz membantu anda merancang perjalanan sempurna melalui perbincangan semula jadi, maklumat masa nyata, dan alat perancangan interaktif – tiada akaun diperlukan.",
-            "keywords": "perancang perjalanan AI, pembantu perjalanan, perancangan perjalanan, travel-rizz, perjalanan peribadi, pengoptimuman laluan, maklumat perjalanan, tiada pendaftaran diperlukan"
+            "title": "Bagaimana Travel-Rizz Berfungsi – Rakan Perjalanan AI Anda",
+            "description": "Temui bagaimana pembantu perjalanan AI Travel-Rizz membantu anda merancang perjalanan sempurna anda melalui perbualan semula jadi, maklumat masa nyata, dan alat perancangan interaktif—tiada akaun diperlukan.",
+            "keywords": "perancang perjalanan AI, pembantu perjalanan, perancangan perjalanan, travel-rizz, perjalanan diperibadikan, pengoptimuman laluan, wawasan perjalanan, tiada pendaftaran diperlukan"
         },
         "title": "Bagaimana Travel-Rizz Memudahkan Perancangan Perjalanan",
         "introduction": {
             "title": "Rakan Perjalanan AI Mesra Anda",
-            "content": "Travel-Rizz direka untuk menjadikan perancangan perjalanan terasa seperti berbual dengan rakan yang berpengetahuan. Tiada akaun, tiada borang rumit – hanya kongsikan impian perjalanan anda secara semula jadi, dan AI kami akan membantu menghidupkannya dengan cadangan peribadi dan maklumat masa nyata."
+            "content": "Travel-Rizz direka untuk menjadikan perancangan perjalanan terasa seperti berbual dengan rakan yang berpengetahuan. Tiada akaun, tiada borang rumit—hanya kongsi impian perjalanan anda secara semula jadi, dan AI kami akan menghidupkannya dengan cadangan diperibadikan dan maklumat masa nyata."
         },
         "workflow": {
-            "title": "Merancang Perjalanan Anda Adalah Mudah",
+            "title": "Merancang Perjalanan Anda adalah Mudah",
             "steps": {
                 "input": {
-                    "title": "Berbual Tentang Impian Perjalanan Anda",
-                    "description": "Mulakan perbincangan semula jadi tentang tempat yang anda ingin lawati dan pengalaman yang anda cari. AI kami memahami gaya dan keutamaan anda, seperti berbual dengan rakan yang mengenali anda dengan baik."
+                    "title": "Bercakap Tentang Impian Perjalanan Anda",
+                    "description": "Mulakan perbualan semula jadi tentang ke mana anda ingin pergi dan pengalaman apa yang anda cari. AI kami memahami gaya dan keutamaan anda, seperti bercakap dengan rakan yang mengenali anda dengan baik."
                 },
                 "ai": {
-                    "title": "Dapatkan Maklumat Perjalanan Masa Nyata",
-                    "description": "Semasa anda berbual, AI kami menyediakan maklumat tepat pada masanya tentang destinasi anda – daripada corak cuaca kepada adat tempatan, keperluan visa hingga permata tersembunyi – tepat apabila anda memerlukannya."
+                    "title": "Dapatkan Wawasan Perjalanan Masa Nyata",
+                    "description": "Semasa anda berbual, AI kami menyediakan maklumat tepat pada masanya mengenai destinasi anda—dari corak cuaca ke adat tempatan, keperluan visa, dan permata tersembunyi—tepat apabila anda memerlukannya."
                 },
                 "customize": {
-                    "title": "Visualkan Perjalanan Anda",
-                    "description": "Lihat pengembaraan harian anda menjadi hidup pada peta interaktif. AI kami mengoptimumkan laluan anda dan mencadangkan masa terbaik untuk setiap aktiviti, membantu anda memanfaatkan setiap saat."
+                    "title": "Visualisasikan Perjalanan Anda",
+                    "description": "Lihat pengembaraan harian anda menjadi hidup pada peta interaktif. AI kami mengoptimumkan laluan anda dan mencadangkan masa terbaik untuk setiap aktiviti, membantu anda memanfaatkan sepenuhnya setiap detik."
                 },
                 "download": {
                     "title": "Itinerari Sempurna Anda",
-                    "description": "Dapatkan pelan harian yang fleksibel yang boleh anda laras dengan mudah. Semuanya disusun mengikut cara anda, dengan cadangan pintar untuk masa dan logistik – semua tanpa perlu membuat akaun."
+                    "description": "Dapatkan rancangan harian yang fleksibel yang boleh anda laraskan dengan mudah. Semuanya diatur mengikut cara anda, dengan cadangan pintar untuk masa dan logistik—semua tanpa mencipta akaun."
                 }
             }
         },
         "features": {
-            "title": "Ciri-ciri yang Menjadikan Perancangan Lebih Baik",
+            "title": "Ciri yang Menjadikan Perancangan Lebih Baik",
             "list": {
                 "aiChat": {
-                    "title": "Perancangan Perjalanan Berkuasa AI",
-                    "description": "Berbual serta-merta dengan pembantu perjalanan AI kami – tiada akaun diperlukan. Kongsikan idea anda seperti anda berkongsi dengan rakan, dan sistem pintar kami akan memahami keutamaan anda untuk mencipta pelan peribadi."
+                    "title": "Perancangan Perjalanan AI",
+                    "description": "Berbual segera dengan pembantu perjalanan AI kami—tiada akaun diperlukan. Kongsi idea anda seperti yang anda lakukan dengan rakan, dan sistem pintar kami akan memahami keutamaan anda untuk mencipta rancangan diperibadikan."
                 },
                 "insights": {
-                    "title": "Pengetahuan Perjalanan Tepat Masa",
-                    "description": "Akses maklumat berguna tentang destinasi anda – daripada corak cuaca kepada adat tempatan – tepat apabila anda memerlukannya, semuanya dikuasakan oleh AI kami yang belajar apa yang penting untuk anda."
+                    "title": "Pengetahuan Perjalanan Tepat Pada Masanya",
+                    "description": "Akses maklumat berguna tentang destinasi anda—dari corak cuaca ke adat tempatan—tepat apabila anda memerlukannya, semuanya dikuasakan oleh AI kami yang belajar apa yang penting kepada anda."
                 },
                 "routes": {
-                    "title": "Lukisan Laluan Visual",
-                    "description": "Lihat pengembaraan harian anda dipaparkan pada peta interaktif. AI kami mengoptimumkan laluan anda berdasarkan keutamaan anda, membantu anda memanfaatkan setiap hari."
+                    "title": "Pemetaan Laluan Visual",
+                    "description": "Lihat pengembaraan harian anda terbentang pada peta interaktif. AI kami mengoptimumkan laluan anda berdasarkan keutamaan anda, membantu anda memanfaatkan sepenuhnya setiap hari."
                 },
                 "itinerary": {
                     "title": "Itinerari Harian Fleksibel",
-                    "description": "Bina hari anda dengan alat intuitif dan bantuan AI yang menyusun aktiviti mengikut cara anda. Mulakan perancangan dalam beberapa saat tanpa pendaftaran."
+                    "description": "Bina hari anda dengan alat intuitif dan bantuan AI yang mengatur aktiviti mengikut cara anda. Mula merancang dalam beberapa saat tanpa mendaftar."
                 }
             }
         },
         "cta": {
-            "title": "Bersedia untuk Mulakan Perancangan?",
-            "content": "Rasai kegembiraan perancangan perjalanan yang mudah dengan rakan AI yang memahami anda.",
-            "button": "Mari Merancang Bersama!"
+            "title": "Bersedia untuk Mula Merancang?",
+            "content": "Alami kegembiraan perancangan perjalanan yang mudah dengan rakan AI yang memahami anda.",
+            "button": "Mari Rancang Bersama!"
         }
     },
     "preparation": {
         "meta": {
-            "title": "Panduan Utama Persediaan Perjalanan Anda untuk 2025",
-            "description": "Bersedia untuk perjalanan yang menakjubkan dengan senarai semak perjalanan kami! Daripada dokumen penting kepada petua pembungkusan pintar, kami memudahkan persediaan perjalanan. Mulakan perancangan sekarang!",
+            "title": "Panduan Persediaan Perjalanan Terunggul Anda untuk 2025",
+            "description": "Bersedia untuk perjalanan yang menakjubkan dengan senarai semak perjalanan kami! Dari dokumen penting ke petua pembungkusan pintar, kami memudahkan persediaan perjalanan. Mula merancang sekarang!",
             "keywords": "persediaan perjalanan, perancangan perjalanan, senarai pembungkusan, senarai semak perjalanan, perjalanan antarabangsa, keperluan kesihatan, senarai semak perjalanan 2025, cara bersedia untuk perjalanan antarabangsa"
         },
-        "title": "Panduan Utama Persediaan Perjalanan Anda",
+        "title": "Panduan Persediaan Perjalanan Terunggul Anda",
         "introduction": {
-            "title": "Bersedia untuk Teruja dengan Pengembaraan Anda!",
-            "content": "Perjalanan terbaik bermula dengan persediaan yang hebat, dan dengan minat perjalanan mencapai kemuncak beberapa bulan sebelum berlepas, sekarang adalah masa yang tepat untuk mula! Panduan kami yang dibuat oleh pakar memastikan anda bersedia untuk pengembaraan 2025 anda, menggabungkan standard antarabangsa dengan maklumat masa nyata. Mari jadikan persediaan perjalanan anda lancar, bebas tekanan, dan menyeronokkan!"
+            "title": "Bersemangat untuk Pengembaraan Anda!",
+            "content": "Perjalanan terbaik bermula dengan persediaan yang hebat, dan dengan minat perjalanan mencapai puncak berbulan-bulan sebelum berlepas, sekarang adalah masa yang sempurna untuk bermula! Panduan kami yang dibuat oleh pakar memastikan anda bersedia untuk pengembaraan 2025 anda, menggabungkan standard antarabangsa dengan maklumat masa nyata. Mari jadikan persediaan perjalanan anda lancar, bebas tekanan, dan menyeronokkan!"
         },
         "categories": {
             "documentation": {
                 "title": "📄 Dokumen Perjalanan Anda",
-                "description": "Mari kita susun kertas kerja anda dengan cara yang mudah!",
+                "description": "Mari atur dokumen anda dengan cara yang mudah!",
                 "checklist": {
-                    "item1": "Pasport (sah untuk 6+ bulan dengan 2 muka surat kosong) – semak tarikh luput awal!",
-                    "item2": "Visa atau permit masuk (semak keperluan dengan [IATA Travel Centre](https://www.iata.org/en/services/compliance/timatic/travel-documentation/))",
-                    "item3": "Insurans perjalanan dengan perlindungan COVID-19 dan perubatan (penting untuk ketenangan minda)",
-                    "item4": "Rekod vaksinasi (jika diperlukan – lihat [CDC Travelers' Health](https://wwwnc.cdc.gov/travel))"
+                    "item1": "Pasport (sah selama 6+ bulan dengan 2 halaman kosong)—semak tarikh luput awal!",
+                    "item2": "Visa atau permit kemasukan (semak keperluan dengan [Pusat Perjalanan IATA](https://www.iatatravelcentre.com/))",
+                    "item3": "Insurans perjalanan dengan perlindungan perubatan dan COVID-19 (penting untuk ketenangan minda)",
+                    "item4": "Rekod vaksinasi (jika diperlukan—lihat [Kesihatan Pengembara CDC](https://wwwnc.cdc.gov/travel))"
                 }
             },
             "packing": {
-                "title": "🧳 Pembungkusan Pintar Dibuat Mudah",
-                "description": "Bungkus seperti seorang pro dengan petua khusus wilayah ini!",
+                "title": "🧳 Pembungkusan Pintar dan Mudah",
+                "description": "Bungkus seperti pro dengan petua khusus wilayah ini!",
                 "checklist": {
-                    "item1": "Pakaian yang sesuai dengan cuaca destinasi anda (lapisan sangat bagus untuk Amerika Utara dan Eropah!)",
-                    "item2": "Penyesuai universal dan pengecas mudah alih (wajib untuk pelancong yang mahir teknologi)",
-                    "item3": "Barangan kebersihan saiz perjalanan (mesra TSA untuk pemeriksaan keselamatan yang lancar)",
-                    "item4": "Salinan sandaran dokumen penting (digital dan kertas – kunci untuk perjalanan antarabangsa)"
+                    "item1": "Pakaian yang sesuai dengan iklim destinasi anda (lapisan berfungsi hebat untuk Amerika Utara dan Eropah!)",
+                    "item2": "Penyesuai universal dan pengecas mudah alih (wajib ada untuk pengembara yang mahir teknologi)",
+                    "item3": "Barangan tandas saiz perjalanan (patuh TSA untuk pemeriksaan keselamatan yang lancar)",
+                    "item4": "Salinan sandaran dokumen penting (digital dan kertas—kunci untuk perjalanan antarabangsa)"
                 },
                 "genderSpecific": {
-                    "title": "Untuk Pelancong Wanita",
-                    "description": "Tambah barangan penting ini untuk keselesaan dan keselamatan tambahan.",
+                    "title": "Untuk Pengembara Wanita",
+                    "description": "Tambah essential ini untuk keselesaan dan keselamatan tambahan.",
                     "checklist": {
                         "item1": "Penggera keselamatan peribadi atau wisel",
                         "item2": "Cermin padat dan pengecas mudah alih dengan lampu suluh",
@@ -209,30 +342,30 @@
             },
             "booking": {
                 "title": "✈️ Pengaturan Perjalanan",
-                "description": "Selamatkan tempahan anda awal untuk mengelakkan kerumitan saat akhir.",
+                "description": "Pastikan tempahan anda awal untuk mengelakkan kerumitan saat akhir.",
                 "checklist": {
-                    "item1": "Penerbangan dengan penetapan tempat duduk dan pilihan makanan (tempah awal untuk tawaran!)",
-                    "item2": "Penginapan dengan polisi pembatalan fleksibel (keperluan 2025!)",
+                    "item1": "Penerbangan dengan penugasan tempat duduk dan keutamaan makanan (tempah awal untuk tawaran!)",
+                    "item2": "Penginapan dengan polisi pembatalan fleksibel (wajib untuk 2025!)",
                     "item3": "Pemindahan lapangan terbang dan pas pengangkutan tempatan (jimat masa dan wang)",
                     "item4": "Tarikan dan lawatan keutamaan (pilihan langkau barisan menyelamatkan hari)"
                 }
             },
             "health": {
                 "title": "🏥 Persediaan Kesihatan",
-                "description": "Kekal sihat semasa dalam perjalanan dengan petua pakar ini.",
+                "description": "Kekal sihat di jalan raya dengan petua pakar ini.",
                 "checklist": {
-                    "item1": "Vaksinasi yang diperlukan (semak [notis kesihatan perjalanan CDC](https://wwwnc.cdc.gov/travel) untuk kemas kini)",
+                    "item1": "Vaksinasi yang diperlukan (semak [Notis Kesihatan Pengembara CDC](https://wwwnc.cdc.gov/travel) untuk kemas kini)",
                     "item2": "Insurans kesihatan perjalanan dengan perlindungan antarabangsa (jangan lepaskan perlindungan COVID-19)",
-                    "item3": "Ubat preskripsi dengan nota doktor (bungkus tambahan sekiranya berlaku)",
-                    "item4": "Kit pertolongan cemas asas (mesra TSA untuk perjalanan mudah)"
+                    "item3": "Ubat preskripsi dengan nota doktor (bawa tambahan sekiranya berlaku)",
+                    "item4": "Kit pertolongan cemas asas (patuh TSA untuk perjalanan yang mudah)"
                 }
             },
             "finance": {
                 "title": "💰 Perancangan Kewangan",
-                "description": "Berjalan tanpa risau dengan petua kewangan ini.",
+                "description": "Perjalanan tanpa risau dengan petua kewangan ini.",
                 "checklist": {
-                    "item1": "Bajet harian dengan dana kecemasan 20% (rancang untuk kejutan)",
-                    "item2": "Pelbagai kaedah pembayaran (kad, tunai, dompet digital – penting untuk Eropah dan Australia)",
+                    "item1": "Bajet harian dengan dana kontingensi 20% (rancang untuk yang tidak dijangka)",
+                    "item2": "Kaedah pembayaran pelbagai (kad, tunai, dompet digital—kunci untuk Eropah dan Australia)",
                     "item3": "Pemberitahuan perjalanan bank dan kenalan kecemasan (elakkan masalah kad di luar negara)",
                     "item4": "Mata wang tempatan dan pemantauan kadar pertukaran (cuba aplikasi seperti XE)"
                 }
@@ -241,26 +374,26 @@
         "timeline": {
             "title": "Kira Detik Perjalanan Anda",
             "months3": {
-                "title": "3 Bulan Lagi! 🎉",
-                "tasks": "Bergerak lebih awal daripada orang ramai! Mohon pasport/visa anda, tempah penerbangan dan penginapan, semak keperluan vaksinasi, dan dapatkan inspirasi daripada perjalanan lepas."
+                "title": "Tinggal 3 Bulan! 🎉",
+                "tasks": "Kalahkan orang ramai! Mohon pasport/visa, tempah penerbangan dan penginapan, semak keperluan vaksinasi, dan tinjau perjalanan lepas untuk inspirasi."
             },
             "months1": {
-                "title": "1 Bulan Lagi! ✨",
-                "tasks": "Ia semakin nyata! Selesaikan vaksinasi, selamatkan insurans perjalanan anda, rancang aktiviti harian, atur pemindahan lapangan terbang, dan sahkan pelan telefon anda untuk kegunaan antarabangsa."
+                "title": "Tinggal 1 Bulan! ✨",
+                "tasks": "Ia semakin serius! Selesaikan vaksinasi, pastikan insurans perjalanan, rancang aktiviti harian, atur pemindahan lapangan terbang, dan sahkan rancangan telefon untuk kegunaan antarabangsa."
             },
             "weeks2": {
                 "title": "Hanya 2 Minggu Lagi! 🎈",
-                "tasks": "Keseronokan meningkat! Dapatkan mata wang tempatan, buat salinan dokumen, mula membungkus, semak cuaca, dan muat turun peta luar talian."
+                "tasks": "Kegembiraan semakin memuncak! Dapatkan mata wang tempatan, buat salinan dokumen, mula membungkus, semak cuaca, dan muat turun peta luar talian."
             },
             "days1": {
                 "title": "Hampir Sampai! ⭐",
-                "tasks": "Kira detik terakhir! Daftar masuk dalam talian, sahkan semua tempahan, bungkus beg anda, cas peranti anda, muat turun hiburan, dan semak kemas kini perjalanan terkini."
+                "tasks": "Kira detik akhir! Daftar masuk dalam talian, sahkan semua tempahan, bungkus beg anda, cas peranti, muat turun hiburan, dan semak kemas kini perjalanan terkini."
             }
         },
         "planner": {
             "title": "Ingin Jadikan Ini Lebih Mudah?",
-            "content": "Biarkan AI mesra kami mencipta garis masa persediaan tersuai yang disesuaikan dengan destinasi dan gaya perjalanan anda. Sesuai untuk pelancong yang sibuk semasa musim perancangan puncak!",
-            "cta": "Mari Merancang Bersama!"
+            "content": "Biarkan AI mesra kami mencipta garis masa persediaan diperibadikan berdasarkan destinasi dan gaya perjalanan anda! Sempurna untuk pengembara sibuk semasa musim perancangan puncak.",
+            "cta": "Mari Rancang Bersama!"
         }
     }
 }

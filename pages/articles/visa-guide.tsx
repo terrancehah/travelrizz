@@ -30,21 +30,13 @@ export default function VisaGuide() {
             <div className="min-h-screen bg-white dark:bg-gray-900">
                 <Header />
                 <div className="container w-[80%] mx-auto py-12 md:py-24">
-                    {/* Back button
-                    <Link 
-                        href="/"
-                        className={`inline-flex items-center ${fonts.text} text-primary dark:text-sky-100 hover:text-sky-600 dark:hover:text-sky-400 mb-8 transition-colors duration-300`}
-                    >
-                        <ChevronLeftIcon className="h-5 w-5 mr-2" />
-                        {t('common.backHome')}
-                    </Link> */}
-
                     <article className="max-w-4xl mx-auto">
                         <h1 className={`text-4xl md:text-5xl text-primary dark:text-sky-100 ${fonts.heading} mb-8`}>
                             {t('visa.title')}
                         </h1>
 
                         <div className={`prose dark:prose-invert max-w-none ${fonts.text}`}>
+                            {/* Introduction */}
                             <div className="mb-12">
                                 <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
                                     {t('visa.introduction.title')}
@@ -54,6 +46,7 @@ export default function VisaGuide() {
                                 </p>
                             </div>
 
+                            {/* Popular Destinations */}
                             <div className="mb-12">
                                 <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
                                     {t('visa.popular.title')}
@@ -72,6 +65,89 @@ export default function VisaGuide() {
                                 </div>
                             </div>
 
+                            {/* Step-by-Step Application Guide */}
+                            <div className="mb-12">
+                                <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
+                                    {t('visa.steps.title')}
+                                </h2>
+                                <div className="space-y-6">
+                                    {['europe', 'usa', 'japan', 'australia'].map((country) => (
+                                        <div key={country} className="bg-slate-100/40 dark:bg-gray-800 p-6 rounded-lg">
+                                            <h3 className="text-xl text-gray-800 dark:text-gray-100 mb-3">
+                                                {t(`visa.steps.countries.${country}.title`)}
+                                            </h3>
+                                            <ol className="list-decimal list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                                {Object.keys(t.raw(`visa.steps.countries.${country}.list`)).map((step) => (
+                                                    <li key={step}>{t(`visa.steps.countries.${country}.list.${step}`)}</li>
+                                                ))}
+                                            </ol>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Common Mistakes */}
+                            <div className="mb-12">
+                                <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
+                                    {t('visa.mistakes.title')}
+                                </h2>
+                                <ul className="space-y-4">
+                                    {Object.keys(t.raw('visa.mistakes.list')).map((mistake) => (
+                                        <li key={mistake} className="flex items-start">
+                                            <span className="text-primary dark:text-sky-100 mr-2">•</span>
+                                            <span className="text-gray-600 dark:text-gray-300">
+                                                {t(`visa.mistakes.list.${mistake}`)}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* Visa-Free Travel */}
+                            <div className="mb-12">
+                                <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
+                                    {t('visa.visafree.title')}
+                                </h2>
+                                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                                    {t('visa.visafree.content')}
+                                </p>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-left text-gray-600 dark:text-gray-300">
+                                        <thead>
+                                            <tr className="bg-gray-200 dark:bg-gray-700">
+                                                <th className="p-3">{t('visa.visafree.table.destination')}</th>
+                                                <th className="p-3">{t('visa.visafree.table.type')}</th>
+                                                <th className="p-3">{t('visa.visafree.table.cost')}</th>
+                                                <th className="p-3">{t('visa.visafree.table.validity')}</th>
+                                                <th className="p-3">{t('visa.visafree.table.stay')}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {['usa', 'canada', 'europe'].map((entry) => (
+                                                <tr key={entry} className="border-b dark:border-gray-700">
+                                                    <td className="p-3">{t(`visa.visafree.table.entries.${entry}.destination`)}</td>
+                                                    <td className="p-3">{t(`visa.visafree.table.entries.${entry}.type`)}</td>
+                                                    <td className="p-3">{t(`visa.visafree.table.entries.${entry}.cost`)}</td>
+                                                    <td className="p-3">{t(`visa.visafree.table.entries.${entry}.validity`)}</td>
+                                                    <td className="p-3">{t(`visa.visafree.table.entries.${entry}.stay`)}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* Travel Insurance */}
+                            <div className="mb而已">
+                                <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
+                                    {t('visa.insurance.title')}
+                                </h2>
+                                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                                    {t('visa.insurance.content')}
+                                </p>
+                            </div>
+
+                            {/* Tips */}
                             <div className="mb-12">
                                 <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
                                     {t('visa.tips.title')}
@@ -88,6 +164,32 @@ export default function VisaGuide() {
                                 </ul>
                             </div>
 
+                            {/* Visa Preparation Checklist */}
+                            <div className="mb-12">
+                                <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
+                                    {t('visa.checklist.title')}
+                                </h2>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-left text-gray-600 dark:text-gray-300">
+                                        <thead>
+                                            <tr className="bg-gray-200 dark:bg-gray-700">
+                                                <th className="p-3">{t('visa.checklist.table.item')}</th>
+                                                <th className="p-3">{t('visa.checklist.table.details')}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {Object.keys(t.raw('visa.checklist.table.items')).map((item) => (
+                                                <tr key={item} className="border-b dark:border-gray-700">
+                                                    <td className="p-3">{t(`visa.checklist.table.items.${item}.name`)}</td>
+                                                    <td className="p-3">{t(`visa.checklist.table.items.${item}.details`)}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* Resources */}
                             <div className="mb-12">
                                 <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
                                     {t('visa.resources.title')}
@@ -115,6 +217,7 @@ export default function VisaGuide() {
                                 </div>
                             </div>
 
+                            {/* Call to Action */}
                             <div className="bg-sky-50 dark:bg-gray-800 p-6 rounded-lg">
                                 <h2 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-4">
                                     {t('visa.help.title')}

@@ -1,6 +1,6 @@
 {
     "common": {
-        "backHome": "Zpět domů"
+        "backHome": "Zpět na domovskou stránku"
     },
     "navigation": {
         "previous": "Předchozí článek",
@@ -11,40 +11,45 @@
             "visa": {
                 "iata": {
                     "title": "IATA Travel Centre",
-                    "url": "https://www.iata.org/en/services/compliance/timatic/travel-documentation/",
-                    "description": "Oficiální databáze používaná leteckými společnostmi po celém světě pro ověření cestovních dokladů"
+                    "url": "https://www.iatatravelcentre.com/",
+                    "description": "Váš nástroj pro aktuální informace o vízech a zdravotních požadavcích, důvěryhodný leteckými společnostmi po celém světě!"
                 },
                 "schengen": {
                     "title": "Portál EU pro víza",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/applying-schengen-visa_en",
-                    "description": "Oficiální informace o žádostech o vízum do Evropské unie"
+                    "description": "Oficiální informace Evropské unie, aby byla vaše žádost o schengenské vízum super snadná"
                 },
                 "us": {
                     "title": "Ministerstvo zahraničí USA",
                     "url": "https://travel.state.gov/content/travel/en/us-visas.html",
-                    "description": "Oficiální informace a požadavky na víza do USA"
+                    "description": "Vše, co potřebujete pro víza do USA, přímo z oficiálního zdroje"
+                },
+                "visaguide": {
+                    "title": "VisaGuide.World",
+                    "url": "https://visaguide.world/",
+                    "description": "Přátelský průvodce s požadavky na víza pro více než 200 zemí—perfektní pro plánování vaší dobrodružné cesty!"
                 }
             },
             "health": {
                 "cdc": {
                     "title": "CDC Travelers' Health",
                     "url": "https://wwwnc.cdc.gov/travel",
-                    "description": "Oficiální zdravotní požadavky a doporučení pro cestovatele v USA"
+                    "description": "Oficiální zdravotní požadavky a doporučení USA pro cestovatele"
                 },
                 "who": {
                     "title": "WHO International Travel and Health",
                     "url": "https://www.who.int/health-topics/travel-and-health",
-                    "description": "Směrnice Světové zdravotnické organizace pro cestování a zdraví"
+                    "description": "Pokyny Světové zdravotnické organizace o cestování a zdraví"
                 },
                 "icvp": {
-                    "title": "Mezinárodní očkovací průkaz",
+                    "title": "International Certificate of Vaccination",
                     "url": "https://wwwnc.cdc.gov/travel/page/icvp",
-                    "description": "Oficiální informace o žlutých kartách a očkovacích průkazech"
+                    "description": "Oficiální informace o žlutých kartách a očkovacích certifikátech"
                 }
             },
             "insurance": {
                 "schengen": {
-                    "title": "Požadavky na pojištění v EU",
+                    "title": "Požadavky EU na pojištění",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/travel-medical-insurance_en",
                     "description": "Oficiální požadavky na cestovní pojištění pro schengenský prostor"
                 }
@@ -54,88 +59,216 @@
     "visa": {
         "meta": {
             "title": "Váš přátelský průvodce vízy a cestovními povoleními",
-            "description": "Vše, co potřebujete vědět o vízech, jednoduše! Získejte odborné rady ohledně žádostí, doby zpracování a požadavků jednotlivých zemí – vše poháněno důvěryhodnou databází IATA Timatic.",
-            "keywords": "žádost o vízum, cestovní povolení, turistické vízum, cestovní doklady, požadavky na vízum, pas, IATA Timatic, schengenské vízum, vízum do USA, vízum do Japonska"
+            "description": "Vše, co potřebujete vědět o vízech, jednoduše vysvětleno! Získejte odborné rady ohledně žádostí, časů zpracování a požadavků jednotlivých zemí, podporované spolehlivou databází IATA Timatic a VisaGuide.World.",
+            "keywords": "žádost o vízum, cestovní povolení, turistické vízum, cestovní dokumenty, požadavky na vízum, pas, IATA Timatic, VisaGuide.World, schengenské vízum, vízum do USA, japonské vízum, ESTA, ETIAS"
         },
-        "title": "Váš snadný průvodce vízy a cestovními povoleními",
+        "title": "Váš snadný a zábavný průvodce vízy a cestovními povoleními",
         "introduction": {
-            "title": "Pojďme si povídat o cestovních vízech",
-            "content": "Představte si vízum jako vaši zlatou vstupenku na dobrodružství! Je to jednoduše oficiální dokument, který vás přivítá v zemi. Udržujeme věci přesné a aktuální pomocí databáze IATA Timatic – stejné, které důvěřují letecké společnosti po celém světě, s aktualizacemi v reálném čase z více než 1 000 oficiálních zdrojů."
+            "title": "Pojďme si povídat o cestovních vízech!",
+            "content": "Představte si vízum jako váš VIP průkaz k prozkoumávání světa! Je to jen oficiální dokument, který říká 'vítejte!' do země. Udržujeme vše aktuální s databází IATA Timatic—stejnou, jakou důvěřují letecké společnosti—a dáváme vám nejčerstvější informace z více než 1 000 oficiálních zdrojů. Připraveni plánovat své další dobrodružství? Máme vás pod kontrolou!"
         },
         "popular": {
             "title": "Vaše oblíbené cestovní destinace",
             "countries": {
                 "europe": {
-                    "title": "✈️ Objevování Evropy (Schengenské vízum)",
-                    "requirements": "Připraveni na vaše evropské dobrodružství? Většina návštěvníků mimo EU potřebuje toto šikovné vízum, které otevírá dveře do 27 úžasných zemí! Zpracování obvykle trvá 15 dní (někdy až 45). Budete potřebovat: Platný pas (platný 6+ měsíců), cestovní pojištění (krytí 30 000+ eur), plány ubytování, rezervace letů, nedávné bankovní výpisy a potvrzení o zaměstnání. Nebojte se – pomůžeme vám vše zařídit!"
+                    "title": "✈️ Prozkoumávání Evropy (Schengenské vízum)",
+                    "requirements": "Připraveni na evropský útěk? Schengenské vízum otevírá dveře do 27 úžasných zemí—od Francie po Finsko. Obvykle trvá 15 dní na zpracování (až 45 v hlavní sezóně). Budete potřebovat pas platný 6+ měsíců, cestovní pojištění s krytím €30,000+, rezervace ubytování a letů, nedávné bankovní výpisy a doklad o zaměstnání. Nebojte se, uděláme to pro vás snadné!"
                 },
                 "usa": {
                     "title": "🗽 Návštěva Spojených států",
-                    "requirements": "Plánujete svou americkou cestu? Turistické vízum B1/B2 je vaším klíčem! Zatímco zpracování trvá 2–3 měsíce (liší se podle lokality), vzrušení bude stát za čekání. Budete muset vyplnit formulář DS-160, mít platný pas, usmát se na fotku, promluvit si s ambasádou a ukázat své domácí vazby a finance. Skvělá zpráva, pokud jste z země s bezvízovým stykem – můžete se kvalifikovat pro ESTA a zůstat až 90 dní!"
+                    "requirements": "Sníte o USA? Turistické vízum B1/B2 je vaše vstupenka, i když může trvat 2-3 měsíce (v závislosti na lokalitě). Vyplňte formulář DS-160, mějte platný pas, nedávnou fotografii a buďte připraveni na rozhovor s ambasádou, kde ukážete své vazby na domov. Jste z země s bezvízovým stykem? ESTA vám umožní zůstat 90 dní s menšími potížemi!"
                 },
                 "japan": {
                     "title": "🗼 Objevování Japonska",
-                    "requirements": "Nadšeni z Japonska? Jejich nový systém eVisa usnadňuje věci pro mnoho cestovatelů! Zpracování trvá jen 5–7 dní. Stačí připravit pas, cestovní plány, doklad o finančních prostředcích a pracovní detaily. Profesionální tip: Získejte svůj Japan Rail Pass před odjezdem! Ať už se připojíte k zájezdu nebo budete cestovat sami, jsme tu pro vás."
+                    "requirements": "Fanoušek Japonska? Jejich systém eVisa je sen—zpracován za 5-7 dní pro mnoho cestovatelů. Stačí váš pas, cestovní plány, doklad o finančních prostředcích a detaily zaměstnání. Zlatý tip: Kupte si Japan Rail Pass před odjezdem, abyste ušetřili a více prozkoumali! Provedeme vás každým krokem."
                 },
                 "australia": {
                     "title": "🦘 Dobrodružství v Austrálii",
-                    "requirements": "Sníte o cestě dolů? Vízum eVisitor (651) nebo ETA (601) je ideální pro oprávněné cestovatele! Většina žádostí je zpracována do 24 hodin až 2 týdnů. Stačí se připojit online, mít připravený pas a ujistit se, že jste v dobrém zdravotním stavu. Bonus pro mladé dobrodruhy (18–30): Podívejte se na jejich úžasné možnosti pracovních prázdnin!"
+                    "requirements": "Sníte o Austrálii? Víza eVisitor (651) nebo ETA (601) se zpracovávají za 24 hodin až 2 týdny—perfektní pro oprávněné cestovatele. Stačí podat žádost online s pasem a zdravotním potvrzením. Jste mladí (18-30)? Pracovní dovolená je skvělá volba pro dobrodružství!"
                 }
             }
         },
-        "tips": {
-            "title": "Odborné tipy na žádost o vízum",
+        "steps": {
+            "title": "Jak požádat o vaše vízum, krok za krokem",
+            "countries": {
+                "europe": {
+                    "title": "Schengenské vízum (Evropa)",
+                    "list": {
+                        "step1": "Vyberte ambasádu země, kde strávíte nejvíce času (např. Francie, pokud je vaším cílem).",
+                        "step2": "Vyplňte online formulář na webu ambasády nebo na Portálu EU pro víza.",
+                        "step3": "Shromážděte pas, biometrickou fotografii, pojištění €30,000+, itinerář a doklad o finančních prostředcích.",
+                        "step4": "Zarezervujte si schůzku—mnoho ambasád to dělá online.",
+                        "step5": "Odevzdejte vše na schůzce a počkejte 15-45 dní. Snadné, že?"
+                    }
+                },
+                "usa": {
+                    "title": "Vízum do USA (B1/B2)",
+                    "list": {
+                        "step1": "Vyplňte formulář DS-160 na travel.state.gov—je to váš klíčový první krok.",
+                        "step2": "Zaplaťte poplatek (kolem $160, zkontrolujte aktuální sazbu).",
+                        "step3": "Zarezervujte si pohovor na ambasádě—ano, je povinný pro většinu.",
+                        "step4": "Přineste pas, fotografii, doklad o finančních prostředcích a vazbách na domov (práce, rodina).",
+                        "step5": "Promluvte si s úředníkem a počkejte 2-3 měsíce. Trpělivost, bude to stát za to!"
+                    }
+                },
+                "japan": {
+                    "title": "Japonské eVisa",
+                    "list": {
+                        "step1": "Zkontrolujte, zda máte nárok na eVisa na mofa.go.jp.",
+                        "step2": "Podejte žádost online s pasem, itinerářem a detaily zaměstnání.",
+                        "step3": "Nahrajte dokumenty digitálně—žádné potíže.",
+                        "step4": "Počkejte 5-7 dní a dostanete eVisa e-mailem. Vytiskněte a jděte!"
+                    }
+                },
+                "australia": {
+                    "title": "Australské eVisitor/ETA",
+                    "list": {
+                        "step1": "Potvrďte oprávněnost na immi.homeaffairs.gov.au.",
+                        "step2": "Podejte žádost online s pasem a zdravotním prohlášením.",
+                        "step3": "Počkejte 24 hodin až 2 týdny—obvykle super rychlé.",
+                        "step4": "Získejte schválení e-mailem, propojeno s vaším pasem. Čas prozkoumat!"
+                    }
+                }
+            }
+        },
+        "mistakes": {
+            "title": "Běžné chyby, kterým se vyhnout",
             "list": {
-                "early": "Žádejte alespoň 3 měsíce před cestou. Špičkové sezóny (léto, svátky) mohou vyžadovat delší dobu zpracování. Zvažte urychlené zpracování, pokud je k dispozici.",
-                "documents": "Používejte oficiální seznamy dokumentů z webových stránek ambasád. Nechte dokumenty přeložit certifikovanými překladateli. Uchovávejte digitální kopie všech podání.",
-                "insurance": "Získejte komplexní cestovní pojištění, které překračuje minimální požadavky. Ujistěte se, že krytí zahrnuje lékařskou evakuaci a problémy související s COVID-19.",
-                "embassy": "Sledujte doby zpracování víza na oficiálních webových stránkách ambasád. Nastavte e-mailová upozornění na změny požadavků. Zvažte použití autorizovaných center pro zpracování víza pro pohodlí."
+                "late": "Nežádat včas—cílte na 3 měsíce dopředu, zvláště v létě nebo o svátcích.",
+                "incomplete": "Nesprávné formuláře—dvakrát zkontrolujte podpisy a data, abyste se vyhnuli odmítnutí.",
+                "funds": "Nedostatečné finanční prostředky—ukažte dostatek peněz na cestu (bankovní výpisy, výplatní pásky).",
+                "insurance": "Nedostatečné pojištění—potřebujete €30,000+ pro Schengen, nezapomeňte.",
+                "ties": "Neprokázat vazby na domov—zaměstnání nebo rodina pomáhají vyhnout se pochybnostem v USA."
+            }
+        },
+        "visafree": {
+            "title": "Cestujte bez víza nebo s snadnými povoleními!",
+            "content": "Věděli jste, že některé destinace nepotřebují plné vízum? S elektronickými autorizacemi jako ESTA nebo ETIAS můžete přeskočit dlouhý proces, pokud jste z určitých zemí. Zde jsou některé populární možnosti pro rok 2025—rychlé a jednoduché.",
+            "table": {
+                "destination": "Destinace",
+                "type": "Typ",
+                "cost": "Náklady",
+                "validity": "Platnost",
+                "stay": "Max. pobyt",
+                "entries": {
+                    "usa": {
+                        "destination": "USA",
+                        "type": "ESTA",
+                        "cost": "USD 14",
+                        "validity": "2 roky",
+                        "stay": "90 dní"
+                    },
+                    "canada": {
+                        "destination": "Kanada",
+                        "type": "eTA",
+                        "cost": "CAD 7",
+                        "validity": "5 let",
+                        "stay": "6 měsíců"
+                    },
+                    "europe": {
+                        "destination": "Evropa (Schengen)",
+                        "type": "ETIAS (od května 2025)",
+                        "cost": "€7",
+                        "validity": "3 roky",
+                        "stay": "3 měsíce"
+                    }
+                }
+            }
+        },
+        "insurance": {
+            "title": "Cestovní pojištění: Váš nejlepší cestovní kamarád!",
+            "content": "Pojištění je povinné pro místa jako Schengen (krytí €30,000+) a vysoce doporučené jinde, jako v Japonsku. Hledejte takové, které pokrývá lékařské pohotovosti, evakuaci a COVID-19 po celou dobu vaší cesty. Vyzkoušejte možnosti jako World Nomads nebo Allianz—udrží vás v bezpečí, abyste se mohli soustředit na zábavu."
+        },
+        "tips": {
+            "title": "Odborné tipy pro vaši žádost o vízum",
+            "list": {
+                "early": "Podejte žádost 3 měsíce předem—špičkové sezóny (léto, svátky) se rychle plní. Spěcháte? Zkontrolujte urychlené možnosti.",
+                "documents": "Dodržujte oficiální kontrolní seznamy ambasád—v případě potřeby získejte certifikované překlady a uchovávejte digitální kopie.",
+                "insurance": "Vyberte si komplexní pojištění—nad rámec minima, s lékařskou evakuací a krytím COVID-19.",
+                "embassy": "Sledujte časy zpracování na stránkách ambasád—nastavte e-mailové upozornění a zvažte autorizovaná vízová centra."
+            }
+        },
+        "checklist": {
+            "title": "Kontrolní seznam pro přípravu víza",
+            "table": {
+                "item": "Položka",
+                "details": "Detaily",
+                "items": {
+                    "passport": {
+                        "name": "Platný pas",
+                        "details": "Zkontrolujte datum expirace, ujistěte se, že máte 2+ prázdné stránky"
+                    },
+                    "form": {
+                        "name": "Formulář žádosti",
+                        "details": "Vyplněný, podepsaný, odeslaný online nebo osobně"
+                    },
+                    "photo": {
+                        "name": "Biometrická fotografie",
+                        "details": "Nedávná, splňuje specifikace ambasády"
+                    },
+                    "insurance": {
+                        "name": "Cestovní pojištění",
+                        "details": "Kryje lékařské, €30,000+ pro Schengen"
+                    },
+                    "funds": {
+                        "name": "Doklad o finančních prostředcích",
+                        "details": "Bankovní výpisy, výplatní pásky, dostatek pro vaši cestu"
+                    },
+                    "accommodation": {
+                        "name": "Doklad o ubytování",
+                        "details": "Rezervace hotelů, pozvánky"
+                    },
+                    "itinerary": {
+                        "name": "Cestovní itinerář",
+                        "details": "Rezervace letů, plánované aktivity"
+                    }
+                }
             }
         },
         "resources": {
-            "title": "Oficiální zdroje",
+            "title": "Oficiální zdroje pro víza",
             "list": {
-                "iata": "IATA Travel Centre (timatic.iata.org) – Nejpřesnější databáze požadavků na víza",
-                "embassies": "Oficiální webové stránky ambasád pro podrobné požadavky specifické pro jednotlivé země",
-                "state": "Ministerstvo zahraničí USA travel.state.gov pro občany USA",
-                "europa": "europa.eu/immigration pro informace o schengenském vízu"
+                "iata": "IATA Travel Centre – Personalizované, aktuální informace o vízech",
+                "visaguide": "VisaGuide.World – Podrobné požadavky pro 200+ zemí",
+                "schengen": "Portál EU pro víza – Vše o schengenském vízu",
+                "us": "Ministerstvo zahraničí USA – Oficiální průvodce vízy do USA"
             }
         },
         "help": {
-            "title": "Připraveni uskutečnit své cestovní sny?",
-            "content": "Pojďme společně vytvořit váš perfektní cestovní plán! Pomůžeme vám orientovat se v požadavcích na víza a načasování, zatímco vytvoříme úžasné dobrodružství, které je pro vás to pravé.",
-            "cta": "Pojďme plánovat společně"
+            "title": "Připraveni na vaše cestovní sny?",
+            "content": "Spojme síly a naplánujme vaši dokonalou dobrodružnou cestu! Provedeme vás požadavky na víza a časovými harmonogramy a vytvoříme úžasnou cestu jen pro vás.",
+            "cta": "Pojďme plánovat společně!"
         }
     },
     "service": {
         "meta": {
             "title": "Jak funguje Travel-Rizz – Váš AI cestovní společník",
-            "description": "Objevte, jak vám AI cestovní asistent Travel-Rizz pomáhá plánovat perfektní cestu prostřednictvím přirozené konverzace, aktuálních informací a interaktivních plánovacích nástrojů – bez nutnosti účtu.",
-            "keywords": "AI cestovní plánovač, cestovní asistent, plánování cesty, travel-rizz, personalizované cestování, optimalizace trasy, cestovní informace, bez registrace"
+            "description": "Objevte, jak vám AI cestovní asistent Travel-Rizz pomáhá plánovat vaši dokonalou cestu prostřednictvím přirozených rozhovorů, informací v reálném čase a interaktivních plánovacích nástrojů—bez potřeby účtu.",
+            "keywords": "AI plánovač cest, cestovní asistent, plánování cest, travel-rizz, personalizované cestování, optimalizace tras, cestovní poznatky, bez registrace"
         },
         "title": "Jak Travel-Rizz usnadňuje plánování cest",
         "introduction": {
             "title": "Váš přátelský AI cestovní společník",
-            "content": "Travel-Rizz je navržen tak, aby plánování cest působilo jako rozhovor se znalým přítelem. Žádné účty, žádné složité formuláře – prostě sdílejte své cestovní sny přirozeně a naše AI vám pomůže je oživit s personalizovanými návrhy a aktuálními informacemi."
+            "content": "Travel-Rizz je navržen tak, aby plánování cest bylo jako povídání s dobře informovaným přítelem. Žádné účty, žádné složité formuláře—jen sdílejte své cestovní sny přirozeně a naše AI je oživí s personalizovanými návrhy a informacemi v reálném čase."
         },
         "workflow": {
             "title": "Plánování vaší cesty je jednoduché",
             "steps": {
                 "input": {
-                    "title": "Povídejte si o svých cestovních snech",
-                    "description": "Začněte přirozenou konverzaci o tom, kam byste chtěli jet a jaké zážitky hledáte. Naše AI rozumí vašemu stylu a preferencím, stejně jako když mluvíte s přítelem, který vás dobře zná."
+                    "title": "Povídejte o svých cestovních snech",
+                    "description": "Začněte přirozený rozhovor o tom, kam byste chtěli jet a jaké zážitky hledáte. Naše AI rozumí vašemu stylu a preferencím, jako byste mluvili s přítelem, který vás dobře zná."
                 },
                 "ai": {
-                    "title": "Získejte aktuální cestovní informace",
-                    "description": "Během rozhovoru vám naše AI poskytuje včasné informace o vaší destinaci – od počasí po místní zvyky, požadavky na víza až po skryté poklady – přesně když je potřebujete."
+                    "title": "Získejte cestovní poznatky v reálném čase",
+                    "description": "Během rozhovoru naše AI poskytuje včasné informace o vaší destinaci—od počasí po místní zvyky, požadavky na víza a skryté poklady—přesně když je potřebujete."
                 },
                 "customize": {
                     "title": "Vizualizujte svou cestu",
-                    "description": "Sledujte, jak vaše denní dobrodružství ožívají na interaktivních mapách. Naše AI optimalizuje vaše trasy a navrhuje nejlepší časy pro každou aktivitu, abyste z každého okamžiku vytěžili maximum."
+                    "description": "Podívejte se, jak vaše denní dobrodružství ožívají na interaktivních mapách. Naše AI optimalizuje vaše trasy a navrhuje nejlepší časy pro každou aktivitu, aby vám pomohla využít každý okamžik."
                 },
                 "download": {
-                    "title": "Váš perfektní itinerář",
-                    "description": "Získejte flexibilní denní plán, který můžete snadno upravit. Vše je organizováno podle vás, s chytrými návrhy na načasování a logistiku – a to vše bez nutnosti vytvářet účet."
+                    "title": "Váš dokonalý itinerář",
+                    "description": "Získejte flexibilní denní plán, který můžete snadno upravit. Vše je organizováno podle vašich představ, s chytrými návrhy na časování a logistiku—vše bez vytvoření účtu."
                 }
             }
         },
@@ -143,59 +276,59 @@
             "title": "Funkce, které zlepšují plánování",
             "list": {
                 "aiChat": {
-                    "title": "Plánování cest s AI",
-                    "description": "Chatujte okamžitě s naším AI cestovním asistentem – bez nutnosti účtu. Sdílejte své nápady jako s přítelem a náš inteligentní systém porozumí vašim preferencím, aby vytvořil personalizované plány."
+                    "title": "AI plánování cest",
+                    "description": "Okamžitě chatujte s naším AI cestovním asistentem—bez potřeby účtu. Sdílejte své nápady jako s přítelem a náš chytrý systém pochopí vaše preference a vytvoří personalizované plány."
                 },
                 "insights": {
-                    "title": "Včasné cestovní znalosti",
-                    "description": "Získejte užitečné informace o vaší destinaci – od počasí po místní zvyky – přesně když je potřebujete, vše poháněno naší AI, která se učí, co je pro vás důležité."
+                    "title": "Včasné cestovní poznatky",
+                    "description": "Získejte užitečné informace o vaší destinaci—od počasí po místní zvyky—přesně když je potřebujete, vše poháněno naší AI, která se učí, co je pro vás důležité."
                 },
                 "routes": {
-                    "title": "Vizuální kreslení tras",
-                    "description": "Sledujte svá denní dobrodružství rozložená na interaktivních mapách. Naše AI optimalizuje vaše trasy na základě vašich preferencí, abyste z každého dne vytěžili maximum."
+                    "title": "Vizualizace tras",
+                    "description": "Podívejte se na svá denní dobrodružství rozložená na interaktivních mapách. Naše AI optimalizuje vaše trasy podle vašich preferencí, aby vám pomohla využít každý den."
                 },
                 "itinerary": {
                     "title": "Flexibilní denní itinerář",
-                    "description": "Sestavte své dny s intuitivními nástroji a asistencí AI, která organizuje aktivity podle vás. Začněte plánovat během sekund bez registrace."
+                    "description": "Vybudujte své dny s intuitivními nástroji a AI asistencí, která organizuje aktivity podle vašich představ. Začněte plánovat během sekund bez registrace."
                 }
             }
         },
         "cta": {
             "title": "Připraveni začít plánovat?",
             "content": "Zažijte radost z bezproblémového plánování cest s AI společníkem, který vám rozumí.",
-            "button": "Pojďme plánovat společně"
+            "button": "Pojďme plánovat společně!"
         }
     },
     "preparation": {
         "meta": {
             "title": "Váš ultimátní průvodce přípravou na cestu pro rok 2025",
-            "description": "Připravte se na úžasnou cestu s naším cestovním seznamem! Od nezbytných dokumentů po chytré tipy na balení – usnadníme přípravu na cestu. Začněte plánovat nyní!",
-            "keywords": "příprava na cestu, plánování cest, seznam na balení, cestovní seznam, mezinárodní cestování, zdravotní požadavky, cestovní seznam pro rok 2025, jak se připravit na mezinárodní cestování"
+            "description": "Připravte se na úžasnou cestu s naším cestovním kontrolním seznamem! Od nezbytných dokumentů po chytré tipy na balení, usnadňujeme přípravu cesty. Začněte plánovat nyní!",
+            "keywords": "příprava na cestu, plánování cesty, seznam na balení, cestovní kontrolní seznam, mezinárodní cestování, zdravotní požadavky, cestovní kontrolní seznam 2025, jak se připravit na mezinárodní cestu"
         },
         "title": "Váš ultimátní průvodce přípravou na cestu",
         "introduction": {
-            "title": "Těšíte se na své dobrodružství!",
-            "content": "Nejlepší cesty začínají skvělou přípravou a s vrcholícím zájmem o cestování měsíce před odjezdem je nyní ideální čas se do toho pustit! Náš odborně vytvořený průvodce zajistí, že budete připraveni na své dobrodružství v roce 2025, kombinující mezinárodní standardy s aktuálními informacemi. Pojďme udělat vaši přípravu na cestu hladkou, bez stresu a zábavnou!"
+            "title": "Těšte se na své dobrodružství!",
+            "content": "Nejlepší cesty začínají skvělou přípravou a s cestovním zájmem vrcholícím měsíce před odjezdem je nyní ideální čas začít! Náš odborně vytvořený průvodce zajistí, že budete připraveni na své dobrodružství v roce 2025, kombinující mezinárodní standardy s informacemi v reálném čase. Udělejme vaši přípravu na cestu hladkou, bez stresu a zábavnou!"
         },
         "categories": {
             "documentation": {
                 "title": "📄 Vaše cestovní dokumenty",
-                "description": "Pojďme si uspořádat vaše papíry snadným způsobem!",
+                "description": "Pojďme si uspořádat vaše dokumenty snadným způsobem!",
                 "checklist": {
-                    "item1": "Pas (platný 6+ měsíců s 2 prázdnými stránkami) – zkontrolujte datum expirace brzy!",
-                    "item2": "Vízum nebo vstupní povolení (ověřte požadavky s [IATA Travel Centre](https://www.iata.org/en/services/compliance/timatic/travel-documentation/))",
-                    "item3": "Cestovní pojištění s krytím COVID-19 a lékařskou péčí (nezbytné pro klid duše)",
-                    "item4": "Očkovací záznamy (pokud jsou vyžadovány – viz [CDC Travelers' Health](https://wwwnc.cdc.gov/travel))"
+                    "item1": "Pas (platný 6+ měsíců s 2 prázdnými stránkami)—zkontrolujte datum expirace brzy!",
+                    "item2": "Vízum nebo vstupní povolení (zkontrolujte požadavky s [IATA Travel Centre](https://www.iatatravelcentre.com/))",
+                    "item3": "Cestovní pojištění s lékařským a COVID-19 krytím (nezbytné pro klid duše)",
+                    "item4": "Záznamy o očkování (pokud jsou vyžadovány—viz [CDC Travelers' Health](https://wwwnc.cdc.gov/travel))"
                 }
             },
             "packing": {
-                "title": "🧳 Chytré balení snadno",
-                "description": "Balte jako profík s těmito chytrými, regionálně specifickými tipy!",
+                "title": "🧳 Chytré a jednoduché balení",
+                "description": "Balení jako profík s těmito tipy specifickými pro region!",
                 "checklist": {
-                    "item1": "Oblečení vhodné pro počasí vaší destinace (vrstvení funguje skvěle pro Severní Ameriku a Evropu!)",
-                    "item2": "Univerzální adaptér a přenosná nabíječka (nezbytnost pro technicky zdatné cestovatele)",
-                    "item3": "Cestovní velikost toaletních potřeb (vhodné pro TSA pro hladké bezpečnostní kontroly)",
-                    "item4": "Záložní kopie důležitých dokumentů (digitální i papírové – klíčové pro mezinárodní cestování)"
+                    "item1": "Oblečení vhodné pro klima vaší destinace (vrstvy fungují skvěle pro Severní Ameriku a Evropu!)",
+                    "item2": "Univerzální adaptér a přenosná nabíječka (nezbytné pro technicky zdatné cestovatele)",
+                    "item3": "Cestovní velikost toaletních potřeb (kompatibilní s TSA pro hladké bezpečnostní kontroly)",
+                    "item4": "Záložní kopie důležitých dokumentů (digitální a papírové—klíčové pro mezinárodní cesty)"
                 },
                 "genderSpecific": {
                     "title": "Pro cestovatelky",
@@ -209,58 +342,58 @@
             },
             "booking": {
                 "title": "✈️ Cestovní opatření",
-                "description": "Zajistěte své rezervace brzy, abyste se vyhnuli posledním chvilkám.",
+                "description": "Zajistěte své rezervace brzy, abyste se vyhnuli posledním potížím.",
                 "checklist": {
                     "item1": "Lety s přidělením sedadel a preferencemi jídla (rezervujte brzy pro nabídky!)",
-                    "item2": "Ubytování s flexibilními storno podmínkami (nezbytnost pro rok 2025)",
-                    "item3": "Transfery z letiště a místní dopravní pasy (šetří čas a peníze)",
-                    "item4": "Prioritní atrakce a zájezdy (možnosti přeskočení fronty zachrání den)"
+                    "item2": "Ubytování s flexibilními storno podmínkami (nezbytné pro rok 2025!)",
+                    "item3": "Transfery z letiště a místní dopravní karty (ušetří čas a peníze)",
+                    "item4": "Prioritní atrakce a prohlídky (možnosti přeskočení fronty zachraňují den)"
                 }
             },
             "health": {
                 "title": "🏥 Zdravotní přípravy",
-                "description": "Zůstaňte zdraví na cestách s těmito odbornými tipy.",
+                "description": "Zůstaňte zdraví na cestě s těmito odbornými tipy.",
                 "checklist": {
-                    "item1": "Požadovaná očkování (zkontrolujte [CDC cestovní zdravotní upozornění](https://wwwnc.cdc.gov/travel) pro aktualizace)",
+                    "item1": "Požadovaná očkování (zkontrolujte [CDC Traveler Health Notices](https://wwwnc.cdc.gov/travel) pro aktualizace)",
                     "item2": "Cestovní zdravotní pojištění s mezinárodním krytím (nezapomeňte na ochranu proti COVID-19)",
                     "item3": "Léky na předpis s poznámkou od lékaře (balte navíc pro jistotu)",
-                    "item4": "Základní lékárnička (vhodná pro TSA pro snadné cestování)"
+                    "item4": "Základní lékárnička (kompatibilní s TSA pro snadné cestování)"
                 }
             },
             "finance": {
                 "title": "💰 Finanční plánování",
                 "description": "Cestujte bez starostí s těmito finančními tipy.",
                 "checklist": {
-                    "item1": "Denní rozpočet s 20% rezervním fondem (plánujte na překvapení)",
-                    "item2": "Více platebních metod (karty, hotovost, digitální peněženky – klíčové pro Evropu a Austrálii)",
-                    "item3": "Cestovní notifikace banky a nouzové kontakty (vyhněte se problémům s kartou v zahraničí)",
-                    "item4": "Místní měna a sledování směnných kurzů (vyzkoušejte aplikace jako XE)"
+                    "item1": "Denní rozpočet s 20% rezervním fondem (plánujte na neočekávané)",
+                    "item2": "Více platebních metod (karty, hotovost, digitální peněženky—klíčové pro Evropu a Austrálii)",
+                    "item3": "Bankovní cestovní upozornění a nouzové kontakty (vyhněte se problémům s kartou v zahraničí)",
+                    "item4": "Místní měna a sledování směnných kurzů (zkuste aplikace jako XE)"
                 }
             }
         },
         "timeline": {
-            "title": "Vaše odpočítávání cesty",
+            "title": "Vaše odpočítávání do cesty",
             "months3": {
-                "title": "3 měsíce do odjezdu! 🎉",
-                "tasks": "Předběhněte dav! Žádejte o pas/vízum, rezervujte lety a ubytování, zkontrolujte potřeby očkování a prohlédněte si minulé cesty pro inspiraci."
+                "title": "Zbývají 3 měsíce! 🎉",
+                "tasks": "Předbehněte dav! Požádejte o pas/vízum, rezervujte lety a ubytování, zkontrolujte potřeby očkování a prohlédněte si minulé cesty pro inspiraci."
             },
             "months1": {
-                "title": "1 měsíc do odjezdu! ✨",
-                "tasks": "Už se to blíží! Dokončete očkování, zajistěte cestovní pojištění, naplánujte denní aktivity, zařiďte transfery z letiště a potvrďte svůj telefonní plán pro mezinárodní použití."
+                "title": "Zbývá 1 měsíc! ✨",
+                "tasks": "Začíná to být skutečné! Dokončete očkování, zajistěte cestovní pojištění, naplánujte denní aktivity, zařiďte transfery z letiště a potvrďte svůj telefonní plán pro mezinárodní použití."
             },
             "weeks2": {
-                "title": "Jen 2 týdny! 🎈",
+                "title": "Zbývají jen 2 týdny! 🎈",
                 "tasks": "Vzrušení roste! Získejte místní měnu, udělejte kopie dokumentů, začněte balit, zkontrolujte počasí a stáhněte offline mapy."
             },
             "days1": {
-                "title": "Už skoro tam! ⭐",
-                "tasks": "Poslední odpočítávání! Proveďte online check-in, potvrďte rezervace, sbalte si kufry, nabijte zařízení, stáhněte zábavu a zkontrolujte nejnovější cestovní aktualizace."
+                "title": "Už jste skoro tam! ⭐",
+                "tasks": "Finální odpočítávání! Proveďte online check-in, potvrďte všechny rezervace, zabalte si kufry, nabijte zařízení, stáhněte zábavu a zkontrolujte nejnovější cestovní aktualizace."
             }
         },
         "planner": {
             "title": "Chcete to udělat ještě snazší?",
-            "content": "Nechte naše přátelské AI vytvořit vlastní časovou osu přípravy přizpůsobenou vaší destinaci a stylu cestování. Ideální pro zaneprázdněné cestovatele během špičkových plánovacích sezón!",
-            "cta": "Pojďme plánovat společně"
+            "content": "Nechte naši přátelskou AI vytvořit personalizovaný časový plán přípravy na základě vaší destinace a cestovního stylu! Perfektní pro zaneprázdněné cestovatele během špičkových plánovacích sezón.",
+            "cta": "Pojďme plánovat společně!"
         }
     }
 }

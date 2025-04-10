@@ -11,131 +11,264 @@
             "visa": {
                 "iata": {
                     "title": "IATA Travel Centre",
-                    "url": "https://www.iata.org/en/services/compliance/timatic/travel-documentation/",
-                    "description": "Offizielle Datenbank, die weltweit von Fluggesellschaften zur Überprüfung von Reisedokumenten verwendet wird"
+                    "url": "https://www.iatatravelcentre.com/",
+                    "description": "Ihr Tool für aktuelle Visa- und Gesundheitsanforderungen, dem weltweit Fluggesellschaften vertrauen!"
                 },
                 "schengen": {
                     "title": "EU-Visaportal",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/applying-schengen-visa_en",
-                    "description": "Offizielle Informationen der Europäischen Union zur Beantragung eines Schengen-Visums"
+                    "description": "Offizielle Informationen der Europäischen Union, um Ihren Schengen-Visumantrag super einfach zu gestalten"
                 },
                 "us": {
                     "title": "U.S. Department of State",
                     "url": "https://travel.state.gov/content/travel/en/us-visas.html",
-                    "description": "Offizielle Informationen und Anforderungen für US-Visa"
+                    "description": "Alles, was Sie für US-Visas benötigen, direkt von der offiziellen Quelle"
+                },
+                "visaguide": {
+                    "title": "VisaGuide.World",
+                    "url": "https://visaguide.world/",
+                    "description": "Ein freundlicher Leitfaden mit Visa-Anforderungen für über 200 Länder – perfekt für die Planung Ihres Abenteuers!"
                 }
             },
             "health": {
                 "cdc": {
                     "title": "CDC Travelers' Health",
                     "url": "https://wwwnc.cdc.gov/travel",
-                    "description": "Offizielle US-Gesundheitsanforderungen und Empfehlungen für Reisende"
+                    "description": "Offizielle US-Gesundheitsanforderungen und -empfehlungen für Reisende"
                 },
                 "who": {
                     "title": "WHO International Travel and Health",
                     "url": "https://www.who.int/health-topics/travel-and-health",
-                    "description": "Richtlinien der Weltgesundheitsorganisation für Reisen und Gesundheit"
+                    "description": "Richtlinien der Weltgesundheitsorganisation zu Reisen und Gesundheit"
                 },
                 "icvp": {
-                    "title": "Internationales Impfzertifikat",
+                    "title": "International Certificate of Vaccination",
                     "url": "https://wwwnc.cdc.gov/travel/page/icvp",
-                    "description": "Offizielle Informationen über Gelbe Karten und Impfzertifikate"
+                    "description": "Offizielle Informationen zu Gelben Karten und Impfzertifikaten"
                 }
             },
             "insurance": {
                 "schengen": {
                     "title": "EU-Versicherungsanforderungen",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/travel-medical-insurance_en",
-                    "description": "Offizielle Anforderungen an die Reisekrankenversicherung für den Schengen-Raum"
+                    "description": "Offizielle Reiseversicherungsanforderungen für den Schengen-Raum"
                 }
             }
         }
     },
     "visa": {
         "meta": {
-            "title": "Ihr freundlicher Leitfaden zu Visa und Reisegenehmigungen",
-            "description": "Alles, was Sie über Visa wissen müssen, einfach gemacht! Erhalten Sie Expertenrat zu Anträgen, Bearbeitungszeiten und Ländervoraussetzungen – alles unterstützt durch die vertrauenswürdige IATA Timatic-Datenbank.",
-            "keywords": "Visumantrag, Reisegenehmigung, Touristenvisum, Reisedokumente, Visumanforderungen, Reisepass, IATA Timatic, Schengen-Visum, US-Visum, Japan-Visum"
+            "title": "Ihr freundlicher Leitfaden zu Visas und Reisedokumenten",
+            "description": "Alles, was Sie über Visas wissen müssen, einfach erklärt! Holen Sie sich Expertenrat zu Anträgen, Bearbeitungszeiten und Ländervoraussetzungen, unterstützt durch die zuverlässige IATA Timatic-Datenbank und VisaGuide.World.",
+            "keywords": "Visumantrag, Reisedokumente, Touristenvisum, Visa-Anforderungen, Pass, IATA Timatic, VisaGuide.World, Schengen-Visum, US-Visum, Japan-Visum, ESTA, ETIAS"
         },
-        "title": "Ihr einfacher Leitfaden zu Visa und Reisegenehmigungen",
+        "title": "Ihr einfacher und unterhaltsamer Leitfaden zu Visas und Reisedokumenten",
         "introduction": {
-            "title": "Lassen Sie uns über Reisevisa sprechen",
-            "content": "Stellen Sie sich ein Visum als Ihr goldenes Ticket für Abenteuer vor! Es ist einfach ein offizielles Dokument, das Sie in ein Land willkommen heißt. Wir halten alles genau und aktuell mit der IATA Timatic-Datenbank – der gleichen, die weltweit von Fluggesellschaften genutzt wird, mit Echtzeit-Updates aus über 1.000 offiziellen Quellen."
+            "title": "Lassen Sie uns über Reisevisas sprechen!",
+            "content": "Stellen Sie sich ein Visum als Ihren VIP-Pass vor, um die Welt zu erkunden! Es ist nur ein offizielles Dokument, das 'Willkommen!' in einem Land sagt. Wir halten alles mit der IATA Timatic-Datenbank auf dem neuesten Stand – der gleichen, der Fluggesellschaften vertrauen – und geben Ihnen die aktuellsten Informationen aus über 1.000 offiziellen Quellen. Bereit, Ihr nächstes Abenteuer zu planen? Wir haben Sie abgedeckt!"
         },
         "popular": {
-            "title": "Ihre Top-Reiseziele",
+            "title": "Ihre Lieblingsreiseziele",
             "countries": {
                 "europe": {
                     "title": "✈️ Europa erkunden (Schengen-Visum)",
-                    "requirements": "Bereit für Ihr europäisches Abenteuer? Die meisten Nicht-EU-Besucher benötigen dieses praktische Visum, das Ihnen die Türen zu 27 wunderbaren Ländern öffnet! Die Bearbeitung dauert in der Regel 15 Tage (manchmal bis zu 45). Sie benötigen: Einen gültigen Reisepass (mindestens 6 Monate gültig), eine Reiseversicherung (mindestens 30.000 € Deckung), Ihre Unterkunftspläne, Flugbuchungen, aktuelle Kontoauszüge und einen Nachweis über Ihre Beschäftigung. Keine Sorge – wir helfen Ihnen, alles zu organisieren!"
+                    "requirements": "Bereit für einen Europa-Trip? Das Schengen-Visum öffnet Türen zu 27 fantastischen Ländern – von Frankreich bis Finnland. Die Bearbeitung dauert in der Regel 15 Tage (bis zu 45 in der Hochsaison). Sie benötigen einen Reisepass, der noch 6+ Monate gültig ist, eine Reiseversicherung mit einer Deckung von mindestens 30.000 €, Unterkunfts- und Flugbuchungen, aktuelle Kontoauszüge und einen Nachweis über Ihre Beschäftigung. Keine Sorge, wir machen es Ihnen leicht!"
                 },
                 "usa": {
                     "title": "🗽 Die Vereinigten Staaten besuchen",
-                    "requirements": "Planen Sie Ihre Reise in die USA? Das B1/B2-Touristenvisum ist Ihr Schlüssel! Die Bearbeitung dauert 2-3 Monate (je nach Standort), aber die Aufregung wird das Warten wert sein. Sie müssen das DS-160-Formular ausfüllen, einen gültigen Reisepass haben, für ein Foto lächeln, ein Gespräch mit der Botschaft führen und Ihre Verbindungen und Finanzen nachweisen. Gute Neuigkeiten, wenn Sie aus einem Land mit Visumfreiheit kommen – Sie könnten sich für ESTA qualifizieren und bis zu 90 Tage bleiben!"
+                    "requirements": "Träumen Sie von den USA? Das B1/B2-Touristenvisum ist Ihr Ticket, auch wenn es 2-3 Monate dauern kann (je nach Standort). Füllen Sie das DS-160-Formular aus, haben Sie einen gültigen Reisepass, ein aktuelles Foto und seien Sie bereit für ein Gespräch mit der Botschaft, bei dem Sie Ihre Bindungen zur Heimat zeigen. Aus einem Land mit Visumbefreiung? ESTA ermöglicht Ihnen einen 90-tägigen Aufenthalt mit weniger Aufwand!"
                 },
                 "japan": {
                     "title": "🗼 Japan entdecken",
-                    "requirements": "Aufgeregt über Japan? Das neue eVisa-System macht es für viele Reisende super einfach! Die Bearbeitung dauert nur 5-7 Tage. Bereiten Sie einfach Ihren Reisepass, Reisepläne, Nachweis über finanzielle Mittel und Arbeitsdetails vor. Profi-Tipp: Besorgen Sie sich vorab Ihren Japan Rail Pass! Egal, ob Sie an einer Tour teilnehmen oder alleine reisen, wir haben Sie abgedeckt."
+                    "requirements": "Japan-Fan? Ihr eVisa-System ist ein Traum – in 5-7 Tagen für viele Reisende bearbeitet. Sie benötigen nur Ihren Reisepass, Reisepläne, einen Nachweis über ausreichende Mittel und Beschäftigungsdetails. Goldener Tipp: Kaufen Sie Ihren Japan Rail Pass vor der Abreise, um zu sparen und mehr zu erkunden! Wir begleiten Sie bei jedem Schritt."
                 },
                 "australia": {
                     "title": "🦘 Abenteuer in Australien",
-                    "requirements": "Träumen Sie von Down Under? Das eVisitor (651) oder ETA (601) Visum ist perfekt für berechtigte Reisende! Die meisten Anträge werden innerhalb von 24 Stunden bis 2 Wochen bearbeitet. Gehen Sie einfach online, halten Sie Ihren Reisepass bereit und stellen Sie sicher, dass Sie bei guter Gesundheit sind. Bonus für junge Abenteurer (18-30): Schauen Sie sich die tollen Working-Holiday-Optionen an!"
+                    "requirements": "Fantasieren Sie über Australien? Die eVisitor (651)- oder ETA (601)-Visa werden in 24 Stunden bis 2 Wochen bearbeitet – perfekt für berechtigte Reisende. Bewerben Sie sich einfach online mit Ihrem Reisepass und einer Gesundheitsfreigabe. Jung (18-30)? Working-Holiday-Visas sind eine großartige Abenteueroption!"
                 }
             }
         },
-        "tips": {
-            "title": "Experten-Tipps für den Visumantrag",
+        "steps": {
+            "title": "So beantragen Sie Ihr Visum, Schritt für Schritt",
+            "countries": {
+                "europe": {
+                    "title": "Schengen-Visum (Europa)",
+                    "list": {
+                        "step1": "Wählen Sie die Botschaft des Landes, in dem Sie die meiste Zeit verbringen werden (z.B. Frankreich, wenn es Ihr Schwerpunkt ist).",
+                        "step2": "Füllen Sie das Online-Formular auf der Website der Botschaft oder dem EU-Visaportal aus.",
+                        "step3": "Sammeln Sie Ihren Reisepass, biometrisches Foto, Versicherung über 30.000 €, Reiseroute und Nachweis über ausreichende Mittel.",
+                        "step4": "Vereinbaren Sie einen Termin – viele Botschaften tun dies online.",
+                        "step5": "Reichen Sie alles bei Ihrem Termin ein und warten Sie 15-45 Tage. Einfach, oder?"
+                    }
+                },
+                "usa": {
+                    "title": "US-Visum (B1/B2)",
+                    "list": {
+                        "step1": "Füllen Sie das DS-160-Formular auf travel.state.gov aus – es ist Ihr erster wichtiger Schritt.",
+                        "step2": "Zahlen Sie die Gebühr (etwa 160 $, prüfen Sie den aktuellen Satz).",
+                        "step3": "Vereinbaren Sie Ihr Botschaftsinterview – ja, es ist für die meisten erforderlich.",
+                        "step4": "Bringen Sie Reisepass, Foto, Nachweis über ausreichende Mittel und Bindungen zur Heimat (Arbeit, Familie) mit.",
+                        "step5": "Sprechen Sie mit dem Beamten und warten Sie 2-3 Monate. Geduld, es wird sich lohnen!"
+                    }
+                },
+                "japan": {
+                    "title": "Japan eVisa",
+                    "list": {
+                        "step1": "Prüfen Sie auf mofa.go.jp, ob Sie für eVisa berechtigt sind.",
+                        "step2": "Bewerben Sie sich online mit Reisepass, Reiseroute und Beschäftigungsdetails.",
+                        "step3": "Laden Sie Dokumente digital hoch – kein Aufwand.",
+                        "step4": "Warten Sie 5-7 Tage und erhalten Sie Ihr eVisa per E-Mail. Drucken Sie es aus und los geht's!"
+                    }
+                },
+                "australia": {
+                    "title": "Australien eVisitor/ETA",
+                    "list": {
+                        "step1": "Bestätigen Sie Ihre Berechtigung auf immi.homeaffairs.gov.au.",
+                        "step2": "Bewerben Sie sich online mit Reisepass und Gesundheitserklärung.",
+                        "step3": "Warten Sie 24 Stunden bis 2 Wochen – in der Regel super schnell.",
+                        "step4": "Erhalten Sie die Genehmigung per E-Mail, verknüpft mit Ihrem Reisepass. Zeit zum Erkunden!"
+                    }
+                }
+            }
+        },
+        "mistakes": {
+            "title": "Häufige Fehler, die Sie vermeiden sollten",
             "list": {
-                "early": "Beantragen Sie mindestens 3 Monate vor der Reise. In Hauptsaisonzeiten (Sommer, Feiertage) kann die Bearbeitung länger dauern. Erwägen Sie eine beschleunigte Bearbeitung, falls verfügbar.",
-                "documents": "Verwenden Sie offizielle Dokumenten-Checklisten von Botschafts-Websites. Lassen Sie Dokumente von zertifizierten Übersetzern übersetzen. Bewahren Sie digitale Kopien aller Einreichungen auf.",
-                "insurance": "Schließen Sie eine umfassende Reiseversicherung ab, die die Mindestanforderungen übertrifft. Stellen Sie sicher, dass die Deckung medizinische Evakuierung und COVID-19-bezogene Probleme umfasst.",
-                "embassy": "Verfolgen Sie die Bearbeitungszeiten für Visa auf offiziellen Botschafts-Websites. Richten Sie E-Mail-Benachrichtigungen für Änderungen der Anforderungen ein. Erwägen Sie die Nutzung autorisierter Visa-Bearbeitungszentren für mehr Komfort."
+                "late": "Nicht früh genug beantragen – zielen Sie auf 3 Monate im Voraus, besonders im Sommer oder an Feiertagen.",
+                "incomplete": "Falsche Formulare – überprüfen Sie Unterschriften und Daten, um eine Ablehnung zu vermeiden.",
+                "funds": "Unzureichende Mittel – zeigen Sie genügend Geld für Ihre Reise (Kontoauszüge, Gehaltsabrechnungen).",
+                "insurance": "Unzureichende Versicherung – Sie benötigen über 30.000 € für Schengen, vergessen Sie das nicht.",
+                "ties": "Keine Bindungen zur Heimat nachweisen – Beschäftigung oder Familie helfen, Zweifel in den USA zu vermeiden."
+            }
+        },
+        "visafree": {
+            "title": "Reisen ohne Visum oder mit einfachen Genehmigungen!",
+            "content": "Wussten Sie, dass einige Ziele kein vollständiges Visum benötigen? Mit elektronischen Genehmigungen wie ESTA oder ETIAS können Sie den langen Prozess überspringen, wenn Sie aus bestimmten Ländern kommen. Hier sind einige beliebte Optionen für 2025 – schnell und einfach.",
+            "table": {
+                "destination": "Ziel",
+                "type": "Typ",
+                "cost": "Kosten",
+                "validity": "Gültigkeit",
+                "stay": "Max. Aufenthalt",
+                "entries": {
+                    "usa": {
+                        "destination": "USA",
+                        "type": "ESTA",
+                        "cost": "USD 14",
+                        "validity": "2 Jahre",
+                        "stay": "90 Tage"
+                    },
+                    "canada": {
+                        "destination": "Kanada",
+                        "type": "eTA",
+                        "cost": "CAD 7",
+                        "validity": "5 Jahre",
+                        "stay": "6 Monate"
+                    },
+                    "europe": {
+                        "destination": "Europa (Schengen)",
+                        "type": "ETIAS (ab Mai 2025)",
+                        "cost": "€7",
+                        "validity": "3 Jahre",
+                        "stay": "3 Monate"
+                    }
+                }
+            }
+        },
+        "insurance": {
+            "title": "Reiseversicherung: Ihr bester Reisebegleiter!",
+            "content": "Die Versicherung ist für Orte wie Schengen (Deckung über 30.000 €) obligatorisch und anderswo wie in Japan dringend empfohlen. Suchen Sie nach einer, die medizinische Notfälle, Evakuierung und COVID-19 für Ihre gesamte Reise abdeckt. Probieren Sie Optionen wie World Nomads oder Allianz – sie halten Sie sicher, damit Sie sich auf den Spaß konzentrieren können."
+        },
+        "tips": {
+            "title": "Expertentipps für Ihren Visumantrag",
+            "list": {
+                "early": "Bewerben Sie sich 3 Monate im Voraus – Hochsaisons (Sommer, Feiertage) füllen sich schnell. In Eile? Prüfen Sie beschleunigte Optionen.",
+                "documents": "Befolgen Sie offizielle Checklisten der Botschaften – lassen Sie bei Bedarf beglaubigte Übersetzungen anfertigen und bewahren Sie digitale Kopien auf.",
+                "insurance": "Wählen Sie eine umfassende Versicherung – über das Minimum hinaus, mit medizinischer Evakuierung und COVID-19-Deckung.",
+                "embassy": "Überwachen Sie Bearbeitungszeiten auf Botschaftsseiten – richten Sie E-Mail-Benachrichtigungen ein und erwägen Sie autorisierte Visazentren."
+            }
+        },
+        "checklist": {
+            "title": "Checkliste für die Visavorbereitung",
+            "table": {
+                "item": "Artikel",
+                "details": "Details",
+                "items": {
+                    "passport": {
+                        "name": "Gültiger Reisepass",
+                        "details": "Überprüfen Sie das Ablaufdatum, stellen Sie sicher, dass 2+ leere Seiten vorhanden sind"
+                    },
+                    "form": {
+                        "name": "Antragsformular",
+                        "details": "Ausgefüllt, unterschrieben, online oder persönlich eingereicht"
+                    },
+                    "photo": {
+                        "name": "Biometrisches Foto",
+                        "details": "Aktuell, erfüllt die Botschaftsspezifikationen"
+                    },
+                    "insurance": {
+                        "name": "Reiseversicherung",
+                        "details": "Deckt medizinische Kosten ab, über 30.000 € für Schengen"
+                    },
+                    "funds": {
+                        "name": "Nachweis über ausreichende Mittel",
+                        "details": "Kontoauszüge, Gehaltsabrechnungen, ausreichend für Ihre Reise"
+                    },
+                    "accommodation": {
+                        "name": "Unterkunftsnachweis",
+                        "details": "Hotelbuchungen, Einladungsschreiben"
+                    },
+                    "itinerary": {
+                        "name": "Reiseroute",
+                        "details": "Flugbuchungen, geplante Aktivitäten"
+                    }
+                }
             }
         },
         "resources": {
-            "title": "Offizielle Ressourcen",
+            "title": "Offizielle Visa-Ressourcen",
             "list": {
-                "iata": "IATA Travel Centre (timatic.iata.org) – Die genaueste Datenbank für Visumanforderungen",
-                "embassies": "Offizielle Botschafts-Websites für detaillierte länderspezifische Anforderungen",
-                "state": "U.S. Department of State travel.state.gov für US-Bürger",
-                "europa": "europa.eu/immigration für Informationen zum Schengen-Visum"
+                "iata": "IATA Travel Centre – Personalisierte, aktuelle Visa-Informationen",
+                "visaguide": "VisaGuide.World – Detaillierte Anforderungen für über 200 Länder",
+                "schengen": "EU-Visaportal – Alles über das Schengen-Visum",
+                "us": "U.S. Department of State – Offizieller US-Visa-Leitfaden"
             }
         },
         "help": {
-            "title": "Bereit, Ihre Reiseträume wahr werden zu lassen?",
-            "content": "Lassen Sie uns gemeinsam Ihren perfekten Reiseplan erstellen! Wir helfen Ihnen, die Visumanforderungen und Zeitpläne zu meistern, während wir ein fantastisches Abenteuer gestalten, das genau zu Ihnen passt.",
-            "cta": "Lassen Sie uns gemeinsam planen"
+            "title": "Bereit für Ihre Reiseträume?",
+            "content": "Lassen Sie uns zusammenarbeiten, um Ihr perfektes Abenteuer zu planen! Wir begleiten Sie durch Visa-Anforderungen und Zeitpläne und erstellen eine fantastische Reise nur für Sie.",
+            "cta": "Lassen Sie uns zusammen planen!"
         }
     },
     "service": {
         "meta": {
-            "title": "Wie Travel-Rizz funktioniert – Ihr KI-Reisebegleiter",
-            "description": "Entdecken Sie, wie der KI-Reiseassistent Travel-Rizz Ihnen hilft, Ihre perfekte Reise durch natürliche Gespräche, aktuelle Einblicke und interaktive Planungstools zu planen – kein Konto erforderlich.",
-            "keywords": "KI-Reiseplaner, Reiseassistent, Reiseplanung, travel-rizz, personalisiertes Reisen, Routenoptimierung, Reiseinformationen, keine Anmeldung erforderlich"
+            "title": "So funktioniert Travel-Rizz – Ihr KI-Reisebegleiter",
+            "description": "Entdecken Sie, wie der KI-Reiseassistent von Travel-Rizz Ihnen hilft, Ihre perfekte Reise durch natürliche Gespräche, Echtzeitinformationen und interaktive Planungstools zu planen – ohne Konto.",
+            "keywords": "KI-Reiseplaner, Reiseassistent, Reiseplanung, travel-rizz, personalisiertes Reisen, Routenoptimierung, Reiseeinblicke, keine Anmeldung erforderlich"
         },
-        "title": "Wie Travel-Rizz die Reiseplanung erleichtert",
+        "title": "Wie Travel-Rizz die Reiseplanung einfach macht",
         "introduction": {
             "title": "Ihr freundlicher KI-Reisebegleiter",
-            "content": "Travel-Rizz ist so gestaltet, dass sich die Reiseplanung wie ein Gespräch mit einem kenntnisreichen Freund anfühlt. Keine Konten, keine komplizierten Formulare – teilen Sie Ihre Reiseträume einfach auf natürliche Weise mit, und unsere KI hilft Ihnen, sie mit personalisierten Vorschlägen und aktuellen Einblicken zum Leben zu erwecken."
+            "content": "Travel-Rizz wurde entwickelt, um die Reiseplanung wie ein Gespräch mit einem sachkundigen Freund zu gestalten. Keine Konten, keine komplizierten Formulare – teilen Sie einfach Ihre Reiseträume auf natürliche Weise, und unsere KI erweckt sie mit personalisierten Vorschlägen und Echtzeitinformationen zum Leben."
         },
         "workflow": {
             "title": "Ihre Reise zu planen ist einfach",
             "steps": {
                 "input": {
-                    "title": "Erzählen Sie von Ihren Reiseträumen",
-                    "description": "Beginnen Sie ein natürliches Gespräch darüber, wohin Sie reisen möchten und welche Erlebnisse Sie suchen. Unsere KI versteht Ihren Stil und Ihre Vorlieben, genau wie ein Freund, der Sie gut kennt."
+                    "title": "Sprechen Sie über Ihre Reiseträume",
+                    "description": "Beginnen Sie ein natürliches Gespräch darüber, wohin Sie gehen möchten und welche Erfahrungen Sie suchen. Unsere KI versteht Ihren Stil und Ihre Vorlieben, wie ein Freund, der Sie gut kennt."
                 },
                 "ai": {
-                    "title": "Erhalten Sie aktuelle Reiseinformationen",
-                    "description": "Während Sie chatten, liefert unsere KI zeitnahe Informationen über Ihr Reiseziel – von Wetterbedingungen über lokale Bräuche bis hin zu Visumanforderungen und versteckten Schätzen – genau dann, wenn Sie sie brauchen."
+                    "title": "Erhalten Sie Echtzeit-Reiseeinblicke",
+                    "description": "Während Sie chatten, liefert unsere KI zeitnahe Informationen zu Ihrem Ziel – von Wetterbedingungen bis hin zu lokalen Bräuchen, Visa-Anforderungen und versteckten Schätzen – genau dann, wenn Sie sie benötigen."
                 },
                 "customize": {
                     "title": "Visualisieren Sie Ihre Reise",
-                    "description": "Sehen Sie, wie Ihre täglichen Abenteuer auf interaktiven Karten zum Leben erwachen. Unsere KI optimiert Ihre Routen und schlägt die besten Zeiten für jede Aktivität vor, damit Sie jeden Moment optimal nutzen können."
+                    "description": "Sehen Sie, wie Ihre täglichen Abenteuer auf interaktiven Karten zum Leben erweckt werden. Unsere KI optimiert Ihre Routen und schlägt die besten Zeiten für jede Aktivität vor, damit Sie jeden Moment optimal nutzen."
                 },
                 "download": {
-                    "title": "Ihr perfekter Reiseplan",
-                    "description": "Erhalten Sie einen flexiblen Tagesplan, den Sie leicht anpassen können. Alles ist nach Ihren Wünschen organisiert, mit intelligenten Vorschlägen für Zeitplanung und Logistik – und das alles ohne ein Konto erstellen zu müssen."
+                    "title": "Ihre perfekte Reiseroute",
+                    "description": "Erhalten Sie einen flexiblen Tagesplan, den Sie leicht anpassen können. Alles ist nach Ihren Wünschen organisiert, mit intelligenten Vorschlägen für Timing und Logistik – alles ohne ein Konto zu erstellen."
                 }
             }
         },
@@ -143,59 +276,59 @@
             "title": "Funktionen, die die Planung verbessern",
             "list": {
                 "aiChat": {
-                    "title": "KI-gestützte Reiseplanung",
+                    "title": "KI-Reiseplanung",
                     "description": "Chatten Sie sofort mit unserem KI-Reiseassistenten – kein Konto erforderlich. Teilen Sie Ihre Ideen wie mit einem Freund, und unser intelligentes System versteht Ihre Vorlieben, um personalisierte Pläne zu erstellen."
                 },
                 "insights": {
-                    "title": "Aktuelle Reisekenntnisse",
-                    "description": "Greifen Sie auf hilfreiche Informationen über Ihr Reiseziel zu – von Wetterbedingungen bis hin zu lokalen Bräuchen – genau dann, wenn Sie sie brauchen, alles unterstützt von unserer KI, die lernt, was Ihnen wichtig ist."
+                    "title": "Rechtzeitige Reisekenntnisse",
+                    "description": "Greifen Sie auf hilfreiche Informationen zu Ihrem Ziel zu – von Wetterbedingungen bis hin zu lokalen Bräuchen – genau dann, wenn Sie sie benötigen, alles unterstützt von unserer KI, die lernt, was Ihnen wichtig ist."
                 },
                 "routes": {
                     "title": "Visuelle Routenplanung",
-                    "description": "Sehen Sie Ihre täglichen Abenteuer auf interaktiven Karten ausgebreitet. Unsere KI optimiert Ihre Routen basierend auf Ihren Vorlieben, damit Sie jeden Tag optimal nutzen können."
+                    "description": "Sehen Sie Ihre täglichen Abenteuer auf interaktiven Karten ausgelegt. Unsere KI optimiert Ihre Routen basierend auf Ihren Vorlieben, um Ihnen zu helfen, das Beste aus jedem Tag zu machen."
                 },
                 "itinerary": {
-                    "title": "Flexibler Tagesplan",
-                    "description": "Gestalten Sie Ihre Tage mit intuitiven Tools und KI-Unterstützung, die Aktivitäten nach Ihren Wünschen organisiert. Beginnen Sie in Sekundenschnelle mit der Planung, ohne sich registrieren zu müssen."
+                    "title": "Flexible Tagesreiseroute",
+                    "description": "Gestalten Sie Ihre Tage mit intuitiven Tools und KI-Unterstützung, die Aktivitäten nach Ihren Wünschen organisiert. Beginnen Sie in Sekundenschnelle mit der Planung, ohne sich anzumelden."
                 }
             }
         },
         "cta": {
             "title": "Bereit, mit der Planung zu beginnen?",
             "content": "Erleben Sie die Freude an müheloser Reiseplanung mit einem KI-Begleiter, der Sie versteht.",
-            "button": "Lassen Sie uns gemeinsam planen"
+            "button": "Lassen Sie uns zusammen planen!"
         }
     },
     "preparation": {
         "meta": {
-            "title": "Ihr ultimativer Leitfaden zur Reisevorbereitung für 2025",
-            "description": "Bereiten Sie sich auf eine fantastische Reise vor mit unserer Reise-Checkliste! Von wichtigen Dokumenten bis hin zu cleveren Packtipps – wir machen die Reisevorbereitung mühelos. Starten Sie jetzt mit der Planung!",
-            "keywords": "Reisevorbereitung, Reiseplanung, Packliste, Reise-Checkliste, internationales Reisen, Gesundheitsanforderungen, Reise-Checkliste 2025, wie man sich auf internationales Reisen vorbereitet"
+            "title": "Ihr ultimativer Reisepreparationsleitfaden für 2025",
+            "description": "Machen Sie sich bereit für eine fantastische Reise mit unserer Reiseliste! Von unverzichtbaren Dokumenten bis hin zu cleveren Packtipps – wir machen die Vorbereitung einfach. Starten Sie jetzt mit der Planung!",
+            "keywords": "Reisevorbereitung, Reiseplanung, Packliste, Reiseliste, internationale Reisen, Gesundheitsanforderungen, Reiseliste 2025, wie man sich auf internationale Reisen vorbereitet"
         },
-        "title": "Ihr ultimativer Leitfaden zur Reisevorbereitung",
+        "title": "Ihr ultimativer Reisepreparationsleitfaden",
         "introduction": {
             "title": "Freuen Sie sich auf Ihr Abenteuer!",
-            "content": "Die besten Reisen beginnen mit einer großartigen Vorbereitung, und da das Interesse an Reisen Monate vor der Abreise seinen Höhepunkt erreicht, ist jetzt der perfekte Zeitpunkt, einzutauchen! Unser fachmännisch erstellter Leitfaden stellt sicher, dass Sie für Ihr Abenteuer 2025 bereit sind, indem er internationale Standards mit aktuellen Einblicken kombiniert. Lassen Sie uns Ihre Reisevorbereitung reibungslos, stressfrei und unterhaltsam gestalten!"
+            "content": "Die besten Reisen beginnen mit einer großartigen Vorbereitung, und da das Reiseinteresse Monate vor der Abreise seinen Höhepunkt erreicht, ist jetzt der perfekte Zeitpunkt, um anzufangen! Unser von Experten erstellter Leitfaden stellt sicher, dass Sie für Ihr Abenteuer 2025 bereit sind, indem er internationale Standards mit Echtzeitinformationen verbindet. Lassen Sie uns Ihre Reisevorbereitung reibungslos, stressfrei und spaßig gestalten!"
         },
         "categories": {
             "documentation": {
                 "title": "📄 Ihre Reisedokumente",
-                "description": "Lassen Sie uns Ihre Unterlagen auf einfache Weise organisieren!",
+                "description": "Lassen Sie uns Ihre Dokumente auf einfache Weise organisieren!",
                 "checklist": {
                     "item1": "Reisepass (mindestens 6 Monate gültig mit 2 leeren Seiten) – prüfen Sie das Ablaufdatum frühzeitig!",
-                    "item2": "Visum oder Einreiseerlaubnis (überprüfen Sie die Anforderungen mit [IATA Travel Centre](https://www.iata.org/en/services/compliance/timatic/travel-documentation/))",
-                    "item3": "Reiseversicherung mit COVID-19- und medizinischer Deckung (essentiell für Ihre Sicherheit)",
+                    "item2": "Visum oder Einreiseerlaubnis (prüfen Sie die Anforderungen mit [IATA Travel Centre](https://www.iatatravelcentre.com/))",
+                    "item3": "Reiseversicherung mit medizinischer und COVID-19-Deckung (unerlässlich für Ihre Ruhe)",
                     "item4": "Impfunterlagen (falls erforderlich – siehe [CDC Travelers' Health](https://wwwnc.cdc.gov/travel))"
                 }
             },
             "packing": {
-                "title": "🧳 Cleveres Packen leicht gemacht",
-                "description": "Packen Sie wie ein Profi mit diesen cleveren, regionsspezifischen Tipps!",
+                "title": "🧳 Clever und einfach packen",
+                "description": "Packen Sie wie ein Profi mit diesen regionalspezifischen Tipps!",
                 "checklist": {
-                    "item1": "Kleidung, die zum Wetter Ihres Reiseziels passt (Schichten sind ideal für Nordamerika und Europa!)",
-                    "item2": "Universeller Adapter und tragbares Ladegerät (ein Muss für technikaffine Reisende)",
-                    "item3": "Reisegrößen-Toilettenartikel (TSA-konform für reibungslose Sicherheitskontrollen)",
-                    "item4": "Sicherungskopien wichtiger Dokumente (digital und in Papierform – entscheidend für internationale Reisen)"
+                    "item1": "Kleidung, die zum Klima Ihres Ziels passt (Schichten funktionieren hervorragend für Nordamerika und Europa!)",
+                    "item2": "Universaladapter und tragbares Ladegerät (Must-Haves für technisch versierte Reisende)",
+                    "item3": "Reisegröße Toilettenartikel (TSA-konform für reibungslose Sicherheitskontrollen)",
+                    "item4": "Sicherungskopien wichtiger Dokumente (digital und papier – entscheidend für internationale Reisen)"
                 },
                 "genderSpecific": {
                     "title": "Für weibliche Reisende",
@@ -208,59 +341,59 @@
                 }
             },
             "booking": {
-                "title": "✈️ Reisevorkehrungen",
-                "description": "Sichern Sie Ihre Buchungen frühzeitig, um Last-Minute-Stress zu vermeiden.",
+                "title": "✈️ Reisevorbereitungen",
+                "description": "Sichern Sie Ihre Buchungen frühzeitig, um Last-Minute-Ärger zu vermeiden.",
                 "checklist": {
-                    "item1": "Flüge mit Sitzplatzreservierung und Essenswünschen (früh buchen für Angebote!)",
-                    "item2": "Unterkunft mit flexiblen Stornierungsbedingungen (ein Muss für 2025)",
-                    "item3": "Flughafentransfers und lokale Verkehrspässe (sparen Sie Zeit und Geld)",
-                    "item4": "Priorisierte Attraktionen und Touren (Optionen zum Überspringen der Warteschlange retten den Tag)"
+                    "item1": "Flüge mit Sitzplatzreservierungen und Essenspräferenzen (früh buchen für Angebote!)",
+                    "item2": "Unterkunft mit flexiblen Stornierungsbedingungen (ein Muss für 2025!)",
+                    "item3": "Flughafentransfers und lokale Verkehrspässe (sparen Zeit und Geld)",
+                    "item4": "Prioritätsattraktionen und -touren (Optionen zum Überspringen der Warteschlange retten den Tag)"
                 }
             },
             "health": {
                 "title": "🏥 Gesundheitsvorbereitungen",
-                "description": "Bleiben Sie unterwegs gesund mit diesen Experten-Tipps.",
+                "description": "Bleiben Sie unterwegs gesund mit diesen Expertentipps.",
                 "checklist": {
-                    "item1": "Erforderliche Impfungen (prüfen Sie [CDC-Reisegesundheitsmitteilungen](https://wwwnc.cdc.gov/travel) für Updates)",
-                    "item2": "Reisekrankenversicherung mit internationaler Deckung (verzichten Sie nicht auf COVID-19-Schutz)",
-                    "item3": "Verschreibungspflichtige Medikamente mit Arztbescheinigung (packen Sie zusätzliche ein, für alle Fälle)",
-                    "item4": "Grundlegendes Erste-Hilfe-Set (TSA-konform für einfaches Reisen)"
+                    "item1": "Erforderliche Impfungen (prüfen Sie [CDC Traveler Health Notices](https://wwwnc.cdc.gov/travel) für Updates)",
+                    "item2": "Reisekrankenversicherung mit internationaler Deckung (vergessen Sie nicht den COVID-19-Schutz)",
+                    "item3": "Verschreibungspflichtige Medikamente mit ärztlicher Bescheinigung (packen Sie zusätzliche ein, nur für den Fall)",
+                    "item4": "Grundlegende Erste-Hilfe-Ausrüstung (TSA-konform für einfaches Reisen)"
                 }
             },
             "finance": {
                 "title": "💰 Finanzplanung",
-                "description": "Reisen Sie sorgenfrei mit diesen Finanz-Tipps.",
+                "description": "Reisen Sie sorgenfrei mit diesen Finanztipps.",
                 "checklist": {
-                    "item1": "Täglicher Budgetplan mit 20% Notfallfonds (planen Sie für Überraschungen)",
-                    "item2": "Mehrere Zahlungsmethoden (Karten, Bargeld, digitale Wallets – entscheidend für Europa und Australien)",
-                    "item3": "Reisebenachrichtigungen der Bank und Notfallkontakte (vermeiden Sie Kartenprobleme im Ausland)",
-                    "item4": "Lokale Währung und Wechselkursüberwachung (probieren Sie Apps wie XE)"
+                    "item1": "Tagesbudget mit 20% Notfallfonds (planen Sie für das Unerwartete)",
+                    "item2": "Mehrere Zahlungsmethoden (Karten, Bargeld, digitale Geldbörsen – entscheidend für Europa und Australien)",
+                    "item3": "Bank-Reisebenachrichtigungen und Notfallkontakte (vermeiden Sie Kartenprobleme im Ausland)",
+                    "item4": "Lokale Währung und Überwachung der Wechselkurse (probieren Sie Apps wie XE)"
                 }
             }
         },
         "timeline": {
             "title": "Ihr Reise-Countdown",
             "months3": {
-                "title": "3 Monate bis zur Abreise! 🎉",
-                "tasks": "Seien Sie der Masse voraus! Beantragen Sie Ihren Reisepass/Visum, buchen Sie Flüge und Unterkünfte, prüfen Sie Impfanforderungen und lassen Sie sich von früheren Reisen inspirieren."
+                "title": "Noch 3 Monate! 🎉",
+                "tasks": "Seien Sie der Masse voraus! Beantragen Sie Reisepass/Visum, buchen Sie Flüge und Unterkunft, prüfen Sie Impfbedarf und schauen Sie sich vergangene Reisen zur Inspiration an."
             },
             "months1": {
-                "title": "1 Monat bis zur Abreise! ✨",
-                "tasks": "Es wird ernst! Schließen Sie Impfungen ab, sichern Sie Ihre Reiseversicherung, planen Sie tägliche Aktivitäten, organisieren Sie Flughafentransfers und überprüfen Sie Ihren Telefonplan für internationale Nutzung."
+                "title": "Noch 1 Monat! ✨",
+                "tasks": "Es wird ernst! Beenden Sie Impfungen, sichern Sie Ihre Reiseversicherung, planen Sie tägliche Aktivitäten, arrangieren Sie Flughafentransfers und bestätigen Sie Ihren Telefonplan für die internationale Nutzung."
             },
             "weeks2": {
                 "title": "Nur noch 2 Wochen! 🎈",
-                "tasks": "Die Aufregung steigt! Besorgen Sie sich lokale Währung, machen Sie Kopien Ihrer Dokumente, beginnen Sie mit dem Packen, prüfen Sie das Wetter und laden Sie Offline-Karten herunter."
+                "tasks": "Die Aufregung steigt! Besorgen Sie sich lokale Währung, machen Sie Kopien von Dokumenten, beginnen Sie zu packen, prüfen Sie das Wetter und laden Sie Offline-Karten herunter."
             },
             "days1": {
-                "title": "Fast da! ⭐",
-                "tasks": "Letzter Countdown! Checken Sie online ein, bestätigen Sie alle Buchungen, packen Sie Ihre Koffer, laden Sie Ihre Geräte auf, laden Sie Unterhaltung herunter und überprüfen Sie die neuesten Reise-Updates."
+                "title": "Fast geschafft! ⭐",
+                "tasks": "Letzter Countdown! Checken Sie online ein, bestätigen Sie alle Buchungen, packen Sie Ihre Koffer, laden Sie Geräte auf, laden Sie Unterhaltung herunter und überprüfen Sie die neuesten Reiseupdates."
             }
         },
         "planner": {
             "title": "Möchten Sie es noch einfacher machen?",
-            "content": "Lassen Sie unsere freundliche KI einen maßgeschneiderten Vorbereitungszeitplan erstellen, der auf Ihr Reiseziel und Ihren Reisestil zugeschnitten ist. Perfekt für vielbeschäftigte Reisende während der Hauptsaison!",
-            "cta": "Lassen Sie uns gemeinsam planen"
+            "content": "Lassen Sie unsere freundliche KI einen personalisierten Vorbereitungszeitplan basierend auf Ihrem Ziel und Reisestil erstellen! Perfekt für vielbeschäftigte Reisende in Spitzenplanungszeiten.",
+            "cta": "Lassen Sie uns zusammen planen!"
         }
     }
 }

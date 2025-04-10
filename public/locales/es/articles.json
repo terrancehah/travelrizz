@@ -11,18 +11,23 @@
             "visa": {
                 "iata": {
                     "title": "IATA Travel Centre",
-                    "url": "https://www.iata.org/en/services/compliance/timatic/travel-documentation/",
-                    "description": "Base de datos oficial utilizada por aerolíneas de todo el mundo para la verificación de documentos de viaje"
+                    "url": "https://www.iatatravelcentre.com/",
+                    "description": "Tu herramienta personalizada para requisitos actualizados de visas y salud, ¡confiada por las aerolíneas globalmente!"
                 },
                 "schengen": {
                     "title": "Portal de Visas de la UE",
                     "url": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/applying-schengen-visa_en",
-                    "description": "Información oficial de la Unión Europea sobre solicitudes de visado Schengen"
+                    "description": "Información oficial de la Unión Europea para hacer tu solicitud de visa Schengen súper fácil"
                 },
                 "us": {
                     "title": "Departamento de Estado de EE. UU.",
                     "url": "https://travel.state.gov/content/travel/en/us-visas.html",
-                    "description": "Información y requisitos oficiales para visas de EE. UU."
+                    "description": "Todo lo que necesitas para visas de EE. UU., directo de la fuente oficial"
+                },
+                "visaguide": {
+                    "title": "VisaGuide.World",
+                    "url": "https://visaguide.world/",
+                    "description": "Una guía amigable con requisitos de visa para más de 200 países, ¡perfecta para planificar tu aventura!"
                 }
             },
             "health": {
@@ -54,56 +59,184 @@
     "visa": {
         "meta": {
             "title": "Tu guía amigable sobre visas y permisos de viaje",
-            "description": "¡Todo lo que necesitas saber sobre visas, de manera sencilla! Obtén asesoramiento experto sobre solicitudes, tiempos de procesamiento y requisitos por país, todo impulsado por la confiable base de datos IATA Timatic.",
-            "keywords": "solicitud de visa, permiso de viaje, visa de turista, documentos de viaje, requisitos de visa, pasaporte, IATA Timatic, visa Schengen, visa de EE. UU., visa de Japón"
+            "description": "¡Todo lo que necesitas saber sobre visas, explicado de manera sencilla! Consejos expertos sobre solicitudes, tiempos y requisitos por país, con datos confiables de IATA Timatic y VisaGuide.World.",
+            "keywords": "solicitud de visa, permiso de viaje, visa de turista, documentos de viaje, requisitos de visa, pasaporte, IATA Timatic, VisaGuide.World, visa Schengen, visa de EE. UU., visa de Japón, ESTA, ETIAS"
         },
-        "title": "Tu guía fácil sobre visas y permisos de viaje",
+        "title": "Tu guía fácil y divertida sobre visas y permisos de viaje",
         "introduction": {
-            "title": "Hablemos sobre visas de viaje",
-            "content": "¡Piensa en una visa como tu boleto dorado para la aventura! Es simplemente un documento oficial que te da la bienvenida a un país. Mantenemos todo preciso y actualizado usando la base de datos Timatic de IATA, la misma en la que confían las aerolíneas de todo el mundo, con actualizaciones en tiempo real de más de 1,000 fuentes oficiales."
+            "title": "¡Hablemos de visas de viaje!",
+            "content": "¡Imagina una visa como tu pase VIP para explorar el mundo! Es solo un documento oficial que dice ‘¡bienvenido!’ a un país. Nos aseguramos de que todo esté actualizado con la base de datos Timatic de IATA—la misma que usan las aerolíneas—y te damos los detalles más frescos de más de 1,000 fuentes oficiales. ¿Listo para planificar tu próxima aventura? ¡Te tenemos cubierto!"
         },
         "popular": {
-            "title": "Tus destinos de viaje favoritos",
+            "title": "Tus destinos favoritos para viajar",
             "countries": {
                 "europe": {
                     "title": "✈️ Explorando Europa (Visa Schengen)",
-                    "requirements": "¿Listo para tu aventura europea? ¡La mayoría de los visitantes no pertenecientes a la UE necesitan esta práctica visa que abre las puertas a 27 países increíbles! El procesamiento suele tomar 15 días (a veces hasta 45). Necesitarás: Un pasaporte válido (6+ meses), seguro de viaje (cobertura de 30,000+ euros), tus planes de alojamiento, reservas de vuelos, extractos bancarios recientes y prueba de empleo. ¡No te preocupes, te ayudaremos a organizarlo todo!"
+                    "requirements": "¿Listo para una escapada europea? La visa Schengen te abre las puertas a 27 países increíbles—desde Francia hasta Finlandia. Normalmente toma 15 días procesarla (hasta 45 en temporada alta). Necesitarás un pasaporte válido por 6+ meses, seguro de viaje con cobertura de €30,000+, reservas de alojamiento y vuelos, extractos bancarios recientes y prueba de empleo. ¡No te preocupes, lo haremos fácil para ti!"
                 },
                 "usa": {
                     "title": "🗽 Visitando los Estados Unidos",
-                    "requirements": "¿Planeando tu viaje a Estados Unidos? ¡La visa de turista B1/B2 es tu llave! Aunque el procesamiento toma de 2 a 3 meses (varía según la ubicación), la emoción valdrá la espera. Deberás completar el formulario DS-160, tener un pasaporte válido, sonreír para una foto, hablar con la embajada y mostrar tus conexiones y finanzas en tu país. ¡Buenas noticias si vienes de un país con exención de visa: podrías calificar para ESTA y quedarte hasta 90 días!"
+                    "requirements": "¿Sueñas con EE. UU.? La visa de turista B1/B2 es tu entrada, aunque puede tomar 2-3 meses (depende del lugar). Completa el formulario DS-160, ten un pasaporte válido, una foto reciente, y prepárate para una charla con la embajada mostrando tus lazos con casa. ¿De un país con exención de visa? ¡El ESTA te permite quedarte 90 días sin tanto trámite!"
                 },
                 "japan": {
                     "title": "🗼 Descubriendo Japón",
-                    "requirements": "¿Emocionado por Japón? ¡Su nuevo sistema de eVisa hace las cosas súper fáciles para muchos viajeros! Solo toma de 5 a 7 días procesar. Solo prepara tu pasaporte, planes de viaje, prueba de fondos y detalles laborales. Consejo profesional: ¡Consigue tu Japan Rail Pass antes de irte! Ya sea que te unas a un tour o explores por tu cuenta, ¡te tenemos cubierto!"
+                    "requirements": "¿Fan de Japón? Su sistema eVisa es un sueño—procesado en 5-7 días para muchos viajeros. Solo necesitas tu pasaporte, planes de viaje, prueba de fondos y detalles laborales. Consejo de oro: ¡compra tu Japan Rail Pass antes de irte para ahorrar y explorar más! Te guiaremos en cada paso."
                 },
                 "australia": {
                     "title": "🦘 Aventuras en Australia",
-                    "requirements": "¿Soñando con el Down Under? ¡La visa eVisitor (651) o ETA (601) es perfecta para viajeros elegibles! La mayoría de las solicitudes se procesan en 24 horas a 2 semanas. Solo conéctate en línea, ten tu pasaporte listo y asegúrate de estar en buen estado de salud. ¡Bono para jóvenes aventureros (18-30): echa un vistazo a sus increíbles opciones de vacaciones laborales!"
+                    "requirements": "¿Fantasías con Australia? Las visas eVisitor (651) o ETA (601) se procesan en 24 horas a 2 semanas—perfectas para viajeros elegibles. Solo aplica en línea con tu pasaporte y un certificado de buena salud. ¿Eres joven (18-30)? ¡Las visas de trabajo y vacaciones son una opción genial para una aventura extendida!"
                 }
             }
         },
-        "tips": {
-            "title": "Consejos expertos para la solicitud de visa",
+        "steps": {
+            "title": "Cómo solicitar tu visa, paso a paso",
+            "countries": {
+                "europe": {
+                    "title": "Visa Schengen (Europa)",
+                    "list": {
+                        "step1": "Elige la embajada del país donde pasarás más tiempo (ej. Francia si es tu foco).",
+                        "step2": "Completa el formulario en línea en el sitio de la embajada o el Portal de Visas de la UE.",
+                        "step3": "Reúne tu pasaporte, foto biométrica, seguro de €30,000+, itinerario y prueba de fondos.",
+                        "step4": "Agenda una cita—muchas embajadas lo hacen en línea.",
+                        "step5": "Entrega todo en tu cita y espera 15-45 días. ¡Fácil, verdad?"
+                    }
+                },
+                "usa": {
+                    "title": "Visa de EE. UU. (B1/B2)",
+                    "list": {
+                        "step1": "Rellena el formulario DS-160 en travel.state.gov—es tu primer paso clave.",
+                        "step2": "Paga la tarifa (alrededor de $160, revisa el precio actual).",
+                        "step3": "Agenda tu entrevista en la embajada—sí, es obligatorio para la mayoría.",
+                        "step4": "Lleva pasaporte, foto, prueba de fondos y lazos con casa (trabajo, familia).",
+                        "step5": "Charla con el oficial y espera 2-3 meses. ¡Paciencia, valdrá la pena!"
+                    }
+                },
+                "japan": {
+                    "title": "eVisa de Japón",
+                    "list": {
+                        "step1": "Verifica si calificas para la eVisa en mofa.go.jp.",
+                        "step2": "Solicita en línea con pasaporte, itinerario y detalles laborales.",
+                        "step3": "Sube tus documentos digitalmente—sin complicaciones.",
+                        "step4": "Espera 5-7 días y recibe tu eVisa por correo. ¡Imprímela y listo!"
+                    }
+                },
+                "australia": {
+                    "title": "eVisitor/ETA de Australia",
+                    "list": {
+                        "step1": "Confirma si eres elegible en immi.homeaffairs.gov.au.",
+                        "step2": "Aplica en línea con tu pasaporte y declaración de salud.",
+                        "step3": "Espera de 24 horas a 2 semanas—suele ser rapidísimo.",
+                        "step4": "Recibe la aprobación por correo, vinculada a tu pasaporte. ¡A explorar!"
+                    }
+                }
+            }
+        },
+        "mistakes": {
+            "title": "Errores comunes que evitar",
             "list": {
-                "early": "Solicita al menos 3 meses antes de viajar. Las temporadas altas (verano, festivos) pueden requerir tiempos de procesamiento más largos. Considera el procesamiento acelerado si está disponible.",
-                "documents": "Usa listas de verificación de documentos oficiales de los sitios web de las embajadas. Haz que los documentos sean traducidos por traductores certificados. Guarda copias digitales de todas las presentaciones.",
-                "insurance": "Obtén un seguro de viaje completo que supere los requisitos mínimos. Asegúrate de que la cobertura incluya evacuación médica y problemas relacionados con COVID-19.",
-                "embassy": "Sigue los tiempos de procesamiento de visas en los sitios web oficiales de las embajadas. Configura alertas por correo electrónico para cambios en los requisitos. Considera usar centros autorizados de procesamiento de visas para mayor comodidad."
+                "late": "No solicitar a tiempo—apunta a 3 meses antes, especialmente en verano o festivos.",
+                "incomplete": "Formularios mal llenos—revisa firmas y fechas para evitar rechazos.",
+                "funds": "Falta de fondos—muestra suficiente dinero para tu viaje (bancos, nóminas).",
+                "insurance": "Seguro insuficiente—necesitas €30,000+ para Schengen, no lo olvides.",
+                "ties": "No probar lazos con casa—empleo o familia ayudan a evitar dudas en EE. UU."
+            }
+        },
+        "visafree": {
+            "title": "¡Viaja sin visa o con permisos fáciles!",
+            "content": "¿Sabías que algunos destinos no necesitan visa completa? Con autorizaciones electrónicas como ESTA o ETIAS, puedes saltarte el trámite largo si vienes de ciertos países. Aquí te mostramos algunas opciones populares para 2025—rápidas y simples.",
+            "table": {
+                "destination": "Destino",
+                "type": "Tipo",
+                "cost": "Costo",
+                "validity": "Validez",
+                "stay": "Estancia Máxima",
+                "entries": {
+                    "usa": {
+                        "destination": "EE. UU.",
+                        "type": "ESTA",
+                        "cost": "USD 14",
+                        "validity": "2 años",
+                        "stay": "90 días"
+                    },
+                    "canada": {
+                        "destination": "Canadá",
+                        "type": "eTA",
+                        "cost": "CAD 7",
+                        "validity": "5 años",
+                        "stay": "6 meses"
+                    },
+                    "europe": {
+                        "destination": "Europa (Schengen)",
+                        "type": "ETIAS (desde mayo 2025)",
+                        "cost": "€7",
+                        "validity": "3 años",
+                        "stay": "3 meses"
+                    }
+                }
+            }
+        },
+        "insurance": {
+            "title": "Seguro de viaje: ¡Tu mejor amigo en el camino!",
+            "content": "El seguro es obligatorio para lugares como Schengen (€30,000+ de cobertura) y muy recomendado en otros como Japón. Busca uno que cubra emergencias médicas, evacuación y COVID-19 durante todo tu viaje. Prueba opciones como World Nomads o Allianz—te mantienen seguro para que solo te preocupes por disfrutar."
+        },
+        "tips": {
+            "title": "Consejos expertos para tu solicitud de visa",
+            "list": {
+                "early": "Solicita con 3 meses de anticipo—las temporadas altas (verano, festivos) se llenan rápido. ¿Apurado? Revisa opciones aceleradas.",
+                "documents": "Sigue las listas oficiales de las embajadas—traduce con certificación si es necesario y guarda copias digitales.",
+                "insurance": "Elige un seguro completo—más allá del mínimo, con evacuación médica y cobertura COVID-19 incluida.",
+                "embassy": "Monitorea tiempos en sitios de embajadas—activa alertas por correo y considera centros de visas autorizados."
+            }
+        },
+        "checklist": {
+            "title": "Lista de verificación para tu visa",
+            "table": {
+                "item": "Artículo",
+                "details": "Detalles",
+                "items": {
+                    "passport": {
+                        "name": "Pasaporte válido",
+                        "details": "Revisa la fecha de vencimiento, asegúrate de tener 2+ páginas en blanco"
+                    },
+                    "form": {
+                        "name": "Formulario de solicitud",
+                        "details": "Completo, firmado, enviado en línea o en persona"
+                    },
+                    "photo": {
+                        "name": "Foto biométrica",
+                        "details": "Reciente, cumple con las especificaciones de la embajada"
+                    },
+                    "insurance": {
+                        "name": "Seguro de viaje",
+                        "details": "Cubre emergencias, €30,000+ para Schengen"
+                    },
+                    "funds": {
+                        "name": "Prueba de fondos",
+                        "details": "Extractos bancarios, nóminas, suficiente para tu viaje"
+                    },
+                    "accommodation": {
+                        "name": "Prueba de alojamiento",
+                        "details": "Reservas de hotel, cartas de invitación"
+                    },
+                    "itinerary": {
+                        "name": "Itinerario de viaje",
+                        "details": "Reservas de vuelos, actividades planeadas"
+                    }
+                }
             }
         },
         "resources": {
-            "title": "Recursos oficiales",
+            "title": "Recursos oficiales para visas",
             "list": {
-                "iata": "IATA Travel Centre (timatic.iata.org) – La base de datos más precisa para requisitos de visa",
-                "embassies": "Sitios web oficiales de embajadas para requisitos específicos por país",
-                "state": "Departamento de Estado de EE. UU. travel.state.gov para ciudadanos estadounidenses",
-                "europa": "europa.eu/immigration para información sobre la visa Schengen"
+                "iata": "IATA Travel Centre – Información personalizada y actualizada para visas",
+                "visaguide": "VisaGuide.World – Requisitos detallados para más de 200 países",
+                "schengen": "Portal de Visas de la UE – Todo sobre la visa Schengen",
+                "us": "Departamento de Estado de EE. UU. – Guía oficial para visas americanas"
             }
         },
         "help": {
-            "title": "¿Listo para hacer realidad tus sueños de viaje?",
-            "content": "¡Trabajemos juntos para crear tu plan de viaje perfecto! Te ayudaremos a navegar por los requisitos de visa y los tiempos mientras diseñamos una aventura increíble que sea perfecta para ti.",
+            "title": "¿Listo para tus sueños de viaje?",
+            "content": "¡Hagamos equipo para planificar tu aventura perfecta! Te guiaremos con los requisitos de visa y tiempos, creando un viaje increíble solo para ti.",
             "cta": "¡Planifiquemos juntos!"
         }
     },
