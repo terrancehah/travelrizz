@@ -128,6 +128,24 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
         // Load the Google Maps script
         const loadGoogleMapsScript = async () => {
             try {
+                // Fetch the Google Maps API key from the backend with debug logging
+                const fetchMapsApiKey = async () => {
+                    const response = await fetch('/api/maps/places-key');
+                    const data = await response.json();
+                    console.log("[DEBUG] Response from /api/maps/places-key:", data); // Log the full response
+                    console.log("[DEBUG] Extracted API key:", data.key); // Log the extracted key
+                    return data.key;
+                };
+
+                const apiKey = await fetchMapsApiKey();
+                console.log("[DEBUG] API key used to load Google Maps script:", apiKey); // Log before using
+
+                // Defensive: do not continue if apiKey is missing
+                if (!apiKey) {
+                    console.error("[ERROR] Google Maps API key is missing or undefined! Script will not be loaded.");
+                    return;
+                }
+
                 // Get API key and coordinates from our secure endpoint
                 const response = await fetch('/api/maps/geocode', {
                     method: 'POST',
@@ -161,7 +179,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
 
                 // Load Google Maps script with API key and map IDs
                 const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&libraries=places&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
                 script.async = true;
                 script.defer = true;
                 document.head.appendChild(script);
