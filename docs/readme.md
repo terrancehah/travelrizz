@@ -4,14 +4,15 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
 
 ## 🌟 Features
 
-- **Interactive Travel Planning**: Multi-step guided process for trip planning
-- **AI Chat Interface**: Natural conversation-based trip planning
-- **Visual Route Planning**: Interactive maps with optimized route suggestions
-- **Smart Recommendations**: AI-powered place suggestions based on preferences
-- **Multi-language Support**: Available in English, Chinese (Simplified/Traditional), Japanese, Korean, German, French, Italian, Spanish, and Czech
-- **Real-time Weather Data**: Historical weather information for better planning
-- **Currency Conversion**: Live currency rate conversions for budget planning
-- **Premium Features**: Advanced itinerary planning and unlimited place suggestions
+- **AI Chat-based Trip Planning**: Plan your trip interactively with a conversational AI assistant.
+- **Step-by-Step Travel Form**: Guided multi-step form for destination, dates, preferences, and budget.
+- **Interactive Maps**: Google Maps integration for destination selection and route visualization.
+- **Smart Recommendations**: AI-powered place and activity suggestions based on user preferences.
+- **Multi-language Support**: Available in English, Chinese (Simplified/Traditional), Japanese, Korean, German, French, Italian, Spanish, and Czech.
+- **Real-time Weather Data**: Historical weather information for better planning.
+- **Currency Conversion**: Live currency rate conversions for budget planning.
+- **Premium Features**: Advanced itinerary planning and unlimited place suggestions (via Stripe payments).
+- **Legal & Privacy Compliance**: Cookie, privacy, and terms pages for user transparency.
 
 ## 🚀 Getting Started
 
@@ -19,114 +20,77 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
 
 - Node.js 18+
 - NPM or Yarn
-- Google Maps API key
+- Google Maps API key(s) (see below)
 - Stripe account (for payment processing)
 
 ### Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/travelrizz.git
-cd travelrizz
-```
-
+   ```bash
+   git clone https://github.com/yourusername/travelrizz.git
+   cd travelrizz
+   ```
 2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-```
-
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 3. Set up environment variables:
-```bash
-cp .env.example .env.local
-```
+   - Copy `.env.example` to `.env.local` and fill in the required keys:
+     - `GOOGLE_MAPS_FRONTEND_API_KEY` (for frontend map usage)
+     - `GOOGLE_MAPS_BACKEND_API_KEY` (for backend geocoding)
+     - `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` (for payments)
+     - Other API keys as needed
 
-Required environment variables:
-- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`: Google Maps API key
-- `STRIPE_SECRET_KEY`: Stripe secret key
-- `STRIPE_WEBHOOK_SECRET`: Stripe webhook secret
-- `NEXT_PUBLIC_APP_URL`: Your application URL
-- `FREECURRENCY_API_KEY`: FreeCurrency API key
-- `NEXT_PUBLIC_VISUALCROSSING_API_KEY`: Visual Crossing API key for weather data
+### Running Locally
 
-4. Start the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
+Visit http://localhost:3000 to use the app.
+
+## 🗂️ Project Structure
+
+- `pages/` — Next.js pages, including:
+  - `index.tsx` — Landing page
+  - `chat/` — AI chat interface for trip planning
+  - `travel-form.tsx` — Multi-step trip planning form
+  - `articles/` — Guides: service, visa, trip preparation
+  - `payment-success.tsx` — Payment confirmation
+  - `privacy.tsx`, `cookies.tsx`, `terms.tsx` — Legal pages
+- `components/` — Reusable UI and layout components
+- `managers/` — Session, storage, and saved places managers
+- `public/` — Static assets and localization files
+- `api/` — Backend API routes (e.g., Google Maps, Stripe)
+
+## ⚙️ Configuration & Environment
+
+- **Localization**: Uses `next-intl` for multi-language support.
+- **Theming**: Supports light/dark mode with `next-themes`.
+- **Google Maps**: API keys are loaded securely from environment variables; frontend and backend keys are separated for security.
+- **Stripe**: Integrated for premium features and payment processing.
+- **Cookie Consent**: Third-party cookies are used for Stripe; users are notified via a consent banner.
+
+## 🛡️ Security & Privacy
+
+- API keys are never exposed in the codebase—use environment variables.
+- Legal pages for privacy, cookies, and terms are provided for compliance.
+
 ## 💡 Usage
 
-1. **Initial Planning**
-   - Enter your destination
-   - Select travel dates (up to 5 days)
-   - Choose travel preferences
-   - Set your budget level
+1. Start on the landing page and choose to chat or use the trip planning form.
+2. Provide trip details via chat or the multi-step form.
+3. Receive AI-generated itineraries, maps, and recommendations.
+4. Upgrade for premium features via Stripe if desired.
 
-2. **Explore with AI**
-   - Chat with the AI to discover places
-   - Get local insights and recommendations
-   - View places on the interactive map
+## 📝 License
 
-3. **Premium Features**
-   - Unlimited place suggestions
-   - Advanced itinerary planning
-   - Route optimization
-   - Detailed local insights
+This project is licensed under the MIT License. See [LICENSE](../LICENSE) for details.
 
-4. **Finalize Your Trip**
-   - Review and organize your saved places
-   - Get optimized daily routes
-   - Export your final itinerary
+---
 
-## 🛠 Tech Stack
-
-- **Framework**: Next.js with Page Router
-- **Styling**: Tailwind CSS, ShadCN UI
-- **Maps**: Google Maps Platform
-- **State Management**: React Hooks
-- **Internationalization**: next-intl
-- **Payment Processing**: Stripe
-- **Type Safety**: TypeScript
-- **APIs**:
-  - Google Places API
-  - Visual Crossing Weather API
-  - FreeCurrency API
-
-## 📱 Responsive Design
-
-- Mobile-first approach
-- Adaptive layouts for all screen sizes
-- Touch-friendly interface
-- Optimized map interactions for mobile
-
-## 🔐 Security
-
-- Session-based authentication
-- Secure payment processing
-- API key protection
-- Rate limiting on critical endpoints
-
-## 🌐 Localization
-
-Supported languages:
-- English
-- Chinese (Simplified & Traditional)
-- Japanese
-- Korean
-- German
-- French
-- Italian
-- Spanish
-- Czech
-
-## 🚧 Development Status
-
-[![built with Codeium](https://codeium.com/badges/main)](https://codeium.com)
-Currently in active development. Features are being added and refined based on user feedback.
-
-## 📄 License
-
-Copyright © 2025 Travel-Rizz. All rights reserved.
+For detailed documentation, see the `/docs` folder or contact the maintainers.
