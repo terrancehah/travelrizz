@@ -63,13 +63,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         // Extract location from the first result
         const location = data.results[0].geometry.location;
         
-        // Return the coordinates and API key
+        // Return the coordinates only. Never return the backend API key to the client for security reasons.
         return res.status(200).json({
             location: {
                 latitude: location.lat,
                 longitude: location.lng
-            },
-            key: apiKey
+            }
         });
 
     } catch (error) {
