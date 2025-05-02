@@ -142,7 +142,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                 }
 
                 const data = await response.json();
-                if (!data.location || !data.key) {
+                if (!data.location) {
                     throw new Error('No location data found');
                 }
 
