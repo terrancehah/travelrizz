@@ -57,22 +57,51 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
     const mapRef = useRef<HTMLDivElement>(null);
     const mapInstanceRef = useRef<google.maps.Map | null>(null);
     const mapManagerRef = useRef<GoogleMapManager | null>(null);
+    const apiKeyRef = useRef<string | null>(null);
     const [map, setMap] = useState<google.maps.Map | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [isMapReady, setIsMapReady] = useState(false); //track map readiness
+    const [isMapReady, setIsMapReady] = useState(false);
     const geometryLoadedRef = useRef(false);
-    // Track current active routes - only store minimal required data
     const [activeRoutes, setActiveRoutes] = useState<{fromId: string, toId: string}[]>([]);
-    // Track polylines for cleanup
     const polylineRef = useRef<Map<string, google.maps.Polyline>>(new Map());
 
-    // Move setupMapInstance outside of the effect
+    const finishMapSetup = useCallback(async (currentMap: google.maps.Map, currentApiKey: string) => {
+        if (!currentMap) {
+            console.error("[MapComponent] finishMapSetup called without a map instance.");
+            setError('Failed to complete map setup.');
+            return;
+        }
+        if (!currentApiKey) {
+            console.warn("[MapComponent] finishMapSetup called without an API key. InfoWindow photos might not work.");
+        }
+
+        console.log('[MapComponent] Running finishMapSetup...');
+        mapManagerRef.current = new GoogleMapManager(currentMap, currentApiKey);
+        console.log('[MapComponent] GoogleMapManager initialized via finishMapSetup.');
+
+        try {
+            console.log('[MapComponent] Loading geometry library in finishMapSetup...');
+            await google.maps.importLibrary("geometry");
+            geometryLoadedRef.current = true;
+            console.log('[MapComponent] Geometry library loaded successfully in finishMapSetup.');
+        } catch (geomError) {
+            console.error('[MapComponent] Error loading geometry library in finishMapSetup:', geomError);
+            setError('Failed to load map geometry features.');
+        }
+        
+        if (activeRoutes.length > 0 && geometryLoadedRef.current) {
+            console.log('[MapComponent] Re-triggering route drawing from finishMapSetup for existing routes:', activeRoutes.length);
+            const routesToRestore = [...activeRoutes];
+            setActiveRoutes([]);
+            setTimeout(() => setActiveRoutes(routesToRestore), 0);
+        }
+    }, [activeRoutes]);
+
     async function setupMapInstance(forceUpdate = false) {
         if (!mapRef.current || (!forceUpdate && mapInstanceRef.current)) return;
 
         try {
-            // Use the city prop directly, fallback to session storage if needed
             let targetCity = city;
             if (!targetCity) {
                 const sessionData = sessionStorage.getItem(SESSION_CONFIG.STORAGE_KEY);
@@ -98,19 +127,22 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
             mapInstanceRef.current = map;
             setMap(map);
             
-            // Initialize map manager
-            mapManagerRef.current = new GoogleMapManager(mapInstanceRef.current, '');
+            mapManagerRef.current = new GoogleMapManager(mapInstanceRef.current, apiKeyRef.current || '');
+            console.log('[MapComponent] GoogleMapManager initialized via internal setupMapInstance.');
 
-            // Dynamically import the geometry library
-            console.log('[MapComponent] Loading geometry library...');
-            await google.maps.importLibrary("geometry");
-            geometryLoadedRef.current = true;
-            console.log('[MapComponent] Geometry library loaded successfully');
-
-            setIsMapReady(true); // Map is now ready
+            try {
+                console.log('[MapComponent] Loading geometry library...');
+                await google.maps.importLibrary("geometry");
+                geometryLoadedRef.current = true;
+                console.log('[MapComponent] Geometry library loaded successfully');
+            } catch (error) {
+                console.error('[MapComponent] Error loading geometry library:', error);
+                setError('Failed to load map geometry features.');
+            }
+            
+            setIsMapReady(true);
             setIsLoading(false);
 
-            // Re-trigger route drawing if we have active routes
             if (activeRoutes.length > 0) {
                 console.log('[MapComponent] Re-triggering route drawing for existing routes');
                 const currentRoutes = activeRoutes;
@@ -125,28 +157,27 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
     }
 
     useEffect(() => {
-        // Load the Google Maps script
         const loadGoogleMapsScript = async () => {
             try {
-                // Fetch the Google Maps API key from the backend with debug logging
                 const fetchMapsApiKey = async () => {
                     const response = await fetch('/api/maps/places-key');
                     const data = await response.json();
-                    console.log("[DEBUG] Response from /api/maps/places-key:", data); // Log the full response
-                    console.log("[DEBUG] Extracted API key:", data.key); // Log the extracted key
+                    console.log("[DEBUG] Response from /api/maps/places-key:", data);
+                    console.log("[DEBUG] Extracted API key:", data.key);
                     return data.key;
                 };
 
                 const apiKey = await fetchMapsApiKey();
-                console.log("[DEBUG] API key used to load Google Maps script:", apiKey); // Log before using
+                apiKeyRef.current = apiKey;
+                console.log("[DEBUG] API key used to load Google Maps script:", apiKey);
 
-                // Defensive: do not continue if apiKey is missing
                 if (!apiKey) {
                     console.error("[ERROR] Google Maps API key is missing or undefined! Script will not be loaded.");
+                    setError('Google Maps API key is missing.');
+                    setIsLoading(false);
                     return;
                 }
 
-                // Get API key and coordinates from our secure endpoint
                 const response = await fetch('/api/maps/geocode', {
                     method: 'POST',
                     headers: {
@@ -164,7 +195,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                     throw new Error('No location data found');
                 }
 
-                // Setup map with the coordinates
                 window.setupMapInstance = () => {
                     const mapInstance = new google.maps.Map(mapRef.current!, {
                         center: { lat: data.location.latitude, lng: data.location.longitude },
@@ -175,9 +205,16 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                     mapInstanceRef.current = mapInstance;
                     setMap(mapInstance);
                     setIsMapReady(true);
+                    setIsLoading(false);
+
+                    if (apiKeyRef.current) {
+                        finishMapSetup(mapInstance, apiKeyRef.current);
+                    } else {
+                        console.error("[MapComponent] API key not available when window.setupMapInstance was called by script. Cannot initialize map manager fully.");
+                        setError("Failed to initialize map completely (API key missing for manager setup).");
+                    }
                 };
 
-                // Load Google Maps script with API key and map IDs
                 const script = document.createElement('script');
                 script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
                 script.async = true;
@@ -197,16 +234,17 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                 delete window.setupMapInstance;
             }
         };
-    }, [city, theme]);
+    }, [city, theme, finishMapSetup]);
 
     useEffect(() => {
-        if (!isMapReady) return; // Only proceed if map is ready
+        if (!isMapReady) return;
+        
         const setupMapFeatures = async () => {
-            if (!mapInstanceRef.current || !isMapReady) return; // Double-check readiness
+            if (!mapInstanceRef.current || !isMapReady) return;
             try {
                 const location = await getLocation(city);
                 
-                if (mapInstanceRef.current) { // Extra safety check
+                if (mapInstanceRef.current) {
                     mapInstanceRef.current.setCenter(location);
                     mapInstanceRef.current.setZoom(12);
                 }
@@ -224,7 +262,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
         if (!map) return;
 
         const initializeMap = async () => {
-            // Wait for map to be idle before restoring markers
             await new Promise<void>((resolve) => {
                 google.maps.event.addListenerOnce(map, 'idle', () => {
                     resolve();
@@ -258,13 +295,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                     if (place?.location) {
                         const existingMarker = mapManagerRef.current?.getMarker(place.id);
                         if (existingMarker) {
-                            // Update existing marker
                             mapManagerRef.current?.updateMarker(place.id, {
                                 dayIndex: place.dayIndex,
                                 orderIndex: place.orderIndex
                             });
                         } else {
-                            // Create new marker
                             mapManagerRef.current?.createMarker(place, {
                                 dayIndex: place.dayIndex,
                                 orderIndex: place.orderIndex
@@ -273,7 +308,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                         if (!savedPlacesManager.hasPlace(place.id)) {
                             savedPlacesManager.addPlace(place);
                         }
-                        // Update routes since a place was added
                         updateRoutes();
                     }
                     break;
@@ -286,7 +320,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                                 dayIndex: place.dayIndex,
                                 orderIndex: place.orderIndex
                             });
-                            savedPlacesManager.updatePlace(place); // Assume this method exists or adjust accordingly
+                            savedPlacesManager.updatePlace(place);
                             updateRoutes();
                         }
                     }
@@ -380,73 +414,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
     }, []);
 
     useEffect(() => {
-        if (!mapInstanceRef.current) return;
-        
-        const handleTravelInfoDisplay = (event: Event) => {
-            const e = event as CustomEvent<{fromId: string, toId: string}>;
-            console.log('[MapComponent] Received travelinfo-displayed event:', e.detail);
-            setActiveRoutes(prev => [...prev, e.detail]);
-        };
-
-        const handleTravelInfoHide = (event: Event) => {
-            const e = event as CustomEvent<{fromId: string, toId: string}>;
-            console.log('[MapComponent] Received travelinfo-hidden event:', e.detail);
-            setActiveRoutes(prev => 
-                prev.filter(route => 
-                    !(route.fromId === e.detail.fromId && route.toId === e.detail.toId)
-                )
-            );
-        };
-
-        // Handle any place changes (drag, shuffle, removal)
-        const handlePlacesChanged = () => {
-            console.log('[MapComponent] Places changed, clearing routes');
-            // First clear all existing routes from the map
-            polylineRef.current.forEach(polyline => polyline.setMap(null));
-            polylineRef.current.clear();
-            
-            // Reset active routes state
-            setActiveRoutes([]);
-            
-            // Get all places and sort them by day and order
-            const places = savedPlacesManager.getPlaces();
-            const placesByDay = places.reduce((acc, place) => {
-                const dayIndex = place.dayIndex ?? 0;
-                if (!acc[dayIndex]) acc[dayIndex] = [];
-                acc[dayIndex].push(place);
-                return acc;
-            }, {} as Record<number, Place[]>);
-
-            // Sort places within each day and create routes
-            Object.entries(placesByDay).forEach(([dayIndex, dayPlaces]) => {
-                dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
-                
-                // Create routes between consecutive places
-                for (let i = 0; i < dayPlaces.length - 1; i++) {
-                    const fromPlace = dayPlaces[i];
-                    const toPlace = dayPlaces[i + 1];
-                    setActiveRoutes(prev => [...prev, { fromId: fromPlace.id, toId: toPlace.id }]);
-                }
-            });
-
-            // Force re-render of travel-info components
-            window.dispatchEvent(new CustomEvent('places-reordered'));
-        };
-
-        window.addEventListener('travelinfo-displayed', handleTravelInfoDisplay);
-        window.addEventListener('travelinfo-hidden', handleTravelInfoHide);
-        window.addEventListener('places-changed', handlePlacesChanged);
-        window.addEventListener('places-changed', updateMarkers);
-
-        return () => {
-            window.removeEventListener('travelinfo-displayed', handleTravelInfoDisplay);
-            window.removeEventListener('travelinfo-hidden', handleTravelInfoHide);
-            window.removeEventListener('places-changed', handlePlacesChanged);
-            window.removeEventListener('places-changed', updateMarkers);
-        };
-    }, [mapInstanceRef.current]);
-
-    useEffect(() => {
         if (!mapInstanceRef.current || !geometryLoadedRef.current) {
             console.log('[MapComponent] Route drawing skipped:', {
                 hasMap: !!mapInstanceRef.current,
@@ -458,13 +425,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
 
         console.log('[MapComponent] Starting to draw routes for:', activeRoutes);
 
-        // Clear all existing routes first
         polylineRef.current.forEach(polyline => {
-            polyline.setMap(null); // Remove from map
+            polyline.setMap(null);
         });
-        polylineRef.current.clear(); // Clear our references
+        polylineRef.current.clear();
 
-        // Draw routes for each active travel-info
         activeRoutes.forEach(async ({ fromId, toId }) => {
             const fromPlace = savedPlacesManager.getPlaceById(fromId);
             const toPlace = savedPlacesManager.getPlaceById(toId);
@@ -488,23 +453,18 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
             if (polyline) {
                 const routeKey = `${fromId}-${toId}`;
                 console.log('[MapComponent] Successfully created polyline for route:', routeKey);
-                // First remove any existing polyline for this route
                 const existingPolyline = polylineRef.current.get(routeKey);
                 if (existingPolyline) {
                     existingPolyline.setMap(null);
                 }
-                // Store reference before setting map
                 polylineRef.current.set(routeKey, polyline);
-                // Now set the map
                 polyline.setMap(mapInstanceRef.current);
             } else {
                 console.log('[MapComponent] Failed to create polyline for route:', {fromId, toId});
             }
         });
 
-        // Cleanup function to ensure all polylines are removed when component unmounts or routes change
         return () => {
-            console.log('[MapComponent] Cleaning up routes');
             polylineRef.current.forEach(polyline => {
                 polyline.setMap(null);
             });
@@ -549,7 +509,6 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
             const path = google.maps.geometry.encoding.decodePath(info.legPolyline);
             console.log('[MapComponent] Decoded path points:', path.length);
             
-            // Create polyline but don't set map yet
             return new google.maps.Polyline({
                 path,
                 strokeColor: color,
@@ -571,87 +530,23 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
 
     const getRouteColor = (dayIndex: number) => {
         const colors = [
-            '#2196F3', // Blue
-            '#FF9800', // Orange
-            '#9C27B0', // Purple
-            '#4CAF50', // Green
-            '#795548', // Brown
-            '#00BCD4', // Cyan
-            '#E91E63', // Pink
-            '#3F51B5', // Indigo
+            '#2196F3', 
+            '#FF9800', 
+            '#9C27B0', 
+            '#4CAF50', 
+            '#795548', 
+            '#00BCD4', 
+            '#E91E63', 
+            '#3F51B5', 
         ];
         return colors[dayIndex % colors.length];
     };
 
-    // const drawRouteBetweenPlaces = async (fromPlace: Place, toPlace: Place) => {
-    //     if (!mapInstanceRef.current || !fromPlace.location || !toPlace.location) return;
-
-    //     try {
-    //         const directionsService = new google.maps.DirectionsService();
-    //         const directionsRenderer = new google.maps.DirectionsRenderer({
-    //             map: mapInstanceRef.current,
-    //             suppressMarkers: true,
-    //             preserveViewport: true,
-    //             polylineOptions: {
-    //                 strokeColor: getRouteColor(fromPlace.dayIndex ?? 0),
-    //                 strokeWeight: 3,
-    //                 strokeOpacity: 0.7
-    //             }
-    //         });
-
-    //         const request = {
-    //             origin: { lat: fromPlace.location.latitude, lng: fromPlace.location.longitude },
-    //             destination: { lat: toPlace.location.latitude, lng: toPlace.location.longitude },
-    //             travelMode: google.maps.TravelMode.WALKING
-    //         };
-
-    //         const result = await directionsService.route(request);
-    //         directionsRenderer.setDirections(result);
-
-    //         // Store the renderer for later cleanup
-    //         setActiveRoutes(prev => [...prev, { fromId: fromPlace.id, toId: toPlace.id }]);
-            
-    //         return directionsRenderer;
-    //     } catch (error) {
-    //         console.error('[MapComponent] Error drawing route:', error);
-    //         return null;
-    //     }
-    // };
-
-    // Update markers for a specific day
-    // const updateDayMarkers = useCallback((dayIndex: string) => {
-    //     if (!mapManagerRef.current) return;
-        
-    //     const dayPlaces = Array.from(savedPlacesManager.places.values())
-    //         .filter(place => place.dayIndex === Number(dayIndex));
-            
-    //     if (dayPlaces.length > 0) {
-    //         // Sort places by order index
-    //         dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
-            
-    //         dayPlaces.forEach((place) => {
-    //             const marker = mapManagerRef.current?.getMarker(place.id);
-    //             if (marker) {
-    //                 // Update marker appearance
-    //                 mapManagerRef.current?.updateMarker(place.id, {
-    //                     dayIndex: Number(dayIndex),
-    //                     orderIndex: place.orderIndex // Persisted value
-    //                 });
-    //             }
-    //         });
-
-    //         // Draw routes between consecutive places
-    //         for (let i = 0; i < dayPlaces.length - 1; i++) {
-    //             drawRouteBetweenPlaces(dayPlaces[i], dayPlaces[i + 1]);
-    //         }
-    //     }
-    // }, [drawRouteBetweenPlaces]);
-
     const updateOptimizedMarkers = async () => {
         if (!mapManagerRef.current || !mapInstanceRef.current) return;
     
-        setActiveRoutes([]); // Clear existing routes
-    
+        setActiveRoutes([]); 
+
         const places = savedPlacesManager.getPlaces();
         const placesByDay = places.reduce((acc, place) => {
             const dayIndex = place.dayIndex ?? 0;
@@ -659,9 +554,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
             acc[dayIndex].push(place);
             return acc;
         }, {} as Record<number, Place[]>);
-    
+
         let newActiveRoutes: { fromId: string, toId: string }[] = [];
-    
+
         Object.values(placesByDay).forEach(dayPlaces => {
             dayPlaces.sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0));
             
@@ -681,7 +576,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                 newActiveRoutes.push({ fromId: fromPlace.id, toId: toPlace.id });
             }
         });
-    
+
         setActiveRoutes(newActiveRoutes);
     };
 
@@ -697,15 +592,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
     useEffect(() => {
         if (mapInstanceRef.current) {
             console.log('[MapComponent] Theme change - clearing map');
-            // Clear all markers first
             mapManagerRef.current?.clearMarkers();
-            // Clear the map instance
             mapInstanceRef.current = null;
             setMap(null);
-            setIsMapReady(false); // Map is no longer ready
-            // Reinitialize
+            setIsMapReady(false);
             setupMapInstance(true);
-            // Re-trigger route drawing
             const currentRoutes = activeRoutes;
             setActiveRoutes([]);
             setTimeout(() => {
@@ -730,10 +621,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
     };
 
     const updateMarkers = () => {
-        // Clear existing markers
         mapManagerRef.current?.clearMarkers();
         
-        // Add new markers
         const places = savedPlacesManager.getPlaces();
         places.forEach(place => {
             if (place.location) {
@@ -746,11 +635,9 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
     };
 
     const updateRoutes = () => {
-        // Clear all existing routes first
         polylineRef.current.forEach(polyline => polyline.setMap(null));
         polylineRef.current.clear();
 
-        // Draw routes for each active travel-info
         activeRoutes.forEach(async ({ fromId, toId }) => {
             const fromPlace = savedPlacesManager.getPlaceById(fromId);
             const toPlace = savedPlacesManager.getPlaceById(toId);
@@ -774,14 +661,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
             if (polyline) {
                 const routeKey = `${fromId}-${toId}`;
                 console.log('[MapComponent] Successfully created polyline for route:', routeKey);
-                // First remove any existing polyline for this route
                 const existingPolyline = polylineRef.current.get(routeKey);
                 if (existingPolyline) {
                     existingPolyline.setMap(null);
                 }
-                // Store reference before setting map
                 polylineRef.current.set(routeKey, polyline);
-                // Now set the map
                 polyline.setMap(mapInstanceRef.current);
             } else {
                 console.log('[MapComponent] Failed to create polyline for route:', {fromId, toId});
