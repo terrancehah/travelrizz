@@ -699,7 +699,7 @@ export function TravelChat({
                                         before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
                                         before:from-blue-600 before:via-purple-700 before:to-orange-500
                                         before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
-                                        after:bg-white after:opacity-70 after:z-[1] shadow-sm
+                                        after:bg-white after:opacity-70 after:z-[1] animate-breathing-halo-700
                                         text-secondary rounded-2xl rounded-bl-none px-4 py-1.5 max-w-[75%]">
                                     <div className="relative z-[2]">
                                         <span className="inline-flex items-center gap-1 text-sky-blue">

@@ -27,7 +27,7 @@ export const QuickResponse: React.FC<QuickResponseProps> = ({
                             before:absolute before:inset-0 before:z-0 before:bg-gradient-to-r 
                             before:from-blue-400 before:via-purple-500 before:to-pink-400 before: to-orange-500
                             before:animate-gradient-x before:bg-[length:200%_100%] after:absolute after:inset-0 
-                            after:bg-white after:opacity-70 after:z-[1] shadow-sm
+                            after:bg-white after:opacity-70 after:z-[1] animate-breathing-halo-500
                             rounded-2xl`}
                     >
                         &nbsp;
