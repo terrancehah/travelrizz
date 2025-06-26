@@ -7,6 +7,7 @@ import { useDetectBrowserPreferences } from '@/hooks/useDetectBrowserPreferences
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { Analytics } from "@vercel/analytics/react"
+import { useRouter } from 'next/router';
 
 const Features = dynamic(() => import('@/components/landing/features'), { ssr: false });
 const Pricing = dynamic(() => import('@/components/landing/pricing'), { ssr: false });
@@ -14,6 +15,8 @@ const Pricing = dynamic(() => import('@/components/landing/pricing'), { ssr: fal
 export default function LandingPage() {
     // Use our browser preferences detection hook
     useDetectBrowserPreferences();
+    const { locale } = useRouter();
+    const supportedLocales = ['en', 'fr', 'de', 'es', 'it', 'cs', 'ja', 'ko', 'ms', 'zh-CN', 'zh-TW'];
     
     return (
         <>
@@ -29,6 +32,24 @@ export default function LandingPage() {
             
             {/* Canonical URL */}
             <link rel="canonical" href="https://travelrizz.app/" />
+
+            {/* hreflang tags for internationalization */}
+            {supportedLocales.map((lang) => (
+                <link
+                    key={lang}
+                    rel="alternate"
+                    hrefLang={lang}
+                    href={`https://travelrizz.app/${lang === 'en' ? '' : lang}`}
+                />
+            ))}
+            <link rel="alternate" hrefLang="x-default" href="https://travelrizz.app/" />
+            
+            {/* Meta description for SEO */}
+            <meta
+            name="description"
+            content="Create your perfect trip with Travel-Rizz, the friendly AI trip planner that builds personalized itineraries effortlessly. No signup needed — start planning now!"
+            />
+            
             
             {/* Meta description for SEO */}
             <meta
