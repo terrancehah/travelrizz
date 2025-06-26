@@ -48,7 +48,7 @@ export default function Features() {
             <div className="relative w-full">
             <Image
             src={feature.image}
-            alt={t(`features.items.${feature.key}.title`)}
+            alt={`${t(`features.items.${feature.key}.title`)} - ${t(`features.items.${feature.key}.description`)}`}
             width={600}
             height={400}
             loading="lazy"
@@ -81,7 +81,7 @@ export default function Features() {
             <div className="relative w-full h-[300px]">
             <Image
             src={feature.image}
-            alt={t(`features.items.${feature.key}.title`)}
+            alt={`${t(`features.items.${feature.key}.title`)} - ${t(`features.items.${feature.key}.description`)}`}
             fill
             loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
@@ -129,7 +129,7 @@ export default function Features() {
             >
             <Image
             src={feature.image}
-            alt={t(`features.items.${feature.key}.title`)}
+            alt={`${t(`features.items.${feature.key}.title`)} - ${t(`features.items.${feature.key}.description`)}`}
             fill
             loading="lazy"
             sizes={`(max-width: 768px) 100vw, (max-width: 1200px) 50vw, ${index === 0 || index === 3 ? '66.66vw' : '33.33vw'}`}

@@ -75,6 +75,21 @@ export default function LandingPage() {
             content="Create your perfect trip with Travel-Rizz, the friendly AI trip planner that builds personalized itineraries effortlessly. No signup needed — start planning now!"
             />
             <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/92208d0d-9316-4bdf-b3c6-307ae71fa951.jpg?token=aBf1vZ_HMp8u6j70oAHDe5B4MDLqT2j5nNKKpWxwFoM&height=900&width=1200&expires=33278759575" />
+
+            {/* Schema.org Structured Data */}
+            <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Travel-Rizz",
+                "url": "https://travelrizz.app/",
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": "https://travelrizz.app/travel-form?q={search_term_string}",
+                  "query-input": "required name=search_term_string"
+                }
+              }
+            </script>
         </Head>
         <div className="min-h-dvh bg-white dark:bg-gray-900">
         <Header />
