@@ -2,7 +2,7 @@
 
 ### Introduction
 
-The Travel-Rizz application provides a seamless journey from initial travel planning to final itinerary creation. The application is designed to guide users through a natural progression of travel planning stages, combining AI assistance with practical tools.
+The Travel-Rizz application provides a seamless journey from initial travel planning to final itinerary creation. Built on Next.js with a robust backend of API routes and integrated services, the application is designed to guide users through a natural progression of travel planning stages, combining AI assistance with practical tools.
 
 ### Landing Page Journey
 

@@ -55,6 +55,8 @@ Visit http://localhost:3000 to use the app.
 
 ## 🗂️ Project Structure
 
+The Travel-Rizz project is structured to ensure modularity, scalability, and maintainability. Key directories and files are organized as follows:
+
 - `pages/` — Next.js pages, including:
   - `index.tsx` — Landing page
   - `chat/` — AI chat interface for trip planning
@@ -66,6 +68,22 @@ Visit http://localhost:3000 to use the app.
 - `managers/` — Session, storage, and saved places managers
 - `public/` — Static assets and localization files
 - `api/` — Backend API routes (e.g., Google Maps, Stripe)
+
+### Core Files and Their Importance
+
+The following files and directories are vital to the Travel-Rizz project's functionality:
+
+- **`pages/api/`**: This directory contains all backend API routes, which are crucial for handling server-side logic, external API integrations (Google Maps, Stripe, Weather, Currency), and session management. Without these, the application would lack its core data processing and external service capabilities.
+  - `pages/api/chat/index.ts`: Main endpoint for AI chat interactions.
+  - `pages/api/stripe/webhook.ts`: Handles Stripe payment webhooks, essential for premium feature activation.
+- **`managers/`**: This directory houses the logic for session management, local storage, and saved places. These managers are critical for maintaining user state, preferences, and data persistence across sessions.
+- **`components/`**: Contains the reusable UI components that form the building blocks of the application's user interface. These are essential for a consistent and efficient frontend.
+- **`pages/travel-form.tsx`**: This file defines the multi-step travel form, which is a primary entry point for users to initiate their trip planning process. Its functionality is central to the user's initial interaction with the application.
+- **`pages/chat/index.tsx`**: This file implements the AI chat interface, which is the core interactive component for AI-powered trip planning and recommendations.
+- **`.env.local`**: This file (not committed to Git) is crucial for securely storing all API keys and sensitive environment variables. The application cannot function correctly without proper configuration of these keys.
+- **`tailwind.config.js`**: Defines the Tailwind CSS configuration, which dictates the application's styling and theming. It's vital for maintaining a consistent and responsive UI.
+- **`next.config.js`**: The Next.js configuration file, which controls various aspects of the application's build and runtime behavior, including internationalization, image optimization, and custom webpack configurations.
+- **`package.json`**: Lists all project dependencies and scripts. It's fundamental for setting up the development environment and deploying the application.
 
 ## ⚙️ Configuration & Environment
 
