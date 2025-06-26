@@ -66,6 +66,7 @@ export default function TravelFormPage() {
     })
     
     const destinationRef = useRef<HTMLInputElement>(null)
+    const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
     
     // Function to fetch Maps API key
     const fetchMapsApiKey = async () => {
@@ -104,50 +105,70 @@ export default function TravelFormPage() {
     ]
     
     useEffect(() => {
-        // Only load script and initialize autocomplete when on step 1
-        if (currentStep === 1) {
-            const loadMapsScript = async () => {
+        const scriptId = "google-maps-script";
+
+        const initializeAutocomplete = () => {
+            if (window.google?.maps?.places && destinationRef.current && !autocompleteRef.current) {
+                const ac = new window.google.maps.places.Autocomplete(destinationRef.current, {
+                    types: ["(cities)"],
+                });
+
+                autocompleteRef.current = ac;
+
+                ac.addListener("place_changed", () => {
+                    const place = autocompleteRef.current?.getPlace();
+                    if (place?.formatted_address) {
+                        const destination = place.formatted_address;
+                        if (destinationRef.current) {
+                            destinationRef.current.value = destination;
+                            setFormData((prev) => ({ ...prev, destination }));
+                        }
+                    }
+                });
+            }
+        };
+
+        const loadScript = async () => {
+            if (window.google && window.google.maps) {
+                initializeAutocomplete();
+                return;
+            }
+
+            if (document.getElementById(scriptId)) {
+                return;
+            }
+
+            try {
                 const apiKey = await fetchMapsApiKey();
                 if (!apiKey) {
-                    console.error('Failed to load Maps API key');
+                    console.error('Maps API key is missing.');
                     return;
                 }
-                
+
                 const script = document.createElement("script");
+                script.id = scriptId;
                 script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
                 script.async = true;
                 script.defer = true;
-                
-                // Initialize autocomplete after script loads
-                script.addEventListener('load', () => {
-                    if (destinationRef.current) {
-                        const autocomplete = new window.google.maps.places.Autocomplete(destinationRef.current, {
-                            types: ["(cities)"]
-                        });
-                        
-                        autocomplete.addListener("place_changed", () => {
-                            const place = autocomplete.getPlace();
-                            const destination = place.formatted_address || "";
-                            if (destinationRef.current) {
-                                destinationRef.current.value = destination;
-                                setFormData((prev: FormData) => ({
-                                    ...prev,
-                                    destination
-                                }));
-                            }
-                        });
-                    }
-                });
-                
+                script.onload = initializeAutocomplete;
                 document.head.appendChild(script);
-                return () => {
-                    document.head.removeChild(script);
-                };
-            };
-            
-            loadMapsScript();
+            } catch (error) {
+                console.error("Failed to load Google Maps script:", error);
+            }
+        };
+
+        if (currentStep === 1) {
+            loadScript();
         }
-    }, [currentStep])
+
+        return () => {
+            if (autocompleteRef.current && window.google?.maps) {
+                window.google.maps.event.clearInstanceListeners(autocompleteRef.current);
+                const pacContainers = document.querySelectorAll('.pac-container');
+                pacContainers.forEach(container => container.remove());
+            }
+        };
+    }, [currentStep]);
     
     useEffect(() => {
         const handleResize = () => {
@@ -157,31 +178,6 @@ export default function TravelFormPage() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-    
-    useEffect(() => {
-        if (currentStep === 1 && window.google?.maps?.places) {
-            const autocomplete = new window.google.maps.places.Autocomplete(destinationRef.current!, {
-                types: ["(cities)"]
-            })
-            
-            autocomplete.addListener("place_changed", () => {
-                const place = autocomplete.getPlace()
-                const destination = place.formatted_address || ""
-                if (destinationRef.current) {
-                    destinationRef.current.value = destination
-                    setFormData((prev: FormData) => ({
-                        ...prev,
-                        destination
-                    }))
-                }
-            })
-            
-            return () => {
-                // Clean up the autocomplete instance when step changes or component unmounts
-                autocomplete.unbindAll()
-            }
-        }
-    }, [currentStep])
     
     const handlePreferenceToggle = (preference: TravelPreference) => {
         setFormData((prev) => {
@@ -382,7 +378,12 @@ export default function TravelFormPage() {
                     return (
                         <div className="w-fit mx-auto space-y-8">
                         {/* Prompt and Input */}
-                        <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.dates')}</Label>
+                        <div className="space-y-2">
+                            <Label className={`text-lg lg:text-2xl ${fonts.text}`}>{t('prompts.dates')}</Label>
+                            <p className={`text-sm text-gray-500 dark:text-gray-400 ${fonts.text}`}>
+                                Trip duration is limited to a maximum of 5 days for cost optimization.
+                            </p>
+                        </div>
                         {/* Calendar */}
                         <div className="flex flex-col w-fit space-y-4 p-4 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-600 rounded-md [&_.rdp]:dark:[--rdp-accent-color:rgb(56,189,248)] [&_.rdp]:dark:[--rdp-background-color:rgb(31,41,55)] [&_.rdp]:dark:[--rdp-accent-background-color:rgba(56,189,248,0.2)]">
                         {/* Date display box */}

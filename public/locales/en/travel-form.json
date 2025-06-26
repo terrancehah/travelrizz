@@ -15,7 +15,7 @@
     "dates": "When are you planning to travel?",
     "preferences": "What are your travel preferences?",
     "budget": "What's your budget range?",
-    "dateselection": "Select date range (5 days maximum)"
+    "dateselection": "Select date range"
   },
   "placeholders": {
     "city": "Enter a city",
