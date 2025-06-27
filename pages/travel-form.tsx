@@ -26,6 +26,8 @@ import { cn } from '@/utils/cn';
 import { savedPlacesManager } from '../managers/saved-places-manager';
 
 
+import { useGoogleMaps } from './_app';
+
 // Add Google Maps types
 declare global {
     interface Window {
@@ -51,6 +53,7 @@ export default function TravelFormPage() {
     const [currentStep, setCurrentStep] = useState(1)
     const [selected, setSelected] = useState<DateRange | undefined>();
     const [numberOfMonths, setNumberOfMonths] = useState(1);
+    const { mapsApiStatus } = useGoogleMaps();
     
     // Set initial number of months
     useEffect(() => {
@@ -67,18 +70,6 @@ export default function TravelFormPage() {
     
     const destinationRef = useRef<HTMLInputElement>(null)
     const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
-    
-    // Function to fetch Maps API key
-    const fetchMapsApiKey = async () => {
-        try {
-            const response = await fetch('/api/maps/places-key');
-            const data = await response.json();
-            return data.key;
-        } catch (error) {
-            console.error('Failed to fetch Maps API key:', error);
-            return null;
-        }
-    };
     
     // Define steps configuration
     const steps = [
@@ -105,70 +96,25 @@ export default function TravelFormPage() {
     ]
     
     useEffect(() => {
-        const scriptId = "google-maps-script";
+        if (mapsApiStatus === 'ready' && currentStep === 1 && destinationRef.current && !autocompleteRef.current) {
+            const ac = new window.google.maps.places.Autocomplete(destinationRef.current, {
+                types: ["(cities)"],
+            });
 
-        const initializeAutocomplete = () => {
-            if (window.google?.maps?.places && destinationRef.current && !autocompleteRef.current) {
-                const ac = new window.google.maps.places.Autocomplete(destinationRef.current, {
-                    types: ["(cities)"],
-                });
+            autocompleteRef.current = ac;
 
-                autocompleteRef.current = ac;
-
-                ac.addListener("place_changed", () => {
-                    const place = autocompleteRef.current?.getPlace();
-                    if (place?.formatted_address) {
-                        const destination = place.formatted_address;
-                        if (destinationRef.current) {
-                            destinationRef.current.value = destination;
-                            setFormData((prev) => ({ ...prev, destination }));
-                        }
+            ac.addListener("place_changed", () => {
+                const place = autocompleteRef.current?.getPlace();
+                if (place?.formatted_address) {
+                    const destination = place.formatted_address;
+                    if (destinationRef.current) {
+                        destinationRef.current.value = destination;
+                        setFormData((prev) => ({ ...prev, destination }));
                     }
-                });
-            }
-        };
-
-        const loadScript = async () => {
-            if (window.google && window.google.maps) {
-                initializeAutocomplete();
-                return;
-            }
-
-            if (document.getElementById(scriptId)) {
-                return;
-            }
-
-            try {
-                const apiKey = await fetchMapsApiKey();
-                if (!apiKey) {
-                    console.error('Maps API key is missing.');
-                    return;
                 }
-
-                const script = document.createElement("script");
-                script.id = scriptId;
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-                script.async = true;
-                script.defer = true;
-                script.onload = initializeAutocomplete;
-                document.head.appendChild(script);
-            } catch (error) {
-                console.error("Failed to load Google Maps script:", error);
-            }
-        };
-
-        if (currentStep === 1) {
-            loadScript();
+            });
         }
-
-        return () => {
-            if (autocompleteRef.current && window.google?.maps) {
-                window.google.maps.event.clearInstanceListeners(autocompleteRef.current);
-                const pacContainers = document.querySelectorAll('.pac-container');
-                pacContainers.forEach(container => container.remove());
-            }
-        };
-    }, [currentStep]);
+    }, [mapsApiStatus, currentStep]);
     
     useEffect(() => {
         const handleResize = () => {

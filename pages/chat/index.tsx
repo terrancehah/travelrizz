@@ -17,6 +17,8 @@ import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 import { useTranslations } from 'next-intl';
 
 
+import { useGoogleMaps } from '../_app';
+
 const TravelChatComponent = dynamic(() => import('../../components/chat/travel-chat'), {
     ssr: false,
 })
@@ -46,11 +48,10 @@ type SessionData = {
 };
 
 export default function ChatPage({ messages, locale }: { messages: any, locale: string }) {
-    const [apiKey, setApiKey] = useState('');
+    const { mapsApiStatus } = useGoogleMaps();
     const [apiError, setApiError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [isLoadingKey, setIsLoadingKey] = useState(true);
     const [showMap, setShowMap] = useState(true);
     const { theme, setTheme } = useTheme()
     const [isMobile, setIsMobile] = useState(false);
@@ -199,17 +200,6 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 setIsDetailsReady(true);
                 setCurrentStage(session.currentStage);
                 setIsPaid(session.isPaid);
-                
-                // Then trigger Maps API key fetch if needed
-                if (!apiKey && !isLoadingKey) {
-                    setIsLoadingKey(true); // Only set if we're not already loading
-                }
-            }, []);
-            
-            useEffect(() => {
-                // Initialize map immediately since we don't need to wait for API key anymore
-                setIsLoadingKey(false);
-                setApiKey('true'); // Just need a truthy value since key is handled server-side
             }, []);
 
             useEffect(() => {
@@ -326,7 +316,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                     {(showMap || !isMobile) && currentStage < 5 && (
                         <div className={`${isMobile ? 'fixed inset-0 z-40 h-[100dvh]' : 'w-[50%]'} 
                                 ${isMobile && !showMap ? 'hidden' : ''}`}>
-                            {travelDetails.destination ? (
+                            {mapsApiStatus === 'ready' && travelDetails.destination ? (
                                 <MapComponent
                                     city={travelDetails.destination}
                                     theme={theme as 'light' | 'dark'}
@@ -334,7 +324,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                                 />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center">
-                                    <p className="text-sky-blue">Please enter a destination</p>
+                                    <p className="text-sky-blue">{mapsApiStatus === 'loading' ? 'Loading Map...' : 'Please enter a destination'}</p>
                                 </div>
                             )}
                         </div>
