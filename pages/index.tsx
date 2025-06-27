@@ -34,22 +34,11 @@ export default function LandingPage() {
             <link rel="canonical" href="https://travelrizz.app/" />
 
             {/* hreflang tags for internationalization */}
-            {supportedLocales.map((lang) => (
-                <link
-                    key={lang}
-                    rel="alternate"
-                    hrefLang={lang}
-                    href={`https://travelrizz.app/${lang === 'en' ? '' : lang}`}
-                />
-            ))}
+            {supportedLocales.map((lang) => {
+                const href = `https://travelrizz.app/${lang === 'en' ? '' : lang}`;
+                return <link key={lang} rel="alternate" hrefLang={lang} href={href} />;
+            })}
             <link rel="alternate" hrefLang="x-default" href="https://travelrizz.app/" />
-            
-            {/* Meta description for SEO */}
-            <meta
-            name="description"
-            content="Create your perfect trip with Travel-Rizz, the friendly AI trip planner that builds personalized itineraries effortlessly. No signup needed — start planning now!"
-            />
-            
             
             {/* Meta description for SEO */}
             <meta
@@ -116,10 +105,6 @@ export async function getStaticProps({ locale }: { locale: string }) {
         props: {
             messages: {
                 landing: (await import(`../public/locales/${locale}/landing.json`)).default,
-                travelForm: (await import(`../public/locales/${locale}/travel-form.json`)).default,
-                travelChat: (await import(`../public/locales/${locale}/travel-chat.json`)).default,
-                parameters: (await import(`../public/locales/${locale}/parameters.json`)).default,
-                components: (await import(`../public/locales/${locale}/components.json`)).default
             },
             locale,
             timeZone: 'Asia/Singapore'

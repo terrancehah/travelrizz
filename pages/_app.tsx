@@ -37,7 +37,9 @@ const lato = Lato({
     display: 'swap',
 })
 
-export default function App({ Component, pageProps: { messages, locale, timeZone, ...pageProps } }: AppProps) {
+export default function App({ Component, pageProps: { messages, locale, ...pageProps } }: AppProps) {
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
     return (
         <IntlProvider 
         messages={messages} 

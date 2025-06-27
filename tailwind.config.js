@@ -33,7 +33,9 @@ module.exports = {
                 'modal-appear': 'modal-appear 0.3s ease-out',
                 'slide-up': 'slide-up 0.3s ease-out',
                 'breathing-halo-500': 'breathingHalo500 2s ease-in-out infinite',
-                'breathing-halo-700': 'breathingHalo700 2s ease-in-out infinite'
+                'breathing-halo-700': 'breathingHalo700 2s ease-in-out infinite',
+                'subtle-breathing-halo-500': 'subtleBreathingHalo500 2s ease-in-out infinite',
+                'subtle-breathing-halo-700': 'subtleBreathingHalo700 2s ease-in-out infinite'
             },
             keyframes: {
                 bounce: {
@@ -60,6 +62,14 @@ module.exports = {
                 breathingHalo700: {
                     '0%, 100%': { boxShadow: '0 0 12px 2px theme(colors.purple.700/25)' },
                     '50%': { boxShadow: '0 0 18px 4px theme(colors.purple.700/35)' },
+                },
+                subtleBreathingHalo500: {
+                    '0%, 100%': { filter: 'drop-shadow(0 0 6px theme(colors.purple.500/20))' },
+                    '50%': { filter: 'drop-shadow(0 0 10px theme(colors.purple.500/25))' },
+                },
+                subtleBreathingHalo700: {
+                    '0%, 100%': { filter: 'drop-shadow(0 0 6px theme(colors.purple.700/20))' },
+                    '50%': { filter: 'drop-shadow(0 0 10px theme(colors.purple.700/25))' },
                 }
             }
         }
