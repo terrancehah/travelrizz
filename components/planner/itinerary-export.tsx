@@ -151,36 +151,20 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         });
     };
     
+    // Render a fallback for a section that fails to load
+    const renderErrorFallback = (sectionName: string) => (
+        <div className="p-4 text-center text-red-500 bg-red-100 dark:bg-red-900/30 rounded-lg">
+            <AlertTriangle className="mx-auto h-8 w-8 mb-2" />
+            <p className="font-semibold">Could not load {sectionName}</p>
+            <p className="text-sm">There was an error generating this part of the itinerary. Please try again later.</p>
+        </div>
+    );
+
     // Default values for data sections
-    const cityInfo = itineraryData.cityInfo || {
-        intro: "City information not available.",
-        weather: "Weather data not available.",
-        language: "Language data not available.",
-        population: "Population data not available.",
-        weatherForecast: [],
-    };
-
-    const travelNotableDetails = itineraryData.travelDetails || {
-        currency: "Not available.",
-        safety: "Not available.",
-        businessHours: "Not available.",
-        navigation: "Not available.",
-        localTips: "Not available.",
-    };
-
-    const travelReminders = itineraryData.travelReminders || {
-        documents: "Not available.",
-        taxRefund: "Not available.",
-        etiquette: "Not available.",
-        health: "Not available.",
-    };
-
-    const emergencyContacts = itineraryData.emergencyContacts || {
-        emergency: "Not available.",
-        hospitals: [],
-        embassy: "Not available.",
-    };
-
+    const cityInfo = itineraryData.cityInfo;
+    const travelNotableDetails = itineraryData.travelDetails;
+    const travelReminders = itineraryData.travelReminders;
+    const emergencyContacts = itineraryData.emergencyContacts;
     const dailyItinerary = itineraryData.dailyItinerary?.schedule || [];
 
     const getWeatherIcon = (icon: string) => {
@@ -863,42 +847,46 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         </div>
         
         <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-500/10 to-transparent dark:from-red-500/20 rounded-bl-full"></div>
-        
-        <div className="bg-gradient-to-r from-red-50 to-red-100/50 dark:from-red-900/30 dark:to-red-800/20 p-5 rounded-lg border border-red-200 dark:border-red-800 mb-6">
-        <div className="flex items-center mb-3">
-        <Phone className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('emergency.localNumbers')}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.emergency}</p>
-        </div>
-        
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white mb-4 flex items-center">
-        <AlertTriangle className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
-        {t('emergency.hospitals')}
-        </h3>
-        
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-        {emergencyContacts.hospitals.map((hospital, index) => (
-            <div
-            key={index}
-            className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-red-200 dark:border-red-800 shadow-sm"
-            >
-            <h4 className="font-medium text-slate-800 dark:text-white">{hospital.name}</h4>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{hospital.address}</p>
-            <p className="text-sm text-red-600 dark:text-red-400 font-medium mt-1">{hospital.phone}</p>
-            <p className="text-sm italic text-slate-500 dark:text-slate-400 mt-1">{hospital.notes}</p>
-            </div>
-        ))}
-        </div>
-        
-        <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
-        <div className="flex items-center mb-3">
-        <Globe className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('emergency.embassy')}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.embassy}</p>
-        </div>
+        {emergencyContacts ? (
+            <>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-500/10 to-transparent dark:from-red-500/20 rounded-bl-full"></div>
+                
+                <div className="bg-gradient-to-r from-red-50 to-red-100/50 dark:from-red-900/30 dark:to-red-800/20 p-5 rounded-lg border border-red-200 dark:border-red-800 mb-6">
+                <div className="flex items-center mb-3">
+                <Phone className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('emergency.localNumbers')}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.emergency}</p>
+                </div>
+                
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white mb-4 flex items-center">
+                <AlertTriangle className="h-5 w-5 mr-2 text-red-500 dark:text-red-400" />
+                {t('emergency.hospitals')}
+                </h3>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                {emergencyContacts.hospitals.map((hospital, index) => (
+                    <div
+                    key={index}
+                    className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-red-200 dark:border-red-800 shadow-sm"
+                    >
+                    <h4 className="font-medium text-slate-800 dark:text-white">{hospital.name}</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">{hospital.address}</p>
+                    <p className="text-sm text-red-600 dark:text-red-400 font-medium mt-1">{hospital.phone}</p>
+                    <p className="text-sm italic text-slate-500 dark:text-slate-400 mt-1">{hospital.notes}</p>
+                    </div>
+                ))}
+                </div>
+                
+                <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
+                <div className="flex items-center mb-3">
+                <Globe className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('emergency.embassy')}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{emergencyContacts.embassy}</p>
+                </div>
+            </>
+        ) : renderErrorFallback("Emergency Contacts")}
         </Card>
         </section>
         

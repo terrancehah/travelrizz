@@ -81,44 +81,48 @@ export default async function handler(req: NextRequest) {
         if (!destination || !startDate || !endDate) {
             return NextResponse.json({ error: 'Missing required data' }, { status: 400 });
         }
-        
-        const result = await generateText({
-            model: openai('gpt-4o', { structuredOutputs: true }),
-            prompt: `
-            Generate a complete travel itinerary for ${destination} from ${startDate} to ${endDate}.
-            Consider these preferences: ${preferences.join(', ')}.
-            Include all necessary information:
-            1. City information and weather forecast
-            2. Travel details and local tips
-            3. Important reminders and etiquette
-            4. Emergency contacts and hospitals
-            5. Daily schedule with activities
-            
-            Ensure all data is accurate and properly formatted.
-            `,
-            tools: {
-                cityInfoTool,
-                travelDetailsTool,
-                travelRemindersTool,
-                emergencyContactsTool,
-                dailyItineraryTool
-            },
-            experimental_output: Output.object({
-                schema: itinerarySchema
-            }),
-            maxSteps: 5
-        });
 
-        // Parse the JSON string from the text field if needed
-        const data = typeof result.text === 'string' ? JSON.parse(result.text) : result;
-        
-        // The result will be automatically validated against our schema
+        // Define a helper function to generate a section
+        const generateSection = async (prompt: string, schema: z.ZodType<any>) => {
+            const { object } = await generateText({
+                model: openai('gpt-4o'),
+                prompt,
+                schema,
+            });
+            return object;
+        };
+
+        const itineraryTools = {
+            cityInfo: { schema: cityInfoTool.parameters, prompt: `Generate city information and a 5-day weather forecast for ${destination}.` },
+            travelDetails: { schema: travelDetailsTool.parameters, prompt: `Provide essential travel details (currency, safety, navigation, local tips) for ${destination}.` },
+            travelReminders: { schema: travelRemindersTool.parameters, prompt: `List important travel reminders (documents, tax, etiquette, health) for a trip to ${destination}.` },
+            emergencyContacts: { schema: emergencyContactsTool.parameters, prompt: `Find emergency contacts, including hospitals and the local embassy, for ${destination}.` },
+            dailyItinerary: { schema: dailyItineraryTool.parameters, prompt: `Create a detailed daily itinerary for a trip to ${destination} from ${startDate} to ${endDate}, considering these preferences: ${preferences.join(', ')}.` }
+        };
+
+        const promises = Object.values(itineraryTools).map(({ prompt, schema }) => 
+            generateSection(prompt, schema)
+        );
+
+        const results = await Promise.allSettled(promises);
+
+        const data = results.reduce((acc, result, index) => {
+            const sectionKey = Object.keys(itineraryTools)[index];
+            if (result.status === 'fulfilled') {
+                acc[sectionKey] = result.value;
+            } else {
+                console.error(`Error generating section "${sectionKey}":`, result.reason);
+                acc[sectionKey] = null; // Assign null on failure
+            }
+            return acc;
+        }, {} as Record<string, any>);
+
         return NextResponse.json({ success: true, data });
-        
+
     } catch (error) {
-        console.error('Error generating itinerary data:', error);
-        return NextResponse.json({ 
-            error: 'Failed to generate itinerary data',
+        console.error('Error processing itinerary request:', error);
+        return NextResponse.json({
+            error: 'Failed to process itinerary request',
             details: error instanceof Error ? error.message : 'Unknown error'
         }, { status: 500 });
     }
