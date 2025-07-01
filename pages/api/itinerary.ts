@@ -84,12 +84,18 @@ export default async function handler(req: NextRequest) {
 
         // Define a helper function to generate a section
         const generateSection = async (prompt: string, schema: z.ZodType<any>) => {
-            const { object } = await generateText({
+            const { toolCalls } = await generateText({
                 model: openai('gpt-4o'),
                 prompt,
-                schema,
+                tools: {
+                    section: tool({
+                        description: "The structured information for the requested section.",
+                        parameters: schema,
+                    }),
+                },
+                toolChoice: 'required',
             });
-            return object;
+            return toolCalls[0].args;
         };
 
         const itineraryTools = {
