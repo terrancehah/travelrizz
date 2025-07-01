@@ -156,11 +156,11 @@ export default function TravelFormPage() {
         })
         
         if (!city || !formattedStartDate || !formattedEndDate || preferences.length === 0 || !budget) {
-            alert('Please fill in all required fields and select at least one travel preference')
+            setErrorMessage('Please fill in all required fields and select at least one travel preference');
             setLoading(false)
             return
         }
-        
+
         try {
             const now = Date.now()
             const sessionId = generateSessionId()
@@ -179,18 +179,7 @@ export default function TravelFormPage() {
                 endDate: formattedEndDate,
                 preferences: preferences,
                 budget: budget,
-                language: router.locale === 'en' ? SupportedLanguage.English :
-                router.locale === 'ms' ? SupportedLanguage.Malay :
-                router.locale === 'es' ? SupportedLanguage.Spanish :
-                router.locale === 'fr' ? SupportedLanguage.French :
-                router.locale === 'de' ? SupportedLanguage.German :
-                router.locale === 'it' ? SupportedLanguage.Italian :
-                router.locale === 'cs' ? SupportedLanguage.Czech :
-                router.locale === 'zh-CN' ? SupportedLanguage.SimplifiedChinese :
-                router.locale === 'zh-TW' ? SupportedLanguage.TraditionalChinese :
-                router.locale === 'ja' ? SupportedLanguage.Japanese :
-                router.locale === 'ko' ? SupportedLanguage.Korean :
-                SupportedLanguage.English, // Fallback to English if locale not supported
+                language: languageMap[router.locale || 'en'] || SupportedLanguage.English,
                 transport: [],
                 
                 // Places
@@ -256,7 +245,7 @@ export default function TravelFormPage() {
                 }
             } catch (error) {
                 console.error('Error:', error)
-                alert('An error occurred while processing your request. Please try again.')
+                setErrorMessage('An error occurred while processing your request. Please try again.');
             } finally {
                 setLoading(false)
             }
@@ -530,6 +519,7 @@ export default function TravelFormPage() {
                                             {loading ? <LoadingSpinner /> : t('navigation.startPlanning')}
                                             </Button>
                                             </div>
+                                            {errorMessage && <p className="text-red-500 text-sm text-center">{errorMessage}</p>}
                                             </div>
                                         )
                                         default:
