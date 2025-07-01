@@ -54,6 +54,21 @@ export default function TravelFormPage() {
     const [selected, setSelected] = useState<DateRange | undefined>();
     const [numberOfMonths, setNumberOfMonths] = useState(1);
     const { mapsApiStatus } = useGoogleMaps();
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const languageMap: { [key: string]: SupportedLanguage } = {
+        en: SupportedLanguage.English,
+        ms: SupportedLanguage.Malay,
+        es: SupportedLanguage.Spanish,
+        fr: SupportedLanguage.French,
+        de: SupportedLanguage.German,
+        it: SupportedLanguage.Italian,
+        cs: SupportedLanguage.Czech,
+        'zh-CN': SupportedLanguage.SimplifiedChinese,
+        'zh-TW': SupportedLanguage.TraditionalChinese,
+        ja: SupportedLanguage.Japanese,
+        ko: SupportedLanguage.Korean,
+    };
     
     // Set initial number of months
     useEffect(() => {
