@@ -18,6 +18,7 @@ Travel-Rizz is built using modern web technologies, focusing on performance, sca
 -   **ShadCN UI for base components**
 -   **Lucide Icons for consistent iconography**
 -   **Custom components with dark mode support** (`components/`)
+-   **Itinerary Export Component** (`components/planner/itinerary-export.tsx`)
 
 ### State Management & Data Flow
 

@@ -20,6 +20,7 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
     -   Stage 2: City introduction with local insights
     -   Stage 3: Places exploration and saving (limited in free version)
     -   Stage 4: Premium itinerary planning (requires payment)
+    -   Stage 5: Itinerary Export and Display (`components/planner/itinerary-export.tsx`)
 
 3.  **Interactive Planning Features**
     -   Real-time map integration for place visualization (`components/features/map-component.tsx`)
@@ -41,7 +42,7 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
 
 -   Vercel Edge Functions
 -   Session-based state management (`managers/session-manager.ts`)
--   Stripe payment integration (`pages/api/stripe/`)
+-   Stripe payment integration (`pages/api/stripe/`, `components/modals/premium-upgrade-modal.tsx`)
 -   API integrations:
     -   Google Maps Platform (Places, Routes)
     -   Visual Crossing Weather
@@ -107,7 +108,7 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
 -   Secure payment processing (`pages/api/stripe/`)
 -   Session data encryption
 -   API key protection
--   Rate limiting
+-   Rate limiting (implemented at the infrastructure level, e.g., Vercel platform, Google Cloud Console)
 
 **Scalability:**
 

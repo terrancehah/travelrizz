@@ -75,6 +75,12 @@ Post form submission, users progress through four stages in the chat interface (
 - Timing suggestions
 - Place rearrangement
 
+**Stage 5: Itinerary Export and Display**
+- Final itinerary presentation
+- Export to PDF functionality
+- Comprehensive trip overview
+- Location: `components/planner/itinerary-export.tsx`
+
 ### Map Interface Evolution
 
 The map component (`components/features/map-component.tsx`) adapts throughout the journey:

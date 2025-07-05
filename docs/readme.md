@@ -20,6 +20,8 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
   - **Location:** `components/features/currency/currency-converter.tsx`, `pages/api/currency/rates.ts`
 - **Premium Features**: Advanced itinerary planning and unlimited place suggestions (via Stripe payments).
   - **Location:** `pages/api/stripe/`, `components/modals/premium-upgrade-modal.tsx`
+- **Itinerary Export and Display**: View and export your personalized trip itinerary.
+  - **Location:** `components/planner/itinerary-export.tsx`
 - **Legal & Privacy Compliance**: Cookie, privacy, and terms pages for user transparency.
   - **Location:** `pages/privacy.tsx`, `pages/cookies.tsx`, `pages/terms.tsx`
 

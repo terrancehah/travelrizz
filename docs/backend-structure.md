@@ -255,7 +255,9 @@ function handleError(error: unknown): APIError {
 
 ## Rate Limiting
 
--   **Location:** `pages/api/stripe/webhook.ts`
+-   **Location:** `pages/api/stripe/webhook.ts` (for Stripe webhooks)
+
+Rate limiting for the main chat API (`pages/api/chat/chat.ts`) is not explicitly implemented in the codebase. It is assumed to be handled at the infrastructure level (e.g., Vercel platform or Google Cloud Console).
 
 ### Implementation
 
