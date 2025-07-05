@@ -5,14 +5,23 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
 ## 🌟 Features
 
 - **AI Chat-based Trip Planning**: Plan your trip interactively with a conversational AI assistant.
+  - **Location:** `pages/chat/index.tsx`, `components/chat/travel-chat.tsx`, `pages/api/chat/chat.ts`
 - **Step-by-Step Travel Form**: Guided multi-step form for destination, dates, preferences, and budget.
+  - **Location:** `pages/travel-form.tsx`
 - **Interactive Maps**: Google Maps integration for destination selection and route visualization.
+  - **Location:** `components/features/map-component.tsx`
 - **Smart Recommendations**: AI-powered place and activity suggestions based on user preferences.
+  - **Location:** `ai/tools.ts` (especially `placeCardTool` and `placeCarouselTool`)
 - **Multi-language Support**: Available in English, Chinese (Simplified/Traditional), Japanese, Korean, German, French, Italian, Spanish, and Czech.
+  - **Location:** `hooks/useLocalizedFont.ts`, `components/ui/language-switcher.tsx`
 - **Real-time Weather Data**: Historical weather information for better planning.
+  - **Location:** `components/features/weather/weather-historical.tsx`, `components/features/weather/weather-forecast.tsx`, `pages/api/weather/historical.ts`
 - **Currency Conversion**: Live currency rate conversions for budget planning.
+  - **Location:** `components/features/currency/currency-converter.tsx`, `pages/api/currency/rates.ts`
 - **Premium Features**: Advanced itinerary planning and unlimited place suggestions (via Stripe payments).
+  - **Location:** `pages/api/stripe/`, `components/modals/premium-upgrade-modal.tsx`
 - **Legal & Privacy Compliance**: Cookie, privacy, and terms pages for user transparency.
+  - **Location:** `pages/privacy.tsx`, `pages/cookies.tsx`, `pages/terms.tsx`
 
 ## 🚀 Getting Started
 
@@ -67,19 +76,21 @@ The Travel-Rizz project is structured to ensure modularity, scalability, and mai
 - `components/` — Reusable UI and layout components
 - `managers/` — Session, storage, and saved places managers
 - `public/` — Static assets and localization files
-- `api/` — Backend API routes (e.g., Google Maps, Stripe)
+- `pages/api/` — Backend API routes (e.g., Google Maps, Stripe)
 
 ### Core Files and Their Importance
 
 The following files and directories are vital to the Travel-Rizz project's functionality:
 
 - **`pages/api/`**: This directory contains all backend API routes, which are crucial for handling server-side logic, external API integrations (Google Maps, Stripe, Weather, Currency), and session management. Without these, the application would lack its core data processing and external service capabilities.
-  - `pages/api/chat/index.ts`: Main endpoint for AI chat interactions.
+  - `pages/api/chat/chat.ts`: Main endpoint for AI chat interactions.
   - `pages/api/stripe/webhook.ts`: Handles Stripe payment webhooks, essential for premium feature activation.
 - **`managers/`**: This directory houses the logic for session management, local storage, and saved places. These managers are critical for maintaining user state, preferences, and data persistence across sessions.
+  - `managers/session-manager.ts`: Core session management logic.
 - **`components/`**: Contains the reusable UI components that form the building blocks of the application's user interface. These are essential for a consistent and efficient frontend.
 - **`pages/travel-form.tsx`**: This file defines the multi-step travel form, which is a primary entry point for users to initiate their trip planning process. Its functionality is central to the user's initial interaction with the application.
 - **`pages/chat/index.tsx`**: This file implements the AI chat interface, which is the core interactive component for AI-powered trip planning and recommendations.
+- **`ai/tools.ts`**: This file defines the tools that the AI can use to interact with the application and external APIs.
 - **`.env.local`**: This file (not committed to Git) is crucial for securely storing all API keys and sensitive environment variables. The application cannot function correctly without proper configuration of these keys.
 - **`tailwind.config.js`**: Defines the Tailwind CSS configuration, which dictates the application's styling and theming. It's vital for maintaining a consistent and responsive UI.
 - **`next.config.js`**: The Next.js configuration file, which controls various aspects of the application's build and runtime behavior, including internationalization, image optimization, and custom webpack configurations.

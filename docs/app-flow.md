@@ -6,7 +6,7 @@ The Travel-Rizz application provides a seamless journey from initial travel plan
 
 ### Landing Page Journey
 
-Upon accessing the landing page, users are introduced to Travel-Rizz through:
+Upon accessing the landing page (`pages/index.tsx`), users are introduced to Travel-Rizz through:
 
 The homepage presents four key sections:
 - Features showcase with interactive examples
@@ -16,60 +16,60 @@ The homepage presents four key sections:
 
 ### Multi-step Travel Form
 
-The travel form guides users through four essential steps:
+The travel form (`pages/travel-form.tsx`) guides users through four essential steps:
 
-1. Destination Input
-   - Google Places autocomplete integration
-   - Real-time validation
-   - Map preview of selected location
+1.  **Destination Input**
+    -   Google Places autocomplete integration
+    -   Real-time validation
+    -   Map preview of selected location
 
-2. Date Selection
-   - Interactive calendar with date range picker
-   - 5-day maximum duration enforcement
-   - Automatic validation of selected dates
+2.  **Date Selection**
+    -   Interactive calendar with date range picker
+    -   5-day maximum duration enforcement
+    -   Automatic validation of selected dates
 
-3. Travel Preferences
-   - Six preference categories:
-     - Culture and Heritage
-     - Nature
-     - Foodie
-     - Leisure
-     - Adventure
-     - Arts & Museum
-   - Multiple selection allowed
-   - Visual confirmation of choices
+3.  **Travel Preferences**
+    -   Six preference categories:
+        -   Culture and Heritage
+        -   Nature
+        -   Foodie
+        -   Leisure
+        -   Adventure
+        -   Arts & Museum
+    -   Multiple selection allowed
+    -   Visual confirmation of choices
 
-4. Budget Selection
-   - Four budget levels:
-     - Budget
-     - Moderate
-     - Luxury
-     - Ultra Luxury
-   - Clear pricing expectations
-   - Visual budget indicators
+4.  **Budget Selection**
+    -   Four budget levels:
+        -   Budget
+        -   Moderate
+        -   Luxury
+        -   Ultra Luxury
+    -   Clear pricing expectations
+    -   Visual budget indicators
 
 ### Chat Interface Journey
 
-Post form submission, users progress through four stages:
+Post form submission, users progress through four stages in the chat interface (`pages/chat/index.tsx`, `components/chat/travel-chat.tsx`):
 
-Stage 1: Initial Setup
+**Stage 1: Initial Setup**
 - Session initialization
 - Travel details confirmation
 - Additional preference gathering
 
-Stage 2: City Overview
+**Stage 2: City Overview**
 - Local insights presentation
 - Weather information display
 - Currency and budget context
 - Cultural highlights
 
-Stage 3: Place Discovery
+**Stage 3: Place Discovery**
 - AI-driven recommendations
 - Interactive map exploration
 - Place saving functionality
 - Premium upgrade prompt
 
-Stage 4: Itinerary Planning (Premium)
+**Stage 4: Itinerary Planning (Premium)**
 - Day-by-day organization
 - Route optimization
 - Timing suggestions
@@ -77,20 +77,20 @@ Stage 4: Itinerary Planning (Premium)
 
 ### Map Interface Evolution
 
-The map component adapts throughout the journey:
+The map component (`components/features/map-component.tsx`) adapts throughout the journey:
 
-Landing to Form:
+**Landing to Form:**
 - Initial city view
 - Destination confirmation
 - Area overview
 
-Chat Interface:
+**Chat Interface:**
 - Place markers appear
 - Interactive info windows
 - Route visualization
 - Cluster management
 
-Premium Planning:
+**Premium Planning:**
 - Optimized routes
 - Day-based color coding
 - Distance calculations
@@ -98,33 +98,33 @@ Premium Planning:
 
 ### Session Management
 
-User session handling occurs through:
+User session handling (`managers/session-manager.ts`) occurs through:
 
-Initialization:
+**Initialization:**
 - Session creation
 - State storage setup
 - Timeout configuration
 
-Maintenance:
+**Maintenance:**
 - Regular state updates
 - Activity monitoring
 - Timeout warnings
 
-Recovery:
+**Recovery:**
 - Session restoration
 - State preservation
 - Error handling
 
 ### Language System
 
-Language management includes:
+Language management (`hooks/useLocalizedFont.ts`, `components/ui/language-switcher.tsx`) includes:
 
-Selection:
+**Selection:**
 - Initial detection
 - Manual override
 - Persistent storage
 
-Content Loading:
+**Content Loading:**
 - Dynamic translations
 - Font adjustments
 - RTL support
@@ -132,14 +132,14 @@ Content Loading:
 
 ### Theme System
 
-Dark/Light mode implementation:
+Dark/Light mode implementation (`hooks/useTheme.ts`, `components/ui/theme-switcher.tsx`) includes:
 
-Toggle:
+**Toggle:**
 - System preference detection
 - Manual selection
 - State persistence
 
-Styling:
+**Styling:**
 - Color scheme switching
 - Component adaptation
 - Smooth transitions
@@ -148,12 +148,12 @@ Styling:
 
 The application manages errors through:
 
-Prevention:
+**Prevention:**
 - Input validation
 - State verification
-- API error catching
+- API error catching (`pages/api/`)
 
-Recovery:
+**Recovery:**
 - Graceful fallbacks
 - User notifications
 - State restoration
@@ -162,31 +162,31 @@ Recovery:
 
 The interface adapts based on:
 
-Screen Size:
+**Screen Size:**
 - Mobile-first design
 - Breakpoint adjustments
 - Component reflow
 
-Capabilities:
+**Capabilities:**
 - Touch optimization
 - Gesture support
 - Input adaptation
 
 ### Premium Flow
 
-The premium upgrade process:
+The premium upgrade process (`pages/api/stripe/`, `components/modals/premium-upgrade-modal.tsx`) includes:
 
-Trigger:
+**Trigger:**
 - Feature limit detection
 - Upgrade prompt
 - Benefits preview
 
-Processing:
+**Processing:**
 - Secure payment flow
 - Status verification
 - Feature activation
 
-Confirmation:
+**Confirmation:**
 - Success notification
 - Feature unlocking
 - Experience upgrade

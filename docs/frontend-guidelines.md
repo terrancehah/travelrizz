@@ -2,6 +2,8 @@
 
 ## Color System
 
+-   **Location:** `tailwind.config.js`
+
 Based on the Tailwind framework, our color system is organized into five key categories:
 
 ### 1. Background Colors
@@ -112,12 +114,14 @@ Our primary brand colors:
 
 ### Accessibility
 
-- Maintain WCAG 2.1 AA standard contrast ratios
-- Use semantic variations for states and feedback
-- Provide clear hover and focus states
-- Support dark mode for all color combinations
+-   Maintain WCAG 2.1 AA standard contrast ratios
+-   Use semantic variations for states and feedback
+-   Provide clear hover and focus states
+-   Support dark mode for all color combinations
 
 ### Dark Mode Implementation
+
+-   **Location:** `hooks/useTheme.ts`, `components/ui/theme-switcher.tsx`
 
 ```jsx
 // Example component with dark mode support
@@ -132,42 +136,45 @@ Our primary brand colors:
 
 ### Best Practices
 
-1. Use Semantic Colors:
-   - Base UI elements: Background and border colors
-   - Interactive elements: Brand colors
-   - Feedback and states: Accent colors
-   - Text and icons: Content colors
+1.  **Use Semantic Colors:**
+    -   Base UI elements: Background and border colors
+    -   Interactive elements: Brand colors
+    -   Feedback and states: Accent colors
+    -   Text and icons: Content colors
 
-2. Transitions and Animations:
-   ```css
-   .transitions {
-     transition-colors: duration-300;
-     transition-all: duration-400;
-   }
-   ```
+2.  **Transitions and Animations:**
 
-3. Opacity Variations:
-   ```css
-   /* Example opacity usages */
-   bg-light-blue/95         /* 95% opacity */
-   bg-light-blue/60         /* 60% opacity */
-   bg-sky-blue/90          /* 90% opacity */
-   ```
+    ```css
+    .transitions {
+      transition-colors: duration-300;
+      transition-all: duration-400;
+    }
+    ```
 
-4. Color Combinations:
-   ```css
-   /* Example combinations */
-   bg-slate-100/40 dark:bg-gray-900    /* Background */
-   text-primary dark:text-sky-100       /* Text */
-   hover:text-primary dark:hover:text-white  /* Interactive */
-   ```
+3.  **Opacity Variations:**
+
+    ```css
+    /* Example opacity usages */
+    bg-light-blue/95         /* 95% opacity */
+    bg-light-blue/60         /* 60% opacity */
+    bg-sky-blue/90          /* 90% opacity */
+    ```
+
+4.  **Color Combinations:**
+
+    ```css
+    /* Example combinations */
+    bg-slate-100/40 dark:bg-gray-900    /* Background */
+    text-primary dark:text-sky-100       /* Text */
+    hover:text-primary dark:hover:text-white  /* Interactive */
+    ```
 
 ### Implementation Notes
 
-- Use Tailwind's utility classes for all color implementations
-- Follow mobile-first and dark mode patterns
-- Maintain consistent transitions for color changes
-- Use semantic class names that reflect purpose
-- Implement backdrop blur with caution for performance
+-   Use Tailwind's utility classes for all color implementations
+-   Follow mobile-first and dark mode patterns
+-   Maintain consistent transitions for color changes
+-   Use semantic class names that reflect purpose
+-   Implement backdrop blur with caution for performance
 
 These guidelines ensure consistent, accessible, and maintainable color usage across the Travel-Rizz application.

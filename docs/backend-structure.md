@@ -7,26 +7,24 @@ The Travel-Rizz backend is structured around Next.js API routes and Edge Functio
 ## API Routes Structure
 
 ### Directory Organization
-```
-/pages/api/
-├── chat/
-│   ├── index.ts        # Main chat endpoint
-│   ├── quick-response.ts
-│   └── stream.ts       # Streaming chat endpoint
-├── maps/
-│   ├── key.ts          # Maps API key endpoint
-│   └── travel-info.ts  # Travel info endpoint
-├── weather/
-│   └── historical.ts   # Historical weather data
-├── currency/
-│   └── rates.ts        # Currency conversion rates
-└── stripe/
-    ├── webhook.ts       # Payment webhooks
-    ├── verify.ts        # Payment verification
-    └── create-checkout-session.ts
-```
+
+-   **`pages/api/`**: This directory contains all backend API routes.
+    -   `chat/`: Handles all chat-related logic.
+        -   `chat.ts`: Main endpoint for AI chat interactions.
+        -   `quick-response.ts`: Generates quick response options for the user.
+    -   `currency/`: Handles currency conversion.
+        -   `rates.ts`: Fetches currency conversion rates.
+    -   `maps/`: Handles Google Maps API requests.
+        -   `geocode.ts`: Geocodes a location string to latitude and longitude.
+    -   `stripe/`: Handles Stripe payment integration.
+        -   `create-checkout-session.ts`: Creates a new Stripe checkout session.
+        -   `verify.ts`: Verifies a Stripe payment.
+        -   `webhook.ts`: Handles Stripe webhooks.
+    -   `weather/`: Handles weather data requests.
+        -   `historical.ts`: Fetches historical weather data.
 
 ### Route Handling Pattern
+
 ```typescript
 // Example API route structure
 export default async function handler(
@@ -59,7 +57,10 @@ export default async function handler(
 
 ## Session Management
 
+-   **Location:** `managers/session-manager.ts`
+
 ### Session Structure
+
 ```typescript
 interface TravelSession {
   // Session info
@@ -92,6 +93,7 @@ interface TravelSession {
 ```
 
 ### Session Operations
+
 ```typescript
 // Create session
 export function initializeSession(): TravelSession {
@@ -121,7 +123,10 @@ export function checkSessionValidity(): boolean {
 
 ## Payment Integration
 
+-   **Location:** `pages/api/stripe/`
+
 ### Stripe Setup
+
 ```typescript
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-01-27.acacia'
@@ -157,7 +162,10 @@ export default async function handler(
 
 ## External API Integration
 
+-   **Location:** `ai/tools.ts`
+
 ### API Client Pattern
+
 ```typescript
 // Example API client
 class ExternalAPIClient {
@@ -197,6 +205,7 @@ class ExternalAPIClient {
 ## Error Handling
 
 ### Error Types
+
 ```typescript
 enum ErrorType {
   VALIDATION = 'VALIDATION_ERROR',
@@ -214,6 +223,7 @@ interface APIError {
 ```
 
 ### Error Response Pattern
+
 ```typescript
 function handleError(error: unknown): APIError {
   if (error instanceof ValidationError) {
@@ -236,7 +246,10 @@ function handleError(error: unknown): APIError {
 
 ## Rate Limiting
 
+-   **Location:** `pages/api/stripe/webhook.ts`
+
 ### Implementation
+
 ```typescript
 const RATE_LIMIT = 100; // requests
 const TIME_WINDOW = 60 * 1000; // 1 minute
@@ -258,6 +271,7 @@ function isRateLimited(ip: string): boolean {
 ## Caching Strategy
 
 ### Implementation
+
 ```typescript
 interface CacheEntry {
   data: any;
