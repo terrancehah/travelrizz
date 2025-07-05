@@ -17,9 +17,8 @@ The Travel-Rizz backend is structured around Next.js API routes and Edge Functio
     -   `maps/`: Handles Google Maps API requests.
         -   `geocode.ts`: Geocodes a location string to latitude and longitude.
     -   `stripe/`: Handles Stripe payment integration.
-        -   `create-checkout-session.ts`: Creates a new Stripe checkout session.
-        -   `verify.ts`: Verifies a Stripe payment.
-        -   `webhook.ts`: Handles Stripe webhooks.
+        -   `verify.ts`: Verifies a Stripe payment by polling for a successful payment.
+        -   `webhook.ts`: Handles Stripe webhooks to confirm payment success.
     -   `weather/`: Handles weather data requests.
         -   `historical.ts`: Fetches historical weather data.
 
@@ -123,7 +122,17 @@ export function checkSessionValidity(): boolean {
 
 ## Payment Integration
 
--   **Location:** `pages/api/stripe/`
+-   **Location:** `components/modals/premium-upgrade-modal.tsx`, `pages/api/stripe/`
+
+### Stripe Buy Button and Polling
+
+The application uses a client-side Stripe Buy Button for handling payments. The flow is as follows:
+
+1.  A **Stripe Buy Button** is rendered in the `PremiumUpgradeModal`.
+2.  The modal generates a unique `client_reference_id` for the transaction.
+3.  The frontend polls the `/api/stripe/verify` endpoint to check for payment success.
+4.  The `/api/stripe/webhook` endpoint receives a webhook from Stripe upon successful payment and updates the session metadata.
+5.  The `/api/stripe/verify` endpoint confirms the payment success by checking the session metadata.
 
 ### Stripe Setup
 

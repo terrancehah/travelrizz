@@ -174,19 +174,18 @@ The interface adapts based on:
 
 ### Premium Flow
 
-The premium upgrade process (`pages/api/stripe/`, `components/modals/premium-upgrade-modal.tsx`) includes:
+The premium upgrade process is handled by a client-side Stripe Buy Button and a backend verification flow.
 
 **Trigger:**
-- Feature limit detection
-- Upgrade prompt
-- Benefits preview
+- Feature limit detection in the chat interface.
+- A `PremiumUpgradeModal` (`components/modals/premium-upgrade-modal.tsx`) is displayed.
 
 **Processing:**
-- Secure payment flow
-- Status verification
-- Feature activation
+- A Stripe Buy Button is rendered in the modal.
+- The frontend polls the `/api/stripe/verify` endpoint to check for payment success.
+- The `/api/stripe/webhook` endpoint receives a webhook from Stripe upon successful payment.
 
 **Confirmation:**
-- Success notification
-- Feature unlocking
-- Experience upgrade
+- The `verify` endpoint confirms the payment.
+- A `PaymentSuccessPopup` (`components/modals/payment-success-popup.tsx`) is displayed.
+- Premium features are unlocked for the user's session.
