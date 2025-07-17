@@ -16,6 +16,7 @@ import Image from 'next/image';
 import Link from "next/link"
 import { useLocalizedFont } from '@/hooks/useLocalizedFont';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 
 
 import { useGoogleMaps } from '../_app';
@@ -72,6 +73,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
         }
     });
     const [itineraryData, setItineraryData] = useState<any>(null);
+    const router = useRouter();
     const handleGenerateItinerary = async () => {
         setIsLoading(true);
         setError(null);
@@ -105,6 +107,39 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
     const [showPremiumModal, setShowPremiumModal] = useState(false);
     const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
     const tComp = useTranslations('components');
+
+    useEffect(() => {
+        if (router.query.test === 'true') {
+            const mockSession = {
+                destination: 'Tokyo, Japan',
+                startDate: '2025-08-01',
+                endDate: '2025-08-05',
+                preferences: ['culture', 'food'],
+                budget: 'moderate',
+                language: 'en',
+                transport: ['public_transport'],
+                savedPlaces: [
+                    { id: '1', displayName: { text: 'Tokyo Tower' }, formattedAddress: '4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan', dayIndex: 0, orderIndex: 0 },
+                    { id: '2', displayName: { text: 'Senso-ji Temple' }, formattedAddress: '2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan', dayIndex: 0, orderIndex: 1 },
+                    { id: '3', displayName: { text: 'Meiji Jingu' }, formattedAddress: '1-1 Yoyogikamizonocho, Shibuya City, Tokyo 151-8557, Japan', dayIndex: 1, orderIndex: 0 },
+                ],
+                currentStage: 5,
+                isPaid: true,
+            };
+
+            const session = getStoredSession() || initializeSession();
+            Object.assign(session, mockSession);
+            localStorage.setItem(SESSION_CONFIG.STORAGE_KEY, JSON.stringify(session));
+            savedPlacesManager.reset();
+            mockSession.savedPlaces.forEach(place => savedPlacesManager.addPlace(place));
+            
+            setTravelDetails(mockSession);
+            setIsDetailsReady(true);
+            setCurrentStage(5);
+            setIsPaid(true);
+            handleGenerateItinerary();
+        }
+    }, [router.query.test]);
 
     // Listener to check payment status
     useEffect(() => {
