@@ -75,11 +75,14 @@ Post form submission, users progress through four stages in the chat interface (
 - Timing suggestions
 - Place rearrangement
 
-**Stage 5: Itinerary Export and Display**
-- Final itinerary presentation
-- Export to PDF functionality
-- Comprehensive trip overview
-- Location: `components/planner/itinerary-export.tsx`
+**Stage 5: Itinerary Display and Export**
+- **Purpose**: This stage is dedicated to presenting the finalized itinerary generated in Stage 4 and providing options for export.
+- **Trigger**: Users proceed to this stage once they are satisfied with the itinerary planned in Stage 4.
+- **Key Features**:
+    - Comprehensive presentation of the day-by-day itinerary, including city information, travel details, saved places, and important reminders.
+    - Interactive map display showing all saved places.
+    - Functionality to export the entire itinerary to a PDF format (via `window.print()`).
+- **Location**: `components/planner/itinerary-export.tsx` (responsible for rendering and export functionality)
 
 ### Map Interface Evolution
 

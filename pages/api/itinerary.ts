@@ -4,6 +4,7 @@ import { generateText, tool, Output } from 'ai';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { cityInfoTool, travelDetailsTool, travelRemindersTool, emergencyContactsTool, dailyItineraryTool } from '../../ai/itinerary-tools';
+import { Place } from '../../managers/types';
 
 export const config = {
     runtime: 'edge'
@@ -14,6 +15,7 @@ interface ItineraryRequestBody {
     startDate: string;
     endDate: string;
     preferences: string[];
+    savedPlaces: Place[];
 }
 
 // Define the expected output schema matching our tool schemas
@@ -76,7 +78,7 @@ export default async function handler(req: NextRequest) {
 
     try {
         const body: ItineraryRequestBody = await req.json();
-        const { destination, startDate, endDate, preferences } = body;
+        const { destination, startDate, endDate, preferences, savedPlaces } = body;
 
         if (!destination || !startDate || !endDate) {
             return NextResponse.json({ error: 'Missing required data' }, { status: 400 });
@@ -103,7 +105,7 @@ export default async function handler(req: NextRequest) {
             travelDetails: { schema: travelDetailsTool.parameters, prompt: `Provide essential travel details (currency, safety, navigation, local tips) for ${destination}.` },
             travelReminders: { schema: travelRemindersTool.parameters, prompt: `List important travel reminders (documents, tax, etiquette, health) for a trip to ${destination}.` },
             emergencyContacts: { schema: emergencyContactsTool.parameters, prompt: `Find emergency contacts, including hospitals and the local embassy, for ${destination}.` },
-            dailyItinerary: { schema: dailyItineraryTool.parameters, prompt: `Create a detailed daily itinerary for a trip to ${destination} from ${startDate} to ${endDate}, considering these preferences: ${preferences.join(', ')}.` }
+            dailyItinerary: { schema: dailyItineraryTool.parameters, prompt: `Create a detailed daily itinerary for a trip to ${destination} from ${startDate} to ${endDate}, considering these preferences: ${preferences.join(', ')}. The user has saved the following places, which should be included in the itinerary, respecting the dayIndex and orderIndex: ${JSON.stringify(savedPlaces)}` }
         };
 
         const promises = Object.values(itineraryTools).map(({ prompt, schema }) => 

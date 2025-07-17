@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { TravelPreference, BudgetLevel, SupportedLanguage, TravelDetails, TravelSession } from '@/managers/types';
 import { Place } from '@/managers/types';
 import { getStoredSession, initializeSession, SESSION_CONFIG, checkSessionValidity, updateLastActive, getPaymentReference, setPaymentStatus, clearPaymentReference, getPaymentStatus, updateSessionLocation } from '../../managers/session-manager';
+import { savedPlacesManager } from '../../managers/saved-places-manager';
 import PaymentSuccessPopup from '../../components/modals/payment-success-popup';
 import PremiumUpgradeModal from '../../components/modals/premium-upgrade-modal';
 import { validateStageProgression } from '../../managers/stage-manager';
@@ -84,6 +85,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 startDate: travelDetails.startDate,
                 endDate: travelDetails.endDate,
                 preferences: travelDetails.preferences,
+                savedPlaces: savedPlacesManager.getPlaces(),
             })
         });
         if (response.ok) {

@@ -20,7 +20,7 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
     -   Stage 2: City introduction with local insights
     -   Stage 3: Places exploration and saving (limited in free version)
     -   Stage 4: Premium itinerary planning (requires payment)
-    -   Stage 5: Itinerary Export and Display (`components/planner/itinerary-export.tsx`)
+    -   Stage 5: Itinerary Display and Export (`components/planner/itinerary-export.tsx`) - This stage focuses on presenting the finalized itinerary from Stage 4 and enabling export to PDF.
 
 3.  **Interactive Planning Features**
     -   Real-time map integration for place visualization (`components/features/map-component.tsx`)
