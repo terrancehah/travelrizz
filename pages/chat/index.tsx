@@ -176,6 +176,9 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
         }, []);
         
     useEffect(() => {
+            if (!router.isReady) {
+                return;
+            }
             if (router.query.test === 'true') {
                 return;
             }
@@ -240,7 +243,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 setIsDetailsReady(true);
                 setCurrentStage(session.currentStage);
                 setIsPaid(session.isPaid);
-            }, [router.query.test]);
+            }, [router.query.test, router.isReady]);
 
             useEffect(() => {
                 if (!travelDetails.destination || !isDetailsReady) return;
