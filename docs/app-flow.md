@@ -82,7 +82,9 @@ Post form submission, users progress through four stages in the chat interface (
     - Comprehensive presentation of the day-by-day itinerary, including city information, travel details, saved places, and important reminders.
     - Interactive map display showing all saved places.
     - Functionality to export the entire itinerary to a PDF format (via `window.print()`).
-- **Location**: `components/planner/itinerary-export.tsx` (responsible for rendering and export functionality)
+- **Location**: The UI is defined in `components/planner/itinerary-export.tsx`.
+- **Implementation**: This is not a separate page. The `itinerary-export` component is dynamically imported and rendered within the main chat interface at `pages/chat/index.tsx` when the user reaches Stage 5.
+- **Test Mode**: A test mode can be activated by navigating to `/chat?test=true`. This will load a mock session with pre-filled data for a trip to Tokyo and display the itinerary export view.
 
 ### Map Interface Evolution
 

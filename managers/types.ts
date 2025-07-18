@@ -261,7 +261,7 @@ export interface TravelSession {
     };
     
     // Places
-    savedPlaces: any[];
+    savedPlaces: Place[];
     currentStage: number;
     
     // Metrics

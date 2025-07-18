@@ -64,6 +64,10 @@ yarn dev
 
 Visit http://localhost:3000 to use the app.
 
+### Testing
+
+To test the itinerary export and display features, you can use the built-in test mode by navigating to `/chat?test=true`. This will load a mock session with pre-filled data for a trip to Tokyo and take you directly to the final itinerary view.
+
 ## 🗂️ Project Structure
 
 The Travel-Rizz project is structured to ensure modularity, scalability, and maintainability. Key directories and files are organized as follows:

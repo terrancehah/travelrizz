@@ -101,6 +101,7 @@ Travel-Rizz is built using modern web technologies, focusing on performance, sca
 -   **Manual testing procedures**
 -   **Error monitoring**
 -   **Performance tracking**
+-   **Test Mode**: A test mode is available at `/chat?test=true` to quickly test the itinerary export and display features by loading a mock session.
 
 ### Build Tools
 

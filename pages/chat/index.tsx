@@ -119,9 +119,9 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 language: 'en',
                 transport: ['public_transport'],
                 savedPlaces: [
-                    { id: '1', displayName: { text: 'Tokyo Tower' }, formattedAddress: '4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan', dayIndex: 0, orderIndex: 0 },
-                    { id: '2', displayName: { text: 'Senso-ji Temple' }, formattedAddress: '2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan', dayIndex: 0, orderIndex: 1 },
-                    { id: '3', displayName: { text: 'Meiji Jingu' }, formattedAddress: '1-1 Yoyogikamizonocho, Shibuya City, Tokyo 151-8557, Japan', dayIndex: 1, orderIndex: 0 },
+                    { id: '1', displayName: { text: 'Tokyo Tower', languageCode: 'en' }, formattedAddress: '4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan', dayIndex: 0, orderIndex: 0 },
+                    { id: '2', displayName: { text: 'Senso-ji Temple', languageCode: 'en' }, formattedAddress: '2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan', dayIndex: 0, orderIndex: 1 },
+                    { id: '3', displayName: { text: 'Meiji Jingu', languageCode: 'en' }, formattedAddress: '1-1 Yoyogikamizonocho, Shibuya City, Tokyo 151-8557, Japan', dayIndex: 1, orderIndex: 0 },
                 ],
                 currentStage: 5,
                 isPaid: true,
@@ -176,6 +176,9 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
         }, []);
         
     useEffect(() => {
+            if (router.query.test === 'true') {
+                return;
+            }
             console.log('[Index] Checking for session');
             const session = getStoredSession();
             console.log('[Index] Retrieved session from storage:', {
@@ -237,7 +240,7 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 setIsDetailsReady(true);
                 setCurrentStage(session.currentStage);
                 setIsPaid(session.isPaid);
-            }, []);
+            }, [router.query.test]);
 
             useEffect(() => {
                 if (!travelDetails.destination || !isDetailsReady) return;
