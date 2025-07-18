@@ -137,9 +137,16 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
             setIsDetailsReady(true);
             setCurrentStage(5);
             setIsPaid(true);
-            handleGenerateItinerary();
+            // handleGenerateItinerary(); // Removed from here
         }
     }, [router.query.test]);
+
+    // New useEffect to call handleGenerateItinerary after travelDetails is ready
+    useEffect(() => {
+        if (router.query.test === 'true' && isDetailsReady && travelDetails.destination) {
+            handleGenerateItinerary();
+        }
+    }, [router.query.test, isDetailsReady, travelDetails.destination]);
 
     // Listener to check payment status
     useEffect(() => {

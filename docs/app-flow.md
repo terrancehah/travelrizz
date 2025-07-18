@@ -84,7 +84,7 @@ Post form submission, users progress through four stages in the chat interface (
     - Functionality to export the entire itinerary to a PDF format (via `window.print()`).
 - **Location**: The UI is defined in `components/planner/itinerary-export.tsx`.
 - **Implementation**: This is not a separate page. The `itinerary-export` component is dynamically imported and rendered within the main chat interface at `pages/chat/index.tsx` when the user reaches Stage 5.
-- **Test Mode**: A test mode can be activated by navigating to `/chat?test=true`. This will load a mock session with pre-filled data for a trip to Tokyo and display the itinerary export view.
+- **Test Mode**: A test mode can be activated by navigating to `/chat?test=true`. It loads a mock session with pre-filled data for a trip to Tokyo, allowing developers to bypass the initial planning stages and directly test the `itinerary-export.tsx` component in Stage 5.
 
 ### Map Interface Evolution
 

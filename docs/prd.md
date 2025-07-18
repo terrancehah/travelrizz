@@ -161,4 +161,7 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
 
 ### Testing and Debugging
 
--   **Test Mode**: The application includes a test mode that can be activated by navigating to `/chat?test=true`. This feature loads a mock session with pre-filled data for a trip to Tokyo, allowing developers to bypass the initial setup stages and directly test the itinerary export and display features (Stage 5).
+-   **Test Mode**: The application includes a test mode to facilitate rapid testing of the final itinerary features (Stage 5).
+    -   **Activation**: Navigate to `/chat?test=true`.
+    -   **Behavior**: This loads a mock `TravelSession` with pre-filled data for a trip to Tokyo, bypassing the multi-step form and initial chat stages.
+    -   **Purpose**: It allows developers to directly render and test the `components/planner/itinerary-export.tsx` component, including its layout, data mapping, and PDF export functionality.

@@ -66,7 +66,10 @@ Visit http://localhost:3000 to use the app.
 
 ### Testing
 
-To test the itinerary export and display features, you can use the built-in test mode by navigating to `/chat?test=true`. This will load a mock session with pre-filled data for a trip to Tokyo and take you directly to the final itinerary view.
+To accelerate testing of the final itinerary view, a test mode is available.
+
+- **URL**: Navigate to `/chat?test=true`.
+- **Functionality**: This bypasses the initial user flow and loads a mock trip to Tokyo, taking you directly to the itinerary display (Stage 5). It's ideal for testing the `itinerary-export.tsx` component.
 
 ## 🗂️ Project Structure
 
