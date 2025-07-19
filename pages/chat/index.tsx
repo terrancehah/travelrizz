@@ -428,7 +428,8 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                             travelChat: (await import(`../../public/locales/${locale}/travel-chat.json`)).default,
                             parameters: (await import(`../../public/locales/${locale}/parameters.json`)).default,
                             components: (await import(`../../public/locales/${locale}/components.json`)).default,
-                            itineraryplanner: (await import(`../../public/locales/${locale}/itineraryplanner.json`)).default
+                            itineraryplanner: (await import(`../../public/locales/${locale}/itineraryplanner.json`)).default,
+                            "itinerary-export": (await import(`../../public/locales/${locale}/itinerary-export.json`)).default
                         },
                         locale
                     }

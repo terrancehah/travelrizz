@@ -778,48 +778,52 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         </div>
         
         <Card className="p-6 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden">
-        {/* Decoration */}
-        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-transparent dark:from-pink-500/20 rounded-br-full"></div>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-        <div className="space-y-6">
-        <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
-        <div className="flex items-center mb-3">
-        <AlertTriangle className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.documentsVisa')}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelReminders.documents}</p>
-        </div>
-        
-        <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
-        <div className="flex items-center mb-3">
-        <CreditCard className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.taxRefund')}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelReminders.taxRefund}</p>
-        </div>
-        </div>
-        
-        <div className="space-y-6">
-        <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
-        <div className="flex items-center mb-3">
-        <Info className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">
-        {t('reminders.etiquette')}
-        </h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelReminders.etiquette}</p>
-        </div>
-        
-        <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
-        <div className="flex items-center mb-3">
-        <Umbrella className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.health')}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelReminders.health}</p>
-        </div>
-        </div>
-        </div>
+        {travelReminders ? (
+            <>
+                {/* Decoration */}
+                <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-transparent dark:from-pink-500/20 rounded-br-full"></div>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
+                <div className="flex items-center mb-3">
+                <AlertTriangle className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.documentsVisa')}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{travelReminders.documents}</p>
+                </div>
+                
+                <div className="bg-gradient-to-r from-pink-50 to-pink-100/50 dark:from-pink-900/30 dark:to-pink-800/20 p-5 rounded-lg border border-pink-200 dark:border-pink-800">
+                <div className="flex items-center mb-3">
+                <CreditCard className="h-5 w-5 mr-2 text-pink-500 dark:text-pink-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.taxRefund')}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{travelReminders.taxRefund}</p>
+                </div>
+                </div>
+                
+                <div className="space-y-6">
+                <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
+                <div className="flex items-center mb-3">
+                <Info className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">
+                {t('reminders.etiquette')}
+                </h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{travelReminders.etiquette}</p>
+                </div>
+                
+                <div className="bg-gradient-to-r from-purple-50 to-purple-100/50 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
+                <div className="flex items-center mb-3">
+                <Umbrella className="h-5 w-5 mr-2 text-purple-500 dark:text-purple-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('reminders.health')}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{travelReminders.health}</p>
+                </div>
+                </div>
+                </div>
+            </>
+        ) : renderErrorFallback("Travel Reminders")}
         </Card>
         </section>
         
