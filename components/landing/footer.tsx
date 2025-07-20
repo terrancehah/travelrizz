@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mx-auto">
         
         <div className="flex flex-col w-[100%] mx-auto space-y-4">
-        <Link href="/" title="Home" aria-label="Home" className="flex items-center space-x-1">
+        <Link href="/test-itinerary" title="Home" aria-label="Home" className="flex items-center space-x-1">
         <Image
         src="/images/travel-rizz.png"
         alt="Travel-Rizz Logo"

@@ -92,9 +92,6 @@ export default function LandingPage() {
         <Pricing />
         <Articles />
         <Footer />
-        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
-            <a href="/test-itinerary">Test Itinerary</a>
-        </div>
         </main>
         </div>
         <Analytics />

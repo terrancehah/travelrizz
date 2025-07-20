@@ -348,18 +348,22 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         
         {/* Weather Forecast */}
         <div className="flex justify-center items-center space-x-6 mt-6">
-        {cityInfo.weatherForecast.map((day, index) => (
-            <div key={index} className="text-center">
-                <div className="text-sm font-medium text-slate-600 dark:text-slate-300">{day.day}</div>
-                <div className="mt-1 w-10 h-10 mx-auto bg-gradient-to-br from-sky-400 to-indigo-400 rounded-full flex items-center justify-center text-white">
-                    {getWeatherIcon(day.icon)}
+        {cityInfo && cityInfo.weatherForecast ? (
+            cityInfo.weatherForecast.map((day, index) => (
+                <div key={index} className="text-center">
+                    <div className="text-sm font-medium text-slate-600 dark:text-slate-300">{day.day}</div>
+                    <div className="mt-1 w-10 h-10 mx-auto bg-gradient-to-br from-sky-400 to-indigo-400 rounded-full flex items-center justify-center text-white">
+                        {getWeatherIcon(day.icon)}
+                    </div>
+                    <div className="mt-1 text-lg font-bold text-slate-800 dark:text-white">{day.temp}°</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">
+                        {day.low}° / {day.high}°
+                    </div>
                 </div>
-                <div className="mt-1 text-lg font-bold text-slate-800 dark:text-white">{day.temp}°</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400">
-                    {day.low}° / {day.high}°
-                </div>
-            </div>
-        ))}
+            ))
+        ) : (
+            <div className="text-sm text-slate-500 dark:text-slate-400">Weather data not available.</div>
+        )}
         </div>
         
         </div>
@@ -384,52 +388,56 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         
         {/* City Introduction Content */}
         <Card className={`${font.text} p-8 border-0 shadow-lg bg-white dark:bg-slate-800 relative overflow-hidden`}>
-        {/* City Introduction Content Decoration */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent rounded-bl-full"></div>
-        {/* City Introduction Content in two columns */}
-        <div className="grid md:grid-cols-2 gap-8">
-        
-        {/* Left Column */}
-        <div className="space-y-6">
-        {/* About City */}
-        <div>
-        <div className="flex items-center mb-3">
-        <Info className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.about')} {tripData.destination}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{cityInfo.intro}</p>
-        </div>
-        {/* Weather & Climate */}
-        <div>
-        <div className="flex items-center mb-3">
-        <Umbrella className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.weatherClimate')}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{cityInfo.weather}</p>
-        </div>
-        </div>
-        
-        {/* Right Column */}
-        <div className="space-y-6">
-        {/* Languages Spoken */}
-        <div>
-        <div className="flex items-center mb-3">
-        <Languages className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.languagesSpoken')}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{cityInfo.language}</p>
-        </div>                            
-        {/* Population */}
-        <div>
-        <div className="flex items-center mb-3">
-        <Users className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
-        <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.population')}</h3>
-        </div>
-        <p className="text-slate-600 dark:text-slate-300">{cityInfo.population}</p>
-        </div>
-        </div>
-        
-        </div>
+        {cityInfo ? (
+            <>
+                {/* City Introduction Content Decoration */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sky-500/10 to-transparent"></div>
+                {/* City Introduction Content in two columns */}
+                <div className="grid md:grid-cols-2 gap-8">
+                
+                {/* Left Column */}
+                <div className="space-y-6">
+                {/* About City */}
+                <div>
+                <div className="flex items-center mb-3">
+                <Info className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.about')} {tripData.destination}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{cityInfo.intro}</p>
+                </div>
+                {/* Weather & Climate */}
+                <div>
+                <div className="flex items-center mb-3">
+                <Umbrella className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.weatherClimate')}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{cityInfo.weather}</p>
+                </div>
+                </div>
+                
+                {/* Right Column */}
+                <div className="space-y-6">
+                {/* Languages Spoken */}
+                <div>
+                <div className="flex items-center mb-3">
+                <Languages className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.languagesSpoken')}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{cityInfo.language}</p>
+                </div>                            
+                {/* Population */}
+                <div>
+                <div className="flex items-center mb-3">
+                <Users className="h-5 w-5 mr-2 text-sky-500 dark:text-sky-400" />
+                <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('cityInfo.population')}</h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300">{cityInfo.population}</p>
+                </div>
+                </div>
+                
+                </div>
+            </>
+        ) : renderErrorFallback("City Introduction")}
         </Card>
         </div>
         </section>
