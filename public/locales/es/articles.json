@@ -395,5 +395,84 @@
             "content": "¡Deja que nuestra IA amigable cree un cronograma de preparación personalizado según tu destino y estilo de viaje! Perfecto para viajeros ocupados durante las temporadas altas de planificación.",
             "cta": "¡Planifiquemos juntos!"
         }
+    },
+    "travelerTypes": {
+        "meta": {
+            "title": "¿Qué tipo de viajero eres? Descubre tu personalidad de viaje",
+            "description": "Explora los diferentes tipos de viajeros y encuentra tu personalidad de viaje única. Ya seas un aventurero, un entusiasta de la cultura o un amante de la comida, Travel-Rizz te ayuda a planificar el viaje perfecto.",
+            "keywords": "tipos de viajero, personalidad de viaje, viajero aventurero, entusiasta de la cultura, viaje culinario, viaje de lujo, viaje económico, nómada digital, planificación de viajes personalizada"
+        },
+        "title": "¿Qué tipo de viajero eres?",
+        "introduction": {
+            "content": "¿Alguna vez te has preguntado qué tipo de viajero eres? Desde el buscador de emociones aventurero hasta el explorador inmerso en la cultura, todos tienen un estilo de viaje único. Descubre tu personalidad de viaje y aprende cómo Travel-Rizz puede crear un itinerario personalizado que se adapte perfectamente a tu estilo."
+        },
+        "types": {
+            "adventurer": {
+                "title": "El Aventurero",
+                "description": "Vives para la emoción y siempre buscas el próximo desafío. Senderismo, tirolesa y explorar destinos remotos son tu idea de unas vacaciones perfectas.",
+                "howWeHelp": {
+                    "title": "Tu aventura, mejorada",
+                    "points": [
+                        "Descubre senderos secretos y actividades emocionantes con nuestras recomendaciones impulsadas por IA.",
+                        "Traza tus rutas en nuestro mapa interactivo y consulta el clima en tiempo real para empacar perfectamente."
+                    ]
+                }
+            },
+            "cultural": {
+                "title": "El Entusiasta de la Cultura",
+                "description": "Te sumerges en la historia, el arte y las tradiciones locales. Museos, sitios históricos y festivales culturales son tus visitas obligadas.",
+                "howWeHelp": {
+                    "title": "Sumérgete en el corazón de la cultura",
+                    "points": [
+                        "Obtén consejos de expertos sobre eventos y festivales culturales locales.",
+                        "Planifica tus visitas a museos y sitios sin esfuerzo con nuestro asistente de IA."
+                    ]
+                }
+            },
+            "foodie": {
+                "title": "El Amante de la Comida",
+                "description": "Tus viajes giran en torno a la comida. Desde comida callejera hasta restaurantes con estrellas Michelin, quieres probarlo todo.",
+                "howWeHelp": {
+                    "title": "Deleita tu paladar",
+                    "points": [
+                        "Descubre joyas culinarias ocultas y los lugares favoritos de los locales.",
+                        "Recibe recomendaciones personalizadas de restaurantes y platos según tus gustos."
+                    ]
+                }
+            },
+            "luxury": {
+                "title": "El Viajero de Lujo",
+                "description": "Disfrutas de las cosas buenas de la vida. Hoteles de cinco estrellas, cenas gourmet y experiencias exclusivas son tu estándar.",
+                "howWeHelp": {
+                    "title": "Lujo sin compromisos",
+                    "points": [
+                        "Reserva hoteles de primer nivel y experiencias exclusivas con trato VIP.",
+                        "Deja que nuestro asistente de IA cree un itinerario de lujo perfecto y a tu medida."
+                    ]
+                }
+            },
+            "budget": {
+                "title": "El Viajero Económico",
+                "description": "Eres un viajero inteligente que siempre encuentra las mejores ofertas. Maximizas cada euro sin sacrificar experiencias.",
+                "howWeHelp": {
+                    "title": "Viaja inteligentemente, disfruta más",
+                    "points": [
+                        "Descubre atracciones gratuitas y actividades económicas.",
+                        "Obtén consejos sobre alojamiento y transporte asequibles."
+                    ]
+                }
+            },
+            "nomad": {
+                "title": "El Nómada Digital",
+                "description": "El mundo es tu oficina. Combinas trabajo y viajes, manteniéndote productivo mientras exploras nuevos lugares.",
+                "howWeHelp": {
+                    "title": "Trabaja y viaja sin problemas",
+                    "points": [
+                        "Encuentra los mejores cafés y espacios de coworking con Wi-Fi confiable y áreas de trabajo cómodas.",
+                        "Planifica tus visitas turísticas y actividades de ocio en torno a tu horario de trabajo."
+                    ]
+                }
+            }
+        }
     }
 }

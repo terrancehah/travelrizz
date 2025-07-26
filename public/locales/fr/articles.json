@@ -395,5 +395,84 @@
             "content": "Laissez notre IA amicale créer un calendrier de préparation personnalisé basé sur votre destination et votre style de voyage ! Parfait pour les voyageurs occupés pendant les saisons de planification de pointe.",
             "cta": "Planifions ensemble !"
         }
+    },
+    "travelerTypes": {
+        "meta": {
+            "title": "Quel type de voyageur êtes-vous ? Découvrez votre personnalité de voyage",
+            "description": "Explorez les différents types de voyageurs et trouvez votre personnalité de voyage unique. Que vous soyez un aventurier, un passionné de culture ou un gourmet, Travel-Rizz vous aide à planifier le voyage parfait.",
+            "keywords": "types de voyageurs, personnalité de voyage, voyageur aventurier, passionné de culture, voyage culinaire, voyage de luxe, voyage à petit budget, nomade numérique, planification de voyage personnalisée"
+        },
+        "title": "Quel type de voyageur êtes-vous ?",
+        "introduction": {
+            "content": "Vous êtes-vous déjà demandé quel type de voyageur vous êtes ? Du chercheur de sensations fortes à l'explorateur culturel, chacun a un style de voyage unique. Découvrez votre personnalité de voyage et apprenez comment Travel-Rizz peut créer un itinéraire personnalisé qui correspond parfaitement à votre style."
+        },
+        "types": {
+            "adventurer": {
+                "title": "L'Aventurier",
+                "description": "Vous vivez pour le frisson et cherchez toujours le prochain défi. Randonnée, tyrolienne et exploration de destinations reculées sont votre idée de vacances parfaites.",
+                "howWeHelp": {
+                    "title": "Votre aventure, améliorée",
+                    "points": [
+                        "Découvrez des sentiers secrets et des activités palpitantes grâce à nos recommandations basées sur l'IA.",
+                        "Tracez vos itinéraires sur notre carte interactive et consultez la météo en temps réel pour un emballage parfait."
+                    ]
+                }
+            },
+            "cultural": {
+                "title": "Le Passionné de Culture",
+                "description": "Vous vous immergez dans l'histoire, l'art et les traditions locales. Les musées, les sites historiques et les festivals culturels sont vos incontournables.",
+                "howWeHelp": {
+                    "title": "Plongez au cœur de la culture",
+                    "points": [
+                        "Obtenez des conseils d'initiés sur les événements et festivals culturels locaux.",
+                        "Planifiez vos visites de musées et de sites sans effort avec notre assistant IA."
+                    ]
+                }
+            },
+            "foodie": {
+                "title": "Le Gourmet",
+                "description": "Vos voyages tournent autour de la nourriture. De la street food aux restaurants étoilés Michelin, vous voulez tout goûter.",
+                "howWeHelp": {
+                    "title": "Régalez vos papilles",
+                    "points": [
+                        "Découvrez des joyaux culinaires cachés et les endroits préférés des locaux.",
+                        "Recevez des recommandations personnalisées de restaurants et de plats en fonction de vos goûts."
+                    ]
+                }
+            },
+            "luxury": {
+                "title": "Le Voyageur de Luxe",
+                "description": "Vous appréciez les belles choses de la vie. Hôtels cinq étoiles, restaurants gastronomiques et expériences exclusives sont votre norme.",
+                "howWeHelp": {
+                    "title": "Le luxe sans compromis",
+                    "points": [
+                        "Réservez des hôtels de premier ordre et des expériences exclusives avec un traitement VIP.",
+                        "Laissez notre assistant IA créer un itinéraire de luxe sur mesure et sans faille."
+                    ]
+                }
+            },
+            "budget": {
+                "title": "Le Voyageur à Petit Budget",
+                "description": "Vous êtes un voyageur avisé qui trouve toujours les meilleures offres. Vous maximisez chaque euro sans sacrifier les expériences.",
+                "howWeHelp": {
+                    "title": "Voyagez intelligemment, profitez plus",
+                    "points": [
+                        "Découvrez des attractions gratuites et des activités économiques.",
+                        "Obtenez des conseils sur les hébergements et les transports économiques."
+                    ]
+                }
+            },
+            "nomad": {
+                "title": "Le Nomade Numérique",
+                "description": "Le monde est votre bureau. Vous combinez travail et voyages, en restant productif tout en explorant de nouveaux endroits.",
+                "howWeHelp": {
+                    "title": "Travaillez et voyagez en toute simplicité",
+                    "points": [
+                        "Trouvez les meilleurs cafés et espaces de coworking avec un Wi-Fi fiable et des espaces de travail confortables.",
+                        "Planifiez vos visites touristiques et vos activités de loisirs autour de votre emploi du temps."
+                    ]
+                }
+            }
+        }
     }
 }

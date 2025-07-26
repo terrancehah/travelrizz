@@ -395,5 +395,84 @@
             "content": "Lassen Sie unsere freundliche KI einen personalisierten Vorbereitungszeitplan basierend auf Ihrem Ziel und Reisestil erstellen! Perfekt für vielbeschäftigte Reisende in Spitzenplanungszeiten.",
             "cta": "Lassen Sie uns zusammen planen!"
         }
+    },
+    "travelerTypes": {
+        "meta": {
+            "title": "Welcher Reisetyp sind Sie? Entdecken Sie Ihre Reisepersönlichkeit",
+            "description": "Entdecken Sie die verschiedenen Reisetypen und finden Sie Ihre einzigartige Reisepersönlichkeit. Ob Abenteurer, Kulturliebhaber oder Feinschmecker, Travel-Rizz hilft Ihnen, die perfekte Reise zu planen.",
+            "keywords": "Reisetypen, Reisepersönlichkeit, Abenteurer, Kulturliebhaber, kulinarische Reisen, Luxusreisen, Budget-Reisen, digitaler Nomade, personalisierte Reiseplanung"
+        },
+        "title": "Welcher Reisetyp sind Sie?",
+        "introduction": {
+            "content": "Haben Sie sich jemals gefragt, welcher Reisetyp Sie sind? Vom abenteuerlustigen Nervenkitzel-Suchenden bis zum kulturbegeisterten Entdecker hat jeder einen einzigartigen Reisestil. Entdecken Sie Ihre Reisepersönlichkeit und erfahren Sie, wie Travel-Rizz Ihnen einen personalisierten Reiseplan erstellen kann, der perfekt zu Ihrem Stil passt."
+        },
+        "types": {
+            "adventurer": {
+                "title": "Der Abenteurer",
+                "description": "Sie leben für den Nervenkitzel und suchen immer nach der nächsten Herausforderung. Wandern, Ziplining und die Erkundung abgelegener Ziele sind Ihre Vorstellung von einem perfekten Urlaub.",
+                "howWeHelp": {
+                    "title": "Ihr Abenteuer, verbessert",
+                    "points": [
+                        "Entdecken Sie geheime Pfade und aufregende Aktivitäten mit unseren KI-gestützten Empfehlungen.",
+                        "Planen Sie Ihre Routen auf unserer interaktiven Karte und überprüfen Sie das Echtzeit-Wetter für das perfekte Packen."
+                    ]
+                }
+            },
+            "cultural": {
+                "title": "Der Kulturliebhaber",
+                "description": "Sie tauchen in Geschichte, Kunst und lokale Traditionen ein. Museen, historische Stätten und Kulturfestivals sind für Sie ein Muss.",
+                "howWeHelp": {
+                    "title": "Tauchen Sie ins Herz der Kultur ein",
+                    "points": [
+                        "Erhalten Sie Insidertipps zu lokalen Kulturveranstaltungen und Festivals.",
+                        "Planen Sie Ihre Museums- und Stättenbesuche mühelos mit unserem KI-Assistenten."
+                    ]
+                }
+            },
+            "foodie": {
+                "title": "Der Feinschmecker",
+                "description": "Ihre Reisen drehen sich ums Essen. Von Street Food bis zu Michelin-Sterne-Restaurants, Sie wollen alles probieren.",
+                "howWeHelp": {
+                    "title": "Verwöhnen Sie Ihren Gaumen",
+                    "points": [
+                        "Entdecken Sie versteckte kulinarische Juwelen und lokale Lieblingsorte.",
+                        "Erhalten Sie personalisierte Restaurant- und Gerichtempfehlungen basierend auf Ihrem Geschmack."
+                    ]
+                }
+            },
+            "luxury": {
+                "title": "Der Luxusreisende",
+                "description": "Sie genießen die feineren Dinge des Lebens. Fünf-Sterne-Hotels, Gourmet-Restaurants und exklusive Erlebnisse sind Ihr Standard.",
+                "howWeHelp": {
+                    "title": "Luxus ohne Kompromisse",
+                    "points": [
+                        "Buchen Sie erstklassige Hotels und exklusive Erlebnisse mit VIP-Behandlung.",
+                        "Lassen Sie unseren KI-Assistenten einen nahtlosen, auf Sie zugeschnittenen Luxus-Reiseplan erstellen."
+                    ]
+                }
+            },
+            "budget": {
+                "title": "Der Budget-Reisende",
+                "description": "Sie sind ein kluger Reisender, der immer die besten Angebote findet. Sie maximieren jeden Euro, ohne auf Erlebnisse zu verzichten.",
+                "howWeHelp": {
+                    "title": "Reisen Sie clever, genießen Sie mehr",
+                    "points": [
+                        "Entdecken Sie kostenlose Attraktionen und preiswerte Aktivitäten.",
+                        "Erhalten Sie Tipps für budgetfreundliche Unterkünfte und Transportmöglichkeiten."
+                    ]
+                }
+            },
+            "nomad": {
+                "title": "Der digitale Nomade",
+                "description": "Die Welt ist Ihr Büro. Sie kombinieren Arbeit mit Reisen und bleiben produktiv, während Sie neue Orte erkunden.",
+                "howWeHelp": {
+                    "title": "Arbeiten und reisen Sie nahtlos",
+                    "points": [
+                        "Finden Sie die besten Cafés und Coworking-Spaces mit zuverlässigem WLAN und komfortablen Arbeitsbereichen.",
+                        "Planen Sie Ihre Besichtigungen und Freizeitaktivitäten um Ihren Arbeitsplan herum."
+                    ]
+                }
+            }
+        }
     }
 }

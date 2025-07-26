@@ -395,5 +395,84 @@
             "content": "Biarkan AI mesra kami mencipta garis masa persediaan diperibadikan berdasarkan destinasi dan gaya perjalanan anda! Sempurna untuk pengembara sibuk semasa musim perancangan puncak.",
             "cta": "Mari Rancang Bersama!"
         }
+    },
+    "travelerTypes": {
+        "meta": {
+            "title": "Jenis Pelancong Apakah Anda? Temui Personaliti Perjalanan Anda",
+            "description": "Terokai pelbagai jenis pelancong dan temui personaliti perjalanan unik anda. Sama ada anda seorang pengembara, peminat budaya, atau penggemar makanan, Travel-Rizz membantu anda merancang perjalanan yang sempurna.",
+            "keywords": "jenis pelancong, personaliti perjalanan, pelancong pengembara, peminat budaya, perjalanan kuliner, perjalanan mewah, perjalanan bajet, nomad digital, perancangan perjalanan peribadi"
+        },
+        "title": "Jenis Pelancong Apakah Anda?",
+        "introduction": {
+            "content": "Pernahkah anda terfikir jenis pelancong apakah anda? Daripada pencari keseronokan yang berani kepada penjelajah budaya yang mendalam, setiap orang mempunyai gaya perjalanan yang unik. Temui personaliti perjalanan anda dan pelajari bagaimana Travel-Rizz boleh mencipta jadual perjalanan peribadi yang sepadan dengan gaya anda."
+        },
+        "types": {
+            "adventurer": {
+                "title": "Pengembara",
+                "description": "Anda hidup untuk keseronokan dan sentiasa mencari cabaran seterusnya. Mendaki, berzip-line, dan meneroka destinasi terpencil adalah idea percutian sempurna anda.",
+                "howWeHelp": {
+                    "title": "Pengembaraan Anda, Dipertingkatkan",
+                    "points": [
+                        "Temui denai rahsia dan aktiviti mendebarkan dengan cadangan berkuasa AI kami.",
+                        "Rancang laluan anda di peta interaktif kami dan semak cuaca masa nyata untuk pembungkusan yang sempurna."
+                    ]
+                }
+            },
+            "cultural": {
+                "title": "Peminat Budaya",
+                "description": "Anda menyelami sejarah, seni, dan tradisi tempatan. Muzium, tapak bersejarah, dan festival kebudayaan adalah tempat yang mesti anda lawati.",
+                "howWeHelp": {
+                    "title": "Selami Jantung Budaya",
+                    "points": [
+                        "Dapatkan petua orang dalam mengenai acara dan festival kebudayaan tempatan.",
+                        "Rancang lawatan muzium dan tapak anda dengan mudah dengan pembantu AI kami."
+                    ]
+                }
+            },
+            "foodie": {
+                "title": "Penggemar Makanan",
+                "description": "Perjalanan anda berkisar tentang makanan. Dari makanan jalanan hingga restoran berbintang Michelin, anda mahu merasai semuanya.",
+                "howWeHelp": {
+                    "title": "Manjakan Selera Anda",
+                    "points": [
+                        "Temui permata masakan tersembunyi dan kegemaran tempatan.",
+                        "Dapatkan cadangan restoran dan hidangan peribadi berdasarkan citarasa anda."
+                    ]
+                }
+            },
+            "luxury": {
+                "title": "Pelancong Mewah",
+                "description": "Anda menghargai perkara-perkara yang lebih baik dalam hidup. Hotel lima bintang, santapan gourmet, dan pengalaman eksklusif adalah standard anda.",
+                "howWeHelp": {
+                    "title": "Mewah Tanpa Kompromi",
+                    "points": [
+                        "Tempah hotel bertaraf tinggi dan pengalaman eksklusif dengan layanan VIP.",
+                        "Biarkan pembantu AI kami mencipta jadual perjalanan mewah yang lancar dan disesuaikan."
+                    ]
+                }
+            },
+            "budget": {
+                "title": "Pelancong Bajet",
+                "description": "Anda seorang pengembara yang bijak yang sentiasa mencari tawaran terbaik. Anda memaksimumkan setiap ringgit tanpa mengorbankan pengalaman.",
+                "howWeHelp": {
+                    "title": "Perjalanan Bijak, Nikmati Lebih Banyak",
+                    "points": [
+                        "Temui tarikan percuma dan aktiviti mesra bajet.",
+                        "Dapatkan petua mengenai penginapan dan pengangkutan yang berpatutan."
+                    ]
+                }
+            },
+            "nomad": {
+                "title": "Nomad Digital",
+                "description": "Dunia adalah pejabat anda. Anda menggabungkan kerja dan perjalanan, kekal produktif sambil meneroka tempat-tempat baru.",
+                "howWeHelp": {
+                    "title": "Bekerja & Melancong dengan Lancar",
+                    "points": [
+                        "Cari kafe dan ruang kerja bersama terbaik dengan Wi-Fi yang boleh dipercayai dan ruang kerja yang selesa.",
+                        "Rancang persiaran dan aktiviti riadah anda mengikut jadual kerja anda."
+                    ]
+                }
+            }
+        }
     }
 }

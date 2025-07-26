@@ -395,5 +395,84 @@
             "content": "Nechte naši přátelskou AI vytvořit personalizovaný časový plán přípravy na základě vaší destinace a cestovního stylu! Perfektní pro zaneprázdněné cestovatele během špičkových plánovacích sezón.",
             "cta": "Pojďme plánovat společně!"
         }
+    },
+    "travelerTypes": {
+        "meta": {
+            "title": "Jaký jste typ cestovatele? Objevte svou cestovní osobnost",
+            "description": "Prozkoumejte různé typy cestovatelů a najděte svou jedinečnou cestovní osobnost. Ať už jste dobrodruh, kulturní průzkumník nebo gurmán, Travel-Rizz vám pomůže naplánovat dokonalý výlet.",
+            "keywords": "typy cestovatelů, cestovní osobnost, dobrodruh, kulturní průzkumník, gurmánské cestování, luxusní cestování, nízkorozpočtové cestování, digitální nomád, personalizované plánování cest"
+        },
+        "title": "Jaký jste typ cestovatele?",
+        "introduction": {
+            "content": "Přemýšleli jste někdy, jaký jste typ cestovatele? Od dobrodruhů hledajících vzrušení po kulturní nadšence, každý má jedinečný styl cestování. Objevte svou cestovní osobnost a zjistěte, jak vám Travel-Rizz může vytvořit personalizovaný itinerář, který dokonale odpovídá vašemu stylu."
+        },
+        "types": {
+            "adventurer": {
+                "title": "Dobrodruh",
+                "description": "Žijete pro vzrušení a vždy hledáte další výzvu. Pěší turistika, ziplining a objevování odlehlých destinací jsou vaší představou ideální dovolené.",
+                "howWeHelp": {
+                    "title": "Vaše dobrodružství, vylepšené",
+                    "points": [
+                        "Objevte tajné stezky a adrenalinové aktivity s našimi doporučeními poháněnými AI.",
+                        "Naplánujte si trasy na naší interaktivní mapě a zkontrolujte počasí v reálném čase pro dokonalé balení."
+                    ]
+                }
+            },
+            "cultural": {
+                "title": "Kulturní průzkumník",
+                "description": "Ponoříte se do historie, umění a místních tradic. Muzea, historické památky a kulturní festivaly jsou pro vás nutností.",
+                "howWeHelp": {
+                    "title": "Ponořte se do srdce kultury",
+                    "points": [
+                        "Získejte zasvěcené tipy na místní kulturní akce a festivaly.",
+                        "Snadno si naplánujte návštěvy muzeí a historických památek s naším AI asistentem."
+                    ]
+                }
+            },
+            "foodie": {
+                "title": "Gurmán",
+                "description": "Vaše cesty se točí kolem jídla. Od pouličního jídla po restaurace s michelinskou hvězdou, chcete ochutnat všechno.",
+                "howWeHelp": {
+                    "title": "Uspokojte své chuťové buňky",
+                    "points": [
+                        "Objevte skryté kulinářské skvosty a místní oblíbené restaurace.",
+                        "Získejte personalizovaná doporučení restaurací a jídel na základě vašich chuťových preferencí."
+                    ]
+                }
+            },
+            "luxury": {
+                "title": "Luxusní cestovatel",
+                "description": "Užíváte si jemnější stránky života. Pětihvězdičkové hotely, gurmánské restaurace a exkluzivní zážitky jsou vaším standardem.",
+                "howWeHelp": {
+                    "title": "Luxus bez kompromisů",
+                    "points": [
+                        "Rezervujte si nejlepší hotely a exkluzivní zážitky s VIP zacházením.",
+                        "Nechte našeho AI asistenta vytvořit bezproblémový luxusní itinerář přizpůsobený vám."
+                    ]
+                }
+            },
+            "budget": {
+                "title": "Nízkorozpočtový cestovatel",
+                "description": "Jste chytrý cestovatel, který vždy najde nejlepší nabídky. Maximalizujete každý dolar, aniž byste obětovali zážitky.",
+                "howWeHelp": {
+                    "title": "Cestujte chytře, užívejte si více",
+                    "points": [
+                        "Objevte bezplatné atrakce a cenově výhodné aktivity.",
+                        "Získejte tipy na nízkorozpočtové ubytování a dopravní možnosti."
+                    ]
+                }
+            },
+            "nomad": {
+                "title": "Digitální nomád",
+                "description": "Svět je vaše kancelář. Kombinujete práci s cestováním, zůstáváte produktivní a zároveň objevujete nová místa.",
+                "howWeHelp": {
+                    "title": "Pracujte a cestujte bez problémů",
+                    "points": [
+                        "Najděte nejlepší kavárny a coworkingové prostory se spolehlivým Wi-Fi a pohodlným pracovním prostředím.",
+                        "Naplánujte si prohlídky památek a volnočasové aktivity kolem svého pracovního rozvrhu."
+                    ]
+                }
+            }
+        }
     }
 }
