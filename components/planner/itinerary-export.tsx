@@ -121,6 +121,25 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
     const [isPaid, setIsPaid] = useState<boolean>(false);
     const [currentStage, setCurrentStage] = useState<number>(1);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [apiKey, setApiKey] = useState('');
+
+    useEffect(() => {
+        const fetchMapsApiKey = async () => {
+            try {
+                const response = await fetch('/api/maps/places-key');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch API key');
+                }
+                const data = await response.json();
+                if (data.key) {
+                    setApiKey(data.key);
+                }
+            } catch (error) {
+                console.error("Error fetching Google Maps API key:", error);
+            }
+        };
+        fetchMapsApiKey();
+    }, []);
     
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
@@ -588,9 +607,9 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
             />
             
             {/* Conditional actual photo */}
-            {place.photos && place.photos.length > 0 && (
+            {place.photos && place.photos.length > 0 && apiKey && (
                 <img
-                src={`/api/places/photos?photoName=${place.photos[currentPhotoIndex].name}&maxWidth=400`}
+                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[currentPhotoIndex].name.split('/')[1]}&key=${apiKey}`}
                 onError={() => handleImageError(place.id)}
                 className="w-full h-full object-cover absolute inset-0"
                 alt=""
