@@ -119,9 +119,60 @@ export default function ChatPage({ messages, locale }: { messages: any, locale: 
                 language: 'en',
                 transport: ['public_transport'],
                 savedPlaces: [
-                    { id: '1', displayName: { text: 'Tokyo Tower', languageCode: 'en' }, formattedAddress: '4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan', dayIndex: 0, orderIndex: 0 },
-                    { id: '2', displayName: { text: 'Senso-ji Temple', languageCode: 'en' }, formattedAddress: '2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan', dayIndex: 0, orderIndex: 1 },
-                    { id: '3', displayName: { text: 'Meiji Jingu', languageCode: 'en' }, formattedAddress: '1-1 Yoyogikamizonocho, Shibuya City, Tokyo 151-8557, Japan', dayIndex: 1, orderIndex: 0 },
+                    {
+                        id: 'ChIJN1t_tDeuEmsRUsoyG83frY4',
+                        displayName: { text: 'Tokyo Tower', languageCode: 'en' },
+                        formattedAddress: '4 Chome-2-8 Shibakoen, Minato City, Tokyo 105-0011, Japan',
+                        location: { latitude: 35.6585805, longitude: 139.7454329 },
+                        photos: [{
+                            name: 'places/ChIJN1t_tDeuEmsRUsoyG83frY4/photos/AUacShi_M-t5aQK2PS22Gk4E2d43v8aWd22f3c9a9g',
+                            widthPx: 4032,
+                            heightPx: 3024,
+                            authorAttributions: [{
+                                displayName: 'User',
+                                uri: '//maps.google.com/maps/contrib/102838089695428168000/reviews',
+                                photoUri: '//lh3.googleusercontent.com/a-/AD_cMMQ_Z-g'
+                            }]
+                        }],
+                        dayIndex: 0,
+                        orderIndex: 0
+                    },
+                    {
+                        id: 'ChIJH728e7-MGGARoO3s2pYk3tI',
+                        displayName: { text: 'Sensō-ji', languageCode: 'en' },
+                        formattedAddress: '2 Chome-3-1 Asakusa, Taito City, Tokyo 111-0032, Japan',
+                        location: { latitude: 35.714765, longitude: 139.796655 },
+                        photos: [{
+                            name: 'places/ChIJH728e7-MGGARoO3s2pYk3tI/photos/AUacShh3_A0',
+                            widthPx: 4032,
+                            heightPx: 3024,
+                            authorAttributions: [{
+                                displayName: 'User',
+                                uri: '//maps.google.com/maps/contrib/102838089695428168000/reviews',
+                                photoUri: '//lh3.googleusercontent.com/a-/AD_cMMQ_Z-g'
+                            }]
+                        }],
+                        dayIndex: 0,
+                        orderIndex: 1
+                    },
+                    {
+                        id: 'ChIJ1_64s4iLGGARd-l-2fS22fI',
+                        displayName: { text: 'Meiji Jingu', languageCode: 'en' },
+                        formattedAddress: '1-1 Yoyogikamizonocho, Shibuya City, Tokyo 151-8557, Japan',
+                        location: { latitude: 35.676398, longitude: 139.699329 },
+                        photos: [{
+                            name: 'places/ChIJ1_64s4iLGGARd-l-2fS22fI/photos/AUacShg3_A0',
+                            widthPx: 4032,
+                            heightPx: 3024,
+                            authorAttributions: [{
+                                displayName: 'User',
+                                uri: '//maps.google.com/maps/contrib/102838089695428168000/reviews',
+                                photoUri: '//lh3.googleusercontent.com/a-/AD_cMMQ_Z-g'
+                            }]
+                        }],
+                        dayIndex: 1,
+                        orderIndex: 0
+                    }
                 ],
                 currentStage: 5,
                 isPaid: true,
