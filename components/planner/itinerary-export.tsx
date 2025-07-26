@@ -504,7 +504,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <CreditCard className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
         <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('travelDetails.currencyInfo')}</h3>
         </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.currency}</p>
+        <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails?.currency}</p>
         </div>
         
         {/* Safety Tips */}
@@ -513,7 +513,7 @@ export default function ItineraryExport({ itineraryData }: { itineraryData: Itin
         <AlertTriangle className="h-5 w-5 mr-2 text-amber-500 dark:text-amber-400" />
         <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{t('travelDetails.safetyTips')}</h3>
         </div>
-        <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails.safety}</p>
+        <p className="text-slate-600 dark:text-slate-300">{travelNotableDetails?.safety}</p>
         </div>
         
         {/* Local Tips */}
