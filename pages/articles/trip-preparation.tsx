@@ -231,9 +231,10 @@ export default function TripPreparation() {
                     </article>
 
                     <ArticleNavigation
-                        prev={{
-                            title: t('service.title') || 'Service Guide',
-                            href: '/articles/service-guide',
+                        prev={{ href: '/articles/service-guide', title: t('service.meta.title') }}
+                        next={{
+                            title: t('travelerTypes.title'),
+                            href: '/articles/traveler-types'
                         }}
                     />
                 </div>

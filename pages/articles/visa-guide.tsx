@@ -236,11 +236,10 @@ export default function VisaGuide() {
                     </article>
 
                     <ArticleNavigation 
-                        next={{
-                            title: t('service.title'),
-                            href: '/articles/service-guide'
-                        }}
+                        prev={{ href: '/articles/traveler-types', title: t('travelerTypes.meta.title') }}
+                        next={{ href: '/articles/service-guide', title: t('service.meta.title') }}
                     />
+
                 </div>
                 <Footer />
             </div>

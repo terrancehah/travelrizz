@@ -299,6 +299,94 @@
             "button": "Let’s Plan Together!"
         }
     },
+    "travelerTypes": {
+        "meta": {
+            "title": "What Type of Traveler Are You? Discover Your Travel Persona",
+            "description": "Explore different traveler types and find your unique travel persona. Whether you're an adventurer, a cultural explorer, or a foodie, Travel-Rizz helps you plan the perfect trip.",
+            "keywords": "traveler types, travel persona, adventurer, cultural explorer, foodie traveler, luxury travel, budget travel, digital nomad, personalized travel planning"
+        },
+        "title": "What Type of Traveler Are You?",
+        "introduction": {
+            "content": "Ever wondered what kind of traveler you are? From thrill-seeking adventurers to culture-loving explorers, everyone has a unique travel style. Discover your travel persona and learn how Travel-Rizz can create a personalized itinerary that perfectly matches your vibe."
+        },
+        "types": {
+            "adventurer": {
+                "title": "The Adventurer",
+                "description": "You crave excitement and are always looking for the next thrill. Hiking, zip-lining, and exploring off-the-beaten-path destinations are your idea of a perfect vacation.",
+                "howWeHelp": {
+                    "title": "Your Adventure, Amplified",
+                    "points": [
+                        "Unearth secret trails and thrilling activities with our AI-powered recommendations.",
+                        "Plan your route on our interactive map and check real-time weather to pack perfectly."
+                    ]
+                }
+            },
+            "cultural": {
+                "title": "The Cultural Explorer",
+                "description": "You travel to immerse yourself in new cultures. You love visiting museums, historical sites, and local markets, and you're always eager to learn about the traditions of your destination.",
+                "howWeHelp": {
+                    "title": "Your Passport to Culture",
+                    "points": [
+                        "Go beyond the guidebooks with our AI's rich stories and local cultural insights.",
+                        "Discover and organize visits to bustling markets and serene temples with our simple planner."
+                    ]
+                }
+            },
+            "foodie": {
+                "title": "The Foodie",
+                "description": "Your travels are guided by your taste buds. You seek out the best culinary experiences, from street food stalls to Michelin-starred restaurants, and you love to discover new flavors.",
+                "howWeHelp": {
+                    "title": "A Feast for the Senses",
+                    "points": [
+                        "Let your taste buds lead the way to hidden gems and celebrated restaurants with our smart recommendations.",
+                        "Navigate local food scenes like a pro with our interactive map and dine wisely with the currency converter."
+                    ]
+                }
+            },
+            "luxury": {
+                "title": "The Luxury Traveler",
+                "description": "You appreciate the finer things in life. Your ideal trip includes five-star hotels, gourmet dining, and exclusive experiences. Comfort and quality are your top priorities.",
+                "howWeHelp": {
+                    "title": "Luxury, Redefined",
+                    "points": [
+                        "Unlock a world of exclusivity with our premium service, from boutique hotels to private tours.",
+                        "Consider our AI your personal concierge, ready to handle the fine details for a seamless journey."
+                    ]
+                }
+            },
+            "budget": {
+                "title": "The Budget Traveler",
+                "description": "You're a master of making every dollar count. You love finding the best deals, staying in hostels, and exploring the world without breaking the bank.",
+                "howWeHelp": {
+                    "title": "Travel Smarter, Not Harder",
+                    "points": [
+                        "Tell us your budget, and we'll find you charming hostels, delicious cheap eats, and amazing free attractions.",
+                        "Save money on the go with our currency converter and cost-effective route planning."
+                    ]
+                }
+            },
+            "nomad": {
+                "title": "The Digital Nomad",
+                "description": "You've mastered the art of working from anywhere. You travel slowly, immersing yourself in local life while staying connected to your work. You seek out destinations with great Wi-Fi and a vibrant community.",
+                "howWeHelp": {
+                    "title": "Your World, Your Office",
+                    "points": [
+                        "Find the perfect workspace with reliable Wi-Fi and schedule your work and play with our flexible planner.",
+                        "Settle in like a local with insights on everything from weather patterns to living costs."
+                    ]
+                }
+            }
+        },
+        "howWeHelp": {
+            "title": "How Travel-Rizz Helps Every Traveler",
+            "content": "No matter your travel style, Travel-Rizz is here to help you plan the perfect trip. Our AI-powered travel assistant understands your unique preferences and creates a personalized itinerary that's just right for you. From finding the best adventure activities to booking the most authentic cultural experiences, we've got you covered."
+        },
+        "cta": {
+            "title": "Ready to Plan Your Next Adventure?",
+            "content": "Discover how Travel-Rizz can create a personalized itinerary that matches your travel persona. Let's start planning your dream trip today!",
+            "button": "Create Your Personalized Itinerary"
+        }
+    },
     "preparation": {
         "meta": {
             "title": "Your Ultimate Travel Preparation Guide for 2025",

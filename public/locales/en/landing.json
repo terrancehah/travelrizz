@@ -75,6 +75,10 @@
     "preparation": {
       "title": "Trip Preparation Guide",
       "description": "Essential checklist and timeline for planning your perfect trip."
+    },
+    "travelerTypes": {
+      "title": "What Kind of Traveler Are You?",
+      "description": "Discover your travel persona and how we can help you plan the perfect trip."
     }
   },
   "footer": {

@@ -16,6 +16,12 @@ export default function Articles() {
 
     const articles: ArticleCard[] = [
         {
+            title: t('articles.travelerTypes.title'),
+            description: t('articles.travelerTypes.description'),
+            href: '/articles/traveler-types',
+            icon: '🧑‍🤝‍🧑'
+        },
+        {
             title: t('articles.visa.title'),
             description: t('articles.visa.description'),
             href: '/articles/visa-guide',
