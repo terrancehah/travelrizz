@@ -157,84 +157,49 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
     }
 
     useEffect(() => {
-        const loadGoogleMapsScript = async () => {
+        const initMap = async () => {
             try {
-                const fetchMapsApiKey = async () => {
-                    const response = await fetch('/api/maps/places-key');
-                    const data = await response.json();
-                    console.log("[DEBUG] Response from /api/maps/places-key:", data);
-                    console.log("[DEBUG] Extracted API key:", data.key);
-                    return data.key;
-                };
+                const response = await fetch('/api/maps/places-key');
+                if (!response.ok) throw new Error('Failed to fetch API key');
+                const { key } = await response.json();
+                if (!key) throw new Error('API key not found');
+                apiKeyRef.current = key;
 
-                const apiKey = await fetchMapsApiKey();
-                apiKeyRef.current = apiKey;
-                console.log("[DEBUG] API key used to load Google Maps script:", apiKey);
+                await loadGoogleMapsScript(key);
 
-                if (!apiKey) {
-                    console.error("[ERROR] Google Maps API key is missing or undefined! Script will not be loaded.");
-                    setError('Google Maps API key is missing.');
-                    setIsLoading(false);
-                    return;
-                }
-
-                const response = await fetch('/api/maps/geocode', {
+                const geoResponse = await fetch('/api/maps/geocode', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ address: city })
                 });
+                if (!geoResponse.ok) throw new Error('Failed to geocode');
+                const { location } = await geoResponse.json();
+                if (!location) throw new Error('Location not found');
 
-                if (!response.ok) {
-                    throw new Error('Failed to initialize map');
-                }
+                const mapInstance = new window.google.maps.Map(mapRef.current!, {
+                    center: { lat: location.latitude, lng: location.longitude },
+                    zoom: 13,
+                    mapId: getMapId(theme)
+                });
 
-                const data = await response.json();
-                if (!data.location) {
-                    throw new Error('No location data found');
-                }
+                mapInstanceRef.current = mapInstance;
+                setMap(mapInstance);
+                setIsMapReady(true);
+                finishMapSetup(mapInstance, key);
 
-                window.setupMapInstance = () => {
-                    const mapInstance = new google.maps.Map(mapRef.current!, {
-                        center: { lat: data.location.latitude, lng: data.location.longitude },
-                        zoom: 13,
-                        styles: theme === 'dark' ? [] : [],
-                        mapId: theme === 'dark' ? '61462f35959f2552' : '32620e6bdcb7e236'
-                    });
-                    mapInstanceRef.current = mapInstance;
-                    setMap(mapInstance);
-                    setIsMapReady(true);
-                    setIsLoading(false);
-
-                    if (apiKeyRef.current) {
-                        finishMapSetup(mapInstance, apiKeyRef.current);
-                    } else {
-                        console.error("[MapComponent] API key not available when window.setupMapInstance was called by script. Cannot initialize map manager fully.");
-                        setError("Failed to initialize map completely (API key missing for manager setup).");
-                    }
-                };
-
-                const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&map_ids=32620e6bdcb7e236,61462f35959f2552&callback=setupMapInstance`;
-                script.async = true;
-                script.defer = true;
-                document.head.appendChild(script);
-            } catch (error) {
-                console.error('Error loading map:', error);
-                setError('Failed to initialize map');
+            } catch (err) {
+                console.error("Error initializing map:", err);
+                setError(err instanceof Error ? err.message : 'An unknown error occurred');
+            } finally {
                 setIsLoading(false);
             }
         };
 
-        loadGoogleMapsScript();
+        if (city) {
+            initMap();
+        }
 
-        return () => {
-            if (window.setupMapInstance) {
-                delete window.setupMapInstance;
-            }
-        };
-    }, [city, theme, finishMapSetup]);
+    }, [city, theme]);
 
     useEffect(() => {
         if (!isMapReady) return;
@@ -607,17 +572,26 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
     }, [theme]);
 
     const getLocation = async (city: string) => {
-        const geocoder = new window.google.maps.Geocoder();
-        return new Promise<google.maps.LatLng>((resolve, reject) => {
-            geocoder.geocode({ address: city }, (results, status) => {
-                if (status !== 'OK' || !results?.[0]?.geometry?.location) {
-                    console.error('Geocoding failed:', status);
-                    reject('Could not find location for ' + city);
-                } else {
-                    resolve(results[0].geometry.location);
-                }
-            });
+        const response = await fetch('/api/maps/geocode', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ address: city }),
         });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ error: 'Failed to geocode address' }));
+            console.error('Geocoding failed:', errorData.error);
+            throw new Error(`Could not find location for ${city}`);
+        }
+
+        const data = await response.json();
+        if (!data.location) {
+            throw new Error('No location data found in geocode response');
+        }
+
+        return new window.google.maps.LatLng(data.location.latitude, data.location.longitude);
     };
 
     const updateMarkers = () => {
