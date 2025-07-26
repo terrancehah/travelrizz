@@ -54,6 +54,8 @@ export default function TravelerTypes() {
                 <meta property="og:url" content={canonicalUrl} />
                 <meta property="og:type" content="article" />
                 <meta property="og:image" content={ogImageUrl} />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="900" />
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
@@ -136,7 +138,7 @@ export default function TravelerTypes() {
                     </article>
 
                     <ArticleNavigation 
-                        next={{ href: '/articles/visa-guide', title: t('visaGuide.meta.title') }}
+                        next={{ href: '/articles/visa-guide', title: t('visa.meta.title') }}
                     />
                 </div>
                 <Footer />
