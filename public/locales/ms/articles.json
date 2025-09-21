@@ -473,6 +473,15 @@
                     ]
                 }
             }
+        },
+        "help": {
+            "title": "Bagaimana Travel-Rizz Membantu Setiap Pelancong",
+            "content": "Tidak kira gaya perjalanan anda, Travel-Rizz di sini untuk membantu anda merancang perjalanan yang sempurna. Pembantu perjalanan berkuasa AI kami memahami keutamaan unik anda dan mencipta jadual perjalanan yang diperibadikan yang sesuai untuk anda. Daripada mencari aktiviti pengembaraan terbaik hingga menempah pengalaman budaya yang paling autentik, kami sedia membantu anda."
+        },
+        "callToAction": {
+            "title": "Bersedia untuk Merancang Pengembaraan Seterusnya?",
+            "content": "Temui bagaimana Travel-Rizz boleh mencipta jadual perjalanan yang diperibadikan yang sepadan dengan personaliti perjalanan anda. Mari mulakan merancang perjalanan impian anda hari ini!",
+            "button": "Cipta Jadual Perjalanan Diperibadikan Anda"
         }
     }
 }

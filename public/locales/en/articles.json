@@ -377,11 +377,11 @@
                 }
             }
         },
-        "howWeHelp": {
+        "help": {
             "title": "How Travel-Rizz Helps Every Traveler",
             "content": "No matter your travel style, Travel-Rizz is here to help you plan the perfect trip. Our AI-powered travel assistant understands your unique preferences and creates a personalized itinerary that's just right for you. From finding the best adventure activities to booking the most authentic cultural experiences, we've got you covered."
         },
-        "cta": {
+        "callToAction": {
             "title": "Ready to Plan Your Next Adventure?",
             "content": "Discover how Travel-Rizz can create a personalized itinerary that matches your travel persona. Let's start planning your dream trip today!",
             "button": "Create Your Personalized Itinerary"

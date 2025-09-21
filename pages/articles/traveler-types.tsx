@@ -113,25 +113,25 @@ export default function TravelerTypes() {
 
                             <div className="mb-12">
                                 <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-gray-100 mb-6">
-                                    {t('travelerTypes.howWeHelp.title')}
+                                    {t('travelerTypes.help.title')}
                                 </h2>
                                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                                    {t('travelerTypes.howWeHelp.content')}
+                                    {t('travelerTypes.help.content')}
                                 </p>
                             </div>
 
                             <div className="bg-sky-50 dark:bg-gray-800 p-8 rounded-lg text-center">
                                 <h2 className="text-3xl md:text-4xl text-gray-800 dark:text-gray-100 mb-4">
-                                    {t('travelerTypes.cta.title')}
+                                    {t('travelerTypes.callToAction.title')}
                                 </h2>
                                 <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                                    {t('travelerTypes.cta.content')}
+                                    {t('travelerTypes.callToAction.content')}
                                 </p>
                                 <Link
                                     href="/travel-form"
                                     className="inline-block bg-primary hover:bg-sky-600 dark:bg-sky-500 dark:hover:bg-sky-400 text-white px-8 py-3 rounded-lg transition-colors duration-300 text-lg font-semibold"
                                 >
-                                    {t('travelerTypes.cta.button')}
+                                    {t('travelerTypes.callToAction.button')}
                                 </Link>
                             </div>
                         </div>

@@ -473,6 +473,15 @@
                     ]
                 }
             }
+        },
+        "help": {
+            "title": "Wie Travel-Rizz Jedem Reisenden Hilft",
+            "content": "Egal welcher Reisestil, Travel-Rizz ist hier, um Ihnen bei der Planung der perfekten Reise zu helfen. Unser KI-gestützter Reiseassistent versteht Ihre einzigartigen Vorlieben und erstellt eine personalisierte Reiseroute, die perfekt für Sie ist. Von der Suche nach den besten Abenteueraktivitäten bis zur Buchung der authentischsten kulturellen Erfahrungen - wir haben Sie abgedeckt."
+        },
+        "callToAction": {
+            "title": "Bereit, Ihr Nächstes Abenteuer zu Planen?",
+            "content": "Entdecken Sie, wie Travel-Rizz eine personalisierte Reiseroute erstellen kann, die zu Ihrer Reisepersönlichkeit passt. Lassen Sie uns heute mit der Planung Ihrer Traumreise beginnen!",
+            "button": "Erstellen Sie Ihre Personalisierte Reiseroute"
         }
     }
 }

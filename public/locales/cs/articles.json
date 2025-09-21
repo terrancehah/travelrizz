@@ -473,6 +473,15 @@
                     ]
                 }
             }
+        },
+        "help": {
+            "title": "Jak Travel-Rizz Pomáhá Každému Cestovatelovi",
+            "content": "Bez ohledu na váš cestovní styl je Travel-Rizz zde, aby vám pomohl naplánovat dokonalou cestu. Náš cestovní asistent poháněný umělou inteligencí rozumí vašim jedinečným preferencím a vytváří personalizovaný itinerář, který je pro vás perfektní. Od hledání nejlepších dobrodružných aktivit až po rezervaci nejautentičtějších kulturních zážitků - máme vás pokryté."
+        },
+        "callToAction": {
+            "title": "Připraveni Naplánovat Své Další Dobrodružství?",
+            "content": "Objevte, jak Travel-Rizz může vytvořit personalizovaný itinerář, který odpovídá vaší cestovní osobnosti. Začněme dnes plánovat cestu vašich snů!",
+            "button": "Vytvořte Svůj Personalizovaný Itinerář"
         }
     }
 }

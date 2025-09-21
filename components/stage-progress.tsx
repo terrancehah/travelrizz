@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { cn } from '../lib/utils';
+import { cn } from '@/utils/cn';
 import { CheckIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 import { Info } from 'lucide-react';
 import PaymentSuccessPopup from './modals/payment-success-popup';

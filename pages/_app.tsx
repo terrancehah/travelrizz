@@ -24,7 +24,7 @@ const notoSansSC = Noto_Sans_SC({
 
 const raleway = Raleway({
     subsets: ['latin'],
-    weight: ['400', '500', '600'],
+    weight: ['300', '400', '500', '600', '700'],
     variable: '--font-raleway',
     display: 'swap',
 })
@@ -70,6 +70,7 @@ function GoogleMapsProvider({ children }: { children: React.ReactNode }) {
                     setMapsApiStatus('error');
                     return;
                 }
+
 
                 const script = document.createElement("script");
                 script.id = scriptId;

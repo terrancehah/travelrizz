@@ -45,7 +45,11 @@
         },
         "preparation": {
             "title": "Panduan Persediaan Perjalanan",
-            "description": "Senarai semak penting dan garis masa untuk merancang perjalanan sempurna anda."
+            "description": "Senarai semak dan garis masa penting untuk merancang perjalanan yang sempurna."
+        },
+        "travelerTypes": {
+            "title": "Terokai Gaya Perjalanan Anda",
+            "description": "Ketahui tentang jenis-jenis pengembara yang berbeza dan cari gaya perjalanan yang paling sesuai untuk anda."
         }
     },
     "pricing": {

@@ -473,6 +473,15 @@
                     ]
                 }
             }
+        },
+        "help": {
+            "title": "Cómo Travel-Rizz Ayuda a Cada Viajero",
+            "content": "Sin importar tu estilo de viaje, Travel-Rizz está aquí para ayudarte a planificar el viaje perfecto. Nuestro asistente de viajes impulsado por IA comprende tus preferencias únicas y crea un itinerario personalizado que es perfecto para ti. Desde encontrar las mejores actividades de aventura hasta reservar las experiencias culturales más auténticas, te tenemos cubierto."
+        },
+        "callToAction": {
+            "title": "¿Listo para Planificar tu Próxima Aventura?",
+            "content": "Descubre cómo Travel-Rizz puede crear un itinerario personalizado que coincida con tu personalidad viajera. ¡Comencemos a planificar el viaje de tus sueños hoy!",
+            "button": "Crea tu Itinerario Personalizado"
         }
     }
 }

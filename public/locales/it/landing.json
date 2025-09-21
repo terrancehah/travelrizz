@@ -74,7 +74,11 @@
         },
         "preparation": {
             "title": "Guida alla Preparazione del Viaggio",
-            "description": "Checklist essenziale e tempistica per pianificare il tuo viaggio perfetto."
+            "description": "Liste di controllo e cronologie essenziali per pianificare il viaggio perfetto."
+        },
+        "travelerTypes": {
+            "title": "Esplora il tuo Stile di Viaggio",
+            "description": "Scopri i diversi tipi di viaggiatori e trova quello che fa per te."
         }
     },
     "footer": {

@@ -73,8 +73,12 @@
             "description": "Entdecken Sie, wie unsere KI Ihnen hilft, Ihre perfekte Reiseroute zu erstellen."
         },
         "preparation": {
-            "title": "Reisevorbereitungsguide",
-            "description": "Wesentliche Checkliste und Zeitplan für die Planung Ihrer perfekten Reise."
+            "title": "Reisevorbereitungs-Leitfaden",
+            "description": "Wesentliche Checklisten und Zeitpläne für die Planung der perfekten Reise."
+        },
+        "travelerTypes": {
+            "title": "Entdecken Sie Ihren Reisestil",
+            "description": "Lernen Sie die verschiedenen Reisetypen kennen und finden Sie heraus, welcher am besten zu Ihnen passt."
         }
     },
     "footer": {

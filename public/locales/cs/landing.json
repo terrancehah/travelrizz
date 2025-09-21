@@ -74,7 +74,11 @@
         },
         "preparation": {
             "title": "Průvodce přípravou na cestu",
-            "description": "Základní kontrolní seznam a časový plán pro plánování vaší dokonalé cesty."
+            "description": "Základní kontrolní seznamy a časové osy pro plánování dokonalé cesty."
+        },
+        "travelerTypes": {
+            "title": "Objevte svůj cestovní styl",
+            "description": "Seznamte se s různými typy cestovatelů a najděte ten, který vám nejlépe vyhovuje."
         }
     },
     "footer": {

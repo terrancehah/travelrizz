@@ -75,6 +75,10 @@
         "preparation": {
             "title": "旅行准备指南",
             "description": "规划完美旅行的基本清单和时间表。"
+        },
+        "travelerTypes": {
+            "title": "探索你的旅行风格",
+            "description": "了解不同的旅行者类型，找到最适合你的旅行方式。"
         }
     },
     "footer": {

@@ -73,8 +73,12 @@
             "description": "Descubre cómo nuestra IA te ayuda a crear tu itinerario de viaje perfecto."
         },
         "preparation": {
-            "title": "Guía de Preparación para el Viaje",
-            "description": "Lista de verificación esencial y cronograma para planificar tu viaje perfecto."
+            "title": "Guía de Preparación de Viaje",
+            "description": "Listas de verificación y cronogramas esenciales para planificar el viaje perfecto."
+        },
+        "travelerTypes": {
+            "title": "Explora tu Estilo de Viaje",
+            "description": "Aprende sobre los diferentes tipos de viajeros y encuentra el que mejor se adapte a ti."
         }
     },
     "footer": {
