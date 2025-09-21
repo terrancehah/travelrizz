@@ -8,11 +8,13 @@ The Travel-Rizz application provides a seamless journey from initial travel plan
 
 Upon accessing the landing page (`pages/index.tsx`), users are introduced to Travel-Rizz through:
 
-The homepage presents four key sections:
-- Features showcase with interactive examples
-- About section explaining the platform's purpose
-- Pricing information including premium features
-- Footer with quick links and language selection
+The homepage presents six key sections:
+- A `Hero` section to welcome users.
+- An `About` section explaining the platform's purpose.
+- A `Features` showcase with interactive examples.
+- A `Pricing` section detailing free and premium tiers.
+- An `Articles` section with helpful travel guides.
+- A `Footer` with quick links and language selection.
 
 ### Multi-step Travel Form
 
@@ -30,12 +32,12 @@ The travel form (`pages/travel-form.tsx`) guides users through four essential st
 
 3.  **Travel Preferences**
     -   Six preference categories:
-        -   Culture and Heritage
+        -   Culture
         -   Nature
         -   Foodie
         -   Leisure
         -   Adventure
-        -   Arts & Museum
+        -   Arts
     -   Multiple selection allowed
     -   Visual confirmation of choices
 

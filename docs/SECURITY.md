@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in Travel-Rizz, please report it responsibly by emailing terrancehah@gmail.com.
+If you discover a security vulnerability in Travel-Rizz, please report it responsibly by using the [GitHub security tab](https://github.com/terrance-hah/travel-rizz/security/advisories).
 We will respond as quickly as possible and work with you to address the issue.
 
 ## Supported Versions

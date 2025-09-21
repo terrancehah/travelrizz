@@ -14,12 +14,22 @@ The Travel-Rizz backend is structured around Next.js API routes and Edge Functio
         -   `quick-response.ts`: Generates quick response options for the user.
     -   `currency/`: Handles currency conversion.
         -   `rates.ts`: Fetches currency conversion rates.
+    -   `itinerary.ts`: Generates the final itinerary.
     -   `maps/`: Handles Google Maps API requests.
+        -   `autocomplete.ts`: Provides city autocomplete suggestions.
         -   `geocode.ts`: Geocodes a location string to latitude and longitude.
+        -   `places-key.ts`: Provides the Google Maps API key to the frontend.
+        -   `route-matrix.ts`: Calculates routes between places.
+    -   `places/`: Handles place-related searches and data.
+        -   `photos.ts`: Fetches photos for a given place.
+        -   `search.ts`: Searches for places based on a query.
     -   `stripe/`: Handles Stripe payment integration.
+        -   `create-checkout-session.ts`: Creates a new Stripe checkout session.
         -   `verify.ts`: Verifies a Stripe payment by polling for a successful payment.
         -   `webhook.ts`: Handles Stripe webhooks to confirm payment success.
+    -   `travel-info.ts`: Fetches general travel information.
     -   `weather/`: Handles weather data requests.
+        -   `forecast.ts`: Fetches the weather forecast.
         -   `historical.ts`: Fetches historical weather data.
 
 ### Route Handling Pattern

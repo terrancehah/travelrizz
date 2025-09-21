@@ -15,7 +15,7 @@ Travel-Rizz is built using modern web technologies, focusing on performance, sca
 ### UI Components & Styling
 
 -   **Tailwind CSS for utility-first styling** (`tailwind.config.js`)
--   **ShadCN UI for base components**
+-   **Shadcn/ui for base components**
 -   **Lucide Icons for consistent iconography**
 -   **Custom components with dark mode support** (`components/`)
 -   **Itinerary Export Component** (`components/planner/itinerary-export.tsx`)
@@ -161,18 +161,16 @@ NEXT_PUBLIC_APP_URL=
 ```json
 {
   "dependencies": {
-    "next": "^14.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "typescript": "^5.0.0",
-    "tailwindcss": "^3.0.0",
-    "next-intl": "latest",
-    "next-themes": "latest",
-    "@vercel/ai": "latest",
-    "stripe": "latest",
-    "@radix-ui/react-dialog": "latest",
-    "lucide-react": "latest",
-    "class-variance-authority": "latest"
+    "next": "^15.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "next-intl": "^3.26.3",
+    "next-themes": "^0.4.4",
+    "@ai-sdk/google": "^1.1.14",
+    "stripe": "^17.5.0",
+    "@radix-ui/react-dialog": "^1.1.4",
+    "lucide-react": "^0.468.0",
+    "class-variance-authority": "^0.7.1"
   }
 }
 ```
@@ -182,12 +180,12 @@ NEXT_PUBLIC_APP_URL=
 ```json
 {
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.0.0",
-    "eslint": "^8.0.0",
-    "prettier": "^3.0.0",
-    "autoprefixer": "^10.0.0",
-    "postcss": "^8.0.0"
+    "typescript": "^5.7.3",
+    "@types/node": "^20.17.16",
+    "@types/react": "^18.3.18",
+    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35"
   }
 }
 ```

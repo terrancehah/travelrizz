@@ -34,7 +34,7 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
 
 -   Next.js with Page Router
 -   TypeScript for type safety
--   Tailwind CSS with ShadCN UI components
+-   Tailwind CSS with Shadcn/ui components
 -   `next-intl` for internationalization
 -   `next-themes` for dark mode support
 
