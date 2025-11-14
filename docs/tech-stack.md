@@ -124,7 +124,11 @@ NEXT_PUBLIC_APP_URL=your_app_url
 ### Monitoring
 
 -   **Vercel Analytics**
--   **Error tracking**
+-   **Langfuse** - LLM observability and tracing
+    -   Cost and token tracking
+    -   Tool execution monitoring
+    -   Error tracking
+    -   Conversation analytics
 -   **Performance monitoring**
 
 ### Domain & SSL
@@ -152,6 +156,11 @@ STRIPE_WEBHOOK_SECRET=
 NEXT_PUBLIC_VISUALCROSSING_API_KEY=
 FREECURRENCY_API_KEY=
 NEXT_PUBLIC_APP_URL=
+
+# Optional - Langfuse for production monitoring
+LANGFUSE_PUBLIC_KEY=
+LANGFUSE_SECRET_KEY=
+LANGFUSE_HOST=https://cloud.langfuse.com
 ```
 
 ## Dependencies

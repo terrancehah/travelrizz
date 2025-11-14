@@ -22,6 +22,8 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
   - **Location:** `pages/api/stripe/`, `components/modals/premium-upgrade-modal.tsx`
 - **Itinerary Export and Display**: View and export your personalized trip itinerary.
   - **Location:** `components/planner/itinerary-export.tsx`
+- **Production Monitoring**: Optional Langfuse integration for cost tracking and observability (free cloud tier).
+  - **Location:** `utils/langfuse-config.ts`, `pages/api/chat/chat.ts`, `pages/admin/monitoring.tsx`
 - **Legal & Privacy Compliance**: Cookie, privacy, and terms pages for user transparency.
   - **Location:** `pages/privacy.tsx`, `pages/cookies.tsx`, `pages/terms.tsx`
 
@@ -49,10 +51,12 @@ Travel-Rizz is an AI-powered travel planning assistant that helps users create p
    ```
 3. Set up environment variables:
    - Copy `.env.example` to `.env.local` and fill in the required keys:
-     - `GOOGLE_MAPS_FRONTEND_API_KEY` (for frontend map usage)
-     - `GOOGLE_MAPS_BACKEND_API_KEY` (for backend geocoding)
-     - `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` (for payments)
-     - Other API keys as needed
+     - `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` (for maps)
+     - `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (for payments)
+     - `NEXT_PUBLIC_VISUALCROSSING_API_KEY` (for weather data)
+     - `FREECURRENCY_API_KEY` (for currency conversion)
+     - `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` (optional, for production monitoring)
+     - See `.env.example` for complete list
 
 ### Running Locally
 

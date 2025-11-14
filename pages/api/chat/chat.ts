@@ -8,6 +8,8 @@ import { NextRequest } from 'next/server';
 import { TravelSession } from '../../../managers/types';
 import { validateStageProgression } from '../../../managers/stage-manager';
 import { Place } from '../../../managers/types';
+import { getLangfuseClient, flushLangfuse } from '../../../utils/langfuse-config';
+import { getPrompt, PROMPT_NAMES, trackPromptUsage } from '../../../utils/prompt-manager';
 
 export const config = {
     runtime: 'edge'
@@ -35,6 +37,9 @@ export default async function handler(req: NextRequest) {
     if (req.method !== 'POST') {
         return new Response('Method not allowed', { status: 405 });
     }
+    
+    // Initialize Langfuse client
+    const langfuse = getLangfuseClient();
     
     try {
         const { messages, currentDetails, savedPlaces, currentStage, metrics }: ChatRequestBody = await req.json();
@@ -236,6 +241,21 @@ export default async function handler(req: NextRequest) {
             destination: currentDetails.destination
         });
         
+        // Create Langfuse trace for this conversation
+        const trace = langfuse?.trace({
+            name: 'travel-chat',
+            userId: metrics?.sessionId || 'anonymous',
+            sessionId: metrics?.sessionId,
+            metadata: {
+                destination: currentDetails.destination,
+                stage: currentStage,
+                isPaid: metrics?.isPaid,
+                totalPrompts: metrics?.totalPrompts,
+                savedPlacesCount: savedPlaces?.length || 0,
+            },
+            tags: ['production', `stage-${currentStage}`],
+        });
+        
         // Get AI response
         const result = await streamText({
             model: openai('gpt-4o-mini'),
@@ -256,10 +276,62 @@ export default async function handler(req: NextRequest) {
                 chunking: 'word'
             }),
             tools,
+            // Track completion in Langfuse
+            onFinish: async (event) => {
+                if (langfuse && trace) {
+                    try {
+                        // Create generation span with usage data
+                        trace.generation({
+                            name: 'chat-completion',
+                            model: 'gpt-4o-mini',
+                            input: messages,
+                            output: event.text,
+                            usage: {
+                                promptTokens: event.usage?.promptTokens || 0,
+                                completionTokens: event.usage?.completionTokens || 0,
+                                totalTokens: event.usage?.totalTokens || 0,
+                            },
+                            metadata: {
+                                finishReason: event.finishReason,
+                                toolCalls: event.toolCalls?.length || 0,
+                            },
+                        });
+                        
+                        // Track tool calls
+                        if (event.toolCalls && event.toolCalls.length > 0) {
+                            for (const toolCall of event.toolCalls) {
+                                trace.span({
+                                    name: `tool-${toolCall.toolName}`,
+                                    input: toolCall.args,
+                                    metadata: {
+                                        toolCallId: toolCall.toolCallId,
+                                        toolName: toolCall.toolName,
+                                    },
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        console.error('[Langfuse] Failed to track completion:', error);
+                    }
+                }
+            },
         });
         
-        return result.toDataStreamResponse({
+        // Convert to data stream response
+        const response = result.toDataStreamResponse({
             getErrorMessage: (error) => {
+                // Track error in Langfuse
+                if (langfuse && trace && error) {
+                    trace.event({
+                        name: 'chat-error',
+                        level: 'ERROR',
+                        metadata: {
+                            error: error instanceof Error ? error.message : String(error),
+                            errorType: error instanceof Error ? error.name : 'unknown',
+                        },
+                    });
+                }
+                
                 if (!error) return 'An unknown error occurred';
                 
                 if (error instanceof Error) {
@@ -289,8 +361,37 @@ export default async function handler(req: NextRequest) {
                 'Connection': 'keep-alive'
             }
         });
+        
+        // Flush Langfuse events
+        if (langfuse) {
+            // Don't await - let it happen in background
+            flushLangfuse().catch(err => console.error('[Langfuse] Flush error:', err));
+        }
+        
+        return response;
     } catch (error) {
         console.error('[Chat API] Unexpected error:', error);
+        
+        // Track error in Langfuse
+        if (langfuse) {
+            try {
+                const errorTrace = langfuse.trace({
+                    name: 'travel-chat-error',
+                    metadata: {
+                        error: error instanceof Error ? error.message : String(error),
+                        errorType: error instanceof Error ? error.name : 'unknown',
+                    },
+                });
+                errorTrace.event({
+                    name: 'unexpected-error',
+                    level: 'ERROR',
+                });
+                await flushLangfuse();
+            } catch (langfuseError) {
+                console.error('[Langfuse] Error tracking failed:', langfuseError);
+            }
+        }
+        
         return new Response(
             JSON.stringify({ 
                 error: 'An unexpected error occurred',

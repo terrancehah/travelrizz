@@ -165,7 +165,13 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                 if (!key) throw new Error('API key not found');
                 apiKeyRef.current = key;
 
+                // Load Google Maps script with proper callback
                 await loadGoogleMapsScript(key);
+
+                // Ensure Google Maps is fully loaded
+                if (!window.google?.maps) {
+                    throw new Error('Google Maps failed to load properly');
+                }
 
                 const geoResponse = await fetch('/api/maps/geocode', {
                     method: 'POST',
@@ -176,15 +182,26 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
                 const { location } = await geoResponse.json();
                 if (!location) throw new Error('Location not found');
 
-                const mapInstance = new window.google.maps.Map(mapRef.current!, {
+                // Safety check before creating map
+                if (!mapRef.current) {
+                    throw new Error('Map container not ready');
+                }
+
+                const mapInstance = new window.google.maps.Map(mapRef.current, {
                     center: { lat: location.latitude, lng: location.longitude },
                     zoom: 13,
-                    mapId: getMapId(theme)
+                    mapId: getMapId(theme),
+                    // Add these options for better stability
+                    gestureHandling: 'greedy',
+                    disableDefaultUI: false,
                 });
 
                 mapInstanceRef.current = mapInstance;
                 setMap(mapInstance);
                 setIsMapReady(true);
+                
+                // Wait for map to be fully initialized before finishing setup
+                await new Promise(resolve => setTimeout(resolve, 300));
                 finishMapSetup(mapInstance, key);
 
             } catch (err) {
@@ -195,7 +212,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ city, theme = 'light' }) =>
             }
         };
 
-        if (city) {
+        if (city && mapRef.current) {
             initMap();
         }
 

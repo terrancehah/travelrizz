@@ -221,12 +221,25 @@ export const loadGoogleMapsScript = (apiKey: string): Promise<void> => {
     scriptPromise = new Promise((resolve, reject) => {
         try {
             const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=${GOOGLE_MAPS_CONFIG.libraries.join(',')}&v=${GOOGLE_MAPS_CONFIG.version}&map_ids=${GOOGLE_MAPS_CONFIG.mapIds.light},${GOOGLE_MAPS_CONFIG.mapIds.dark}`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=${GOOGLE_MAPS_CONFIG.libraries.join(',')}&v=${GOOGLE_MAPS_CONFIG.version}&map_ids=${GOOGLE_MAPS_CONFIG.mapIds.light},${GOOGLE_MAPS_CONFIG.mapIds.dark}&callback=initGoogleMaps`;
             script.async = true;
             script.defer = true;
 
-            script.addEventListener('load', () => resolve());
-            script.addEventListener('error', (e) => reject(e.error));
+            // Add global callback for Google Maps initialization
+            (window as any).initGoogleMaps = () => {
+                // Wait a bit to ensure all libraries are fully loaded
+                setTimeout(() => {
+                    if (window.google?.maps) {
+                        resolve();
+                    } else {
+                        reject(new Error('Google Maps failed to initialize'));
+                    }
+                }, 100);
+            };
+
+            script.addEventListener('error', (e) => {
+                reject(new Error('Failed to load Google Maps script'));
+            });
 
             document.head.appendChild(script);
         } catch (error) {
